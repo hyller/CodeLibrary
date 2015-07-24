@@ -1,0 +1,13 @@
+rm -f wa.txt dwa.txt sdwa.txt wadef.txt libcn.txt libcn.def	sdwanc.txt sdwan.txt
+grep -r 'weak_alias (.*,.*)' */*.c  >wa.txt
+sed -e "s/^.*(\(.*\), *\(.*\)).*$/    \2=\1/" wa.txt >dwa.txt
+sort -bd dwa.txt >sdwa.txt
+sed -e "s/^\(.*\)=.*$/\1/" sdwa.txt | sort -bd > wadef.txt
+sed -e "s/EXPORTS//;s/ @.*$//" libc.def | sort -bd >libcn.txt
+comm -2 -3 libcn.txt wadef.txt > libcn.def
+cat libcn.def sdwa.txt | sort -du -t = -k 1,1 | tr -s "\r" >sdwanc.txt
+comm -23 sdwa.txt sdwanc.txt >sdwan.txt
+echo EXPORTS > libca.def
+cat libcn.def sdwan.txt | sort -bd | tr -s "\r"  >>libca.def
+a2dll libc.a -o libca.dll -d libca.def -lintl -liconv -liberty -lwsock32 -lole32 -luuid
+cp -fp libc.dll.a libgw32c.dll.a

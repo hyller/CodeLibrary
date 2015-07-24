@@ -1,0 +1,333 @@
+C51 COMPILER V6.10  I2C_CORE                                                               04/19/2001 10:36:46 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE I2C_CORE
+OBJECT MODULE PLACED IN .\I2c_core.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\I2c_core.c BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             I2C_CORE.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Core of the I2C library.
+   8          
+   9             You will typically need other components 
+  10             (see, for example, I2C_ROM.C) to create a complete library.
+  11          
+  12             COPYRIGHT
+  13             ---------
+  14          
+  15             This code is from the book:
+  16          
+  17             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  18             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  19          
+  20             This code is copyright (c) 2001 by Michael J. Pont.
+  21           
+  22             See book for copyright details and other information.
+  23          
+  24          -*------------------------------------------------------------------*/
+  25          
+  26          #include "Main.h"
+  27          #include "I2C_Core.h"
+  28          #include "TimeoutH.H"
+  29          
+  30          // ------ Port pins ------------------------------------------------
+  31          
+  32          // The two-wire I2C bus
+  33          sbit I2C_SCL = P1^7;
+  34          sbit I2C_SDA = P1^6;
+  35          
+  36          // ------ Private function prototypes ------------------------------
+  37          
+  38          static tByte I2C_Get_Ack_From_Slave(void); 
+  39          static bit   I2C_Sync_The_Clock_T0(void);   
+  40          static void  I2C_Delay(void);  
+  41          
+  42          // Comment out this line if these functions are *not* required
+  43          // (see text for details)
+  44          #define I2C_ACK_NACK
+  45          
+  46          /*------------------------------------------------------------------*-
+  47          
+  48            I2C_Send_Start()
+  49          
+  50            Generates a 'start' condition (see text for details).
+  51          
+  52          -*------------------------------------------------------------------*/
+  53          void I2C_Send_Start(void)
+  54             {
+  55   1         // Prepare the bus
+C51 COMPILER V6.10  I2C_CORE                                                               04/19/2001 10:36:46 PAGE 2   
+
+  56   1         I2C_SCL = 1; 
+  57   1         I2C_SDA = 1; 
+  58   1         I2C_Delay();  
+  59   1      
+  60   1         // Generate the START condition
+  61   1         I2C_SDA = 0; 
+  62   1         I2C_Delay(); 
+  63   1         I2C_SCL = 0;
+  64   1         }
+  65          
+  66          
+  67          /*------------------------------------------------------------------*-
+  68          
+  69            I2C_Send_Stop()
+  70          
+  71            Generates a 'stop' condition (see text for details).
+  72          
+  73          -*------------------------------------------------------------------*/
+  74          void I2C_Send_Stop(void)
+  75             {
+  76   1         I2C_SDA = 0; 
+  77   1         I2C_Delay();   
+  78   1         I2C_SCL = 1; 
+  79   1         I2C_Delay();   
+  80   1         I2C_SDA = 1;   
+  81   1         }
+  82          
+  83          /*------------------------------------------------------------------*-
+  84          
+  85            I2C_Get_Ack_From_Slave()
+  86          
+  87            We are implementing a 'Master-Slave' communication protocol
+  88            here, with the microcontroller as the Master.  This function
+  89            waits (with timeout) for an acknowledgement from the Slave device.
+  90          
+  91          -*------------------------------------------------------------------*/
+  92          tByte I2C_Get_Ack_From_Slave(void)
+  93             {
+  94   1         // Prepare the bus
+  95   1         I2C_SDA = 1; 
+  96   1         I2C_SCL = 1;
+  97   1      
+  98   1         if(I2C_Sync_The_Clock_T0())
+  99   1           {
+ 100   2           return 1; // Error - failed to sync
+ 101   2           }
+ 102   1      
+ 103   1         // Managed to synchronise the clock
+ 104   1         I2C_Delay();       
+ 105   1         
+ 106   1         if (I2C_SDA)       
+ 107   1            {
+ 108   2            // Generate a clock cycle
+ 109   2            I2C_SCL = 0;  
+ 110   2      
+ 111   2            return 1;  // Error - No ack from slave 
+ 112   2            }
+ 113   1      
+ 114   1         I2C_SCL = 0; // Generate a clock cycle
+ 115   1      
+ 116   1         return 0;     // OK - Slave issued ack
+ 117   1         }
+C51 COMPILER V6.10  I2C_CORE                                                               04/19/2001 10:36:46 PAGE 3   
+
+ 118          
+ 119          
+ 120          /*------------------------------------------------------------------*-
+ 121          
+ 122            I2C_Write_Byte()
+ 123          
+ 124            Send a byte of data to the Slave.  
+ 125            Supports slow Slaves by allowing 'clock stretching'.
+ 126          
+ 127          -*------------------------------------------------------------------*/
+ 128          tByte I2C_Write_Byte(tByte Data)
+ 129             {
+ 130   1         tByte Bit = 0;  
+ 131   1      
+ 132   1         // Sending data one bit at a time (MS bit first) 
+ 133   1         for (Bit = 0; Bit < 8; Bit++ )
+ 134   1           {
+ 135   2           I2C_SDA = (bit)((Data & 0x80) >> 7); 
+ 136   2           I2C_SCL = 1;  
+ 137   2                            
+ 138   2           if (I2C_Sync_The_Clock_T0())
+ 139   2             {
+ 140   3             return 1; // Error - failed to sync
+ 141   3             }
+ 142   2      
+ 143   2           I2C_Delay(); 
+ 144   2      
+ 145   2           // Generate a clock cycle
+ 146   2           I2C_SCL = 0;                        
+ 147   2      
+ 148   2           // Prepare to send next bit
+ 149   2           Data <<= 1;                    
+ 150   2           }
+ 151   1      
+ 152   1         // Make sure the slave acknowledges
+ 153   1         return(I2C_Get_Ack_From_Slave());
+ 154   1         }
+ 155          
+ 156          
+ 157          /*------------------------------------------------------------------*-
+ 158          
+ 159            I2C_Read_Byte()
+ 160          
+ 161            Read a byte of data from the Slave.  
+ 162            Supports slow Slaves by allowing 'clock stretching'.
+ 163          
+ 164          -*------------------------------------------------------------------*/
+ 165          tByte I2C_Read_Byte(void)
+ 166             {
+ 167   1         tByte result  = 0;  // Return value with read I2C byte
+ 168   1         tByte Bit = 0;      // Bitcounter
+ 169   1      
+ 170   1         for (Bit = 0; Bit < 8; Bit++ )
+ 171   1           {
+ 172   2           I2C_SDA = 1;           // Release SDA
+ 173   2           I2C_SCL = 1;           // Release SCL
+ 174   2      
+ 175   2           if (I2C_Sync_The_Clock_T0())
+ 176   2             {
+ 177   3             return 1; // Error - failed to sync
+ 178   3             }
+ 179   2      
+C51 COMPILER V6.10  I2C_CORE                                                               04/19/2001 10:36:46 PAGE 4   
+
+ 180   2           I2C_Delay(); 
+ 181   2      
+ 182   2           result <<= 1;      // Shift left the result
+ 183   2      
+ 184   2           if (I2C_SDA)
+ 185   2              {
+ 186   3              result |= 0x01;  // Set actual SDA state to LSB
+ 187   3              }
+ 188   2      
+ 189   2           I2C_SCL = 0;       // Force a clock cycle
+ 190   2           I2C_Delay();       
+ 191   2           }
+ 192   1      
+ 193   1         return(result);
+ 194   1         }
+ 195          
+ 196          /*------------------------------------------------------------------*-
+ 197          
+ 198            I2C_Sync_The_Clock_T0()
+ 199          
+ 200            Low-level function used during I2C data transfers.
+ 201          
+ 202            *** With 1ms hardware (Timer 0) timeout ***
+ 203          
+ 204            RETURNS:  1 - Error (not synchronised)
+ 205                      0 - OK (clock synchronised)
+ 206          
+ 207          -*------------------------------------------------------------------*/
+ 208          bit I2C_Sync_The_Clock_T0(void)
+ 209             {
+ 210   1         // Configure Timer 0 as a 16-bit timer 
+ 211   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+ 212   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+ 213   1      
+ 214   1         ET0 = 0;  // No interrupts
+ 215   1      
+ 216   1         // Simple timeout feature - approx 1ms
+ 217   1         TH0 = T_01ms_H; // See TimeoutH.H for T_ details
+ 218   1         TL0 = T_01ms_L;
+ 219   1         TF0 = 0; // Clear flag
+ 220   1         TR0 = 1; // Start timer
+ 221   1      
+ 222   1         // Try to synchronise the clock
+ 223   1         while ((I2C_SCL == 0) && (TF0 != 1)); 
+ 224   1      
+ 225   1         TR0 = 0; // Stop the timer  
+ 226   1      
+ 227   1         if (TF0 == 1)
+ 228   1            {
+ 229   2            return 1;  // Error - Timeout condition failed
+ 230   2            }
+ 231   1      
+ 232   1         return 0;  // OK - Clock synchronised
+ 233   1         }
+ 234          
+ 235          /*------------------------------------------------------------------*-
+ 236          
+ 237            I2C_Delay()
+ 238          
+ 239            A short software delay (around 10 µs).  
+ 240          
+ 241            Adjust this for a minimum of 5.425 µs to work with
+C51 COMPILER V6.10  I2C_CORE                                                               04/19/2001 10:36:46 PAGE 5   
+
+ 242            'standard' I2C devices.  Any delay longer than this will also work.
+ 243            With modern devices shorter delays may also be used.
+ 244          
+ 245            NOTE: Cannot do this with a Hardware Delay!!!
+ 246          
+ 247          -*------------------------------------------------------------------*/
+ 248          void I2C_Delay(void)
+ 249             {
+ 250   1         int x;
+ 251   1      
+ 252   1         x++;
+ 253   1         x++;
+ 254   1         }
+ 255          
+ 256          #ifdef I2C_ACK_NACK
+ 257          /*------------------------------------------------------------------*-
+ 258          
+ 259            I2C_Send_Master_Ack()
+ 260          
+ 261            Generates an 'Acknowledge' condition (see text for details).
+ 262          
+ 263          -*------------------------------------------------------------------*/
+ 264          void I2C_Send_Master_Ack(void)
+ 265             {
+ 266   1         I2C_SDA = 0; 
+ 267   1         I2C_SCL = 1;
+ 268   1      
+ 269   1         I2C_Sync_The_Clock_T0();
+ 270   1      
+ 271   1         I2C_Delay();  
+ 272   1         I2C_SCL = 0;  
+ 273   1         }
+ 274          
+ 275          
+ 276          /*------------------------------------------------------------------*-
+ 277          
+ 278            I2C_Send_Master_NAck()
+ 279          
+ 280            Generates a 'Not Acknowledge' condition (see text for details).
+ 281          
+ 282          -*------------------------------------------------------------------*/
+ 283          void I2C_Send_Master_NAck(void)
+ 284             {
+ 285   1         I2C_SDA = 1; I2C_SCL = 1; 
+ 286   1      
+ 287   1         I2C_Sync_The_Clock_T0();
+ 288   1      
+ 289   1         I2C_Delay();
+ 290   1         I2C_SCL = 0;
+ 291   1         } 
+ 292          #endif
+ 293          
+ 294          /*------------------------------------------------------------------*-
+ 295            ---- END OF FILE -------------------------------------------------
+ 296          -*------------------------------------------------------------------*/
+ 297          
+ 298          
+ 299          
+ 300          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+C51 COMPILER V6.10  I2C_CORE                                                               04/19/2001 10:36:46 PAGE 6   
+
+   CODE SIZE        =    231    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

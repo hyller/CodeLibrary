@@ -1,0 +1,137 @@
+C51 COMPILER V6.10  BARGRAPH                                                               04/19/2001 11:59:23 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE BARGRAPH
+OBJECT MODULE PLACED IN .\BARGRAPH.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\BARGRAPH.C BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Bargraph.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple bargraph library.  
+   8          
+   9             See Chapter 10 for further details.
+  10          
+  11          
+  12             COPYRIGHT
+  13             ---------
+  14          
+  15             This code is from the book:
+  16          
+  17             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  18             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  19          
+  20             This code is copyright (c) 2001 by Michael J. Pont.
+  21           
+  22             See book for copyright details and other information.
+  23          
+  24          -*------------------------------------------------------------------*/
+  25          
+  26          #include "Main.h"
+  27          #include "Port.h"
+  28          
+  29          #include "Bargraph.h"
+  30          
+  31          // ------ Public variable declarations -----------------------------
+  32          
+  33          // The data to be displayed
+  34          tBargraph Count_G;
+  35          
+  36          // ------ Private constants ----------------------------------------
+  37          
+  38          #define BARGRAPH_ON (1)
+  39          #define BARGRAPH_OFF (0)
+  40          
+  41          // ------ Private variables ----------------------------------------
+  42          
+  43          // These  variables store the thresholds
+  44          // used to update the display
+  45          static tBargraph M9_1_G;
+  46          static tBargraph M9_2_G;
+  47          static tBargraph M9_3_G;
+  48          static tBargraph M9_4_G;
+  49          static tBargraph M9_5_G;
+  50          static tBargraph M9_6_G;
+  51          static tBargraph M9_7_G;
+  52          static tBargraph M9_8_G;
+  53          
+  54          
+  55          /*------------------------------------------------------------------*-
+C51 COMPILER V6.10  BARGRAPH                                                               04/19/2001 11:59:23 PAGE 2   
+
+  56          
+  57            BARGRAPH_Init()
+  58          
+  59            Prepare for the bargraph display.
+  60          
+  61          -*------------------------------------------------------------------*/
+  62          void BARGRAPH_Init(void)
+  63             {
+  64   1         Pin0 = BARGRAPH_OFF;   
+  65   1         Pin1 = BARGRAPH_OFF;   
+  66   1         Pin2 = BARGRAPH_OFF;   
+  67   1         Pin3 = BARGRAPH_OFF;   
+  68   1         Pin4 = BARGRAPH_OFF;   
+  69   1         Pin5 = BARGRAPH_OFF;   
+  70   1         Pin6 = BARGRAPH_OFF;   
+  71   1         Pin7 = BARGRAPH_OFF;   
+  72   1      
+  73   1         // Use a linear scale to display data 
+  74   1         // Remember: *9* possible output states
+  75   1         // - do all calculations ONCE
+  76   1         M9_1_G = (BARGRAPH_MAX - BARGRAPH_MIN) / 9;
+  77   1         M9_2_G = M9_1_G * 2;
+  78   1         M9_3_G = M9_1_G * 3;
+  79   1         M9_4_G = M9_1_G * 4;
+  80   1         M9_5_G = M9_1_G * 5;
+  81   1         M9_6_G = M9_1_G * 6;
+  82   1         M9_7_G = M9_1_G * 7;
+  83   1         M9_8_G = M9_1_G * 8;
+  84   1         }
+  85          
+  86          /*------------------------------------------------------------------*-
+  87          
+  88            BARGRAPH_Update()
+  89          
+  90            Update the bargraph display.
+  91          
+  92          -*------------------------------------------------------------------*/
+  93          void BARGRAPH_Update(void)
+  94             {
+  95   1         tBargraph Data = Count_G - BARGRAPH_MIN; 
+  96   1      
+  97   1         Pin0 = ((Data >= M9_1_G) == BARGRAPH_ON);
+  98   1         Pin1 = ((Data >= M9_2_G) == BARGRAPH_ON);
+  99   1         Pin2 = ((Data >= M9_3_G) == BARGRAPH_ON);
+ 100   1         Pin3 = ((Data >= M9_4_G) == BARGRAPH_ON);
+ 101   1         Pin4 = ((Data >= M9_5_G) == BARGRAPH_ON);
+ 102   1         Pin5 = ((Data >= M9_6_G) == BARGRAPH_ON);
+ 103   1         Pin6 = ((Data >= M9_7_G) == BARGRAPH_ON);
+ 104   1         Pin7 = ((Data >= M9_8_G) == BARGRAPH_ON);
+ 105   1         }
+ 106          
+ 107          /*------------------------------------------------------------------*-
+ 108            ---- END OF FILE -------------------------------------------------
+ 109          -*------------------------------------------------------------------*/
+ 110          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    319    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V6.10  BARGRAPH                                                               04/19/2001 11:59:23 PAGE 3   
+
+   DATA SIZE        =     18    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,4 @@
+"CEN_HEAT.obj",
+"MAIN.obj" 
+TO "Cen_Heat" 
+RAMSIZE(256) 

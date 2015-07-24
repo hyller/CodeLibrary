@@ -1,0 +1,7 @@
+"2_01_12G.obj",
+"MAIN.obj",
+"PWM_SOFT.obj",
+"SCH51.obj" 
+TO "PWM_Soft" 
+RAMSIZE(256) 
+OVERLAY (main ~ (PWM_Soft_Update, PWM_Soft_Test), SCH_Dispatch_Tasks ! (PWM_Soft_Update, PWM_Soft_Test)) 

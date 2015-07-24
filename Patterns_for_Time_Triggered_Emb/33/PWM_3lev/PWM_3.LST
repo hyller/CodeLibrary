@@ -1,0 +1,226 @@
+C51 COMPILER V6.10  PWM_3                                                                  04/10/2001 12:25:54 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE PWM_3
+OBJECT MODULE PLACED IN .\PWM_3.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\PWM_3.c OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             PWM_3.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple 3-level PWM example (see Chapter 33).
+   8          
+   9             Use 'Hyperterminal' (under Windows 95, 98, 2000, etc) 
+  10             or similar terminal emulator program on other operating systems.
+  11          
+  12             Terminal options: 
+  13          
+  14             - Data bits    = 8
+  15             - Parity       = None
+  16             - Stop bits    = 1
+  17             - Flow control = Xon / Xoff
+  18          
+  19          
+  20             COPYRIGHT
+  21             ---------
+  22          
+  23             This code is from the book:
+  24          
+  25             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  26             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  27          
+  28             This code is copyright (c) 2001 by Michael J. Pont.
+  29           
+  30             See book for copyright details and other information.
+  31          
+  32          -*------------------------------------------------------------------*/
+  33          
+  34          #include "Main.h"
+  35          #include "Port.h"
+  36          
+  37          #include "0_05_11g.h"
+  38          #include "PWM_3.h"
+  39          #include "PC_IO_T1.h"
+  40          
+  41          // ------ Private constants ----------------------------------------
+  42          
+  43          #define PWM_OFF 1
+  44          #define PWM_ON 0
+  45          
+  46          /*------------------------------------------------------------------*-
+  47          
+  48            PWM_3_Command_Processor()
+  49          
+  50            This function is the main menu 'command processor' function.  
+  51          
+  52            Schedule this once every 10 ms (approx.).
+  53          
+  54          -*------------------------------------------------------------------*/
+  55          void PWM_3_Command_Processor(void)
+C51 COMPILER V6.10  PWM_3                                                                  04/10/2001 12:25:54 PAGE 2   
+
+  56             {
+  57   1         static bit First_time_only;
+  58   1         char Ch;
+  59   1      
+  60   1         if (First_time_only == 0)
+  61   1            {
+  62   2            First_time_only = 1;
+  63   2            PWM_3_Show_Menu();
+  64   2            }
+  65   1      
+  66   1         // Check for user inputs
+  67   1         PC_LINK_IO_Update();
+  68   1      
+  69   1         Ch = PC_LINK_IO_Get_Char_From_Buffer();
+  70   1            
+  71   1         if (Ch != PC_LINK_IO_NO_CHAR)
+  72   1            {
+  73   2            PWM_3_Perform_Task(Ch);
+  74   2            PWM_3_Show_Menu();
+  75   2            }
+  76   1         }
+  77          
+  78          
+  79          /*------------------------------------------------------------------*-
+  80          
+  81            PWM_3_Show_Menu()
+  82          
+  83            Display menu options on PC screen (via serial link)
+  84            - edit as required to meet the needs of your application.
+  85          
+  86          -*------------------------------------------------------------------*/
+  87          void PWM_3_Show_Menu(void)
+  88             {
+  89   1         PC_LINK_IO_Write_String_To_Buffer("Menu:\n"); 
+  90   1         PC_LINK_IO_Write_String_To_Buffer("a - 0%\n");
+  91   1         PC_LINK_IO_Write_String_To_Buffer("b - 50%\n");
+  92   1         PC_LINK_IO_Write_String_To_Buffer("c - 100%\n\n");
+  93   1         PC_LINK_IO_Write_String_To_Buffer("? : ");
+  94   1         }
+  95          
+  96          
+  97          /*------------------------------------------------------------------*-
+  98          
+  99            PWM_3_Perform_Task()
+ 100          
+ 101            Perform the required user task
+ 102            - edit as required to match the needs of your application.
+ 103          
+ 104          -*------------------------------------------------------------------*/
+ 105          void PWM_3_Perform_Task(char c)
+ 106             {
+ 107   1         // Echo the menu option
+ 108   1         PC_LINK_IO_Write_Char_To_Buffer(c);
+ 109   1         PC_LINK_IO_Write_Char_To_Buffer('\n');
+ 110   1      
+ 111   1         // Perform the task
+ 112   1         switch (c)
+ 113   1            {
+ 114   2            case 'a':
+ 115   2            case 'A':
+ 116   2               {
+ 117   3               PWM_3_Set_000();
+C51 COMPILER V6.10  PWM_3                                                                  04/10/2001 12:25:54 PAGE 3   
+
+ 118   3               break;
+ 119   3               }
+ 120   2            
+ 121   2            case 'b':
+ 122   2            case 'B':
+ 123   2               {
+ 124   3               PWM_3_Set_050();
+ 125   3               break;
+ 126   3               }
+ 127   2      
+ 128   2            case 'c':
+ 129   2            case 'C':
+ 130   2               {
+ 131   3               PWM_3_Set_100();
+ 132   3               }
+ 133   2            } 
+ 134   1         }
+ 135          
+ 136          /*------------------------------------------------------------------*-
+ 137          
+ 138            PWM_3_Set_000()
+ 139          
+ 140            Set PWM output to 0% duty cycle.
+ 141          
+ 142          -*------------------------------------------------------------------*/
+ 143          void PWM_3_Set_000(void)
+ 144             {
+ 145   1         PC_LINK_IO_Write_String_To_Buffer("\n*** 0% ***\n\n");
+ 146   1      
+ 147   1         TR2   = 0; // Stop timer 2
+ 148   1      
+ 149   1         PWM_pin = PWM_OFF;  
+ 150   1         }
+ 151          
+ 152          /*------------------------------------------------------------------*-
+ 153          
+ 154            PWM_3_Set_050()
+ 155          
+ 156            Set PWM output to 50% duty cycle using Timer 2.
+ 157          
+ 158          -*------------------------------------------------------------------*/
+ 159          void PWM_3_Set_050(void)
+ 160             {
+ 161   1         PC_LINK_IO_Write_String_To_Buffer("\n*** 50% ***\n\n");
+ 162   1      
+ 163   1         T2CON &= 0xFD;   // Clear *only* C /T2 bit
+ 164   1         T2MOD |= 0x02;   // Set T2OE bit  (omit in basic 8052 clone)
+ 165   1        
+ 166   1         // Set at lowest frequency (~45Hz with 12MHz xtal)
+ 167   1         // - adjust as required (see PRM HARDWARE)
+ 168   1         TL2     = 0x00;   // Timer 2 low byte
+ 169   1         TH2     = 0x00;   // Timer 2 high byte
+ 170   1         RCAP2L  = 0x00;   // Timer 2 reload capture register, low byte
+ 171   1         RCAP2H  = 0x00;   // Timer 2 reload capture register, high byte
+ 172   1      
+ 173   1         ET2   = 0; // No interrupt.
+ 174   1      
+ 175   1         TR2   = 1; // Start timer 2
+ 176   1         }
+ 177          
+ 178          /*------------------------------------------------------------------*-
+ 179          
+C51 COMPILER V6.10  PWM_3                                                                  04/10/2001 12:25:54 PAGE 4   
+
+ 180            PWM_3_Set_100()
+ 181          
+ 182            Set PWM output to 100% duty cycle.
+ 183          
+ 184          -*------------------------------------------------------------------*/
+ 185          void PWM_3_Set_100(void)
+ 186             {
+ 187   1         PC_LINK_IO_Write_String_To_Buffer("\n*** Doing C ***\n\n");
+ 188   1      
+ 189   1         TR2   = 0; // Stop timer 2
+ 190   1      
+ 191   1         PWM_pin = PWM_ON;
+ 192   1         }
+ 193          
+ 194          /*------------------------------------------------------------------*-
+ 195            ---- END OF FILE -------------------------------------------------
+ 196          -*------------------------------------------------------------------*/
+ 197          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    174    ----
+   CONSTANT SIZE    =     88    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

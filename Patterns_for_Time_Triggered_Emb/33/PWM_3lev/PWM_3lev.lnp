@@ -1,0 +1,9 @@
+"SCH51.obj",
+"MAIN.obj",
+"0_05_11g.obj",
+"PWM_3.obj",
+"PC_IO.obj",
+"PC_IO_T1.obj" 
+TO "PWM_3lev" 
+RAMSIZE(256) 
+OVERLAY (main ~ (PWM_3_Command_Processor), SCH_Dispatch_Tasks ! (PWM_3_Command_Processor)) 

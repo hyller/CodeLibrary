@@ -1,0 +1,5 @@
+mtrace.o mtrace.o: mtrace.c ../include/libc-symbols.h ../config.h
+
+../include/libc-symbols.h:
+
+../config.h:

@@ -1,0 +1,81 @@
+seed48_r.o seed48_r.o: seed48_r.c ../include/libc-symbols.h ../config.h \
+  h:/mingw/3.3.1/include/stdlib.h h:/mingw/3.3.1/include/_mingw.h \
+  h:/mingw/3.3.1/include/stddef.h \
+  h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stddef.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stddefx.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stdlibx.h \
+  h:/mingw/3.3.1/mingw32/include/features.h \
+  h:/mingw/3.3.1/mingw32/include/sys/cdefs.h ../include/gnu/stubs.h \
+  h:/mingw/3.3.1/mingw32/include/gw32.h \
+  h:/mingw/3.3.1/include/sys/types.h \
+  h:/mingw/3.3.1/mingw32/include/winx/sys/typesx.h \
+  h:/mingw/3.3.1/mingw32/include/bits/types.h \
+  h:/mingw/3.3.1/mingw32/include/bits/wordsize.h \
+  h:/mingw/3.3.1/mingw32/include/bits/typesizes.h \
+  h:/mingw/3.3.1/mingw32/include/gw32win.h \
+  h:/mingw/3.3.1/include/stdint.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stdintx.h \
+  h:/mingw/3.3.1/include/string.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stringx.h \
+  h:/mingw/3.3.1/include/limits.h \
+  h:/mingw/3.3.1/mingw32/include/winx/limitsx.h \
+  h:/mingw/3.3.1/mingw32/include/bits/posix1_lim.h \
+  h:/mingw/3.3.1/mingw32/include/bits/local_lim.h \
+  h:/mingw/3.3.1/mingw32/include/bits/xopen_lim.h \
+  h:/mingw/3.3.1/mingw32/include/bits/stdio_lim.h
+
+../include/libc-symbols.h:
+
+../config.h:
+
+h:/mingw/3.3.1/include/stdlib.h:
+
+h:/mingw/3.3.1/include/_mingw.h:
+
+h:/mingw/3.3.1/include/stddef.h:
+
+h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stddef.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stddefx.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stdlibx.h:
+
+h:/mingw/3.3.1/mingw32/include/features.h:
+
+h:/mingw/3.3.1/mingw32/include/sys/cdefs.h:
+
+../include/gnu/stubs.h:
+
+h:/mingw/3.3.1/mingw32/include/gw32.h:
+
+h:/mingw/3.3.1/include/sys/types.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/sys/typesx.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/types.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/wordsize.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/typesizes.h:
+
+h:/mingw/3.3.1/mingw32/include/gw32win.h:
+
+h:/mingw/3.3.1/include/stdint.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stdintx.h:
+
+h:/mingw/3.3.1/include/string.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stringx.h:
+
+h:/mingw/3.3.1/include/limits.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/limitsx.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/posix1_lim.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/local_lim.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/xopen_lim.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/stdio_lim.h:

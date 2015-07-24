@@ -1,0 +1,283 @@
+C51 COMPILER V6.10  SCI_TI1S                                                               04/18/2001 16:50:26 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE SCI_TI1S
+OBJECT MODULE PLACED IN .\SCI_TI1S.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\SCI_TI1S.C OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             SCI_Ti1s.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             This is an implementation of SCI SCHEDULER (TICK) for 8051/52.
+   8          
+   9             --- See Chapter 26 ---
+  10          
+  11             *** SLAVE NODE : TICK-ONLY (SIMPLEX) ***
+  12             *** MASTER DOES NOT CHECK FOR SLAVE ACKNOWLEDEMENTS
+  13          
+  14             *** Uses 1232 watchdog timer ***
+  15          
+  16             *** Both Master and Slave share the same tick rate (1 ms) ***
+  17             *** - See Master code for details ***
+  18          
+  19          
+  20             COPYRIGHT
+  21             ---------
+  22          
+  23             This code is from the book:
+  24          
+  25             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  26             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  27          
+  28             This code is copyright (c) 2001 by Michael J. Pont.
+  29           
+  30             See book for copyright details and other information.
+  31          
+  32          -*------------------------------------------------------------------*/
+  33          
+  34          #include "Main.h"
+  35          #include "Port.h"
+  36          
+  37          #include "SCI_Ti1s.h"
+  38          #include "TLight_A.h"
+  39          
+  40          // ------ Public variable declarations -----------------------------
+  41          
+  42          // The array of tasks (see Sch51.c)
+  43          extern sTask SCH_tasks_G[SCH_MAX_TASKS];
+  44          
+  45          // The error code variable (see Sch51.c)
+  46          extern tByte Error_code_G;
+  47          
+  48          // ------ Private function prototypes ------------------------------
+  49          
+  50          static void SCI_TICK1_SLAVE_Enter_Safe_State(void);
+  51          
+  52          static void SCI_TICK1_SLAVE_Watchdog_Init(void);
+  53          static void SCI_TICK1_SLAVE_Watchdog_Refresh(void) reentrant;
+  54          
+  55          /*------------------------------------------------------------------*-
+C51 COMPILER V6.10  SCI_TI1S                                                               04/18/2001 16:50:26 PAGE 2   
+
+  56          
+  57            SCI_TICK1_SLAVE_Init()
+  58          
+  59            Scheduler initialisation function.  Prepares scheduler
+  60            data structures and sets up timer interrupts at required rate.
+  61          
+  62            Must call this function before using the scheduler.  
+  63          
+  64          -*------------------------------------------------------------------*/
+  65          void SCI_TICK1_SLAVE_Init(void) 
+  66             {
+  67   1         tByte i;
+  68   1       
+  69   1         // Sort out the tasks
+  70   1         for (i = 0; i < SCH_MAX_TASKS; i++) 
+  71   1            {
+  72   2            SCH_Delete_Task(i);
+  73   2            }
+  74   1      
+  75   1         // Reset the global error variable
+  76   1         // - SCH_Delete_Task() will generate an error code, 
+  77   1         //   (because the task array is empty)
+  78   1         Error_code_G = 0;
+  79   1       
+  80   1         // ---------- External interrupt 0 ----------
+  81   1         // The slave is driven by an interrupt input
+  82   1         // The interrupt is enabled 
+  83   1         // It is triggered by a falling edge at pin P3.2
+  84   1         IT0 = 1;
+  85   1         EX0 = 1;
+  86   1      
+  87   1         // Start the watchdog
+  88   1         SCI_TICK1_SLAVE_Watchdog_Init();  
+  89   1         }
+  90          
+  91          /*------------------------------------------------------------------*-
+  92          
+  93            SCI_TICK1_SLAVE_Start()
+  94          
+  95            Starts the slave scheduler, by enabling interrupts.
+  96          
+  97            NOTE: Usually called after all regular tasks are added,
+  98            to keep the tasks synchronised.
+  99          
+ 100            NOTE: ONLY THE SCHEDULER INTERRUPT SHOULD BE ENABLED!!! 
+ 101          
+ 102          -*------------------------------------------------------------------*/
+ 103          void SCI_TICK1_SLAVE_Start(void) 
+ 104             {
+ 105   1         // Place system in a safe state
+ 106   1         // - slave will keep returning here if master does not start
+ 107   1         // - or otherwise fails.
+ 108   1         SCI_TICK1_SLAVE_Enter_Safe_State();
+ 109   1      
+ 110   1         // Now in a safe state
+ 111   1         // Wait here - indefinitely - for the first tick
+ 112   1         // (Refresh the watchdog to avoid constant watchdog restarts)
+ 113   1         while (IE0 == 0)
+ 114   1            {
+ 115   2            SCI_TICK1_SLAVE_Watchdog_Refresh();
+ 116   2            }
+ 117   1      
+C51 COMPILER V6.10  SCI_TI1S                                                               04/18/2001 16:50:26 PAGE 3   
+
+ 118   1         // Clear the flag
+ 119   1         IE0 = 0;
+ 120   1      
+ 121   1         // Start the scheduler
+ 122   1         EA = 1;
+ 123   1         }
+ 124          
+ 125          /*------------------------------------------------------------------*-
+ 126          
+ 127            SCI_TICK1_SLAVE_Update
+ 128          
+ 129            This is the scheduler ISR.  It is called at a rate 
+ 130            determined by the timer settings in SCI_TICK1_SLAVE_Init().
+ 131          
+ 132            This Slave is triggered by external interrupts.
+ 133           
+ 134          -*------------------------------------------------------------------*/
+ 135          void SCI_TICK1_SLAVE_Update(void) interrupt INTERRUPT_EXTERNAL_0  
+ 136             {
+ 137   1         tByte Index;
+ 138   1      
+ 139   1         // Feed the watchdog
+ 140   1         // Master will monitor this pin to check for slave activity 
+ 141   1         SCI_TICK1_SLAVE_Watchdog_Refresh();
+ 142   1      
+ 143   1         // Now do 'standard' scheduler updates
+ 144   1      
+ 145   1         // NOTE: calculations are in *TICKS* (not milliseconds)
+ 146   1         for (Index = 0; Index < SCH_MAX_TASKS; Index++)
+ 147   1            {
+ 148   2            // Check if there is a task at this location
+ 149   2            if (SCH_tasks_G[Index].pTask)
+ 150   2               {
+ 151   3               if (SCH_tasks_G[Index].Delay == 0)
+ 152   3                  {
+ 153   4                  // The task is due to run
+ 154   4                  SCH_tasks_G[Index].RunMe += 1;  // Incr. the run flag
+ 155   4      
+ 156   4                  if (SCH_tasks_G[Index].Period)
+ 157   4                     {
+ 158   5                     // Schedule this regular task to run again
+ 159   5                     SCH_tasks_G[Index].Delay = SCH_tasks_G[Index].Period;
+ 160   5                     }
+ 161   4                  }
+ 162   3               else
+ 163   3                  {
+ 164   4                  // Not yet ready to run: just decrement the delay 
+ 165   4                  SCH_tasks_G[Index].Delay -= 1;
+ 166   4                  }
+ 167   3               }         
+ 168   2            }
+ 169   1         }   
+ 170          
+ 171          /*------------------------------------------------------------------*-
+ 172          
+ 173            SCI_TICK1_SLAVE_Watchdog_Init()
+ 174          
+ 175            This function sets up the watchdog timer.
+ 176          
+ 177            If the Master fails (or other error develop), 
+ 178            no tick messages will arrive, and the scheduler
+ 179            will stop.  
+C51 COMPILER V6.10  SCI_TI1S                                                               04/18/2001 16:50:26 PAGE 4   
+
+ 180          
+ 181            To detect this situation, we have a (hardware) watchdog
+ 182            running in the slave.  This watchdog - which should be set to
+ 183            overflow at around 100ms - is used to set the system into a
+ 184            known (safe) state.  The slave will then wait (indefinitely)
+ 185            for the problem to be resolved.
+ 186          
+ 187            NOTE: The slave will not be generating Ack messages in these 
+ 188            circumstances.  The Master (if running) will therefore be aware
+ 189            that there is a problem.  
+ 190          
+ 191          -*------------------------------------------------------------------*/
+ 192          void SCI_TICK1_SLAVE_Watchdog_Init(void)   
+ 193             {
+ 194   1         // INIT NOT REQUIRED FOR 1232 EXTERNAL WATCHDOG
+ 195   1         // - May be required wwith different watchdog hardware
+ 196   1         //
+ 197   1         // Edit as required
+ 198   1         }
+ 199          
+ 200          
+ 201          /*------------------------------------------------------------------*-
+ 202          
+ 203            SCI_TICK1_SLAVE_Watchdog_Refresh()
+ 204          
+ 205            Feed the external (1232) watchdog.
+ 206          
+ 207            Timeout is between ~60 and 250 ms (hardware dependent)
+ 208          
+ 209            HARDWARE: Assumes external 1232 watchdog
+ 210          
+ 211          -*------------------------------------------------------------------*/
+ 212          void SCI_TICK1_SLAVE_Watchdog_Refresh(void) reentrant
+ 213             {
+ 214   1         static bit WATCHDOG_state;
+ 215   1      
+ 216   1         // Change the state of the watchdog pin
+ 217   1         if (WATCHDOG_state == 1)
+ 218   1            {
+ 219   2            WATCHDOG_state = 0;
+ 220   2            WATCHDOG_pin = 0;
+ 221   2            }
+ 222   1         else
+ 223   1            {
+ 224   2            WATCHDOG_state = 1;
+ 225   2            WATCHDOG_pin = 1;
+ 226   2            }
+ 227   1         }    
+ 228          
+ 229          /*------------------------------------------------------------------*-
+ 230          
+ 231            SCI_TICK1_SLAVE_Enter_Safe_State()
+ 232          
+ 233            This is the state enterted by the system when:
+ 234            (1) The node is powered up or reset
+ 235            (2) The Master node fails
+ 236            (3) The network has an error
+ 237            (4) Tick messages are delayed for any other reason
+ 238          
+ 239            Try to ensure that the system is in a 'safe' state in these 
+ 240            circumstances.
+ 241          
+C51 COMPILER V6.10  SCI_TI1S                                                               04/18/2001 16:50:26 PAGE 5   
+
+ 242          -*------------------------------------------------------------------*/
+ 243          void SCI_TICK1_SLAVE_Enter_Safe_State(void)
+ 244             {
+ 245   1         // USER DEFINED - Edit as required
+ 246   1         TRAFFIC_LIGHTS_Display_Safe_Output();
+ 247   1         }   
+ 248          
+ 249          /*------------------------------------------------------------------*-
+ 250            ---- END OF FILE -------------------------------------------------
+ 251          -*------------------------------------------------------------------*/
+ 252          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    212    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,8 @@
+EXPORTS
+    __dlvsym @1
+    dladdr @2
+    dlclose @3
+    dlerror @4
+    dlopen @5
+    dlsym @6
+    dlvsym @7 DATA

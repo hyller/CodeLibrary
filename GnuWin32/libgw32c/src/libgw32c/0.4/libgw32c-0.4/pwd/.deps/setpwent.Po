@@ -1,0 +1,5 @@
+setpwent.o setpwent.o: setpwent.c ../include/libc-symbols.h ../config.h
+
+../include/libc-symbols.h:
+
+../config.h:

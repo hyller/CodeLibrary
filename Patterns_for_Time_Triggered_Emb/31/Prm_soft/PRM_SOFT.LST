@@ -1,0 +1,158 @@
+C51 COMPILER V6.10  PRM_SOFT                                                               04/18/2001 17:38:57 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE PRM_SOFT
+OBJECT MODULE PLACED IN .\PRM_SOFT.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\PRM_SOFT.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             PRM_Soft.c (v1.01)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple Software PRM library.
+   8          
+   9             See Chapter 31 for details.
+  10          
+  11          
+  12             COPYRIGHT
+  13             ---------
+  14          
+  15             This code is from the book:
+  16          
+  17             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  18             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  19          
+  20             This code is copyright (c) 2001 by Michael J. Pont.
+  21           
+  22             See book for copyright details and other information.
+  23          
+  24          -*------------------------------------------------------------------*/
+  25          
+  26          #include "Main.h"
+  27          #include "Port.h"
+  28          
+  29          #include "2_01_12g.h"
+  30          #include "PRM_Soft.h"
+  31          
+  32          // Comment out this line if test function is NOT required
+  33          #define PRM_test
+  34          
+  35          // ------ Public variable definitions ------------------------------
+  36          
+  37          // Set this variable to the required PRM value
+  38          tWord PRM_period_new_G; 
+  39          
+  40          // ------ Private variable definitions------------------------------
+  41          
+  42          // The PRM counter
+  43          static tWord PRM_position_G;
+  44          static tByte PRM_period_G;
+  45          
+  46          /*------------------------------------------------------------------*-
+  47          
+  48            PRM_Soft_Init()
+  49          
+  50            Prepare for software PRM.
+  51          
+  52          -*------------------------------------------------------------------*/
+  53          void PRM_Soft_Init(void)
+  54             {
+  55   1         // Init the main variable
+C51 COMPILER V6.10  PRM_SOFT                                                               04/18/2001 17:38:57 PAGE 2   
+
+  56   1         PRM_period_G = 2;
+  57   1         PRM_period_new_G = 2;
+  58   1      
+  59   1         PRM_position_G = 0;
+  60   1         }
+  61          
+  62          /*------------------------------------------------------------------*-
+  63          
+  64            PRM_Soft_Update()
+  65          
+  66            Update the software PRM output. 
+  67          
+  68            We have three key variables (see text for details):
+  69          
+  70            1. PRM_period_G is the PRM period
+  71               (units are milliseconds, if we schedule once / ms)
+  72          
+  73            2. PRM_period_new_G is the new PRM period, set by the user
+  74               (The 'new' value is copied to PRM-period only at the
+  75                end of a cycle, to avoid noise)
+  76               (units are milliseconds, if we schedule once / ms)
+  77          
+  78            3. PRM_position_G is the current position in the PRM cycle
+  79               (units are milliseconds, if we schedule once / ms)
+  80          
+  81          
+  82          -*------------------------------------------------------------------*/
+  83          void PRM_Soft_Update(void)
+  84             {
+  85   1         // Increment the 'position' variable 
+  86   1         if (++PRM_position_G >= PRM_period_G)
+  87   1            {
+  88   2            PRM_position_G = 0;
+  89   2      
+  90   2            PRM_period_G = PRM_period_new_G; 
+  91   2      
+  92   2            PRM_pin = 0;
+  93   2      
+  94   2            return;
+  95   2            }
+  96   1      
+  97   1         // Generate the PRM output
+  98   1         if (PRM_position_G < (PRM_period_G / 2))
+  99   1            {
+ 100   2            PRM_pin = 1;
+ 101   2            }
+ 102   1         else
+ 103   1            {
+ 104   2            PRM_pin = 0;
+ 105   2            }
+ 106   1         }
+ 107          
+ 108          /*------------------------------------------------------------------*-
+ 109          
+ 110            PRM_Soft_Test()
+ 111          
+ 112            To test the PRM library, this function is called once every 
+ 113            minute, to change the PRM output setting.
+ 114          
+ 115          -*------------------------------------------------------------------*/
+ 116          #ifdef PRM_test
+ 117          void PRM_Soft_Test(void)
+C51 COMPILER V6.10  PRM_SOFT                                                               04/18/2001 17:38:57 PAGE 3   
+
+ 118             {
+ 119   1         PRM_period_new_G += 2;
+ 120   1      
+ 121   1         if (PRM_period_new_G >= 60000)
+ 122   1            {
+ 123   2            PRM_period_new_G = 2;
+ 124   2            }
+ 125   1         }
+ 126          #endif
+ 127          
+ 128          /*------------------------------------------------------------------*-
+ 129            ---- END OF FILE -------------------------------------------------
+ 130          -*------------------------------------------------------------------*/
+ 131          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    100    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

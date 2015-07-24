@@ -1,0 +1,92 @@
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 10:29:49 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6           
+   7             Demo program for MULTI-STATE SWITCH pattern.
+   8             - see Chapter 19 for details.
+   9          
+  10             Required linker options (see Chapter 14 for details):
+  11          
+  12             OVERLAY (main ~ (SWITCH_MS_Update, COUNTER_Update), 
+  13             SCH_Dispatch_Tasks ! (SWITCH_MS_Update, COUNTER_Update))
+  14          
+  15             COPYRIGHT
+  16             ---------
+  17          
+  18             This code is from the book:
+  19          
+  20             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  21             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  22          
+  23             This code is copyright (c) 2001 by Michael J. Pont.
+  24           
+  25             See book for copyright details and other information.
+  26          
+  27          -*------------------------------------------------------------------*/
+  28          
+  29          #include "Main.h"
+  30          
+  31          #include "Swit_D.h"
+  32          #include "2_01_12g.H"
+  33          #include "Counter.h"
+  34          #include "Bargraph.h"
+  35          
+  36          /* ............................................................... */
+  37          /* ............................................................... */
+  38          
+  39          void main(void)
+  40             {
+  41   1         // Set up the scheduler 
+  42   1         SCH_Init_T2();
+  43   1      
+  44   1         // Set up the display
+  45   1         BARGRAPH_Init();
+  46   1      
+  47   1         // Set up the switch pin
+  48   1         SWITCH_MS_Init();
+  49   1      
+  50   1         // Add a 'SWITCH_MS_Update' task, every ~200 ms
+  51   1         // - timings are in ticks (50 ms tick interval - see Sch 'init' function)
+  52   1         SCH_Add_Task(SWITCH_MS_Update, 0, 4);
+  53   1      
+  54   1         // Add a 'COUNTER_Update' task every ~1000 ms
+  55   1         SCH_Add_Task(COUNTER_Update, 0, 20);
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 10:29:49 PAGE 2   
+
+  56   1      
+  57   1         SCH_Start();
+  58   1      
+  59   1         while(1)
+  60   1            {
+  61   2            SCH_Dispatch_Tasks();
+  62   2            }
+  63   1         }
+  64          
+  65          /*------------------------------------------------------------------*-
+  66            ---- END OF FILE -------------------------------------------------
+  67          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     46    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

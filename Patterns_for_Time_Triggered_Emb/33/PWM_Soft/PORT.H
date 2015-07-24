@@ -1,0 +1,46 @@
+/*------------------------------------------------------------------*-
+
+   Port.H (v1.00)
+
+  ------------------------------------------------------------------
+
+  'Port Header' (see Chap 10) for the project PWM_Soft (see Chap 33)
+
+
+   COPYRIGHT
+   ---------
+
+   This code is from the book:
+
+   PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+   [Pearson Education, 2001; ISBN: 0-201-33138-1].
+
+   This code is copyright (c) 2001 by Michael J. Pont.
+ 
+   See book for copyright details and other information.
+
+-*------------------------------------------------------------------*/
+
+// ------ Sch51.C ----------------------------------------
+
+// Comment this line out if error reporting is NOT required
+#define SCH_REPORT_ERRORS
+
+#ifdef SCH_REPORT_ERRORS
+// The port on which error codes will be displayed
+// ONLY USED IF ERRORS ARE REPORTED
+#define Error_port P2
+
+#endif
+
+// ------ PWM_Soft.C -----------------------------------------------
+
+sbit PWM_pin = P1^0;
+
+
+/*------------------------------------------------------------------*-
+  ---- END OF FILE -------------------------------------------------
+-*------------------------------------------------------------------*/
+
+
+

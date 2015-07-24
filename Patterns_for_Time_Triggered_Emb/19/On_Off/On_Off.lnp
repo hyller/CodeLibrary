@@ -1,0 +1,8 @@
+"SCH51.obj",
+"MAIN.obj",
+"LED_SWIT.obj",
+"SWIT_C.obj",
+"0_01_12G.obj" 
+TO "On_Off" 
+RAMSIZE(64) 
+OVERLAY (main ~ (SWITCH_ON_OFF_Update, LED_Flash_Switch_Update), SCH_Dispatch_Tasks ! (SWITCH_ON_OFF_Update,LED_Flash_Switch_Update)) 

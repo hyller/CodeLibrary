@@ -1,0 +1,28 @@
+export DEFSPLUS=
+export INCLUDESPLUS=
+export CFLAGSPLUS=
+export LDFLAGSPLUS=
+export LIBSPLUS=
+export DLLFLAG=
+sedfiles=Makefile libtool config.h
+#BUILDDIR=$(shell pwd.sh | sed -e "s/\(-.*\)-[^-]*$$/\1/")
+BUILDDIR=$(shell pwd.sh)
+SRCDIR=../$(shell basename $(BUILDDIR)-src)
+
+.PHONY: all 
+all: CONF MFSED
+CONF:
+#	if [ ! -e Makefile.in.sed ]; then \
+#		cp -fp k:/Makefile.in.sed .; \
+#	fi
+#	find.exe $(SRCDIR) -iname Makefile.in -exec sed -i -f Makefile.in.sed '{}' ';'
+	$(SRCDIR)/configure --prefix=c:/progra~1/Readline --srcdir="$(SRCDIR)" \
+		--enable-multibyte  --enable-shared  --enable-static
+
+	
+-include $(DVLDIR)/makefile.chg
+
+#	make all
+#	make check
+#	make install prefix=c:/temp/sed
+                                 

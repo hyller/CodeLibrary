@@ -1,0 +1,6 @@
+"MAIN.obj",
+"DELAY_T0.obj",
+"I2C_CORE.obj",
+"I2C_ROM.obj" 
+TO "i2c_ROM" 
+RAMSIZE(256) 

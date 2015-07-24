@@ -1,0 +1,263 @@
+BL51 BANKED LINKER/LOCATER V4.03                                                        04/19/2001  12:10:45  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V4.03, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE MAIN.obj TO Light
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  MAIN.obj (MAIN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  Light (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         ?DT?MAIN
+                    000CH     0014H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?MAIN
+                    0020H.1   0000H.7                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     000FH     UNIT         ?C_INITSEG
+                    0012H     0009H                  *** GAP ***
+            CODE    001BH     0003H     ABSOLUTE     
+            CODE    001EH     008CH     UNIT         ?C_C51STARTUP
+            CODE    00AAH     0048H     UNIT         ?PR?CHECK_SWITCH?MAIN
+            CODE    00F2H     000EH     UNIT         ?PR?MAIN?MAIN
+            CODE    0100H     000CH     UNIT         ?PR?TIMER_1_INIT?MAIN
+            CODE    010CH     000AH     UNIT         ?PR?TIMER_1_MANUAL_RELOAD?MAIN
+            CODE    0116H     000AH     UNIT         ?PR?LIGHT_INIT?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   Light (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?TIMER_1_INIT?MAIN
+  +--> ?PR?LIGHT_INIT?MAIN
+
+?PR?TIMER_1_INIT?MAIN
+  +--> ?PR?TIMER_1_MANUAL_RELOAD?MAIN
+
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/19/2001  12:10:45  PAGE 2
+
+
+
+
+SYMBOL TABLE OF MODULE:  Light (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  B:0020H.0       SYMBOL        LED_state_G
+  B:00D0H.6       PUBLIC        AC
+  B:00B0H.4       PUBLIC        T0
+  B:00B0H.5       PUBLIC        T1
+  B:00A8H.7       PUBLIC        EA
+  B:0090H.0       PUBLIC        T2
+  C:0100H         PUBLIC        Timer_1_Init
+  B:0080H.0       PUBLIC        P0_0
+  B:0090H.0       PUBLIC        P1_0
+  B:0080H.1       PUBLIC        P0_1
+  B:00D0H.1       PUBLIC        FL
+  B:00A0H.0       PUBLIC        P2_0
+  B:0090H.1       PUBLIC        P1_1
+  B:0080H.2       PUBLIC        P0_2
+  C:010CH         PUBLIC        Timer_1_Manual_Reload
+  B:00B0H.0       PUBLIC        P3_0
+  B:00A0H.1       PUBLIC        P2_1
+  B:0090H.2       PUBLIC        P1_2
+  B:0080H.3       PUBLIC        P0_3
+  B:00B0H.1       PUBLIC        P3_1
+  B:00A0H.2       PUBLIC        P2_2
+  B:0090H.3       PUBLIC        P1_3
+  B:0080H.4       PUBLIC        P0_4
+  B:00B0H.2       PUBLIC        P3_2
+  B:00A0H.3       PUBLIC        P2_3
+  B:0090H.4       PUBLIC        P1_4
+  B:0080H.5       PUBLIC        P0_5
+  B:00C8H.6       PUBLIC        EXF2
+  B:00B0H.7       PUBLIC        RD
+  B:00B0H.3       PUBLIC        P3_3
+  B:00A0H.4       PUBLIC        P2_4
+  B:0090H.5       PUBLIC        P1_5
+  B:0080H.6       PUBLIC        P0_6
+  B:00B0H.4       PUBLIC        P3_4
+  B:00A0H.5       PUBLIC        P2_5
+  B:0090H.6       PUBLIC        P1_6
+  B:0080H.7       PUBLIC        P0_7
+  B:00B0H.5       PUBLIC        P3_5
+  B:00A8H.4       PUBLIC        ES
+  B:00A0H.6       PUBLIC        P2_6
+  B:0090H.7       PUBLIC        P1_7
+  B:00B0H.6       PUBLIC        P3_6
+  B:00A0H.7       PUBLIC        P2_7
+  B:00B0H.7       PUBLIC        P3_7
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:00B0H.2       PUBLIC        INT0
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/19/2001  12:10:45  PAGE 3
+
+
+  B:00B0H.3       PUBLIC        INT1
+  B:0098H.1       PUBLIC        TI
+  B:00B8H.4       PUBLIC        PS
+  B:0090H.1       PUBLIC        T2EX
+  B:00D0H.2       PUBLIC        OV
+  C:00F2H         PUBLIC        main
+  B:00C8H.1       PUBLIC        C_T2
+  B:00B0H.6       PUBLIC        WR
+  D:0008H         SYMBOL        Switch_count_G
+  B:00C8H.5       PUBLIC        RCLK
+  B:00C8H.4       PUBLIC        TCLK
+  D:0087H         PUBLIC        PCON
+  D:0009H         SYMBOL        Call_count_G
+  D:0089H         PUBLIC        TMOD
+  C:00AAH         PUBLIC        Check_Switch
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  B:00C8H.0       PUBLIC        CP_RL2
+  B:0090H.2       PUBLIC        Switch_pin_G
+  B:00A8H.1       PUBLIC        ET0
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.5       PUBLIC        TF0
+  B:0090H.3       PUBLIC        Light_pin_G
+  B:00A8H.5       PUBLIC        ET2
+  B:0088H.7       PUBLIC        TF1
+  B:00C8H.7       PUBLIC        TF2
+  B:0098H.2       PUBLIC        RB8
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  D:008DH         PUBLIC        TH1
+  B:00A8H.2       PUBLIC        EX1
+  B:0098H.3       PUBLIC        TB8
+  B:0088H.2       PUBLIC        IT1
+  B:00D0H.0       PUBLIC        P
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  D:008BH         PUBLIC        TL1
+  B:0098H.5       PUBLIC        SM2
+  B:00B8H.1       PUBLIC        PT0
+  B:00D0H.3       PUBLIC        RS0
+  B:00B8H.3       PUBLIC        PT1
+  D:000AH         SYMBOL        Switch_blocked_G
+  B:00D0H.4       PUBLIC        RS1
+  B:00B8H.5       PUBLIC        PT2
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  B:00C8H.2       PUBLIC        TR2
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  D:000BH         SYMBOL        Auto_switch_off_count_G
+  B:00C8H.3       PUBLIC        EXEN2
+  B:0098H.4       PUBLIC        REN
+  B:00B0H.0       PUBLIC        RXD
+  B:00B0H.1       PUBLIC        TXD
+  C:0116H         PUBLIC        Light_Init
+  B:00D0H.5       PUBLIC        F0
+  -------         PROC          MAIN
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/19/2001  12:10:45  PAGE 4
+
+
+  C:00F2H         LINE#         59
+  C:00F2H         LINE#         60
+  C:00F2H         LINE#         61
+  C:00F5H         LINE#         62
+  C:00F8H         LINE#         64
+  C:00FAH         LINE#         66
+  C:00FAH         LINE#         67
+  C:00FAH         LINE#         68
+  C:00FDH         LINE#         69
+  -------         ENDPROC       MAIN
+  -------         PROC          TIMER_1_INIT
+  C:0100H         LINE#         74
+  C:0100H         LINE#         75
+  C:0100H         LINE#         78
+  C:0103H         LINE#         79
+  C:0106H         LINE#         82
+  C:0109H         LINE#         85
+  C:010BH         LINE#         86
+  -------         ENDPROC       TIMER_1_INIT
+  -------         PROC          TIMER_1_MANUAL_RELOAD
+  C:010CH         LINE#         99
+  C:010CH         LINE#         100
+  C:010CH         LINE#         102
+  C:010EH         LINE#         114
+  C:0111H         LINE#         115
+  C:0113H         LINE#         118
+  C:0115H         LINE#         119
+  -------         ENDPROC       TIMER_1_MANUAL_RELOAD
+  -------         PROC          LIGHT_INIT
+  C:0116H         LINE#         126
+  C:0116H         LINE#         127
+  C:0116H         LINE#         128
+  C:0119H         LINE#         129
+  C:011BH         LINE#         130
+  C:011DH         LINE#         133
+  C:011FH         LINE#         134
+  -------         ENDPROC       LIGHT_INIT
+  -------         PROC          CHECK_SWITCH
+  C:00AAH         LINE#         141
+  C:00AEH         LINE#         147
+  C:00B5H         LINE#         148
+  C:00B5H         LINE#         149
+  C:00B8H         LINE#         151
+  C:00B8H         LINE#         152
+  C:00B8H         LINE#         153
+  C:00BAH         LINE#         154
+  C:00BAH         LINE#         155
+  C:00BAH         LINE#         164
+  C:00C1H         LINE#         165
+  C:00C1H         LINE#         166
+  C:00C5H         LINE#         168
+  C:00C5H         LINE#         171
+  C:00C8H         LINE#         172
+  C:00C8H         LINE#         174
+  C:00CFH         LINE#         175
+  C:00CFH         LINE#         184
+  C:00D6H         LINE#         185
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/19/2001  12:10:45  PAGE 5
+
+
+  C:00D6H         LINE#         188
+  C:00D8H         LINE#         189
+  C:00DBH         LINE#         190
+  C:00DDH         LINE#         192
+  C:00DDH         LINE#         196
+  C:00DFH         LINE#         197
+  C:00E2H         LINE#         198
+  C:00E2H         LINE#         202
+  C:00E5H         LINE#         203
+  C:00E8H         LINE#         204
+  C:00E8H         LINE#         205
+  C:00EAH         LINE#         207
+  C:00EAH         LINE#         208
+  C:00EDH         LINE#         209
+  C:00EDH         LINE#         210
+  -------         ENDPROC       CHECK_SWITCH
+  -------         ENDMOD        MAIN
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

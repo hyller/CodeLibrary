@@ -1,0 +1,266 @@
+C51 COMPILER V6.10  KEYPAD                                                                 04/18/2001 16:29:10 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE KEYPAD
+OBJECT MODULE PLACED IN .\KEYPAD.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\KEYPAD.C OPTIMIZE(6,SIZE) BROWSE NOINTPROMOTE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Keypad.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple keypad library, for a 3-column x 4-row keypad.
+   8          
+   9             Key arrangement is:   ---------
+  10                                    1  2  3
+  11                                    4  5  6
+  12                                    7  8  9
+  13                                    *  0  #
+  14                                   ---------
+  15          
+  16             Supports two function keys ('*' and '#').
+  17          
+  18             See Chapter 20 for details.
+  19          
+  20          
+  21             COPYRIGHT
+  22             ---------
+  23          
+  24             This code is from the book:
+  25          
+  26             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  27             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  28          
+  29             This code is copyright (c) 2001 by Michael J. Pont.
+  30           
+  31             See book for copyright details and other information.
+  32          
+  33          -*------------------------------------------------------------------*/
+  34          
+  35          #include "Main.h"
+  36          #include "Port.h"
+  37          
+  38          #include "Keypad.h"
+  39          
+  40          // ------ Private function prototypes ------------------------------
+  41          
+  42          bit KEYPAD_Scan(char* const, char* const);
+  43          
+  44          // ------ Private constants ----------------------------------------
+  45          
+  46          #define KEYPAD_RECV_BUFFER_LENGTH 6
+  47          
+  48          // Any valid character will do - must not match anything on keypad
+  49          #define KEYPAD_NO_NEW_DATA (char) '-' 
+  50          
+  51          // ------ Private variables ----------------------------------------
+  52          
+  53          static char KEYPAD_recv_buffer[KEYPAD_RECV_BUFFER_LENGTH+1][2];
+  54          
+  55          static tByte KEYPAD_in_read_index;     // Data in buffer that has been read 
+C51 COMPILER V6.10  KEYPAD                                                                 04/18/2001 16:29:10 PAGE 2   
+
+  56          static tByte KEYPAD_in_waiting_index;  // Data in buffer not yet read
+  57          
+  58          static char Last_valid_key_G = KEYPAD_NO_NEW_DATA;
+  59          
+  60          /*------------------------------------------------------------------*-
+  61          
+  62            KEYPAD_Init()
+  63          
+  64            Init the keypad.
+  65          
+  66          -*------------------------------------------------------------------*/
+  67          void KEYPAD_Init(void)
+  68             {
+  69   1         KEYPAD_in_read_index = 0;
+  70   1         KEYPAD_in_waiting_index = 0;
+  71   1         }
+  72          
+  73          /*------------------------------------------------------------------*-
+  74          
+  75            KEYPAD_Update()
+  76          
+  77            The main 'update' function for the keypad library.
+  78          
+  79            Must schedule this function (approx every 50 - 200 ms).
+  80          
+  81          -*------------------------------------------------------------------*/
+  82          void KEYPAD_Update(void)
+  83             {
+  84   1         char Key, FnKey;
+  85   1      
+  86   1         // Scan keypad here...
+  87   1         if (KEYPAD_Scan(&Key, &FnKey) == 0)
+  88   1            {
+  89   2            // No new key data - just return
+  90   2            return;
+  91   2            }
+  92   1      
+  93   1         // Want to read into index 0, if old data has been read
+  94   1         // (simple ~circular buffer)
+  95   1         if (KEYPAD_in_waiting_index == KEYPAD_in_read_index)
+  96   1            { 
+  97   2            KEYPAD_in_waiting_index = 0;
+  98   2            KEYPAD_in_read_index = 0;
+  99   2            } 
+ 100   1         
+ 101   1         // Load keypad data into buffer
+ 102   1         KEYPAD_recv_buffer[KEYPAD_in_waiting_index][0] = Key;
+ 103   1         KEYPAD_recv_buffer[KEYPAD_in_waiting_index][1] = FnKey;
+ 104   1      
+ 105   1         if (KEYPAD_in_waiting_index < KEYPAD_RECV_BUFFER_LENGTH)
+ 106   1            {
+ 107   2            // Increment without overflowing buffer
+ 108   2            KEYPAD_in_waiting_index++;
+ 109   2            }
+ 110   1         }
+ 111          
+ 112          
+ 113          /*------------------------------------------------------------------*-
+ 114          
+ 115            KEYPAD_Get_Char_From_Buffer()
+ 116          
+ 117            The Update function copies data into the keypad buffer.  
+C51 COMPILER V6.10  KEYPAD                                                                 04/18/2001 16:29:10 PAGE 3   
+
+ 118            This extracts data from the buffer.
+ 119            
+ 120          -*------------------------------------------------------------------*/
+ 121          
+ 122          bit KEYPAD_Get_Data_From_Buffer(char* const pKey, char* const pFuncKey)
+ 123             {
+ 124   1         // If there is new data in the buffer
+ 125   1         if (KEYPAD_in_read_index < KEYPAD_in_waiting_index)
+ 126   1            {
+ 127   2            *pKey = KEYPAD_recv_buffer[KEYPAD_in_read_index][0];
+ 128   2            *pFuncKey = KEYPAD_recv_buffer[KEYPAD_in_read_index][1];
+ 129   2      
+ 130   2            KEYPAD_in_read_index++;
+ 131   2      
+ 132   2            return 1;
+ 133   2            }
+ 134   1      
+ 135   1         return 0;
+ 136   1         }
+ 137          
+ 138          
+ 139          /*------------------------------------------------------------------*-
+ 140          
+ 141            KEYPAD_Clear_Buffer()
+ 142          
+ 143          -*------------------------------------------------------------------*/
+ 144          void KEYPAD_Clear_Buffer(void)
+ 145             {
+ 146   1         KEYPAD_in_waiting_index = 0;
+ 147   1         KEYPAD_in_read_index = 0;
+ 148   1         }
+ 149          
+ 150          /*------------------------------------------------------------------*-
+ 151          
+ 152            KEYPAD_Scan()
+ 153          
+ 154            This function is called from scheduled keypad function.
+ 155          
+ 156            Must be edited as required to match your key labels.
+ 157          
+ 158            Includes two 'function keys' which may be used simultaneously
+ 159            with keys from any other column.  
+ 160          
+ 161            Adapt as required!
+ 162           
+ 163          -*------------------------------------------------------------------*/
+ 164          bit KEYPAD_Scan(char* const pKey, char* const pFuncKey)
+ 165             {
+ 166   1         static data char Old_Key;
+ 167   1      
+ 168   1         char Key = KEYPAD_NO_NEW_DATA;
+ 169   1         char Fn_key = (char) 0x00;
+ 170   1      
+ 171   1         C1 = 0; // Scanning column 1
+ 172   1            if (R1 == 0) Key = '1';
+ 173   1            if (R2 == 0) Key = '4';
+ 174   1            if (R3 == 0) Key = '7';
+ 175   1            if (R4 == 0) Fn_key = '*';
+ 176   1         C1 = 1;
+ 177   1      
+ 178   1         C2 = 0; // Scanning column 2
+ 179   1            if (R1 == 0) Key = '2';
+C51 COMPILER V6.10  KEYPAD                                                                 04/18/2001 16:29:10 PAGE 4   
+
+ 180   1            if (R2 == 0) Key = '5';
+ 181   1            if (R3 == 0) Key = '8';
+ 182   1            if (R4 == 0) Key = '0';
+ 183   1         C2 = 1;
+ 184   1      
+ 185   1         C3 = 0; // Scanning column 3
+ 186   1            if (R1 == 0) Key = '3';
+ 187   1            if (R2 == 0) Key = '6';
+ 188   1            if (R3 == 0) Key = '9';
+ 189   1            if (R4 == 0) Fn_key = '#';
+ 190   1         C3 = 1;
+ 191   1      
+ 192   1         if (Key == KEYPAD_NO_NEW_DATA)
+ 193   1            {
+ 194   2            // No key pressed (or just a function key)
+ 195   2            Old_Key = KEYPAD_NO_NEW_DATA;
+ 196   2            Last_valid_key_G = KEYPAD_NO_NEW_DATA;
+ 197   2      
+ 198   2            return 0;  // No new data
+ 199   2            }
+ 200   1         
+ 201   1         // A key has been pressed: debounce by checking twice
+ 202   1         if (Key == Old_Key)
+ 203   1            {
+ 204   2            // A valid (debounced) key press has been detected
+ 205   2            
+ 206   2            // Must be a new key to be valid - no 'auto repeat'
+ 207   2            if (Key != Last_valid_key_G)
+ 208   2               { 
+ 209   3               // New key!
+ 210   3               *pKey = Key;
+ 211   3               Last_valid_key_G = Key;
+ 212   3      
+ 213   3               // Is the function key pressed too?
+ 214   3               if (Fn_key)
+ 215   3                  {
+ 216   4                  // Function key *is* pressed with another key
+ 217   4                  *pFuncKey = Fn_key;
+ 218   4                  }
+ 219   3               else
+ 220   3                  {
+ 221   4                  *pFuncKey = (char) 0x00;
+ 222   4                  }
+ 223   3      
+ 224   3               return 1;
+ 225   3               }
+ 226   2            }
+ 227   1      
+ 228   1         // No new data
+ 229   1         Old_Key = Key;
+ 230   1         return 0;
+ 231   1         }
+ 232          
+ 233          /*------------------------------------------------------------------*-
+ 234            ---- END OF FILE -------------------------------------------------
+ 235          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    244    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V6.10  KEYPAD                                                                 04/18/2001 16:29:10 PAGE 5   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     18      14
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

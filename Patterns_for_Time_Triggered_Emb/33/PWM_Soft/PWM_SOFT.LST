@@ -1,0 +1,153 @@
+C51 COMPILER V6.10  PWM_SOFT                                                               03/16/2001 06:57:55 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE PWM_SOFT
+OBJECT MODULE PLACED IN .\PWM_SOFT.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\PWM_SOFT.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             PWM_SOFT.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple 'Software PWM' library.
+   8          
+   9             See Chapter 33 for details.
+  10          
+  11          
+  12             COPYRIGHT
+  13             ---------
+  14          
+  15             This code is from the book:
+  16          
+  17             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  18             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  19          
+  20             This code is copyright (c) 2001 by Michael J. Pont.
+  21           
+  22             See book for copyright details and other information.
+  23          
+  24          -*------------------------------------------------------------------*/
+  25          
+  26          #include "Main.h"
+  27          #include "Port.h"
+  28          
+  29          #include "2_01_12g.h"
+  30          #include "PWM_Soft.h"
+  31          
+  32          // Comment out this line if test function is NOT required
+  33          #define PWM_test
+  34          
+  35          // ------ Public variable definitions ------------------------------
+  36          
+  37          // Set this variable to the required PWM value
+  38          tByte PWM_new_G;
+  39          
+  40          // ------ Private constants ----------------------------------------
+  41          
+  42          #define PWM_ON 0
+  43          #define PWM_OFF 1
+  44          
+  45          // ------ Private variables ----------------------------------------
+  46          
+  47          // The PWM counter
+  48          static tWord PWM_position_G;
+  49          static tByte PWM_G;
+  50          
+  51          /*------------------------------------------------------------------*-
+  52          
+  53            PWM_Soft_Init()
+  54          
+  55            Prepares some of the key PWM variables.
+C51 COMPILER V6.10  PWM_SOFT                                                               03/16/2001 06:57:55 PAGE 2   
+
+  56          
+  57          -*------------------------------------------------------------------*/
+  58          void PWM_Soft_Init(void)
+  59             {
+  60   1         // Init the main variable
+  61   1         PWM_new_G = 0;
+  62   1         PWM_position_G = 0;
+  63   1         PWM_pin = PWM_OFF;
+  64   1         }
+  65          
+  66          /*------------------------------------------------------------------*-
+  67          
+  68            PWM_Soft_Update()
+  69          
+  70            The key PWM function.  Schedule as rapidle as possible.
+  71          
+  72          -*------------------------------------------------------------------*/
+  73          void PWM_Soft_Update(void)
+  74             {
+  75   1         // Have we reached the end of the current PWM cycle?
+  76   1         if (++PWM_position_G >= PWM_PERIOD)
+  77   1            {
+  78   2            // Reset the PWM position counter
+  79   2            PWM_position_G = 0;
+  80   2      
+  81   2            // Update the PWM control value
+  82   2            PWM_G = PWM_new_G; 
+  83   2      
+  84   2            // Set the PWM output to OFF
+  85   2            PWM_pin = PWM_OFF;
+  86   2      
+  87   2            return;
+  88   2            }
+  89   1      
+  90   1         // We are in a PWM cycle
+  91   1         if (PWM_position_G < PWM_G)
+  92   1            {
+  93   2            PWM_pin = PWM_ON;
+  94   2            }
+  95   1         else
+  96   1            {
+  97   2            PWM_pin = PWM_OFF;
+  98   2            }
+  99   1         }
+ 100          
+ 101          /*------------------------------------------------------------------*-
+ 102          
+ 103            PWM_Soft_Test()
+ 104          
+ 105            To test the PWM library, this function is called once every 
+ 106            five seconds, to update the PWM settings.
+ 107          
+ 108            NOTE:
+ 109            In a real application, this function will be replaced by a user-
+ 110            defined function for setting brightness, speed, etc.
+ 111          
+ 112          -*------------------------------------------------------------------*/
+ 113          #ifdef PWM_test
+ 114          void PWM_Soft_Test(void)
+ 115             {
+ 116   1         if (++PWM_new_G >= PWM_PERIOD)
+ 117   1            {
+C51 COMPILER V6.10  PWM_SOFT                                                               03/16/2001 06:57:55 PAGE 3   
+
+ 118   2            PWM_new_G = 0;
+ 119   2            }
+ 120   1         }
+ 121          #endif
+ 122          
+ 123          /*------------------------------------------------------------------*-
+ 124            ---- END OF FILE -------------------------------------------------
+ 125          -*------------------------------------------------------------------*/
+ 126          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     68    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

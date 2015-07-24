@@ -1,0 +1,83 @@
+C51 COMPILER V6.10  DOG_1232                                                               04/18/2001 13:36:46 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE DOG_1232
+OBJECT MODULE PLACED IN .\DOG_1232.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\DOG_1232.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Dog_1232.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Watchdog timer library for external 1232 WD.
+   8          
+   9          
+  10             COPYRIGHT
+  11             ---------
+  12          
+  13             This code is from the book:
+  14          
+  15             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17          
+  18             This code is copyright (c) 2001 by Michael J. Pont.
+  19           
+  20             See book for copyright details and other information.
+  21          
+  22          -*------------------------------------------------------------------*/
+  23          
+  24          #include "Dog_1232.h"
+  25          #include "Main.h"
+  26          
+  27          // ------ Port pins ------------------------------------------------
+  28          
+  29          // Connect 1232 (pin /ST) to the WATCHDOG_pin
+  30          sbit WATCHDOG_pin = P1^0;
+  31          
+  32          /*------------------------------------------------------------------*-
+  33          
+  34            WATCHDOG_Feed()
+  35          
+  36            'Feed' the external 1232-type watchdog chip.
+  37          
+  38          -*------------------------------------------------------------------*/
+  39          void WATCHDOG_Feed(void)
+  40             {
+  41   1         static bit WATCHDOG_state;
+  42   1      
+  43   1         // Change the state of the watchdog pin
+  44   1         if (WATCHDOG_state == 1)
+  45   1            {
+  46   2            WATCHDOG_state = 0;
+  47   2            WATCHDOG_pin = 0;
+  48   2            }
+  49   1         else
+  50   1            {
+  51   2            WATCHDOG_state = 1;
+  52   2            WATCHDOG_pin = 1;
+  53   2            }
+  54   1         }
+  55          
+C51 COMPILER V6.10  DOG_1232                                                               04/18/2001 13:36:46 PAGE 2   
+
+  56          /*------------------------------------------------------------------*-
+  57            ---- END OF FILE -------------------------------------------------
+  58          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     13    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

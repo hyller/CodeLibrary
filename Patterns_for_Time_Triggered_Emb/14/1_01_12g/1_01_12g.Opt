@@ -1,0 +1,41 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.a*; *.src)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt)
+ pExt (*.plm)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (Target 1), 0x0000 // Tools: 'MCS-51'
+GRPOPT 1,(Source Group 1),1,0,0
+
+OPTFFF 1,1,1,0,0,298,305,0,<.\SCH51.C><SCH51.C> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,44,0,0,0,44,0,0,0,212,2,0,0,109,1,0,0 }
+OPTFFF 1,2,1,0,0,0,0,0,<.\LED_FLAS.C><LED_FLAS.C> 
+OPTFFF 1,3,1,0,0,40,47,0,<.\MAIN.C><MAIN.C> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,66,0,0,0,66,0,0,0,234,2,0,0,131,1,0,0 }
+OPTFFF 1,4,1,0,0,118,127,0,<.\1_01_12G.C><1_01_12G.C> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,44,0,0,0,44,0,0,0,212,2,0,0,109,1,0,0 }
+
+
+TARGOPT 1, (Target 1)
+ CLK51=12000000
+  OPTTT 1,1,1,0
+  OPTHX 0,65535,0,0,0
+  OPTLX 120,65,8,<.\>
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 1,0,1
+  OPTBL 0,(Data Sheet)<DATASHTS\ATMEL\DOC0265.PDF>
+  OPTBL 1,(Add on databooks)<DATASHTS\ADDBOOKS.PDF>
+  OPTBL 2,(Instruction Set Manual)<DATASHTS\ATMEL\DOC0509.PDF>
+  OPTDL (S8051.DLL)()(DP51.DLL)(-p51)(S8051.DLL)()(TP51.DLL)(-p51)
+  OPTDBG 509,0,()()()()()()()()()() ()()()()
+  OPTPA 0,(SCH_Go_To_Sleep)
+  OPTPA 1,(LED_Flash_Update)
+  OPTPA 2,(SCH_Dispatch_Tasks)
+  OPTDF 0xC2
+  OPTLE <>
+  OPTLC <>
+EndOpt
+

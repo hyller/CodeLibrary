@@ -1,0 +1,11 @@
+/////////////////////////////////////////////////////////////////////
+// Quantum Calculator example (C++ version)
+// Copyright (c) 2002 Miro Samek, Palo Alto, CA. 
+// All Rights Reserved.
+/////////////////////////////////////////////////////////////////////
+#include "calc.h"
+
+Calc *Calc::instance() {
+   static Calc inst;
+   return &inst;
+}

@@ -1,0 +1,198 @@
+RTTarget-32 4.01 Evaluation Version
+Copyright (c) 1996,2002 On Time Informatik GmbH
+Host OS: Windows 98 4.10.2222  A 
+
+Building program .\Debug\Qdpp on Sat Apr 06 13:19:24 2002
+
+Command line: -g- .\Debug\Qdpp Demopc.cfg Qdpp.cfg 
+
+[Configuration Report]
+
+// Processing config file D:\TOOLS\RTOS-32\BIN\Demopc.cfg
+Region  NullPage           0    4k  RAM     NoAccess   // Catch NULL pointer assignments
+Region  DOSMem            4k  252k  RAM     Assign     // Reserve for the case we boot from DOS
+Region  LowMem          256k  256k  RAM     Assign     // Used for boot code and Monitor
+Region  MoreLowMem      512k  128k  RAM     Assign     // Reserved for BIOS extensions
+Region  HighMem           1M    3M  RAM     Assign     // 3mb of extended memory
+Region  ColorGraphic  A0000h   64k  Device  SysRead    // EGA/VGA Graphics VideoRAM
+Region  MonoText      B0000h    4k  Device  ReadWrite  // Monochrome text video memory
+Region  ColorText     B8000h    4k  Device  ReadWrite  // Text mode video ram
+Region  BIOS          E0000h  128k  Device  SysRead    // Reserved for [PCI]BIOS
+// Processing config file D:\TOOLS\RTOS-32\BIN\Demopc.cfg complete
+// Processing config file Qdpp.cfg
+ Reserve Monitor                             // leave room for the Debug Monitor
+Virtual  VMem  1G                            // the program does here
+FillRAM  VMem                                // remap unused RAM
+Locate   PageTable PageTable  HighMem        // enable pageing
+Locate   Header    Header     HighMem        // application header
+Locate   NTSection .text      VMem->HighMem  // code section
+Locate   NTSection .rdata     VMem->HighMem  // read only data
+Locate   NTSection .data      VMem->HighMem  // read/write initialized data
+Locate   Stack     Stack      VMem 16k       // 16k stack
+Locate   Heap      Heap       VMem           // and the rest for the heap
+Locate   DecompCode Expand    HighMem        // include decompression stuff
+Locate   DecompData ExBuffer  HighMem
+Locate   Copy       PageTable HighMem        // compress everything
+Locate   Copy       .text     HighMem        // ditto
+Locate   Copy       .rdata    HighMem        // ditto
+Locate   Copy       .data     HighMem        // ditto
+// Processing config file Qdpp.cfg complete
+
+//
+// Preprocessor symbols:
+//
+// _BOOTFLAGS_ = 00000000h
+// OUTNAME = .\Debug\Qdpp
+// APPLICATION = .\Debug\Qdpp
+// BF_BOOT_TYPE = 10000000h
+// BF_NO_VESA_LFB = 01000000h
+// BF_NO_MASTER_PIC = 00400000h
+// BF_NO_SLAVE_PIC = 00200000h
+// BF_NO_PCTIMER = 00100000h
+// BF_NO_KEYBRD = 00080000h
+// BF_NO_A20 = 00040000h
+// BF_NO_FPU = 00020000h
+// BF_CPL_0 = 00010000h
+// BF_PROT_MODE = 00000100h
+// RTLOC = TRUE
+// RTT32_VER = 401
+// TRUE = 1
+// FALSE = 0
+
+
+[EXE File Report for Qdpp.EXE]
+
+File Name                 : .\Debug\Qdpp.EXE
+Size of PE File Header    : 4096
+Number of Sections        : 4
+Size of Code              : 0001B000
+Size of Initialized Data  : 0000B000
+Size of Uninitialized Data: 00000000
+Address of Entry Point    : 0001167F
+Base of Code              : 00001000
+Base of Data              : 0001C000
+Image Base                : 00400000
+Section Alignment         : 00001000
+File Alignment            : 00001000
+Size of Image             : 00027000
+
+Interesting Addresses       Offset    Size
+------------------------------------------
+Export Directory            0001D5C0  00000050
+Relocation Table            00025000  00001D64
+Debug Directory             0001C000  0000001C
+
+Section Name  Offset    PhysSize  VirtSize  Flags
+-------------------------------------------------
+.text         00001000  0001B000  0001A57C  Code Execute Read
+.rdata        0001C000  00002000  00001610  Ini.Data Read
+.data         0001E000  00003000  00006758  Ini.Data Read Write
+.reloc        00025000  00002000  00001DD8  Ini.Data Read
+
+
+[Compression Report]
+
+Section                       Size Compressed Ratio Comp. Time Decomp. Time
+---------------------------------------------------------------------------
+Physical .text              107900      59612 55.2%    351.695       21.024
+Physical .rdata               5648       3082 54.5%     12.658        1.329
+Physical .data               12288       4035 32.8%     25.520        1.807
+PageTable                    12288        172  1.3%      0.146        0.221
+---------------------------------------------------------------------------
+Sum:                        138124      66901 48.4%    390.019       24.381
+
+
+[Relocation Report]
+
+Name                           Address   Size      Image     Access
+-------------------------------------------------------------------
+LowMem                         00040000  00040000  00009F68
+   RESERVED for Monitor        00040000  00009F68
+HighMem                        00100000  00300000  0003F000
+   PageTable                   00100000  00003000  00003000  System
+   Header                      00103000  0000033A  0000033A  ReadOnly
+   Physical .text              00104000  0001A57C  0001A57C  NoAccess
+   Physical .rdata             0011F000  00001610  00001610  NoAccess
+   Physical .data              00121000  00006758  00003000  NoAccess
+  *Copy of .data               003E9000  00000FC3  00000FC3  NoAccess
+  *Copy of .rdata              003EA000  00000C0A  00000C0A  NoAccess
+  *Copy of .text               003EB000  0000E8DC  0000E8DC  NoAccess
+  *Copy of PageTable           003FA000  00001000  000000AC  NoAccess
+  *ExBuffer                    003FB000  00003476  00000000  NoAccess
+  *Expand                      003FF000  0000051C  0000051C  NoAccess
+VMem                           40000000  00391000  00722000
+   .text                       40000000  0001A57C  0001A57C  ReadOnly
+   .rdata                      4001B000  00001610  00001610  ReadOnly
+   .data                       4001D000  00006758  00003000  ReadWrite
+   Stack                       40024000  00004000  00000000  ReadWrite
+   Heap                        40028000  00369000  00000000  NoAccess
+
+
+[Page Table Summary Report]
+
+Hidden pages    :  1944
+System pages    :    55
+Read only pages :    34
+Read/write pages:    15
+Remapped pages  :   913
+Total pages     :  2048
+
+
+[Application Image File Report]
+
+Header Size       : 0000033A
+Sys. Init Routine : 40018C20
+User Init Routine : 4001067F
+Program Entrypoint: 4001067F
+Stack Base        : 40024000
+Initial ESP       : 40028000
+Heap Base         : 40028000
+Heap Limit        : 40391000
+Page Table        : 00100000
+TLS Directory     : 00000000
+Decompress Code   : 003FF000
+Decompress Data   : 003FB000
+Number of Sections: 27
+Number of Modules : 1
+Command Line      : .\Debug\Qdpp.EXE
+Environment       : 
+
+
+Section Type  Address   Alloc.Size  Image Size  Name
+----------------------------------------------------
+Page Table    00100000  00003000    00000000    PageTable
+App Header    00103000  0000033A    0000033A    Header
+App Code      40000000  0001A57C    00000000    .text
+Physical      00104000  0001A57C    00000000    Physical .text
+App Data      4001B000  00001610    00000000    .rdata
+Physical      0011F000  00001610    00000000    Physical .rdata
+App Data      4001D000  00006758    00000000    .data
+Physical      00121000  00006758    00000000    Physical .data
+App Stack     40024000  00004000    00000000    Stack
+App Heap      40028000  00369000    00000000    Heap
+Decomp. Code  003FF000  0000051C    0000051C    Expand
+Decomp. Data  003FB000  00003476    00000000    ExBuffer
+Compressed    003FA000  00001000    000000AC    Copy of PageTable
+Compressed    003EB000  0000E8DC    0000E8DC    Copy of .text
+Compressed    003EA000  00000C0A    00000C0A    Copy of .rdata
+Compressed    003E9000  00000FC3    00000FC3    Copy of .data
+Region        00000000  00001000    00000000    NullPage
+Region        00001000  0003F000    00000000    DOSMem
+Region        00040000  00040000    00000000    LowMem
+Region        00080000  00020000    00000000    MoreLowMem
+Region        00100000  00300000    00000000    HighMem
+Region        000A0000  00010000    00000000    ColorGraphic
+Region        000B0000  00001000    00000000    MonoText
+Region        000B8000  00001000    00000000    ColorText
+Region        000E0000  00020000    00000000    BIOS
+Region        40000000  00391000    00000000    VMem
+Reserved      00040000  00009F68    00000000    RESERVED for Monitor
+
+Module    Image Base  Entrypoint  Exports   Imports   Resources  Name
+---------------------------------------------------------------------
+Program   3FFFF000    4001067F    4001C5C0  00000000  00000000   .\Debug\Qdpp.EXE
+
+
+[Messages]
+
+Information: The On Time RTOS-32 evaluation period will expire in 11 days

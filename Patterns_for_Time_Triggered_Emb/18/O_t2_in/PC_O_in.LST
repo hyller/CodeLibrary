@@ -1,0 +1,109 @@
+C51 COMPILER V6.10  PC_O_IN                                                                04/19/2001 11:39:06 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE PC_O_IN
+OBJECT MODULE PLACED IN .\PC_O_in.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\PC_O_in.c OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             PC_O_in.C (v1.01)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple PC link library version B (for c515c, internal baud rate)
+   8          
+   9             Uses the USART, and Pin 3.1 (Tx) 
+  10          
+  11             See text for details (Chapter 18).
+  12          
+  13          
+  14             COPYRIGHT
+  15             ---------
+  16          
+  17             This code is from the book:
+  18          
+  19             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  20             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  21          
+  22             This code is copyright (c) 2001 by Michael J. Pont.
+  23           
+  24             See book for copyright details and other information.
+  25          
+  26          -*------------------------------------------------------------------*/
+  27          
+  28          #include "Main.h"
+  29          #include "PC_O_in.h"
+  30          
+  31          // ------ Public variable declarations -----------------------------
+  32          
+  33          extern tByte Out_written_index_G;  
+  34          extern tByte Out_waiting_index_G;  
+  35          
+  36          /*------------------------------------------------------------------*-
+  37          
+  38            PC_LINK_O_Init_Internal()
+  39          
+  40            This version uses internal baud rate generator on C5x5 family.
+  41          
+  42          -*------------------------------------------------------------------*/
+  43          void PC_LINK_O_Init_Internal(const tWord BAUD_RATE)
+  44             {
+  45   1         tWord SRELplus1024;
+  46   1         tWord SRELx;
+  47   1      
+  48   1         PCON &= 0x7F;   // Set SMOD bit to 0 (don't double baud rates)
+  49   1      
+  50   1         //  Receiver disabled
+  51   1         //  8-bit data, 1 start bit, 1 stop bit, variable baud rate (asynchronous)
+  52   1         SCON = 0x42;
+  53   1      
+  54   1         // Use the internal baudrate generator (80c5x5 family)
+  55   1         ADCON0 |= 0x80;
+C51 COMPILER V6.10  PC_O_IN                                                                04/19/2001 11:39:06 PAGE 2   
+
+  56   1      
+  57   1         // Set the baud rate (begin)
+  58   1         SRELplus1024 = (tWord)((((tLong) OSC_FREQ / 100) * 3125) 
+  59   1                           / ((tLong) BAUD_RATE * 1000));
+  60   1      
+  61   1         SRELx = 1024 - SRELplus1024;
+  62   1      
+  63   1         SRELL = (tByte)(SRELx & 0x00FF);
+  64   1         SRELH = (tByte)((SRELx & 0x0300) >> 8);
+  65   1      
+  66   1         TI = 1;
+  67   1         // Set the baud rate (end)
+  68   1      
+  69   1         // Set up the buffers for writing
+  70   1         Out_written_index_G = 0;
+  71   1         Out_waiting_index_G = 0;
+  72   1      
+  73   1         PC_LINK_O_Write_String_To_Buffer("Serial OK.\n");
+  74   1      
+  75   1         // Serial interrupt *NOT* enabled
+  76   1         ES = 0;
+  77   1         }
+  78          
+  79          /*------------------------------------------------------------------*-
+  80            ---- END OF FILE -------------------------------------------------
+  81          -*------------------------------------------------------------------*/
+  82          
+  83          
+  84          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     75    ----
+   CONSTANT SIZE    =     12    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

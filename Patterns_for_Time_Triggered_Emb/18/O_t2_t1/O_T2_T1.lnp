@@ -1,0 +1,10 @@
+"SCH51.obj",
+"ELAP_232.obj",
+"MAIN.obj",
+"CHAR_MAP.obj",
+"2_05_11G.obj",
+"PC_O.obj",
+"PC_O_T1.obj" 
+TO "O_T2_T1" 
+RAMSIZE(256) 
+OVERLAY (main ~ (PC_LINK_O_Update,Elapsed_Time_RS232_Update), SCH_Dispatch_Tasks ! (PC_LINK_O_Update,Elapsed_Time_RS232_Update)) 

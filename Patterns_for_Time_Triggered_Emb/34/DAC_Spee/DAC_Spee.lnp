@@ -1,0 +1,9 @@
+"MAIN.obj",
+"HSCH51.obj",
+"2_01_12H.obj",
+"PLAYBACK.obj",
+"SPEECH.obj",
+"SWIT_PLY.obj" 
+TO "DAC_Spee" 
+RAMSIZE(256) 
+OVERLAY (main ~ (SWITCH_Update), SWITCH_Update ~ (SPEECH_PLAYBACK_Update), hSCH_dispatch_tasks ! (SWITCH_Update, SPEECH_PLAYBACK_Update)) 

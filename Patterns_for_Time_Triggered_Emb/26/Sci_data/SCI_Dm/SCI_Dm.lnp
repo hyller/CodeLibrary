@@ -1,0 +1,9 @@
+"MAIN.obj",
+"SCH51.obj",
+"DELAY_T0.obj",
+"LED_FLAS.obj",
+"TLIGHT_B.obj",
+"SCI_DM.obj" 
+TO "SCI_Dm" 
+RAMSIZE(256) 
+OVERLAY (main ~ (LED_Flash_Update,TRAFFIC_LIGHTS_Update), SCH_Dispatch_Tasks ! (LED_Flash_Update,TRAFFIC_LIGHTS_Update)) 

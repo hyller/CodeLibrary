@@ -1,0 +1,338 @@
+C51 COMPILER V6.10  PC_O                                                                   04/18/2001 16:17:18 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE PC_O
+OBJECT MODULE PLACED IN .\PC_O.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\PC_O.c OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND SYMBOLS
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             PC_O.C (v1.01)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Core files for simple write-only PC link library for 8051 family
+   8             [Sends data to PC - cannot receive data from PC]
+   9          
+  10             Uses the USART, and Pin 3.1 (Tx) 
+  11          
+  12             See text for details (Chapter 18).
+  13          
+  14          
+  15             COPYRIGHT
+  16             ---------
+  17          
+  18             This code is from the book:
+  19          
+  20             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  21             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  22          
+  23             This code is copyright (c) 2001 by Michael J. Pont.
+  24           
+  25             See book for copyright details and other information.
+  26          
+  27          -*------------------------------------------------------------------*/
+  28          
+  29          #include "Main.h"
+  30          #include "PC_O.h"
+  31          
+  32          // ------ Public variable definitions ------------------------------
+  33          
+  34          tByte Out_written_index_G;  // Data in buffer that has been written 
+  35          tByte Out_waiting_index_G;  // Data in buffer not yet written
+  36          
+  37          // ------ Public variable declarations -----------------------------
+  38          
+  39          // The error code variable
+  40          //
+  41          // See Main.H for port on which error codes are displayed
+  42          // and for details of error codes
+  43          extern tByte Error_code_G;
+  44          
+  45          // ------ Private constants ----------------------------------------
+  46          
+  47          // The transmit buffer length
+  48          #define TRAN_BUFFER_LENGTH 20
+  49          
+  50          // ------ Private variables ----------------------------------------
+  51          
+  52          static tByte Tran_buffer[TRAN_BUFFER_LENGTH];
+  53          
+  54          /*------------------------------------------------------------------*-
+  55          
+C51 COMPILER V6.10  PC_O                                                                   04/18/2001 16:17:18 PAGE 2   
+
+  56            PC_LINK_O_Update()
+  57          
+  58            Sends next character from the software transmit buffer
+  59          
+  60            NOTE: Output-only library (Cannot receive chars)
+  61          
+  62            Uses on-chip UART hardware.
+  63          
+  64          -*------------------------------------------------------------------*/
+  65          void PC_LINK_O_Update(void)
+  66             {
+  67   1         // Deal with transmit bytes here
+  68   1      
+  69   1         // Is there any data ready to send?
+  70   1         if (Out_written_index_G < Out_waiting_index_G)
+  71   1            {
+  72   2            PC_LINK_O_Send_Char(Tran_buffer[Out_written_index_G]);     
+  73   2      
+  74   2            Out_written_index_G++;
+  75   2            }
+  76   1         else
+  77   1            {
+  78   2            // No data to send - just reset the buffer index
+  79   2            Out_waiting_index_G = 0;
+  80   2            Out_written_index_G = 0;
+  81   2            }
+  82   1      
+  83   1         }
+  84          
+  85          /*------------------------------------------------------------------*-
+  86          
+  87            PC_LINK_O_Write_String_To_Buffer()
+  88          
+  89            Copies a (null terminated) string to the character buffer.  
+  90            (The contents of the buffer are then passed over the serial link)
+  91          
+  92          -*------------------------------------------------------------------*/
+  93          void PC_LINK_O_Write_String_To_Buffer(const char* const STR_PTR)
+  94             {
+  95   1         tByte i = 0;
+  96   1      
+  97   1         while (STR_PTR[i] != '\0')
+  98   1            {
+  99   2            PC_LINK_O_Write_Char_To_Buffer(STR_PTR[i]);
+ 100   2            i++;
+ 101   2            }
+ 102   1         }
+ 103          
+ 104          /*------------------------------------------------------------------*-
+ 105          
+ 106            PC_LINK_O_Write_Char_To_Buffer()
+ 107          
+ 108            Stores a character in the 'write' buffer, ready for 
+ 109            later transmission
+ 110           
+ 111          -*------------------------------------------------------------------*/
+ 112          void PC_LINK_O_Write_Char_To_Buffer(const char CHARACTER)
+ 113             {
+ 114   1         // Write to the buffer *only* if there is space
+ 115   1         if (Out_waiting_index_G < TRAN_BUFFER_LENGTH)
+ 116   1            {
+ 117   2            Tran_buffer[Out_waiting_index_G] = CHARACTER;
+C51 COMPILER V6.10  PC_O                                                                   04/18/2001 16:17:18 PAGE 3   
+
+ 118   2            Out_waiting_index_G++;     
+ 119   2            }
+ 120   1         else
+ 121   1            {
+ 122   2            // Write buffer is full
+ 123   2            // Increase the size of TRAN_BUFFER_LENGTH
+ 124   2            // or increase the rate at which UART 'update' function is called 
+ 125   2            // or reduce the amount of data sent to PC
+ 126   2            Error_code_G = ERROR_USART_WRITE_CHAR;
+ 127   2            }
+ 128   1         }
+ 129          
+ 130          /*------------------------------------------------------------------*-
+ 131          
+ 132            PC_LINK_O_Send_Char()
+ 133          
+ 134            Based on Keil sample code, with added (loop) timeouts.
+ 135            Implements Xon / Off control.
+ 136          
+ 137            Uses on-chip UART hardware.
+ 138          
+ 139          -*------------------------------------------------------------------*/
+ 140          void PC_LINK_O_Send_Char(const char CHARACTER)
+ 141             {
+ 142   1         tLong Timeout1 = 0;
+ 143   1      
+ 144   1         if (CHARACTER == '\n')  
+ 145   1            {
+ 146   2            Timeout1 = 0;
+ 147   2            while ((++Timeout1) && (TI == 0));  
+ 148   2      
+ 149   2            if (Timeout1 == 0)
+ 150   2               {
+ 151   3               // usart did not respond - error
+ 152   3               Error_code_G = ERROR_USART_TI;
+ 153   3               return;
+ 154   3               } 
+ 155   2      
+ 156   2            TI = 0;
+ 157   2            SBUF = 0x0d;  // output CR  
+ 158   2            }
+ 159   1        
+ 160   1         Timeout1 = 0;
+ 161   1         while ((++Timeout1) && (TI == 0));  
+ 162   1      
+ 163   1         if (Timeout1 == 0)
+ 164   1            {
+ 165   2            // usart did not respond - error
+ 166   2            Error_code_G = ERROR_USART_TI;
+ 167   2            return;
+ 168   2            } 
+ 169   1      
+ 170   1         TI = 0;
+ 171   1      
+ 172   1         SBUF = CHARACTER;
+ 173   1         }
+ 174          
+ 175          /*------------------------------------------------------------------*-
+ 176            ---- END OF FILE -------------------------------------------------
+ 177          -*------------------------------------------------------------------*/
+C51 COMPILER V6.10  PC_O                                                                   04/18/2001 16:17:18 PAGE 4   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+_PC_LINK_O_Send_Char . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  CHARACTER. . . . . . . . . . . . . .  AUTO     DATA   CHAR     0000H  1
+  Timeout1 . . . . . . . . . . . . . .  AUTO     DATA   U_LONG   0001H  4
+T2I0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C8H  1
+T2I1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C9H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+P4 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E8H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+T2 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0097H  1
+BD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DFH  1
+tLong. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_LONG   -----  4
+T2R0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CBH  1
+T2R1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CCH  1
+tByte. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_CHAR   -----  1
+IEN0 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+EADC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+IEN1 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+IADC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C0H  1
+tWord. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_INT    -----  2
+I2FR . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CDH  1
+I3FR . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CEH  1
+EXF2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C7H  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+T2CM . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CAH  1
+ADCON0 . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D8H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IEX2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C1H  1
+PC_LINK_O_Update . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+IEX3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C2H  1
+IEX4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C3H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+IEX5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C4H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+IEX6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C5H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+INT2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0094H  1
+INT3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+INT4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+INT5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0092H  1
+INT6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0093H  1
+ADEX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DDH  1
+INT8 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EDH  1
+T2EX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0095H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+T2PS . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CFH  1
+ADST . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00E8H  1
+SCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00E9H  1
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+Error_code_G . . . . . . . . . . . . .  EXTERN   DATA   U_CHAR   -----  1
+RXDC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EFH  1
+TXDC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EEH  1
+C51 COMPILER V6.10  PC_O                                                                   04/18/2001 16:17:18 PAGE 5   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+Out_waiting_index_G. . . . . . . . . .  PUBLIC   DATA   U_CHAR   0000H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+SWDT . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BEH  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+ET2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ADH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+TF2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C6H  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+Out_written_index_G. . . . . . . . . .  PUBLIC   DATA   U_CHAR   0001H  1
+EX2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+EX3. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+EX4. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+ADM. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DBH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+EX5. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+EAL. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+EX6. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BDH  1
+CLKOUT . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0096H  1
+MX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D8H  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+MX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D9H  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+MX2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DAH  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+CLK. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DEH  1
+_PC_LINK_O_Write_String_To_Buffer. . .  PUBLIC   CODE   PROC     0000H  -----
+  STR_PTR. . . . . . . . . . . . . . .  AUTO     DATA   PTR      0000H  3
+  i. . . . . . . . . . . . . . . . . .  AUTO     DATA   U_CHAR   0003H  1
+EXEN2. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BFH  1
+_PC_LINK_O_Write_Char_To_Buffer. . . .  PUBLIC   CODE   PROC     0000H  -----
+  CHARACTER. . . . . . . . . . . . . .  * REG *  DATA   CHAR     0007H  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+T2CON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C8H  1
+SRI. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EAH  1
+BSY. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DCH  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+WDT. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AEH  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+SLS. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ECH  1
+Tran_buffer. . . . . . . . . . . . . .  STATIC   DATA   ARRAY    0002H  20
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+STO. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EBH  1
+F1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D1H  1
+C51 COMPILER V6.10  PC_O                                                                   04/18/2001 16:17:18 PAGE 6   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+IRCON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    201    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     22       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

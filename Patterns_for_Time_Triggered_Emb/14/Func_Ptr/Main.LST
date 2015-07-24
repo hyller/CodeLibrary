@@ -1,0 +1,100 @@
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 11:30:49 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Main.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\Main.c OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6             
+   7             Demonstration of function pointers.
+   8          
+   9          
+  10             COPYRIGHT
+  11             ---------
+  12          
+  13             This code is from the book:
+  14          
+  15             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17          
+  18             This code is copyright (c) 2001 by Michael J. Pont.
+  19           
+  20             See book for copyright details and other information.
+  21          
+  22          -*------------------------------------------------------------------*/
+  23          
+  24          #include "Main.h"
+  25          #include "Printf51.h"
+  26          #include <stdio.h>
+  27          
+  28          // ------ Private function prototypes ------------------------------
+  29          void Square_Number(int, int*);
+  30          
+  31          /* ................................................................. */
+  32          /* ................................................................. */
+  33          
+  34          int main(void)
+  35             {
+  36   1         int a = 2, b = 3;      
+  37   1         void (* pFn)(int, int*); /* Declares pFn to be a pointer to fn with 
+  38   1                                     int and int pointer parameters 
+  39   1                                     (returning void) */
+  40   1         int Result_a, Result_b;
+  41   1         
+  42   1         // Prepare to use printf() [in Keil hardware simulator]
+  43   1         Printf51_Init();
+  44   1      
+  45   1         pFn = Square_Number;   // pFn holds address of Square_Number 
+  46   1       
+  47   1         printf("Function code starts at address: %u\n", (tWord) pFn);
+  48   1         printf("Data item a starts at address:   %u\n\n", (tWord) &a);
+  49   1         
+  50   1         // Call 'Square_Number' in the conventional way
+  51   1         Square_Number(a,&Result_a);
+  52   1         
+  53   1         // Call 'Square_Number' using function pointer
+  54   1         (*pFn)(b,&Result_b);
+  55   1                               
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 11:30:49 PAGE 2   
+
+  56   1         printf("%d squared is %d (using normal fn call)\n", a, Result_a); 
+  57   1         printf("%d squared is %d (using fn pointer)\n", b, Result_b); 
+  58   1      
+  59   1         while(1);
+  60   1      
+  61   1         return 0;
+  62   1         }
+  63          
+  64          /*------------------------------------------------------------------*/
+  65          
+  66          void Square_Number(int a, int* b)
+  67             {
+  68   1         // Demo - calculate square of a
+  69   1         *b = a * a;
+  70   1         }
+  71          
+  72          /*------------------------------------------------------------------*-
+  73            ---- END OF FILE -------------------------------------------------
+  74          -*------------------------------------------------------------------*/
+  75          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    149    ----
+   CONSTANT SIZE    =    153    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      11
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

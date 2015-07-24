@@ -1,0 +1,30 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: RTT32 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\miro\LOCALS~1\Temp\RSP23.tmp" with contents
+[
+/nologo /MT /W3 /ZI /Od /I "." /I "../include" /I "../source" /I "d:\tools\rtos32/include" /D "_DEBUG" /D "RTT32" /D "_MBCS" /D "_LIB" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\QP\Cpp\QF\Source\Qepool.cpp"
+"D:\QP\Cpp\QF\Source\Qequeue.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\miro\LOCALS~1\Temp\RSP23.tmp" 
+Creating command line "link.exe -lib /nologo /out:"Debug\Qf_rtt32.lib"  .\Debug\Qactive.obj .\Debug\Qepool.obj .\Debug\Qequeue.obj .\Debug\Qf.obj .\Debug\Qfsm.obj .\Debug\Qhsm.obj .\Debug\QhsmTran.obj .\Debug\Qtimer.obj .\Debug\RTT32.obj "
+<h3>Output Window</h3>
+Compiling...
+Qepool.cpp
+Qequeue.cpp
+Generating Code...
+Creating library...
+
+
+
+<h3>Results</h3>
+Qf_rtt32.lib - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

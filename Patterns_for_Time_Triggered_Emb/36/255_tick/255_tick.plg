@@ -1,0 +1,51 @@
+Build target 'Target 1'
+compiling MAIN.C...
+compiling LED_FLAS.C...
+compiling 2_05_12G.C...
+.\2_05_12G.C(131): error C204: 'Period': undefined member
+.\2_05_12G.C(134): error C200: left side of '.' requires struct/union
+.\2_05_12G.C(140): error C200: left side of '.' requires struct/union
+compiling SCH51A.C...
+Target not created
+Build target 'Target 1'
+compiling 2_05_12G.C...
+.\2_05_12G.C(131): error C204: 'Period': undefined member
+.\2_05_12G.C(134): error C200: left side of '.' requires struct/union
+.\2_05_12G.C(140): error C200: left side of '.' requires struct/union
+Target not created
+Build target 'Target 1'
+compiling MAIN.C...
+compiling 2_05_12G.C...
+compiling SCH51A.C...
+.\SCH51A.C(88): error C204: 'Repeat': undefined member
+.\SCH51A.C(154): error C200: left side of '.' requires struct/union
+.\SCH51A.C(172): error C200: left side of '.' requires struct/union
+.\SCH51A.C(174): error C200: left side of '.' requires struct/union
+.\SCH51A.C(175): error C200: left side of '.' requires struct/union
+.\SCH51A.C(177): error C200: left side of '.' requires struct/union
+.\SCH51A.C(199): error C200: left side of '.' requires struct/union
+.\SCH51A.C(214): error C200: left side of '.' requires struct/union
+.\SCH51A.C(215): error C200: left side of '.' requires struct/union
+.\SCH51A.C(216): error C200: left side of '.' requires struct/union
+.\SCH51A.C(218): error C200: left side of '.' requires struct/union
+Target not created
+Build target 'Target 1'
+compiling SCH51A.C...
+.\SCH51A.C(175): error C204: 'Repeat': undefined member
+.\SCH51A.C(177): error C200: left side of '.' requires struct/union
+.\SCH51A.C(199): error C200: left side of '.' requires struct/union
+.\SCH51A.C(214): error C200: left side of '.' requires struct/union
+.\SCH51A.C(215): error C200: left side of '.' requires struct/union
+.\SCH51A.C(216): error C200: left side of '.' requires struct/union
+.\SCH51A.C(218): error C200: left side of '.' requires struct/union
+Target not created
+Build target 'Target 1'
+compiling SCH51A.C...
+.\SCH51A.C(216): error C204: 'Repeat': undefined member
+.\SCH51A.C(218): error C200: left side of '.' requires struct/union
+Target not created
+Build target 'Target 1'
+compiling SCH51A.C...
+linking...
+creating hex file from "255_tick"...
+"255_tick" - 0 Error(s), 0 Warning(s).

@@ -1,0 +1,1441 @@
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE HSCH51
+OBJECT MODULE PLACED IN .\HSCH51.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\HSCH51.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND CODE LISTINCLUDE SYM
+                    -BOLS
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             hSCH51.C (v1.00) 
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             /// HYBRID SCHEDULER CORE ///
+   8          
+   9             *** THESE ARE THE CORE SCHEDULER FUNCTIONS ***
+  10             --- These functions may be used with all 8051 devices ---
+  11          
+  12             *** hSCH_MAX_TASKS *must* be set by the user ***
+  13             --- see "Sch51.h" ---
+  14          
+  15             *** Includes power-saving mode ***
+  16             --- You *MUST* confirm that the power-down mode is adapted ---
+  17             --- to match your chosen device (usually only necessary with 
+  18             --- Extended 8051s, such as c515c, c509, etc ---
+  19          
+  20             COPYRIGHT
+  21             ---------
+  22          
+  23             This code is from the book:
+  24          
+  25             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  26             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  27          
+  28             This code is copyright (c) 2001 by Michael J. Pont.
+  29           
+  30             See book for copyright details and other information.
+  31          
+  32          -*------------------------------------------------------------------*/
+  33          
+  34          #include "Main.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     Main.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1     
+   7      =1     'Project Header' (see Chap 9) for project DAC_Spee (see Chap 34)
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 2   
+
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  #ifndef _MAIN_H
+  25      =1  #define _MAIN_H
+  26      =1  
+  27      =1  //------------------------------------------------------------------
+  28      =1  // WILL NEED TO EDIT THIS SECTION FOR EVERY PROJECT
+  29      =1  //------------------------------------------------------------------
+  30      =1  
+  31      =1  // Must include the appropriate microcontroller header file here
+  32      =1  #include <AT89x52.h>
+   1      =2  /*--------------------------------------------------------------------------
+   2      =2  AT89X52.H
+   3      =2  
+   4      =2  Header file for the low voltage Flash Atmel AT89C52 and AT89LV52.
+   5      =2  Copyright (c) 1995-1996 Keil Software, Inc.  All rights reserved.
+   6      =2  --------------------------------------------------------------------------*/
+   7      =2  
+   8      =2  #ifndef AT89X52_HEADER_FILE
+   9      =2  #define AT89X52_HEADER_FILE 1
+  10      =2  
+  11      =2  /*------------------------------------------------
+  12      =2  Byte Registers
+  13      =2  ------------------------------------------------*/
+  14      =2  sfr P0      = 0x80;
+  15      =2  sfr SP      = 0x81;
+  16      =2  sfr DPL     = 0x82;
+  17      =2  sfr DPH     = 0x83;
+  18      =2  sfr PCON    = 0x87;
+  19      =2  sfr TCON    = 0x88;
+  20      =2  sfr TMOD    = 0x89;
+  21      =2  sfr TL0     = 0x8A;
+  22      =2  sfr TL1     = 0x8B;
+  23      =2  sfr TH0     = 0x8C;
+  24      =2  sfr TH1     = 0x8D;
+  25      =2  sfr P1      = 0x90;
+  26      =2  sfr SCON    = 0x98;
+  27      =2  sfr SBUF    = 0x99;
+  28      =2  sfr P2      = 0xA0;
+  29      =2  sfr IE      = 0xA8;
+  30      =2  sfr P3      = 0xB0;
+  31      =2  sfr IP      = 0xB8;
+  32      =2  sfr T2CON   = 0xC8;
+  33      =2  sfr T2MOD   = 0xC9;
+  34      =2  sfr RCAP2L  = 0xCA;
+  35      =2  sfr RCAP2H  = 0xCB;
+  36      =2  sfr TL2     = 0xCC;
+  37      =2  sfr TH2     = 0xCD;
+  38      =2  sfr PSW     = 0xD0;
+  39      =2  sfr ACC     = 0xE0;
+  40      =2  sfr B       = 0xF0;
+  41      =2  
+  42      =2  /*------------------------------------------------
+  43      =2  P0 Bit Registers
+  44      =2  ------------------------------------------------*/
+  45      =2  sbit P0_0 = 0x80;
+  46      =2  sbit P0_1 = 0x81;
+  47      =2  sbit P0_2 = 0x82;
+  48      =2  sbit P0_3 = 0x83;
+  49      =2  sbit P0_4 = 0x84;
+  50      =2  sbit P0_5 = 0x85;
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 3   
+
+  51      =2  sbit P0_6 = 0x86;
+  52      =2  sbit P0_7 = 0x87;
+  53      =2  
+  54      =2  /*------------------------------------------------
+  55      =2  PCON Bit Values
+  56      =2  ------------------------------------------------*/
+  57      =2  #define IDL_    0x01
+  58      =2  
+  59      =2  #define STOP_   0x02
+  60      =2  #define PD_     0x02    /* Alternate definition */
+  61      =2  
+  62      =2  #define GF0_    0x04
+  63      =2  #define GF1_    0x08
+  64      =2  #define SMOD_   0x80
+  65      =2  
+  66      =2  /*------------------------------------------------
+  67      =2  TCON Bit Registers
+  68      =2  ------------------------------------------------*/
+  69      =2  sbit IT0  = 0x88;
+  70      =2  sbit IE0  = 0x89;
+  71      =2  sbit IT1  = 0x8A;
+  72      =2  sbit IE1  = 0x8B;
+  73      =2  sbit TR0  = 0x8C;
+  74      =2  sbit TF0  = 0x8D;
+  75      =2  sbit TR1  = 0x8E;
+  76      =2  sbit TF1  = 0x8F;
+  77      =2  
+  78      =2  /*------------------------------------------------
+  79      =2  TMOD Bit Values
+  80      =2  ------------------------------------------------*/
+  81      =2  #define T0_M0_   0x01
+  82      =2  #define T0_M1_   0x02
+  83      =2  #define T0_CT_   0x04
+  84      =2  #define T0_GATE_ 0x08
+  85      =2  #define T1_M0_   0x10
+  86      =2  #define T1_M1_   0x20
+  87      =2  #define T1_CT_   0x40
+  88      =2  #define T1_GATE_ 0x80
+  89      =2  
+  90      =2  #define T1_MASK_ 0xF0
+  91      =2  #define T0_MASK_ 0x0F
+  92      =2  
+  93      =2  /*------------------------------------------------
+  94      =2  P1 Bit Registers
+  95      =2  ------------------------------------------------*/
+  96      =2  sbit P1_0 = 0x90;
+  97      =2  sbit P1_1 = 0x91;
+  98      =2  sbit P1_2 = 0x92;
+  99      =2  sbit P1_3 = 0x93;
+ 100      =2  sbit P1_4 = 0x94;
+ 101      =2  sbit P1_5 = 0x95;
+ 102      =2  sbit P1_6 = 0x96;
+ 103      =2  sbit P1_7 = 0x97;
+ 104      =2  
+ 105      =2  sbit T2   = 0x90;       /* External input to Timer/Counter 2, clock out */
+ 106      =2  sbit T2EX = 0x91;       /* Timer/Counter 2 capture/reload trigger & dir ctl */
+ 107      =2  
+ 108      =2  /*------------------------------------------------
+ 109      =2  SCON Bit Registers
+ 110      =2  ------------------------------------------------*/
+ 111      =2  sbit RI   = 0x98;
+ 112      =2  sbit TI   = 0x99;
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 4   
+
+ 113      =2  sbit RB8  = 0x9A;
+ 114      =2  sbit TB8  = 0x9B;
+ 115      =2  sbit REN  = 0x9C;
+ 116      =2  sbit SM2  = 0x9D;
+ 117      =2  sbit SM1  = 0x9E;
+ 118      =2  sbit SM0  = 0x9F;
+ 119      =2  
+ 120      =2  /*------------------------------------------------
+ 121      =2  P2 Bit Registers
+ 122      =2  ------------------------------------------------*/
+ 123      =2  sbit P2_0 = 0xA0;
+ 124      =2  sbit P2_1 = 0xA1;
+ 125      =2  sbit P2_2 = 0xA2;
+ 126      =2  sbit P2_3 = 0xA3;
+ 127      =2  sbit P2_4 = 0xA4;
+ 128      =2  sbit P2_5 = 0xA5;
+ 129      =2  sbit P2_6 = 0xA6;
+ 130      =2  sbit P2_7 = 0xA7;
+ 131      =2  
+ 132      =2  /*------------------------------------------------
+ 133      =2  IE Bit Registers
+ 134      =2  ------------------------------------------------*/
+ 135      =2  sbit EX0  = 0xA8;       /* 1=Enable External interrupt 0 */
+ 136      =2  sbit ET0  = 0xA9;       /* 1=Enable Timer 0 interrupt */
+ 137      =2  sbit EX1  = 0xAA;       /* 1=Enable External interrupt 1 */
+ 138      =2  sbit ET1  = 0xAB;       /* 1=Enable Timer 1 interrupt */
+ 139      =2  sbit ES   = 0xAC;       /* 1=Enable Serial port interrupt */
+ 140      =2  sbit ET2  = 0xAD;       /* 1=Enable Timer 2 interrupt */
+ 141      =2  
+ 142      =2  sbit EA   = 0xAF;       /* 0=Disable all interrupts */
+ 143      =2  
+ 144      =2  /*------------------------------------------------
+ 145      =2  P3 Bit Registers (Mnemonics & Ports)
+ 146      =2  ------------------------------------------------*/
+ 147      =2  sbit P3_0 = 0xB0;
+ 148      =2  sbit P3_1 = 0xB1;
+ 149      =2  sbit P3_2 = 0xB2;
+ 150      =2  sbit P3_3 = 0xB3;
+ 151      =2  sbit P3_4 = 0xB4;
+ 152      =2  sbit P3_5 = 0xB5;
+ 153      =2  sbit P3_6 = 0xB6;
+ 154      =2  sbit P3_7 = 0xB7;
+ 155      =2  
+ 156      =2  sbit RXD  = 0xB0;       /* Serial data input */
+ 157      =2  sbit TXD  = 0xB1;       /* Serial data output */
+ 158      =2  sbit INT0 = 0xB2;       /* External interrupt 0 */
+ 159      =2  sbit INT1 = 0xB3;       /* External interrupt 1 */
+ 160      =2  sbit T0   = 0xB4;       /* Timer 0 external input */
+ 161      =2  sbit T1   = 0xB5;       /* Timer 1 external input */
+ 162      =2  sbit WR   = 0xB6;       /* External data memory write strobe */
+ 163      =2  sbit RD   = 0xB7;       /* External data memory read strobe */
+ 164      =2  
+ 165      =2  /*------------------------------------------------
+ 166      =2  IP Bit Registers
+ 167      =2  ------------------------------------------------*/
+ 168      =2  sbit PX0  = 0xB8;
+ 169      =2  sbit PT0  = 0xB9;
+ 170      =2  sbit PX1  = 0xBA;
+ 171      =2  sbit PT1  = 0xBB;
+ 172      =2  sbit PS   = 0xBC;
+ 173      =2  sbit PT2  = 0xBD;
+ 174      =2  
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 5   
+
+ 175      =2  /*------------------------------------------------
+ 176      =2  T2CON Bit Registers
+ 177      =2  ------------------------------------------------*/
+ 178      =2  sbit CP_RL2= 0xC8;      /* 0=Reload, 1=Capture select */
+ 179      =2  sbit C_T2 = 0xC9;       /* 0=Timer, 1=Counter */
+ 180      =2  sbit TR2  = 0xCA;       /* 0=Stop timer, 1=Start timer */
+ 181      =2  sbit EXEN2= 0xCB;       /* Timer 2 external enable */
+ 182      =2  sbit TCLK = 0xCC;       /* 0=Serial clock uses Timer 1 overflow, 1=Timer 2 */
+ 183      =2  sbit RCLK = 0xCD;       /* 0=Serial clock uses Timer 1 overflow, 1=Timer 2 */
+ 184      =2  sbit EXF2 = 0xCE;       /* Timer 2 external flag */
+ 185      =2  sbit TF2  = 0xCF;       /* Timer 2 overflow flag */
+ 186      =2  
+ 187      =2  /*------------------------------------------------
+ 188      =2  T2MOD Bit Values
+ 189      =2  ------------------------------------------------*/
+ 190      =2  #define DCEN_   0x01    /* 1=Timer 2 can be configured as up/down counter */
+ 191      =2  #define T2OE_   0x02    /* Timer 2 output enable */
+ 192      =2  
+ 193      =2  /*------------------------------------------------
+ 194      =2  PSW Bit Registers
+ 195      =2  ------------------------------------------------*/
+ 196      =2  sbit P    = 0xD0;
+ 197      =2  sbit FL   = 0xD1;
+ 198      =2  sbit OV   = 0xD2;
+ 199      =2  sbit RS0  = 0xD3;
+ 200      =2  sbit RS1  = 0xD4;
+ 201      =2  sbit F0   = 0xD5;
+ 202      =2  sbit AC   = 0xD6;
+ 203      =2  sbit CY   = 0xD7;
+ 204      =2  
+ 205      =2  /*------------------------------------------------
+ 206      =2  Interrupt Vectors:
+ 207      =2  Interrupt Address = (Number * 8) + 3
+ 208      =2  ------------------------------------------------*/
+ 209      =2  #define IE0_VECTOR	0  /* 0x03 External Interrupt 0 */
+ 210      =2  #define TF0_VECTOR	1  /* 0x0B Timer 0 */
+ 211      =2  #define IE1_VECTOR	2  /* 0x13 External Interrupt 1 */
+ 212      =2  #define TF1_VECTOR	3  /* 0x1B Timer 1 */
+ 213      =2  #define SIO_VECTOR	4  /* 0x23 Serial port */
+ 214      =2  
+ 215      =2  #define TF2_VECTOR	5  /* 0x2B Timer 2 */
+ 216      =2  #define EX2_VECTOR	5  /* 0x2B External Interrupt 2 */
+ 217      =2  
+ 218      =2  /*------------------------------------------------
+ 219      =2  ------------------------------------------------*/
+ 220      =2  #endif
+ 221      =2  
+ 222      =2  
+  33      =1  
+  34      =1  // Include oscillator / chip details here 
+  35      =1  // (essential if generic delays / timeouts are used)
+  36      =1  //  -
+  37      =1  // Oscillator / resonator frequency (in Hz) e.g. (11059200UL)
+  38      =1  #define OSC_FREQ (12000000UL)
+  39      =1  
+  40      =1  // Number of oscillations per instruction (4, 6 or 12)
+  41      =1  // 12 - Original 8051 / 8052 and numerous modern versions
+  42      =1  //  6 - Various Infineon and Philips devices, etc.
+  43      =1  //  4 - Dallas, etc.
+  44      =1  //
+  45      =1  // Take care with Dallas devices 
+  46      =1  // - Timers default to *12* osc ticks unless CKCON is modified 
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 6   
+
+  47      =1  // - If using generic code on a Dallas device, use 12 here
+  48      =1  #define OSC_PER_INST (12)
+  49      =1  
+  50      =1  //------------------------------------------------------------------
+  51      =1  // SHOULD NOT NEED TO EDIT THE SECTIONS BELOW
+  52      =1  //------------------------------------------------------------------
+  53      =1  typedef unsigned char tByte;
+  54      =1  typedef unsigned int  tWord;
+  55      =1  typedef unsigned long tLong;
+  56      =1  
+  57      =1  // Misc #defines
+  58      =1  #ifndef TRUE
+  59      =1  #define FALSE 0
+  60      =1  #define TRUE (!FALSE)
+  61      =1  #endif
+  62      =1  
+  63      =1  #define RETURN_NORMAL (bit) 0
+  64      =1  #define RETURN_ERROR (bit) 1
+  65      =1  
+  66      =1  
+  67      =1  //------------------------------------------------------------------
+  68      =1  // Interrupts
+  69      =1  // - see Chapter 13.  
+  70      =1  //------------------------------------------------------------------
+  71      =1  
+  72      =1  // Generic 8051/52 timer interrupts (used in most schedulers)
+  73      =1  #define INTERRUPT_Timer_0_Overflow 1
+  74      =1  #define INTERRUPT_Timer_1_Overflow 3
+  75      =1  #define INTERRUPT_Timer_2_Overflow 5
+  76      =1  
+  77      =1  // Additional interrupts (used in shared-clock schedulers)
+  78      =1  #define INTERRUPT_EXTERNAL_0 0
+  79      =1  #define INTERRUPT_EXTERNAL_1 2
+  80      =1  #define INTERRUPT_UART_Rx_Tx 4
+  81      =1  #define INTERRUPT_CAN_c515c 17
+  82      =1  
+  83      =1  //------------------------------------------------------------------
+  84      =1  // Error codes 
+  85      =1  // - see Chapter 14. 
+  86      =1  //------------------------------------------------------------------
+  87      =1  
+  88      =1  #define ERROR_SCH_TOO_MANY_TASKS (1)
+  89      =1  #define ERROR_SCH_CANNOT_DELETE_TASK (2)
+  90      =1  
+  91      =1  #define ERROR_SCH_WAITING_FOR_SLAVE_TO_ACK (3)
+  92      =1  #define ERROR_SCH_WAITING_FOR_START_COMMAND_FROM_MASTER (3)
+  93      =1  
+  94      =1  #define ERROR_SCH_ONE_OR_MORE_SLAVES_DID_NOT_START (4)
+  95      =1  #define ERROR_SCH_LOST_SLAVE (5)
+  96      =1  
+  97      =1  #define ERROR_SCH_CAN_BUS_ERROR (6)
+  98      =1  
+  99      =1  #define ERROR_I2C_WRITE_BYTE (10)
+ 100      =1  #define ERROR_I2C_READ_BYTE (11)
+ 101      =1  #define ERROR_I2C_WRITE_BYTE_AT24C64 (12)
+ 102      =1  #define ERROR_I2C_READ_BYTE_AT24C64 (13)
+ 103      =1  #define ERROR_I2C_DS1621 (14)
+ 104      =1  
+ 105      =1  #define ERROR_USART_TI (21)
+ 106      =1  #define ERROR_USART_WRITE_CHAR (22)
+ 107      =1  
+ 108      =1  #define ERROR_SPI_EXCHANGE_BYTES_TIMEOUT (31)
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 7   
+
+ 109      =1  #define ERROR_SPI_X25_TIMEOUT (32)
+ 110      =1  #define ERROR_SPI_MAX1110_TIMEOUT (33)
+ 111      =1  
+ 112      =1  #define ERROR_ADC_MAX150_TIMEOUT (44)
+ 113      =1  
+ 114      =1  #endif
+ 115      =1  
+ 116      =1  /*------------------------------------------------------------------*-
+ 117      =1    ---- END OF FILE -------------------------------------------------
+ 118      =1  -*------------------------------------------------------------------*/
+  35          #include "Port.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     Port.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1  
+   7      =1    'Port Header' (see Chap 10) for the project DAC_Spee (see Chap 34)
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  // ------ Sch51.C ----------------------------------------
+  25      =1  
+  26      =1  // Comment this line out if error reporting is NOT required
+  27      =1  #define SCH_REPORT_ERRORS
+  28      =1  
+  29      =1  #ifdef SCH_REPORT_ERRORS
+  30      =1  // The port on which error codes will be displayed
+  31      =1  // ONLY USED IF ERRORS ARE REPORTED
+  32      =1  #define Error_port P1
+  33      =1  
+  34      =1  #endif
+  35      =1  
+  36      =1  // ------ Playback.c -----------------------------------------------
+  37      =1  
+  38      =1  #define SPEECH_Port P2
+  39      =1  sbit SPEECH_CSLSB_pin = P0^0;
+  40      =1  sbit SPEECH_CSMSB_pin = P0^1; 
+  41      =1  
+  42      =1  // ------ Swit_Ply.C -----------------------------------------------
+  43      =1  
+  44      =1  // Connect single push-button switch on this pin (to gnd)
+  45      =1  // - debounced in software
+  46      =1  sbit Sw_pin = P3^3;    // The switch pin
+  47      =1  
+  48      =1  /*------------------------------------------------------------------*-
+  49      =1    ---- END OF FILE -------------------------------------------------
+  50      =1  -*------------------------------------------------------------------*/
+  51      =1  
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 8   
+
+  52      =1  
+  53      =1  
+  36          
+  37          #include "hSch51.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1    
+   3      =1     hSCH51.h (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1  
+   7      =1     - see hSCH51.C for details
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  #ifndef _hSCH51_H
+  25      =1  #define _hSCH51_H
+  26      =1  
+  27      =1  #include "Main.h"
+   1      =2  /*------------------------------------------------------------------*-
+   2      =2  
+   3      =2     Main.H (v1.00)
+   4      =2  
+   5      =2    ------------------------------------------------------------------
+   6      =2     
+   7      =2     'Project Header' (see Chap 9) for project DAC_Spee (see Chap 34)
+   8      =2  
+   9      =2  
+  10      =2     COPYRIGHT
+  11      =2     ---------
+  12      =2  
+  13      =2     This code is from the book:
+  14      =2  
+  15      =2     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =2     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =2  
+  18      =2     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =2   
+  20      =2     See book for copyright details and other information.
+  21      =2  
+  22      =2  -*------------------------------------------------------------------*/
+  23      =2  
+  24      =2  #ifndef _MAIN_H
+           =2 #define _MAIN_H
+           =2 
+           =2 //------------------------------------------------------------------
+           =2 // WILL NEED TO EDIT THIS SECTION FOR EVERY PROJECT
+           =2 //------------------------------------------------------------------
+           =2 
+           =2 // Must include the appropriate microcontroller header file here
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 9   
+
+           =2 #include <AT89x52.h>
+           =2 
+           =2 // Include oscillator / chip details here 
+           =2 // (essential if generic delays / timeouts are used)
+           =2 //  -
+           =2 // Oscillator / resonator frequency (in Hz) e.g. (11059200UL)
+           =2 #define OSC_FREQ (12000000UL)
+           =2 
+           =2 // Number of oscillations per instruction (4, 6 or 12)
+           =2 // 12 - Original 8051 / 8052 and numerous modern versions
+           =2 //  6 - Various Infineon and Philips devices, etc.
+           =2 //  4 - Dallas, etc.
+           =2 //
+           =2 // Take care with Dallas devices 
+           =2 // - Timers default to *12* osc ticks unless CKCON is modified 
+           =2 // - If using generic code on a Dallas device, use 12 here
+           =2 #define OSC_PER_INST (12)
+           =2 
+           =2 //------------------------------------------------------------------
+           =2 // SHOULD NOT NEED TO EDIT THE SECTIONS BELOW
+           =2 //------------------------------------------------------------------
+           =2 typedef unsigned char tByte;
+           =2 typedef unsigned int  tWord;
+           =2 typedef unsigned long tLong;
+           =2 
+           =2 // Misc #defines
+           =2 #ifndef TRUE
+           =2 #define FALSE 0
+           =2 #define TRUE (!FALSE)
+           =2 #endif
+           =2 
+           =2 #define RETURN_NORMAL (bit) 0
+           =2 #define RETURN_ERROR (bit) 1
+           =2 
+           =2 
+           =2 //------------------------------------------------------------------
+           =2 // Interrupts
+           =2 // - see Chapter 13.  
+           =2 //------------------------------------------------------------------
+           =2 
+           =2 // Generic 8051/52 timer interrupts (used in most schedulers)
+           =2 #define INTERRUPT_Timer_0_Overflow 1
+           =2 #define INTERRUPT_Timer_1_Overflow 3
+           =2 #define INTERRUPT_Timer_2_Overflow 5
+           =2 
+           =2 // Additional interrupts (used in shared-clock schedulers)
+           =2 #define INTERRUPT_EXTERNAL_0 0
+           =2 #define INTERRUPT_EXTERNAL_1 2
+           =2 #define INTERRUPT_UART_Rx_Tx 4
+           =2 #define INTERRUPT_CAN_c515c 17
+           =2 
+           =2 //------------------------------------------------------------------
+           =2 // Error codes 
+           =2 // - see Chapter 14. 
+           =2 //------------------------------------------------------------------
+           =2 
+           =2 #define ERROR_SCH_TOO_MANY_TASKS (1)
+           =2 #define ERROR_SCH_CANNOT_DELETE_TASK (2)
+           =2 
+           =2 #define ERROR_SCH_WAITING_FOR_SLAVE_TO_ACK (3)
+           =2 #define ERROR_SCH_WAITING_FOR_START_COMMAND_FROM_MASTER (3)
+           =2 
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 10  
+
+           =2 #define ERROR_SCH_ONE_OR_MORE_SLAVES_DID_NOT_START (4)
+           =2 #define ERROR_SCH_LOST_SLAVE (5)
+           =2 
+           =2 #define ERROR_SCH_CAN_BUS_ERROR (6)
+           =2 
+           =2 #define ERROR_I2C_WRITE_BYTE (10)
+           =2 #define ERROR_I2C_READ_BYTE (11)
+           =2 #define ERROR_I2C_WRITE_BYTE_AT24C64 (12)
+           =2 #define ERROR_I2C_READ_BYTE_AT24C64 (13)
+           =2 #define ERROR_I2C_DS1621 (14)
+           =2 
+           =2 #define ERROR_USART_TI (21)
+           =2 #define ERROR_USART_WRITE_CHAR (22)
+           =2 
+           =2 #define ERROR_SPI_EXCHANGE_BYTES_TIMEOUT (31)
+           =2 #define ERROR_SPI_X25_TIMEOUT (32)
+           =2 #define ERROR_SPI_MAX1110_TIMEOUT (33)
+           =2 
+           =2 #define ERROR_ADC_MAX150_TIMEOUT (44)
+           =2 
+           =2 #endif
+ 115      =2  
+ 116      =2  /*------------------------------------------------------------------*-
+ 117      =2    ---- END OF FILE -------------------------------------------------
+ 118      =2  -*------------------------------------------------------------------*/
+  28      =1  
+  29      =1  // ------ Public data type declarations ----------------------------
+  30      =1  
+  31      =1  // Store in DATA area, if possible, for rapid access  
+  32      =1  // Total memory per task is 8 bytes
+  33      =1  typedef data struct 
+  34      =1     {
+  35      =1     // Pointer to the task (must be a 'void (void)' function)
+  36      =1     void (code * pTask)(void);  
+  37      =1  
+  38      =1     // Delay (ticks) until the function will (next) be run
+  39      =1     // - see SCH_Add_Task() for further details
+  40      =1     tWord Delay;       
+  41      =1  
+  42      =1     // Interval (ticks) between subsequent runs.
+  43      =1     // - see SCH_Add_Task() for further details
+  44      =1     tWord Period;       
+  45      =1  
+  46      =1     // Incremented (by scheduler) when task is due to execute
+  47      =1     tByte RunMe;       
+  48      =1  
+  49      =1     // Set to 1 if task is co-operative
+  50      =1     // Set to 0 if task is pre-emptive
+  51      =1     tByte Co_op;     
+  52      =1     } sTaskH; 
+  53      =1  
+  54      =1  // ------ Public function prototypes -------------------------------
+  55      =1  
+  56      =1  // Core scheduler functions
+  57      =1  void  hSCH_Dispatch_Tasks(void);
+  58      =1  tByte hSCH_Add_Task(void (code *)(void), tWord, tWord, bit);  
+  59      =1  bit   hSCH_Delete_Task(tByte);
+  60      =1  void  hSCH_Report_Status(void);
+  61      =1  
+  62      =1  // ------ Public constants -----------------------------------------
+  63      =1  
+  64      =1  // The maximum number of tasks required at any one time
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 11  
+
+  65      =1  // during the execution of the program
+  66      =1  //
+  67      =1  // MUST BE ADJUSTED FOR EACH NEW PROJECT
+  68      =1  #define hSCH_MAX_TASKS   (2)   
+  69      =1   
+  70      =1  #endif
+  71      =1                                
+  72      =1  /*------------------------------------------------------------------*-
+  73      =1    ---- END OF FILE -------------------------------------------------
+  74      =1  -*------------------------------------------------------------------*/
+  75      =1  
+  38          
+  39          // ------ Public variable definitions ------------------------------
+  40          
+  41          // The array of tasks
+  42          sTaskH hSCH_tasks_G[hSCH_MAX_TASKS];
+  43          
+  44          // Used to display the error code
+  45          // See Main.H for details of error codes
+  46          // See Port.H for details of the error port
+  47          tByte Error_code_G = 0;
+  48          
+  49          // ------ Private function prototypes ------------------------------
+  50          
+  51          static void hSCH_Go_To_Sleep(void);
+  52          
+  53          // ------ Private variables ----------------------------------------
+  54          
+  55          // Keeps track of time since last error was recorded (see below)
+  56          static tWord Error_tick_count_G;
+  57          
+  58          // The code of the last error (reset after ~1 minute)
+  59          static tByte Last_error_code_G;
+  60          
+  61          
+  62          /*------------------------------------------------------------------*-
+  63          
+  64            hSCH_Dispatch_Tasks()
+  65          
+  66            This is the 'dispatcher' function.  When a task (function)
+  67            is due to run, hSCH_Dispatch_Tasks() will run it.
+  68            This function must be called (repeatedly) from the main loop.
+  69          
+  70          -*------------------------------------------------------------------*/
+  71          void hSCH_Dispatch_Tasks(void) 
+  72             {
+  73   1         tByte Index;
+  74   1      
+  75   1         // Dispatches (runs) the next task (if one is ready)
+  76   1         for (Index = 0; Index < hSCH_MAX_TASKS; Index++)
+  77   1            {
+  78   2            // Only dispatching co-operative tasks
+  79   2            if ((hSCH_tasks_G[Index].Co_op) && (hSCH_tasks_G[Index].RunMe > 0)) 
+  80   2               {
+  81   3               (*hSCH_tasks_G[Index].pTask)();  // Run the task
+  82   3      
+  83   3               hSCH_tasks_G[Index].RunMe -= 1;   // Reset / reduce RunMe flag
+  84   3      
+  85   3               // Periodic tasks will automatically run again
+  86   3               // - if this is a 'one shot' task, remove it from the array
+  87   3               if (hSCH_tasks_G[Index].Period == 0)
+  88   3                  {
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 12  
+
+  89   4                  // Faster than call to delete task
+  90   4                  hSCH_tasks_G[Index].pTask = 0;
+  91   4                  }
+  92   3               }
+  93   2            }
+  94   1      
+  95   1         // Report system status
+  96   1         hSCH_Report_Status();  
+  97   1      
+  98   1         // The scheduler enters idle mode at this point 
+  99   1         hSCH_Go_To_Sleep();          
+ 100   1         }
+ 101          
+ 102          /*------------------------------------------------------------------*-
+ 103          
+ 104            hSCH_Add_Task()
+ 105          
+ 106            Causes a task (function) to be executed at regular intervals 
+ 107            or after a user-defined delay
+ 108          
+ 109            Fn_P  - The name of the function which is to be scheduled.
+ 110                    NOTE: All scheduled functions must be 'void, void' -
+ 111                    that is, they must take no parameters, and have 
+ 112                    a void return type. 
+ 113                             
+ 114            Del   - The interval (TICKS) before the task is first executed
+ 115          
+ 116            Rep   - If 'Rep' is 0, the function is only called once,
+ 117                    at the time determined by 'Del'.  If Rep is non-zero,
+ 118                    then the function is called repeatedly at an interval
+ 119                    determined by the vakue of Rep (see below for examples
+ 120                    that should help clarify this).
+ 121          
+ 122            Co-op - Set to 1 if it a co-op task; 0 if pre-emptive
+ 123          
+ 124            RETN:   The position in the task array at which the task has been added.
+ 125                    If the return value is hSCH_MAX_TASKS then the task could not be
+ 126                    added to the array (there was insufficient space).  If the
+ 127                    return value is < hSCH_MAX_TASKS, then the task was added 
+ 128                    successfully.  
+ 129          
+ 130                    Note: this return value may be required, if a task is
+ 131                    to be subsequently deleted - see hSCH_Delete_Task().
+ 132          
+ 133          
+ 134            EXAMPLES:
+ 135          
+ 136            Task_ID = hSCH_Add_Task(Do_X,1000,0,0);
+ 137            Causes the function Do_X() to be executed once after 1000 ticks.
+ 138            (Pre-emptive task)          
+ 139          
+ 140            Task_ID = hSCH_Add_Task(Do_X,0,1000,1);
+ 141            Causes the function Do_X() to be executed regularly, every 1000 ticks.            
+ 142            (co-operative task)          
+ 143          
+ 144            Task_ID = hSCH_Add_Task(Do_X,300,1000,0);
+ 145            Causes the function Do_X() to be executed regularly, every 1000 ticks.
+ 146            Task will be first executed at T = 300 ticks, then 1300, 2300, etc.            
+ 147            (Pre-emptive task)          
+ 148           
+ 149          -*------------------------------------------------------------------*/
+ 150          tByte hSCH_Add_Task(void (code* Fn_p)(), // Task function pointer
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 13  
+
+ 151                             tWord   Del,    // Num ticks 'til task first runs 
+ 152                             tWord   Per,    // Num ticks between repeat runs
+ 153                             bit     Co_op)  // Co_op / pre_emp
+ 154             {
+ 155   1         tByte Index = 0;
+ 156   1         
+ 157   1         // First find a gap in the array (if there is one)
+ 158   1         while ((hSCH_tasks_G[Index].pTask != 0) && (Index < hSCH_MAX_TASKS))
+ 159   1            {
+ 160   2            Index++;
+ 161   2            } 
+ 162   1         
+ 163   1         // Have we reached the end of the list?   
+ 164   1         if (Index == hSCH_MAX_TASKS)
+ 165   1            {
+ 166   2            // Task list is full
+ 167   2            //
+ 168   2            // Set the global error variable
+ 169   2            Error_code_G = ERROR_SCH_TOO_MANY_TASKS;
+ 170   2      
+ 171   2            // Also return an error code
+ 172   2            return hSCH_MAX_TASKS;  
+ 173   2            }
+ 174   1            
+ 175   1         // If we're here, there is a space in the task array
+ 176   1         hSCH_tasks_G[Index].pTask = Fn_p;
+ 177   1           
+ 178   1         hSCH_tasks_G[Index].Delay  = Del;
+ 179   1         hSCH_tasks_G[Index].Period = Per;
+ 180   1      
+ 181   1         hSCH_tasks_G[Index].Co_op = Co_op;
+ 182   1      
+ 183   1         hSCH_tasks_G[Index].RunMe  = 0;
+ 184   1      
+ 185   1         return Index; // return position of task (to allow later deletion)
+ 186   1         }
+ 187          
+ 188          /*------------------------------------------------------------------*-
+ 189          
+ 190            hSCH_Delete_Task()
+ 191          
+ 192            Removes a task from the scheduler.  Note that this does
+ 193            *not* delete the associated function from memory: 
+ 194            it simply means that it is no longer called by the scheduler. 
+ 195          
+ 196            PARAMS:   Task_index - The task index.  Provided by hSCH_Add_Task(). 
+ 197          
+ 198            RETURNS:  RETURN_ERROR or RETURN_NORMAL
+ 199          
+ 200          -*------------------------------------------------------------------*/
+ 201          bit hSCH_Delete_Task(tByte Task_index) 
+ 202             {
+ 203   1         bit Return_code;
+ 204   1      
+ 205   1         if (hSCH_tasks_G[Task_index].pTask == 0)
+ 206   1            {
+ 207   2            // No task at this location...
+ 208   2            //
+ 209   2            // Set the global error variable
+ 210   2            Error_code_G = ERROR_SCH_CANNOT_DELETE_TASK;
+ 211   2      
+ 212   2            // ...also return an error code
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 14  
+
+ 213   2            Return_code = RETURN_ERROR;
+ 214   2            }
+ 215   1         else
+ 216   1            {
+ 217   2            Return_code = RETURN_NORMAL;
+ 218   2            }      
+ 219   1         
+ 220   1         hSCH_tasks_G[Task_index].pTask   = 0;
+ 221   1         hSCH_tasks_G[Task_index].Delay   = 0;
+ 222   1         hSCH_tasks_G[Task_index].Period  = 0;
+ 223   1      
+ 224   1         hSCH_tasks_G[Task_index].RunMe   = 0;
+ 225   1      
+ 226   1         return Return_code;       // return status
+ 227   1         }
+ 228          
+ 229          
+ 230          /*------------------------------------------------------------------*-
+ 231          
+ 232            hSCH_Report_Status()
+ 233          
+ 234            Simple function to display error codes.
+ 235          
+ 236            This version displays code on a port with attached LEDs:
+ 237            adapt, if required, to report errors over serial link, etc.
+ 238          
+ 239            Errors are only displayed for a limited period 
+ 240            (60000 ticks = 1 minute at 1ms tick interval).
+ 241            After this the the error code is reset to 0. 
+ 242          
+ 243            This code may be easily adapted to display the last
+ 244            error 'for ever': this may be appropriate in your
+ 245            application.
+ 246          
+ 247            See Chapter 14 for further information.
+ 248           
+ 249          -*------------------------------------------------------------------*/
+ 250          void hSCH_Report_Status(void)
+ 251             {
+ 252   1      #ifdef SCH_REPORT_ERRORS
+ 253   1         // ONLY APPLIES IF WE ARE REPORTING ERRORS
+ 254   1         // Check for a new error code
+ 255   1         if (Error_code_G != Last_error_code_G)
+ 256   1            {
+ 257   2            // Negative logic on LEDs assumed
+ 258   2            Error_port = 255 - Error_code_G;
+ 259   2            
+ 260   2            Last_error_code_G = Error_code_G;
+ 261   2      
+ 262   2            if (Error_code_G != 0)
+ 263   2               {
+ 264   3               Error_tick_count_G = 60000;
+ 265   3               }
+ 266   2            else
+ 267   2               {
+ 268   3               Error_tick_count_G = 0;
+ 269   3               }
+ 270   2            }
+ 271   1         else
+ 272   1            {
+ 273   2            if (Error_tick_count_G != 0)
+ 274   2               {
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 15  
+
+ 275   3               if (--Error_tick_count_G == 0)
+ 276   3                  {
+ 277   4                  Error_code_G = 0; // Reset error code
+ 278   4                  }
+ 279   3               }
+ 280   2            }
+ 281   1      #endif
+ 282   1         }
+ 283          
+ 284          
+ 285          /*------------------------------------------------------------------*-
+ 286          
+ 287            hSCH_Go_To_Sleep()
+ 288          
+ 289            This scheduler enters 'idle mode' between clock ticks
+ 290            to save power.  The next clock tick will return the processor
+ 291            to the normal operating state.
+ 292          
+ 293            Note: a slight performance improvement is possible if this
+ 294            function is implemented as a macro, or if the code here is simply 
+ 295            pasted into the 'dispatch' function.  
+ 296          
+ 297            However, by making this a function call, it becomes easier 
+ 298            - during development - to assess the performance of the 
+ 299            scheduler, using the 'performance analyser' in the Keil 
+ 300            hardware simulator. See Chapter 14 for examples for this. 
+ 301          
+ 302            *** May wish to disable this if using a watchdog ***
+ 303          
+ 304            *** ADAPT AS REQUIRED FOR YOUR HARDWARE ***
+ 305          
+ 306          -*------------------------------------------------------------------*/
+ 307          void hSCH_Go_To_Sleep()
+ 308             {
+ 309   1         PCON |= 0x01;    // Enter idle mode (generic 8051 version)
+ 310   1      
+ 311   1         // Entering idle mode requires TWO consecutive instructions 
+ 312   1         // on 80c515 / 80c505 - to avoid accidental triggering
+ 313   1         //PCON |= 0x01;    // Enter idle mode (#1)
+ 314   1         //PCON |= 0x20;    // Enter idle mode (#2)
+ 315   1         }
+ 316          
+ 317          
+ 318          /*------------------------------------------------------------------*-
+ 319            ---- END OF FILE -------------------------------------------------
+ 320          -*------------------------------------------------------------------*/
+ 321          
+ 322          
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 16  
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION hSCH_Dispatch_Tasks (BEGIN)
+                                           ; SOURCE LINE # 71
+                                           ; SOURCE LINE # 72
+                                           ; SOURCE LINE # 76
+0000 E4                CLR     A
+0001 F500        R     MOV     Index,A
+0003         ?C0001:
+                                           ; SOURCE LINE # 77
+                                           ; SOURCE LINE # 79
+0003 E500        R     MOV     A,Index
+0005 75F008            MOV     B,#08H
+0008 A4                MUL     AB
+0009 2400        R     ADD     A,#LOW hSCH_tasks_G+07H
+000B F8                MOV     R0,A
+000C E6                MOV     A,@R0
+000D 6049              JZ      ?C0003
+000F E500        R     MOV     A,Index
+0011 75F008            MOV     B,#08H
+0014 A4                MUL     AB
+0015 2400        R     ADD     A,#LOW hSCH_tasks_G+06H
+0017 F8                MOV     R0,A
+0018 E6                MOV     A,@R0
+0019 D3                SETB    C
+001A 9400              SUBB    A,#00H
+001C 403A              JC      ?C0003
+                                           ; SOURCE LINE # 80
+                                           ; SOURCE LINE # 81
+001E E500        R     MOV     A,Index
+0020 75F008            MOV     B,#08H
+0023 A4                MUL     AB
+0024 2400        R     ADD     A,#LOW hSCH_tasks_G
+0026 F8                MOV     R0,A
+0027 E6                MOV     A,@R0
+0028 FE                MOV     R6,A
+0029 08                INC     R0
+002A E6                MOV     A,@R0
+002B AA06              MOV     R2,AR6
+002D F9                MOV     R1,A
+002E 120000      E     LCALL   ?C?ICALL
+                                           ; SOURCE LINE # 83
+0031 E500        R     MOV     A,Index
+0033 75F008            MOV     B,#08H
+0036 A4                MUL     AB
+0037 2400        R     ADD     A,#LOW hSCH_tasks_G+06H
+0039 F8                MOV     R0,A
+003A 16                DEC     @R0
+                                           ; SOURCE LINE # 87
+003B E500        R     MOV     A,Index
+003D 75F008            MOV     B,#08H
+0040 A4                MUL     AB
+0041 2400        R     ADD     A,#LOW hSCH_tasks_G+04H
+0043 F8                MOV     R0,A
+0044 E6                MOV     A,@R0
+0045 FE                MOV     R6,A
+0046 08                INC     R0
+0047 E6                MOV     A,@R0
+0048 4E                ORL     A,R6
+0049 700D              JNZ     ?C0003
+                                           ; SOURCE LINE # 88
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 17  
+
+                                           ; SOURCE LINE # 90
+004B E500        R     MOV     A,Index
+004D 75F008            MOV     B,#08H
+0050 A4                MUL     AB
+0051 2400        R     ADD     A,#LOW hSCH_tasks_G
+0053 F8                MOV     R0,A
+0054 E4                CLR     A
+0055 F6                MOV     @R0,A
+0056 08                INC     R0
+0057 F6                MOV     @R0,A
+                                           ; SOURCE LINE # 91
+                                           ; SOURCE LINE # 92
+                                           ; SOURCE LINE # 93
+0058         ?C0003:
+0058 0500        R     INC     Index
+005A E500        R     MOV     A,Index
+005C C3                CLR     C
+005D 9402              SUBB    A,#02H
+005F 40A2              JC      ?C0001
+0061         ?C0002:
+                                           ; SOURCE LINE # 96
+0061 120000      R     LCALL   hSCH_Report_Status
+                                           ; SOURCE LINE # 99
+0064 120000      R     LCALL   hSCH_Go_To_Sleep
+                                           ; SOURCE LINE # 100
+0067 22                RET     
+             ; FUNCTION hSCH_Dispatch_Tasks (END)
+
+             ; FUNCTION _hSCH_Add_Task (BEGIN)
+0000 8E00        R     MOV     Fn_p,R6
+0002 8F00        R     MOV     Fn_p+01H,R7
+0004 8C00        R     MOV     Del,R4
+0006 8D00        R     MOV     Del+01H,R5
+;---- Variable 'Per' assigned to Register 'R2/R3' ----
+                                           ; SOURCE LINE # 150
+                                           ; SOURCE LINE # 154
+                                           ; SOURCE LINE # 155
+;---- Variable 'Index' assigned to Register 'R6' ----
+0008 E4                CLR     A
+0009 FE                MOV     R6,A
+000A         ?C0007:
+                                           ; SOURCE LINE # 158
+000A EE                MOV     A,R6
+000B 75F008            MOV     B,#08H
+000E A4                MUL     AB
+000F 2400        R     ADD     A,#LOW hSCH_tasks_G
+0011 F8                MOV     R0,A
+0012 E6                MOV     A,@R0
+0013 FC                MOV     R4,A
+0014 08                INC     R0
+0015 E6                MOV     A,@R0
+0016 4C                ORL     A,R4
+0017 6009              JZ      ?C0008
+0019 EE                MOV     A,R6
+001A C3                CLR     C
+001B 9402              SUBB    A,#02H
+001D 5003              JNC     ?C0008
+                                           ; SOURCE LINE # 159
+                                           ; SOURCE LINE # 160
+001F 0E                INC     R6
+                                           ; SOURCE LINE # 161
+0020 80E8              SJMP    ?C0007
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 18  
+
+0022         ?C0008:
+                                           ; SOURCE LINE # 164
+0022 BE0206            CJNE    R6,#02H,?C0009
+                                           ; SOURCE LINE # 165
+                                           ; SOURCE LINE # 169
+0025 750001      R     MOV     Error_code_G,#01H
+                                           ; SOURCE LINE # 172
+0028 7F02              MOV     R7,#02H
+002A 22                RET     
+                                           ; SOURCE LINE # 173
+002B         ?C0009:
+                                           ; SOURCE LINE # 176
+002B EE                MOV     A,R6
+002C 75F008            MOV     B,#08H
+002F A4                MUL     AB
+0030 2400        R     ADD     A,#LOW hSCH_tasks_G
+0032 F8                MOV     R0,A
+0033 A600        R     MOV     @R0,Fn_p
+0035 08                INC     R0
+0036 A600        R     MOV     @R0,Fn_p+01H
+                                           ; SOURCE LINE # 178
+0038 EE                MOV     A,R6
+0039 75F008            MOV     B,#08H
+003C A4                MUL     AB
+003D 2400        R     ADD     A,#LOW hSCH_tasks_G+02H
+003F F8                MOV     R0,A
+0040 A600        R     MOV     @R0,Del
+0042 08                INC     R0
+0043 A600        R     MOV     @R0,Del+01H
+                                           ; SOURCE LINE # 179
+0045 EE                MOV     A,R6
+0046 75F008            MOV     B,#08H
+0049 A4                MUL     AB
+004A 2400        R     ADD     A,#LOW hSCH_tasks_G+04H
+004C F8                MOV     R0,A
+004D A602              MOV     @R0,AR2
+004F 08                INC     R0
+0050 A603              MOV     @R0,AR3
+                                           ; SOURCE LINE # 181
+0052 A200        R     MOV     C,Co_op
+0054 E4                CLR     A
+0055 33                RLC     A
+0056 FF                MOV     R7,A
+0057 EE                MOV     A,R6
+0058 75F008            MOV     B,#08H
+005B A4                MUL     AB
+005C 2400        R     ADD     A,#LOW hSCH_tasks_G+07H
+005E F8                MOV     R0,A
+005F A607              MOV     @R0,AR7
+                                           ; SOURCE LINE # 183
+0061 EE                MOV     A,R6
+0062 75F008            MOV     B,#08H
+0065 A4                MUL     AB
+0066 2400        R     ADD     A,#LOW hSCH_tasks_G+06H
+0068 F8                MOV     R0,A
+0069 E4                CLR     A
+006A F6                MOV     @R0,A
+                                           ; SOURCE LINE # 185
+006B AF06              MOV     R7,AR6
+                                           ; SOURCE LINE # 186
+006D         ?C0010:
+006D 22                RET     
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 19  
+
+             ; FUNCTION _hSCH_Add_Task (END)
+
+             ; FUNCTION _hSCH_Delete_Task (BEGIN)
+;---- Variable 'Task_index' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 201
+                                           ; SOURCE LINE # 202
+                                           ; SOURCE LINE # 205
+0000 EF                MOV     A,R7
+0001 75F008            MOV     B,#08H
+0004 A4                MUL     AB
+0005 2400        R     ADD     A,#LOW hSCH_tasks_G
+0007 F8                MOV     R0,A
+0008 E6                MOV     A,@R0
+0009 FC                MOV     R4,A
+000A 08                INC     R0
+000B E6                MOV     A,@R0
+000C 4C                ORL     A,R4
+000D 7007              JNZ     ?C0011
+                                           ; SOURCE LINE # 206
+                                           ; SOURCE LINE # 210
+000F 750002      R     MOV     Error_code_G,#02H
+                                           ; SOURCE LINE # 213
+0012 D200        R     SETB    Return_code
+                                           ; SOURCE LINE # 214
+0014 8002              SJMP    ?C0012
+0016         ?C0011:
+                                           ; SOURCE LINE # 216
+                                           ; SOURCE LINE # 217
+0016 C200        R     CLR     Return_code
+                                           ; SOURCE LINE # 218
+0018         ?C0012:
+                                           ; SOURCE LINE # 220
+0018 EF                MOV     A,R7
+0019 75F008            MOV     B,#08H
+001C A4                MUL     AB
+001D 2400        R     ADD     A,#LOW hSCH_tasks_G
+001F F8                MOV     R0,A
+0020 E4                CLR     A
+0021 F6                MOV     @R0,A
+0022 08                INC     R0
+0023 F6                MOV     @R0,A
+                                           ; SOURCE LINE # 221
+0024 EF                MOV     A,R7
+0025 75F008            MOV     B,#08H
+0028 A4                MUL     AB
+0029 2400        R     ADD     A,#LOW hSCH_tasks_G+02H
+002B F8                MOV     R0,A
+002C E4                CLR     A
+002D F6                MOV     @R0,A
+002E 08                INC     R0
+002F F6                MOV     @R0,A
+                                           ; SOURCE LINE # 222
+0030 EF                MOV     A,R7
+0031 75F008            MOV     B,#08H
+0034 A4                MUL     AB
+0035 2400        R     ADD     A,#LOW hSCH_tasks_G+04H
+0037 F8                MOV     R0,A
+0038 E4                CLR     A
+0039 F6                MOV     @R0,A
+003A 08                INC     R0
+003B F6                MOV     @R0,A
+                                           ; SOURCE LINE # 224
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 20  
+
+003C EF                MOV     A,R7
+003D 75F008            MOV     B,#08H
+0040 A4                MUL     AB
+0041 2400        R     ADD     A,#LOW hSCH_tasks_G+06H
+0043 F8                MOV     R0,A
+0044 E4                CLR     A
+0045 F6                MOV     @R0,A
+                                           ; SOURCE LINE # 226
+0046 A200        R     MOV     C,Return_code
+                                           ; SOURCE LINE # 227
+0048         ?C0013:
+0048 22                RET     
+             ; FUNCTION _hSCH_Delete_Task (END)
+
+             ; FUNCTION hSCH_Report_Status (BEGIN)
+                                           ; SOURCE LINE # 250
+                                           ; SOURCE LINE # 251
+                                           ; SOURCE LINE # 255
+0000 E500        R     MOV     A,Error_code_G
+0002 6500        R     XRL     A,Last_error_code_G
+0004 601B              JZ      ?C0014
+                                           ; SOURCE LINE # 256
+                                           ; SOURCE LINE # 258
+0006 C3                CLR     C
+0007 74FF              MOV     A,#0FFH
+0009 9500        R     SUBB    A,Error_code_G
+000B F590              MOV     P1,A
+                                           ; SOURCE LINE # 260
+000D 850000      R     MOV     Last_error_code_G,Error_code_G
+                                           ; SOURCE LINE # 262
+0010 E500        R     MOV     A,Error_code_G
+0012 6007              JZ      ?C0015
+                                           ; SOURCE LINE # 263
+                                           ; SOURCE LINE # 264
+0014 7500EA      R     MOV     Error_tick_count_G,#0EAH
+0017 750060      R     MOV     Error_tick_count_G+01H,#060H
+                                           ; SOURCE LINE # 265
+001A 22                RET     
+001B         ?C0015:
+                                           ; SOURCE LINE # 267
+                                           ; SOURCE LINE # 268
+001B E4                CLR     A
+001C F500        R     MOV     Error_tick_count_G,A
+001E F500        R     MOV     Error_tick_count_G+01H,A
+                                           ; SOURCE LINE # 269
+                                           ; SOURCE LINE # 270
+0020 22                RET     
+0021         ?C0014:
+                                           ; SOURCE LINE # 272
+                                           ; SOURCE LINE # 273
+0021 E500        R     MOV     A,Error_tick_count_G+01H
+0023 4500        R     ORL     A,Error_tick_count_G
+0025 600F              JZ      ?C0020
+                                           ; SOURCE LINE # 274
+                                           ; SOURCE LINE # 275
+0027 E500        R     MOV     A,Error_tick_count_G+01H
+0029 1500        R     DEC     Error_tick_count_G+01H
+002B 7002              JNZ     ?C0022
+002D 1500        R     DEC     Error_tick_count_G
+002F         ?C0022:
+002F 14                DEC     A
+0030 4500        R     ORL     A,Error_tick_count_G
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 21  
+
+0032 7002              JNZ     ?C0020
+                                           ; SOURCE LINE # 276
+                                           ; SOURCE LINE # 277
+0034 F500        R     MOV     Error_code_G,A
+                                           ; SOURCE LINE # 278
+                                           ; SOURCE LINE # 279
+                                           ; SOURCE LINE # 280
+                                           ; SOURCE LINE # 282
+0036         ?C0020:
+0036 22                RET     
+             ; FUNCTION hSCH_Report_Status (END)
+
+             ; FUNCTION hSCH_Go_To_Sleep (BEGIN)
+                                           ; SOURCE LINE # 307
+                                           ; SOURCE LINE # 308
+                                           ; SOURCE LINE # 309
+0000 438701            ORL     PCON,#01H
+                                           ; SOURCE LINE # 315
+0003 22                RET     
+             ; FUNCTION hSCH_Go_To_Sleep (END)
+
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 22  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+T2 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+tLong. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_LONG   -----  4
+_hSCH_Add_Task . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Fn_p . . . . . . . . . . . . . . . .  AUTO     DATA   PTR      0000H  2
+  Del. . . . . . . . . . . . . . . . .  AUTO     DATA   U_INT    0002H  2
+  Per. . . . . . . . . . . . . . . . .  * REG *  DATA   U_INT    0002H  2
+  Co_op. . . . . . . . . . . . . . . .  AUTO     DATA   BIT      0000H  1
+  Index. . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0006H  1
+tByte. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_CHAR   -----  1
+P0_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0080H  1
+hSCH_Report_Status . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+P1_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+P0_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0081H  1
+FL . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D1H  1
+P2_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A0H  1
+P1_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+P0_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0082H  1
+tWord. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_INT    -----  2
+P3_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+P2_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A1H  1
+P1_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0092H  1
+P0_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0083H  1
+P3_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+P2_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A2H  1
+P1_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0093H  1
+P0_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0084H  1
+P3_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+P2_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A3H  1
+P1_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0094H  1
+P0_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0085H  1
+EXF2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CEH  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+P3_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+P2_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A4H  1
+P1_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0095H  1
+P0_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0086H  1
+P3_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+P2_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A5H  1
+P1_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0096H  1
+P0_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0087H  1
+P3_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+P2_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A6H  1
+P1_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0097H  1
+P3_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+P2_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A7H  1
+P3_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 23  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+T2EX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+C_T2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C9H  1
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+RCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CDH  1
+TCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CCH  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+Error_code_G . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0000H  1
+SPEECH_CSLSB_pin . . . . . . . . . . .  ABSBIT   -----  BIT      0080H  1
+SPEECH_CSMSB_pin . . . . . . . . . . .  ABSBIT   -----  BIT      0081H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+CP_RL2 . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C8H  1
+hSCH_Dispatch_Tasks. . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Index. . . . . . . . . . . . . . . .  AUTO     DATA   U_CHAR   0000H  1
+Last_error_code_G. . . . . . . . . . .  STATIC   DATA   U_CHAR   0001H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+ET2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ADH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+TF2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CFH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+Error_tick_count_G . . . . . . . . . .  STATIC   DATA   U_INT    0002H  2
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+sTaskH . . . . . . . . . . . . . . . .  TYPEDEF  DATA   STRUCT   -----  8
+  pTask. . . . . . . . . . . . . . . .  MEMBER   -----  PTR      0000H  2
+  Delay. . . . . . . . . . . . . . . .  MEMBER   -----  U_INT    0002H  2
+  Period . . . . . . . . . . . . . . .  MEMBER   -----  U_INT    0004H  2
+  RunMe. . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0006H  1
+  Co_op. . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0007H  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+_hSCH_Delete_Task. . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Task_index . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+  Return_code. . . . . . . . . . . . .  AUTO     DATA   BIT      0000H  1
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+PT2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BDH  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+TR2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CAH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+hSCH_Go_To_Sleep . . . . . . . . . . .  STATIC   CODE   PROC     0000H  -----
+EXEN2. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CBH  1
+C51 COMPILER V6.10  HSCH51                                                                 04/19/2001 12:07:05 PAGE 24  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+Sw_pin . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+hSCH_tasks_G . . . . . . . . . . . . .  PUBLIC   DATA   ARRAY    0004H  16
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    346    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     20       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

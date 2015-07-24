@@ -1,0 +1,355 @@
+C51 COMPILER V6.10  HSCH51                                                                 04/18/2001 14:03:44 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE HSCH51
+OBJECT MODULE PLACED IN .\HSCH51.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\HSCH51.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             hSCH51.C (v1.00) 
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             /// HYBRID SCHEDULER CORE ///
+   8          
+   9             *** THESE ARE THE CORE SCHEDULER FUNCTIONS ***
+  10             --- These functions may be used with all 8051 devices ---
+  11          
+  12             *** hSCH_MAX_TASKS *must* be set by the user ***
+  13             --- see "Sch51.h" ---
+  14          
+  15             *** Includes power-saving mode ***
+  16             --- You *MUST* confirm that the power-down mode is adapted ---
+  17             --- to match your chosen device (usually only necessary with 
+  18             --- Extended 8051s, such as c515c, c509, etc ---
+  19          
+  20             COPYRIGHT
+  21             ---------
+  22          
+  23             This code is from the book:
+  24          
+  25             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  26             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  27          
+  28             This code is copyright (c) 2001 by Michael J. Pont.
+  29           
+  30             See book for copyright details and other information.
+  31          
+  32          -*------------------------------------------------------------------*/
+  33          
+  34          #include "Main.h"
+  35          #include "Port.h"
+  36          
+  37          #include "hSch51.h"
+  38          
+  39          // ------ Public variable definitions ------------------------------
+  40          
+  41          // The array of tasks
+  42          sTaskH hSCH_tasks_G[hSCH_MAX_TASKS];
+  43          
+  44          // Used to display the error code
+  45          // See Main.H for details of error codes
+  46          // See Port.H for details of the error port
+  47          tByte Error_code_G = 0;
+  48          
+  49          // ------ Private function prototypes ------------------------------
+  50          
+  51          static void hSCH_Go_To_Sleep(void);
+  52          
+  53          // ------ Private variables ----------------------------------------
+  54          
+  55          // Keeps track of time since last error was recorded (see below)
+C51 COMPILER V6.10  HSCH51                                                                 04/18/2001 14:03:44 PAGE 2   
+
+  56          static tWord Error_tick_count_G;
+  57          
+  58          // The code of the last error (reset after ~1 minute)
+  59          static tByte Last_error_code_G;
+  60          
+  61          
+  62          /*------------------------------------------------------------------*-
+  63          
+  64            hSCH_Dispatch_Tasks()
+  65          
+  66            This is the 'dispatcher' function.  When a task (function)
+  67            is due to run, hSCH_Dispatch_Tasks() will run it.
+  68            This function must be called (repeatedly) from the main loop.
+  69          
+  70          -*------------------------------------------------------------------*/
+  71          void hSCH_Dispatch_Tasks(void) 
+  72             {
+  73   1         tByte Index;
+  74   1      
+  75   1         // Dispatches (runs) the next task (if one is ready)
+  76   1         for (Index = 0; Index < hSCH_MAX_TASKS; Index++)
+  77   1            {
+  78   2            // Only dispatching co-operative tasks
+  79   2            if ((hSCH_tasks_G[Index].Co_op) && (hSCH_tasks_G[Index].RunMe > 0)) 
+  80   2               {
+  81   3               (*hSCH_tasks_G[Index].pTask)();  // Run the task
+  82   3      
+  83   3               hSCH_tasks_G[Index].RunMe -= 1;   // Reset / reduce RunMe flag
+  84   3      
+  85   3               // Periodic tasks will automatically run again
+  86   3               // - if this is a 'one shot' task, remove it from the array
+  87   3               if (hSCH_tasks_G[Index].Period == 0)
+  88   3                  {
+  89   4                  // Faster than call to delete task
+  90   4                  hSCH_tasks_G[Index].pTask = 0;
+  91   4                  }
+  92   3               }
+  93   2            }
+  94   1      
+  95   1         // Report system status
+  96   1         hSCH_Report_Status();  
+  97   1      
+  98   1         // The scheduler enters idle mode at this point 
+  99   1         hSCH_Go_To_Sleep();          
+ 100   1         }
+ 101          
+ 102          /*------------------------------------------------------------------*-
+ 103          
+ 104            hSCH_Add_Task()
+ 105          
+ 106            Causes a task (function) to be executed at regular intervals 
+ 107            or after a user-defined delay
+ 108          
+ 109            Fn_P  - The name of the function which is to be scheduled.
+ 110                    NOTE: All scheduled functions must be 'void, void' -
+ 111                    that is, they must take no parameters, and have 
+ 112                    a void return type. 
+ 113                             
+ 114            Del   - The interval (TICKS) before the task is first executed
+ 115          
+ 116            Rep   - If 'Rep' is 0, the function is only called once,
+ 117                    at the time determined by 'Del'.  If Rep is non-zero,
+C51 COMPILER V6.10  HSCH51                                                                 04/18/2001 14:03:44 PAGE 3   
+
+ 118                    then the function is called repeatedly at an interval
+ 119                    determined by the vakue of Rep (see below for examples
+ 120                    that should help clarify this).
+ 121          
+ 122            Co-op - Set to 1 if it a co-op task; 0 if pre-emptive
+ 123          
+ 124            RETN:   The position in the task array at which the task has been added.
+ 125                    If the return value is hSCH_MAX_TASKS then the task could not be
+ 126                    added to the array (there was insufficient space).  If the
+ 127                    return value is < hSCH_MAX_TASKS, then the task was added 
+ 128                    successfully.  
+ 129          
+ 130                    Note: this return value may be required, if a task is
+ 131                    to be subsequently deleted - see hSCH_Delete_Task().
+ 132          
+ 133          
+ 134            EXAMPLES:
+ 135          
+ 136            Task_ID = hSCH_Add_Task(Do_X,1000,0,0);
+ 137            Causes the function Do_X() to be executed once after 1000 ticks.
+ 138            (Pre-emptive task)          
+ 139          
+ 140            Task_ID = hSCH_Add_Task(Do_X,0,1000,1);
+ 141            Causes the function Do_X() to be executed regularly, every 1000 ticks.            
+ 142            (co-operative task)          
+ 143          
+ 144            Task_ID = hSCH_Add_Task(Do_X,300,1000,0);
+ 145            Causes the function Do_X() to be executed regularly, every 1000 ticks.
+ 146            Task will be first executed at T = 300 ticks, then 1300, 2300, etc.            
+ 147            (Pre-emptive task)          
+ 148           
+ 149          -*------------------------------------------------------------------*/
+ 150          tByte hSCH_Add_Task(void (code* Fn_p)(), // Task function pointer
+ 151                             tWord   Del,    // Num ticks 'til task first runs 
+ 152                             tWord   Per,    // Num ticks between repeat runs
+ 153                             bit     Co_op)  // Co_op / pre_emp
+ 154             {
+ 155   1         tByte Index = 0;
+ 156   1         
+ 157   1         // First find a gap in the array (if there is one)
+ 158   1         while ((hSCH_tasks_G[Index].pTask != 0) && (Index < hSCH_MAX_TASKS))
+ 159   1            {
+ 160   2            Index++;
+ 161   2            } 
+ 162   1         
+ 163   1         // Have we reached the end of the list?   
+ 164   1         if (Index == hSCH_MAX_TASKS)
+ 165   1            {
+ 166   2            // Task list is full
+ 167   2            //
+ 168   2            // Set the global error variable
+ 169   2            Error_code_G = ERROR_SCH_TOO_MANY_TASKS;
+ 170   2      
+ 171   2            // Also return an error code
+ 172   2            return hSCH_MAX_TASKS;  
+ 173   2            }
+ 174   1            
+ 175   1         // If we're here, there is a space in the task array
+ 176   1         hSCH_tasks_G[Index].pTask = Fn_p;
+ 177   1           
+ 178   1         hSCH_tasks_G[Index].Delay  = Del;
+ 179   1         hSCH_tasks_G[Index].Period = Per;
+C51 COMPILER V6.10  HSCH51                                                                 04/18/2001 14:03:44 PAGE 4   
+
+ 180   1      
+ 181   1         hSCH_tasks_G[Index].Co_op = Co_op;
+ 182   1      
+ 183   1         hSCH_tasks_G[Index].RunMe  = 0;
+ 184   1      
+ 185   1         return Index; // return position of task (to allow later deletion)
+ 186   1         }
+ 187          
+ 188          /*------------------------------------------------------------------*-
+ 189          
+ 190            hSCH_Delete_Task()
+ 191          
+ 192            Removes a task from the scheduler.  Note that this does
+ 193            *not* delete the associated function from memory: 
+ 194            it simply means that it is no longer called by the scheduler. 
+ 195          
+ 196            PARAMS:   Task_index - The task index.  Provided by hSCH_Add_Task(). 
+ 197          
+ 198            RETURNS:  RETURN_ERROR or RETURN_NORMAL
+ 199          
+ 200          -*------------------------------------------------------------------*/
+ 201          bit hSCH_Delete_Task(tByte Task_index) 
+ 202             {
+ 203   1         bit Return_code;
+ 204   1      
+ 205   1         if (hSCH_tasks_G[Task_index].pTask == 0)
+ 206   1            {
+ 207   2            // No task at this location...
+ 208   2            //
+ 209   2            // Set the global error variable
+ 210   2            Error_code_G = ERROR_SCH_CANNOT_DELETE_TASK;
+ 211   2      
+ 212   2            // ...also return an error code
+ 213   2            Return_code = RETURN_ERROR;
+ 214   2            }
+ 215   1         else
+ 216   1            {
+ 217   2            Return_code = RETURN_NORMAL;
+ 218   2            }      
+ 219   1         
+ 220   1         hSCH_tasks_G[Task_index].pTask   = 0;
+ 221   1         hSCH_tasks_G[Task_index].Delay   = 0;
+ 222   1         hSCH_tasks_G[Task_index].Period  = 0;
+ 223   1      
+ 224   1         hSCH_tasks_G[Task_index].RunMe   = 0;
+ 225   1      
+ 226   1         return Return_code;       // return status
+ 227   1         }
+ 228          
+ 229          
+ 230          /*------------------------------------------------------------------*-
+ 231          
+ 232            hSCH_Report_Status()
+ 233          
+ 234            Simple function to display error codes.
+ 235          
+ 236            This version displays code on a port with attached LEDs:
+ 237            adapt, if required, to report errors over serial link, etc.
+ 238          
+ 239            Errors are only displayed for a limited period 
+ 240            (60000 ticks = 1 minute at 1ms tick interval).
+ 241            After this the the error code is reset to 0. 
+C51 COMPILER V6.10  HSCH51                                                                 04/18/2001 14:03:44 PAGE 5   
+
+ 242          
+ 243            This code may be easily adapted to display the last
+ 244            error 'for ever': this may be appropriate in your
+ 245            application.
+ 246          
+ 247            See Chapter 14 for further information.
+ 248           
+ 249          -*------------------------------------------------------------------*/
+ 250          void hSCH_Report_Status(void)
+ 251             {
+ 252   1      #ifdef SCH_REPORT_ERRORS
+ 253   1         // ONLY APPLIES IF WE ARE REPORTING ERRORS
+ 254   1         // Check for a new error code
+ 255   1         if (Error_code_G != Last_error_code_G)
+ 256   1            {
+ 257   2            // Negative logic on LEDs assumed
+ 258   2            Error_port = 255 - Error_code_G;
+ 259   2            
+ 260   2            Last_error_code_G = Error_code_G;
+ 261   2      
+ 262   2            if (Error_code_G != 0)
+ 263   2               {
+ 264   3               Error_tick_count_G = 60000;
+ 265   3               }
+ 266   2            else
+ 267   2               {
+ 268   3               Error_tick_count_G = 0;
+ 269   3               }
+ 270   2            }
+ 271   1         else
+ 272   1            {
+ 273   2            if (Error_tick_count_G != 0)
+ 274   2               {
+ 275   3               if (--Error_tick_count_G == 0)
+ 276   3                  {
+ 277   4                  Error_code_G = 0; // Reset error code
+ 278   4                  }
+ 279   3               }
+ 280   2            }
+ 281   1      #endif
+ 282   1         }
+ 283          
+ 284          
+ 285          /*------------------------------------------------------------------*-
+ 286          
+ 287            hSCH_Go_To_Sleep()
+ 288          
+ 289            This scheduler enters 'idle mode' between clock ticks
+ 290            to save power.  The next clock tick will return the processor
+ 291            to the normal operating state.
+ 292          
+ 293            Note: a slight performance improvement is possible if this
+ 294            function is implemented as a macro, or if the code here is simply 
+ 295            pasted into the 'dispatch' function.  
+ 296          
+ 297            However, by making this a function call, it becomes easier 
+ 298            - during development - to assess the performance of the 
+ 299            scheduler, using the 'performance analyser' in the Keil 
+ 300            hardware simulator. See Chapter 14 for examples for this. 
+ 301          
+ 302            *** May wish to disable this if using a watchdog ***
+ 303          
+C51 COMPILER V6.10  HSCH51                                                                 04/18/2001 14:03:44 PAGE 6   
+
+ 304            *** ADAPT AS REQUIRED FOR YOUR HARDWARE ***
+ 305          
+ 306          -*------------------------------------------------------------------*/
+ 307          void hSCH_Go_To_Sleep()
+ 308             {
+ 309   1         PCON |= 0x01;    // Enter idle mode (generic 8051 version)
+ 310   1      
+ 311   1         // Entering idle mode requires TWO consecutive instructions 
+ 312   1         // on 80c515 / 80c505 - to avoid accidental triggering
+ 313   1         //PCON |= 0x01;    // Enter idle mode (#1)
+ 314   1         //PCON |= 0x20;    // Enter idle mode (#2)
+ 315   1         }
+ 316          
+ 317          
+ 318          /*------------------------------------------------------------------*-
+ 319            ---- END OF FILE -------------------------------------------------
+ 320          -*------------------------------------------------------------------*/
+ 321          
+ 322          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    346    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     20       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

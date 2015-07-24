@@ -1,0 +1,109 @@
+C51 COMPILER V6.10  PID_F1                                                                 04/10/2001 14:54:08 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE PID_F1
+OBJECT MODULE PLACED IN .\PID_f1.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\PID_f1.c BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             PID_f1.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple PID control implementation. 
+   8             
+   9             See Chapter 35 for details.
+  10          
+  11               
+  12             COPYRIGHT
+  13             ---------
+  14          
+  15             This code is from the book:
+  16          
+  17             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  18             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  19          
+  20             This code is copyright (c) 2001 by Michael J. Pont.
+  21           
+  22             See book for copyright details and other information.
+  23          
+  24          -*------------------------------------------------------------------*/
+  25          
+  26          #include "PID_f1.h"
+  27          
+  28          // ------ Private constants ----------------------------------------
+  29          
+  30          #define PID_KP (0.2f)             // Proportional gain  
+  31          #define PID_KI (0.01f)            // Integral gain          
+  32          #define PID_KD (0.01f)            // Differential gain  
+  33          
+  34          #define PID_MAX (1.0f)            // Maximum PID controller output
+  35          #define PID_MIN (0.0f)            // Minimum PID controller output
+  36          
+  37          // ------ Private variable definitions------------------------------
+  38          
+  39          static float Sum_G;       // Integrator component
+  40          static float Old_error_G; // Previous error value
+  41          
+  42          /*------------------------------------------------------------------*-
+  43          
+  44            PID_Control()
+  45          
+  46            Simple floating-point version.
+  47            
+  48            See text for details.
+  49            
+  50          -*------------------------------------------------------------------*/
+  51          float PID_Control(float Error, float Control_old)
+  52             {
+  53   1         // Proportional term   
+  54   1         float Control_new = Control_old + (PID_KP * Error);
+  55   1      
+C51 COMPILER V6.10  PID_F1                                                                 04/10/2001 14:54:08 PAGE 2   
+
+  56   1         // Integral term
+  57   1         Sum_G += Error;
+  58   1         Control_new += PID_KI * Sum_G;
+  59   1      
+  60   1         // Differential term
+  61   1         Control_new += (PID_KD * SAMPLE_RATE * (Error - Old_error_G));
+  62   1         
+  63   1         // Control_new cannot exceed PID_MAX or fall below PID_MIN    
+  64   1         if (Control_new > PID_MAX) 
+  65   1            {
+  66   2            Control_new = PID_MAX; 
+  67   2            }
+  68   1         else
+  69   1            {
+  70   2            if (Control_new < PID_MIN) 
+  71   2               {
+  72   3               Control_new = PID_MIN; 
+  73   3               }
+  74   2            }    
+  75   1       
+  76   1          // Store error value
+  77   1          Old_error_G = Error;
+  78   1      
+  79   1          return Control_new;
+  80   1          }
+  81          
+  82          /*------------------------------------------------------------------*-
+  83            ---- END OF FILE -------------------------------------------------
+  84          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    275    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8      12
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,2765 @@
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE SCC_M515
+OBJECT MODULE PLACED IN .\SCC_M515.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\SCC_M515.C OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND CODE LISTINCLUDE SY
+                    -MBOLS
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             SCC_M515.c (v1.01)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             *** THIS IS A SHARED-CLOCK (CAN) SCHEDULER (MASTER) ***
+   8             *** FOR 80C515C (etc.) ***
+   9          
+  10             *** Uses T2 for timing, 16-bit auto reload ***
+  11          
+  12             *** This version assumes 10 MHz crystal on 515c ***
+  13             *** 6 ms (precise) tick interval ***
+  14          
+  15             *** Both Master and Slave(s) share the same tick rate ***
+  16          
+  17          
+  18             -----------------------------------------------------------
+  19             --- NOTE: 'Idle mode' must be disabled (in Sch51.C)     ---
+  20             --- or the on-chip watchdog will not function correctly ---
+  21             -----------------------------------------------------------
+  22          
+  23          
+  24             COPYRIGHT
+  25             ---------
+  26          
+  27             This code is from the book:
+  28          
+  29             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  30             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  31          
+  32             This code is copyright (c) 2001 by Michael J. Pont.
+  33           
+  34             See book for copyright details and other information.
+  35          
+  36          -*------------------------------------------------------------------*/
+  37          
+  38          #include "Main.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     Main.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1     
+   7      =1     'Project Header' (see Chap 9) for project SCU_Cb (see Chap 27)
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 2   
+
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  #ifndef _MAIN_H
+  25      =1  #define _MAIN_H
+  26      =1  
+  27      =1  //------------------------------------------------------------------
+  28      =1  // WILL NEED TO EDIT THIS SECTION FOR EVERY PROJECT
+  29      =1  //------------------------------------------------------------------
+  30      =1  
+  31      =1  // Must include the appropriate microcontroller header file here
+  32      =1  #include <reg515c.h>
+   1      =2  /*------------------------------------------------------------------
+   2      =2  REG515C.H
+   3      =2  
+   4      =2  Header file for the Infineon C515C 
+   5      =2  Copyright (c) 1995-1999 Keil Elektronik GmbH  All rights reserved.
+   6      =2  ------------------------------------------------------------------*/
+   7      =2  
+   8      =2  /*  BYTE Registers    */
+   9      =2  /*  CPU    */
+  10      =2  sfr   ACC    = 0xE0;
+  11      =2  sfr   B      = 0xF0;
+  12      =2  sfr   DPL    = 0x82;
+  13      =2  sfr   DPH    = 0x83;
+  14      =2  sfr   DPSEL  = 0x92;
+  15      =2  sfr   PSW    = 0xD0;
+  16      =2  sfr   SP     = 0x81;
+  17      =2  sfr   SYSCON = 0xB1;
+  18      =2  
+  19      =2  /*  A/D Converter     */
+  20      =2  sfr   ADCON0 = 0xD8;
+  21      =2  sfr   ADDATH = 0xD9;
+  22      =2  sfr   ADDATL = 0xDA;  /* in mapped SFR area */
+  23      =2  sfr   ADCON1 = 0xDC;
+  24      =2  
+  25      =2  /*  Interrupt System  */
+  26      =2  sfr   IEN0   = 0xA8;
+  27      =2  sfr   IEN1   = 0xB8;
+  28      =2  sfr   IEN2   = 0x9A;
+  29      =2  sfr   IP0    = 0xA9;
+  30      =2  sfr   IP1    = 0xB9;
+  31      =2  sfr   IRCON  = 0xC0;
+  32      =2  
+  33      =2  /*  XRAM   */
+  34      =2  sfr   XPAGE  = 0x91;
+  35      =2  
+  36      =2  /*  Ports  */
+  37      =2  sfr   P0     = 0x80;
+  38      =2  sfr   P1     = 0x90;
+  39      =2  sfr   P2     = 0xA0;
+  40      =2  sfr   P3     = 0xB0;
+  41      =2  sfr   P4     = 0xE8;
+  42      =2  sfr   P5     = 0xF8;
+  43      =2  sfr   DIR5   = 0xF8;  /* in mapped SFR area */
+  44      =2  sfr   P6     = 0xDB;
+  45      =2  sfr   P7     = 0xFA;
+  46      =2  
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 3   
+
+  47      =2  /*  Serial Channel    */
+  48      =2  sfr   SCON   = 0x98;
+  49      =2  sfr   SBUF   = 0x99;
+  50      =2  sfr   SRELL  = 0xAA;
+  51      =2  sfr   SRELH  = 0xBA;
+  52      =2  
+  53      =2  /*  SSC Interface     */
+  54      =2  sfr   SSCCON = 0x93;
+  55      =2  sfr   STB    = 0x94;
+  56      =2  sfr   SRB    = 0x95;
+  57      =2  sfr   SCF    = 0xAB;
+  58      =2  sfr   SCIEN  = 0xAC;
+  59      =2  sfr   SSCMOD = 0x96;
+  60      =2  
+  61      =2  /*  Timer0 / Timer1   */
+  62      =2  sfr   TCON   = 0x88;
+  63      =2  sfr   TMOD   = 0x89;
+  64      =2  sfr   TL0    = 0x8A;
+  65      =2  sfr   TL1    = 0x8B;
+  66      =2  sfr   TH0    = 0x8C;
+  67      =2  sfr   TH1    = 0x8D;
+  68      =2  
+  69      =2  /*  CAP/COM Unit / Timer2 */
+  70      =2  sfr   CCEN   = 0xC1;
+  71      =2  sfr   CCL1   = 0xC2;
+  72      =2  sfr   CCH1   = 0xC3;
+  73      =2  sfr   CCL2   = 0xC4;
+  74      =2  sfr   CCH2   = 0xC5;
+  75      =2  sfr   CCL3   = 0xC6;
+  76      =2  sfr   CCH3   = 0xC7;
+  77      =2  sfr   T2CON  = 0xC8;
+  78      =2  sfr   CRCL   = 0xCA;
+  79      =2  sfr   CRCH   = 0xCB;
+  80      =2  sfr   TL2    = 0xCC;
+  81      =2  sfr   TH2    = 0xCD;
+  82      =2  
+  83      =2  /*  Watchdog */
+  84      =2  sfr   WDTREL = 0x86;
+  85      =2  
+  86      =2  /*  Power Save Moders */
+  87      =2  sfr   PCON   = 0x87;
+  88      =2  sfr   PCON1  = 0x88;  /* in mapped SFR area */
+  89      =2  
+  90      =2  
+  91      =2  /*  BIT Register  */
+  92      =2  /*  PSW  */
+  93      =2  sbit  CY     = PSW^7;
+  94      =2  sbit  AC     = PSW^6;
+  95      =2  sbit  F0     = PSW^5;
+  96      =2  sbit  RS1    = PSW^4;
+  97      =2  sbit  RS0    = PSW^3;
+  98      =2  sbit  OV     = PSW^2;
+  99      =2  sbit  F1     = PSW^1;
+ 100      =2  sbit  P      = PSW^0;
+ 101      =2  
+ 102      =2  /*  TCON  */
+ 103      =2  sbit  TF1    = TCON^7;
+ 104      =2  sbit  TR1    = TCON^6;
+ 105      =2  sbit  TF0    = TCON^5;
+ 106      =2  sbit  TR0    = TCON^4;
+ 107      =2  sbit  IE1    = TCON^3;
+ 108      =2  sbit  IT1    = TCON^2;
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 4   
+
+ 109      =2  sbit  IE0    = TCON^1;
+ 110      =2  sbit  IT0    = TCON^0;
+ 111      =2  
+ 112      =2  /*  IEN0  */
+ 113      =2  sbit  EAL    = IEN0^7;
+ 114      =2  sbit  WDT    = IEN0^6;
+ 115      =2  sbit  ET2    = IEN0^5;
+ 116      =2  sbit  ES     = IEN0^4;
+ 117      =2  sbit  ET1    = IEN0^3;
+ 118      =2  sbit  EX1    = IEN0^2;
+ 119      =2  sbit  ET0    = IEN0^1;
+ 120      =2  sbit  EX0    = IEN0^0;
+ 121      =2  
+ 122      =2  /*  IEN1  */
+ 123      =2  sbit  EXEN2  = IEN1^7;
+ 124      =2  sbit  SWDT   = IEN1^6;
+ 125      =2  sbit  EX6    = IEN1^5;
+ 126      =2  sbit  EX5    = IEN1^4;
+ 127      =2  sbit  EX4    = IEN1^3;
+ 128      =2  sbit  EX3    = IEN1^2;
+ 129      =2  sbit  EX2    = IEN1^1;
+ 130      =2  sbit  EADC   = IEN1^0;
+ 131      =2  
+ 132      =2  /*  P3  */
+ 133      =2  sbit  RD     = P3^7;
+ 134      =2  sbit  WR     = P3^6;
+ 135      =2  sbit  T1     = P3^5;
+ 136      =2  sbit  T0     = P3^4;
+ 137      =2  sbit  INT1   = P3^3;
+ 138      =2  sbit  INT0   = P3^2;
+ 139      =2  sbit  TXD    = P3^1;
+ 140      =2  sbit  RXD    = P3^0;
+ 141      =2  
+ 142      =2  /*  SCON  */
+ 143      =2  sbit  SM0    = SCON^7;
+ 144      =2  sbit  SM1    = SCON^6;
+ 145      =2  sbit  SM2    = SCON^5;
+ 146      =2  sbit  REN    = SCON^4;
+ 147      =2  sbit  TB8    = SCON^3;
+ 148      =2  sbit  RB8    = SCON^2;
+ 149      =2  sbit  TI     = SCON^1;
+ 150      =2  sbit  RI     = SCON^0;
+ 151      =2  
+ 152      =2  /*  T2CON  */
+ 153      =2  sbit  T2PS   = T2CON^7;
+ 154      =2  sbit  I3FR   = T2CON^6;
+ 155      =2  sbit  I2FR   = T2CON^5;
+ 156      =2  sbit  T2R1   = T2CON^4;
+ 157      =2  sbit  T2R0   = T2CON^3;
+ 158      =2  sbit  T2CM   = T2CON^2;
+ 159      =2  sbit  T2I1   = T2CON^1;
+ 160      =2  sbit  T2I0   = T2CON^0;
+ 161      =2  
+ 162      =2  /*  ADCON0  */
+ 163      =2  sbit  BD     = ADCON0^7;
+ 164      =2  sbit  CLK    = ADCON0^6;
+ 165      =2  sbit  ADEX   = ADCON0^5;
+ 166      =2  sbit  BSY    = ADCON0^4;
+ 167      =2  sbit  ADM    = ADCON0^3;
+ 168      =2  sbit  MX2    = ADCON0^2;
+ 169      =2  sbit  MX1    = ADCON0^1;
+ 170      =2  sbit  MX0    = ADCON0^0;
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 5   
+
+ 171      =2  
+ 172      =2  /*  IRCON  */
+ 173      =2  sbit  EXF2   = IRCON^7;
+ 174      =2  sbit  TF2    = IRCON^6;
+ 175      =2  sbit  IEX6   = IRCON^5;
+ 176      =2  sbit  IEX5   = IRCON^4;
+ 177      =2  sbit  IEX4   = IRCON^3;
+ 178      =2  sbit  IEX3   = IRCON^2;
+ 179      =2  sbit  IEX2   = IRCON^1;
+ 180      =2  sbit  IADC   = IRCON^0;
+ 181      =2  
+ 182      =2  /*  P1    */
+ 183      =2  sbit  T2     = P1^7;
+ 184      =2  sbit  CLKOUT = P1^6;
+ 185      =2  sbit  T2EX   = P1^5;
+ 186      =2  sbit  INT2   = P1^4;
+ 187      =2  sbit  INT6   = P1^3;
+ 188      =2  sbit  INT5   = P1^2;
+ 189      =2  sbit  INT4   = P1^1;
+ 190      =2  sbit  INT3   = P1^0;
+ 191      =2  
+ 192      =2  /*  P4    */
+ 193      =2  sbit  RXDC   = P4^7;
+ 194      =2  sbit  TXDC   = P4^6;
+ 195      =2  sbit  INT8   = P4^5;
+ 196      =2  sbit  SLS    = P4^4;
+ 197      =2  sbit  STO    = P4^3;
+ 198      =2  sbit  SRI    = P4^2;
+ 199      =2  sbit  SCLK   = P4^1;
+ 200      =2  sbit  ADST   = P4^0;
+  33      =1  
+  34      =1  // Include oscillator / chip details here 
+  35      =1  // (essential if generic delays / timeouts are used)
+  36      =1  //  -
+  37      =1  // Oscillator / resonator frequency (in Hz) e.g. (11059200UL)
+  38      =1  #define OSC_FREQ (10000000UL)
+  39      =1  
+  40      =1  // Number of oscillations per instruction (4, 6 or 12)
+  41      =1  // 12 - Original 8051 / 8052 and numerous modern versions
+  42      =1  //  6 - Various Infineon and Philips devices, etc.
+  43      =1  //  4 - Dallas, etc.
+  44      =1  //
+  45      =1  // Take care with Dallas devices 
+  46      =1  // - Timers default to *12* osc ticks unless CKCON is modified 
+  47      =1  // - If using generic code on a Dallas device, use 12 here
+  48      =1  #define OSC_PER_INST (6)
+  49      =1  
+  50      =1  //------------------------------------------------------------------
+  51      =1  // SHOULD NOT NEED TO EDIT THE SECTIONS BELOW
+  52      =1  //------------------------------------------------------------------
+  53      =1  typedef unsigned char tByte;
+  54      =1  typedef unsigned int  tWord;
+  55      =1  typedef unsigned long tLong;
+  56      =1  
+  57      =1  // Misc #defines
+  58      =1  #ifndef TRUE
+  59      =1  #define FALSE 0
+  60      =1  #define TRUE (!FALSE)
+  61      =1  #endif
+  62      =1  
+  63      =1  #define RETURN_NORMAL (bit) 0
+  64      =1  #define RETURN_ERROR (bit) 1
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 6   
+
+  65      =1  
+  66      =1  
+  67      =1  //------------------------------------------------------------------
+  68      =1  // Interrupts
+  69      =1  // - see Chapter 13.  
+  70      =1  //------------------------------------------------------------------
+  71      =1  
+  72      =1  // Generic 8051/52 timer interrupts (used in most schedulers)
+  73      =1  #define INTERRUPT_Timer_0_Overflow 1
+  74      =1  #define INTERRUPT_Timer_1_Overflow 3
+  75      =1  #define INTERRUPT_Timer_2_Overflow 5
+  76      =1  
+  77      =1  // Additional interrupts (used in shared-clock schedulers)
+  78      =1  #define INTERRUPT_EXTERNAL_0 0
+  79      =1  #define INTERRUPT_EXTERNAL_1 2
+  80      =1  #define INTERRUPT_UART_Rx_Tx 4
+  81      =1  #define INTERRUPT_CAN_c515c 17
+  82      =1  
+  83      =1  //------------------------------------------------------------------
+  84      =1  // Error codes 
+  85      =1  // - see Chapter 14. 
+  86      =1  //------------------------------------------------------------------
+  87      =1  
+  88      =1  #define ERROR_SCH_TOO_MANY_TASKS (1)
+  89      =1  #define ERROR_SCH_CANNOT_DELETE_TASK (2)
+  90      =1  
+  91      =1  #define ERROR_SCH_WAITING_FOR_SLAVE_TO_ACK (3)
+  92      =1  #define ERROR_SCH_WAITING_FOR_START_COMMAND_FROM_MASTER (3)
+  93      =1  
+  94      =1  #define ERROR_SCH_ONE_OR_MORE_SLAVES_DID_NOT_START (4)
+  95      =1  #define ERROR_SCH_LOST_SLAVE (5)
+  96      =1  
+  97      =1  #define ERROR_SCH_CAN_BUS_ERROR (6)
+  98      =1  
+  99      =1  #define ERROR_I2C_WRITE_BYTE (10)
+ 100      =1  #define ERROR_I2C_READ_BYTE (11)
+ 101      =1  #define ERROR_I2C_WRITE_BYTE_AT24C64 (12)
+ 102      =1  #define ERROR_I2C_READ_BYTE_AT24C64 (13)
+ 103      =1  #define ERROR_I2C_DS1621 (14)
+ 104      =1  
+ 105      =1  #define ERROR_USART_TI (21)
+ 106      =1  #define ERROR_USART_WRITE_CHAR (22)
+ 107      =1  
+ 108      =1  #define ERROR_SPI_EXCHANGE_BYTES_TIMEOUT (31)
+ 109      =1  #define ERROR_SPI_X25_TIMEOUT (32)
+ 110      =1  #define ERROR_SPI_MAX1110_TIMEOUT (33)
+ 111      =1  
+ 112      =1  #define ERROR_ADC_MAX150_TIMEOUT (44)
+ 113      =1  
+ 114      =1  #endif
+ 115      =1  
+ 116      =1  /*------------------------------------------------------------------*-
+ 117      =1    ---- END OF FILE -------------------------------------------------
+ 118      =1  -*------------------------------------------------------------------*/
+  39          #include "Port.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     Port.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1  
+   7      =1    'Port Header' (see Chap 10) for project SCC_m515 (see Chap 28)
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 7   
+
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  // ------ Sch51.C ----------------------------------------
+  25      =1  
+  26      =1  // Comment this line out if error reporting is NOT required
+  27      =1  //#define SCH_REPORT_ERRORS
+  28      =1  
+  29      =1  #ifdef SCH_REPORT_ERRORS
+           =1 // The port on which error codes will be displayed
+           =1 // ONLY USED IF ERRORS ARE REPORTED
+           =1 #define Error_port P1
+           =1 
+           =1 #endif
+  35      =1  
+  36      =1  // ------ SCC_M.C ------------------------------------------------
+  37      =1  
+  38      =1  // *****************************************************************
+  39      =1  // P4.6, 4.7 used for CAN outputs 
+  40      =1  // *****************************************************************
+  41      =1  
+  42      =1  // Connect LED from +5V (etc) to these pins, via appropriate resistor
+  43      =1  sbit Network_error_pin = P4^4;
+  44      =1  
+  45      =1  // Three pins used to report CAN bus errors
+  46      =1  sbit CAN_error_pin0 = P5^3;
+  47      =1  sbit CAN_error_pin1 = P5^4;
+  48      =1  sbit CAN_error_pin2 = P5^5;
+  49      =1  
+  50      =1  
+  51      =1  // ------ TLights_B.C ----------------------------------------------
+  52      =1  
+  53      =1  sbit Red_light   = (P4^0);
+  54      =1  sbit Amber_light = (P4^1);
+  55      =1  sbit Green_light = (P4^2);
+  56      =1  
+  57      =1  
+  58      =1  // ------ LED_Flas.C -----------------------------------------------
+  59      =1  
+  60      =1  // Connect LED from +5V (etc) to this pin, via appropriate resistor
+  61      =1  // [see Chapter 7 for details]
+  62      =1  sbit LED_pin = P4^3;
+  63      =1  
+  64      =1  
+  65      =1  /*------------------------------------------------------------------*-
+  66      =1    ---- END OF FILE -------------------------------------------------
+  67      =1  -*------------------------------------------------------------------*/
+  68      =1  
+  69      =1  
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 8   
+
+  70      =1  
+  40          
+  41          #include "Delay_T0.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     Delay_T0.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1  
+   7      =1     - See Delay_T0.C for details.
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  // ------ Public function prototypes -------------------------------
+  25      =1  
+  26      =1  void Hardware_Delay_T0(const tWord);
+  27      =1  
+  28      =1  /*------------------------------------------------------------------*-
+  29      =1    ---- END OF FILE -------------------------------------------------
+  30      =1  -*------------------------------------------------------------------*/
+  42          #include "TLight_B.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     TLight_B.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1     
+   7      =1     - See TLight_B.C for details.
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  // ------ Public data type declarations ----------------------------
+  25      =1  
+  26      =1  // Possible system states
+  27      =1  typedef 
+  28      =1  enum {RED, RED_AMBER, GREEN, AMBER, BULB_BLOWN} eLight_State;
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 9   
+
+  29      =1  
+  30      =1  
+  31      =1  // ------ Public constants -----------------------------------------
+  32      =1  
+  33      =1  #define MASTER 1
+  34      =1  #define SLAVE 0
+  35      =1  
+  36      =1  // ------ Public function prototypes -------------------------------
+  37      =1  
+  38      =1  void TRAFFIC_LIGHTS_Init(void);
+  39      =1  void TRAFFIC_LIGHTS_Update(void);
+  40      =1  
+  41      =1  void TRAFFIC_LIGHTS_Display_Safe_Output(void);
+  42      =1  
+  43      =1  /*------------------------------------------------------------------*-
+  44      =1    ---- END OF FILE -------------------------------------------------
+  45      =1  -*------------------------------------------------------------------*/
+  43          #include "SCC_M515.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1    
+   3      =1    SCC_M515.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1  
+   7      =1    - see SCC_M515.C for details
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  #include "Main.h"
+   1      =2  /*------------------------------------------------------------------*-
+   2      =2  
+   3      =2     Main.H (v1.00)
+   4      =2  
+   5      =2    ------------------------------------------------------------------
+   6      =2     
+   7      =2     'Project Header' (see Chap 9) for project SCU_Cb (see Chap 27)
+   8      =2  
+   9      =2  
+  10      =2     COPYRIGHT
+  11      =2     ---------
+  12      =2  
+  13      =2     This code is from the book:
+  14      =2  
+  15      =2     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =2     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =2  
+  18      =2     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =2   
+  20      =2     See book for copyright details and other information.
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 10  
+
+  21      =2  
+  22      =2  -*------------------------------------------------------------------*/
+  23      =2  
+  24      =2  #ifndef _MAIN_H
+           =2 #define _MAIN_H
+           =2 
+           =2 //------------------------------------------------------------------
+           =2 // WILL NEED TO EDIT THIS SECTION FOR EVERY PROJECT
+           =2 //------------------------------------------------------------------
+           =2 
+           =2 // Must include the appropriate microcontroller header file here
+           =2 #include <reg515c.h>
+           =2 
+           =2 // Include oscillator / chip details here 
+           =2 // (essential if generic delays / timeouts are used)
+           =2 //  -
+           =2 // Oscillator / resonator frequency (in Hz) e.g. (11059200UL)
+           =2 #define OSC_FREQ (10000000UL)
+           =2 
+           =2 // Number of oscillations per instruction (4, 6 or 12)
+           =2 // 12 - Original 8051 / 8052 and numerous modern versions
+           =2 //  6 - Various Infineon and Philips devices, etc.
+           =2 //  4 - Dallas, etc.
+           =2 //
+           =2 // Take care with Dallas devices 
+           =2 // - Timers default to *12* osc ticks unless CKCON is modified 
+           =2 // - If using generic code on a Dallas device, use 12 here
+           =2 #define OSC_PER_INST (6)
+           =2 
+           =2 //------------------------------------------------------------------
+           =2 // SHOULD NOT NEED TO EDIT THE SECTIONS BELOW
+           =2 //------------------------------------------------------------------
+           =2 typedef unsigned char tByte;
+           =2 typedef unsigned int  tWord;
+           =2 typedef unsigned long tLong;
+           =2 
+           =2 // Misc #defines
+           =2 #ifndef TRUE
+           =2 #define FALSE 0
+           =2 #define TRUE (!FALSE)
+           =2 #endif
+           =2 
+           =2 #define RETURN_NORMAL (bit) 0
+           =2 #define RETURN_ERROR (bit) 1
+           =2 
+           =2 
+           =2 //------------------------------------------------------------------
+           =2 // Interrupts
+           =2 // - see Chapter 13.  
+           =2 //------------------------------------------------------------------
+           =2 
+           =2 // Generic 8051/52 timer interrupts (used in most schedulers)
+           =2 #define INTERRUPT_Timer_0_Overflow 1
+           =2 #define INTERRUPT_Timer_1_Overflow 3
+           =2 #define INTERRUPT_Timer_2_Overflow 5
+           =2 
+           =2 // Additional interrupts (used in shared-clock schedulers)
+           =2 #define INTERRUPT_EXTERNAL_0 0
+           =2 #define INTERRUPT_EXTERNAL_1 2
+           =2 #define INTERRUPT_UART_Rx_Tx 4
+           =2 #define INTERRUPT_CAN_c515c 17
+           =2 
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 11  
+
+           =2 //------------------------------------------------------------------
+           =2 // Error codes 
+           =2 // - see Chapter 14. 
+           =2 //------------------------------------------------------------------
+           =2 
+           =2 #define ERROR_SCH_TOO_MANY_TASKS (1)
+           =2 #define ERROR_SCH_CANNOT_DELETE_TASK (2)
+           =2 
+           =2 #define ERROR_SCH_WAITING_FOR_SLAVE_TO_ACK (3)
+           =2 #define ERROR_SCH_WAITING_FOR_START_COMMAND_FROM_MASTER (3)
+           =2 
+           =2 #define ERROR_SCH_ONE_OR_MORE_SLAVES_DID_NOT_START (4)
+           =2 #define ERROR_SCH_LOST_SLAVE (5)
+           =2 
+           =2 #define ERROR_SCH_CAN_BUS_ERROR (6)
+           =2 
+           =2 #define ERROR_I2C_WRITE_BYTE (10)
+           =2 #define ERROR_I2C_READ_BYTE (11)
+           =2 #define ERROR_I2C_WRITE_BYTE_AT24C64 (12)
+           =2 #define ERROR_I2C_READ_BYTE_AT24C64 (13)
+           =2 #define ERROR_I2C_DS1621 (14)
+           =2 
+           =2 #define ERROR_USART_TI (21)
+           =2 #define ERROR_USART_WRITE_CHAR (22)
+           =2 
+           =2 #define ERROR_SPI_EXCHANGE_BYTES_TIMEOUT (31)
+           =2 #define ERROR_SPI_X25_TIMEOUT (32)
+           =2 #define ERROR_SPI_MAX1110_TIMEOUT (33)
+           =2 
+           =2 #define ERROR_ADC_MAX150_TIMEOUT (44)
+           =2 
+           =2 #endif
+ 115      =2  
+ 116      =2  /*------------------------------------------------------------------*-
+ 117      =2    ---- END OF FILE -------------------------------------------------
+ 118      =2  -*------------------------------------------------------------------*/
+  25      =1  #include "Sch51.h"
+   1      =2  /*------------------------------------------------------------------*-
+   2      =2    
+   3      =2     SCH51.H (v1.00)
+   4      =2  
+   5      =2    ------------------------------------------------------------------
+   6      =2  
+   7      =2     - see SCH51.C for details
+   8      =2  
+   9      =2  
+  10      =2     COPYRIGHT
+  11      =2     ---------
+  12      =2  
+  13      =2     This code is from the book:
+  14      =2  
+  15      =2     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =2     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =2  
+  18      =2     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =2   
+  20      =2     See book for copyright details and other information.
+  21      =2  
+  22      =2  -*------------------------------------------------------------------*/
+  23      =2  
+  24      =2  #ifndef _SCH51_H
+  25      =2  #define _SCH51_H
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 12  
+
+  26      =2  
+  27      =2  #include "Main.h"
+   1      =3  /*------------------------------------------------------------------*-
+   2      =3  
+   3      =3     Main.H (v1.00)
+   4      =3  
+   5      =3    ------------------------------------------------------------------
+   6      =3     
+   7      =3     'Project Header' (see Chap 9) for project SCU_Cb (see Chap 27)
+   8      =3  
+   9      =3  
+  10      =3     COPYRIGHT
+  11      =3     ---------
+  12      =3  
+  13      =3     This code is from the book:
+  14      =3  
+  15      =3     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =3     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =3  
+  18      =3     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =3   
+  20      =3     See book for copyright details and other information.
+  21      =3  
+  22      =3  -*------------------------------------------------------------------*/
+  23      =3  
+  24      =3  #ifndef _MAIN_H
+           =3 #define _MAIN_H
+           =3 
+           =3 //------------------------------------------------------------------
+           =3 // WILL NEED TO EDIT THIS SECTION FOR EVERY PROJECT
+           =3 //------------------------------------------------------------------
+           =3 
+           =3 // Must include the appropriate microcontroller header file here
+           =3 #include <reg515c.h>
+           =3 
+           =3 // Include oscillator / chip details here 
+           =3 // (essential if generic delays / timeouts are used)
+           =3 //  -
+           =3 // Oscillator / resonator frequency (in Hz) e.g. (11059200UL)
+           =3 #define OSC_FREQ (10000000UL)
+           =3 
+           =3 // Number of oscillations per instruction (4, 6 or 12)
+           =3 // 12 - Original 8051 / 8052 and numerous modern versions
+           =3 //  6 - Various Infineon and Philips devices, etc.
+           =3 //  4 - Dallas, etc.
+           =3 //
+           =3 // Take care with Dallas devices 
+           =3 // - Timers default to *12* osc ticks unless CKCON is modified 
+           =3 // - If using generic code on a Dallas device, use 12 here
+           =3 #define OSC_PER_INST (6)
+           =3 
+           =3 //------------------------------------------------------------------
+           =3 // SHOULD NOT NEED TO EDIT THE SECTIONS BELOW
+           =3 //------------------------------------------------------------------
+           =3 typedef unsigned char tByte;
+           =3 typedef unsigned int  tWord;
+           =3 typedef unsigned long tLong;
+           =3 
+           =3 // Misc #defines
+           =3 #ifndef TRUE
+           =3 #define FALSE 0
+           =3 #define TRUE (!FALSE)
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 13  
+
+           =3 #endif
+           =3 
+           =3 #define RETURN_NORMAL (bit) 0
+           =3 #define RETURN_ERROR (bit) 1
+           =3 
+           =3 
+           =3 //------------------------------------------------------------------
+           =3 // Interrupts
+           =3 // - see Chapter 13.  
+           =3 //------------------------------------------------------------------
+           =3 
+           =3 // Generic 8051/52 timer interrupts (used in most schedulers)
+           =3 #define INTERRUPT_Timer_0_Overflow 1
+           =3 #define INTERRUPT_Timer_1_Overflow 3
+           =3 #define INTERRUPT_Timer_2_Overflow 5
+           =3 
+           =3 // Additional interrupts (used in shared-clock schedulers)
+           =3 #define INTERRUPT_EXTERNAL_0 0
+           =3 #define INTERRUPT_EXTERNAL_1 2
+           =3 #define INTERRUPT_UART_Rx_Tx 4
+           =3 #define INTERRUPT_CAN_c515c 17
+           =3 
+           =3 //------------------------------------------------------------------
+           =3 // Error codes 
+           =3 // - see Chapter 14. 
+           =3 //------------------------------------------------------------------
+           =3 
+           =3 #define ERROR_SCH_TOO_MANY_TASKS (1)
+           =3 #define ERROR_SCH_CANNOT_DELETE_TASK (2)
+           =3 
+           =3 #define ERROR_SCH_WAITING_FOR_SLAVE_TO_ACK (3)
+           =3 #define ERROR_SCH_WAITING_FOR_START_COMMAND_FROM_MASTER (3)
+           =3 
+           =3 #define ERROR_SCH_ONE_OR_MORE_SLAVES_DID_NOT_START (4)
+           =3 #define ERROR_SCH_LOST_SLAVE (5)
+           =3 
+           =3 #define ERROR_SCH_CAN_BUS_ERROR (6)
+           =3 
+           =3 #define ERROR_I2C_WRITE_BYTE (10)
+           =3 #define ERROR_I2C_READ_BYTE (11)
+           =3 #define ERROR_I2C_WRITE_BYTE_AT24C64 (12)
+           =3 #define ERROR_I2C_READ_BYTE_AT24C64 (13)
+           =3 #define ERROR_I2C_DS1621 (14)
+           =3 
+           =3 #define ERROR_USART_TI (21)
+           =3 #define ERROR_USART_WRITE_CHAR (22)
+           =3 
+           =3 #define ERROR_SPI_EXCHANGE_BYTES_TIMEOUT (31)
+           =3 #define ERROR_SPI_X25_TIMEOUT (32)
+           =3 #define ERROR_SPI_MAX1110_TIMEOUT (33)
+           =3 
+           =3 #define ERROR_ADC_MAX150_TIMEOUT (44)
+           =3 
+           =3 #endif
+ 115      =3  
+ 116      =3  /*------------------------------------------------------------------*-
+ 117      =3    ---- END OF FILE -------------------------------------------------
+ 118      =3  -*------------------------------------------------------------------*/
+  28      =2  
+  29      =2  // ------ Public data type declarations ----------------------------
+  30      =2  
+  31      =2  // Store in DATA area, if possible, for rapid access  
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 14  
+
+  32      =2  // Total memory per task is 7 bytes
+  33      =2  typedef data struct 
+  34      =2     {
+  35      =2     // Pointer to the task (must be a 'void (void)' function)
+  36      =2     void (code * pTask)(void);  
+  37      =2  
+  38      =2     // Delay (ticks) until the function will (next) be run
+  39      =2     // - see SCH_Add_Task() for further details
+  40      =2     tWord Delay;       
+  41      =2  
+  42      =2     // Interval (ticks) between subsequent runs.
+  43      =2     // - see SCH_Add_Task() for further details
+  44      =2     tWord Period;       
+  45      =2  
+  46      =2     // Incremented (by scheduler) when task is due to execute
+  47      =2     tByte RunMe;       
+  48      =2     } sTask; 
+  49      =2  
+  50      =2  // ------ Public function prototypes -------------------------------
+  51      =2  
+  52      =2  // Core scheduler functions
+  53      =2  void  SCH_Dispatch_Tasks(void);
+  54      =2  tByte SCH_Add_Task(void (code*) (void), const tWord, const tWord);  
+  55      =2  bit   SCH_Delete_Task(const tByte);
+  56      =2  void  SCH_Report_Status(void);
+  57      =2  
+  58      =2  // ------ Public constants -----------------------------------------
+  59      =2  
+  60      =2  // The maximum number of tasks required at any one time
+  61      =2  // during the execution of the program
+  62      =2  //
+  63      =2  // MUST BE ADJUSTED FOR EACH NEW PROJECT
+  64      =2  #define SCH_MAX_TASKS   (2)   
+  65      =2   
+  66      =2  #endif
+  67      =2                                
+  68      =2  /*------------------------------------------------------------------*-
+  69      =2    ---- END OF FILE -------------------------------------------------
+  70      =2  -*------------------------------------------------------------------*/
+  71      =2  
+  26      =1  
+  27      =1  // ------ Public function prototypes -------------------------------
+  28      =1  
+  29      =1  void SCC_A_MASTER_Init_T2_CAN(void);
+  30      =1  void SCC_A_MASTER_Start(void);
+  31      =1  
+  32      =1  // ------ Public constants -----------------------------------------
+  33      =1  
+  34      =1  #define NUMBER_OF_SLAVES 1
+  35      =1  
+  36      =1  // CAN #defines &c - mainly from Infineon DaVE output 
+  37      =1  
+  38      =1  // Control Register
+  39      =1  #define CAN_cr   (*((tByte volatile xdata *) 0xF700))
+  40      =1  
+  41      =1  // Status Register
+  42      =1  #define CAN_sr   (*((tByte volatile xdata *) 0xF701))
+  43      =1  
+  44      =1  // Bit Timing Register
+  45      =1  #define CAN_btr0 (*((tByte volatile xdata *) 0xF704))
+  46      =1  #define CAN_btr1 (*((tByte volatile xdata *) 0xF705))
+  47      =1  
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 15  
+
+  48      =1  // Global Mask Short
+  49      =1  #define CAN_gms0  (*((tByte volatile xdata *) 0xF706))
+  50      =1  
+  51      =1  // Global Mask Short
+  52      =1  #define CAN_gms1  (*((tByte volatile xdata *) 0xF707))
+  53      =1  
+  54      =1  // Upper Global Mask Long
+  55      =1  #define CAN_ugml0 (*((tByte volatile xdata *) 0xF708))
+  56      =1  #define CAN_ugml1 (*((tByte volatile xdata *) 0xF709))
+  57      =1  
+  58      =1  // Lower Global Mask Long
+  59      =1  #define CAN_lgml0 (*((tByte volatile xdata *) 0xF70A))
+  60      =1  #define CAN_lgml1 (*((tByte volatile xdata *) 0xF70B))
+  61      =1  
+  62      =1  // ------ Private data type declarations ---------------------------
+  63      =1  
+  64      =1  // Data structure representing a single CAN message
+  65      =1  struct sCAN_message 
+  66      =1     {
+  67      =1     tByte MCR0;       // Message Control Register 0
+  68      =1     tByte MCR1;       // Message Control Register 1
+  69      =1     tByte UAR0;       // Upper Arbit. Reg. 0
+  70      =1     tByte UAR1;       // Upper Arbit. Reg. 1
+  71      =1     tByte LAR0;       // Lower Arbit. Reg. 0
+  72      =1     tByte LAR1;       // Lower Arbit. Reg. 1
+  73      =1     tByte MCFG;       // Message Configuration Register
+  74      =1     tByte Data[8];    // Message Data 0 .. 7
+  75      =1     tByte Customer;   // Reserved for application specific data
+  76      =1     };
+  77      =1  
+  78      =1  // ------ Private variables ----------------------------------------
+  79      =1  
+  80      =1  // A total of 15 CAN message structures exist 
+  81      =1  // (starting at at address 0xF710)
+  82      =1  #define CAN_messages ((struct sCAN_message volatile xdata *) 0xF710)
+  83      =1  
+  84      =1  /*------------------------------------------------------------------*-
+  85      =1    ---- END OF FILE -------------------------------------------------
+  86      =1  -*------------------------------------------------------------------*/
+  87      =1  
+  44          
+  45          // ------ Public variable definitions ------------------------------
+  46          
+  47          // Four bytes of data (plus ID information) are sent 
+  48          tByte Tick_message_data_G[NUMBER_OF_SLAVES][4] = {'M'};  
+  49          tByte Ack_message_data_G[NUMBER_OF_SLAVES][4];
+  50          
+  51          // ------ Public variable declarations -----------------------------
+  52          
+  53          // The array of tasks (see Sch51.c)
+  54          extern sTask SCH_tasks_G[SCH_MAX_TASKS];
+  55          
+  56          // The error code variable (see Sch51.c)
+  57          extern tByte Error_code_G;
+  58          
+  59          // ------ Private variable definitions -----------------------------
+  60          
+  61          static tByte Slave_index_G = 0;
+  62          static bit First_ack_G = 1;
+  63          
+  64          // ------ Private function prototypes ------------------------------
+  65          
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 16  
+
+  66          static void SCC_A_MASTER_Send_Tick_Message(const tByte);
+  67          static bit  SCC_A_MASTER_Process_Ack(const tByte);
+  68          
+  69          static void SCC_A_MASTER_Shut_Down_the_Network(void);
+  70          
+  71          static void SCC_A_MASTER_Enter_Safe_State(void);
+  72          
+  73          static void SCC_A_MASTER_Watchdog_Init(void);
+  74          static void SCC_A_MASTER_Watchdog_Refresh(void) reentrant;
+  75          
+  76          static tByte  SCC_A_MASTER_Start_Slave(const tByte)  reentrant;
+  77          
+  78          
+  79          // ------ Private constants ----------------------------------------
+  80          
+  81          // Do not use ID 0x00 (used to start slaves)
+  82          static const tByte MAIN_SLAVE_IDs[NUMBER_OF_SLAVES] = {0x01};
+  83          static const tByte BACKUP_SLAVE_IDs[NUMBER_OF_SLAVES] = {0x02};
+  84          
+  85          #define NO_NETWORK_ERROR (1) 
+  86          #define NETWORK_ERROR (0)
+  87          
+  88          // ------ Private variables ----------------------------------------
+  89          
+  90          static tWord Slave_reset_attempts_G[NUMBER_OF_SLAVES];
+  91          
+  92          // Slave IDs may be any non-zero tByte value (but all must be different)
+  93          static tByte Current_Slave_IDs_G[NUMBER_OF_SLAVES] = {0};
+  94          
+  95          
+  96          /*------------------------------------------------------------------*-
+  97          
+  98            SCC_A_MASTER_Init_T2_CAN()
+  99          
+ 100            Scheduler initialisation function.  Prepares scheduler data 
+ 101            structures and sets up timer interrupts at required rate.
+ 102            Must call this function before using the scheduler.  
+ 103          
+ 104          -*------------------------------------------------------------------*/
+ 105          void SCC_A_MASTER_Init_T2_CAN(void) 
+ 106             {
+ 107   1         tByte i;
+ 108   1         tByte Message;
+ 109   1         tByte Slave_index;
+ 110   1      
+ 111   1         // No interrupts (yet)
+ 112   1         EAL = 0;
+ 113   1      
+ 114   1         // Start the watchdog
+ 115   1         SCC_A_MASTER_Watchdog_Init();
+ 116   1      
+ 117   1         Network_error_pin = NO_NETWORK_ERROR;
+ 118   1      
+ 119   1         // ------ Set up the scheduler ----------------------------------
+ 120   1         // Sort out the tasks
+ 121   1         for (i = 0; i < SCH_MAX_TASKS; i++) 
+ 122   1            {
+ 123   2            SCH_Delete_Task(i);
+ 124   2            }
+ 125   1      
+ 126   1         // Reset the global error variable
+ 127   1         // - SCH_Delete_Task() will generate an error code, 
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 17  
+
+ 128   1         //   (because the task array is empty)
+ 129   1         Error_code_G = 0;
+ 130   1      
+ 131   1         // We allow any combination of ID numbers in slaves
+ 132   1         for (Slave_index = 0; Slave_index < NUMBER_OF_SLAVES; Slave_index++)
+ 133   1            {
+ 134   2            Slave_reset_attempts_G[Slave_index] = 0;
+ 135   2            Current_Slave_IDs_G[Slave_index] = MAIN_SLAVE_IDs[Slave_index];
+ 136   2            }
+ 137   1      
+ 138   1         // Get ready to send first tick message
+ 139   1         First_ack_G = 1;
+ 140   1         Slave_index_G = 0;
+ 141   1      
+ 142   1         // ------ Set up the CAN link (begin) ------------------------
+ 143   1      
+ 144   1         // ---------------- SYSCON Register --------------
+ 145   1         // The access to XRAM and CAN controller is enabled.
+ 146   1         // The signals !RD and !WR are not activated during accesses
+ 147   1         // to the XRAM/CAN controller.
+ 148   1         // ALE generation is enabled.
+ 149   1         SYSCON = 0x20;  
+ 150   1      
+ 151   1         //  ------------ CAN Control/Status Register --------------
+ 152   1         //  Start to init the CAN module
+ 153   1         CAN_cr  = 0x41;  // INIT and CCE
+ 154   1      
+ 155   1         //  ------------ Bit Timing Register ---------------------
+ 156   1         // Baudrate = 333.333 kbaud 
+ 157   1         // - Need 308+ kbaud plus for 1ms ticks, 8 data bytes
+ 158   1         // - See text for details  
+ 159   1         //
+ 160   1         // There are 5 time quanta before sample point
+ 161   1         // There are 4 time quanta after sample point
+ 162   1         // The (re)synchronization jump width is 2 time quanta
+ 163   1         CAN_btr1  = 0x34;      // Bit Timing Register
+ 164   1         CAN_btr0  = 0x42; 
+ 165   1      
+ 166   1         CAN_gms1  = 0xFF;  // Global Mask Short Register 1
+ 167   1         CAN_gms0  = 0xFF;  // Global Mask Short Register 0
+ 168   1      
+ 169   1         CAN_ugml1 = 0xFF;  // Upper Global Mask Long Register 1
+ 170   1         CAN_ugml0 = 0xFF;  // Upper Global Mask Long Register 0
+ 171   1      
+ 172   1         CAN_lgml1 = 0xF8;  // Lower Global Mask Long Register 1
+ 173   1         CAN_lgml0 = 0xFF;  // Lower Global Mask Long Register 0
+ 174   1      
+ 175   1         // --- Configure the 'Tick' Message Object ---
+ 176   1         // 'Message Object 1' is valid
+ 177   1         CAN_messages[0].MCR1  = 0x55;    // Message Control Register 1
+ 178   1         CAN_messages[0].MCR0  = 0x95;    // Message Control Register 0
+ 179   1      
+ 180   1         // Message direction is transmit
+ 181   1         // Extended 29-bit identifier 
+ 182   1         // These have ID 0x000000 and 5 valid data bytes
+ 183   1         CAN_messages[0].MCFG = 0x5C;      // Message Configuration Register
+ 184   1      
+ 185   1         CAN_messages[0].UAR1  = 0x00;    // Upper Arbit. Reg. 1
+ 186   1         CAN_messages[0].UAR0  = 0x00;    // Upper Arbit. Reg. 0
+ 187   1         CAN_messages[0].LAR1  = 0x00;    // Lower Arbit. Reg. 1
+ 188   1         CAN_messages[0].LAR0  = 0x00;    // Lower Arbit. Reg. 0
+ 189   1      
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 18  
+
+ 190   1         CAN_messages[0].Data[0] = 0x00;   // data byte 0
+ 191   1         CAN_messages[0].Data[1] = 0x00;   // data byte 1
+ 192   1         CAN_messages[0].Data[2] = 0x00;   // data byte 2
+ 193   1         CAN_messages[0].Data[3] = 0x00;   // data byte 3
+ 194   1         CAN_messages[0].Data[4] = 0x00;   // data byte 4
+ 195   1      
+ 196   1         // --- Configure the 'Ack' Message Object ---
+ 197   1         
+ 198   1         // 'Message Object 2' is valid
+ 199   1         // NOTE: Object 2 receives *ALL* ack messages
+ 200   1         CAN_messages[1].MCR1  = 0x55;    // Message Control Register 1
+ 201   1         CAN_messages[1].MCR0  = 0x95;    // Message Control Register 0
+ 202   1      
+ 203   1         // Message direction is receive
+ 204   1         // Extended 29-bit identifier
+ 205   1         // These all have ID: 0x000000FF (5 valid data bytes)
+ 206   1         CAN_messages[1].MCFG = 0x04;      // Message Configuration Register
+ 207   1      
+ 208   1         CAN_messages[1].UAR1  = 0x00;    // Upper Arbit. Reg. 1
+ 209   1         CAN_messages[1].UAR0  = 0x00;    // Upper Arbit. Reg. 0
+ 210   1         CAN_messages[1].LAR1  = 0xF8;    // Lower Arbit. Reg. 1
+ 211   1         CAN_messages[1].LAR0  = 0x07;    // Lower Arbit. Reg. 0
+ 212   1      
+ 213   1         // Configure remaining message objects - none are valid
+ 214   1         for (Message = 2; Message <= 14; ++Message)
+ 215   1            {                                 
+ 216   2            CAN_messages[Message].MCR1  = 0x55;  // Message Control Register 1
+ 217   2            CAN_messages[Message].MCR0  = 0x55;  // Message Control Register 0
+ 218   2            }
+ 219   1      
+ 220   1         // ------------ CAN Control Register ---------------------
+ 221   1         //  reset CCE and INIT
+ 222   1         CAN_cr = 0x00;
+ 223   1      
+ 224   1         // ------ Set up the CAN link (end) --------------------------
+ 225   1      
+ 226   1         // ------ Set up Timer 2 (begin) --------------------------------
+ 227   1         // 80c515c, 10 MHz
+ 228   1         // Timer 2 is set to overflow every 6 ms - see text
+ 229   1         // Mode 1 = Timerfunction
+ 230   1      
+ 231   1         // Prescaler: Fcpu/12
+ 232   1         T2PS = 1;
+ 233   1      
+ 234   1         // Mode 0 = auto-reload upon timer overflow
+ 235   1         // Preset the timer register with autoreload value
+ 236   1         // NOTE: Timing is same as standard (8052) T2 timing
+ 237   1         // - if T2PS = 1 (otherwise twice as fast as 8052)
+ 238   1         TL2 = 0x78;
+ 239   1         TH2 = 0xEC;
+ 240   1           
+ 241   1         //  Mode 0 for all channels
+ 242   1         T2CON |= 0x11;
+ 243   1      
+ 244   1         //  timer 2 overflow interrupt is enabled
+ 245   1         ET2 = 1;
+ 246   1         //  timer 2 external reload interrupt is disabled
+ 247   1         EXEN2 = 0;
+ 248   1      
+ 249   1         // Compare/capture Channel 0 
+ 250   1         // Disabled
+ 251   1         // Compare Register CRC on: 0x0000;
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 19  
+
+ 252   1         CRCL = 0x78;
+ 253   1         CRCH = 0xEC;
+ 254   1        
+ 255   1         //  CC0/ext3 interrupt is disabled
+ 256   1         EX3 = 0;
+ 257   1        
+ 258   1         // Compare/capture Channel 1-3 
+ 259   1         // Disabled
+ 260   1         CCL1 = 0x00;
+ 261   1         CCH1 = 0x00;
+ 262   1         CCL2 = 0x00;
+ 263   1         CCH2 = 0x00;
+ 264   1         CCL3 = 0x00;
+ 265   1         CCH3 = 0x00;
+ 266   1        
+ 267   1         // Interrupts Channel 1-3 
+ 268   1         // Disabled
+ 269   1         EX4 = 0;
+ 270   1         EX5 = 0;
+ 271   1         EX6 = 0;
+ 272   1        
+ 273   1         // all above mentioned modes for Channel 0 to Channel 3 
+ 274   1         CCEN = 0x00;
+ 275   1         // ------ Set up Timer 2 (end) ----------------------------------
+ 276   1         }
+ 277          
+ 278          /*------------------------------------------------------------------*-
+ 279          
+ 280            SCC_A_MASTER_Start()
+ 281          
+ 282            Starts the scheduler, by enabling interrupts.
+ 283          
+ 284            NOTE: Usually called after all regular tasks are added,
+ 285            to keep the tasks synchronised.
+ 286          
+ 287            NOTE: ONLY THE SCHEDULER INTERRUPT SHOULD BE ENABLED!!! 
+ 288          
+ 289          -*------------------------------------------------------------------*/
+ 290          void SCC_A_MASTER_Start(void) 
+ 291             {
+ 292   1         tByte Num_active_slaves;
+ 293   1         tByte i;
+ 294   1         bit Slave_replied_correctly;
+ 295   1         tByte Slave_index, Slave_ID;
+ 296   1      
+ 297   1         // Refresh the watchdog
+ 298   1         SCC_A_MASTER_Watchdog_Refresh();
+ 299   1      
+ 300   1         // Place system in 'safe state'
+ 301   1         SCC_A_MASTER_Enter_Safe_State();
+ 302   1      
+ 303   1         // Report error as we wait to start
+ 304   1         Network_error_pin = NETWORK_ERROR;
+ 305   1      
+ 306   1         Error_code_G = ERROR_SCH_WAITING_FOR_SLAVE_TO_ACK;
+ 307   1         SCH_Report_Status(); // Sch not yet running - do this manually
+ 308   1      
+ 309   1         // Pause here (300 ms), to time-out all the slaves
+ 310   1         // (This is the means by which we synchronise the network)
+ 311   1         for (i = 0; i < 10; i++)
+ 312   1            {
+ 313   2            Hardware_Delay_T0(30);
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 20  
+
+ 314   2            SCC_A_MASTER_Watchdog_Refresh();
+ 315   2            }     
+ 316   1      
+ 317   1         // Currently disconnected from all slaves
+ 318   1         Num_active_slaves = 0;
+ 319   1      
+ 320   1         // After the initial (long) delay, all (operational) slaves will have timed out.
+ 321   1         // All operational slaves will now be in the 'READY TO START' state
+ 322   1         // Send them a 'slave id' message to get them started
+ 323   1         Slave_index = 0;
+ 324   1         do {
+ 325   2            // Refresh the watchdog
+ 326   2            SCC_A_MASTER_Watchdog_Refresh();
+ 327   2      
+ 328   2            // Find the slave ID for this slave 
+ 329   2            Slave_ID = (tByte) Current_Slave_IDs_G[Slave_index]; 
+ 330   2      
+ 331   2            Slave_replied_correctly = SCC_A_MASTER_Start_Slave(Slave_ID);
+ 332   2      
+ 333   2            if (Slave_replied_correctly)
+ 334   2               {
+ 335   3               Num_active_slaves++;
+ 336   3               Slave_index++;
+ 337   3               }
+ 338   2            else
+ 339   2               {
+ 340   3               // Slave did not reply correctly 
+ 341   3               // - try to switch to backup device (if available)
+ 342   3               if (Current_Slave_IDs_G[Slave_index] != BACKUP_SLAVE_IDs[Slave_index])
+ 343   3                  {
+ 344   4                  // There is a backup available: switch to backup and try again
+ 345   4                  Current_Slave_IDs_G[Slave_index] = BACKUP_SLAVE_IDs[Slave_index];
+ 346   4                  }
+ 347   3               else
+ 348   3                  {
+ 349   4                  // No backup available (or backup failed too) - have to continue
+ 350   4                  Slave_index++;
+ 351   4                  }
+ 352   3               }
+ 353   2            } while (Slave_index < NUMBER_OF_SLAVES);
+ 354   1      
+ 355   1         // DEAL WITH CASE OF MISSING SLAVE(S) HERE ...
+ 356   1         if (Num_active_slaves < NUMBER_OF_SLAVES)
+ 357   1            {
+ 358   2            // User-defined error handling here...
+ 359   2            // 1 or more slaves have not replied
+ 360   2            // NOTE: In some circumstances you may wish to abort if slaves are missing
+ 361   2            // - or reconfigure the network.
+ 362   2      
+ 363   2            // Simplest solution is to display an error and carry on
+ 364   2            // (this is what we do here)      
+ 365   2            Error_code_G = ERROR_SCH_ONE_OR_MORE_SLAVES_DID_NOT_START;
+ 366   2            Network_error_pin = NETWORK_ERROR;
+ 367   2            }
+ 368   1         else
+ 369   1            {
+ 370   2            Error_code_G = 0;
+ 371   2            Network_error_pin = NO_NETWORK_ERROR;
+ 372   2            }
+ 373   1      
+ 374   1         // Start the scheduler
+ 375   1         IRCON = 0;
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 21  
+
+ 376   1         EAL = 1;   
+ 377   1         }
+ 378          
+ 379          /*------------------------------------------------------------------*-
+ 380          
+ 381            SCC_A_MASTER_Update_T2
+ 382          
+ 383            This is the scheduler ISR.  It is called at a rate determined by 
+ 384            the timer settings in SCC_A_MASTER_Init_T2().  This version is 
+ 385            triggered by Timer 2 interrupts: timer is automatically reloaded.
+ 386           
+ 387          -*------------------------------------------------------------------*/
+ 388          void SCC_A_MASTER_Update_T2(void) interrupt INTERRUPT_Timer_2_Overflow  
+ 389             {
+ 390   1         tByte Index;
+ 391   1         tByte Previous_slave_index;
+ 392   1         bit Slave_replied_correctly;
+ 393   1      
+ 394   1         TF2 = 0;  // Must clear this. 
+ 395   1      
+ 396   1         // Refresh the watchdog
+ 397   1         SCC_A_MASTER_Watchdog_Refresh();
+ 398   1      
+ 399   1         // Default
+ 400   1         Network_error_pin = NO_NETWORK_ERROR;
+ 401   1      
+ 402   1         // Keep track of the current slave
+ 403   1         Previous_slave_index = Slave_index_G;   // First value of prev slave is 0...
+ 404   1      
+ 405   1         if (++Slave_index_G >= NUMBER_OF_SLAVES)
+ 406   1            {
+ 407   2            Slave_index_G = 0;
+ 408   2            }    
+ 409   1      
+ 410   1         // Check that the appropriate slave responded to the previous message:
+ 411   1         // (if it did, store the data sent by this slave)
+ 412   1         if (SCC_A_MASTER_Process_Ack(Previous_slave_index) == RETURN_ERROR)
+ 413   1            {
+ 414   2            Error_code_G = ERROR_SCH_LOST_SLAVE;
+ 415   2            Network_error_pin = NETWORK_ERROR;
+ 416   2      
+ 417   2            // If we have lost contact with a slave, we attempt to
+ 418   2            // switch to a backup device (if one is available)
+ 419   2            if (Current_Slave_IDs_G[Slave_index_G] != BACKUP_SLAVE_IDs[Slave_index_G])
+ 420   2               {
+ 421   3               // There is a backup available: switch to backup and try again
+ 422   3               Current_Slave_IDs_G[Slave_index_G] = BACKUP_SLAVE_IDs[Slave_index_G];
+ 423   3               }
+ 424   2            else
+ 425   2               {
+ 426   3               // There is no backup available (or we are already using it) 
+ 427   3               // Try main device.
+ 428   3               Current_Slave_IDs_G[Slave_index_G] = MAIN_SLAVE_IDs[Slave_index_G];
+ 429   3               }
+ 430   2      
+ 431   2            // Try to connect to the slave
+ 432   2            Slave_replied_correctly = SCC_A_MASTER_Start_Slave(Current_Slave_IDs_G[Slave_index_G]);
+ 433   2      
+ 434   2            if (!Slave_replied_correctly)
+ 435   2               {
+ 436   3               // No backup available (or backup failed too) - we shut down
+ 437   3               // OTHER BEHAVIOUR MAY BE MORE APPROPRIATE IN YOUR APPLICATION
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 22  
+
+ 438   3               SCC_A_MASTER_Shut_Down_the_Network();
+ 439   3               }
+ 440   2            }
+ 441   1        
+ 442   1         // Send 'tick' message to all connected slaves
+ 443   1         // (sends one data byte to the current slave)
+ 444   1         SCC_A_MASTER_Send_Tick_Message(Slave_index_G);
+ 445   1      
+ 446   1         // Check the last error codes on the CAN bus via the status register
+ 447   1         if ((CAN_sr & 0x07) != 0)
+ 448   1            {
+ 449   2            Error_code_G = ERROR_SCH_CAN_BUS_ERROR;
+ 450   2            Network_error_pin = NETWORK_ERROR;
+ 451   2         
+ 452   2            // See Infineon c515c manual for error code details
+ 453   2            CAN_error_pin0 = ((CAN_sr & 0x01) == 0);
+ 454   2            CAN_error_pin1 = ((CAN_sr & 0x02) == 0);
+ 455   2            CAN_error_pin2 = ((CAN_sr & 0x04) == 0);
+ 456   2            }
+ 457   1         else
+ 458   1            {
+ 459   2            CAN_error_pin0 = 1;
+ 460   2            CAN_error_pin1 = 1;
+ 461   2            CAN_error_pin2 = 1;
+ 462   2            }
+ 463   1      
+ 464   1         // NOTE: calculations are in *TICKS* (not milliseconds)
+ 465   1         for (Index = 0; Index < SCH_MAX_TASKS; Index++)
+ 466   1            {
+ 467   2            // Check if there is a task at this location
+ 468   2            if (SCH_tasks_G[Index].pTask)
+ 469   2               {
+ 470   3               if (SCH_tasks_G[Index].Delay == 0)
+ 471   3                  {
+ 472   4                  // The task is due to run
+ 473   4                  SCH_tasks_G[Index].RunMe += 1;  // Incr. the 'Run Me' flag
+ 474   4      
+ 475   4                  if (SCH_tasks_G[Index].Period)
+ 476   4                     {
+ 477   5                     // Schedule rperiodic tasks to run again
+ 478   5                     SCH_tasks_G[Index].Delay = SCH_tasks_G[Index].Period;
+ 479   5                     }
+ 480   4                  }
+ 481   3               else
+ 482   3                  {
+ 483   4                  // Not yet ready to run: just decrement the delay 
+ 484   4                  SCH_tasks_G[Index].Delay -= 1;
+ 485   4                  }
+ 486   3               }         
+ 487   2            }
+ 488   1         }   
+ 489          
+ 490          /*------------------------------------------------------------------*-
+ 491          
+ 492            SCC_A_MASTER_Send_Tick_Message()
+ 493          
+ 494            This function sends a tick message, over the CAN network.
+ 495            The receipt of this message will cause an interrupt to be generated
+ 496            in the slave(s): this invoke the scheduler 'update' function
+ 497            in the slave(s).
+ 498          
+ 499          -*------------------------------------------------------------------*/
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 23  
+
+ 500          void SCC_A_MASTER_Send_Tick_Message(const tByte SLAVE_INDEX) 
+ 501             {
+ 502   1         // Find the slave ID for this slave 
+ 503   1         // ALL SLAVES MUST HAVE A UNIQUE (non-zero) ID
+ 504   1         tByte Slave_ID = (tByte) Current_Slave_IDs_G[SLAVE_INDEX];
+ 505   1         CAN_messages[0].Data[0] = Slave_ID;   
+ 506   1      
+ 507   1         // Fill the data fields 
+ 508   1         CAN_messages[0].Data[1] = Tick_message_data_G[SLAVE_INDEX][0];   
+ 509   1         CAN_messages[0].Data[2] = Tick_message_data_G[SLAVE_INDEX][1];   
+ 510   1         CAN_messages[0].Data[3] = Tick_message_data_G[SLAVE_INDEX][2];   
+ 511   1         CAN_messages[0].Data[4] = Tick_message_data_G[SLAVE_INDEX][3];   
+ 512   1      
+ 513   1         // Send the message on the CAN bus
+ 514   1         CAN_messages[0].MCR1 = 0xE7;  // TXRQ, reset CPUUPD
+ 515   1         }
+ 516          
+ 517          /*------------------------------------------------------------------*-
+ 518          
+ 519            SCC_A_MASTER_Process_Ack()
+ 520          
+ 521            Make sure the slave (SLAVE_ID) has acknowledged the previous
+ 522            message that was sent.  If it has, extract the message data
+ 523            from the USART hardware: if not, call the appropriate error
+ 524            handler.
+ 525          
+ 526            PARAMS:   The index of the slave. 
+ 527          
+ 528            RETURNS:  RETURN_NORMAL - Ack received (data in Ack_message_data_G)
+ 529                      RETURN_ERROR  - No ack received (-> no data)
+ 530          
+ 531          -*------------------------------------------------------------------*/
+ 532          
+ 533          bit SCC_A_MASTER_Process_Ack(const tByte SLAVE_INDEX) 
+ 534             {
+ 535   1         tByte Ack_ID, Slave_ID;
+ 536   1      
+ 537   1         // First time this is called there is no ack tick to check 
+ 538   1         // - we simply return 'OK'
+ 539   1         if (First_ack_G)
+ 540   1            {
+ 541   2            First_ack_G = 0;
+ 542   2            return RETURN_NORMAL;
+ 543   2            }
+ 544   1      
+ 545   1         if ((CAN_messages[1].MCR1 & 0x03) == 0x02)    // if NEWDAT
+ 546   1            {
+ 547   2            // An ack message was received
+ 548   2            //
+ 549   2            // Extract the data
+ 550   2            Ack_ID = CAN_messages[1].Data[0];   // Get data byte 0
+ 551   2      
+ 552   2            Ack_message_data_G[SLAVE_INDEX][0] = CAN_messages[1].Data[1];   
+ 553   2            Ack_message_data_G[SLAVE_INDEX][1] = CAN_messages[1].Data[2];   
+ 554   2            Ack_message_data_G[SLAVE_INDEX][2] = CAN_messages[1].Data[3];   
+ 555   2            Ack_message_data_G[SLAVE_INDEX][3] = CAN_messages[1].Data[4];   
+ 556   2      
+ 557   2            CAN_messages[1].MCR0 = 0xfd;  // reset NEWDAT, INTPND
+ 558   2            CAN_messages[1].MCR1 = 0xfd;
+ 559   2            
+ 560   2            // Find the slave ID for this slave 
+ 561   2            Slave_ID = (tByte) Current_Slave_IDs_G[SLAVE_INDEX];
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 24  
+
+ 562   2      
+ 563   2            if (Ack_ID == Slave_ID)
+ 564   2               {
+ 565   3               return RETURN_NORMAL;
+ 566   3               }
+ 567   2            }
+ 568   1      
+ 569   1         // No message, or ID incorrect
+ 570   1         return RETURN_ERROR;  
+ 571   1         }
+ 572          
+ 573          
+ 574          /*------------------------------------------------------------------*-
+ 575          
+ 576            SCC_A_MASTER_Shut_Down_the_Network()
+ 577          
+ 578            This function will be called when a slave fails to 
+ 579            acknowledge a tick message.
+ 580          
+ 581          -*------------------------------------------------------------------*/
+ 582          void SCC_A_MASTER_Shut_Down_the_Network(void)
+ 583             {
+ 584   1         EAL = 0;
+ 585   1      
+ 586   1         while(1)
+ 587   1            {
+ 588   2            SCC_A_MASTER_Watchdog_Refresh();
+ 589   2            }  
+ 590   1         }
+ 591          
+ 592          /*------------------------------------------------------------------*-
+ 593          
+ 594            SCC_A_MASTER_Enter_Safe_State()
+ 595          
+ 596            This is the state enterted by the system when:
+ 597            (1) The node is powered up or reset
+ 598            (2) The Master node cannot detect a slave
+ 599            (3) The network has an error
+ 600          
+ 601            Try to ensure that the system is in a 'safe' state in these 
+ 602            circumstances.
+ 603          
+ 604          -*------------------------------------------------------------------*/
+ 605          void SCC_A_MASTER_Enter_Safe_State(void)
+ 606             {
+ 607   1         // USER DEFINED - Edit as required
+ 608   1      
+ 609   1         TRAFFIC_LIGHTS_Display_Safe_Output();
+ 610   1         } 
+ 611          
+ 612          /*------------------------------------------------------------------*-
+ 613          
+ 614             SCC_A_MASTER_Watchdog_Init()
+ 615          
+ 616            This function sets up the watchdog timer.
+ 617          
+ 618          -*------------------------------------------------------------------*/
+ 619          void SCC_A_MASTER_Watchdog_Init(void)   
+ 620             {
+ 621   1         // Watchdog timer prescaler (1/16) enabled 
+ 622   1         // Watchdog timer reload value is 0x6B
+ 623   1         // Oscillator is 10 MHz -> watchdog period is ~103 ms
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 25  
+
+ 624   1         WDTREL = 0xEB;
+ 625   1        
+ 626   1         // Start watchdog timer
+ 627   1         WDT  = 1;
+ 628   1         SWDT = 1;
+ 629   1         }
+ 630          
+ 631          /*------------------------------------------------------------------*-
+ 632          
+ 633            SCC_A_MASTER_Watchdog_Refresh()
+ 634          
+ 635            Feed the internal c515c watchdog.
+ 636          
+ 637          -*------------------------------------------------------------------*/
+ 638          void SCC_A_MASTER_Watchdog_Refresh(void) reentrant
+ 639             {
+ 640   1         WDT = 1; 
+ 641   1         SWDT = 1;
+ 642   1         }   
+ 643          
+ 644          /*------------------------------------------------------------------*-
+ 645          
+ 646            SCC_A_MASTER_Start_Slave()
+ 647          
+ 648            Try to connect to a slave device.
+ 649          
+ 650          -*------------------------------------------------------------------*/
+ 651          tByte SCC_A_MASTER_Start_Slave(const tByte SLAVE_ID) reentrant
+ 652             {
+ 653   1         tByte Slave_replied_correctly = 0;
+ 654   1      
+ 655   1      //   tByte Slave_ID;
+ 656   1         tByte Ack_ID, Ack_00;
+ 657   1      
+ 658   1         // Send a 'Slave ID' message
+ 659   1         CAN_messages[0].Data[0] = 0x00;  // Not a valid slave ID    
+ 660   1         CAN_messages[0].Data[1] = SLAVE_ID;    
+ 661   1         CAN_messages[0].MCR1 = 0xE7;  // Send it
+ 662   1      
+ 663   1         // Wait to give slave time to reply
+ 664   1         Hardware_Delay_T0(5);   
+ 665   1      
+ 666   1         // Check we had a reply
+ 667   1         if ((CAN_messages[1].MCR1 & 0x03) == 0x02)    // if NEWDAT
+ 668   1            {
+ 669   2            // An ack message was received - extract the data
+ 670   2            Ack_00 = (tByte) CAN_messages[1].Data[0];  // Get data byte 0
+ 671   2            Ack_ID = (tByte) CAN_messages[1].Data[1];  // Get data byte 1
+ 672   2      
+ 673   2            CAN_messages[1].MCR0 = 0xfd;  // reset NEWDAT, INTPND
+ 674   2            CAN_messages[1].MCR1 = 0xfd;
+ 675   2      
+ 676   2            if ((Ack_00 == 0x00) && (Ack_ID == SLAVE_ID)) 
+ 677   2               {
+ 678   3               Slave_replied_correctly = 1;
+ 679   3               }
+ 680   2            }
+ 681   1      
+ 682   1         return Slave_replied_correctly;
+ 683   1         }
+ 684            
+ 685          
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 26  
+
+ 686          /*------------------------------------------------------------------*-
+ 687            ---- END OF FILE -------------------------------------------------
+ 688          -*------------------------------------------------------------------*/
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 27  
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION SCC_A_MASTER_Init_T2_CAN (BEGIN)
+                                           ; SOURCE LINE # 105
+                                           ; SOURCE LINE # 106
+                                           ; SOURCE LINE # 112
+0000 C2AF              CLR     EAL
+                                           ; SOURCE LINE # 115
+0002 120000      R     LCALL   SCC_A_MASTER_Watchdog_Init
+                                           ; SOURCE LINE # 117
+0005 D2EC              SETB    Network_error_pin
+                                           ; SOURCE LINE # 121
+0007 E4                CLR     A
+0008 F500        R     MOV     i,A
+000A         ?C0001:
+                                           ; SOURCE LINE # 122
+                                           ; SOURCE LINE # 123
+000A AF00        R     MOV     R7,i
+000C 120000      E     LCALL   _SCH_Delete_Task
+                                           ; SOURCE LINE # 124
+000F 0500        R     INC     i
+0011 E500        R     MOV     A,i
+0013 C3                CLR     C
+0014 9402              SUBB    A,#02H
+0016 40F2              JC      ?C0001
+0018         ?C0002:
+                                           ; SOURCE LINE # 129
+0018 E4                CLR     A
+0019 F500        E     MOV     Error_code_G,A
+                                           ; SOURCE LINE # 132
+;---- Variable 'Slave_index' assigned to Register 'R7' ----
+001B FF                MOV     R7,A
+001C         ?C0004:
+                                           ; SOURCE LINE # 133
+                                           ; SOURCE LINE # 134
+001C EF                MOV     A,R7
+001D 25E0              ADD     A,ACC
+001F 2400        R     ADD     A,#LOW Slave_reset_attempts_G
+0021 F8                MOV     R0,A
+0022 E4                CLR     A
+0023 F6                MOV     @R0,A
+0024 08                INC     R0
+0025 F6                MOV     @R0,A
+                                           ; SOURCE LINE # 135
+0026 7400        R     MOV     A,#LOW MAIN_SLAVE_IDs
+0028 2F                ADD     A,R7
+0029 F8                MOV     R0,A
+002A E6                MOV     A,@R0
+002B FE                MOV     R6,A
+002C 7400        R     MOV     A,#LOW Current_Slave_IDs_G
+002E 2F                ADD     A,R7
+002F F8                MOV     R0,A
+0030 A606              MOV     @R0,AR6
+                                           ; SOURCE LINE # 136
+0032 0F                INC     R7
+0033 BF01E6            CJNE    R7,#01H,?C0004
+0036         ?C0005:
+                                           ; SOURCE LINE # 139
+0036 D200        R     SETB    First_ack_G
+                                           ; SOURCE LINE # 140
+0038 E4                CLR     A
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 28  
+
+0039 F500        R     MOV     Slave_index_G,A
+                                           ; SOURCE LINE # 149
+003B 75B120            MOV     SYSCON,#020H
+                                           ; SOURCE LINE # 153
+003E 90F700            MOV     DPTR,#0F700H
+0041 7441              MOV     A,#041H
+0043 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 163
+0044 90F705            MOV     DPTR,#0F705H
+0047 7434              MOV     A,#034H
+0049 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 164
+004A 90F704            MOV     DPTR,#0F704H
+004D 7442              MOV     A,#042H
+004F F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 166
+0050 90F707            MOV     DPTR,#0F707H
+0053 74FF              MOV     A,#0FFH
+0055 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 167
+0056 90F706            MOV     DPTR,#0F706H
+0059 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 169
+005A 90F709            MOV     DPTR,#0F709H
+005D F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 170
+005E 90F708            MOV     DPTR,#0F708H
+0061 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 172
+0062 90F70B            MOV     DPTR,#0F70BH
+0065 74F8              MOV     A,#0F8H
+0067 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 173
+0068 90F70A            MOV     DPTR,#0F70AH
+006B 74FF              MOV     A,#0FFH
+006D F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 177
+006E 90F711            MOV     DPTR,#0F711H
+0071 7455              MOV     A,#055H
+0073 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 178
+0074 90F710            MOV     DPTR,#0F710H
+0077 7495              MOV     A,#095H
+0079 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 183
+007A 90F716            MOV     DPTR,#0F716H
+007D 745C              MOV     A,#05CH
+007F F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 185
+0080 90F713            MOV     DPTR,#0F713H
+0083 E4                CLR     A
+0084 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 186
+0085 90F712            MOV     DPTR,#0F712H
+0088 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 187
+0089 90F715            MOV     DPTR,#0F715H
+008C F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 188
+008D 90F714            MOV     DPTR,#0F714H
+0090 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 190
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 29  
+
+0091 90F717            MOV     DPTR,#0F717H
+0094 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 191
+0095 A3                INC     DPTR
+0096 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 192
+0097 A3                INC     DPTR
+0098 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 193
+0099 A3                INC     DPTR
+009A F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 194
+009B A3                INC     DPTR
+009C F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 200
+009D 90F721            MOV     DPTR,#0F721H
+00A0 7455              MOV     A,#055H
+00A2 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 201
+00A3 90F720            MOV     DPTR,#0F720H
+00A6 7495              MOV     A,#095H
+00A8 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 206
+00A9 90F726            MOV     DPTR,#0F726H
+00AC 7404              MOV     A,#04H
+00AE F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 208
+00AF 90F723            MOV     DPTR,#0F723H
+00B2 E4                CLR     A
+00B3 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 209
+00B4 90F722            MOV     DPTR,#0F722H
+00B7 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 210
+00B8 90F725            MOV     DPTR,#0F725H
+00BB 74F8              MOV     A,#0F8H
+00BD F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 211
+00BE 90F724            MOV     DPTR,#0F724H
+00C1 7407              MOV     A,#07H
+00C3 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 214
+;---- Variable 'Message' assigned to Register 'R7' ----
+00C4 7F02              MOV     R7,#02H
+00C6         ?C0007:
+                                           ; SOURCE LINE # 215
+                                           ; SOURCE LINE # 216
+00C6 75F010            MOV     B,#010H
+00C9 EF                MOV     A,R7
+00CA 90F711            MOV     DPTR,#0F711H
+00CD 120000      E     LCALL   ?C?OFFXADD
+00D0 7455              MOV     A,#055H
+00D2 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 217
+00D3 75F010            MOV     B,#010H
+00D6 EF                MOV     A,R7
+00D7 90F710            MOV     DPTR,#0F710H
+00DA 120000      E     LCALL   ?C?OFFXADD
+00DD 7455              MOV     A,#055H
+00DF F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 218
+00E0 0F                INC     R7
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 30  
+
+00E1 BF0FE2            CJNE    R7,#0FH,?C0007
+00E4         ?C0008:
+                                           ; SOURCE LINE # 222
+00E4 90F700            MOV     DPTR,#0F700H
+00E7 E4                CLR     A
+00E8 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 232
+00E9 D2CF              SETB    T2PS
+                                           ; SOURCE LINE # 238
+00EB 75CC78            MOV     TL2,#078H
+                                           ; SOURCE LINE # 239
+00EE 75CDEC            MOV     TH2,#0ECH
+                                           ; SOURCE LINE # 242
+00F1 43C811            ORL     T2CON,#011H
+                                           ; SOURCE LINE # 245
+00F4 D2AD              SETB    ET2
+                                           ; SOURCE LINE # 247
+00F6 C2BF              CLR     EXEN2
+                                           ; SOURCE LINE # 252
+00F8 75CA78            MOV     CRCL,#078H
+                                           ; SOURCE LINE # 253
+00FB 75CBEC            MOV     CRCH,#0ECH
+                                           ; SOURCE LINE # 256
+00FE C2BA              CLR     EX3
+                                           ; SOURCE LINE # 260
+0100 F5C2              MOV     CCL1,A
+                                           ; SOURCE LINE # 261
+0102 F5C3              MOV     CCH1,A
+                                           ; SOURCE LINE # 262
+0104 F5C4              MOV     CCL2,A
+                                           ; SOURCE LINE # 263
+0106 F5C5              MOV     CCH2,A
+                                           ; SOURCE LINE # 264
+0108 F5C6              MOV     CCL3,A
+                                           ; SOURCE LINE # 265
+010A F5C7              MOV     CCH3,A
+                                           ; SOURCE LINE # 269
+010C C2BB              CLR     EX4
+                                           ; SOURCE LINE # 270
+010E C2BC              CLR     EX5
+                                           ; SOURCE LINE # 271
+0110 C2BD              CLR     EX6
+                                           ; SOURCE LINE # 274
+0112 F5C1              MOV     CCEN,A
+                                           ; SOURCE LINE # 276
+0114 22                RET     
+             ; FUNCTION SCC_A_MASTER_Init_T2_CAN (END)
+
+             ; FUNCTION SCC_A_MASTER_Start (BEGIN)
+                                           ; SOURCE LINE # 290
+                                           ; SOURCE LINE # 291
+                                           ; SOURCE LINE # 298
+0000 120000      R     LCALL   _?SCC_A_MASTER_Watchdog_Refresh
+                                           ; SOURCE LINE # 301
+0003 120000      R     LCALL   SCC_A_MASTER_Enter_Safe_State
+                                           ; SOURCE LINE # 304
+0006 C2EC              CLR     Network_error_pin
+                                           ; SOURCE LINE # 306
+0008 750003      E     MOV     Error_code_G,#03H
+                                           ; SOURCE LINE # 307
+000B 120000      E     LCALL   SCH_Report_Status
+                                           ; SOURCE LINE # 311
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 31  
+
+000E E4                CLR     A
+000F F500        R     MOV     i,A
+0011         ?C0011:
+                                           ; SOURCE LINE # 312
+                                           ; SOURCE LINE # 313
+0011 7F1E              MOV     R7,#01EH
+0013 7E00              MOV     R6,#00H
+0015 120000      E     LCALL   _Hardware_Delay_T0
+                                           ; SOURCE LINE # 314
+0018 120000      R     LCALL   _?SCC_A_MASTER_Watchdog_Refresh
+                                           ; SOURCE LINE # 315
+001B 0500        R     INC     i
+001D E500        R     MOV     A,i
+001F C3                CLR     C
+0020 940A              SUBB    A,#0AH
+0022 40ED              JC      ?C0011
+0024         ?C0012:
+                                           ; SOURCE LINE # 318
+0024 E4                CLR     A
+0025 F500        R     MOV     Num_active_slaves,A
+                                           ; SOURCE LINE # 323
+0027 F500        R     MOV     Slave_index,A
+0029         ?C0016:
+                                           ; SOURCE LINE # 324
+                                           ; SOURCE LINE # 326
+0029 120000      R     LCALL   _?SCC_A_MASTER_Watchdog_Refresh
+                                           ; SOURCE LINE # 329
+002C 7400        R     MOV     A,#LOW Current_Slave_IDs_G
+002E 2500        R     ADD     A,Slave_index
+0030 F8                MOV     R0,A
+0031 E6                MOV     A,@R0
+0032 FF                MOV     R7,A
+;---- Variable 'Slave_ID' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 331
+0033 120000      R     LCALL   _?SCC_A_MASTER_Start_Slave
+0036 EF                MOV     A,R7
+0037 24FF              ADD     A,#0FFH
+0039 9200        R     MOV     Slave_replied_correctly,C
+                                           ; SOURCE LINE # 333
+003B 300006      R     JNB     Slave_replied_correctly,?C0017
+                                           ; SOURCE LINE # 334
+                                           ; SOURCE LINE # 335
+003E 0500        R     INC     Num_active_slaves
+                                           ; SOURCE LINE # 336
+0040 0500        R     INC     Slave_index
+                                           ; SOURCE LINE # 337
+0042 801B              SJMP    ?C0014
+0044         ?C0017:
+                                           ; SOURCE LINE # 339
+                                           ; SOURCE LINE # 342
+0044 7400        R     MOV     A,#LOW BACKUP_SLAVE_IDs
+0046 2500        R     ADD     A,Slave_index
+0048 F8                MOV     R0,A
+0049 E6                MOV     A,@R0
+004A FF                MOV     R7,A
+004B 7400        R     MOV     A,#LOW Current_Slave_IDs_G
+004D 2500        R     ADD     A,Slave_index
+004F F8                MOV     R0,A
+0050 E6                MOV     A,@R0
+0051 6F                XRL     A,R7
+0052 6009              JZ      ?C0019
+                                           ; SOURCE LINE # 343
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 32  
+
+                                           ; SOURCE LINE # 345
+0054 7400        R     MOV     A,#LOW Current_Slave_IDs_G
+0056 2500        R     ADD     A,Slave_index
+0058 F8                MOV     R0,A
+0059 A607              MOV     @R0,AR7
+                                           ; SOURCE LINE # 346
+005B 8002              SJMP    ?C0014
+005D         ?C0019:
+                                           ; SOURCE LINE # 348
+                                           ; SOURCE LINE # 350
+005D 0500        R     INC     Slave_index
+                                           ; SOURCE LINE # 351
+                                           ; SOURCE LINE # 352
+                                           ; SOURCE LINE # 353
+005F         ?C0014:
+005F E500        R     MOV     A,Slave_index
+0061 C3                CLR     C
+0062 9401              SUBB    A,#01H
+0064 40C3              JC      ?C0016
+                                           ; SOURCE LINE # 356
+0066 E500        R     MOV     A,Num_active_slaves
+0068 9401              SUBB    A,#01H
+006A 5007              JNC     ?C0021
+                                           ; SOURCE LINE # 357
+                                           ; SOURCE LINE # 365
+006C 750004      E     MOV     Error_code_G,#04H
+                                           ; SOURCE LINE # 366
+006F C2EC              CLR     Network_error_pin
+                                           ; SOURCE LINE # 367
+0071 8005              SJMP    ?C0022
+0073         ?C0021:
+                                           ; SOURCE LINE # 369
+                                           ; SOURCE LINE # 370
+0073 E4                CLR     A
+0074 F500        E     MOV     Error_code_G,A
+                                           ; SOURCE LINE # 371
+0076 D2EC              SETB    Network_error_pin
+                                           ; SOURCE LINE # 372
+0078         ?C0022:
+                                           ; SOURCE LINE # 375
+0078 E4                CLR     A
+0079 F5C0              MOV     IRCON,A
+                                           ; SOURCE LINE # 376
+007B D2AF              SETB    EAL
+                                           ; SOURCE LINE # 377
+007D 22                RET     
+             ; FUNCTION SCC_A_MASTER_Start (END)
+
+             ; FUNCTION SCC_A_MASTER_Update_T2 (BEGIN)
+0000 C0E0              PUSH    ACC
+0002 C0F0              PUSH    B
+0004 C083              PUSH    DPH
+0006 C082              PUSH    DPL
+0008 C0D0              PUSH    PSW
+000A 75D000            MOV     PSW,#00H
+000D C000              PUSH    AR0
+000F C001              PUSH    AR1
+0011 C002              PUSH    AR2
+0013 C003              PUSH    AR3
+0015 C004              PUSH    AR4
+0017 C005              PUSH    AR5
+0019 C006              PUSH    AR6
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 33  
+
+001B C007              PUSH    AR7
+                                           ; SOURCE LINE # 388
+                                           ; SOURCE LINE # 394
+001D C2C6              CLR     TF2
+                                           ; SOURCE LINE # 397
+001F 120000      R     LCALL   _?SCC_A_MASTER_Watchdog_Refresh
+                                           ; SOURCE LINE # 400
+0022 D2EC              SETB    Network_error_pin
+                                           ; SOURCE LINE # 403
+;---- Variable 'Previous_slave_index' assigned to Register 'R7' ----
+0024 AF00        R     MOV     R7,Slave_index_G
+                                           ; SOURCE LINE # 405
+0026 0500        R     INC     Slave_index_G
+0028 E500        R     MOV     A,Slave_index_G
+002A C3                CLR     C
+002B 9401              SUBB    A,#01H
+002D 4003              JC      ?C0024
+                                           ; SOURCE LINE # 406
+                                           ; SOURCE LINE # 407
+002F 750000      R     MOV     Slave_index_G,#00H
+                                           ; SOURCE LINE # 408
+0032         ?C0024:
+                                           ; SOURCE LINE # 412
+0032 120000      R     LCALL   _SCC_A_MASTER_Process_Ack
+0035 5041              JNC     ?C0025
+                                           ; SOURCE LINE # 413
+                                           ; SOURCE LINE # 414
+0037 750005      E     MOV     Error_code_G,#05H
+                                           ; SOURCE LINE # 415
+003A C2EC              CLR     Network_error_pin
+                                           ; SOURCE LINE # 419
+003C 7400        R     MOV     A,#LOW BACKUP_SLAVE_IDs
+003E 2500        R     ADD     A,Slave_index_G
+0040 F8                MOV     R0,A
+0041 E6                MOV     A,@R0
+0042 FF                MOV     R7,A
+0043 7400        R     MOV     A,#LOW Current_Slave_IDs_G
+0045 2500        R     ADD     A,Slave_index_G
+0047 F8                MOV     R0,A
+0048 E6                MOV     A,@R0
+0049 6F                XRL     A,R7
+004A 6009              JZ      ?C0026
+                                           ; SOURCE LINE # 420
+                                           ; SOURCE LINE # 422
+004C 7400        R     MOV     A,#LOW Current_Slave_IDs_G
+004E 2500        R     ADD     A,Slave_index_G
+0050 F8                MOV     R0,A
+0051 A607              MOV     @R0,AR7
+                                           ; SOURCE LINE # 423
+0053 800E              SJMP    ?C0027
+0055         ?C0026:
+                                           ; SOURCE LINE # 425
+                                           ; SOURCE LINE # 428
+0055 7400        R     MOV     A,#LOW MAIN_SLAVE_IDs
+0057 2500        R     ADD     A,Slave_index_G
+0059 F8                MOV     R0,A
+005A E6                MOV     A,@R0
+005B FF                MOV     R7,A
+005C 7400        R     MOV     A,#LOW Current_Slave_IDs_G
+005E 2500        R     ADD     A,Slave_index_G
+0060 F8                MOV     R0,A
+0061 A607              MOV     @R0,AR7
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 34  
+
+                                           ; SOURCE LINE # 429
+0063         ?C0027:
+                                           ; SOURCE LINE # 432
+0063 7400        R     MOV     A,#LOW Current_Slave_IDs_G
+0065 2500        R     ADD     A,Slave_index_G
+0067 F8                MOV     R0,A
+0068 E6                MOV     A,@R0
+0069 FF                MOV     R7,A
+006A 120000      R     LCALL   _?SCC_A_MASTER_Start_Slave
+006D EF                MOV     A,R7
+006E 24FF              ADD     A,#0FFH
+0070 9200        R     MOV     Slave_replied_correctly,C
+                                           ; SOURCE LINE # 434
+0072 200003      R     JB      Slave_replied_correctly,?C0025
+                                           ; SOURCE LINE # 435
+                                           ; SOURCE LINE # 438
+0075 120000      R     LCALL   SCC_A_MASTER_Shut_Down_the_Netwo
+                                           ; SOURCE LINE # 439
+                                           ; SOURCE LINE # 440
+0078         ?C0025:
+                                           ; SOURCE LINE # 444
+0078 AF00        R     MOV     R7,Slave_index_G
+007A 120000      R     LCALL   _SCC_A_MASTER_Send_Tick_Message
+                                           ; SOURCE LINE # 447
+007D 90F701            MOV     DPTR,#0F701H
+0080 E0                MOVX    A,@DPTR
+0081 5407              ANL     A,#07H
+0083 602B              JZ      ?C0029
+                                           ; SOURCE LINE # 448
+                                           ; SOURCE LINE # 449
+0085 750006      E     MOV     Error_code_G,#06H
+                                           ; SOURCE LINE # 450
+0088 C2EC              CLR     Network_error_pin
+                                           ; SOURCE LINE # 453
+008A E0                MOVX    A,@DPTR
+008B 20E003            JB      ACC.0,?C0030
+008E D3                SETB    C
+008F 8001              SJMP    ?C0031
+0091         ?C0030:
+0091 C3                CLR     C
+0092         ?C0031:
+0092 92FB              MOV     CAN_error_pin0,C
+                                           ; SOURCE LINE # 454
+0094 90F701            MOV     DPTR,#0F701H
+0097 E0                MOVX    A,@DPTR
+0098 20E103            JB      ACC.1,?C0032
+009B D3                SETB    C
+009C 8001              SJMP    ?C0033
+009E         ?C0032:
+009E C3                CLR     C
+009F         ?C0033:
+009F 92FC              MOV     CAN_error_pin1,C
+                                           ; SOURCE LINE # 455
+00A1 90F701            MOV     DPTR,#0F701H
+00A4 E0                MOVX    A,@DPTR
+00A5 20E203            JB      ACC.2,?C0034
+00A8 D3                SETB    C
+00A9 8001              SJMP    ?C0035
+00AB         ?C0034:
+00AB C3                CLR     C
+00AC         ?C0035:
+00AC 92FD              MOV     CAN_error_pin2,C
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 35  
+
+                                           ; SOURCE LINE # 456
+00AE 8006              SJMP    ?C0036
+00B0         ?C0029:
+                                           ; SOURCE LINE # 458
+                                           ; SOURCE LINE # 459
+00B0 D2FB              SETB    CAN_error_pin0
+                                           ; SOURCE LINE # 460
+00B2 D2FC              SETB    CAN_error_pin1
+                                           ; SOURCE LINE # 461
+00B4 D2FD              SETB    CAN_error_pin2
+                                           ; SOURCE LINE # 462
+00B6         ?C0036:
+                                           ; SOURCE LINE # 465
+;---- Variable 'Index' assigned to Register 'R7' ----
+00B6 E4                CLR     A
+00B7 FF                MOV     R7,A
+00B8         ?C0037:
+                                           ; SOURCE LINE # 466
+                                           ; SOURCE LINE # 468
+00B8 EF                MOV     A,R7
+00B9 75F007            MOV     B,#07H
+00BC A4                MUL     AB
+00BD 2400        E     ADD     A,#LOW SCH_tasks_G
+00BF F8                MOV     R0,A
+00C0 E6                MOV     A,@R0
+00C1 FC                MOV     R4,A
+00C2 08                INC     R0
+00C3 E6                MOV     A,@R0
+00C4 4C                ORL     A,R4
+00C5 6046              JZ      ?C0039
+                                           ; SOURCE LINE # 469
+                                           ; SOURCE LINE # 470
+00C7 EF                MOV     A,R7
+00C8 75F007            MOV     B,#07H
+00CB A4                MUL     AB
+00CC 2400        E     ADD     A,#LOW SCH_tasks_G+02H
+00CE F8                MOV     R0,A
+00CF E6                MOV     A,@R0
+00D0 FC                MOV     R4,A
+00D1 08                INC     R0
+00D2 E6                MOV     A,@R0
+00D3 4C                ORL     A,R4
+00D4 7028              JNZ     ?C0041
+                                           ; SOURCE LINE # 471
+                                           ; SOURCE LINE # 473
+00D6 EF                MOV     A,R7
+00D7 75F007            MOV     B,#07H
+00DA A4                MUL     AB
+00DB 2400        E     ADD     A,#LOW SCH_tasks_G+06H
+00DD F8                MOV     R0,A
+00DE 06                INC     @R0
+                                           ; SOURCE LINE # 475
+00DF EF                MOV     A,R7
+00E0 75F007            MOV     B,#07H
+00E3 A4                MUL     AB
+00E4 2400        E     ADD     A,#LOW SCH_tasks_G+04H
+00E6 F8                MOV     R0,A
+00E7 E6                MOV     A,@R0
+00E8 FC                MOV     R4,A
+00E9 08                INC     R0
+00EA E6                MOV     A,@R0
+00EB FD                MOV     R5,A
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 36  
+
+00EC 4C                ORL     A,R4
+00ED 601E              JZ      ?C0039
+                                           ; SOURCE LINE # 476
+                                           ; SOURCE LINE # 478
+00EF EF                MOV     A,R7
+00F0 75F007            MOV     B,#07H
+00F3 A4                MUL     AB
+00F4 2400        E     ADD     A,#LOW SCH_tasks_G+02H
+00F6 F8                MOV     R0,A
+00F7 A604              MOV     @R0,AR4
+00F9 08                INC     R0
+00FA A605              MOV     @R0,AR5
+                                           ; SOURCE LINE # 479
+                                           ; SOURCE LINE # 480
+00FC 800F              SJMP    ?C0039
+00FE         ?C0041:
+                                           ; SOURCE LINE # 482
+                                           ; SOURCE LINE # 484
+00FE EF                MOV     A,R7
+00FF 75F007            MOV     B,#07H
+0102 A4                MUL     AB
+0103 2400        E     ADD     A,#LOW SCH_tasks_G+02H
+0105 F8                MOV     R0,A
+0106 08                INC     R0
+0107 E6                MOV     A,@R0
+0108 16                DEC     @R0
+0109 7002              JNZ     ?C0059
+010B 18                DEC     R0
+010C 16                DEC     @R0
+010D         ?C0059:
+                                           ; SOURCE LINE # 485
+                                           ; SOURCE LINE # 486
+                                           ; SOURCE LINE # 487
+010D         ?C0039:
+010D 0F                INC     R7
+010E BF02A7            CJNE    R7,#02H,?C0037
+                                           ; SOURCE LINE # 488
+0111         ?C0044:
+0111 D007              POP     AR7
+0113 D006              POP     AR6
+0115 D005              POP     AR5
+0117 D004              POP     AR4
+0119 D003              POP     AR3
+011B D002              POP     AR2
+011D D001              POP     AR1
+011F D000              POP     AR0
+0121 D0D0              POP     PSW
+0123 D082              POP     DPL
+0125 D083              POP     DPH
+0127 D0F0              POP     B
+0129 D0E0              POP     ACC
+012B 32                RETI    
+             ; FUNCTION SCC_A_MASTER_Update_T2 (END)
+
+             ; FUNCTION _SCC_A_MASTER_Send_Tick_Message (BEGIN)
+;---- Variable 'SLAVE_INDEX' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 500
+                                           ; SOURCE LINE # 501
+                                           ; SOURCE LINE # 504
+0000 7400        R     MOV     A,#LOW Current_Slave_IDs_G
+0002 2F                ADD     A,R7
+0003 F8                MOV     R0,A
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 37  
+
+0004 E6                MOV     A,@R0
+;---- Variable 'Slave_ID' assigned to Register 'R6' ----
+                                           ; SOURCE LINE # 505
+0005 90F717            MOV     DPTR,#0F717H
+0008 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 508
+0009 EF                MOV     A,R7
+000A 25E0              ADD     A,ACC
+000C 25E0              ADD     A,ACC
+000E 2400        R     ADD     A,#LOW Tick_message_data_G
+0010 F8                MOV     R0,A
+0011 E6                MOV     A,@R0
+0012 A3                INC     DPTR
+0013 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 509
+0014 EF                MOV     A,R7
+0015 25E0              ADD     A,ACC
+0017 25E0              ADD     A,ACC
+0019 2400        R     ADD     A,#LOW Tick_message_data_G+01H
+001B F8                MOV     R0,A
+001C E6                MOV     A,@R0
+001D A3                INC     DPTR
+001E F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 510
+001F EF                MOV     A,R7
+0020 25E0              ADD     A,ACC
+0022 25E0              ADD     A,ACC
+0024 2400        R     ADD     A,#LOW Tick_message_data_G+02H
+0026 F8                MOV     R0,A
+0027 E6                MOV     A,@R0
+0028 A3                INC     DPTR
+0029 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 511
+002A EF                MOV     A,R7
+002B 25E0              ADD     A,ACC
+002D 25E0              ADD     A,ACC
+002F 2400        R     ADD     A,#LOW Tick_message_data_G+03H
+0031 F8                MOV     R0,A
+0032 E6                MOV     A,@R0
+0033 A3                INC     DPTR
+0034 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 514
+0035 90F711            MOV     DPTR,#0F711H
+0038 74E7              MOV     A,#0E7H
+003A F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 515
+003B 22                RET     
+             ; FUNCTION _SCC_A_MASTER_Send_Tick_Message (END)
+
+             ; FUNCTION _SCC_A_MASTER_Process_Ack (BEGIN)
+;---- Variable 'SLAVE_INDEX' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 533
+                                           ; SOURCE LINE # 534
+                                           ; SOURCE LINE # 539
+0000 300004      R     JNB     First_ack_G,?C0046
+                                           ; SOURCE LINE # 540
+                                           ; SOURCE LINE # 541
+0003 C200        R     CLR     First_ack_G
+                                           ; SOURCE LINE # 542
+0005 C3                CLR     C
+0006 22                RET     
+                                           ; SOURCE LINE # 543
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 38  
+
+0007         ?C0046:
+                                           ; SOURCE LINE # 545
+0007 90F721            MOV     DPTR,#0F721H
+000A E0                MOVX    A,@DPTR
+000B 5403              ANL     A,#03H
+000D 6402              XRL     A,#02H
+000F 704D              JNZ     ?C0048
+                                           ; SOURCE LINE # 546
+                                           ; SOURCE LINE # 550
+0011 90F727            MOV     DPTR,#0F727H
+0014 E0                MOVX    A,@DPTR
+0015 FE                MOV     R6,A
+;---- Variable 'Ack_ID' assigned to Register 'R6' ----
+                                           ; SOURCE LINE # 552
+0016 A3                INC     DPTR
+0017 E0                MOVX    A,@DPTR
+0018 FD                MOV     R5,A
+0019 EF                MOV     A,R7
+001A 25E0              ADD     A,ACC
+001C 25E0              ADD     A,ACC
+001E 2400        R     ADD     A,#LOW Ack_message_data_G
+0020 F8                MOV     R0,A
+0021 A605              MOV     @R0,AR5
+                                           ; SOURCE LINE # 553
+0023 A3                INC     DPTR
+0024 E0                MOVX    A,@DPTR
+0025 FD                MOV     R5,A
+0026 EF                MOV     A,R7
+0027 25E0              ADD     A,ACC
+0029 25E0              ADD     A,ACC
+002B 2400        R     ADD     A,#LOW Ack_message_data_G+01H
+002D F8                MOV     R0,A
+002E A605              MOV     @R0,AR5
+                                           ; SOURCE LINE # 554
+0030 A3                INC     DPTR
+0031 E0                MOVX    A,@DPTR
+0032 FD                MOV     R5,A
+0033 EF                MOV     A,R7
+0034 25E0              ADD     A,ACC
+0036 25E0              ADD     A,ACC
+0038 2400        R     ADD     A,#LOW Ack_message_data_G+02H
+003A F8                MOV     R0,A
+003B A605              MOV     @R0,AR5
+                                           ; SOURCE LINE # 555
+003D A3                INC     DPTR
+003E E0                MOVX    A,@DPTR
+003F FD                MOV     R5,A
+0040 EF                MOV     A,R7
+0041 25E0              ADD     A,ACC
+0043 25E0              ADD     A,ACC
+0045 2400        R     ADD     A,#LOW Ack_message_data_G+03H
+0047 F8                MOV     R0,A
+0048 A605              MOV     @R0,AR5
+                                           ; SOURCE LINE # 557
+004A 90F720            MOV     DPTR,#0F720H
+004D 74FD              MOV     A,#0FDH
+004F F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 558
+0050 A3                INC     DPTR
+0051 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 561
+0052 7400        R     MOV     A,#LOW Current_Slave_IDs_G
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 39  
+
+0054 2F                ADD     A,R7
+0055 F8                MOV     R0,A
+0056 E6                MOV     A,@R0
+0057 FF                MOV     R7,A
+;---- Variable 'Slave_ID' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 563
+0058 EE                MOV     A,R6
+0059 B50702            CJNE    A,AR7,?C0048
+                                           ; SOURCE LINE # 564
+                                           ; SOURCE LINE # 565
+005C C3                CLR     C
+005D 22                RET     
+                                           ; SOURCE LINE # 566
+                                           ; SOURCE LINE # 567
+005E         ?C0048:
+                                           ; SOURCE LINE # 570
+005E D3                SETB    C
+                                           ; SOURCE LINE # 571
+005F         ?C0047:
+005F 22                RET     
+             ; FUNCTION _SCC_A_MASTER_Process_Ack (END)
+
+             ; FUNCTION SCC_A_MASTER_Shut_Down_the_Netwo (BEGIN)
+                                           ; SOURCE LINE # 582
+                                           ; SOURCE LINE # 583
+                                           ; SOURCE LINE # 584
+0000 C2AF              CLR     EAL
+0002         ?C0050:
+                                           ; SOURCE LINE # 586
+                                           ; SOURCE LINE # 587
+                                           ; SOURCE LINE # 588
+0002 120000      R     LCALL   _?SCC_A_MASTER_Watchdog_Refresh
+                                           ; SOURCE LINE # 589
+0005 80FB              SJMP    ?C0050
+0007 22                RET     
+             ; FUNCTION SCC_A_MASTER_Shut_Down_the_Netwo (END)
+
+             ; FUNCTION SCC_A_MASTER_Enter_Safe_State (BEGIN)
+                                           ; SOURCE LINE # 605
+                                           ; SOURCE LINE # 606
+                                           ; SOURCE LINE # 609
+0000 120000      E     LCALL   TRAFFIC_LIGHTS_Display_Safe_Outp
+                                           ; SOURCE LINE # 610
+0003 22                RET     
+             ; FUNCTION SCC_A_MASTER_Enter_Safe_State (END)
+
+             ; FUNCTION SCC_A_MASTER_Watchdog_Init (BEGIN)
+                                           ; SOURCE LINE # 619
+                                           ; SOURCE LINE # 620
+                                           ; SOURCE LINE # 624
+0000 7586EB            MOV     WDTREL,#0EBH
+                                           ; SOURCE LINE # 627
+0003 D2AE              SETB    WDT
+                                           ; SOURCE LINE # 628
+0005 D2BE              SETB    SWDT
+                                           ; SOURCE LINE # 629
+0007 22                RET     
+             ; FUNCTION SCC_A_MASTER_Watchdog_Init (END)
+
+             ; FUNCTION _?SCC_A_MASTER_Watchdog_Refresh (BEGIN)
+                                           ; SOURCE LINE # 638
+                                           ; SOURCE LINE # 640
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 40  
+
+0000 D2AE              SETB    WDT
+                                           ; SOURCE LINE # 641
+0002 D2BE              SETB    SWDT
+                                           ; SOURCE LINE # 642
+0004 22                RET     
+             ; FUNCTION _?SCC_A_MASTER_Watchdog_Refresh (END)
+
+             ; FUNCTION _?SCC_A_MASTER_Start_Slave (BEGIN)
+0000 1500        E     DEC     ?C_IBP
+0002 A800        E     MOV     R0,?C_IBP
+0004 A607              MOV     @R0,AR7
+0006 1500        E     DEC     ?C_IBP
+0008 1500        E     DEC     ?C_IBP
+000A 1500        E     DEC     ?C_IBP
+                                           ; SOURCE LINE # 651
+                                           ; SOURCE LINE # 653
+000C A800        E     MOV     R0,?C_IBP
+000E E4                CLR     A
+000F F6                MOV     @R0,A
+                                           ; SOURCE LINE # 659
+0010 90F717            MOV     DPTR,#0F717H
+0013 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 660
+0014 E500        E     MOV     A,?C_IBP
+0016 2403              ADD     A,#03H
+0018 F8                MOV     R0,A
+0019 E6                MOV     A,@R0
+001A A3                INC     DPTR
+001B F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 661
+001C 90F711            MOV     DPTR,#0F711H
+001F 74E7              MOV     A,#0E7H
+0021 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 664
+0022 7F05              MOV     R7,#05H
+0024 7E00              MOV     R6,#00H
+0026 120000      E     LCALL   _Hardware_Delay_T0
+                                           ; SOURCE LINE # 667
+0029 90F721            MOV     DPTR,#0F721H
+002C E0                MOVX    A,@DPTR
+002D 5403              ANL     A,#03H
+002F 6402              XRL     A,#02H
+0031 702E              JNZ     ?C0056
+                                           ; SOURCE LINE # 668
+                                           ; SOURCE LINE # 670
+0033 90F727            MOV     DPTR,#0F727H
+0036 E0                MOVX    A,@DPTR
+0037 A800        E     MOV     R0,?C_IBP
+0039 08                INC     R0
+003A 08                INC     R0
+003B F6                MOV     @R0,A
+                                           ; SOURCE LINE # 671
+003C A3                INC     DPTR
+003D E0                MOVX    A,@DPTR
+003E A800        E     MOV     R0,?C_IBP
+0040 08                INC     R0
+0041 F6                MOV     @R0,A
+                                           ; SOURCE LINE # 673
+0042 90F720            MOV     DPTR,#0F720H
+0045 74FD              MOV     A,#0FDH
+0047 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 674
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 41  
+
+0048 A3                INC     DPTR
+0049 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 676
+004A A800        E     MOV     R0,?C_IBP
+004C 08                INC     R0
+004D 08                INC     R0
+004E E6                MOV     A,@R0
+004F 7010              JNZ     ?C0056
+0051 E500        E     MOV     A,?C_IBP
+0053 2403              ADD     A,#03H
+0055 F9                MOV     R1,A
+0056 A800        E     MOV     R0,?C_IBP
+0058 08                INC     R0
+0059 E6                MOV     A,@R0
+005A 67                XRL     A,@R1
+005B 7004              JNZ     ?C0056
+                                           ; SOURCE LINE # 677
+                                           ; SOURCE LINE # 678
+005D A800        E     MOV     R0,?C_IBP
+005F 7601              MOV     @R0,#01H
+                                           ; SOURCE LINE # 679
+                                           ; SOURCE LINE # 680
+0061         ?C0056:
+                                           ; SOURCE LINE # 682
+0061 A800        E     MOV     R0,?C_IBP
+0063 E6                MOV     A,@R0
+0064 FF                MOV     R7,A
+                                           ; SOURCE LINE # 683
+0065         ?C0058:
+0065 E500        E     MOV     A,?C_IBP
+0067 2404              ADD     A,#04H
+0069 F500        E     MOV     ?C_IBP,A
+006B 22                RET     
+             ; FUNCTION _?SCC_A_MASTER_Start_Slave (END)
+
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 42  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+Ack_message_data_G . . . . . . . . . .  PUBLIC   DATA   ARRAY    0000H  4
+LED_pin. . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EBH  1
+T2I0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C8H  1
+CCH1 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C3H  1
+T2I1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C9H  1
+CCH2 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C5H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+CCH3 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C7H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+CCL1 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C2H  1
+P4 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E8H  1
+Slave_reset_attempts_G . . . . . . . .  STATIC   DATA   ARRAY    0004H  2
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+CCL2 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C4H  1
+P5 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F8H  1
+T2 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0097H  1
+BD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DFH  1
+CCL3 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C6H  1
+tLong. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_LONG   -----  4
+sTask. . . . . . . . . . . . . . . . .  TYPEDEF  DATA   STRUCT   -----  7
+  pTask. . . . . . . . . . . . . . . .  MEMBER   -----  PTR      0000H  2
+  Delay. . . . . . . . . . . . . . . .  MEMBER   -----  U_INT    0002H  2
+  Period . . . . . . . . . . . . . . .  MEMBER   -----  U_INT    0004H  2
+  RunMe. . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0006H  1
+T2R0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CBH  1
+T2R1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CCH  1
+BULB_BLOWN . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+tByte. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_CHAR   -----  1
+IEN0 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+EADC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+IEN1 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+_SCC_A_MASTER_Send_Tick_Message. . . .  STATIC   CODE   PROC     0000H  -----
+  SLAVE_INDEX. . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+  Slave_ID . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0006H  1
+SCH_tasks_G. . . . . . . . . . . . . .  EXTERN   DATA   ARRAY    -----  14
+sCAN_message . . . . . . . . . . . . .  * TAG *  -----  STRUCT   -----  16
+  MCR0 . . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0000H  1
+  MCR1 . . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0001H  1
+  UAR0 . . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0002H  1
+  UAR1 . . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0003H  1
+  LAR0 . . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0004H  1
+  LAR1 . . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0005H  1
+  MCFG . . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0006H  1
+  Data . . . . . . . . . . . . . . . .  MEMBER   -----  ARRAY    0007H  8
+  Customer . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   000FH  1
+IADC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C0H  1
+tWord. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_INT    -----  2
+I2FR . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CDH  1
+_?SCC_A_MASTER_Watchdog_Refresh. . . .  STATIC   CODE   PROC     0000H  -----
+I3FR . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CEH  1
+EXF2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C7H  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+T2CM . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CAH  1
+ADCON0 . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D8H  1
+Red_light. . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00E8H  1
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 43  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IEX2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C1H  1
+_?SCC_A_MASTER_Start_Slave . . . . . .  STATIC   CODE   PROC     0000H  -----
+  SLAVE_ID . . . . . . . . . . . . . .  AUTO     IDATA  U_CHAR   0003H  1
+  Slave_replied_correctly. . . . . . .  AUTO     IDATA  U_CHAR   0000H  1
+  Ack_ID . . . . . . . . . . . . . . .  AUTO     IDATA  U_CHAR   0001H  1
+  Ack_00 . . . . . . . . . . . . . . .  AUTO     IDATA  U_CHAR   0002H  1
+IEX3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C2H  1
+CCEN . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C1H  1
+IEX4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C3H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+SCC_A_MASTER_Start . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Num_active_slaves. . . . . . . . . .  AUTO     DATA   U_CHAR   0000H  1
+  i. . . . . . . . . . . . . . . . . .  AUTO     DATA   U_CHAR   0001H  1
+  Slave_replied_correctly. . . . . . .  AUTO     DATA   BIT      0000H  1
+  Slave_index. . . . . . . . . . . . .  AUTO     DATA   U_CHAR   0002H  1
+  Slave_ID . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+IEX5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C4H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+IEX6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C5H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+INT2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0094H  1
+INT3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+INT4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+Slave_index_G. . . . . . . . . . . . .  STATIC   DATA   U_CHAR   0006H  1
+INT5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0092H  1
+CRCH . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CBH  1
+INT6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0093H  1
+ADEX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DDH  1
+INT8 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EDH  1
+T2EX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0095H  1
+RED_AMBER. . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+CRCL . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CAH  1
+Network_error_pin. . . . . . . . . . .  ABSBIT   -----  BIT      00ECH  1
+SCH_Report_Status. . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+T2PS . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CFH  1
+ADST . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00E8H  1
+SCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00E9H  1
+Error_code_G . . . . . . . . . . . . .  EXTERN   DATA   U_CHAR   -----  1
+RXDC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EFH  1
+TXDC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EEH  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+SCC_A_MASTER_Watchdog_Init . . . . . .  STATIC   CODE   PROC     0000H  -----
+CAN_error_pin0 . . . . . . . . . . . .  ABSBIT   -----  BIT      00FBH  1
+SCC_A_MASTER_Init_T2_CAN . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  i. . . . . . . . . . . . . . . . . .  AUTO     DATA   U_CHAR   0000H  1
+  Message. . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+  Slave_index. . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+CAN_error_pin1 . . . . . . . . . . . .  ABSBIT   -----  BIT      00FCH  1
+CAN_error_pin2 . . . . . . . . . . . .  ABSBIT   -----  BIT      00FDH  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+_SCC_A_MASTER_Process_Ack. . . . . . .  STATIC   CODE   PROC     0000H  -----
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 44  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+  SLAVE_INDEX. . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+  Ack_ID . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0006H  1
+  Slave_ID . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+SCC_A_MASTER_Shut_Down_the_Netwo . . .  STATIC   CODE   PROC     0000H  -----
+First_ack_G. . . . . . . . . . . . . .  STATIC   DATA   BIT      0000H  1
+SWDT . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BEH  1
+eLight_State . . . . . . . . . . . . .  TYPEDEF  -----  U_CHAR   -----  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+_Hardware_Delay_T0 . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+ET2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ADH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+TF2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C6H  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+TH2. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CDH  1
+Current_Slave_IDs_G. . . . . . . . . .  STATIC   DATA   ARRAY    0007H  1
+EX2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+EX3. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+EX4. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+SCC_A_MASTER_Enter_Safe_State. . . . .  STATIC   CODE   PROC     0000H  -----
+ADM. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DBH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+EX5. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+EAL. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+TL2. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CCH  1
+EX6. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BDH  1
+CLKOUT . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0096H  1
+WDTREL . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0086H  1
+MX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D8H  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+MX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D9H  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+MX2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DAH  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+SCC_A_MASTER_Update_T2 . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Index. . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+  Previous_slave_index . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+  Slave_replied_correctly. . . . . . .  AUTO     DATA   BIT      0000H  1
+TRAFFIC_LIGHTS_Display_Safe_Outp . . .  EXTERN   CODE   PROC     -----  -----
+CLK. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DEH  1
+RED. . . . . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+SYSCON . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B1H  1
+EXEN2. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BFH  1
+MAIN_SLAVE_IDs . . . . . . . . . . . .  STATIC   DATA   ARRAY    0008H  1
+Amber_light. . . . . . . . . . . . . .  ABSBIT   -----  BIT      00E9H  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+C51 COMPILER V6.10  SCC_M515                                                               04/19/2001 14:10:31 PAGE 45  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+T2CON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C8H  1
+AMBER. . . . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+_SCH_Delete_Task . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+SRI. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EAH  1
+BSY. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DCH  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+Green_light. . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EAH  1
+WDT. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AEH  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+GREEN. . . . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+SLS. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ECH  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+STO. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EBH  1
+F1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D1H  1
+BACKUP_SLAVE_IDs . . . . . . . . . . .  STATIC   DATA   ARRAY    0009H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+Tick_message_data_G. . . . . . . . . .  PUBLIC   DATA   ARRAY    000AH  4
+IRCON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    992    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     14       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

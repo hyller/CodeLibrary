@@ -1,0 +1,93 @@
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 11:29:24 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6           
+   7             Demonstration program for:
+   8          
+   9             16-bit auto-reload scheduler (using T2) for Infineon c515c &c.
+  10          
+  11             Assumes 10 MHz oscillator (-> 06 ms tick interval).
+  12          
+  13             *** All timing is in TICKS (not milliseconds) ***
+  14          
+  15          
+  16             Required linker options (see Chapter 14 for details):
+  17          
+  18             OVERLAY (main ~ (LED_Flash_Update), 
+  19             SCH_dispatch_tasks ! (LED_Flash_Update))
+  20          
+  21          
+  22             COPYRIGHT
+  23             ---------
+  24          
+  25             This code is from the book:
+  26          
+  27             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  28             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  29          
+  30             This code is copyright (c) 2001 by Michael J. Pont.
+  31           
+  32             See book for copyright details and other information.
+  33          
+  34          -*------------------------------------------------------------------*/
+  35          
+  36          #include "Main.h"
+  37          
+  38          #include "2_06_10i.H"
+  39          #include "LED_Flas.h"
+  40          
+  41          /* ............................................................... */
+  42          /* ............................................................... */
+  43          
+  44          void main(void)
+  45             {
+  46   1         // Set up the scheduler
+  47   1         SCH_Init_T2();
+  48   1      
+  49   1         // Prepare for the 'Flash_LED' task
+  50   1         LED_Flash_Init();
+  51   1      
+  52   1         // Add the 'Flash LED' task (on for ~1000 ms, off for ~1000 ms)
+  53   1         // - timings are in ticks (6 ms tick interval)
+  54   1         // (Max interval / delay is 65535 ticks)
+  55   1         SCH_Add_Task(LED_Flash_Update, 0, 167);
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 11:29:24 PAGE 2   
+
+  56   1      
+  57   1         // Start the scheduler
+  58   1         SCH_Start();
+  59   1      
+  60   1         while(1)
+  61   1            {
+  62   2            SCH_Dispatch_Tasks();
+  63   2            }
+  64   1         }
+  65          
+  66          /*------------------------------------------------------------------*-
+  67            ---- END OF FILE -------------------------------------------------
+  68          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     29    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

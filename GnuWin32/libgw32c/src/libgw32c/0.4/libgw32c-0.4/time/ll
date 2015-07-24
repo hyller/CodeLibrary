@@ -1,0 +1,7 @@
+tst-ftime_l.c
+tst-getdate.c
+tst-mktime.c
+tst-posixtz.c
+tst-strftime.c
+tst-strptime.c
+tst_wcsftime.c

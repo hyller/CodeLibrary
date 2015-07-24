@@ -1,0 +1,40 @@
+mempcpy.o mempcpy.o: mempcpy.c ../include/libc-symbols.h ../config.h \
+  h:/mingw/3.3.1/include/string.h h:/mingw/3.3.1/include/_mingw.h \
+  h:/mingw/3.3.1/include/stddef.h \
+  h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stddef.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stddefx.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stringx.h \
+  h:/mingw/3.3.1/mingw32/include/features.h \
+  h:/mingw/3.3.1/mingw32/include/sys/cdefs.h ../include/gnu/stubs.h \
+  ../include/memcopy.h h:/mingw/3.3.1/mingw32/include/endian.h \
+  h:/mingw/3.3.1/mingw32/include/bits/endian.h ../include/pagecopy.h
+
+../include/libc-symbols.h:
+
+../config.h:
+
+h:/mingw/3.3.1/include/string.h:
+
+h:/mingw/3.3.1/include/_mingw.h:
+
+h:/mingw/3.3.1/include/stddef.h:
+
+h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stddef.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stddefx.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stringx.h:
+
+h:/mingw/3.3.1/mingw32/include/features.h:
+
+h:/mingw/3.3.1/mingw32/include/sys/cdefs.h:
+
+../include/gnu/stubs.h:
+
+../include/memcopy.h:
+
+h:/mingw/3.3.1/mingw32/include/endian.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/endian.h:
+
+../include/pagecopy.h:

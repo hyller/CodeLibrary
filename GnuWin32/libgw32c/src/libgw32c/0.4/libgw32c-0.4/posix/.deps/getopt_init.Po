@@ -1,0 +1,6 @@
+getopt_init.o getopt_init.o: getopt_init.c ../include/libc-symbols.h \
+  ../config.h
+
+../include/libc-symbols.h:
+
+../config.h:

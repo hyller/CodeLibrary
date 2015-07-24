@@ -1,0 +1,9 @@
+"2_01_12G.obj",
+"ADC_M150.obj",
+"MAIN.obj",
+"SCH51.obj",
+"BARGRAPH.obj" 
+TO "ADC_m150" 
+RAMSIZE(256) 
+CODE( 0X0000-0XFFFF )
+XDATA( 0X0000-0X02FF )

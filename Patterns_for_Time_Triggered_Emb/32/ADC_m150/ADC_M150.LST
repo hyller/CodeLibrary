@@ -1,0 +1,135 @@
+C51 COMPILER V6.10  ADC_M150                                                               04/18/2001 17:58:16 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE ADC_M150
+OBJECT MODULE PLACED IN .\ADC_M150.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\ADC_M150.C BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             ADC_m150.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple, single-channel, 8-bit A-D (input) library for 8051 family
+   8             - uses Max150 8-bit parallel ADC.
+   9          
+  10             See Chapter 32 for details.
+  11          
+  12          
+  13             COPYRIGHT
+  14             ---------
+  15          
+  16             This code is from the book:
+  17          
+  18             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  19             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  20          
+  21             This code is copyright (c) 2001 by Michael J. Pont.
+  22           
+  23             See book for copyright details and other information.
+  24          
+  25          -*------------------------------------------------------------------*/
+  26          
+  27          #include "Main.H"
+  28          #include "Port.h"
+  29          
+  30          #include "Bargraph.h"
+  31          
+  32          // ------ Public variable definitions ------------------------------
+  33          
+  34          // Stores the latest ADC reading
+  35          tByte Analog_G;
+  36          
+  37          // ------ Public variable declarations -----------------------------
+  38          
+  39          extern tByte Error_code_G;
+  40          
+  41          
+  42          /*------------------------------------------------------------------*-
+  43          
+  44            ADC_Max150_Init()
+  45          
+  46            Set up the Max150 ADC.  Using WR-RD mode (see data sheet)
+  47          
+  48          -*------------------------------------------------------------------*/
+  49          void ADC_Max150_Init(void)
+  50             {
+  51   1         // Set 'NOT read' pin high
+  52   1         ADC_Max150_NOT_Read_pin = 1;
+  53   1      
+  54   1         // Set 'NOT write' pin high
+  55   1         ADC_Max150_NOT_Write_pin = 1;
+C51 COMPILER V6.10  ADC_M150                                                               04/18/2001 17:58:16 PAGE 2   
+
+  56   1      
+  57   1         // Prepare 'NOT Int' pin for reading
+  58   1         ADC_Max150_NOT_Int_pin   = 1;
+  59   1         }
+  60          
+  61          /*------------------------------------------------------------------*-
+  62          
+  63            ADC_Max150_Get_Sample()
+  64          
+  65            Get a single data sample (8 bits) from the ADC.
+  66          
+  67          -*------------------------------------------------------------------*/
+  68          void ADC_Max150_Get_Sample(void)
+  69             {
+  70   1         tWord Time_out_loop = 1;
+  71   1      
+  72   1         // Start conversion by pulling 'NOT Write' low
+  73   1         ADC_Max150_NOT_Write_pin = 0;
+  74   1      
+  75   1         // Take sample from A-D (with simple loop time-out)
+  76   1         while ((ADC_Max150_NOT_Int_pin == 1) && (Time_out_loop != 0));
+  77   1            {
+  78   2            Time_out_loop++;  // Disable for use in dScope...
+  79   2            }
+  80   1      
+  81   1         if (!Time_out_loop)
+  82   1            {
+  83   2            // Timed out
+  84   2            Error_code_G =  
+  85   2            Analog_G = 0;
+  86   2            }
+  87   1         else 
+  88   1            {     
+  89   2            // Set port to 'read' mode
+  90   2            ADC_Max150_port = 0xFF;  
+  91   2      
+  92   2            // Set 'NOT read' pin low
+  93   2            ADC_Max150_NOT_Read_pin = 0;
+  94   2      
+  95   2            // ADC result is now available
+  96   2            Analog_G = ADC_Max150_port; 
+  97   2      
+  98   2            // Set 'NOT read' pin high
+  99   2            ADC_Max150_NOT_Read_pin = 1;
+ 100   2            }
+ 101   1      
+ 102   1         // Pull 'NOT Write' high
+ 103   1         ADC_Max150_NOT_Write_pin = 1;
+ 104   1         } 
+ 105          
+ 106          /*------------------------------------------------------------------*-
+ 107            ---- END OF FILE -------------------------------------------------
+ 108          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     48    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+C51 COMPILER V6.10  ADC_M150                                                               04/18/2001 17:58:16 PAGE 3   
+
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

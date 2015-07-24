@@ -1,0 +1,126 @@
+C51 COMPILER V6.10  CLOC_MX4                                                               04/09/2001 15:01:25 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE CLOC_MX4
+OBJECT MODULE PLACED IN .\Cloc_Mx4.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\Cloc_Mx4.c BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Cloc_Mx4.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple library function for keeping track of elapsed time 
+   8            
+   9             This version for (Mx) LED display
+  10          
+  11          
+  12             COPYRIGHT
+  13             ---------
+  14          
+  15             This code is from the book:
+  16          
+  17             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  18             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  19          
+  20             This code is copyright (c) 2001 by Michael J. Pont.
+  21           
+  22             See book for copyright details and other information.
+  23          
+  24          -*------------------------------------------------------------------*/
+  25          
+  26          #include "Main.h"
+  27          #include "Port.h"
+  28          
+  29          #include "Cloc_Mx4.h"
+  30          
+  31          // ------ Public variable declarations -----------------------------
+  32          
+  33          extern tByte LED_Mx4_Data_G[4];
+  34          extern tByte code LED_Table_G[20];
+  35          
+  36          // ------ Private variable definitions------------------------------
+  37          
+  38          // Time variables
+  39          static tByte Hou_G, Min_G, Sec_G; 
+  40          
+  41          /*------------------------------------------------------------------*-
+  42          
+  43            CLOCK_LED_Time_Update()
+  44          
+  45            Updates the global time variables.
+  46          
+  47            *** Must be scheduled once per second ***
+  48          
+  49          -*------------------------------------------------------------------*/
+  50          void CLOCK_LED_Time_Update(void)     
+  51             {
+  52   1         bit Min_update = 0;
+  53   1         bit Hou_update = 0;
+  54   1      
+  55   1         if (++Sec_G == 60)  
+C51 COMPILER V6.10  CLOC_MX4                                                               04/09/2001 15:01:25 PAGE 2   
+
+  56   1            { 
+  57   2            Sec_G = 0;
+  58   2            Min_update = 1;
+  59   2            
+  60   2            if (++Min_G == 60)  
+  61   2               {
+  62   3               Min_G = 0;
+  63   3               Hou_update = 1;
+  64   3                 
+  65   3               if (++Hou_G == 24)  
+  66   3                  { 
+  67   4                  Hou_G = 0;
+  68   4                  }
+  69   3               }
+  70   2            }
+  71   1      
+  72   1         if (Min_update)
+  73   1            {
+  74   2            // Need to update the minutes data
+  75   2            // (both digits)
+  76   2            LED_Mx4_Data_G[1] = LED_Table_G[Min_G / 10];
+  77   2            LED_Mx4_Data_G[0] = LED_Table_G[Min_G % 10];
+  78   2            }
+  79   1      
+  80   1         // We don't display seconds in this version.
+  81   1         // We simply use the seconds data to turn on and off the decimal
+  82   1         // point between hours and minutes 
+  83   1         if ((Sec_G % 2) == 0)
+  84   1            {
+  85   2            LED_Mx4_Data_G[2] = LED_Table_G[Hou_G % 10];
+  86   2            }
+  87   1         else
+  88   1            {
+  89   2            LED_Mx4_Data_G[2] = LED_Table_G[(Hou_G % 10) + 10];
+  90   2            }
+  91   1         
+  92   1         if (Hou_update)
+  93   1            {
+  94   2            // Need to update the 'tens of hours' data
+  95   2            LED_Mx4_Data_G[3] = LED_Table_G[Hou_G / 10];
+  96   2            }
+  97   1         }
+  98          
+  99          /*------------------------------------------------------------------*-
+ 100            ---- END OF FILE -------------------------------------------------
+ 101          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    115    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

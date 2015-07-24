@@ -1,0 +1,119 @@
+ : Success
+ : Operation not permitted
+ : No such file or directory
+ : No such process
+ : Interrupted system call
+ : Input/output error
+ : No such device or address
+ : Argument list too long
+ : Exec format error
+ : Bad file descriptor
+ : No child processes
+ : Resource temporarily unavailable
+ : Cannot allocate memory
+ : Permission denied
+ : Bad address
+ : Unknown error 15
+ : Device or resource busy
+ : File exists
+ : Invalid cross-device link
+ : No such device
+ : Not a directory
+ : Is a directory
+ : Invalid argument
+ : Too many open files in system
+ : Too many open files
+ : Inappropriate ioctl for device
+ : Unknown error 26
+ : File too large
+ : No space left on device
+ : Illegal seek
+ : Read-only file system
+ : Too many links
+ : Broken pipe
+ : Numerical argument out of domain
+ : Numerical result out of range
+ : Operation now in progress
+ : Resource deadlock avoided
+ : Operation already in progress
+ : File name too long
+ : No locks available
+ : Function not implemented
+ : Directory not empty
+ : Invalid or incomplete multibyte or wide character
+ : Protocol not supported
+ : Socket type not supported
+ : Operation not supported
+ : Protocol family not supported
+ : Address family not supported by protocol
+ : Address already in use
+ : Cannot assign requested address
+ : Network is down
+ : Network is unreachable
+ : Network dropped connection on reset
+ : Software caused connection abort
+ : Connection reset by peer
+ : No buffer space available
+ : Transport endpoint is already connected
+ : Transport endpoint is not connected
+ : Cannot send after transport endpoint shutdown
+ : Too many references: cannot splice
+ : Connection timed out
+ : Connection refused
+ : Too many levels of symbolic links
+ : Socket operation on non-socket
+ : Host is down
+ : No route to host
+ : Unknown error 66
+ : Too many processes
+ : Too many users
+ : Disk quota exceeded
+ : Stale NFS file handle
+ : Object is remote
+ : RPC struct is bad
+ : RPC version wrong
+ : RPC program not available
+ : RPC program version wrong
+ : RPC bad procedure for program
+ : Message too long
+ : Protocol wrong type for socket
+ : Inappropriate file type or format
+ : Authentication error
+ : Need authenticator
+ : Unknown error 82
+ : Unknown error 83
+ : Unknown error 84
+ : Unknown error 85
+ : Unknown error 86
+ : Unknown error 87
+ : Unknown error 88
+ : Unknown error 89
+ : Unknown error 90
+ : Unknown error 91
+ : Unknown error 92
+ : Unknown error 93
+ : Unknown error 94
+ : Unknown error 95
+ : Unknown error 96
+ : Unknown error 97
+ : Unknown error 98
+ : Unknown error 99
+ : Inappropriate operation for background process
+ : Translator died
+ : ?
+ : You really blew it this time
+ : Computer bought the farm
+ : Gratuitous error
+ : Protocol not available
+ : Bad message
+ : Identifier removed
+ : Multihop attempted
+ : No data available
+ : Link has been severed
+ : No message of desired type
+ : Out of streams resources
+ : Device not a stream
+ : Value too large for defined data type
+ : Protocol error
+ : Timer expired
+ : Not supported

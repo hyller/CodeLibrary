@@ -1,0 +1,7 @@
+"SCH51.obj",
+"0_01_12G.obj",
+"LED_FLAS.obj",
+"MAIN.obj" 
+TO "0_01_12g" 
+RAMSIZE(256) 
+OVERLAY (main ~ (LED_Flash_Update), sch_dispatch_tasks ! (LED_Flash_Update)) 

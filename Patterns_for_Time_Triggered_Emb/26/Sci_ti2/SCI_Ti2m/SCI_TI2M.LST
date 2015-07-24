@@ -1,0 +1,315 @@
+C51 COMPILER V6.10  SCI_TI2M                                                               04/18/2001 16:52:20 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE SCI_TI2M
+OBJECT MODULE PLACED IN .\SCI_TI2M.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\SCI_TI2M.C BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             SCI_Ti2m.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             This is an implementation of SCI SCHEDULER (TICK) for 8051/52.
+   8          
+   9             --- See Chapter 26 ---
+  10          
+  11             *** MASTER NODE : TICK-ONLY (DUPLEX) ***
+  12             *** CHECKS FOR SLAVE ACKNOWLEDEMENTS ***
+  13          
+  14             *** Uses T2 for timing, 16-bit auto reload ***
+  15             *** 12 MHz oscillator -> 1 ms (precise) tick interval ***
+  16          
+  17             --- Assumes '1232' watchdog on Slave ---
+  18          
+  19          
+  20             COPYRIGHT
+  21             ---------
+  22          
+  23             This code is from the book:
+  24          
+  25             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  26             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  27          
+  28             This code is copyright (c) 2001 by Michael J. Pont.
+  29           
+  30             See book for copyright details and other information.
+  31          
+  32          -*------------------------------------------------------------------*/
+  33          
+  34          #include "Main.h"
+  35          #include "Port.h"
+  36          
+  37          #include "SCI_Ti2m.H"
+  38          #include "Delay_T0.h"
+  39          #include "TLight_A.h"
+  40          
+  41          // ------ Public variable definitions ------------------------------
+  42          
+  43          // Used to detect slave activity
+  44          bit First_call_G;
+  45          bit Watchdog_input_previous_G;
+  46          
+  47          // ------ Public variable declarations -----------------------------
+  48          
+  49          // The array of tasks (see Sch51.c)
+  50          extern sTask SCH_tasks_G[SCH_MAX_TASKS];
+  51          
+  52          // The error code variable (see Sch51.c)
+  53          extern tByte Error_code_G;
+  54          
+  55          // Used to reset system in event of slave error (see Main.C)
+C51 COMPILER V6.10  SCI_TI2M                                                               04/18/2001 16:52:20 PAGE 2   
+
+  56          extern bit System_reset_G;
+  57          
+  58          // ------ Private function prototypes ------------------------------
+  59          
+  60          static void SCI_TICK2_MASTER_Send_Tick_Message(void);
+  61          static bit  SCI_TICK2_MASTER_Process_Ack(void);
+  62          
+  63          /*------------------------------------------------------------------*-
+  64          
+  65            SCI_TICK2_MASTER_Init_T2()
+  66          
+  67            Scheduler initialisation function.  Prepares scheduler data 
+  68            structures and sets up timer interrupts at required rate.
+  69            You must call this function before using the scheduler.  
+  70          
+  71          -*------------------------------------------------------------------*/
+  72          void SCI_TICK2_MASTER_Init_T2(void) 
+  73             {
+  74   1         tByte i;
+  75   1      
+  76   1         // No interrupts (yet)
+  77   1         EA = 0;
+  78   1      
+  79   1         // ------ Set up the scheduler ----------------------------------
+  80   1         // Sort out the tasks
+  81   1         for (i = 0; i < SCH_MAX_TASKS; i++) 
+  82   1            {
+  83   2            SCH_Delete_Task(i);
+  84   2            }
+  85   1      
+  86   1         // Reset the global error variable
+  87   1         // - SCH_Delete_Task() will generate an error code, 
+  88   1         //   (because the task array is empty)
+  89   1         Error_code_G = 0;
+  90   1      
+  91   1         // ------ Set up Timer 2 (begin) --------------------------------
+  92   1         // Now set up Timer 2
+  93   1         // 16-bit timer function with automatic reload
+  94   1      
+  95   1         // Crystal is assumed to be 12 MHz
+  96   1         // The Timer 2 resolution is 0.000001 seconds (1 µs)
+  97   1         // The required Timer 2 overflow is 0.001 seconds (1 ms)
+  98   1         // - this takes 1000 timer ticks
+  99   1         // Reload value is 65536 - 1000 = 64536 (dec) = 0xFC18
+ 100   1      
+ 101   1         T2CON = 0x04;   // load Timer 2 control register
+ 102   1         T2MOD = 0x00;   // load Timer 2 mode register
+ 103   1      
+ 104   1         TH2    = 0xFC;  // load timer 2 high byte
+ 105   1         RCAP2H = 0xFC;  // load timer 2 reload capture reg, high byte
+ 106   1         TL2    = 0x18;  // load timer 2 low byte
+ 107   1         RCAP2L = 0x18;  // load timer 2 reload capture reg, low byte
+ 108   1         
+ 109   1         ET2   = 1;  // Timer 2 interrupt is enabled
+ 110   1      
+ 111   1         TR2   = 1;  // Start Timer 2
+ 112   1         // ------ Set up Timer 2 (end) ----------------------------------
+ 113   1         }
+ 114          
+ 115          /*------------------------------------------------------------------*-
+ 116          
+ 117            SCI_TICK2_MASTER_Start()
+C51 COMPILER V6.10  SCI_TI2M                                                               04/18/2001 16:52:20 PAGE 3   
+
+ 118          
+ 119            Starts the scheduler, by enabling interrupts.
+ 120          
+ 121            NOTE: Usually called after all regular tasks are added,
+ 122            to keep the tasks synchronised.
+ 123          
+ 124            NOTE: ONLY THE SCHEDULER INTERRUPT SHOULD BE ENABLED!!! 
+ 125           
+ 126          -*------------------------------------------------------------------*/
+ 127          void SCI_TICK2_MASTER_Start(void) 
+ 128             {
+ 129   1         // Try to place system in 'safe' state at start or after errors
+ 130   1         SCI_TICK2_MASTER_Enter_Safe_State();
+ 131   1      
+ 132   1         // Delay here to cause the slave to time out and reset
+ 133   1         // Adjust this delay to match the timeout periods on the slaves
+ 134   1         Hardware_Delay_T0(500);
+ 135   1      
+ 136   1         // Now send first tick to start the slave
+ 137   1         // (starts on falling edge)
+ 138   1         Interrupt_output_pin = 1;
+ 139   1         Hardware_Delay_T0(5);
+ 140   1         Interrupt_output_pin = 0;
+ 141   1         Hardware_Delay_T0(5);
+ 142   1      
+ 143   1         Interrupt_output_pin = 1; // Ready for first tick
+ 144   1      
+ 145   1         // Start the scheduler
+ 146   1         EA = 1;
+ 147   1         }
+ 148          
+ 149          /*------------------------------------------------------------------*-
+ 150          
+ 151            SCI_TICK2_MASTER_Update_T2
+ 152          
+ 153            This is the scheduler ISR.  It is called at a rate determined by 
+ 154            the timer settings in SCI_TICK2_MASTER_Init_T2().  This version is 
+ 155            triggered by Timer 2 interrupts: timer is automatically reloaded.
+ 156          
+ 157          -*------------------------------------------------------------------*/
+ 158          void SCI_TICK2_MASTER_Update_T2(void) interrupt INTERRUPT_Timer_2_Overflow  
+ 159             {
+ 160   1         tByte Index;
+ 161   1      
+ 162   1         TF2 = 0; // Must manually clear this. 
+ 163   1      
+ 164   1         // Get the ack message from the slave
+ 165   1         if (SCI_TICK2_MASTER_Process_Ack() == RETURN_ERROR)
+ 166   1            {
+ 167   2            // Did not receive ack!
+ 168   2            Error_code_G = ERROR_SCH_LOST_SLAVE;
+ 169   2      
+ 170   2            // Enter safe state and remain here until reset
+ 171   2            SCI_TICK2_MASTER_Enter_Safe_State();
+ 172   2            while(1); 
+ 173   2            }
+ 174   1       
+ 175   1         // Send 'tick' message to the slave
+ 176   1         SCI_TICK2_MASTER_Send_Tick_Message(); 
+ 177   1      
+ 178   1         // NOTE: calculations are in *TICKS* (not milliseconds)
+ 179   1         for (Index = 0; Index < SCH_MAX_TASKS; Index++)
+C51 COMPILER V6.10  SCI_TI2M                                                               04/18/2001 16:52:20 PAGE 4   
+
+ 180   1            {
+ 181   2            // Check if there is a task at this location
+ 182   2            if (SCH_tasks_G[Index].pTask)
+ 183   2               {
+ 184   3               if (SCH_tasks_G[Index].Delay == 0)
+ 185   3                  {
+ 186   4                  // The task is due to run
+ 187   4                  SCH_tasks_G[Index].RunMe += 1;  // Increment the run flag
+ 188   4      
+ 189   4                  if (SCH_tasks_G[Index].Period)
+ 190   4                     {
+ 191   5                     // Schedule periodic tasks to run again
+ 192   5                     SCH_tasks_G[Index].Delay = SCH_tasks_G[Index].Period;
+ 193   5                     }
+ 194   4                  }
+ 195   3               else
+ 196   3                  {
+ 197   4                  // Not yet ready to run: just decrement the delay 
+ 198   4                  SCH_tasks_G[Index].Delay -= 1;
+ 199   4                  }
+ 200   3               }         
+ 201   2            }
+ 202   1      
+ 203   1         // Prepare for next tick
+ 204   1         Interrupt_output_pin = 1;
+ 205   1         }   
+ 206          
+ 207          /*------------------------------------------------------------------*-
+ 208          
+ 209            SCI_TICK2_MASTER_Send_Tick_Message()
+ 210          
+ 211            This function sends a tick message.
+ 212          
+ 213            The receipt of this message will cause an interrupt to be generated
+ 214            in the slave(s): this will, in turn, invoke the scheduler 'update' 
+ 215            function in the slave(s).
+ 216          
+ 217          -*------------------------------------------------------------------*/
+ 218          void SCI_TICK2_MASTER_Send_Tick_Message(void) 
+ 219             {
+ 220   1         // Send tick (falling edge) to the slave
+ 221   1         Interrupt_output_pin = 0;
+ 222   1         }
+ 223          
+ 224          
+ 225          /*------------------------------------------------------------------*-
+ 226          
+ 227            SCI_TICK2_MASTER_Process_Ack()
+ 228          
+ 229            Checks that the slave is operating.
+ 230          
+ 231          -*------------------------------------------------------------------*/
+ 232          
+ 233          bit SCI_TICK2_MASTER_Process_Ack(void) 
+ 234             {
+ 235   1         if (First_call_G)
+ 236   1            {
+ 237   2            // This is the first time this function has been called
+ 238   2            First_call_G = 0;
+ 239   2      
+ 240   2            // Prepare for subsequent checking of the watchdog pin
+ 241   2            Watchdog_input_previous_G = Slave_watchdog_pin;
+C51 COMPILER V6.10  SCI_TI2M                                                               04/18/2001 16:52:20 PAGE 5   
+
+ 242   2            }
+ 243   1         else
+ 244   1            {
+ 245   2            // Watchdog pin should change state every time
+ 246   2            // - if the slave is running correctly
+ 247   2            if (Watchdog_input_previous_G == Slave_watchdog_pin)
+ 248   2               {
+ 249   3               // Error!
+ 250   3               return RETURN_ERROR;
+ 251   3               }
+ 252   2      
+ 253   2            // Slave is OK
+ 254   2            Watchdog_input_previous_G = Slave_watchdog_pin;
+ 255   2            }
+ 256   1      
+ 257   1         return RETURN_NORMAL;
+ 258   1         }
+ 259          
+ 260          /*------------------------------------------------------------------*-
+ 261          
+ 262            SCI_TICK2_MASTER_Enter_Safe_State()
+ 263          
+ 264            This is the state entered by the system when:
+ 265            (1) The node is powered up or reset
+ 266            (2) The slave node fails
+ 267            (3) The network has an error
+ 268            (4) Ack messages are delayed for any other reason
+ 269          
+ 270            Try to ensure that the system is in a 'safe' state in these 
+ 271            circumstances.
+ 272          
+ 273          -*------------------------------------------------------------------*/
+ 274          void SCI_TICK2_MASTER_Enter_Safe_State(void) reentrant
+ 275             {
+ 276   1         // USER DEFINED - Edit as required
+ 277   1      
+ 278   1         // Here we display a safe output
+ 279   1         TRAFFIC_LIGHTS_Display_Safe_Output();
+ 280   1         }  
+ 281          
+ 282          /*------------------------------------------------------------------*-
+ 283            ---- END OF FILE -------------------------------------------------
+ 284          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    277    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

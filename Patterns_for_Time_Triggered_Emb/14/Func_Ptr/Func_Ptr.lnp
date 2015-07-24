@@ -1,0 +1,4 @@
+"PRINTF51.obj",
+"Main.obj" 
+TO "Func_Ptr" 
+RAMSIZE(256) 

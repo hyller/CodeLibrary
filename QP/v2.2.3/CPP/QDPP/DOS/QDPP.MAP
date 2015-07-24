@@ -1,0 +1,473 @@
+Stack Allocation = 5120 bytes
+
+ Start  Stop   Length Name                   Class
+ 00000H 0025FH 00260H MAIN_TEXT              CODE
+ 00260H 006D5H 00476H QDPP_TEXT              CODE
+ 006D6H 01E8AH 017B5H _TEXT                  CODE
+ 01E90H 01E91H 00002H EMULATOR_TEXT          CODE
+ 01E92H 02037H 001A6H DOS_TEXT               CODE
+ 02038H 0208BH 00054H QACTIVE_TEXT           CODE
+ 0208CH 02195H 0010AH QEPOOL_TEXT            CODE
+ 02196H 02433H 0029EH QEQUEUE_TEXT           CODE
+ 02434H 02AA7H 00674H QF_TEXT                CODE
+ 02AA8H 0320BH 00764H QHSM_TEXT              CODE
+ 0320CH 03325H 0011AH QTIMER_TEXT            CODE
+ 03330H 03407H 000D8H COMDAT_SEG1            CODE
+ 03408H 03408H 00000H C_ETEXT                ENDCODE
+ 03410H 0344DH 0003EH MAIN13_DATA            FAR_DATA
+ 03450H 034B5H 00066H QDPP5_DATA             FAR_DATA
+ 034C0H 034C0H 00000H EMULATOR_DATA          FAR_DATA
+ 034C0H 03501H 00042H NULL                   BEGDATA
+ 03502H 03B2CH 0062BH _DATA                  DATA
+ 03B2EH 03B2EH 00000H XIFCB                  DATA
+ 03B2EH 03B31H 00004H XIFU                   DATA
+ 03B32H 03B32H 00000H XIFL                   DATA
+ 03B32H 03B32H 00000H XIFM                   DATA
+ 03B32H 03B32H 00000H XIFCE                  DATA
+ 03B32H 03B33H 00002H XIQC                   DATA
+ 03B34H 03B3FH 0000CH DBDATA                 DATA
+ 03B40H 03B4DH 0000EH CDATA                  DATA
+ 03B4EH 03B4EH 00000H XIFB                   DATA
+ 03B4EH 03B4EH 00000H XIF                    DATA
+ 03B4EH 03B4EH 00000H XIFE                   DATA
+ 03B4EH 03B4EH 00000H XIB                    DATA
+ 03B4EH 03B4EH 00000H XI                     DATA
+ 03B4EH 03B4EH 00000H XIE                    DATA
+ 03B4EH 03B4EH 00000H XPB                    DATA
+ 03B4EH 03B51H 00004H XP                     DATA
+ 03B52H 03B52H 00000H XPE                    DATA
+ 03B52H 03B52H 00000H XCB                    DATA
+ 03B52H 03B52H 00000H XC                     DATA
+ 03B52H 03B52H 00000H XCE                    DATA
+ 03B52H 03B52H 00000H XCFB                   DATA
+ 03B52H 03B52H 00000H XCFCRT                 DATA
+ 03B52H 03B52H 00000H XCF                    DATA
+ 03B52H 03B52H 00000H XCFE                   DATA
+ 03B52H 03B55H 00004H CONST                  CONST
+ 03B56H 03B5DH 00008H HDR                    MSG
+ 03B5EH 03C33H 000D6H MSG                    MSG
+ 03C34H 03C35H 00002H PAD                    MSG
+ 03C36H 03C36H 00001H EPAD                   MSG
+ 03C38H 03EF9H 002C2H _BSS                   BSS
+ 03EFAH 03EFAH 00000H XOB                    BSS
+ 03EFAH 03F7DH 00084H XO                     BSS
+ 03F7EH 03F7EH 00000H XOE                    BSS
+ 03F7EH 03F7EH 00000H XOFB                   BSS
+ 03F7EH 03F7EH 00000H XOF                    BSS
+ 03F7EH 03F7EH 00000H XOFE                   BSS
+ 03F80H 0537FH 01400H STACK                  STACK
+
+ Origin   Group
+ 034C:0   DGROUP
+
+  Address         Publics by Name
+
+ 0203:0008       ??0QActive@@JEC@P9QHsm@@CXPFUQEvent@@@Z@Z
+ 02AA:000E       ??0QHsm@@JEC@P90@CXPFUQEvent@@@Z@Z
+ 0333:0000       ??1Philosopher@@VEC@XZ
+ 0203:003A       ??1QActive@@NEC@XZ
+ 02AA:0044       ??1QHsm@@NEC@XZ
+ 006D:139A       ??3@ZAXPEX@Z
+ 0333:006E       ??_7Philosopher@@6F@
+ 0333:00A4       ??_7QActive@@6F@
+ 0333:00D4       ??_7QHsm@@6F@
+ 0333:006A       ??_7Table@@6F@
+ 0333:0012       ??_GPhilosopher@@VECPEXI@Z
+ 0333:0078       ??_GQActive@@NECPEXI@Z
+ 0333:00A8       ??_GQHsm@@NECPEXI@Z
+ 0333:003E       ??_GTable@@VECPEXI@Z
+ 006D:15DC       ??_I@ZCXPEXIHP7CX0@Z@Z
+ 0243:026C       ?add@QF@@DAXPEVQActive@@@Z
+ 0243:020E       ?annihilate@QF@@DAXPEUQEvent@@@Z
+ 0320:000C       ?arm@QTimer@@BECXPEVQActive@@GI@Z
+ 01E9:000C       ?background@QF@@TAXXZ
+ 0243:0022       ?cleanup@QF@@TAXXZ
+ 0243:017E       ?create@QF@@TAPEUQEvent@@IG@Z
+ 0320:00EA       ?disarm@QTimer@@RECXXZ
+ 02AA:02DA       ?dispatch@QHsm@@RECXPFUQEvent@@@Z
+ 0026:0102       ?eating@Philosopher@@JECP9QHsm@@CXPFUQEvent@@@Z0@Z
+ 01E9:00F6       ?enqueue@QActive@@BECHPEUQEvent@@@Z
+ 0320:007A       ?fireEvery@QTimer@@RECXPEVQActive@@GI@Z
+ 0320:00A0       ?fireIn@QTimer@@RECXPEVQActive@@GI@Z
+ 0208:007A       ?get@QEPool@@BECPEUQEvent@@XZ
+ 0219:006C       ?get@QEQueue@@BECPEUQEvent@@XZ
+ 01E9:0002       ?getVersion@QF@@TAPFDXZ
+ 02AA:0008       ?getVersion@QHsm@@TAPFDXZ
+ 0026:0084       ?hungry@Philosopher@@JECP9QHsm@@CXPFUQEvent@@@Z0@Z
+ 0208:000C       ?init@QEPool@@BECXPEUQEvent@@II@Z
+ 0219:0006       ?init@QEQueue@@BECHQEPEUQEvent@@I@Z
+ 0243:0004       ?init@QF@@TAXQEKI@Z
+ 02AA:005A       ?init@QHsm@@RECXPFUQEvent@@@Z
+ 0026:0000       ?initial@Philosopher@@JECXPFUQEvent@@@Z
+ 0026:0184       ?initial@Table@@BECXPFUQEvent@@@Z
+ 02AA:0168       ?isIn@QHsm@@RECHP91@CP91@CXPFUQEvent@@@Z0@Z@Z
+ 0000:0126       ?ISR@@ZAXXZ
+ 01E9:000A       ?osCleanup@QF@@DAXXZ
+ 01E9:0008       ?osInit@QF@@DAXXZ
+ 034C:09D8       ?pkgActive@@3QEPEVQActive@@E
+ 034C:09D6       ?pkgReadyList@@3EE
+ 034C:0610       ?pkgStdEvt@@3QFUQEvent@@F
+ 034C:0A36       ?pkgTimerListHead@@3PEVQTimer@@E
+ 0243:00FA       ?poolInit@QF@@TAXPEUQEvent@@II@Z
+ 01E9:0114       ?postFIFO@QActive@@RECXPEUQEvent@@@Z
+ 01E9:015E       ?postLIFO@QActive@@RECXPEUQEvent@@@Z
+ 0243:05AE       ?propagate@QF@@DAXPEUQEvent@@@Z
+ 0243:04FC       ?publish@QF@@TAXPEUQEvent@@@Z
+ 0208:00C8       ?put@QEPool@@BECXPEUQEvent@@@Z
+ 0219:0124       ?putFIFO@QEQueue@@BECHPEUQEvent@@@Z
+ 0219:01DE       ?putLIFO@QEQueue@@BECHPEUQEvent@@@Z
+ 0320:00C2       ?rearm@QTimer@@RECXI@Z
+ 0243:02B4       ?remove@QF@@DAXPEVQActive@@@Z
+ 0026:01E8       ?serving@Table@@BECP9QHsm@@CXPFUQEvent@@@Z0@Z
+ 01E9:0066       ?start@QActive@@RECHIQEPEUQEvent@@IQEHI@Z
+ 01E9:00E4       ?stop@QActive@@JECXXZ
+ 0243:02F2       ?subscribe@QF@@TAXPEVQActive@@G@Z
+ 0026:002E       ?thinking@Philosopher@@JECP9QHsm@@CXPFUQEvent@@@Z0@Z
+ 0243:0028       ?tick@QF@@TAXXZ
+ 0333:0072       ?top@QHsm@@JECP91@CXPFUQEvent@@@Z0@Z
+ 02AA:0322       ?tranSetup@QHsm@@BECXPEUTran@1@P91@CP91@CXPFUQEvent@@@Z1@Z@Z
+ 02AA:01C0       ?tranStat@QHsm@@JECXPEUTran@1@P91@CP91@CXPFUQEvent@@@Z1@Z@Z
+ 0243:0424       ?unsubscribe@QF@@TAXPEVQActive@@G@Z
+ 006D:177A       _atexit
+ 034C:0778       _edata
+ 034C:0AC0       _end
+ 034C:0188       _errno
+ 006D:01F1       _exit
+ 006D:063C       _fclose
+ 006D:09DC       _fflush
+ 006D:070A       _fprintf
+ 0000:014A       _main
+ 0000:0102       _onAssert__
+ 006D:074A       _printf
+ 006D:17AC       _remove
+ 034C:01CE       _STKHQQ
+ 006D:13AC       _strcat
+ 006D:1400       _strcpy
+ 034C:01CA       __aaltstkovr
+ 034C:016C       __acfinfo
+ 0000:9876  Abs  __acrtmsg
+ 0000:9876  Abs  __acrtused
+ 0000:D6D6  Abs  __aDBdoswp
+ 034C:01C6       __adbgmsg
+ 034C:014E       __aexit_rtn
+ 006D:02CC       __aFchkstk
+ 034C:017A       __aintdiv
+ 034C:0454       __amblksiz
+ 006D:00FA       __amsg_exit
+ 034C:0042       __anullsize
+ 034C:0166       __aseghi
+ 034C:0168       __aseglo
+ 034C:0150       __asizds
+ 034C:0476       __asizeC
+ 034C:0477       __asizeD
+ 006D:0016       __astart
+ 034C:014C       __atopsp
+ 006D:0200       __cexit
+ 034C:0456       __cfltcvt_tab
+ 034C:01EC       __cflush
+ 006D:158A       __chain_intr
+ 034C:0478       __chbuf
+ 034C:01BD       __child
+ 006D:02CC       __chkstk
+ 006D:0128       __cinit
+ 006D:00EB       __cintDIV
+ 006D:1022       __close
+ 006D:1526       __cltoasub
+ 006D:14CC       __commit
+ 034C:0195       __cpumode
+ 006D:0278       __ctermsub
+ 006D:1533       __cxtoa
+ 006D:020A       __c_exit
+ 006D:0126       __dataseg
+ 034C:0196       __doserrno
+ 006D:05E4       __dosret0
+ 006D:05F9       __dosretax
+ 006D:05EC       __dosreturn
+ 006D:15A6       __dos_commit
+ 006D:15B4       __dos_getvect
+ 006D:15C6       __dos_setvect
+ 034C:0778       __edata
+ 01E9:0000       __EmDataSeg
+ 034C:0AC0       __end
+ 006D:078E       __endstdio
+ 034C:01B4       __environ
+ 006D:01F8       __exit
+ 034C:01C5       __exitflag
+ 034C:017E       __fac
+ 006D:063A       __farstub
+ 006D:14A6       __fcloseall
+ 034C:016A       __fDosExt
+ 006D:10C4       __ffree
+ 006D:02A4       __FF_MSGBANNER
+ 034C:0446       __fheap
+ 006D:1336       __findlast
+ 006D:07A4       __flsbuf
+ 006D:0A34       __flush
+ 006D:0AB4       __flushall
+ 006D:10D7       __fmalloc
+ 034C:0682       __fpinit
+ 006D:02C6       __fptrap
+ 006D:0890       __freebuf
+ 006D:0995       __ftbuf
+ 006D:08C8       __getbuf
+ 006D:147E       __getch
+ 006D:147A       __getche
+ 006D:1256       __growseg
+ 006D:12E5       __incseg
+ 006D:1170       __initseg
+ 034C:01C0       __intno
+ 034C:01EE       __iob
+ 034C:02DE       __iob2
+ 006D:143C       __itoa
+ 006D:1458       __kbhit
+ 034C:03CE       __lastiob
+ 006D:11A4       __linkseg
+ 006D:1042       __lseek
+ 034C:0440       __lseekchk
+ 006D:0606       __maperror
+ 006D:05BE       __myalloc
+ 006D:1356       __newseg
+ 034C:0198       __nfile
+ 034C:0152       __nheap_desc
+ 006D:055C       __NMSG_TEXT
+ 006D:0587       __NMSG_WRITE
+ 006D:02F0       __nullcheck
+ 006D:1782       __onexit
+ 034C:0196       __oserr
+ 034C:019A       __osfile
+ 034C:0191       __osmajor
+ 034C:0190       __osminor
+ 034C:0194       __osmode
+ 034C:0190       __osver
+ 034C:0192       __osversion
+ 006D:0B38       __output
+ 034C:01BF       __ovlflag
+ 034C:01C1       __ovlvec
+ 034C:01B8       __pgmptr
+ 034C:0442       __pnhFarHeap
+ 034C:018E       __psp
+ 034C:018C       __pspadr
+ 006D:11DA       __searchseg
+ 006D:0314       __setargv
+ 006D:04BC       __setenvp
+ 034C:0474       __sigintoff
+ 034C:0472       __sigintseg
+ 006D:1766       __stackavail
+ 006D:0914       __stbuf
+ 034C:018A       __umaskval
+ 006D:17AC       __unlink
+ 006D:1606       __write
+ 034C:067A       ___aDBexit
+ 034C:0678       ___aDBrterr
+ 034C:0676       ___aDBswpchk
+ 034C:0674       ___aDBswpflg
+ 034C:01AE       ___argc
+ 034C:01B0       ___argv
+ 034C:0672       ___qczrinit
+
+  Address         Publics by Value
+
+ 0000:0102       _onAssert__
+ 0000:0126       ?ISR@@ZAXXZ
+ 0000:014A       _main
+ 0026:0000       ?initial@Philosopher@@JECXPFUQEvent@@@Z
+ 0026:002E       ?thinking@Philosopher@@JECP9QHsm@@CXPFUQEvent@@@Z0@Z
+ 0026:0084       ?hungry@Philosopher@@JECP9QHsm@@CXPFUQEvent@@@Z0@Z
+ 0026:0102       ?eating@Philosopher@@JECP9QHsm@@CXPFUQEvent@@@Z0@Z
+ 0026:0184       ?initial@Table@@BECXPFUQEvent@@@Z
+ 0026:01E8       ?serving@Table@@BECP9QHsm@@CXPFUQEvent@@@Z0@Z
+ 006D:0016       __astart
+ 006D:00EB       __cintDIV
+ 006D:00FA       __amsg_exit
+ 006D:0126       __dataseg
+ 006D:0128       __cinit
+ 006D:01F1       _exit
+ 006D:01F8       __exit
+ 006D:0200       __cexit
+ 006D:020A       __c_exit
+ 006D:0278       __ctermsub
+ 006D:02A4       __FF_MSGBANNER
+ 006D:02C6       __fptrap
+ 006D:02CC       __chkstk
+ 006D:02CC       __aFchkstk
+ 006D:02F0       __nullcheck
+ 006D:0314       __setargv
+ 006D:04BC       __setenvp
+ 006D:055C       __NMSG_TEXT
+ 006D:0587       __NMSG_WRITE
+ 006D:05BE       __myalloc
+ 006D:05E4       __dosret0
+ 006D:05EC       __dosreturn
+ 006D:05F9       __dosretax
+ 006D:0606       __maperror
+ 006D:063A       __farstub
+ 006D:063C       _fclose
+ 006D:070A       _fprintf
+ 006D:074A       _printf
+ 006D:078E       __endstdio
+ 006D:07A4       __flsbuf
+ 006D:0890       __freebuf
+ 006D:08C8       __getbuf
+ 006D:0914       __stbuf
+ 006D:0995       __ftbuf
+ 006D:09DC       _fflush
+ 006D:0A34       __flush
+ 006D:0AB4       __flushall
+ 006D:0B38       __output
+ 006D:1022       __close
+ 006D:1042       __lseek
+ 006D:10C4       __ffree
+ 006D:10D7       __fmalloc
+ 006D:1170       __initseg
+ 006D:11A4       __linkseg
+ 006D:11DA       __searchseg
+ 006D:1256       __growseg
+ 006D:12E5       __incseg
+ 006D:1336       __findlast
+ 006D:1356       __newseg
+ 006D:139A       ??3@ZAXPEX@Z
+ 006D:13AC       _strcat
+ 006D:1400       _strcpy
+ 006D:143C       __itoa
+ 006D:1458       __kbhit
+ 006D:147A       __getche
+ 006D:147E       __getch
+ 006D:14A6       __fcloseall
+ 006D:14CC       __commit
+ 006D:1526       __cltoasub
+ 006D:1533       __cxtoa
+ 006D:158A       __chain_intr
+ 006D:15A6       __dos_commit
+ 006D:15B4       __dos_getvect
+ 006D:15C6       __dos_setvect
+ 006D:15DC       ??_I@ZCXPEXIHP7CX0@Z@Z
+ 006D:1606       __write
+ 006D:1766       __stackavail
+ 006D:177A       _atexit
+ 006D:1782       __onexit
+ 006D:17AC       __unlink
+ 006D:17AC       _remove
+ 01E9:0000       __EmDataSeg
+ 01E9:0002       ?getVersion@QF@@TAPFDXZ
+ 01E9:0008       ?osInit@QF@@DAXXZ
+ 01E9:000A       ?osCleanup@QF@@DAXXZ
+ 01E9:000C       ?background@QF@@TAXXZ
+ 01E9:0066       ?start@QActive@@RECHIQEPEUQEvent@@IQEHI@Z
+ 01E9:00E4       ?stop@QActive@@JECXXZ
+ 01E9:00F6       ?enqueue@QActive@@BECHPEUQEvent@@@Z
+ 01E9:0114       ?postFIFO@QActive@@RECXPEUQEvent@@@Z
+ 01E9:015E       ?postLIFO@QActive@@RECXPEUQEvent@@@Z
+ 0203:0008       ??0QActive@@JEC@P9QHsm@@CXPFUQEvent@@@Z@Z
+ 0203:003A       ??1QActive@@NEC@XZ
+ 0208:000C       ?init@QEPool@@BECXPEUQEvent@@II@Z
+ 0208:007A       ?get@QEPool@@BECPEUQEvent@@XZ
+ 0208:00C8       ?put@QEPool@@BECXPEUQEvent@@@Z
+ 0219:0006       ?init@QEQueue@@BECHQEPEUQEvent@@I@Z
+ 0219:006C       ?get@QEQueue@@BECPEUQEvent@@XZ
+ 0219:0124       ?putFIFO@QEQueue@@BECHPEUQEvent@@@Z
+ 0219:01DE       ?putLIFO@QEQueue@@BECHPEUQEvent@@@Z
+ 0243:0004       ?init@QF@@TAXQEKI@Z
+ 0243:0022       ?cleanup@QF@@TAXXZ
+ 0243:0028       ?tick@QF@@TAXXZ
+ 0243:00FA       ?poolInit@QF@@TAXPEUQEvent@@II@Z
+ 0243:017E       ?create@QF@@TAPEUQEvent@@IG@Z
+ 0243:020E       ?annihilate@QF@@DAXPEUQEvent@@@Z
+ 0243:026C       ?add@QF@@DAXPEVQActive@@@Z
+ 0243:02B4       ?remove@QF@@DAXPEVQActive@@@Z
+ 0243:02F2       ?subscribe@QF@@TAXPEVQActive@@G@Z
+ 0243:0424       ?unsubscribe@QF@@TAXPEVQActive@@G@Z
+ 0243:04FC       ?publish@QF@@TAXPEUQEvent@@@Z
+ 0243:05AE       ?propagate@QF@@DAXPEUQEvent@@@Z
+ 02AA:0008       ?getVersion@QHsm@@TAPFDXZ
+ 02AA:000E       ??0QHsm@@JEC@P90@CXPFUQEvent@@@Z@Z
+ 02AA:0044       ??1QHsm@@NEC@XZ
+ 02AA:005A       ?init@QHsm@@RECXPFUQEvent@@@Z
+ 02AA:0168       ?isIn@QHsm@@RECHP91@CP91@CXPFUQEvent@@@Z0@Z@Z
+ 02AA:01C0       ?tranStat@QHsm@@JECXPEUTran@1@P91@CP91@CXPFUQEvent@@@Z1@Z@Z
+ 02AA:02DA       ?dispatch@QHsm@@RECXPFUQEvent@@@Z
+ 02AA:0322       ?tranSetup@QHsm@@BECXPEUTran@1@P91@CP91@CXPFUQEvent@@@Z1@Z@Z
+ 0320:000C       ?arm@QTimer@@BECXPEVQActive@@GI@Z
+ 0320:007A       ?fireEvery@QTimer@@RECXPEVQActive@@GI@Z
+ 0320:00A0       ?fireIn@QTimer@@RECXPEVQActive@@GI@Z
+ 0320:00C2       ?rearm@QTimer@@RECXI@Z
+ 0320:00EA       ?disarm@QTimer@@RECXXZ
+ 0333:0000       ??1Philosopher@@VEC@XZ
+ 0333:0012       ??_GPhilosopher@@VECPEXI@Z
+ 0333:003E       ??_GTable@@VECPEXI@Z
+ 0333:006A       ??_7Table@@6F@
+ 0333:006E       ??_7Philosopher@@6F@
+ 0333:0072       ?top@QHsm@@JECP91@CXPFUQEvent@@@Z0@Z
+ 0333:0078       ??_GQActive@@NECPEXI@Z
+ 0333:00A4       ??_7QActive@@6F@
+ 0333:00A8       ??_GQHsm@@NECPEXI@Z
+ 0333:00D4       ??_7QHsm@@6F@
+ 034C:0042       __anullsize
+ 034C:014C       __atopsp
+ 034C:014E       __aexit_rtn
+ 034C:0150       __asizds
+ 034C:0152       __nheap_desc
+ 034C:0166       __aseghi
+ 034C:0168       __aseglo
+ 034C:016A       __fDosExt
+ 034C:016C       __acfinfo
+ 034C:017A       __aintdiv
+ 034C:017E       __fac
+ 034C:0188       _errno
+ 034C:018A       __umaskval
+ 034C:018C       __pspadr
+ 034C:018E       __psp
+ 034C:0190       __osminor
+ 034C:0190       __osver
+ 034C:0191       __osmajor
+ 034C:0192       __osversion
+ 034C:0194       __osmode
+ 034C:0195       __cpumode
+ 034C:0196       __oserr
+ 034C:0196       __doserrno
+ 034C:0198       __nfile
+ 034C:019A       __osfile
+ 034C:01AE       ___argc
+ 034C:01B0       ___argv
+ 034C:01B4       __environ
+ 034C:01B8       __pgmptr
+ 034C:01BD       __child
+ 034C:01BF       __ovlflag
+ 034C:01C0       __intno
+ 034C:01C1       __ovlvec
+ 034C:01C5       __exitflag
+ 034C:01C6       __adbgmsg
+ 034C:01CA       __aaltstkovr
+ 034C:01CE       _STKHQQ
+ 034C:01EC       __cflush
+ 034C:01EE       __iob
+ 034C:02DE       __iob2
+ 034C:03CE       __lastiob
+ 034C:0440       __lseekchk
+ 034C:0442       __pnhFarHeap
+ 034C:0446       __fheap
+ 034C:0454       __amblksiz
+ 034C:0456       __cfltcvt_tab
+ 034C:0472       __sigintseg
+ 034C:0474       __sigintoff
+ 034C:0476       __asizeC
+ 034C:0477       __asizeD
+ 034C:0478       __chbuf
+ 034C:0610       ?pkgStdEvt@@3QFUQEvent@@F
+ 034C:0672       ___qczrinit
+ 034C:0674       ___aDBswpflg
+ 034C:0676       ___aDBswpchk
+ 034C:0678       ___aDBrterr
+ 034C:067A       ___aDBexit
+ 034C:0682       __fpinit
+ 034C:0778       _edata
+ 034C:0778       __edata
+ 034C:09D6       ?pkgReadyList@@3EE
+ 034C:09D8       ?pkgActive@@3QEPEVQActive@@E
+ 034C:0A36       ?pkgTimerListHead@@3PEVQTimer@@E
+ 034C:0AC0       _end
+ 034C:0AC0       __end
+ 0000:9876  Abs  __acrtused
+ 0000:9876  Abs  __acrtmsg
+ 0000:D6D6  Abs  __aDBdoswp
+
+Program entry point at 006D:0016

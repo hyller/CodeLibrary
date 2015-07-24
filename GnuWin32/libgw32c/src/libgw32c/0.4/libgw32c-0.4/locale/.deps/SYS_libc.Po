@@ -1,0 +1,5 @@
+SYS_libc.o SYS_libc.o: SYS_libc.c ../include/libc-symbols.h ../config.h
+
+../include/libc-symbols.h:
+
+../config.h:

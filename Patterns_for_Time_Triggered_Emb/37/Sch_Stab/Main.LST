@@ -1,0 +1,105 @@
+C51 COMPILER V6.10  MAIN                                                                   04/09/2001 15:01:30 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Main.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\Main.c BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6           
+   7             Demonstration program for:
+   8          
+   9             Stable Scheduler (see Chapter 37)
+  10          
+  11             Drives 4 multiplexed multi-segment LED displays
+  12             - displays elapsed time.
+  13          
+  14             Required linker options (see Chapter 14 for details):
+  15          
+  16             OVERLAY 
+  17             (main ~ (CLOCK_LED_Time_Update,LED_MX4_Display_Update,
+  18             SCH_Calculate_Ave_Temp_DS1621), 
+  19             SCH_dispatch_tasks !(CLOCK_LED_Time_Update,LED_MX4_Display_Update,
+  20             SCH_Calculate_Ave_Temp_DS1621))
+  21          
+  22          
+  23             COPYRIGHT
+  24             ---------
+  25          
+  26             This code is from the book:
+  27          
+  28             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  29             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  30          
+  31             This code is copyright (c) 2001 by Michael J. Pont.
+  32           
+  33             See book for copyright details and other information.
+  34          
+  35          -*------------------------------------------------------------------*/
+  36          
+  37          #include "Main.h"
+  38          
+  39          #include "2_01_12s.h" 
+  40          #include "LED_Mx4.h"
+  41          #include "Cloc_Mx4.h"
+  42          #include "I2C_1621.h"
+  43          
+  44          
+  45          /* ............................................................... */
+  46          /* ............................................................... */
+  47          
+  48          void main(void)
+  49             {
+  50   1         // Set up the scheduler
+  51   1         SCH_Init_T2();
+  52   1      
+  53   1         // Prepare for temperature measurements
+  54   1         I2C_Init_Temperature_DS1621();
+  55   1      
+C51 COMPILER V6.10  MAIN                                                                   04/09/2001 15:01:30 PAGE 2   
+
+  56   1         // Add the 'Time Update' task (once per second)
+  57   1         // - timings are in ticks (1 ms tick interval)
+  58   1         // (Max interval / delay is 65535 ticks)
+  59   1         SCH_Add_Task(CLOCK_LED_Time_Update,100,10);
+  60   1      
+  61   1         // Add the 'Display Update' task (once per second)
+  62   1         // Need to update a 4-segment display every 3 ms (approx)
+  63   1         // Need to update a 2-segment display every 6 ms (approx)
+  64   1         SCH_Add_Task(LED_MX4_Display_Update,0,3);
+  65   1      
+  66   1         // This is scheduled once per minute
+  67   1         SCH_Add_Task(SCH_Calculate_Ave_Temp_DS1621,33,60000);
+  68   1      
+  69   1         // Start the scheduler
+  70   1         SCH_Start();
+  71   1      
+  72   1         while(1)
+  73   1            {
+  74   2            SCH_Dispatch_Tasks();
+  75   2            }
+  76   1         }
+  77          
+  78          /*------------------------------------------------------------------*-
+  79            ---- END OF FILE -------------------------------------------------
+  80          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     58    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

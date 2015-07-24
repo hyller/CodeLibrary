@@ -1,0 +1,92 @@
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 11:40:04 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.c (v1.01)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Test program for menu-driven PC link library, generic version.
+   8          
+   9             Required linker options (see Chapter 14 for details):
+  10          
+  11             OVERLAY (main ~ (PC_LINK_O_Update,Elapsed_Time_RS232_Update), 
+  12             SCH_Dispatch_Tasks ! (PC_LINK_O_Update,Elapsed_Time_RS232_Update))
+  13          
+  14          
+  15             COPYRIGHT
+  16             ---------
+  17          
+  18             This code is from the book:
+  19          
+  20             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  21             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  22          
+  23             This code is copyright (c) 2001 by Michael J. Pont.
+  24           
+  25             See book for copyright details and other information.
+  26          
+  27          -*------------------------------------------------------------------*/
+  28          
+  29          #include "Main.h"
+  30          #include "2_05_11g.h"
+  31          #include "PC_O_T1.h"
+  32          #include "Elap_232.h"
+  33          
+  34          /* ............................................................... */
+  35          /* ............................................................... */
+  36          
+  37          void main(void)
+  38             {
+  39   1         // Set up the scheduler
+  40   1         SCH_Init_T2();
+  41   1      
+  42   1         // Set baud rate to 9600
+  43   1         PC_LINK_O_Init_T1(9600);
+  44   1      
+  45   1         // Prepare the elapsed time library
+  46   1         Elapsed_Time_RS232_Init();
+  47   1      
+  48   1         // We have to schedule this task (~100x a second is enough here)
+  49   1         // - this writes data to PC 
+  50   1         //
+  51   1         // TIMING IS IN TICKS (5 ms tick interval)
+  52   1         SCH_Add_Task(PC_LINK_O_Update, 10, 2);
+  53   1      
+  54   1         // Update the time once per second
+  55   1         SCH_Add_Task(Elapsed_Time_RS232_Update, 1000, 200);
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 11:40:04 PAGE 2   
+
+  56   1      
+  57   1         SCH_Start();
+  58   1      
+  59   1         while(1)
+  60   1            {
+  61   2            SCH_Dispatch_Tasks();
+  62   2            }
+  63   1         }
+  64          
+  65          /*------------------------------------------------------------------*-
+  66            ---- END OF FILE -------------------------------------------------
+  67          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     52    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

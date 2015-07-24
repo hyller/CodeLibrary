@@ -1,0 +1,100 @@
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 11:47:01 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple test program for I2C (24C64) library.
+   8          
+   9             Connect a 24C64 to the SDA and SCL pins described 
+  10             in the library file (I2C_Core.C).
+  11          
+  12             Terminating resistors not generally required on the bus.
+  13          
+  14             Pull all three address lines (on the EEPROM) to ground.
+  15          
+  16          
+  17             COPYRIGHT
+  18             ---------
+  19          
+  20             This code is from the book:
+  21          
+  22             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  23             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  24          
+  25             This code is copyright (c) 2001 by Michael J. Pont.
+  26           
+  27             See book for copyright details and other information.
+  28          
+  29          -*------------------------------------------------------------------*/
+  30          
+  31          #include "Main.h"
+  32          #include "I2C_ROM.h"
+  33          #include "Delay_T0.h"
+  34          
+  35          // In this test program, we define the error code variable here
+  36          // (Usually in the scheduler library)
+  37          tByte Error_code_G = 0;
+  38          
+  39          void main( void )
+  40             {
+  41   1         tByte data1 = 0;
+  42   1         tByte data2 = 0;
+  43   1      
+  44   1         tWord Data_address = 0;
+  45   1      
+  46   1         while (1) 
+  47   1            {
+  48   2            Data_address = data1;
+  49   2      
+  50   2            // Write to eeprom
+  51   2            I2C_Write_Byte_AT24C64(Data_address, data1);
+  52   2      
+  53   2            // Read back from eeprom
+  54   2            data2 = I2C_Read_Byte_AT24C64(Data_address);
+  55   2      
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 11:47:01 PAGE 2   
+
+  56   2            // Display value from eeprom
+  57   2            P1 = 255 - data2;
+  58   2      
+  59   2            // Display error code
+  60   2            P2 = 255 - Error_code_G;
+  61   2      
+  62   2            if (++data1 == 255)
+  63   2               {
+  64   3               data1 = 0;
+  65   3               }
+  66   2      
+  67   2            Hardware_Delay_T0(1000);
+  68   2            }   
+  69   1         }
+  70          
+  71          /*------------------------------------------------------------------*-
+  72            ---- END OF FILE -------------------------------------------------
+  73          -*------------------------------------------------------------------*/
+  74          
+  75          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     67    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

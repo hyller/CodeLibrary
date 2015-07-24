@@ -1,0 +1,206 @@
+C51 COMPILER V6.10  PC_O                                                                   04/19/2001 11:39:05 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE PC_O
+OBJECT MODULE PLACED IN .\PC_O.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\PC_O.c OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             PC_O.C (v1.01)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Core files for simple write-only PC link library for 8051 family
+   8             [Sends data to PC - cannot receive data from PC]
+   9          
+  10             Uses the USART, and Pin 3.1 (Tx) 
+  11          
+  12             See text for details (Chapter 18).
+  13          
+  14          
+  15             COPYRIGHT
+  16             ---------
+  17          
+  18             This code is from the book:
+  19          
+  20             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  21             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  22          
+  23             This code is copyright (c) 2001 by Michael J. Pont.
+  24           
+  25             See book for copyright details and other information.
+  26          
+  27          -*------------------------------------------------------------------*/
+  28          
+  29          #include "Main.h"
+  30          #include "PC_O.h"
+  31          
+  32          // ------ Public variable definitions ------------------------------
+  33          
+  34          tByte Out_written_index_G;  // Data in buffer that has been written 
+  35          tByte Out_waiting_index_G;  // Data in buffer not yet written
+  36          
+  37          // ------ Public variable declarations -----------------------------
+  38          
+  39          // The error code variable
+  40          //
+  41          // See Main.H for port on which error codes are displayed
+  42          // and for details of error codes
+  43          extern tByte Error_code_G;
+  44          
+  45          // ------ Private constants ----------------------------------------
+  46          
+  47          // The transmit buffer length
+  48          #define TRAN_BUFFER_LENGTH 20
+  49          
+  50          // ------ Private variables ----------------------------------------
+  51          
+  52          static tByte Tran_buffer[TRAN_BUFFER_LENGTH];
+  53          
+  54          /*------------------------------------------------------------------*-
+  55          
+C51 COMPILER V6.10  PC_O                                                                   04/19/2001 11:39:05 PAGE 2   
+
+  56            PC_LINK_O_Update()
+  57          
+  58            Sends next character from the software transmit buffer
+  59          
+  60            NOTE: Output-only library (Cannot receive chars)
+  61          
+  62            Uses on-chip UART hardware.
+  63          
+  64          -*------------------------------------------------------------------*/
+  65          void PC_LINK_O_Update(void)
+  66             {
+  67   1         // Deal with transmit bytes here
+  68   1      
+  69   1         // Is there any data ready to send?
+  70   1         if (Out_written_index_G < Out_waiting_index_G)
+  71   1            {
+  72   2            PC_LINK_O_Send_Char(Tran_buffer[Out_written_index_G]);     
+  73   2      
+  74   2            Out_written_index_G++;
+  75   2            }
+  76   1         else
+  77   1            {
+  78   2            // No data to send - just reset the buffer index
+  79   2            Out_waiting_index_G = 0;
+  80   2            Out_written_index_G = 0;
+  81   2            }
+  82   1      
+  83   1         }
+  84          
+  85          /*------------------------------------------------------------------*-
+  86          
+  87            PC_LINK_O_Write_String_To_Buffer()
+  88          
+  89            Copies a (null terminated) string to the character buffer.  
+  90            (The contents of the buffer are then passed over the serial link)
+  91          
+  92          -*------------------------------------------------------------------*/
+  93          void PC_LINK_O_Write_String_To_Buffer(const char* const STR_PTR)
+  94             {
+  95   1         tByte i = 0;
+  96   1      
+  97   1         while (STR_PTR[i] != '\0')
+  98   1            {
+  99   2            PC_LINK_O_Write_Char_To_Buffer(STR_PTR[i]);
+ 100   2            i++;
+ 101   2            }
+ 102   1         }
+ 103          
+ 104          /*------------------------------------------------------------------*-
+ 105          
+ 106            PC_LINK_O_Write_Char_To_Buffer()
+ 107          
+ 108            Stores a character in the 'write' buffer, ready for 
+ 109            later transmission
+ 110           
+ 111          -*------------------------------------------------------------------*/
+ 112          void PC_LINK_O_Write_Char_To_Buffer(const char CHARACTER)
+ 113             {
+ 114   1         // Write to the buffer *only* if there is space
+ 115   1         if (Out_waiting_index_G < TRAN_BUFFER_LENGTH)
+ 116   1            {
+ 117   2            Tran_buffer[Out_waiting_index_G] = CHARACTER;
+C51 COMPILER V6.10  PC_O                                                                   04/19/2001 11:39:05 PAGE 3   
+
+ 118   2            Out_waiting_index_G++;     
+ 119   2            }
+ 120   1         else
+ 121   1            {
+ 122   2            // Write buffer is full
+ 123   2            // Increase the size of TRAN_BUFFER_LENGTH
+ 124   2            // or increase the rate at which UART 'update' function is called 
+ 125   2            // or reduce the amount of data sent to PC
+ 126   2            Error_code_G = ERROR_USART_WRITE_CHAR;
+ 127   2            }
+ 128   1         }
+ 129          
+ 130          /*------------------------------------------------------------------*-
+ 131          
+ 132            PC_LINK_O_Send_Char()
+ 133          
+ 134            Based on Keil sample code, with added (loop) timeouts.
+ 135            Implements Xon / Off control.
+ 136          
+ 137            Uses on-chip UART hardware.
+ 138          
+ 139          -*------------------------------------------------------------------*/
+ 140          void PC_LINK_O_Send_Char(const char CHARACTER)
+ 141             {
+ 142   1         tLong Timeout1 = 0;
+ 143   1      
+ 144   1         if (CHARACTER == '\n')  
+ 145   1            {
+ 146   2            Timeout1 = 0;
+ 147   2            while ((++Timeout1) && (TI == 0));  
+ 148   2      
+ 149   2            if (Timeout1 == 0)
+ 150   2               {
+ 151   3               // usart did not respond - error
+ 152   3               Error_code_G = ERROR_USART_TI;
+ 153   3               return;
+ 154   3               } 
+ 155   2      
+ 156   2            TI = 0;
+ 157   2            SBUF = 0x0d;  // output CR  
+ 158   2            }
+ 159   1        
+ 160   1         Timeout1 = 0;
+ 161   1         while ((++Timeout1) && (TI == 0));  
+ 162   1      
+ 163   1         if (Timeout1 == 0)
+ 164   1            {
+ 165   2            // usart did not respond - error
+ 166   2            Error_code_G = ERROR_USART_TI;
+ 167   2            return;
+ 168   2            } 
+ 169   1      
+ 170   1         TI = 0;
+ 171   1      
+ 172   1         SBUF = CHARACTER;
+ 173   1         }
+ 174          
+ 175          /*------------------------------------------------------------------*-
+ 176            ---- END OF FILE -------------------------------------------------
+ 177          -*------------------------------------------------------------------*/
+
+
+C51 COMPILER V6.10  PC_O                                                                   04/19/2001 11:39:05 PAGE 4   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    201    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     22       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

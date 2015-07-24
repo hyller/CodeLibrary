@@ -1,0 +1,707 @@
+From: <Saved by Blink>
+Subject: GnuWin32 Compilation
+Date: Wed, 7 Jul 2015 09:08:33 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_1E36_7DEB4381.EFFDF05B"
+
+------=_NextPart_000_1E36_7DEB4381.EFFDF05B
+Content-Type: text/html
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://gnuwin32.sourceforge.net/compile.html
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>=
+<meta charset=3D"windows-1252">
+
+<meta http-equiv=3D"Content-Language" content=3D"en-us">
+<meta name=3D"keywords" content=3D"gnu,win32,win64,gnuwin,gnuwin32,gnuwin64=
+,mswindows,ms-windows,windows,95,98,me,nt,2000,xp,2003,vista,2008">
+<meta name=3D"description" content=3D"GnuWin32 Compilation">
+<meta name=3D"GENERATOR" content=3D"Microsoft FrontPage 6.0">
+<title>GnuWin32 Compilation</title>
+</head>
+
+
+
+
+<body>
+
+<p><font color=3D"#0000FF" size=3D"7"><strong>G</strong><em><strong>nu</str=
+ong></em><strong>W</strong><em><strong>in</strong></em></font></p>
+
+<h1>Notes on compilation</h1>
+
+<h2><a name=3D"Prerequisites"><font size=3D"4"><em>Prerequisites</em></font=
+></a></h2>
+
+<p>If you wish to compile yourself: get the source package <var>&lt;package=
+&gt;-&lt;version&gt;-src.zip</var>.
+You need GNU <em>Bash</em>, GNU <em>Make</em> and <a href=3D"http://www.min=
+gw.org/">Mingw32</a> <em>GCC</em> and <em>BinUtils</em>.
+In these notes it is assumed that you are familiar with Bash,
+Make and GCC. Win32 implementations of Bash can be found in the <a href=3D"=
+http://www.cygwin.com/">CygWin</a> tools, in the <a href=3D"http://www.ming=
+w.org/msys.shtml">Msys</a> tools, and in the
+<a href=3D"http://www.delorie.com/">DJGPP</a> tools. Win32
+implementations of Make can be found in CygWin, Msys, DJGPP,
+and Mingw. CygWin Bash and Make work quite
+well. Note that, when you mix CygWin or Msys Bash and a native
+Make, problems may occur because CygWin and Msys have their own
+way of absolute filenames (for example <code>c:/tools</code> becomes <code>=
+/cygdrive/c/tools</code>
+in CygWin and <code>/c/tools</code> in Msys).</p>
+<p>You can install Cygwin and its basic utilities (Autoconf, Automake, Bash=
+,=20
+Bison, Coreutils, Diffutils, Bash, Findutils, Flex, Gawk, Grep, Libtool, M4=
+,=20
+Make, Patch, Sed, Which) from any <a href=3D"http://cygwin.com/mirrors.html=
+">Cygwin mirror</a> by using the
+<a href=3D"http://www.cygwin.com/setup.exe">setup program</a>.<br>
+<br>
+Then install <a href=3D"http://www.mingw.org/">Mingw</a>; you'd best use th=
+e latest=20
+regular release ("Current"). Mingw can be downloaded from its
+<a href=3D"http://sourceforge.net/projects/mingw">Sourceforge site</a>. You=
+'ll=20
+need GCC, Binutils and Windows API. Do not install these into the Cygwin=20
+directory. Make sure the directory with the GCC and Binutils executables co=
+mes=20
+before the Cygwin ones in your Path. You cannot use the
+Cygwin GCC and Binutils, because the executables they create are not native=
+=20
+Windows ones, but depend on the Cygwin emulation layer (cygwin1.dll).</p>
+
+<h3><a name=3D"Configure_and_Make"><em>Configure and Make</em></a></h3>
+
+<p>If you use the sources from GnuWin, then these have already been patched=
+=20
+and configured and there is no need to execute configure. Remove any <code>=
+.deps
+</code>directories, because they contain the dependencies, mostly header fi=
+les,=20
+for the sources and these may be different for your machine; then execute <=
+code>
+./config.status</code> to recreate the default <code>.deps</code> directori=
+es.</p>
+<p>If you use the original sources, the configuration and ad hoc changes ne=
+eded to compile are
+done in <code>Makefile.mingw</code>; type <code>make -f makefile.mingw</cod=
+e>
+at the Bash prompt. General configure options have been set in a <a href=3D=
+"http://gnuwin32.sourceforge.net/config.site.txt"><code>config.site</code><=
+/a>; make sure that the
+environment variable <code>CONFIG_SITE</code> points to this file. If there=
+ is
+no <em>Makefile.mingw</em>, then type <em><code>.</code></em><code>/configu=
+re</code>.</p>
+
+<p>When configure has finished, type <code>make</code>. Sometimes you
+need additional libraries and include files. Usually the line=20
+<em style=3D"font-style: normal"><code>export
+LIBS =3D ...</code></em> and other lines with <em style=3D"font-style: norm=
+al">
+<code>-l...</code></em> in Makefile.mingw
+show which additional libraries are needed. If you have these
+libraries, then you will also have the include files needed by
+these libraries. Rarely you need more include files; if on
+compiling you get an error message about a missing include file,
+then these might be found somewhere in the <a href=3D"http://www.cygwin.com=
+/">CygWin</a>, <a href=3D"http://www.mingw.org/msys.shtml">Msys</a>, or <a =
+href=3D"http://www.delorie.com/">DJGPP</a> distributions, but be
+careful not to replace any native declarations. If you make from the origin=
+al=20
+sources, then you may need to apply patches from the <code>patches</code>=
+=20
+directory in the GnuWin sources, in particular when make exits prematurely=
+=20
+with an error message. </p>
+
+<p>In Makefiles, you may have to change <em style=3D"font-style: normal"><c=
+ode>ln -s</code></em><code>
+</code>to <code>cp</code>,
+or use a version of <code>ln</code> that actually copies instead of
+making soft links.</p>
+
+<p>More and more packages use LibTool for compiling, linking and
+installing. When installing into a directory with <code>~</code> in
+its name, such as <code>c:/progra~1</code>, it gets confused; so change all=
+ occurrences of <code>~</code>
+in <code>libtool</code> into some other character, e.g. <em><code>!</code><=
+/em></p>
+
+<h3><a name=3D"Compiler_options"><em>Compiler options</em></a></h3>
+
+<p>There have been <a href=3D"http://sourceforge.net/tracker/index.php?func=
+=3Ddetail&amp;aid=3D498449&amp;group_id=3D23617&amp;atid=3D379173">reports<=
+/a>
+that <font color=3D"#0000FF"><em>G</em>nu<em>W</em>in</font>
+executables have crashed on systems with processors other than
+Intel, e.g. on systems with an AMD processor. These crashes can
+be avoided by compiling with options specific to Win32 systems, e.g.
+by using <code>-mms-bitfields -march=3Di386</code> as
+options to GCC.</p>
+
+<h3><a name=3D"Unix_functions"><em>Unix functions</em></a></h3>
+
+<p>Several packages use functions that are standard on Unix, for
+example for obtaining the user name. Some have MS-Windows
+equivalents, others don't. You will have to provide a MS-Windows
+equivalent that does something sensible; usually a dummy that
+does nothing, also works. Equivalents for several functions are
+in the <a href=3D"http://gnuwin32.sourceforge.net/packages/libgw32c.htm"><e=
+m>LibGw32C</em></a>
+library, which is an extension of the <a href=3D"ftp://ftp.franken.de/pub/w=
+in32/develop/gnuwin32/mingw32/porters/Boyd_Earnie/mingw32-sup.1.0.tar.gz"><=
+em>Msup</em>
+and <em>Mstubs</em> libraries</a>. Source code, e.g. from <em>
+<a href=3D"http://gnuwin32.sourceforge.net/packages/libgw32c.htm">LibGw32C<=
+/a>,</em> for the needed functions
+can be copied to the package sources; you'll also have to adapt your own=20
+Makefiles and include files. Examples of code conversion between Unix and=
+=20
+MS-Windows can also be found in
+<a href=3D"http://msdn2.microsoft.com/en-us/library/ms811896.aspx">Chapter =
+9</a> of the
+<a href=3D"http://msdn2.microsoft.com/en-us/library/ms811903.aspx">Unix
+Application Migration Guide</a> on MSDN.</p>
+
+<h3><a name=3D"Dynamic_libraries"><em>Dynamic libraries</em></a></h3>
+
+<p>Packages that contain a library, usually build only a static
+library (with extension <code>.a</code>). A dynamic link library (DLL)
+with corresponding import library can be built from this static
+library with the linker <code>ld</code>, by <code>dlltool</code> or by <cod=
+e>dllwrap</code>
+(provided in the Mingw BinUtils collection). The shell scripts <a href=3D"h=
+ttp://gnuwin32.sourceforge.net/a2dll.sh.txt"><code>a2dll</code></a> and <a =
+href=3D"http://gnuwin32.sourceforge.net/o2dll.sh.txt"><code>o2dll</code></a=
+>
+show more details.</p>
+
+<p>If a package has originally been configured by means of <code>autoconf</=
+code>
+(shown by the existence of the file <code>configure.in</code> or <code>conf=
+igure.ac</code>),
+then it might be reconfigured to make dynamic libraries, but very
+often this does not seem to be worth the trouble.</p>
+
+<p>When you have built the DLL, you can rebuild the executables
+such that they use the DLL. Delete or rename the executable first.
+Since often the <code>Makefile</code> calls the library explicitly (for
+example <code>../.libs/foo.a</code>) rather than with the <code>-L/-l-</cod=
+e>options
+(in the example: <code>-L ../.libs -lfoo</code>), either change the Makefil=
+e
+or temporarily rename the import library to the name of the
+static library. Then run <code>make</code> again. <br>
+For libraries that are called in the standard way with <code>-L/-l,</code> =
+Mingw automatically chooses the import library for the DLL rather
+than the static library if the import library has extension <code>.dll.a</c=
+ode>.</p>
+
+<p>For packages that use LibTool, this will not work, since
+LibTool then remakes the static library. Instead change in <code>libfoo.la<=
+/code>
+(in the directory just above the <em>.</em><code>libs</code> directory that
+contains <code>libfoo.a</code>), the term <code>libfoo.a</code> to=20
+<code>libfoo.dll.a</code>,
+and run <code>make</code> again. In principle, LibTool will build
+dynamic libraries if the option <em>-</em><code>-enable-shared</code> to <c=
+ode>configure</code>
+has been set, but in practice only the latest versions of LibTool
+can handle this and even then you may still end up with a static
+library. Some helper scripts, <a href=3D"http://gnuwin32.sourceforge.net/la=
+tool.sh.txt"><code>latool</code></a> and
+<a href=3D"http://gnuwin32.sourceforge.net/rctool.sh.txt"><code>rctool</cod=
+e></a> may be used instead of LibTool when dynamic=20
+libraries are to be created.</p>
+
+<p>It is possible to create import libraries for use with=20
+<a href=3D"http://gnuwin32.sourceforge.net/msimport.html">MSVC and BCC</a>.=
+</p>
+
+<p>On Unix it is practice to add a version
+number to the names of shared libraries; releases of a shared
+library that have the same version number have compatible
+interfaces, i.e. functions are called in the same way. On MS-Windows
+this seems also=20
+useful,
+so GnuWin dynamic libraries have a <a href=3D"http://gnuwin32.sourceforge.n=
+et/versioning.html">version
+number</a> attached, usually computed from the LibTool
+interface version number.</p>
+<p>Be careful not to mix different versions of the same library, since this=
+ may=20
+lead to crashes. In particular do not mix different run-time libraries, suc=
+h as
+<code>crtdll.dll</code>, <code>msvcrt.dll</code>, <code>msvcrt<i>nn</i>.dll=
+</code>,=20
+where <i><code>nn</code></i> denotes the version number (<code>20</code>, <=
+code>
+30</code>, ...); see the
+<a href=3D"http://support.microsoft.com/default.aspx?scid=3Dkb;en-us;94248"=
+>MS=20
+Knowledge Base</a> and
+<a href=3D"http://msdn.microsoft.com/en-us/library/ms235460.aspx">MSDN</a>.=
+=20
+Nor should you mix CygWin dlls and native dlls.</p>
+
+<h3><a name=3D"Auto-import"><em>Auto-import</em></a></h3>
+
+<p>Mingw versions 2.95.3-3 and earlier cannot import static data
+from a DLL in the standard way, i.e. by using the <em>extern</em>
+declaration. This shows as an <em>auto import</em> warning when
+linking an executable that uses the DLL: <code>Warning: resolving
+<i>vvvvv</i> by linking to __imp__<i>vvv</i> (auto-import)</code> where=20
+<i>=20
+<code>vvv</code></i>
+is the name of the static variable. It may also show as an <code>Undefined
+reference to _nm__<i>vvv</i></code> or <code>Undefined reference to
+dllname_dll_a_iname</code> where <code>dllname</code> is the name of the dl=
+l to
+be created. If this occurs you may have to change some include
+files that declare these static data. Include at the start of the
+source:</p>
+
+<dl>
+    <dd><code>#ifndef __GNUC__<br>
+        # define __DLL_IMPORT __declspec(dllimport)<br>
+        #else<br>
+        # define __DLL_IMPORT __attribute__((dllimport)) extern<br>
+        #endif </code> <p><code>#if defined (BUILD_<i>ddd</i>_DLL) || !defi=
+ned (__WIN32__)<br>
+        # define DLL_IMPORT extern<br>
+        #else<br>
+        # define DLL_IMPORT __DLL_IMPORT <br>
+        #endif</code></p>
+    </dd>
+</dl>
+
+<p>Replace <code>extern</code> by <code>DLL_IMPORT</code> in all relevant
+places in the include files, and add <em>-</em><code>DBUILD_<i>ddd</i>_DLL=
+=3D1</code>,
+where <code><i>ddd</i> </code>indicates the DLL, as flag to the compiler
+when compiling code that imports from the DLL. <br>
+Versions 2.95.3-4 and higher circumvent this auto-import problem
+when the option <code>--enable-auto-import</code> is given to the
+linker; for versions 2.95.3-6 and higher this is the default
+behaviour, so you need not set the option. Very occasionally you
+still get an error message; solve this in the above manner (see
+also the documentation of the GNU linker <code>ld</code>, section 2.1.1).
+</p>
+
+<h3><a name=3D"Text_files_and_binary_files"><em>Text files and
+binary files</em></a></h3>
+
+<p>On MS-Windows there is a difference between
+<a href=3D"http://msdn2.microsoft.com/en-us/library/cx3c1zs4(vs.71).aspx">t=
+ext filemode and
+binary filemode</a>. Normal text files are files where CR-LF
+signifies a line ending. Text file with LF as line endings can be
+correctly read by the input functions of the runtime library; the
+only error occurs with <code>ftell</code> in the last part of the
+file (see below).</p>
+
+<p>Unless you are sure that a file is always a text file, it is
+best to open it in binary mode; so add <code>"b"</code> to the mode
+when using <code>fopen</code> and <code>O_BINARY</code> when using <code>op=
+en</code>.
+For <code>O_BINARY</code> to be defined, you may have to include <code>fcnt=
+l.h</code>.
+After a file has been opened, its mode may be changed by calling <code>setm=
+ode</code>
+before any output or input has occurred.</p>
+
+<p>Standard input, output and error can be opened in binary mode
+by adding</p>
+
+<dl>
+    <dd><code>#include &lt;fcntl.h&gt;<br>
+        int _CRT_fmode =3D _O_BINARY;</code></dd>
+</dl>
+
+<p>to the beginning of the main program file, or by including <a href=3D"ht=
+tp://gnuwin32.sourceforge.net/stdbin.h.txt"><code>stdbin.h</code></a>. Alte=
+rnatively, you can
+compile <code>stdbin.h</code> into a small library and link it to the
+executable. </p>
+
+<p>Similarly, all other files will be opened in binary mode, even
+when <code>"b"</code> has not been specified in the mode parameter
+of <code>fopen</code>, when</p>
+
+<dl>
+    <dd><code>#include &lt;fcntl.h&gt;<br>
+        int _fmode =3D _O_BINARY;</code></dd>
+</dl>
+
+<p>is added to the beginning of the main program file, when <a href=3D"http=
+://gnuwin32.sourceforge.net/binmode.h.txt"><code>binmode.h</code></a> is in=
+cluded, or when
+<code>binmode.h</code> has been compiled into a library and linked to the
+executable.</p>
+
+<p>The result of=20
+<code><a href=3D"http://msdn2.microsoft.com/en-us/library/0ys3hc0b(VS.71).a=
+spx">ftell</a></code> when a file with LF characters as
+line endings is opened as a text file may differ from the result
+when the same file is opened as binary file. When a file
+containing CR-LF characters is opened as text file, the CR's are
+deleted while reading; this is done when characters from the file
+are transferred to the read buffer. <code>Ftell</code> correctly computes t=
+he
+number of bytes for a position in this file by doubling the
+number of LF's that are still in the read buffer. When a file
+with LF's as line endings is opened as a text file, then <code>ftell</code>=
+ again doubles the number of LF's still in the read buffer
+when computing the number of bytes, but now this is of course
+incorrect. Because of the particular way the CR's in a CR-LF text
+file are deleted, this error only matters when the last part of
+the file is in the read buffer, so that normally positions in the
+last 512 bytes of the file are incorrectly determined by <code>ftell</code>=
+.
+This does not matter when the result of <code>ftell </code>is only used as
+input for=20
+<code><a href=3D"http://msdn2.microsoft.com/en-us/library/75yw9bf3(vs.71).a=
+spx">fseek</a></code> to return to a previous position, but it does
+matter when <code>ftell</code> is used to determine the absolute position i=
+n a
+file. </p>
+
+<h3><a name=3D"Filenames"><em>Filenames</em></a></h3>
+
+<p>The path separator on Unix is the colon (<code>:</code>) and the directo=
+ry
+separator is the forwardslash (<code>/</code>); on MS-Windows these are the
+semicolon (<code>;</code>) and the backslash (<code>\</code>). Filenames wi=
+th forwardslashes are understood by MS-Windows, but you will have to
+change colons to semicolons when used as path separator. Tests
+for absolute filenames (on Unix filenames starting with <code>/</code>,
+on MS-Windows filenames starting with <code>x:/</code> or<em> </em><code>\\=
+</code>)
+must also be changed, as well as absolute filenames such as <code>/tmp/...<=
+/code>,<em>
+</em><code>/usr/...</code>,<em> </em><code>/dev/...</code>,<em> </em><code>=
+/etc/...</code>. These
+filename issues may also occur in shell scripts provided with the
+package. Often they are also the cause of failure in tests or
+checks with <code>make test</code> or <code>make check</code>. </p>
+
+<p>Temporary file names may either be hardcoded (<code>/tmp/...</code>)
+or created with the help of an environment variable, usually <code>TMP</cod=
+e>
+or <code>TMPDIR</code>. On Windows, the temporary file directory is <code>T=
+emp</code>
+or <code>Windows/Temp</code>; and on Win9x the corresponding
+environment variable is <code>TEMP</code>. You will have to change
+the Unix names, set the Unix environment variables, or adapt the
+source to look also for the Windows environment variable <code>TEMP</code>.=
+</p>
+
+<h2><a name=3D"Filename_globbing"><font size=3D"4"><em>Filename
+globbing</em></font></a></h2>
+
+<p>Wildcards on the command-line are expanded by the command-line
+interpreter. If you wish to disable this filename globbing, then
+add</p>
+
+<dl>
+    <dd><code>int _CRT_glob =3D 0;</code></dd>
+</dl>
+
+<p>to the beginning of the main program file.</p>
+
+<h3><a name=3D"Default_locations"><em>Default locations</em></a></h3>
+
+<p>On Unix, executables usually are installed into <code>/usr/bin</code>
+and implementation-independent files, such as configuration and
+language files, in <code>/usr/share</code> or in <code>/usr/etc</code>,
+whose names are often hard coded in the executable; see the <a href=3D"http=
+://www.pathname.com/fhs/">File System Hierarchy
+Standard</a>. On MS-Windows there is no default location, and
+instead most packages go into a directory of their own, e.g. <code>E:/Progr=
+am
+Files/&lt;package&gt;</code>. When the name of the
+implementation-independent directory is hard-coded in the
+program, packages with implementation-independent files must be
+installed in their default installation directory, which for <font color=3D=
+"#0000FF"><em>G</em>nu<em>W</em>in</font> is
+always <code>C:/Progra~1/&lt;package&gt;</code>. </p>
+
+<p>It is not very difficult to change a program such that it also
+looks into the implementation-independent directory relative to
+the directory where the executable is installed; for example,
+when the program has been installed into <code>D:/Applic/&lt;package&gt;</c=
+ode>,
+it looks for its configurations in say <code>C:/Progra~1/&lt;package&gt;/sh=
+are</code>
+and when nothing has been found there, it looks in <code>D:/Applic/&lt;pack=
+age&gt;/share</code>.
+This solution has been followed in the later ports on <font color=3D"#0000F=
+F"><em>G</em>nu<em>W</em>in</font>, which
+thus may be installed in any directory provided the subdirectory
+structure is maintained. Native language support (NLS) in <a href=3D"http:/=
+/gnuwin32.sourceforge.net/packages/libintl.htm">LibIntl</a> has also been a=
+dapted in
+this way. An alternative solution would have been to let the
+program read an initialization file in its program directory or
+let it read the registry.</p>
+<p>For this so-called <em>run-time relocation</em> it is best to use
+<a href=3D"http://savannah.gnu.org/gnulib">Gnulib</a>. You'll need the sour=
+ce=20
+files <code>error.c</code>, <code>progname.c</code>, <code>progreloc.c</cod=
+e>, <code>relocatable.c</code>, and the header=20
+files <code>areadlink.h</code>, <code>error.h</code>, <code>progname.h</cod=
+e>,=20
+<code>relocatable.h</code>. Add the additional=20
+source files to the files to be compiled either in the package library, usu=
+ally=20
+in the directory <code>gl</code> or <code>lib</code>, or to the sources, us=
+ually in the directory
+<code>src</code>. You must also define the macros <code>INSTALLPREFIX</code=
+>=20
+equal to the original installation directory, <code>INSTALLDIR</code> equal=
+ to=20
+the original installation directory of the executables, <code>EXEEXT</code>=
+=20
+equal to the extension of the executable, as well as <code>NO_XMALLOC </cod=
+e>
+(unless you have a function <code>xmalloc</code>, in which case you must us=
+e
+<code>xreadlink.h</code> instead of <code>areadlink.h</code>). In the langu=
+age of Autoconf,=20
+this usually amounts to</p>
+<dl>
+	<dd><code>-DINSTALLPREFIX=3D"$(prefix)" -DINSTALLDIR=3D"$(bindir)" -DEXEEX=
+T=3D"$(EXEEXT)"=20
+	-DNO_XMALLOC</code></dd>
+</dl>
+<p>In the source files you must replace each occurrence of filenames to be=
+=20
+relocated by <code>relocate(&lt;filename&gt;)</code>; in each source file w=
+here you do=20
+this, you must include the header file <code>
+relocatable.h</code>, preferably in the form</p>
+<dl>
+<dd><code>#ifdef ENABLE_RELOCATABLE<br>
+# include &lt;relocatable.h&gt;<br>
+#else<br>
+#
+define relocate(path) (path)<br>
+#endif</code></dd>
+</dl>
+<p>In the main source file, usually <code>main.c</code>, you=20
+must add the statement <code>set_program_name(argv[0]);</code> and include =
+the=20
+header file <code>progname.h</code>. If in <code>
+main.c</code>, a variable <code>program_name</code> has already been declar=
+ed,=20
+you must remove this declaration as well as the statement that assigns a va=
+lue=20
+to <code>program_name</code>, usually <code>argv[0]</code>.</p>
+
+<h3><a name=3D"Large-file_support"><em>Large-file support</em></a></h3>
+
+<p>Normally the functions of the MS-Windows C-runtime library (<code>msvcrt=
+.dll</code>)
+can access files up to 2<sup>31</sup>-1 bytes, i.e. 2 GB. In
+particular this holds for the group of <em style=3D"font-style: normal"><co=
+de>stat</code></em> and=20
+<em style=3D"font-style: normal"><code>seek</code></em>
+functions: <code>stat, fstat, seek, fseek,
+lseek, tell</code>, and <code>ftell</code> as well as the
+related types <code>ino_t</code> and <code>off_t</code>. Special <code>msvc=
+rt</code>-functions
+and types, indicated by the addition of <code>i64</code> to their
+name, can access files up to 2<sup>63</sup>-1 bytes, i.e. 9 EB (exabyte)
+=3D 9,000,000 TB (terabyte) =3D 9,000,000,000 GB. Large-file support
+(LFS) has been implemented by redefining the <code>stat</code> and <code>se=
+ek</code>
+functions and types to their 64-bits equivalents. For <code>fseek</code> an=
+d
+<code>ftell</code>, separate LFS versions, <code>fseeko</code> and <code>ft=
+ello</code>,
+based on <code>fsetpos</code> and <code>fgetpos</code>, are provided in <a =
+href=3D"http://gnuwin32.sourceforge.net/packages/libgw32c.htm"><em>LibGw32C=
+</em></a>. <br>
+More information about LFS on Unix can be found at <a href=3D"http://freshm=
+eat.net/articles/view/709/">Freshmeat</a>, in
+the <a href=3D"http://unix.org/version2/whatsnew/lfs.html">Single
+Unix Specification</a>, and the documents of the=20
+<a href=3D"http://www.unix.org/version2/whatsnew/lfs20mar.html">Large File =
+Summit</a>.</p>
+
+<h3><a name=3D"Subprocesses"><em>Subprocesses</em></a></h3>
+
+<p><code>fork</code> is the function that implements subprocesses on Unix. =
+It
+does not exist on MS-Windows, and has to be replaced by a series
+of different API calls, such as
+<code><a href=3D"http://msdn2.microsoft.com/en-us/library/20y988d2(vs.71).a=
+spx">spawn</a></code> or=20
+<code><a href=3D"http://msdn2.microsoft.com/en-us/library/ms682425">CreateP=
+rocess</a></code>.
+<a href=3D"http://msdn2.microsoft.com/en-us/library/ms811896.aspx">Chapter =
+9</a> of the
+<a href=3D"http://msdn2.microsoft.com/en-us/library/ms811903.aspx">Unix
+Application Migration Guide</a>, topics <em>
+<a href=3D"http://msdn2.microsoft.com/en-us/library/ms811896.aspx#ucmgch09_=
+topic8">Interprocess
+Communication</a></em> and=20
+<a href=3D"http://msdn2.microsoft.com/en-us/library/ms811896.aspx#ucmgch09_=
+topic13"> <em>Appendixes E</em> and <em>F</em></a>,
+gives some examples.</p>
+<h3><em><a name=3D"Inode_numbers">Inode numbers</a></em></h3>
+<p>The MS-Windows equivalent of the Unix inode number is the <code>FileInde=
+x</code> from the
+<code><a href=3D"http://msdn2.microsoft.com/en-us/library/Aa363788">BY_HAND=
+LE_FILE_INFORMATION</a></code> structure, returned by the Win32=20
+API function=20
+<code><a href=3D"http://msdn2.microsoft.com/en-us/library/Aa364952">GetFile=
+InformationByHandle</a></code>.=20
+The <code>FileIndex</code> is a 64-bit number that on WnNT systems (NT, 200=
+0,=20
+XP, 2003, Vista, 2008) indicates the position of the file in the
+<a href=3D"http://technet.microsoft.com/en-us/library/bb457112.aspx">Master=
+ File Table</a> (MFT).=20
+On Windows XP and higher, one can also obtain this number by using the comm=
+and&nbsp;<code><a href=3D"http://technet.microsoft.com/en-us/library/cc7880=
+42.aspx">fsutil usn readdata &lt;path&gt;</a></code>. It is stable between =
+successive starts of the
+system, provided the MFT does not overflow and therefore has to be rebuilt.=
+ It is not stable for
+files on network drives; successive calls to <code>GetFileInformationByHand=
+le</code>=20
+return different values. For FAT file systems, the MSDN documentation for=
+=20
+<code><a href=3D"http://msdn2.microsoft.com/en-us/library/Aa363788">BY_HAND=
+LE_FILE_INFORMATION</a></code> says: "In=20
+the FAT file system, the file ID is generated from the first cluster of the=
+=20
+containing directory and the byte offset within the directory of the entry =
+for=20
+the file. Some defragmentation products change this byte offset. (Windows i=
+n-box=20
+defragmentation does not.) Thus, a FAT file ID can change over time. Renami=
+ng a=20
+file in the FAT file system can also change the file ID, but only if the ne=
+w=20
+file name is longer than the old one." Because of this, on FAT systems the=
+=20
+file index for directories is zero. Note that in the
+<a href=3D"http://www.google.nl/search?sourceid=3Dnavclient&amp;hl=3Dnl&amp=
+;ie=3DUTF-8&amp;rlz=3D1T4GGLJ_nlNL308NL308&amp;q=3DWin32+FileID+API+Library=
+">
+Windows FileId API Library</a>, the file index is named <code>
+<a href=3D"http://msdn.microsoft.com/en-us/library/aa364953(VS.85).aspx">Fi=
+leId</a></code>.</p>
+<p>The <code>FileIndex</code> consists of two=20
+parts: the low 48 bits are the socalled <dfn>file reference number</dfn> an=
+d contain the actual index=20
+in the MFT; the high 16 bits are the socalled <dfn>sequence number</dfn>: e=
+ach time an=20
+entry in the MFT is reused for another file, the sequence number is increas=
+ed by=20
+one. This behavior of the sequence number can be observed by creating a fil=
+e,=20
+printing its <code>FileIndex</code> , deleting it, creating a new file and =
+printing its=20
+<code>FileIndex</code> ; the <code>FileIndex</code> of the newest file is e=
+qual to that of the first file,=20
+with the sequence number, in the left most part of the <code>FileIndex</cod=
+e> , increased by=20
+one. So the file reference number appears to be the
+equivalent of the Unix inode. </p>
+<p><a href=3D"http://linux-ntfs.sourceforge.net/">Linux-NTFS</a> has some=
+=20
+documentation about NTFS as well as some programs that can be used to=20
+investigate the MFT and which show the described behavior of the <code>File=
+Index</code> . For=20
+example, the docs say, and the programs confirm this, that the root directo=
+ry of=20
+a volume always has a file reference number of 5, because that is its index=
+ in=20
+the MFT. </p>
+<p>An inode number for regular files, and for directories on WinNT, might b=
+e created as follows:</p>
+<dl>
+	<dd><code>#include &lt;sys/stat.h&gt;<br>
+	#include &lt;io.h&gt;<br>
+	#include &lt;stdint.h&gt;<br>
+	#include &lt;windows.h&gt;<br>
+	#define LODWORD(l) ((DWORD)((DWORDLONG)(l)))<br>
+	#define HIDWORD(l) ((DWORD)(((DWORDLONG)(l)&gt;&gt;32)&amp;0xFFFFFFFF))<br=
+>
+	#define MAKEDWORDLONG(a,b) ((DWORDLONG)(((DWORD)(a))|(((DWORDLONG)((DWORD)=
+(b)))&lt;&lt;32)))<br>
+	<br>
+	#define INOSIZE (8*sizeof(ino_t))<br>
+	#define SEQNUMSIZE (16)<br>
+	<br>
+	ino_t getino (char *path)<br>
+	{<br>
+	BY_HANDLE_FILE_INFORMATION FileInformation;<br>
+	HANDLE hFile;<br>
+	uint64_t ino64, refnum;<br>
+	ino_t ino;<br>
+	if (!path || !*path) /* path =3D NULL */<br>
+&nbsp;&nbsp;&nbsp; return 0;<br>
+	if (access (path, F_OK)) /* path does not exist */<br>
+&nbsp;&nbsp;&nbsp; return -1;<br>
+	/* obtain handle to "path"; FILE_FLAG_BACKUP_SEMANTICS is used to open=20
+	directories */<br>
+	hFile =3D CreateFile (path, 0, 0, NULL, OPEN_EXISTING, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FILE_FLAG_BACKUP_SEMANTICS |=20
+	FILE_ATTRIBUTE_READONLY, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NULL);<br>
+	if (hFile =3D=3D INVALID_HANDLE_VALUE) /* file cannot be opened */</code><=
+/dd>
+	<dd><code>&nbsp;&nbsp;&nbsp; return 0;</code></dd>
+	<dd><code>ZeroMemory (&amp;FileInformation, sizeof(FileInformation));<br>
+	if (!GetFileInformationByHandle (hFile, &amp;FileInformation)) { /* cannot=
+ obtain FileInformation */<br>
+&nbsp;&nbsp;&nbsp;
+	CloseHandle (hFile);<br>
+&nbsp;&nbsp;&nbsp; return 0;<br>
+	}<br>
+	ino64 =3D (uint64_t) MAKEDWORDLONG (<br>
+	&nbsp;&nbsp;&nbsp;
+	FileInformation.nFileIndexLow, FileInformation.nFileIndexHigh);<br>
+	refnum =3D ino64 &amp; ((~(0ULL)) &gt;&gt; SEQNUMSIZE); /* strip sequence =
+number */<br>
+	/* transform 64-bits ino into 16-bits by hashing */ <br>
+	ino =3D (ino_t) (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( (LODWORD(refnum)) ^ ((LODWORD(=
+refnum))=20
+	&gt;&gt; INOSIZE) )<br>
+&nbsp;&nbsp;&nbsp; ^<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( (HIDWORD(refnum)) ^ ((HIDWORD(=
+refnum))=20
+	&gt;&gt; INOSIZE) )<br>
+&nbsp;&nbsp;&nbsp; );<br>
+	CloseHandle (hFile);<br>
+	return ino;<br>
+	}</code></dd>
+</dl>
+<p>An inode for <code>fstat</code> can be implemented similarly, by obtaini=
+ng the handle <br>
+from the file descriptor:</p>
+<dl>
+	<dd><code>/* obtain handle to file descriptor "fd" */<br>hFile =3D _get_os=
+fhandle (fd);</code></dd>
+</dl>
+<p>Do not close the handle after obtaining the FileInformation, since other=
+wise=20
+<code>fd</code> will also be closed.</p>
+<p>For directories on Win9x and for network files, one might use a hashed v=
+alue=20
+of the full path of the file. </p>
+<h3><em><a name=3D"Cross_compilation">Cross compilation</a></em></h3>
+<p>For cross-compiling on a Linux system, see Volker Grabsch's
+<a href=3D"http://www.profv.de/mingw_cross_env">cross-compiling pages</a>.<=
+/p>
+
+<div><object id=3D"ClCache" click=3D"sendMsg" host=3D"" width=3D"0" height=
+=3D"0"></object></div></body></html>
+------=_NextPart_000_1E36_7DEB4381.EFFDF05B--

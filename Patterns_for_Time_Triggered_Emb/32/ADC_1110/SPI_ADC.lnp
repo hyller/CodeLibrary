@@ -1,0 +1,6 @@
+"MAIN.obj",
+"DELAY_T0.obj",
+"SPI_CORE.obj",
+"SPI_1110.obj" 
+TO "SPI_ADC" 
+RAMSIZE(256) 

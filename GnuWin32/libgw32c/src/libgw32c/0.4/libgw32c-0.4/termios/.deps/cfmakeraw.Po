@@ -1,0 +1,39 @@
+cfmakeraw.o cfmakeraw.o: cfmakeraw.c ../include/libc-symbols.h \
+  ../config.h termios.h h:/mingw/3.3.1/mingw32/include/features.h \
+  h:/mingw/3.3.1/mingw32/include/sys/cdefs.h ../include/gnu/stubs.h \
+  h:/mingw/3.3.1/mingw32/include/bits/types.h \
+  h:/mingw/3.3.1/mingw32/include/bits/wordsize.h \
+  h:/mingw/3.3.1/include/stddef.h \
+  h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stddef.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stddefx.h \
+  h:/mingw/3.3.1/mingw32/include/bits/typesizes.h \
+  h:/mingw/3.3.1/mingw32/include/bits/termios.h \
+  h:/mingw/3.3.1/mingw32/include/sys/ttydefaults.h
+
+../include/libc-symbols.h:
+
+../config.h:
+
+termios.h:
+
+h:/mingw/3.3.1/mingw32/include/features.h:
+
+h:/mingw/3.3.1/mingw32/include/sys/cdefs.h:
+
+../include/gnu/stubs.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/types.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/wordsize.h:
+
+h:/mingw/3.3.1/include/stddef.h:
+
+h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stddef.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stddefx.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/typesizes.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/termios.h:
+
+h:/mingw/3.3.1/mingw32/include/sys/ttydefaults.h:

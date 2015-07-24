@@ -1,0 +1,4 @@
+"BARGRAPH.obj",
+"MAIN.obj" 
+TO "Bargraph" 
+CODE( 0X0000-0X0FFF )

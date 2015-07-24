@@ -1,0 +1,283 @@
+C51 COMPILER V6.10  ELAP_LCD                                                               04/18/2001 16:29:42 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE ELAP_LCD
+OBJECT MODULE PLACED IN .\ELAP_LCD.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\ELAP_LCD.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND SYMBOLS
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Elap_LCD.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple library function for keeping track of elapsed time 
+   8             This version for LCD display.
+   9          
+  10          
+  11             COPYRIGHT
+  12             ---------
+  13          
+  14             This code is from the book:
+  15          
+  16             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  17             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  18          
+  19             This code is copyright (c) 2001 by Michael J. Pont.
+  20           
+  21             See book for copyright details and other information.
+  22          
+  23          -*------------------------------------------------------------------*/
+  24          
+  25          #include "Main.h"
+  26          #include "Elap_LCD.h"
+  27          #include "LCD_A.h"
+  28          
+  29          // ------ Public variable definitions ------------------------------
+  30          
+  31          tByte Hou_G = 0;
+  32          tByte Min_G = 0;
+  33          tByte Sec_G = 0;
+  34          
+  35          // ------ Public variable declarations -----------------------------
+  36          
+  37          extern char LCD_data_G[LCD_LINES][LCD_CHARACTERS+1];
+  38          extern char code CHAR_MAP_G[10];
+  39          
+  40          extern tByte Hou_G, Min_G;
+  41          
+  42          
+  43          /*------------------------------------------------------------------*-
+  44          
+  45            Elapsed_Time_LCD_Init()
+  46          
+  47            Init function for simple library displaying elapsed time on LCD
+  48            character panel.
+  49          
+  50          -*------------------------------------------------------------------*/
+  51          void Elapsed_Time_LCD_Init(void)
+  52             {
+  53   1         // Set up the initial data to be sent to the LCD
+  54   1         // ASSUMES 20 CHARACTER DISPLAY
+  55   1         char* pTime =  "Elapsed :-      ";
+C51 COMPILER V6.10  ELAP_LCD                                                               04/18/2001 16:29:42 PAGE 2   
+
+  56   1         tByte c;
+  57   1         
+  58   1         for (c = 0; c < LCD_CHARACTERS; c++)
+  59   1            {
+  60   2            LCD_data_G[0][c] = pTime[c];
+  61   2            
+  62   2            // For demo purposes only
+  63   2            if (c % 2)
+  64   2               {
+  65   3               LCD_data_G[1][c] = LCD_UDC_DEGREES_C;
+  66   3               }
+  67   2            else
+  68   2               {
+  69   3               LCD_data_G[1][c] = LCD_UDC_POUNDS;
+  70   3               }  
+  71   2            }
+  72   1      
+  73   1         LCD_data_G[0][11] = CHAR_MAP_G[Hou_G / 10];
+  74   1         LCD_data_G[0][12] = CHAR_MAP_G[Hou_G % 10];
+  75   1         LCD_data_G[0][14] = CHAR_MAP_G[Min_G / 10];
+  76   1         LCD_data_G[0][15] = CHAR_MAP_G[Min_G % 10];
+  77   1         }
+  78          
+  79          
+  80          /*------------------------------------------------------------------*-
+  81          
+  82            Elapsed_Time_LCD_Update()
+  83          
+  84            Function for displaying elapsed time on LCD character panel.
+  85          
+  86            *** Must be scheduled once per second ***
+  87          
+  88          -*------------------------------------------------------------------*/
+  89          void Elapsed_Time_LCD_Update(void)     
+  90             {
+  91   1         bit Min_update = 0;
+  92   1         bit Hou_update = 0;
+  93   1      
+  94   1         // Set (for example) to 2 to test - otherwise 60
+  95   1         if (++Sec_G == 60)  
+  96   1            { 
+  97   2            Sec_G = 0;
+  98   2            Min_update = 1;
+  99   2            
+ 100   2            if (++Min_G == 60)  
+ 101   2               {
+ 102   3               Min_G = 0;
+ 103   3               Hou_update = 1;
+ 104   3                 
+ 105   3               if (++Hou_G == 24)  
+ 106   3                  { 
+ 107   4                  Hou_G = 0;
+ 108   4                  }
+ 109   3               }
+ 110   2            }
+ 111   1      
+ 112   1         if (Hou_update)
+ 113   1            {
+ 114   2            // Need to update the 'hours' data
+ 115   2            LCD_data_G[0][11] = CHAR_MAP_G[Hou_G / 10];
+ 116   2            LCD_data_G[0][12] = CHAR_MAP_G[Hou_G % 10];
+ 117   2            Hou_update = 0;
+C51 COMPILER V6.10  ELAP_LCD                                                               04/18/2001 16:29:42 PAGE 3   
+
+ 118   2            }
+ 119   1      
+ 120   1         if (Min_update)
+ 121   1            {
+ 122   2            // Need to update the minutes data
+ 123   2            LCD_data_G[0][14] = CHAR_MAP_G[Min_G / 10];
+ 124   2            LCD_data_G[0][15] = CHAR_MAP_G[Min_G % 10];
+ 125   2            Min_update = 0;
+ 126   2            }
+ 127   1        
+ 128   1         // We don't display seconds in this version.
+ 129   1         // We simply use the seconds data to turn on and off the colon
+ 130   1         // (between hours and minutes) 
+ 131   1         if ((Sec_G % 2) == 0)
+ 132   1            {
+ 133   2            LCD_data_G[0][13] = ' ';
+ 134   2            }
+ 135   1         else
+ 136   1            {
+ 137   2            LCD_data_G[0][13] = ':';
+ 138   2            }
+ 139   1         }
+ 140          
+ 141          /*------------------------------------------------------------------*-
+ 142            ---- END OF FILE -------------------------------------------------
+ 143          -*------------------------------------------------------------------*/
+C51 COMPILER V6.10  ELAP_LCD                                                               04/18/2001 16:29:42 PAGE 4   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+CHAR_MAP_G . . . . . . . . . . . . . .  EXTERN   CODE   ARRAY    -----  10
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+T2 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+tLong. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_LONG   -----  4
+tByte. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_CHAR   -----  1
+P0_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0080H  1
+P1_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+P0_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0081H  1
+FL . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D1H  1
+P2_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A0H  1
+P1_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+P0_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0082H  1
+tWord. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_INT    -----  2
+P3_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+P2_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A1H  1
+P1_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0092H  1
+P0_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0083H  1
+P3_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+P2_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A2H  1
+P1_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0093H  1
+P0_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0084H  1
+P3_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+P2_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A3H  1
+P1_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0094H  1
+P0_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0085H  1
+EXF2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CEH  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+P3_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+P2_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A4H  1
+P1_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0095H  1
+P0_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0086H  1
+P3_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+P2_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A5H  1
+P1_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0096H  1
+P0_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0087H  1
+P3_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+P2_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A6H  1
+P1_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0097H  1
+P3_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+P2_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A7H  1
+P3_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+T2EX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+C_T2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C9H  1
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+RCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CDH  1
+TCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CCH  1
+C51 COMPILER V6.10  ELAP_LCD                                                               04/18/2001 16:29:42 PAGE 5   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+Elapsed_Time_LCD_Update. . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Min_update . . . . . . . . . . . . .  AUTO     DATA   BIT      0000H  1
+  Hou_update . . . . . . . . . . . . .  AUTO     DATA   BIT      0001H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+Sec_G. . . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0000H  1
+CP_RL2 . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C8H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+ET2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ADH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+Min_G. . . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0001H  1
+TF2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CFH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+Hou_G. . . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0002H  1
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+PT2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BDH  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+TR2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CAH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+Elapsed_Time_LCD_Init. . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  pTime. . . . . . . . . . . . . . . .  AUTO     DATA   PTR      0000H  3
+  c. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+EXEN2. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CBH  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+LCD_data_G . . . . . . . . . . . . . .  EXTERN   DATA   ARRAY    -----  42
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    204    ----
+   CONSTANT SIZE    =     17    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

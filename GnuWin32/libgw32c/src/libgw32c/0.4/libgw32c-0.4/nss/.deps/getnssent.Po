@@ -1,0 +1,207 @@
+getnssent.o getnssent.o: getnssent.c ../include/libc-symbols.h \
+  ../config.h h:/mingw/include/errno.h h:/mingw/include/_mingw.h \
+  h:/mingw/mingw32/include/winx/errnox.h h:/mingw/include/sys/types.h \
+  h:/mingw/include/stddef.h \
+  h:/mingw/lib/gcc-lib/mingw32/3.2.3/include/stddef.h \
+  h:/mingw/mingw32/include/winx/stddefx.h \
+  h:/mingw/mingw32/include/winx/sys/typesx.h \
+  h:/mingw/mingw32/include/features.h \
+  h:/mingw/mingw32/include/sys/cdefs.h ../include/gnu/stubs.h \
+  h:/mingw/mingw32/include/bits/types.h \
+  h:/mingw/mingw32/include/bits/wordsize.h \
+  h:/mingw/mingw32/include/bits/typesizes.h h:/mingw/include/stdlib.h \
+  h:/mingw/mingw32/include/winx/stdlibx.h h:/mingw/include/stdint.h \
+  h:/mingw/mingw32/include/winx/stdintx.h \
+  h:/mingw/mingw32/include/netdb.h h:/mingw/mingw32/include/netinet/in.h \
+  h:/mingw/include/winsock.h h:/mingw/include/windows.h \
+  h:/mingw/include/stdarg.h \
+  h:/mingw/lib/gcc-lib/mingw32/3.2.3/include/stdarg.h \
+  h:/mingw/mingw32/include/winx/stdargx.h h:/mingw/include/windef.h \
+  h:/mingw/include/winnt.h h:/mingw/include/winerror.h \
+  h:/mingw/include/string.h h:/mingw/mingw32/include/winx/stringx.h \
+  h:/mingw/include/basetsd.h h:/mingw/include/pshpack4.h \
+  h:/mingw/include/poppack.h h:/mingw/mingw32/include/winx/winntx.h \
+  h:/mingw/mingw32/include/winx/windefx.h h:/mingw/include/limits.h \
+  h:/mingw/mingw32/include/winx/limitsx.h \
+  h:/mingw/mingw32/include/bits/posix1_lim.h \
+  h:/mingw/mingw32/include/bits/local_lim.h \
+  h:/mingw/mingw32/include/bits/xopen_lim.h \
+  h:/mingw/mingw32/include/bits/stdio_lim.h h:/mingw/include/wincon.h \
+  h:/mingw/include/winbase.h h:/mingw/include/wingdi.h \
+  h:/mingw/mingw32/include/winx/wingdix.h h:/mingw/include/winuser.h \
+  h:/mingw/include/winnls.h h:/mingw/include/winver.h \
+  h:/mingw/include/winnetwk.h h:/mingw/include/winreg.h \
+  h:/mingw/include/winsvc.h h:/mingw/mingw32/include/winx/windowsx.h \
+  h:/mingw/include/mswsock.h h:/mingw/mingw32/include/winx/winsockx.h \
+  h:/mingw/mingw32/include/rpc/netdb.h \
+  h:/mingw/mingw32/include/bits/siginfo.h h:/mingw/include/time.h \
+  h:/mingw/mingw32/include/winx/timex.h \
+  h:/mingw/mingw32/include/bits/time.h \
+  h:/mingw/mingw32/include/winx/bits/timex.h nsswitch.h \
+  ../include/arpa/nameser.h h:/mingw/include/sys/param.h \
+  h:/mingw/mingw32/include/winx/sys/paramx.h ../include/sys/bitypes.h \
+  ../include/arpa/nameser_compat.h h:/mingw/mingw32/include/endian.h \
+  h:/mingw/mingw32/include/bits/endian.h h:/mingw/mingw32/include/nss.h \
+  ../include/resolv.h h:/mingw/include/stdio.h \
+  h:/mingw/mingw32/include/winx/stdiox.h \
+  h:/mingw/mingw32/include/stdio_ext.h h:/mingw/include/search.h \
+  h:/mingw/mingw32/include/winx/searchx.h \
+  h:/mingw/mingw32/include/dlfcn.h h:/mingw/mingw32/include/bits/dlfcn.h
+
+../include/libc-symbols.h:
+
+../config.h:
+
+h:/mingw/include/errno.h:
+
+h:/mingw/include/_mingw.h:
+
+h:/mingw/mingw32/include/winx/errnox.h:
+
+h:/mingw/include/sys/types.h:
+
+h:/mingw/include/stddef.h:
+
+h:/mingw/lib/gcc-lib/mingw32/3.2.3/include/stddef.h:
+
+h:/mingw/mingw32/include/winx/stddefx.h:
+
+h:/mingw/mingw32/include/winx/sys/typesx.h:
+
+h:/mingw/mingw32/include/features.h:
+
+h:/mingw/mingw32/include/sys/cdefs.h:
+
+../include/gnu/stubs.h:
+
+h:/mingw/mingw32/include/bits/types.h:
+
+h:/mingw/mingw32/include/bits/wordsize.h:
+
+h:/mingw/mingw32/include/bits/typesizes.h:
+
+h:/mingw/include/stdlib.h:
+
+h:/mingw/mingw32/include/winx/stdlibx.h:
+
+h:/mingw/include/stdint.h:
+
+h:/mingw/mingw32/include/winx/stdintx.h:
+
+h:/mingw/mingw32/include/netdb.h:
+
+h:/mingw/mingw32/include/netinet/in.h:
+
+h:/mingw/include/winsock.h:
+
+h:/mingw/include/windows.h:
+
+h:/mingw/include/stdarg.h:
+
+h:/mingw/lib/gcc-lib/mingw32/3.2.3/include/stdarg.h:
+
+h:/mingw/mingw32/include/winx/stdargx.h:
+
+h:/mingw/include/windef.h:
+
+h:/mingw/include/winnt.h:
+
+h:/mingw/include/winerror.h:
+
+h:/mingw/include/string.h:
+
+h:/mingw/mingw32/include/winx/stringx.h:
+
+h:/mingw/include/basetsd.h:
+
+h:/mingw/include/pshpack4.h:
+
+h:/mingw/include/poppack.h:
+
+h:/mingw/mingw32/include/winx/winntx.h:
+
+h:/mingw/mingw32/include/winx/windefx.h:
+
+h:/mingw/include/limits.h:
+
+h:/mingw/mingw32/include/winx/limitsx.h:
+
+h:/mingw/mingw32/include/bits/posix1_lim.h:
+
+h:/mingw/mingw32/include/bits/local_lim.h:
+
+h:/mingw/mingw32/include/bits/xopen_lim.h:
+
+h:/mingw/mingw32/include/bits/stdio_lim.h:
+
+h:/mingw/include/wincon.h:
+
+h:/mingw/include/winbase.h:
+
+h:/mingw/include/wingdi.h:
+
+h:/mingw/mingw32/include/winx/wingdix.h:
+
+h:/mingw/include/winuser.h:
+
+h:/mingw/include/winnls.h:
+
+h:/mingw/include/winver.h:
+
+h:/mingw/include/winnetwk.h:
+
+h:/mingw/include/winreg.h:
+
+h:/mingw/include/winsvc.h:
+
+h:/mingw/mingw32/include/winx/windowsx.h:
+
+h:/mingw/include/mswsock.h:
+
+h:/mingw/mingw32/include/winx/winsockx.h:
+
+h:/mingw/mingw32/include/rpc/netdb.h:
+
+h:/mingw/mingw32/include/bits/siginfo.h:
+
+h:/mingw/include/time.h:
+
+h:/mingw/mingw32/include/winx/timex.h:
+
+h:/mingw/mingw32/include/bits/time.h:
+
+h:/mingw/mingw32/include/winx/bits/timex.h:
+
+nsswitch.h:
+
+../include/arpa/nameser.h:
+
+h:/mingw/include/sys/param.h:
+
+h:/mingw/mingw32/include/winx/sys/paramx.h:
+
+../include/sys/bitypes.h:
+
+../include/arpa/nameser_compat.h:
+
+h:/mingw/mingw32/include/endian.h:
+
+h:/mingw/mingw32/include/bits/endian.h:
+
+h:/mingw/mingw32/include/nss.h:
+
+../include/resolv.h:
+
+h:/mingw/include/stdio.h:
+
+h:/mingw/mingw32/include/winx/stdiox.h:
+
+h:/mingw/mingw32/include/stdio_ext.h:
+
+h:/mingw/include/search.h:
+
+h:/mingw/mingw32/include/winx/searchx.h:
+
+h:/mingw/mingw32/include/dlfcn.h:
+
+h:/mingw/mingw32/include/bits/dlfcn.h:

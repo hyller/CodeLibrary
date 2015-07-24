@@ -1,0 +1,414 @@
+C51 COMPILER V6.10  PIDMOTOR                                                               04/10/2001 15:43:34 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE PIDMOTOR
+OBJECT MODULE PLACED IN .\PIDmotor.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\PIDmotor.c BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             PID_Motor.c (v1.01)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Small library for PID control of a DC motor.
+   8             For C515c microcontroller.
+   9             
+  10             The set point (required speed) is read via a potentiometer 
+  11             and on-chip ADC.
+  12             
+  13             The current speed is read via an optical encoder.  The pulses
+  14             from the encoder are counted using T0.
+  15          
+  16             The new speed is set by PWM using the on-chip capture-compare 
+  17             unit (Timer 2).
+  18          
+  19          
+  20             COPYRIGHT
+  21             ---------
+  22          
+  23             This code is from the book:
+  24          
+  25             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  26             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  27          
+  28             This code is copyright (c) 2001 by Michael J. Pont.
+  29           
+  30             See book for copyright details and other information.
+  31          
+  32          -*------------------------------------------------------------------*/
+  33          
+  34          #include "Main.h"
+  35          #include "Port.h"
+  36          
+  37          #include "PIDMotor.h"
+  38          #include "PC_O_in.h"
+  39          
+  40          
+  41          // ------ Public constants -----------------------------------------
+  42          
+  43          extern const char code CHAR_MAP_G[10];
+  44          
+  45          // ------ Private function prototypes ------------------------------
+  46          
+  47          static tByte PID_MOTOR_Get_Required_Speed(void);
+  48          static tByte PID_MOTOR_Read_Current_Speed(void);
+  49          static void  PID_MOTOR_Set_New_PWM_Output(const tByte);
+  50          
+  51          // ------ Private constants ----------------------------------------
+  52          
+  53          #define PULSE_HIGH (0)
+  54          #define PULSE_LOW (1)
+  55          
+C51 COMPILER V6.10  PIDMOTOR                                                               04/10/2001 15:43:34 PAGE 2   
+
+  56          // PID parameters
+  57          #define PID_PROPORTIONAL (5)
+  58          #define PID_INTEGRAL     (50)
+  59          #define PID_DIFFERENTIAL (50)
+  60          
+  61          // ------ Private variables ----------------------------------------
+  62          
+  63          // Used for demo purposes only
+  64          tWord Ticks = 0;
+  65          
+  66          // Stores the latest count value
+  67          static tByte Pulse_count_G;
+  68          
+  69          // Data to be copied to the serial port
+  70          static char PID_MOTOR_data_G[50] = {"  "};
+  71          
+  72          // Measured speed, required speed and controller output variables
+  73          static tByte Speed_measured_G = 45;
+  74          static tByte Speed_required_G = 50;
+  75          static tByte Controller_output_G = 128;
+  76          
+  77          static int Old_error_G = 0;
+  78          static int Sum_G = 0;
+  79          
+  80          
+  81          /*------------------------------------------------------------------*-
+  82          
+  83            PID_MOTOR_Init()
+  84          
+  85            Prepare for UD motor control.
+  86          
+  87          -*------------------------------------------------------------------*/
+  88          void PID_MOTOR_Init(void)
+  89             {
+  90   1         // -----------------------------------------------------------
+  91   1         // Set up the initial data to be sent to the PC via RS-232
+  92   1         // -----------------------------------------------------------
+  93   1         char* pScreen_Data =  "Cur     Des     PWM     \n";
+  94   1      
+  95   1         tByte c;
+  96   1         
+  97   1         for (c = 0; c < 30; c++)
+  98   1            {
+  99   2            PID_MOTOR_data_G[c] = pScreen_Data[c];
+ 100   2            }  
+ 101   1      
+ 102   1         // -----------------------------------------------------------
+ 103   1         // Set up the A-D converter
+ 104   1         // (used to measure the 'set point' (the desired motor speed)
+ 105   1         // -----------------------------------------------------------
+ 106   1      
+ 107   1         // Select internally-triggered single conversion
+ 108   1         // Reading from P6.0 (single channel)
+ 109   1         ADCON0 = 0xC0;  // Mask bits 0 - 5 to 0 
+ 110   1         
+ 111   1         // Select appropriate prescalar ratio: see manual for details
+ 112   1         ADCON1 = 0x80;  // Make bit 7 = 1 : Prescaler ratio=8
+ 113   1      
+ 114   1         // -----------------------------------------------------------
+ 115   1         // Set up the PWM output (Cap Com) unit - T2
+ 116   1         // (used to set the desired motor speed)
+ 117   1         // -----------------------------------------------------------
+C51 COMPILER V6.10  PIDMOTOR                                                               04/10/2001 15:43:34 PAGE 3   
+
+ 118   1      
+ 119   1         // ---------- T2 Mode ---------------------------
+ 120   1         // Mode 1 = Timerfunction
+ 121   1       
+ 122   1         // Prescaler: Fcpu/6
+ 123   1      
+ 124   1         // ---------- T2 reload mode selection ----------
+ 125   1         // Mode 0 = auto-reload upon timer overflow
+ 126   1         // Preset the timer register with autoreload value ! 0xFF00;
+ 127   1         TL2 = 0x00;
+ 128   1         TH2 = 0xFF;
+ 129   1          
+ 130   1         // ---------- T2 general compare mode ----------
+ 131   1         //  Mode 0 for all channels
+ 132   1         T2CON |= 0x11;
+ 133   1      
+ 134   1         // ---------- T2 general interrupts ------------
+ 135   1         //  Timer 2 overflow interrupt is disabled
+ 136   1         ET2=0;
+ 137   1         //  Timer 2 external reload interrupt is disabled
+ 138   1         EXEN2=0;
+ 139   1      
+ 140   1         // ---------- Compare/capture Channel 0 ---------
+ 141   1         // Disabled??
+ 142   1         // Set Compare Register CRC on: 0xFF00;
+ 143   1         CRCL = 0x00;
+ 144   1         CRCH = 0xFF;
+ 145   1        
+ 146   1         // CC0/ext3 interrupt is disabled
+ 147   1         EX3=0;
+ 148   1        
+ 149   1         // ---------- Compare/capture Channel 1 ---------
+ 150   1         // Compare enabled
+ 151   1         // Set Compare Register CC1 on: 0xFF80;
+ 152   1         CCL1 = 0x80;
+ 153   1         CCH1 = 0xFF;
+ 154   1        
+ 155   1         // CC1/ext4 interrupt is disabled
+ 156   1         EX4=0;
+ 157   1        
+ 158   1         // ---------- Compare/capture Channel 2 ---------
+ 159   1         // Disabled
+ 160   1         // Set Compare Register CC2 on: 0x0000;
+ 161   1         CCL2 = 0x00;
+ 162   1         CCH2 = 0x00;
+ 163   1         //  CC2/ext5 interrupt is disabled
+ 164   1         EX5=0;
+ 165   1        
+ 166   1         // ---------- Compare/capture Channel 3 ---------
+ 167   1         // Disabled
+ 168   1         // Set Compare Register CC3 on: 0x0000;
+ 169   1         CCL3 = 0x00;
+ 170   1         CCH3 = 0x00;
+ 171   1        
+ 172   1         // CC3/ext6 interrupt is disabled
+ 173   1         EX6=0;
+ 174   1        
+ 175   1         // Set all above mentioned modes for channel 0-3 
+ 176   1         CCEN = 0x08; 
+ 177   1      
+ 178   1         // -----------------------------------------------------------
+ 179   1         // Count pulses on Pin 3.5 [software only]
+C51 COMPILER V6.10  PIDMOTOR                                                               04/10/2001 15:43:34 PAGE 4   
+
+ 180   1         // (used to measure the current motor speed)
+ 181   1         // -----------------------------------------------------------
+ 182   1         Pulse_count_pin = 1;
+ 183   1         Pulse_count_G = 0;   
+ 184   1         }
+ 185          
+ 186          /*------------------------------------------------------------------*-
+ 187          
+ 188            PID_MOTOR_Control_Motor()
+ 189          
+ 190            The main motor control function.
+ 191          
+ 192          -*------------------------------------------------------------------*/
+ 193          void PID_MOTOR_Control_Motor(void)
+ 194             { 
+ 195   1         int Error;
+ 196   1         int Control_i;
+ 197   1      
+ 198   1         // Get the current speed value (0-255)
+ 199   1         Speed_measured_G = PID_MOTOR_Read_Current_Speed();
+ 200   1      
+ 201   1         // Get the desired speed value (0-255)
+ 202   1         Speed_required_G = 
+ 203   1         PID_MOTOR_Get_Required_Speed();
+ 204   1      
+ 205   1         if (++Ticks == 100)
+ 206   1            {
+ 207   2            Speed_required_G = 200;
+ 208   2            }
+ 209   1         
+ 210   1         // Difference between required and actual speed (0-255)
+ 211   1         Error = Speed_required_G - Speed_measured_G;
+ 212   1      
+ 213   1         // Proportional term
+ 214   1         Control_i = Controller_output_G + (Error / PID_PROPORTIONAL);
+ 215   1      
+ 216   1         // Integral term [SET TO 0 IF NOT REQUIRED]
+ 217   1         if (PID_INTEGRAL)
+ 218   1            {
+ 219   2            Sum_G += Error;
+ 220   2            Control_i += (Sum_G / (1 + PID_INTEGRAL));
+ 221   2            }
+ 222   1      
+ 223   1         // Differential term [SET TO 0 IF NOT REQUIRED]
+ 224   1         if (PID_DIFFERENTIAL)
+ 225   1            {
+ 226   2            Control_i += (Error - Old_error_G) / (1 + PID_DIFFERENTIAL);
+ 227   2      
+ 228   2            // Store error value
+ 229   2            Old_error_G = Error;
+ 230   2            }
+ 231   1      
+ 232   1         // Adjust to 8-bit range
+ 233   1         if (Control_i > 255)
+ 234   1            {
+ 235   2            Control_i = 255;
+ 236   2            Sum_G -= Error;  // Windup protection
+ 237   2            }
+ 238   1      
+ 239   1         if (Control_i < 0)
+ 240   1            {
+ 241   2            Control_i = 0;
+C51 COMPILER V6.10  PIDMOTOR                                                               04/10/2001 15:43:34 PAGE 5   
+
+ 242   2            Sum_G -= Error;  // Windup protection
+ 243   2            } 
+ 244   1      
+ 245   1         // Convert to required 8-bit format
+ 246   1         Controller_output_G = (tByte) Control_i; 
+ 247   1      
+ 248   1         // Update the PWM setting
+ 249   1         PID_MOTOR_Set_New_PWM_Output(Controller_output_G);
+ 250   1      
+ 251   1         // Update display
+ 252   1         PID_MOTOR_data_G[4] = CHAR_MAP_G[Speed_measured_G / 100];
+ 253   1         PID_MOTOR_data_G[5] = CHAR_MAP_G[(Speed_measured_G % 100) / 10];
+ 254   1         PID_MOTOR_data_G[6] = CHAR_MAP_G[Speed_measured_G % 10];
+ 255   1      
+ 256   1         PID_MOTOR_data_G[12] = CHAR_MAP_G[Speed_required_G / 100];
+ 257   1         PID_MOTOR_data_G[13] = CHAR_MAP_G[(Speed_required_G % 100) / 10];
+ 258   1         PID_MOTOR_data_G[14] = CHAR_MAP_G[Speed_required_G % 10];
+ 259   1      
+ 260   1         PID_MOTOR_data_G[20] = CHAR_MAP_G[Controller_output_G / 100];
+ 261   1         PID_MOTOR_data_G[21] = CHAR_MAP_G[(Controller_output_G % 100) / 10];
+ 262   1         PID_MOTOR_data_G[22] = CHAR_MAP_G[Controller_output_G % 10];
+ 263   1      
+ 264   1         PC_LINK_O_Write_String_To_Buffer(PID_MOTOR_data_G);
+ 265   1         } 
+ 266          
+ 267          /*------------------------------------------------------------------*-
+ 268          
+ 269            PID_MOTOR_Get_Required_Speed()
+ 270          
+ 271            Get the required speed via the Pot and ADC.
+ 272          
+ 273          -*------------------------------------------------------------------*/
+ 274          tByte PID_MOTOR_Get_Required_Speed(void)
+ 275             {
+ 276   1         // Take sample from A-D
+ 277   1      
+ 278   1         // Write (value not important) to ADDATL to start conversion
+ 279   1         ADDATL = 0x01; 
+ 280   1           
+ 281   1         // Wait for conversion to complete
+ 282   1         // NOTE: This demo software has no timeout...
+ 283   1         while (BSY == 1);
+ 284   1      
+ 285   1         // 10-bit A-D result is now available
+ 286   1         // return 8-bit result
+ 287   1         return ADDATH;
+ 288   1         }
+ 289          
+ 290          /*------------------------------------------------------------------*-
+ 291          
+ 292            PID_MOTOR_Set_New_PWM_Output()
+ 293          
+ 294            Adjust the PWM output value.
+ 295          
+ 296          -*------------------------------------------------------------------*/
+ 297          void PID_MOTOR_Set_New_PWM_Output(const tByte Controller_output_G)
+ 298             {
+ 299   1         // Changing value in CCL1 to generate appropriate PWM duty cycle
+ 300   1         CCL1 = Controller_output_G;
+ 301   1         }
+ 302          
+ 303          
+C51 COMPILER V6.10  PIDMOTOR                                                               04/10/2001 15:43:34 PAGE 6   
+
+ 304          /*------------------------------------------------------------------*-
+ 305          
+ 306            PID_MOTOR_Read_Current_Speed()
+ 307          
+ 308            Schedule this function at regular intervals.
+ 309          
+ 310            Remember: max count is 65536 (16-bit counter)
+ 311            - it is your responsibility to ensure this count
+ 312            is not exceeded.  Choose an appropriate schedule
+ 313            interval and allow a margin for error.
+ 314          
+ 315            For high-frequency pulses, you need to take account of
+ 316            the fact that the count is stop for a (very brief) period,
+ 317            to read the counter.  
+ 318          
+ 319            Note: the delay before the first count is taken should 
+ 320            generally be the same as the inter-count interval,
+ 321            to ensure that the first count is as accurate as possible.
+ 322          
+ 323            For example, this is OK:
+ 324          
+ 325              Sch_Add_Task(PID_MOTOR_Read_Current_Speed, 1000, 1000);
+ 326          
+ 327            While this will give a very low first count:
+ 328          
+ 329             Sch_Add_Task(PID_MOTOR_Read_Current_Speed, 0, 1000);
+ 330          
+ 331          -*------------------------------------------------------------------*/
+ 332          
+ 333          tByte PID_MOTOR_Read_Current_Speed(void)
+ 334             {
+ 335   1         int C;
+ 336   1         tByte Count = Pulse_count_G;
+ 337   1      
+ 338   1         Pulse_count_G = 0;    
+ 339   1      
+ 340   1         // Normalised: 0 -> 255
+ 341   1         C = 9 * ((int) Count - 28);
+ 342   1      
+ 343   1         if (C < 0)
+ 344   1            {
+ 345   2            C = 0;
+ 346   2            }
+ 347   1      
+ 348   1         if (C > 255)
+ 349   1            {
+ 350   2            C = 255;
+ 351   2            }
+ 352   1      
+ 353   1         return (tByte) C;
+ 354   1         }
+ 355          
+ 356          /*------------------------------------------------------------------*-
+ 357          
+ 358            PID_MOTOR_Poll_Speed_Pulse()
+ 359          
+ 360            Using software to count falling edges on a specified pin
+ 361            - T0 is *NOT* used here.
+ 362          
+ 363          -*------------------------------------------------------------------*/
+ 364          void PID_MOTOR_Poll_Speed_Pulse(void)
+ 365             {
+C51 COMPILER V6.10  PIDMOTOR                                                               04/10/2001 15:43:34 PAGE 7   
+
+ 366   1         static bit Previous_state;
+ 367   1         bit Current_state = Pulse_count_pin;
+ 368   1      
+ 369   1         if ((Previous_state == PULSE_HIGH) && (Current_state == PULSE_LOW))
+ 370   1            {
+ 371   2            Pulse_count_G++;
+ 372   2            }
+ 373   1      
+ 374   1         Previous_state = Current_state;  
+ 375   1         }
+ 376          
+ 377          /*------------------------------------------------------------------*-
+ 378            ---- END OF FILE -------------------------------------------------
+ 379          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    457    ----
+   CONSTANT SIZE    =     26    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     60       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

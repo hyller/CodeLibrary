@@ -1,0 +1,9 @@
+"SCH51.obj",
+"MAIN.obj",
+"2_01_10I.obj",
+"MENU_A.obj",
+"PC_IO.obj",
+"PC_IO_in.obj" 
+TO "Io_t2_in" 
+RAMSIZE(256) 
+OVERLAY (main ~ (MENU_Command_Processor), SCH_Dispatch_Tasks ! (MENU_Command_Processor)) 

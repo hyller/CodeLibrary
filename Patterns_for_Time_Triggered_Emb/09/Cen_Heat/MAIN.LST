@@ -1,0 +1,75 @@
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 09:23:56 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Framework for a central heating system using 'Super Loop'.
+   8          
+   9             [Compiles and runs but does nothing useful]
+  10          
+  11             COPYRIGHT
+  12             ---------
+  13          
+  14             This code is from the book:
+  15          
+  16             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  17             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  18          
+  19             This code is copyright (c) 2001 by Michael J. Pont.
+  20           
+  21             See book for copyright details and other information.
+  22          
+  23          -*------------------------------------------------------------------*/
+  24          
+  25          #include "Cen_Heat.h"
+  26          
+  27          /*------------------------------------------------------------------*/
+  28          void main(void)
+  29             {
+  30   1         // Init the system
+  31   1         C_HEAT_Init();
+  32   1      
+  33   1         while(1) // 'for ever' (Super Loop)
+  34   1            {
+  35   2            // Find out what temperature the user requires
+  36   2            // (via the user interface)
+  37   2            C_HEAT_Get_Required_Temperature();
+  38   2      
+  39   2            // Find out what the current room temperature is
+  40   2            // (via temperature sensor)
+  41   2            C_HEAT_Get_Actual_Temperature();
+  42   2      
+  43   2            // Adjust the gas burner, as required
+  44   2            C_HEAT_Control_Boiler();
+  45   2            }
+  46   1         }
+  47          
+  48          /*------------------------------------------------------------------*-
+  49            ---- END OF FILE -------------------------------------------------
+  50          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     15    ----
+   CONSTANT SIZE    =   ----    ----
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 09:23:56 PAGE 2   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

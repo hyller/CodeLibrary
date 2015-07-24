@@ -1,0 +1,7 @@
+"Delay_t0.obj",
+"Main.obj",
+"Spi_core.obj",
+"Spi_x25.obj" 
+TO "SPI_ROM" 
+RAMSIZE(256) 
+CODE( 0X0000-0X2FFF )

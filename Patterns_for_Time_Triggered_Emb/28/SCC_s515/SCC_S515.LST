@@ -1,0 +1,527 @@
+C51 COMPILER V6.10  SCC_S515                                                               04/19/2001 14:16:00 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE SCC_S515
+OBJECT MODULE PLACED IN .\SCC_S515.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\SCC_S515.C OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             SCC_S515.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             THIS IS A SHARED-SCHEDULER [CAN BASED] FOR 80C515C (etc.) 
+   8          
+   9             *** Both Master and Slave share the same tick rate ***
+  10             *** - See Master code for details ***
+  11          
+  12             -----------------------------------------------------------
+  13             --- NOTE: 'Idle mode' must be disabled (in Sch51.C)     ---
+  14             --- or the on-chip watchdog will not function correctly ---
+  15             -----------------------------------------------------------
+  16          
+  17          
+  18             COPYRIGHT
+  19             ---------
+  20          
+  21             This code is from the book:
+  22          
+  23             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  24             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  25          
+  26             This code is copyright (c) 2001 by Michael J. Pont.
+  27           
+  28             See book for copyright details and other information.
+  29          
+  30          -*------------------------------------------------------------------*/
+  31          
+  32          #include "Main.h"
+  33          #include "Port.h"
+  34          
+  35          #include "SCC_S515.h"
+  36          #include "TLight_B.h"
+  37          
+  38          // ------ Public variable definitions ------------------------------
+  39          
+  40          // Data sent from the master to this slave
+  41          tByte Tick_message_data_G[4];
+  42          
+  43          // Data sent from this slave to the master 
+  44          // - data may be sent on, by the master, to another slave  
+  45          tByte Ack_message_data_G[4] = {'1','1','1','1'}; 
+  46          
+  47          // ------ Public variable declarations -----------------------------
+  48          
+  49          // The array of tasks (see Sch51.c)
+  50          extern sTask SCH_tasks_G[SCH_MAX_TASKS];
+  51          
+  52          // The error code variable (see Sch51.c)
+  53          extern tByte Error_code_G;
+  54          
+  55          // ------ Private function prototypes ------------------------------
+C51 COMPILER V6.10  SCC_S515                                                               04/19/2001 14:16:00 PAGE 2   
+
+  56          static void  SCC_A_SLAVE_Enter_Safe_State(void);
+  57          
+  58          static void  SCC_A_SLAVE_Send_Ack_Message_To_Master(void);
+  59          static tByte SCC_A_SLAVE_Process_Tick_Message(void);
+  60          
+  61          static bit   SCC_A_SLAVE_Read_Command_Bit(const tByte);
+  62          static tByte SCC_A_SLAVE_Set_Command_Bit(const tByte);
+  63          static tByte SCC_A_SLAVE_Read_Message_ID(const tByte);
+  64          
+  65          static void  SCC_A_SLAVE_Watchdog_Init(void);
+  66          static void  SCC_A_SLAVE_Watchdog_Refresh(void) reentrant;
+  67          
+  68          
+  69          // ------ Private constants ----------------------------------------
+  70          
+  71          // Each slave (and backup) must have a unique (non-zero) ID 
+  72          #define SLAVE_ID 0x01
+  73          
+  74          #define NO_NETWORK_ERROR (1) 
+  75          #define NETWORK_ERROR (0)
+  76          
+  77          /*------------------------------------------------------------------*-
+  78          
+  79            SCC_A_SLAVE_Init_CAN()
+  80          
+  81            Scheduler initialisation function.  Prepares scheduler
+  82            data structures and sets up timer interrupts at required rate.
+  83            Must call this function before using the scheduler.  
+  84          
+  85          -*------------------------------------------------------------------*/
+  86          void SCC_A_SLAVE_Init_CAN(void) 
+  87             {
+  88   1         tByte i;
+  89   1         tByte Message;
+  90   1      
+  91   1         // Sort out the tasks
+  92   1         for (i = 0; i < SCH_MAX_TASKS; i++) 
+  93   1            {
+  94   2            SCH_Delete_Task(i);
+  95   2            }
+  96   1      
+  97   1         // Reset the global error variable
+  98   1         // - SCH_Delete_Task() will generate an error code, 
+  99   1         //   (because the task array is empty)
+ 100   1         Error_code_G = 0;
+ 101   1      
+ 102   1         // Set the network error pin (reset when tick message received)
+ 103   1         Network_error_pin = NETWORK_ERROR;
+ 104   1      
+ 105   1         // ------ SYSCON Register 
+ 106   1         // The access to XRAM and CAN controller is enabled.
+ 107   1         // The signals !RD and !WR are not activated during accesses
+ 108   1         // to the XRAM/CAN controller.
+ 109   1         // ALE generation is enabled.
+ 110   1         SYSCON = 0x20;  
+ 111   1        
+ 112   1         //  ------------ CAN Control/Status Register --------------
+ 113   1         //  Start to init the CAN module
+ 114   1         CAN_cr  = 0x41;  // INIT and CCE
+ 115   1      
+ 116   1         //  ------------ Bit Timing Register ---------------------
+ 117   1         // Baudrate = 333.333 kbaud 
+C51 COMPILER V6.10  SCC_S515                                                               04/19/2001 14:16:00 PAGE 3   
+
+ 118   1         // - Need 308+ kbaud plus for 1ms ticks, 8 data bytes
+ 119   1         // - See text for details  
+ 120   1         //
+ 121   1         // There are 5 time quanta before sample point
+ 122   1         // There are 4 time quanta after sample point
+ 123   1         // The (re)synchronization jump width is 2 time quanta
+ 124   1         CAN_btr1  = 0x34;  // Bit Timing Register
+ 125   1         CAN_btr0  = 0x42; 
+ 126   1      
+ 127   1         CAN_gms1  = 0xFF;  // Global Mask Short Register 1
+ 128   1         CAN_gms0  = 0xFF;  // Global Mask Short Register 0
+ 129   1      
+ 130   1         CAN_ugml1 = 0xFF;  // Upper Global Mask Long Register 1
+ 131   1         CAN_ugml0 = 0xFF;  // Upper Global Mask Long Register 0
+ 132   1      
+ 133   1         CAN_lgml1 = 0xF8;  // Lower Global Mask Long Register 1
+ 134   1         CAN_lgml0 = 0xFF;  // Lower Global Mask Long Register 0
+ 135   1      
+ 136   1         //  ------ Configure 'Tick' Message Object 
+ 137   1         //  Message object 1 is valid
+ 138   1         //  enable receive interrupt
+ 139   1         CAN_messages[0].MCR1 = 0x55;    // Message Ctrl. Reg. 1
+ 140   1         CAN_messages[0].MCR0 = 0x99;    // Message Ctrl. Reg. 0
+ 141   1      
+ 142   1         //  message direction is receive
+ 143   1         //  extended 29-bit identifier
+ 144   1         CAN_messages[0].MCFG = 0x04;    // Message Config. Reg.
+ 145   1      
+ 146   1         CAN_messages[0].UAR1 = 0x00;    // Upper Arbit. Reg. 1
+ 147   1         CAN_messages[0].UAR0 = 0x00;    // Upper Arbit. Reg. 0
+ 148   1         CAN_messages[0].LAR1 = 0x00;    // Lower Arbit. Reg. 1
+ 149   1         CAN_messages[0].LAR0 = 0x00;    // Lower Arbit. Reg. 0
+ 150   1      
+ 151   1      
+ 152   1         //  ------ Configure 'Ack' Message Object 
+ 153   1         CAN_messages[1].MCR1 = 0x55;    // Message Ctrl. Reg. 1
+ 154   1         CAN_messages[1].MCR0 = 0x95;    // Message Ctrl. Reg. 0
+ 155   1      
+ 156   1         // Message direction is transmit
+ 157   1         // extended 29-bit identifier
+ 158   1         // 5 valid data bytes
+ 159   1         CAN_messages[1].MCFG = 0x5C;      // Message Config. Reg.
+ 160   1      
+ 161   1         CAN_messages[1].UAR1 = 0x00;    // Upper Arbit. Reg. 1
+ 162   1         CAN_messages[1].UAR0 = 0x00;    // Upper Arbit. Reg. 0
+ 163   1         CAN_messages[1].LAR1 = 0xF8;    // Lower Arbit. Reg. 1
+ 164   1         CAN_messages[1].LAR0 = 0x07;    // Lower Arbit. Reg. 0
+ 165   1      
+ 166   1         CAN_messages[1].Data[0] = 0x00;   // data byte 0
+ 167   1         CAN_messages[1].Data[1] = 0x00;   // data byte 1
+ 168   1         CAN_messages[1].Data[2] = 0x00;   // data byte 2
+ 169   1         CAN_messages[1].Data[3] = 0x00;   // data byte 3
+ 170   1         CAN_messages[1].Data[4] = 0x00;   // data byte 4
+ 171   1      
+ 172   1         //  ------ Configure other objects ------------------------------
+ 173   1         // Configure remaining message objects (2-14) - none are valid
+ 174   1         for (Message = 2; Message <= 14; ++Message)
+ 175   1            {
+ 176   2            CAN_messages[Message].MCR1 = 0x55;  // Message Ctrl. Reg. 1
+ 177   2            CAN_messages[Message].MCR0 = 0x55;  // Message Ctrl. Reg. 0
+ 178   2            }
+ 179   1      
+C51 COMPILER V6.10  SCC_S515                                                               04/19/2001 14:16:00 PAGE 4   
+
+ 180   1         // ------------ CAN Ctrl. Reg. ---------------------
+ 181   1         //  reset CCE and INIT
+ 182   1         // enable interrupt generation from CAN Modul
+ 183   1         // enable CAN-interrupt of Controller
+ 184   1         CAN_cr = 0x02;
+ 185   1         IEN2 |= 0x02;
+ 186   1      
+ 187   1         // Start the watchdog
+ 188   1         SCC_A_SLAVE_Watchdog_Init();  
+ 189   1         }
+ 190          
+ 191          /*------------------------------------------------------------------*-
+ 192          
+ 193            SCC_A_SLAVE_Start()
+ 194          
+ 195            Starts the slave scheduler, by enabling interrupts.
+ 196          
+ 197            NOTE: Usually called after all regular tasks are added,
+ 198            to keep the tasks synchronised.
+ 199          
+ 200            NOTE: ONLY THE SCHEDULER INTERRUPT SHOULD BE ENABLED!!! 
+ 201          
+ 202          -*------------------------------------------------------------------*/
+ 203          void SCC_A_SLAVE_Start(void) 
+ 204             {
+ 205   1         tByte Tick_00, Tick_ID;
+ 206   1         bit Start_slave;
+ 207   1      
+ 208   1         // Disable interrupts 
+ 209   1         EAL = 0;
+ 210   1      
+ 211   1         // We can be at this point because:
+ 212   1         // 1. The network has just been powered up
+ 213   1         // 2. An error has occurred in the Master, and it is not generating ticks
+ 214   1         // 3. The network has been damaged and no ticks are being received by this slave
+ 215   1         //
+ 216   1         // Try to make sure the system is in a safe state...
+ 217   1         // NOTE: Interrupts are disabled here
+ 218   1         SCC_A_SLAVE_Enter_Safe_State();
+ 219   1      
+ 220   1         Start_slave = 0;
+ 221   1         Error_code_G = ERROR_SCH_WAITING_FOR_START_COMMAND_FROM_MASTER;
+ 222   1         SCH_Report_Status(); // Sch not yet running - do this manually
+ 223   1      
+ 224   1         // Now wait (indefinitely) for appropriate signal from the master
+ 225   1         do {
+ 226   2            // Wait for 'Slave ID' message to be received 
+ 227   2            do {
+ 228   3               SCC_A_SLAVE_Watchdog_Refresh(); // Must keep feeding the watchdog
+ 229   3               } while ((CAN_messages[0].MCR1 & 0x03) != 0x02);  
+ 230   2      
+ 231   2            // Got a message - extract the data 
+ 232   2            if ((CAN_messages[0].MCR1 & 0x0c) == 0x08)  // if MSGLST set
+ 233   2               {
+ 234   3               // Ignore lost message
+ 235   3               CAN_messages[0].MCR1 = 0xf7;  // reset MSGLST
+ 236   3               }
+ 237   2      
+ 238   2            Tick_00 = (tByte) CAN_messages[0].Data[0]; // Get data byte 0 
+ 239   2            Tick_ID = (tByte) CAN_messages[0].Data[1]; // Get data byte 1 
+ 240   2      
+ 241   2            CAN_messages[0].MCR0 = 0xfd;  // reset NEWDAT, INTPND
+C51 COMPILER V6.10  SCC_S515                                                               04/19/2001 14:16:00 PAGE 5   
+
+ 242   2            CAN_messages[0].MCR1 = 0xfd;
+ 243   2      
+ 244   2            if ((Tick_00 == 0x00) && (Tick_ID == SLAVE_ID))
+ 245   2               {
+ 246   3               // Message is correct
+ 247   3               Start_slave = 1;
+ 248   3      
+ 249   3               // Send ack
+ 250   3               CAN_messages[1].Data[0] = 0x00;     // Set data byte 0
+ 251   3               CAN_messages[1].Data[1] = SLAVE_ID; // Set data byte 1
+ 252   3               CAN_messages[1].MCR1 = 0xE7;  // Send it
+ 253   3               }
+ 254   2            else
+ 255   2               {
+ 256   3               // Not yet received correct message - wait
+ 257   3               Start_slave = 0;
+ 258   3               }
+ 259   2            } while (!Start_slave);
+ 260   1      
+ 261   1         // Start the scheduler
+ 262   1         IRCON = 0;
+ 263   1         EAL = 1;
+ 264   1         }
+ 265          
+ 266          /*------------------------------------------------------------------*-
+ 267          
+ 268            SCC_A_SLAVE_Update
+ 269          
+ 270            This is the scheduler ISR.  It is called at a rate 
+ 271            determined by the timer settings in SCC_A_SLAVE_Init().
+ 272          
+ 273            This Slave is triggered by USART interrupts.
+ 274          
+ 275          -*------------------------------------------------------------------*/
+ 276          void SCC_A_SLAVE_Update(void) interrupt INTERRUPT_CAN_c515c  
+ 277             {
+ 278   1         tByte Index;
+ 279   1      
+ 280   1         // Reset this when tick is received
+ 281   1         Network_error_pin = NO_NETWORK_ERROR;
+ 282   1      
+ 283   1         // Check tick data - send ack if necessary
+ 284   1         // NOTE: 'START' message will only be sent after a 'time out'
+ 285   1         if (SCC_A_SLAVE_Process_Tick_Message() == SLAVE_ID)
+ 286   1            {
+ 287   2            SCC_A_SLAVE_Send_Ack_Message_To_Master();
+ 288   2      
+ 289   2            // Feed the watchdog ONLY when a *relevant* message is received
+ 290   2            // (noise on the bus, etc, will not stop the watchdog...)
+ 291   2            //
+ 292   2            // START messages will NOT refresh the slave
+ 293   2            // - Must talk to every slave at regular intervals 
+ 294   2            SCC_A_SLAVE_Watchdog_Refresh();
+ 295   2            }
+ 296   1      
+ 297   1         // Check the last error codes on the CAN bus via the status register
+ 298   1         if ((CAN_sr & 0x07) != 0)
+ 299   1            {
+ 300   2            Error_code_G = ERROR_SCH_CAN_BUS_ERROR;
+ 301   2            Network_error_pin = NETWORK_ERROR;
+ 302   2         
+ 303   2            // See Infineon c515c manual for error code details
+C51 COMPILER V6.10  SCC_S515                                                               04/19/2001 14:16:00 PAGE 6   
+
+ 304   2            CAN_error_pin0 = ((CAN_sr & 0x01) == 0);
+ 305   2            CAN_error_pin1 = ((CAN_sr & 0x02) == 0);
+ 306   2            CAN_error_pin2 = ((CAN_sr & 0x04) == 0);
+ 307   2            }
+ 308   1         else
+ 309   1            {
+ 310   2            CAN_error_pin0 = 1;
+ 311   2            CAN_error_pin1 = 1;
+ 312   2            CAN_error_pin2 = 1;
+ 313   2            }
+ 314   1      
+ 315   1         // NOTE: calculations are in *TICKS* (not milliseconds)
+ 316   1         for (Index = 0; Index < SCH_MAX_TASKS; Index++)
+ 317   1            {
+ 318   2            // Check if there is a task at this location
+ 319   2            if (SCH_tasks_G[Index].pTask)
+ 320   2               {
+ 321   3               if (SCH_tasks_G[Index].Delay == 0)
+ 322   3                  {
+ 323   4                  // The task is due to run
+ 324   4                  SCH_tasks_G[Index].RunMe = 1;  // Set the run flag
+ 325   4         
+ 326   4                  if (SCH_tasks_G[Index].Period)
+ 327   4                     {
+ 328   5                     // Schedule periodic tasks to run again
+ 329   5                     SCH_tasks_G[Index].Delay = SCH_tasks_G[Index].Period;
+ 330   5                     }
+ 331   4                  }
+ 332   3               else
+ 333   3                  {
+ 334   4                  // Not yet ready to run: just decrement the delay 
+ 335   4                  SCH_tasks_G[Index].Delay -= 1;
+ 336   4                  }
+ 337   3               }         
+ 338   2            }
+ 339   1         }   
+ 340          
+ 341          /*------------------------------------------------------------------*-
+ 342          
+ 343            SCC_A_SLAVE_Process_Tick_Message()
+ 344          
+ 345            The ticks messages are crucial to the operation of this shared-clock
+ 346            scheduler: the arrival of a tick message (at regular intervals) 
+ 347            invokes the 'Update' ISR, that drives the scheduler.
+ 348          
+ 349            The tick messages themselves may contain data.  These data are 
+ 350            extracted in this function. 
+ 351          
+ 352          -*------------------------------------------------------------------*/
+ 353          tByte SCC_A_SLAVE_Process_Tick_Message(void)
+ 354             {
+ 355   1         tByte Tick_ID;
+ 356   1      
+ 357   1         if ((CAN_messages[0].MCR1 & 0x0c) == 0x08)  // if MSGLST set
+ 358   1            {
+ 359   2            // Indicates that the CAN controller has stored a new 
+ 360   2            // message into this object, while NEWDAT was still set,
+ 361   2            // i.e. the previously stored message is lost.
+ 362   2      
+ 363   2            // We simply IGNORE this here and reset the flag
+ 364   2            CAN_messages[0].MCR1 = 0xf7;  // reset MSGLST
+ 365   2            }
+C51 COMPILER V6.10  SCC_S515                                                               04/19/2001 14:16:00 PAGE 7   
+
+ 366   1      
+ 367   1         // The first byte is the ID of the slave for which the data are
+ 368   1         // intended
+ 369   1         Tick_ID = CAN_messages[0].Data[0];   // Get data byte 0 (Slave ID)
+ 370   1      
+ 371   1         if (Tick_ID == SLAVE_ID)
+ 372   1            {
+ 373   2            // Only if there is a match do we need to copy these fields
+ 374   2            Tick_message_data_G[0] = CAN_messages[0].Data[1];   
+ 375   2            Tick_message_data_G[1] = CAN_messages[0].Data[2];   
+ 376   2            Tick_message_data_G[2] = CAN_messages[0].Data[3];   
+ 377   2            Tick_message_data_G[3] = CAN_messages[0].Data[4];   
+ 378   2            }
+ 379   1      
+ 380   1         CAN_messages[0].MCR0 = 0xfd;  // reset NEWDAT, INTPND
+ 381   1         CAN_messages[0].MCR1 = 0xfd;  
+ 382   1      
+ 383   1         return Tick_ID;
+ 384   1         }
+ 385          
+ 386          
+ 387          /*------------------------------------------------------------------*-
+ 388          
+ 389            SCC_A_SLAVE_Send_Ack_Message_To_Master()
+ 390          
+ 391            Slave must send and 'Acknowledge' message to the master, after
+ 392            tick messages are received.  NOTE: Only tick messages specifically
+ 393            addressed to this slave should be acknowledged.
+ 394          
+ 395            The acknowledge message serves two purposes:
+ 396            [1] It confirms to the master that this slave is alive & well.
+ 397            [2] It provides a means of sending data to the master and - hence
+ 398                - to other slaves.
+ 399          
+ 400            NOTE: Data transfer between slaves is NOT permitted!
+ 401          
+ 402          -*------------------------------------------------------------------*/
+ 403          void SCC_A_SLAVE_Send_Ack_Message_To_Master(void)
+ 404             {
+ 405   1         // First byte of message must be slave ID
+ 406   1         CAN_messages[1].Data[0] = SLAVE_ID;   // data byte 0
+ 407   1      
+ 408   1         CAN_messages[1].Data[1] = Ack_message_data_G[0];   
+ 409   1         CAN_messages[1].Data[2] = Ack_message_data_G[1];   
+ 410   1         CAN_messages[1].Data[3] = Ack_message_data_G[2];   
+ 411   1         CAN_messages[1].Data[4] = Ack_message_data_G[3];   
+ 412   1      
+ 413   1         // Send the message on the CAN bus
+ 414   1         CAN_messages[1].MCR1 = 0xE7;  // TXRQ, reset CPUUPD
+ 415   1         }
+ 416          
+ 417          
+ 418          /*------------------------------------------------------------------*-
+ 419          
+ 420            SCC_A_SLAVE_Watchdog_Init()
+ 421          
+ 422            This function sets up the watchdog timer.
+ 423          
+ 424            If the Master fails (or other error develop), 
+ 425            no tick messages will arrive, and the scheduler
+ 426            will stop.  
+ 427          
+C51 COMPILER V6.10  SCC_S515                                                               04/19/2001 14:16:00 PAGE 8   
+
+ 428            To detect this situation, we have a (hardware) watchdog
+ 429            running in the slave.  This watchdog - which should be set to
+ 430            overflow at around 100ms - is used to set the system into a
+ 431            known (safe) state.  The slave will then wait (indefinitely)
+ 432            for the problem to be resolved.
+ 433          
+ 434            NOTE: The slave will not be generating Ack messages in these 
+ 435            circumstances.  The Master (if running) will therefore be aware
+ 436            that there is a problem.  
+ 437          
+ 438          -*------------------------------------------------------------------*/
+ 439          void SCC_A_SLAVE_Watchdog_Init(void)   
+ 440             {
+ 441   1         // Watchdog timer prescaler (1/16) enabled 
+ 442   1         // Watchdog timer reload value is 0x6B
+ 443   1         // Watchdog period is 103.2 ms (10.0 MHz xtal, c515c)
+ 444   1         WDTREL = 0xEB;
+ 445   1        
+ 446   1         // Start watchdog timer
+ 447   1         WDT  = 1;
+ 448   1         SWDT = 1;     
+ 449   1         }
+ 450          
+ 451          
+ 452          /*------------------------------------------------------------------*-
+ 453          
+ 454            SCC_A_SLAVE_Watchdog_Refresh()
+ 455          
+ 456            Feed the watchdog.
+ 457          
+ 458          -*------------------------------------------------------------------*/
+ 459          void SCC_A_SLAVE_Watchdog_Refresh(void) reentrant
+ 460             {
+ 461   1         WDT  = 1;
+ 462   1         SWDT = 1;
+ 463   1         }    
+ 464          
+ 465          /*------------------------------------------------------------------*-
+ 466          
+ 467            SCC_A_SLAVE_Enter_Safe_State()
+ 468          
+ 469            This is the state enterted by the system when:
+ 470            (1) The node is powerec up or reset
+ 471            (2) The Master node fails, and no working backup is available
+ 472            (3) The network has an error
+ 473            (4) Tick messages are delayed for any other reason
+ 474          
+ 475            Try to ensure that the system is in a 'safe' state in these 
+ 476            circumstances.
+ 477          
+ 478          -*------------------------------------------------------------------*/
+ 479          void SCC_A_SLAVE_Enter_Safe_State(void)
+ 480             {
+ 481   1         // USER DEFINED 
+ 482   1         TRAFFIC_LIGHTS_Display_Safe_Output();
+ 483   1         }   
+ 484          
+ 485          /*------------------------------------------------------------------*-
+ 486            ---- END OF FILE -------------------------------------------------
+ 487          -*------------------------------------------------------------------*/
+ 488          
+
+C51 COMPILER V6.10  SCC_S515                                                               04/19/2001 14:16:00 PAGE 9   
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    602    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

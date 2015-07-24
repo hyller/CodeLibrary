@@ -1,0 +1,482 @@
+C51 COMPILER V6.10  LCD_A                                                                  04/18/2001 16:29:05 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE LCD_A
+OBJECT MODULE PLACED IN .\LCD_A.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\LCD_A.C OPTIMIZE(6,SIZE) BROWSE NOINTPROMOTE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             LCD_A.C (v1.01)
+   4           
+   5            ------------------------------------------------------------------
+   6          
+   7             LCD LIBRARY CODE 
+   8          
+   9             Designed for scheduled operation, 
+  10             in this case for a 2-line x 20-character display 
+  11          
+  12             '4-BIT' INTERFACE (uses 6 pins) to standard HD44780-based LCD
+  13          
+  14           
+  15             COPYRIGHT
+  16             ---------
+  17          
+  18             This code is from the book:
+  19          
+  20             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  21             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  22          
+  23             This code is copyright (c) 2001 by Michael J. Pont.
+  24           
+  25             See book for copyright details and other information.
+  26          
+  27          -*------------------------------------------------------------------*/
+  28          
+  29          // Hardware resources: 
+  30          // Uses T0 (for delays) plus six I/O pins
+  31          
+  32          #include "Main.h"
+  33          #include "Port.h"
+  34          
+  35          #include "LCD_A.h"
+  36          #include "Delay_T0.h"
+  37          
+  38          
+  39          // ------ Public variable definitions ------------------------------
+  40          
+  41          // The LCD data
+  42          char LCD_data_G[LCD_LINES][LCD_CHARACTERS+1] 
+  43               = {" PLEASE WAIT        "," ...                "};
+  44          
+  45          // ------ Private function prototypes ------------------------------
+  46          
+  47          static void LCD_Send_Byte(const tByte, const bit) ;
+  48          static void LCD_Create_Character(const tByte, const tByte* const);
+  49          
+  50          static void LCD_SetDDRAM(tByte);  
+  51          static void LCD_Delay(void);
+  52          
+  53          // ------ Private constants ----------------------------------------
+  54          
+  55          // Bitmaps for user-defined characters [for demonstration purposes]
+C51 COMPILER V6.10  LCD_A                                                                  04/18/2001 16:29:05 PAGE 2   
+
+  56          
+  57          // This is a UK Pound (currency) sign
+  58          // 765 43210
+  59          // ... ...11 - 3 (Decimal)
+  60          // ... ..1.. - 4 
+  61          // ... .111. - 14 
+  62          // ... ..1.. - 4 
+  63          // ... ..1.. - 4 
+  64          // ... ..1.. - 4 
+  65          // ... 11111 - 31 
+  66          // ... ..... - 0 
+  67          const tByte LCD_UDC_Pounds[8] = {3,4,14,4,4,31,0};
+  68          // #define LCD_UDC_POUNDS 1 (See LCD_A.H)
+  69          
+  70          // This is 'Degrees Celsius' (as in temp. of boiling water = 100oC)
+  71          // 765 43210
+  72          // ... .11.. = 12 (Decimal)
+  73          // ... 1..1. = 18
+  74          // ... .11.. = 12
+  75          // ... ...11 = 3
+  76          // ... ..1.. = 4
+  77          // ... ..1.. = 4
+  78          // ... ...11 = 3  
+  79          // ... ..... - 0 
+  80          const tByte LCD_UDC_Degrees_C[8] = {12,18,12,3,4,4,3,0};
+  81          // #define LCD_UDC_DEGREES_C 2 (See LCD_A.H)
+  82          
+  83          #define LCD_DISPLAY_OFF_CURSOR_OFF_BLINKING_OFF 0x08
+  84          #define LCD_DISPLAY_ON_CURSOR_OFF_BLINKING_OFF 0x0C
+  85          
+  86          #define LCD_INC_ADDR_NO_SCROLL 0x06
+  87          #define LCD_CURSOR_OFF 0x08
+  88          #define LCD_DISPLAY_ON 0x04
+  89          #define LCD_CLEAR_DISPLAY 0x01
+  90          #define LCD_8BIT_2LINE_5x8FONT 0x38  // 0011 1000 
+  91          #define LCD_4BIT_2LINE_5x8FONT 0x28  // 0010 1000
+  92          
+  93          // Define Timer 0 / Timer 1 reload values for ~50 us delay
+  94          #define PRELOAD50micros  (65536 - (tWord)((OSC_FREQ / 20000)/(OSC_PER_INST)))    
+  95          #define PRELOAD50microsH (PRELOAD50micros / 256)
+  96          #define PRELOAD50microsL (PRELOAD50micros % 256)
+  97          
+  98          /*------------------------------------------------------------------*-
+  99          
+ 100           LCD_Init()
+ 101          
+ 102           RATHER SLOW, BUT MANAGES TO INITIALISE ALL TESTED DISPLAYS 
+ 103           (and is only called at the start of the program)
+ 104          
+ 105           NOTE: I suggest you call this function THREE TIMES.
+ 106          
+ 107           Set TURN_DISPLAY_ON to '1' last time function is called.
+ 108          
+ 109          -*------------------------------------------------------------------*/
+ 110          void LCD_Init(const bit TURN_DISPLAY_ON)
+ 111             {
+ 112   1         tByte loop;
+ 113   1         tByte l,c;
+ 114   1      
+ 115   1         Hardware_Delay_T0(10);  
+ 116   1      
+ 117   1         // Set up the LCD port
+C51 COMPILER V6.10  LCD_A                                                                  04/18/2001 16:29:05 PAGE 3   
+
+ 118   1         LCD_D4 = 1;
+ 119   1         LCD_D5 = 1;
+ 120   1         LCD_D6 = 1;
+ 121   1         LCD_D7 = 1;
+ 122   1      
+ 123   1         LCD_RS = 1;
+ 124   1         LCD_EN = 1;    
+ 125   1      
+ 126   1         Hardware_Delay_T0(10);  
+ 127   1      
+ 128   1         LCD_RS = 0;
+ 129   1         LCD_EN = 0;    
+ 130   1      
+ 131   1         // Now wait for the display to initialise
+ 132   1         // - data sheet says at least 40 ms
+ 133   1         Hardware_Delay_T0(100);
+ 134   1      
+ 135   1         // Data sheet says send this instruction 3 times...
+ 136   1         for (loop = 0; loop < 3; loop++)
+ 137   1            {
+ 138   2            // Using a 4-bit bus, 2 display lines and a 5x7 dot font
+ 139   2            LCD_Send_Byte(LCD_4BIT_2LINE_5x8FONT,0);  
+ 140   2            Hardware_Delay_T0(1);
+ 141   2            }
+ 142   1         
+ 143   1         // Turn the display off and the cursor off and blinking off
+ 144   1         LCD_Send_Byte(LCD_DISPLAY_OFF_CURSOR_OFF_BLINKING_OFF,0); 
+ 145   1         Hardware_Delay_T0(1);
+ 146   1         
+ 147   1         // Clear the display
+ 148   1         LCD_Send_Byte(LCD_CLEAR_DISPLAY,0); 
+ 149   1         Hardware_Delay_T0(1);
+ 150   1      
+ 151   1         // Invisible cursor (dummy function call to avoid library error)
+ 152   1         LCD_Control_Cursor(0,0,0);
+ 153   1         Hardware_Delay_T0(1);
+ 154   1      
+ 155   1         // Clear the display
+ 156   1         LCD_Send_Byte(LCD_CLEAR_DISPLAY,0); 
+ 157   1         Hardware_Delay_T0(1);
+ 158   1      
+ 159   1         if (TURN_DISPLAY_ON)
+ 160   1            {
+ 161   2            // Increment display address for each character but do not scroll
+ 162   2            LCD_Send_Byte(LCD_INC_ADDR_NO_SCROLL,0); 
+ 163   2            Hardware_Delay_T0(1);
+ 164   2      
+ 165   2            // Update all characters in the display
+ 166   2            for (l = 0; l < LCD_LINES; l++)
+ 167   2                {
+ 168   3                for (c = 0; c < LCD_CHARACTERS; c++)
+ 169   3                    {
+ 170   4                    LCD_data_G[l][c] = ' ';
+ 171   4                    LCD_Update();
+ 172   4                    Hardware_Delay_T0(1);
+ 173   4                    } 
+ 174   3                }
+ 175   2      
+ 176   2            // Set up user-defined character(s) - if required
+ 177   2            LCD_Create_Character(LCD_UDC_DEGREES_C, LCD_UDC_Degrees_C);
+ 178   2            Hardware_Delay_T0(1);
+ 179   2      
+C51 COMPILER V6.10  LCD_A                                                                  04/18/2001 16:29:05 PAGE 4   
+
+ 180   2            LCD_Create_Character(LCD_UDC_POUNDS, LCD_UDC_Pounds);
+ 181   2            Hardware_Delay_T0(1); 
+ 182   2      
+ 183   2            // Turn the display on and the cursor off and blinking off
+ 184   2            LCD_Send_Byte(LCD_DISPLAY_ON_CURSOR_OFF_BLINKING_OFF,0); 
+ 185   2            Hardware_Delay_T0(1);
+ 186   2            }      
+ 187   1         }
+ 188          
+ 189          
+ 190          /*------------------------------------------------------------------*-
+ 191          
+ 192           LCD_Update()
+ 193          
+ 194           This function updates one character in the LCD panel
+ 195           (if it requires updating).
+ 196           
+ 197           Duration: ~0.1 ms.
+ 198          
+ 199           Schedule roughly every 25 ms (2-line x 20-char display) to
+ 200           force one complete display update every second.
+ 201          
+ 202          -*------------------------------------------------------------------*/
+ 203          void LCD_Update(void) 
+ 204             {
+ 205   1         static tByte Line;
+ 206   1         static tByte Character;
+ 207   1      
+ 208   1         tByte Tests, Data;
+ 209   1         bit Update_required;
+ 210   1      
+ 211   1         // Find next character to be updated
+ 212   1         Tests = LCD_CHARACTERS * LCD_LINES;
+ 213   1         do {
+ 214   2            if (++Character == LCD_CHARACTERS)
+ 215   2               {
+ 216   3               Character = 0;
+ 217   3      
+ 218   3               if (++Line == LCD_LINES)
+ 219   3                  {
+ 220   4                  Line = 0;
+ 221   4                  }
+ 222   3               }
+ 223   2      
+ 224   2            // Array contents set to \0 after data is written to LCD 
+ 225   2            Update_required = (LCD_data_G[Line][Character] != '\0');
+ 226   2            } while ((Tests-- > 0) && (!Update_required));
+ 227   1      
+ 228   1         if (!Update_required)
+ 229   1            {
+ 230   2            return;  // No data in LCD requires updating
+ 231   2            }
+ 232   1      
+ 233   1        // Set DDRAM address which character is to be written to
+ 234   1        // - Assumes 2 line display (or 16x1)
+ 235   1        // - See text for adjustments needed for other display sizes
+ 236   1        if (Line == 0)
+ 237   1            {
+ 238   2            LCD_SetDDRAM(0x00 + Character);  // First line
+ 239   2            }
+ 240   1         else
+ 241   1            {
+C51 COMPILER V6.10  LCD_A                                                                  04/18/2001 16:29:05 PAGE 5   
+
+ 242   2            LCD_SetDDRAM(0x40 + Character);  // Second line
+ 243   2            }
+ 244   1      
+ 245   1         // This is the data for updating
+ 246   1         Data = LCD_data_G[Line][Character];
+ 247   1      
+ 248   1         // New
+ 249   1         LCD_Send_Byte(Data,1);
+ 250   1      
+ 251   1         // Once data has been written to LCD
+ 252   1         LCD_data_G[Line][Character] = '\0';  
+ 253   1         }
+ 254          
+ 255          /*------------------------------------------------------------------*-
+ 256          
+ 257           LCD_Send_Byte()
+ 258          
+ 259           This function writes a byte to the LCD panel.
+ 260           
+ 261           Duration < 0.1 ms .
+ 262          
+ 263           Parameters: Data
+ 264                         The byte to be written to the display.
+ 265          
+ 266                       DATA_FLAG:
+ 267                         If DATA_FLAG == 1, a data byte is sent
+ 268                         If DATA_FLAG == 0, a command byte is sent
+ 269          
+ 270          
+ 271          -*------------------------------------------------------------------*/
+ 272          void LCD_Send_Byte(const tByte DATA, const bit DATA_FLAG) 
+ 273             {
+ 274   1         // Delays *are* needed
+ 275   1         // [you may find it possible to reduce them on
+ 276   1         // on some displays]
+ 277   1         LCD_D4 = 0;
+ 278   1         LCD_D5 = 0;
+ 279   1         LCD_D6 = 0;
+ 280   1         LCD_D7 = 0;
+ 281   1         LCD_RS = DATA_FLAG; // Data register
+ 282   1         LCD_EN = 0;
+ 283   1         LCD_Delay();
+ 284   1      
+ 285   1         // Write the data (high nybble)
+ 286   1         LCD_D4 = ((DATA & 0x10) == 0x10);
+ 287   1         LCD_D5 = ((DATA & 0x20) == 0x20);
+ 288   1         LCD_D6 = ((DATA & 0x40) == 0x40);
+ 289   1         LCD_D7 = ((DATA & 0x80) == 0x80); 
+ 290   1      
+ 291   1         LCD_Delay();
+ 292   1         LCD_EN = 1; // Latch the high nybble
+ 293   1         LCD_Delay();
+ 294   1         LCD_EN = 0;
+ 295   1         LCD_Delay();
+ 296   1         LCD_D4 = 0;
+ 297   1         LCD_D5 = 0;
+ 298   1         LCD_D6 = 0;
+ 299   1         LCD_D7 = 0;
+ 300   1         LCD_RS = DATA_FLAG;
+ 301   1         LCD_EN = 0;
+ 302   1         LCD_Delay();
+ 303   1      
+C51 COMPILER V6.10  LCD_A                                                                  04/18/2001 16:29:05 PAGE 6   
+
+ 304   1         // Write the data (low nybble)
+ 305   1         LCD_D4 = ((DATA & 0x01) == 0x01);
+ 306   1         LCD_D5 = ((DATA & 0x02) == 0x02);
+ 307   1         LCD_D6 = ((DATA & 0x04) == 0x04);
+ 308   1         LCD_D7 = ((DATA & 0x08) == 0x08);
+ 309   1      
+ 310   1         LCD_Delay();
+ 311   1         LCD_EN = 1; // Latch the low nybble
+ 312   1         LCD_Delay();
+ 313   1         LCD_EN = 0;
+ 314   1         LCD_Delay();   
+ 315   1         } 
+ 316          
+ 317          
+ 318          /*------------------------------------------------------------------*-
+ 319          
+ 320            LCD_Control_Cursor()
+ 321          
+ 322            This function enables or clears the cursor and moves
+ 323            it to a specified point.
+ 324          
+ 325            Params:  Visible  - Set if the cursor should be visible.
+ 326                     Blinking - Set if character should be blinking
+ 327                     Address  - Address (DDRAM) we want to adjust.
+ 328          
+ 329          -*------------------------------------------------------------------*/ 
+ 330          void LCD_Control_Cursor(const bit VISIBLE, const bit BLINKING, 
+ 331                                  const tByte ADDRESS) 
+ 332             {
+ 333   1         // Cursor / blinking appears at current DDRAM address 
+ 334   1         // - use SetDDRAM() to alter the cursor position
+ 335   1         tByte Command = 0x0C;  
+ 336   1      
+ 337   1         if (VISIBLE) 
+ 338   1            {
+ 339   2            Command |= 0x02;
+ 340   2            }
+ 341   1      
+ 342   1         if (BLINKING) 
+ 343   1            {
+ 344   2            Command |= 0x01;
+ 345   2            }
+ 346   1      
+ 347   1         LCD_Send_Byte(Command,0);
+ 348   1         LCD_SetDDRAM(ADDRESS);
+ 349   1         }
+ 350          
+ 351          /*------------------------------------------------------------------*-
+ 352          
+ 353           LCD_SetDDRAM()
+ 354          
+ 355           Set the DDRAM to a particular address.
+ 356          
+ 357           Used to determine where we write to in the LCD RAM and - thus -
+ 358           whether the text appears on Line 0, Line 1, etc.
+ 359          
+ 360           See text for details.
+ 361          
+ 362           Params: The DDRAM address we wish to write to. 
+ 363          
+ 364          -*------------------------------------------------------------------*/
+ 365          void LCD_SetDDRAM(tByte ADDRESS)
+C51 COMPILER V6.10  LCD_A                                                                  04/18/2001 16:29:05 PAGE 7   
+
+ 366             {
+ 367   1         ADDRESS &= 0x7f;
+ 368   1         ADDRESS |= 0x80;
+ 369   1         LCD_Send_Byte(ADDRESS,0);
+ 370   1         }
+ 371          
+ 372          
+ 373          /*------------------------------------------------------------------*-
+ 374          
+ 375            LCD_SetCGRAM
+ 376          
+ 377            Set the CGRAM to a particular address.
+ 378          
+ 379            Used to determine where we write to in the LCD RAM
+ 380          
+ 381            See text for details.
+ 382          
+ 383            Params: The CGRAM address we wish to write to
+ 384          
+ 385          -*------------------------------------------------------------------*/
+ 386          void LCD_SetCGRAM(tByte Address)
+ 387             {
+ 388   1         Address &= 0x3f;
+ 389   1         Address |= 0x40;
+ 390   1         LCD_Send_Byte(Address,0);
+ 391   1         }
+ 392          
+ 393          
+ 394          /*------------------------------------------------------------------*-
+ 395          
+ 396            LCD_Create_Character()
+ 397          
+ 398            Stores a user-defined character in the CG RAM. Up to 8 characters
+ 399            may be stored in this way.  Note: characters are assumed to be 
+ 400            5x8 in size: if you need 5x11 characters you will need to adapt
+ 401            this code.
+ 402          
+ 403            Parameters: The character data (see start of file) 
+ 404          
+ 405          -*------------------------------------------------------------------*/
+ 406          void LCD_Create_Character(const tByte UDC_ID, 
+ 407                                    const tByte* const pUDC_PAT)
+ 408             {
+ 409   1         tByte Row;  
+ 410   1      
+ 411   1         LCD_SetCGRAM(UDC_ID << 3);
+ 412   1         
+ 413   1         // Now write the data 
+ 414   1         for (Row = 0; Row < 8; Row++)
+ 415   1            { 
+ 416   2            LCD_Send_Byte(pUDC_PAT[Row], 1);
+ 417   2            }
+ 418   1         
+ 419   1      
+ 420   1         // Make sure we next write to DD RAM
+ 421   1         LCD_SetDDRAM(0x00);
+ 422   1         }                                       
+ 423          
+ 424          
+ 425          /*------------------------------------------------------------------*-
+ 426          
+ 427            LCD_Delay()
+C51 COMPILER V6.10  LCD_A                                                                  04/18/2001 16:29:05 PAGE 8   
+
+ 428          
+ 429            This function provides a short delay for the LCD library.
+ 430          
+ 431          -*------------------------------------------------------------------*/
+ 432          void LCD_Delay(void)   
+ 433             {
+ 434   1         int x;
+ 435   1      
+ 436   1         x++;
+ 437   1         x++;
+ 438   1         x++;
+ 439   1         }        
+ 440          
+ 441          /*------------------------------------------------------------------*-
+ 442            ---- END OF FILE -------------------------------------------------
+ 443          -*------------------------------------------------------------------*/
+ 444          
+ 445          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    625    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     60      11
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       5
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

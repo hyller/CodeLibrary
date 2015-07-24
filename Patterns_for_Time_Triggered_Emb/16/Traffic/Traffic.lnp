@@ -1,0 +1,9 @@
+"2_01_12g.obj",
+"Main.obj",
+"Sch51.obj",
+"T_Lights.obj" 
+TO "Traffic" 
+RAMSIZE(256) 
+OVERLAY (main ~ (TRAFFIC_LIGHTS_Update),  SCH_Dispatch_Tasks ! (TRAFFIC_LIGHTS_Update))
+
+CODE( 0X0000-0X1FFF )

@@ -1,0 +1,11 @@
+/////////////////////////////////////////////////////////////////////
+// Quantum Finite State Machine definition
+// Copyright (c) 2002 Miro Samek, Palo Alto, CA. 
+// All Rights Reserved.
+/////////////////////////////////////////////////////////////////////
+#include "qfsm.h"
+
+char const *QFsm::getVersion() { 
+   return "QFSM 1.0.0";
+}
+

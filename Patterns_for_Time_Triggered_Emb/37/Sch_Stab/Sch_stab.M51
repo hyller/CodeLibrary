@@ -1,0 +1,1590 @@
+BL51 BANKED LINKER/LOCATER V4.03                                                        04/10/2001  11:27:57  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V4.03, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE 2_01_12s.obj, Cloc_Mx4.obj, Delay_t0.obj, I2C_1621.obj, I2c_Core.obj, LED_Mx4.obj, Main.obj, Sc
+>> h51.obj TO Sch_stab RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  2_01_12s.obj (2_01_12S)
+  Cloc_Mx4.obj (CLOC_MX4)
+  Delay_t0.obj (DELAY_T0)
+  I2C_1621.obj (I2C_1621)
+  I2c_Core.obj (I2C_CORE)
+  LED_Mx4.obj (LED_MX4)
+  Main.obj (MAIN)
+  Sch51.obj (SCH51)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?SIDIV)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?ICALL)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  Sch_stab (2_01_12S)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0007H     UNIT         ?DT?2_01_12S
+            DATA    000FH     0005H     UNIT         ?DT?LED_MX4
+            DATA    0014H     0005H     UNIT         _DATA_GROUP_
+            DATA    0019H     0003H     UNIT         ?DT?CLOC_MX4
+                    001CH     0004H                  *** GAP ***
+            BIT     0020H.0   0000H.2   UNIT         _BIT_GROUP_
+                    0020H.2   0000H.6                *** GAP ***
+            DATA    0021H     0019H     UNIT         ?DT?SCH51
+            IDATA   003AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0025H     UNIT         ?PR?I2C_SYNC_THE_CLOCK_T0?I2C_CORE
+            CODE    0028H     0003H     UNIT         ?PR?SCH_START?2_01_12S
+            CODE    002BH     0003H     ABSOLUTE     
+            CODE    002EH     0091H     UNIT         ?C?LIB_CODE
+            CODE    00BFH     008CH     UNIT         ?C_C51STARTUP
+            CODE    014BH     007DH     UNIT         ?PR?SCH_UPDATE?2_01_12S
+            CODE    01C8H     0073H     UNIT         ?PR?CLOCK_LED_TIME_UPDATE?CLOC_MX4
+            CODE    023BH     005FH     UNIT         ?PR?_SCH_ADD_TASK?SCH51
+            CODE    029AH     005DH     UNIT         ?PR?SCH_PERFORM_TEMPERATURE_ADJUSTME?2_01_12S
+            CODE    02F7H     0053H     UNIT         ?PR?SCH_DISPATCH_TASKS?SCH51
+            CODE    034AH     0050H     UNIT         ?PR?I2C_INIT_TEMPERATURE_DS1621?I2C_1621
+            CODE    039AH     004DH     UNIT         ?PR?LED_MX4_DISPLAY_UPDATE?LED_MX4
+            CODE    03E7H     0049H     UNIT         ?PR?_SCH_DELETE_TASK?SCH51
+            CODE    0430H     003FH     UNIT         ?PR?I2C_READ_TEMPERATURE_DS1621?I2C_1621
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 2
+
+
+            CODE    046FH     003AH     UNIT         ?PR?MAIN?MAIN
+            CODE    04A9H     0038H     UNIT         ?PR?_I2C_WRITE_BYTE?I2C_CORE
+            CODE    04E1H     0037H     UNIT         ?PR?SCH_REPORT_STATUS?SCH51
+            CODE    0518H     0034H     UNIT         ?PR?SCH_CALCULATE_AVE_TEMP_DS1621?2_01_12S
+            CODE    054CH     002FH     UNIT         ?PR?I2C_READ_BYTE?I2C_CORE
+            CODE    057BH     002AH     UNIT         ?PR?SCH_INIT_T2?2_01_12S
+            CODE    05A5H     002AH     UNIT         ?CO?2_01_12S
+            CODE    05CFH     0029H     UNIT         ?PR?_HARDWARE_DELAY_T0?DELAY_T0
+            CODE    05F8H     0018H     UNIT         ?PR?I2C_GET_ACK_FROM_SLAVE?I2C_CORE
+            CODE    0610H     0014H     UNIT         ?CO?LED_MX4
+            CODE    0624H     0011H     UNIT         ?PR?I2C_DELAY?I2C_CORE
+            CODE    0635H     000FH     UNIT         ?PR?I2C_SEND_START?I2C_CORE
+            CODE    0644H     000EH     UNIT         ?C_INITSEG
+            CODE    0652H     000DH     UNIT         ?PR?I2C_SEND_STOP?I2C_CORE
+            CODE    065FH     000DH     UNIT         ?PR?I2C_SEND_MASTER_ACK?I2C_CORE
+            CODE    066CH     0009H     UNIT         ?PR?I2C_SEND_MASTER_NACK?I2C_CORE
+            CODE    0675H     0004H     UNIT         ?PR?SCH_GO_TO_SLEEP?SCH51
+
+
+
+OVERLAY MAP OF MODULE:   Sch_stab (2_01_12S)
+
+
+SEGMENT                                                  BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT                                 START    LENGTH     START    LENGTH
+-----------------------------------------------------------------------------------------
+?C_C51STARTUP                                         -----    -----      -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                                         -----    -----      -----    -----
+  +--> ?PR?SCH_INIT_T2?2_01_12S
+  +--> ?PR?I2C_INIT_TEMPERATURE_DS1621?I2C_1621
+  +--> ?PR?CLOCK_LED_TIME_UPDATE?CLOC_MX4
+  +--> ?PR?_SCH_ADD_TASK?SCH51
+  +--> ?PR?LED_MX4_DISPLAY_UPDATE?LED_MX4
+  +--> ?PR?SCH_CALCULATE_AVE_TEMP_DS1621?2_01_12S
+  +--> ?PR?SCH_START?2_01_12S
+  +--> ?PR?SCH_DISPATCH_TASKS?SCH51
+
+?PR?SCH_INIT_T2?2_01_12S                              -----    -----      0014H    0001H
+  +--> ?PR?_SCH_DELETE_TASK?SCH51
+
+?PR?_SCH_DELETE_TASK?SCH51                            0020H.0  0000H.1    -----    -----
+
+?PR?I2C_INIT_TEMPERATURE_DS1621?I2C_1621              -----    -----      -----    -----
+  +--> ?PR?I2C_SEND_START?I2C_CORE
+  +--> ?PR?_I2C_WRITE_BYTE?I2C_CORE
+  +--> ?PR?I2C_SEND_STOP?I2C_CORE
+  +--> ?PR?_HARDWARE_DELAY_T0?DELAY_T0
+
+?PR?I2C_SEND_START?I2C_CORE                           -----    -----      -----    -----
+  +--> ?PR?I2C_DELAY?I2C_CORE
+
+?PR?I2C_DELAY?I2C_CORE                                -----    -----      0017H    0002H
+
+?PR?_I2C_WRITE_BYTE?I2C_CORE                          -----    -----      0015H    0002H
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 3
+
+
+  +--> ?PR?I2C_SYNC_THE_CLOCK_T0?I2C_CORE
+  +--> ?PR?I2C_DELAY?I2C_CORE
+  +--> ?PR?I2C_GET_ACK_FROM_SLAVE?I2C_CORE
+
+?PR?I2C_GET_ACK_FROM_SLAVE?I2C_CORE                   -----    -----      -----    -----
+  +--> ?PR?I2C_SYNC_THE_CLOCK_T0?I2C_CORE
+  +--> ?PR?I2C_DELAY?I2C_CORE
+
+?PR?I2C_SEND_STOP?I2C_CORE                            -----    -----      -----    -----
+  +--> ?PR?I2C_DELAY?I2C_CORE
+
+?PR?CLOCK_LED_TIME_UPDATE?CLOC_MX4                    0020H.0  0000H.2    -----    -----
+  +--> ?CO?LED_MX4
+
+?PR?_SCH_ADD_TASK?SCH51                               -----    -----      0014H    0004H
+
+?PR?SCH_CALCULATE_AVE_TEMP_DS1621?2_01_12S            -----    -----      -----    -----
+  +--> ?PR?I2C_READ_TEMPERATURE_DS1621?I2C_1621
+  +--> ?PR?SCH_PERFORM_TEMPERATURE_ADJUSTME?2_01_12S
+
+?PR?I2C_READ_TEMPERATURE_DS1621?I2C_1621              -----    -----      0014H    0001H
+  +--> ?PR?I2C_SEND_START?I2C_CORE
+  +--> ?PR?_I2C_WRITE_BYTE?I2C_CORE
+  +--> ?PR?I2C_READ_BYTE?I2C_CORE
+  +--> ?PR?I2C_SEND_MASTER_ACK?I2C_CORE
+  +--> ?PR?I2C_SEND_MASTER_NACK?I2C_CORE
+  +--> ?PR?I2C_SEND_STOP?I2C_CORE
+
+?PR?I2C_READ_BYTE?I2C_CORE                            -----    -----      0015H    0002H
+  +--> ?PR?I2C_SYNC_THE_CLOCK_T0?I2C_CORE
+  +--> ?PR?I2C_DELAY?I2C_CORE
+
+?PR?I2C_SEND_MASTER_ACK?I2C_CORE                      -----    -----      -----    -----
+  +--> ?PR?I2C_SYNC_THE_CLOCK_T0?I2C_CORE
+  +--> ?PR?I2C_DELAY?I2C_CORE
+
+?PR?I2C_SEND_MASTER_NACK?I2C_CORE                     -----    -----      -----    -----
+  +--> ?PR?I2C_SYNC_THE_CLOCK_T0?I2C_CORE
+  +--> ?PR?I2C_DELAY?I2C_CORE
+
+?PR?SCH_PERFORM_TEMPERATURE_ADJUSTME?2_01_12S         -----    -----      -----    -----
+  +--> ?CO?2_01_12S
+
+?PR?SCH_DISPATCH_TASKS?SCH51                          -----    -----      0014H    0001H
+  +--> ?PR?_SCH_DELETE_TASK?SCH51
+  +--> ?PR?SCH_REPORT_STATUS?SCH51
+  +--> ?PR?SCH_GO_TO_SLEEP?SCH51
+
+
+
+SYMBOL TABLE OF MODULE:  Sch_stab (2_01_12S)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        2_01_12S
+  C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 4
+
+
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00D0H.6       PUBLIC        AC
+  B:00B0H.4       PUBLIC        T0
+  B:0090H.1       PUBLIC        T2_EX
+  B:00B0H.5       PUBLIC        T1
+  B:00A8H.7       PUBLIC        EA
+  B:0090H.0       PUBLIC        T2
+  C:05BAH         PUBLIC        T2_reload_H
+  C:05A5H         PUBLIC        T2_reload_L
+  C:0518H         PUBLIC        SCH_Calculate_Ave_Temp_DS1621
+  D:00A8H         PUBLIC        IE
+  B:0080H.0       PUBLIC        P0_0
+  B:0080H.1       PUBLIC        P0_1
+  B:00A0H.0       PUBLIC        P2_0
+  B:0080H.2       PUBLIC        P0_2
+  B:00A0H.1       PUBLIC        P2_1
+  B:0090H.2       PUBLIC        P1_2
+  B:0080H.3       PUBLIC        P0_3
+  B:00A0H.2       PUBLIC        P2_2
+  B:0090H.3       PUBLIC        P1_3
+  B:0080H.4       PUBLIC        P0_4
+  B:00A0H.3       PUBLIC        P2_3
+  B:0090H.4       PUBLIC        P1_4
+  B:0080H.5       PUBLIC        P0_5
+  B:00C8H.6       PUBLIC        EXF2
+  B:00B0H.6       PUBLIC        RD
+  B:00A0H.4       PUBLIC        P2_4
+  B:0090H.5       PUBLIC        P1_5
+  B:0080H.6       PUBLIC        P0_6
+  B:00A0H.5       PUBLIC        P2_5
+  B:0090H.6       PUBLIC        P1_6
+  B:0080H.7       PUBLIC        P0_7
+  B:00A8H.4       PUBLIC        ES
+  B:00A0H.6       PUBLIC        P2_6
+  B:0090H.7       PUBLIC        P1_7
+  B:00A0H.7       PUBLIC        P2_7
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:00B0H.2       PUBLIC        INT0
+  D:000AH         SYMBOL        Minute_G
+  B:0098H.1       PUBLIC        TI
+  B:00B0H.3       PUBLIC        INT1
+  D:00CBH         PUBLIC        RCAP2H
+  B:00B8H.4       PUBLIC        PS
+  B:00D0H.2       PUBLIC        OV
+  C:014BH         PUBLIC        SCH_Update
+  D:00CAH         PUBLIC        RCAP2L
+  B:00C8H.1       PUBLIC        C_T2
+  B:00B0H.7       PUBLIC        WR
+  B:00C8H.5       PUBLIC        RCLK
+  B:00C8H.4       PUBLIC        TCLK
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 5
+
+
+  C:029AH         PUBLIC        SCH_Perform_Temperature_Adjustme
+  C:057BH         PUBLIC        SCH_Init_T2
+  D:000BH         PUBLIC        Temperature_G
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  B:00C8H.0       PUBLIC        CP_RL2
+  D:000CH         SYMBOL        Hour_G
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.7       PUBLIC        TF1
+  B:00A8H.5       PUBLIC        ET2
+  B:00C8H.7       PUBLIC        TF2
+  B:0098H.2       PUBLIC        RB8
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.2       PUBLIC        IT1
+  B:00A8H.2       PUBLIC        EX1
+  B:0098H.3       PUBLIC        TB8
+  D:00CDH         PUBLIC        TH2
+  B:00D0H.0       PUBLIC        P
+  C:0028H         PUBLIC        SCH_Start
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  B:0098H.5       PUBLIC        SM2
+  D:00CCH         PUBLIC        TL2
+  B:00B8H.1       PUBLIC        PT0
+  B:00B8H.3       PUBLIC        PT1
+  B:00D0H.3       PUBLIC        RS0
+  B:0088H.4       PUBLIC        TR0
+  B:00B8H.5       PUBLIC        PT2
+  B:00D0H.4       PUBLIC        RS1
+  B:0088H.6       PUBLIC        TR1
+  B:00C8H.2       PUBLIC        TR2
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  B:00C8H.3       PUBLIC        EXEN2
+  B:0098H.4       PUBLIC        REN
+  D:00C9H         PUBLIC        T2MOD
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.0       PUBLIC        RXD
+  B:00B0H.1       PUBLIC        TXD
+  B:00D0H.5       PUBLIC        F0
+  B:00D0H.1       PUBLIC        F1
+  D:00D0H         PUBLIC        PSW
+  D:000DH         SYMBOL        Temperature_average_G
+  -------         PROC          SCH_INIT_T2
+  -------         DO            SCH_INIT_T2
+  D:0014H         SYMBOL        i
+  -------         ENDDO         i
+  C:057BH         LINE#         89
+  C:057BH         LINE#         90
+  C:057BH         LINE#         93
+  C:057EH         LINE#         94
+  C:057EH         LINE#         95
+  C:0583H         LINE#         96
+  C:058CH         LINE#         101
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 6
+
+
+  C:058FH         LINE#         112
+  C:0592H         LINE#         113
+  C:0594H         LINE#         115
+  C:0597H         LINE#         116
+  C:059AH         LINE#         117
+  C:059DH         LINE#         118
+  C:05A0H         LINE#         120
+  C:05A2H         LINE#         122
+  C:05A4H         LINE#         123
+  -------         ENDPROC       SCH_INIT_T2
+  -------         PROC          SCH_START
+  C:0028H         LINE#         138
+  C:0028H         LINE#         139
+  C:0028H         LINE#         140
+  C:002AH         LINE#         141
+  -------         ENDPROC       SCH_START
+  -------         PROC          SCH_UPDATE
+  -------         DO            SCH_UPDATE
+  D:0007H         SYMBOL        Index
+  -------         ENDDO         Index
+  C:014BH         LINE#         154
+  C:015CH         LINE#         158
+  C:015EH         LINE#         161
+  C:0160H         LINE#         162
+  C:0160H         LINE#         164
+  C:016FH         LINE#         165
+  C:016FH         LINE#         166
+  C:017EH         LINE#         167
+  C:017EH         LINE#         169
+  C:0187H         LINE#         171
+  C:0197H         LINE#         172
+  C:0197H         LINE#         174
+  C:01A4H         LINE#         175
+  C:01A4H         LINE#         176
+  C:01A6H         LINE#         178
+  C:01A6H         LINE#         180
+  C:01B5H         LINE#         181
+  C:01B5H         LINE#         182
+  C:01B5H         LINE#         183
+  C:01B9H         LINE#         184
+  -------         ENDPROC       SCH_UPDATE
+  -------         PROC          SCH_CALCULATE_AVE_TEMP_DS1621
+  C:0518H         LINE#         199
+  C:0518H         LINE#         200
+  C:0518H         LINE#         201
+  C:0520H         LINE#         202
+  C:0520H         LINE#         203
+  C:0522H         LINE#         206
+  C:0525H         LINE#         209
+  C:0530H         LINE#         211
+  C:0537H         LINE#         212
+  C:0537H         LINE#         214
+  C:053AH         LINE#         215
+  C:0548H         LINE#         218
+  C:054BH         LINE#         219
+  C:054BH         LINE#         220
+  C:054BH         LINE#         221
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 7
+
+
+  -------         ENDPROC       SCH_CALCULATE_AVE_TEMP_DS1621
+  -------         PROC          SCH_PERFORM_TEMPERATURE_ADJUSTME
+  -------         DO            SCH_PERFORM_TEMPERATURE_ADJUSTME
+  D:0008H         SYMBOL        Previous_temperature_average_G
+  -------         ENDDO         Previous_temperature_average_G
+  C:029AH         LINE#         231
+  C:029AH         LINE#         232
+  C:029AH         LINE#         235
+  C:02A7H         LINE#         236
+  C:02A7H         LINE#         239
+  C:02B4H         LINE#         240
+  C:02B4H         LINE#         241
+  C:02BAH         LINE#         242
+  C:02BCH         LINE#         244
+  C:02BCH         LINE#         245
+  C:02C9H         LINE#         246
+  C:02C9H         LINE#         247
+  C:02CFH         LINE#         248
+  C:02CFH         LINE#         249
+  C:02CFH         LINE#         251
+  C:02D1H         LINE#         252
+  C:02D3H         LINE#         255
+  C:02DCH         LINE#         256
+  C:02DEH         LINE#         257
+  C:02E5H         LINE#         258
+  C:02E7H         LINE#         260
+  C:02E9H         LINE#         261
+  C:02EBH         LINE#         262
+  C:02EBH         LINE#         264
+  C:02F1H         LINE#         266
+  C:02F6H         LINE#         267
+  -------         ENDPROC       SCH_PERFORM_TEMPERATURE_ADJUSTME
+  -------         ENDMOD        2_01_12S
+
+  -------         MODULE        CLOC_MX4
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  B:0090H.7       PUBLIC        I2C_SCL
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00D0H.6       PUBLIC        AC
+  B:00B0H.4       PUBLIC        T0
+  B:0090H.1       PUBLIC        T2_EX
+  B:00B0H.5       PUBLIC        T1
+  B:00A8H.7       PUBLIC        EA
+  B:0090H.0       PUBLIC        T2
+  D:00A8H         PUBLIC        IE
+  B:0080H.0       PUBLIC        P0_0
+  B:0080H.1       PUBLIC        P0_1
+  B:00A0H.0       PUBLIC        P2_0
+  B:0080H.2       PUBLIC        P0_2
+  B:00A0H.1       PUBLIC        P2_1
+  B:0090H.2       PUBLIC        P1_2
+  B:0080H.3       PUBLIC        P0_3
+  B:00A0H.2       PUBLIC        P2_2
+  B:0090H.3       PUBLIC        P1_3
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 8
+
+
+  B:0080H.4       PUBLIC        P0_4
+  B:00A0H.3       PUBLIC        P2_3
+  B:0090H.4       PUBLIC        P1_4
+  B:0080H.5       PUBLIC        P0_5
+  B:00C8H.6       PUBLIC        EXF2
+  B:00B0H.6       PUBLIC        RD
+  B:00A0H.4       PUBLIC        P2_4
+  B:0090H.5       PUBLIC        P1_5
+  B:0080H.6       PUBLIC        P0_6
+  B:00A0H.5       PUBLIC        P2_5
+  B:0090H.6       PUBLIC        P1_6
+  B:0080H.7       PUBLIC        P0_7
+  B:00A8H.4       PUBLIC        ES
+  B:00A0H.6       PUBLIC        P2_6
+  B:0090H.7       PUBLIC        P1_7
+  B:00A0H.7       PUBLIC        P2_7
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:00B0H.2       PUBLIC        INT0
+  B:0098H.1       PUBLIC        TI
+  B:00B0H.3       PUBLIC        INT1
+  B:00B8H.4       PUBLIC        PS
+  B:00D0H.2       PUBLIC        OV
+  B:00C8H.1       PUBLIC        C_T2
+  B:00B0H.7       PUBLIC        WR
+  B:00C8H.5       PUBLIC        RCLK
+  B:00C8H.4       PUBLIC        TCLK
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  B:00B0H.3       PUBLIC        LED_DIGIT_0
+  B:00B0H.4       PUBLIC        LED_DIGIT_1
+  B:00B0H.5       PUBLIC        LED_DIGIT_2
+  B:00B0H.6       PUBLIC        LED_DIGIT_3
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  D:0019H         SYMBOL        Sec_G
+  B:00C8H.0       PUBLIC        CP_RL2
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.7       PUBLIC        TF1
+  B:00A8H.5       PUBLIC        ET2
+  D:001AH         SYMBOL        Min_G
+  B:00C8H.7       PUBLIC        TF2
+  B:0098H.2       PUBLIC        RB8
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.2       PUBLIC        IT1
+  B:00A8H.2       PUBLIC        EX1
+  B:0098H.3       PUBLIC        TB8
+  B:00D0H.0       PUBLIC        P
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  B:0098H.5       PUBLIC        SM2
+  D:001BH         SYMBOL        Hou_G
+  B:00B8H.1       PUBLIC        PT0
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 9
+
+
+  B:00B8H.3       PUBLIC        PT1
+  B:00D0H.3       PUBLIC        RS0
+  B:0088H.4       PUBLIC        TR0
+  B:00B8H.5       PUBLIC        PT2
+  B:00D0H.4       PUBLIC        RS1
+  B:0088H.6       PUBLIC        TR1
+  B:00C8H.2       PUBLIC        TR2
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  C:01C8H         PUBLIC        CLOCK_LED_Time_Update
+  B:00C8H.3       PUBLIC        EXEN2
+  B:0098H.4       PUBLIC        REN
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.0       PUBLIC        RXD
+  B:00B0H.1       PUBLIC        TXD
+  B:00D0H.5       PUBLIC        F0
+  B:00D0H.1       PUBLIC        F1
+  B:0090H.6       PUBLIC        I2C_SDA
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          CLOCK_LED_TIME_UPDATE
+  -------         DO            CLOCK_LED_TIME_UPDATE
+  B:0020H.0       SYMBOL        Min_update
+  B:0020H.1       SYMBOL        Hou_update
+  -------         ENDDO         Hou_update
+  C:01C8H         LINE#         50
+  C:01C8H         LINE#         51
+  C:01C8H         LINE#         52
+  C:01CAH         LINE#         53
+  C:01CCH         LINE#         55
+  C:01D3H         LINE#         56
+  C:01D3H         LINE#         57
+  C:01D6H         LINE#         58
+  C:01D8H         LINE#         60
+  C:01DFH         LINE#         61
+  C:01DFH         LINE#         62
+  C:01E2H         LINE#         63
+  C:01E4H         LINE#         65
+  C:01EBH         LINE#         66
+  C:01EBH         LINE#         67
+  C:01EEH         LINE#         68
+  C:01EEH         LINE#         69
+  C:01EEH         LINE#         70
+  C:01EEH         LINE#         72
+  C:01F1H         LINE#         73
+  C:01F1H         LINE#         76
+  C:01FDH         LINE#         77
+  C:0208H         LINE#         78
+  C:0208H         LINE#         83
+  C:020DH         LINE#         84
+  C:020DH         LINE#         85
+  C:021BH         LINE#         86
+  C:021DH         LINE#         88
+  C:021DH         LINE#         89
+  C:022BH         LINE#         90
+  C:022BH         LINE#         92
+  C:022EH         LINE#         93
+  C:022EH         LINE#         95
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 10
+
+
+  C:023AH         LINE#         96
+  C:023AH         LINE#         97
+  -------         ENDPROC       CLOCK_LED_TIME_UPDATE
+  -------         ENDMOD        CLOC_MX4
+
+  -------         MODULE        DELAY_T0
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00D0H.6       PUBLIC        AC
+  B:00B0H.4       PUBLIC        T0
+  B:0090H.1       PUBLIC        T2_EX
+  B:00B0H.5       PUBLIC        T1
+  B:00A8H.7       PUBLIC        EA
+  B:0090H.0       PUBLIC        T2
+  D:00A8H         PUBLIC        IE
+  B:0080H.0       PUBLIC        P0_0
+  B:0080H.1       PUBLIC        P0_1
+  B:00A0H.0       PUBLIC        P2_0
+  B:0080H.2       PUBLIC        P0_2
+  B:00A0H.1       PUBLIC        P2_1
+  B:0090H.2       PUBLIC        P1_2
+  B:0080H.3       PUBLIC        P0_3
+  B:00A0H.2       PUBLIC        P2_2
+  B:0090H.3       PUBLIC        P1_3
+  B:0080H.4       PUBLIC        P0_4
+  B:00A0H.3       PUBLIC        P2_3
+  B:0090H.4       PUBLIC        P1_4
+  B:0080H.5       PUBLIC        P0_5
+  B:00C8H.6       PUBLIC        EXF2
+  B:00B0H.6       PUBLIC        RD
+  B:00A0H.4       PUBLIC        P2_4
+  B:0090H.5       PUBLIC        P1_5
+  B:0080H.6       PUBLIC        P0_6
+  B:00A0H.5       PUBLIC        P2_5
+  B:0090H.6       PUBLIC        P1_6
+  B:0080H.7       PUBLIC        P0_7
+  B:00A8H.4       PUBLIC        ES
+  B:00A0H.6       PUBLIC        P2_6
+  B:0090H.7       PUBLIC        P1_7
+  B:00A0H.7       PUBLIC        P2_7
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:00B0H.2       PUBLIC        INT0
+  B:0098H.1       PUBLIC        TI
+  B:00B0H.3       PUBLIC        INT1
+  B:00B8H.4       PUBLIC        PS
+  B:00D0H.2       PUBLIC        OV
+  B:00C8H.1       PUBLIC        C_T2
+  B:00B0H.7       PUBLIC        WR
+  B:00C8H.5       PUBLIC        RCLK
+  B:00C8H.4       PUBLIC        TCLK
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 11
+
+
+  D:0088H         PUBLIC        TCON
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  B:00C8H.0       PUBLIC        CP_RL2
+  B:00A8H.1       PUBLIC        ET0
+  C:05CFH         PUBLIC        _Hardware_Delay_T0
+  B:0088H.5       PUBLIC        TF0
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.7       PUBLIC        TF1
+  B:00A8H.5       PUBLIC        ET2
+  B:00C8H.7       PUBLIC        TF2
+  B:0098H.2       PUBLIC        RB8
+  D:008CH         PUBLIC        TH0
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.2       PUBLIC        IT1
+  B:00A8H.2       PUBLIC        EX1
+  B:0098H.3       PUBLIC        TB8
+  B:00D0H.0       PUBLIC        P
+  B:0098H.7       PUBLIC        SM0
+  D:008AH         PUBLIC        TL0
+  B:0098H.6       PUBLIC        SM1
+  B:0098H.5       PUBLIC        SM2
+  B:00B8H.1       PUBLIC        PT0
+  B:00B8H.3       PUBLIC        PT1
+  B:00D0H.3       PUBLIC        RS0
+  B:0088H.4       PUBLIC        TR0
+  B:00B8H.5       PUBLIC        PT2
+  B:00D0H.4       PUBLIC        RS1
+  B:0088H.6       PUBLIC        TR1
+  B:00C8H.2       PUBLIC        TR2
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  B:00C8H.3       PUBLIC        EXEN2
+  B:0098H.4       PUBLIC        REN
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.0       PUBLIC        RXD
+  B:00B0H.1       PUBLIC        TXD
+  B:00D0H.5       PUBLIC        F0
+  B:00D0H.1       PUBLIC        F1
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _HARDWARE_DELAY_T0
+  D:0006H         SYMBOL        N
+  -------         DO            N
+  D:0004H         SYMBOL        ms
+  -------         ENDDO         ms
+  C:05CFH         LINE#         49
+  C:05CFH         LINE#         50
+  C:05CFH         LINE#         54
+  C:05D2H         LINE#         55
+  C:05D5H         LINE#         57
+  C:05D7H         LINE#         60
+  C:05E1H         LINE#         61
+  C:05E1H         LINE#         62
+  C:05E4H         LINE#         63
+  C:05E7H         LINE#         65
+  C:05E9H         LINE#         66
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 12
+
+
+  C:05EBH         LINE#         68
+  C:05EEH         LINE#         70
+  C:05F0H         LINE#         71
+  C:05F7H         LINE#         72
+  -------         ENDPROC       _HARDWARE_DELAY_T0
+  -------         ENDMOD        DELAY_T0
+
+  -------         MODULE        I2C_1621
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00D0H.6       PUBLIC        AC
+  B:00B0H.4       PUBLIC        T0
+  B:0090H.1       PUBLIC        T2_EX
+  B:00B0H.5       PUBLIC        T1
+  B:00A8H.7       PUBLIC        EA
+  B:0090H.0       PUBLIC        T2
+  D:00A8H         PUBLIC        IE
+  B:0080H.0       PUBLIC        P0_0
+  B:0080H.1       PUBLIC        P0_1
+  B:00A0H.0       PUBLIC        P2_0
+  B:0080H.2       PUBLIC        P0_2
+  B:00A0H.1       PUBLIC        P2_1
+  B:0090H.2       PUBLIC        P1_2
+  B:0080H.3       PUBLIC        P0_3
+  B:00A0H.2       PUBLIC        P2_2
+  B:0090H.3       PUBLIC        P1_3
+  B:0080H.4       PUBLIC        P0_4
+  B:00A0H.3       PUBLIC        P2_3
+  B:0090H.4       PUBLIC        P1_4
+  B:0080H.5       PUBLIC        P0_5
+  B:00C8H.6       PUBLIC        EXF2
+  B:00B0H.6       PUBLIC        RD
+  B:00A0H.4       PUBLIC        P2_4
+  B:0090H.5       PUBLIC        P1_5
+  B:0080H.6       PUBLIC        P0_6
+  B:00A0H.5       PUBLIC        P2_5
+  B:0090H.6       PUBLIC        P1_6
+  B:0080H.7       PUBLIC        P0_7
+  B:00A8H.4       PUBLIC        ES
+  B:00A0H.6       PUBLIC        P2_6
+  B:0090H.7       PUBLIC        P1_7
+  B:00A0H.7       PUBLIC        P2_7
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:00B0H.2       PUBLIC        INT0
+  B:0098H.1       PUBLIC        TI
+  B:00B0H.3       PUBLIC        INT1
+  B:00B8H.4       PUBLIC        PS
+  B:00D0H.2       PUBLIC        OV
+  B:00C8H.1       PUBLIC        C_T2
+  B:00B0H.7       PUBLIC        WR
+  B:00C8H.5       PUBLIC        RCLK
+  B:00C8H.4       PUBLIC        TCLK
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 13
+
+
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  B:00C8H.0       PUBLIC        CP_RL2
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.7       PUBLIC        TF1
+  B:00A8H.5       PUBLIC        ET2
+  B:00C8H.7       PUBLIC        TF2
+  B:0098H.2       PUBLIC        RB8
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.2       PUBLIC        IT1
+  B:00A8H.2       PUBLIC        EX1
+  B:0098H.3       PUBLIC        TB8
+  B:00D0H.0       PUBLIC        P
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  B:0098H.5       PUBLIC        SM2
+  B:00B8H.1       PUBLIC        PT0
+  B:00B8H.3       PUBLIC        PT1
+  B:00D0H.3       PUBLIC        RS0
+  B:0088H.4       PUBLIC        TR0
+  B:00B8H.5       PUBLIC        PT2
+  B:00D0H.4       PUBLIC        RS1
+  C:0430H         PUBLIC        I2C_Read_Temperature_DS1621
+  B:0088H.6       PUBLIC        TR1
+  B:00C8H.2       PUBLIC        TR2
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  B:00C8H.3       PUBLIC        EXEN2
+  B:0098H.4       PUBLIC        REN
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.0       PUBLIC        RXD
+  C:034AH         PUBLIC        I2C_Init_Temperature_DS1621
+  B:00B0H.1       PUBLIC        TXD
+  B:00D0H.5       PUBLIC        F0
+  B:00D0H.1       PUBLIC        F1
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          I2C_INIT_TEMPERATURE_DS1621
+  C:034AH         LINE#         48
+  C:034AH         LINE#         49
+  C:034AH         LINE#         50
+  C:034DH         LINE#         53
+  C:0355H         LINE#         54
+  C:0355H         LINE#         55
+  C:0359H         LINE#         57
+  C:0359H         LINE#         61
+  C:0361H         LINE#         62
+  C:0361H         LINE#         63
+  C:0365H         LINE#         65
+  C:0365H         LINE#         68
+  C:036DH         LINE#         69
+  C:036DH         LINE#         70
+  C:0371H         LINE#         72
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 14
+
+
+  C:0371H         LINE#         74
+  C:0374H         LINE#         78
+  C:037BH         LINE#         81
+  C:037EH         LINE#         84
+  C:0386H         LINE#         85
+  C:0386H         LINE#         86
+  C:038AH         LINE#         88
+  C:038AH         LINE#         91
+  C:0392H         LINE#         92
+  C:0392H         LINE#         93
+  C:0396H         LINE#         95
+  C:0396H         LINE#         97
+  C:0399H         LINE#         98
+  -------         ENDPROC       I2C_INIT_TEMPERATURE_DS1621
+  -------         PROC          I2C_READ_TEMPERATURE_DS1621
+  -------         DO            I2C_READ_TEMPERATURE_DS1621
+  D:0014H         SYMBOL        result
+  -------         ENDDO         result
+  C:0430H         LINE#         109
+  C:0430H         LINE#         110
+  C:0430H         LINE#         111
+  C:0433H         LINE#         113
+  C:0436H         LINE#         116
+  C:043EH         LINE#         117
+  C:043EH         LINE#         118
+  C:0442H         LINE#         120
+  C:0442H         LINE#         123
+  C:044AH         LINE#         124
+  C:044AH         LINE#         125
+  C:044EH         LINE#         127
+  C:044EH         LINE#         129
+  C:0451H         LINE#         132
+  C:0459H         LINE#         133
+  C:0459H         LINE#         134
+  C:045DH         LINE#         136
+  C:045DH         LINE#         139
+  C:0462H         LINE#         140
+  C:0465H         LINE#         144
+  C:0468H         LINE#         145
+  C:046BH         LINE#         147
+  C:046EH         LINE#         148
+  -------         ENDPROC       I2C_READ_TEMPERATURE_DS1621
+  -------         ENDMOD        I2C_1621
+
+  -------         MODULE        I2C_CORE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  B:0090H.7       PUBLIC        I2C_SCL
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:04A9H         PUBLIC        _I2C_Write_Byte
+  B:00D0H.6       PUBLIC        AC
+  B:00B0H.4       PUBLIC        T0
+  B:0090H.1       PUBLIC        T2_EX
+  B:00B0H.5       PUBLIC        T1
+  B:00A8H.7       PUBLIC        EA
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 15
+
+
+  B:0090H.0       PUBLIC        T2
+  C:05F8H         SYMBOL        I2C_Get_Ack_From_Slave
+  D:00A8H         PUBLIC        IE
+  B:0080H.0       PUBLIC        P0_0
+  C:0624H         SYMBOL        I2C_Delay
+  B:0080H.1       PUBLIC        P0_1
+  B:00A0H.0       PUBLIC        P2_0
+  B:0080H.2       PUBLIC        P0_2
+  B:00A0H.1       PUBLIC        P2_1
+  B:0090H.2       PUBLIC        P1_2
+  B:0080H.3       PUBLIC        P0_3
+  C:054CH         PUBLIC        I2C_Read_Byte
+  B:00A0H.2       PUBLIC        P2_2
+  B:0090H.3       PUBLIC        P1_3
+  B:0080H.4       PUBLIC        P0_4
+  B:00A0H.3       PUBLIC        P2_3
+  B:0090H.4       PUBLIC        P1_4
+  B:0080H.5       PUBLIC        P0_5
+  B:00C8H.6       PUBLIC        EXF2
+  B:00B0H.6       PUBLIC        RD
+  B:00A0H.4       PUBLIC        P2_4
+  B:0090H.5       PUBLIC        P1_5
+  B:0080H.6       PUBLIC        P0_6
+  B:00A0H.5       PUBLIC        P2_5
+  B:0090H.6       PUBLIC        P1_6
+  B:0080H.7       PUBLIC        P0_7
+  B:00A8H.4       PUBLIC        ES
+  B:00A0H.6       PUBLIC        P2_6
+  B:0090H.7       PUBLIC        P1_7
+  B:00A0H.7       PUBLIC        P2_7
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:00B0H.2       PUBLIC        INT0
+  C:0635H         PUBLIC        I2C_Send_Start
+  B:0098H.1       PUBLIC        TI
+  B:00B0H.3       PUBLIC        INT1
+  B:00B8H.4       PUBLIC        PS
+  B:00D0H.2       PUBLIC        OV
+  B:00C8H.1       PUBLIC        C_T2
+  B:00B0H.7       PUBLIC        WR
+  B:00C8H.5       PUBLIC        RCLK
+  B:00C8H.4       PUBLIC        TCLK
+  C:0652H         PUBLIC        I2C_Send_Stop
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  B:00B0H.3       PUBLIC        LED_DIGIT_0
+  B:00B0H.4       PUBLIC        LED_DIGIT_1
+  C:066CH         PUBLIC        I2C_Send_Master_NAck
+  B:00B0H.5       PUBLIC        LED_DIGIT_2
+  B:00B0H.6       PUBLIC        LED_DIGIT_3
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  B:00C8H.0       PUBLIC        CP_RL2
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 16
+
+
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.7       PUBLIC        TF1
+  B:00A8H.5       PUBLIC        ET2
+  B:00C8H.7       PUBLIC        TF2
+  B:0098H.2       PUBLIC        RB8
+  D:008CH         PUBLIC        TH0
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.2       PUBLIC        IT1
+  B:00A8H.2       PUBLIC        EX1
+  B:0098H.3       PUBLIC        TB8
+  B:00D0H.0       PUBLIC        P
+  B:0098H.7       PUBLIC        SM0
+  D:008AH         PUBLIC        TL0
+  B:0098H.6       PUBLIC        SM1
+  B:0098H.5       PUBLIC        SM2
+  B:00B8H.1       PUBLIC        PT0
+  B:00B8H.3       PUBLIC        PT1
+  B:00D0H.3       PUBLIC        RS0
+  B:0088H.4       PUBLIC        TR0
+  B:00B8H.5       PUBLIC        PT2
+  B:00D0H.4       PUBLIC        RS1
+  B:0088H.6       PUBLIC        TR1
+  B:00C8H.2       PUBLIC        TR2
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  B:00C8H.3       PUBLIC        EXEN2
+  B:0098H.4       PUBLIC        REN
+  D:00C8H         PUBLIC        T2CON
+  C:065FH         PUBLIC        I2C_Send_Master_Ack
+  B:00B0H.0       PUBLIC        RXD
+  B:00B0H.1       PUBLIC        TXD
+  C:0007H         SYMBOL        I2C_Sync_The_Clock_T0
+  B:00D0H.5       PUBLIC        F0
+  B:00D0H.1       PUBLIC        F1
+  B:0090H.6       PUBLIC        I2C_SDA
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          I2C_SEND_START
+  C:0635H         LINE#         49
+  C:0635H         LINE#         50
+  C:0635H         LINE#         52
+  C:0637H         LINE#         53
+  C:0639H         LINE#         54
+  C:063CH         LINE#         57
+  C:063EH         LINE#         58
+  C:0641H         LINE#         59
+  C:0643H         LINE#         60
+  -------         ENDPROC       I2C_SEND_START
+  -------         PROC          I2C_SEND_STOP
+  C:0652H         LINE#         70
+  C:0652H         LINE#         71
+  C:0652H         LINE#         72
+  C:0654H         LINE#         73
+  C:0657H         LINE#         74
+  C:0659H         LINE#         75
+  C:065CH         LINE#         76
+  C:065EH         LINE#         77
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 17
+
+
+  -------         ENDPROC       I2C_SEND_STOP
+  -------         PROC          I2C_GET_ACK_FROM_SLAVE
+  C:05F8H         LINE#         88
+  C:05F8H         LINE#         89
+  C:05F8H         LINE#         91
+  C:05F8H         LINE#         92
+  C:05F8H         LINE#         94
+  C:05FDH         LINE#         95
+  C:05FDH         LINE#         96
+  C:0600H         LINE#         97
+  C:0600H         LINE#         100
+  C:0603H         LINE#         102
+  C:0606H         LINE#         103
+  C:0606H         LINE#         105
+  C:0608H         LINE#         107
+  C:060BH         LINE#         108
+  C:060BH         LINE#         110
+  C:060DH         LINE#         112
+  C:060FH         LINE#         113
+  -------         ENDPROC       I2C_GET_ACK_FROM_SLAVE
+  -------         PROC          _I2C_WRITE_BYTE
+  D:0015H         SYMBOL        Data
+  -------         DO            Data
+  D:0016H         SYMBOL        Bit
+  -------         ENDDO         Bit
+  C:04A9H         LINE#         124
+  C:04ABH         LINE#         125
+  C:04ABH         LINE#         126
+  C:04AEH         LINE#         129
+  C:04B0H         LINE#         130
+  C:04B0H         LINE#         131
+  C:04BFH         LINE#         132
+  C:04C1H         LINE#         134
+  C:04C6H         LINE#         135
+  C:04C6H         LINE#         136
+  C:04C9H         LINE#         137
+  C:04C9H         LINE#         139
+  C:04CCH         LINE#         142
+  C:04CEH         LINE#         145
+  C:04D4H         LINE#         146
+  C:04DDH         LINE#         149
+  C:04E0H         LINE#         150
+  -------         ENDPROC       _I2C_WRITE_BYTE
+  -------         PROC          I2C_READ_BYTE
+  -------         DO            I2C_READ_BYTE
+  D:0015H         SYMBOL        result
+  D:0016H         SYMBOL        Bit
+  -------         ENDDO         Bit
+  C:054CH         LINE#         161
+  C:054CH         LINE#         162
+  C:054CH         LINE#         163
+  C:054FH         LINE#         164
+  C:0551H         LINE#         166
+  C:0553H         LINE#         167
+  C:0553H         LINE#         168
+  C:0553H         LINE#         169
+  C:0553H         LINE#         171
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 18
+
+
+  C:0558H         LINE#         172
+  C:0558H         LINE#         173
+  C:055BH         LINE#         174
+  C:055BH         LINE#         176
+  C:055EH         LINE#         178
+  C:0564H         LINE#         180
+  C:0567H         LINE#         181
+  C:0567H         LINE#         182
+  C:056AH         LINE#         183
+  C:056AH         LINE#         185
+  C:056CH         LINE#         186
+  C:056FH         LINE#         187
+  C:0578H         LINE#         189
+  C:057AH         LINE#         190
+  -------         ENDPROC       I2C_READ_BYTE
+  -------         PROC          L?0026
+  -------         ENDPROC       L?0026
+  -------         PROC          I2C_SYNC_THE_CLOCK_T0
+  C:0007H         LINE#         204
+  C:0007H         LINE#         205
+  C:0007H         LINE#         207
+  C:000AH         LINE#         208
+  C:000DH         LINE#         210
+  C:000FH         LINE#         213
+  C:0012H         LINE#         214
+  C:0015H         LINE#         215
+  C:0017H         LINE#         216
+  C:0019H         LINE#         219
+  C:001FH         LINE#         221
+  C:0021H         LINE#         223
+  C:0024H         LINE#         224
+  C:0024H         LINE#         225
+  C:0026H         LINE#         226
+  C:0026H         LINE#         228
+  C:0027H         LINE#         229
+  -------         ENDPROC       I2C_SYNC_THE_CLOCK_T0
+  -------         PROC          I2C_DELAY
+  -------         DO            I2C_DELAY
+  D:0017H         SYMBOL        x
+  -------         ENDDO         x
+  C:0624H         LINE#         244
+  C:0624H         LINE#         245
+  C:0624H         LINE#         248
+  C:062CH         LINE#         249
+  C:0634H         LINE#         250
+  -------         ENDPROC       I2C_DELAY
+  -------         PROC          I2C_SEND_MASTER_ACK
+  C:065FH         LINE#         260
+  C:065FH         LINE#         261
+  C:065FH         LINE#         262
+  C:0661H         LINE#         263
+  C:0663H         LINE#         265
+  C:0666H         LINE#         267
+  C:0669H         LINE#         268
+  C:066BH         LINE#         269
+  -------         ENDPROC       I2C_SEND_MASTER_ACK
+  -------         PROC          I2C_SEND_MASTER_NACK
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 19
+
+
+  C:066CH         LINE#         279
+  C:066CH         LINE#         280
+  C:066CH         LINE#         281
+  C:066CH         LINE#         283
+  C:066FH         LINE#         285
+  C:0672H         LINE#         286
+  C:0674H         LINE#         287
+  -------         ENDPROC       I2C_SEND_MASTER_NACK
+  -------         ENDMOD        I2C_CORE
+
+  -------         MODULE        LED_MX4
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  B:0090H.7       PUBLIC        I2C_SCL
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00D0H.6       PUBLIC        AC
+  B:00B0H.4       PUBLIC        T0
+  B:0090H.1       PUBLIC        T2_EX
+  B:00B0H.5       PUBLIC        T1
+  B:00A8H.7       PUBLIC        EA
+  B:0090H.0       PUBLIC        T2
+  D:00A8H         PUBLIC        IE
+  B:0080H.0       PUBLIC        P0_0
+  B:0080H.1       PUBLIC        P0_1
+  B:00A0H.0       PUBLIC        P2_0
+  B:0080H.2       PUBLIC        P0_2
+  C:039AH         PUBLIC        LED_MX4_Display_Update
+  B:00A0H.1       PUBLIC        P2_1
+  B:0090H.2       PUBLIC        P1_2
+  B:0080H.3       PUBLIC        P0_3
+  B:00A0H.2       PUBLIC        P2_2
+  B:0090H.3       PUBLIC        P1_3
+  B:0080H.4       PUBLIC        P0_4
+  B:00A0H.3       PUBLIC        P2_3
+  B:0090H.4       PUBLIC        P1_4
+  B:0080H.5       PUBLIC        P0_5
+  B:00C8H.6       PUBLIC        EXF2
+  B:00B0H.6       PUBLIC        RD
+  B:00A0H.4       PUBLIC        P2_4
+  B:0090H.5       PUBLIC        P1_5
+  B:0080H.6       PUBLIC        P0_6
+  B:00A0H.5       PUBLIC        P2_5
+  B:0090H.6       PUBLIC        P1_6
+  B:0080H.7       PUBLIC        P0_7
+  B:00A8H.4       PUBLIC        ES
+  B:00A0H.6       PUBLIC        P2_6
+  B:0090H.7       PUBLIC        P1_7
+  B:00A0H.7       PUBLIC        P2_7
+  D:00B8H         PUBLIC        IP
+  D:000FH         SYMBOL        Digit_G
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:00B0H.2       PUBLIC        INT0
+  B:0098H.1       PUBLIC        TI
+  B:00B0H.3       PUBLIC        INT1
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 20
+
+
+  B:00B8H.4       PUBLIC        PS
+  B:00D0H.2       PUBLIC        OV
+  B:00C8H.1       PUBLIC        C_T2
+  B:00B0H.7       PUBLIC        WR
+  B:00C8H.5       PUBLIC        RCLK
+  B:00C8H.4       PUBLIC        TCLK
+  D:0010H         PUBLIC        LED_Mx4_Data_G
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  B:00B0H.3       PUBLIC        LED_DIGIT_0
+  B:00B0H.4       PUBLIC        LED_DIGIT_1
+  B:00B0H.5       PUBLIC        LED_DIGIT_2
+  B:00B0H.6       PUBLIC        LED_DIGIT_3
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  B:00C8H.0       PUBLIC        CP_RL2
+  C:0610H         PUBLIC        LED_Table_G
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.7       PUBLIC        TF1
+  B:00A8H.5       PUBLIC        ET2
+  B:00C8H.7       PUBLIC        TF2
+  B:0098H.2       PUBLIC        RB8
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.2       PUBLIC        IT1
+  B:00A8H.2       PUBLIC        EX1
+  B:0098H.3       PUBLIC        TB8
+  B:00D0H.0       PUBLIC        P
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  B:0098H.5       PUBLIC        SM2
+  B:00B8H.1       PUBLIC        PT0
+  B:00B8H.3       PUBLIC        PT1
+  B:00D0H.3       PUBLIC        RS0
+  B:0088H.4       PUBLIC        TR0
+  B:00B8H.5       PUBLIC        PT2
+  B:00D0H.4       PUBLIC        RS1
+  B:0088H.6       PUBLIC        TR1
+  B:00C8H.2       PUBLIC        TR2
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  B:00C8H.3       PUBLIC        EXEN2
+  B:0098H.4       PUBLIC        REN
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.0       PUBLIC        RXD
+  B:00B0H.1       PUBLIC        TXD
+  B:00D0H.5       PUBLIC        F0
+  B:00D0H.1       PUBLIC        F1
+  B:0090H.6       PUBLIC        I2C_SDA
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          LED_MX4_DISPLAY_UPDATE
+  C:039AH         LINE#         59
+  C:039AH         LINE#         60
+  C:039AH         LINE#         62
+  C:03A1H         LINE#         63
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 21
+
+
+  C:03A1H         LINE#         64
+  C:03A4H         LINE#         65
+  C:03A4H         LINE#         68
+  C:03B3H         LINE#         69
+  C:03B3H         LINE#         70
+  C:03B3H         LINE#         71
+  C:03B3H         LINE#         72
+  C:03B5H         LINE#         73
+  C:03B7H         LINE#         74
+  C:03B9H         LINE#         75
+  C:03BBH         LINE#         76
+  C:03BDH         LINE#         77
+  C:03BDH         LINE#         79
+  C:03BDH         LINE#         80
+  C:03BDH         LINE#         81
+  C:03BFH         LINE#         82
+  C:03C1H         LINE#         83
+  C:03C3H         LINE#         84
+  C:03C5H         LINE#         85
+  C:03C7H         LINE#         86
+  C:03C7H         LINE#         88
+  C:03C7H         LINE#         89
+  C:03C7H         LINE#         90
+  C:03C9H         LINE#         91
+  C:03CBH         LINE#         92
+  C:03CDH         LINE#         93
+  C:03CFH         LINE#         94
+  C:03D1H         LINE#         95
+  C:03D1H         LINE#         97
+  C:03D1H         LINE#         98
+  C:03D1H         LINE#         99
+  C:03D3H         LINE#         100
+  C:03D5H         LINE#         101
+  C:03D7H         LINE#         102
+  C:03D9H         LINE#         103
+  C:03D9H         LINE#         104
+  C:03D9H         LINE#         106
+  C:03E6H         LINE#         107
+  -------         ENDPROC       LED_MX4_DISPLAY_UPDATE
+  -------         ENDMOD        LED_MX4
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00D0H.6       PUBLIC        AC
+  B:00B0H.4       PUBLIC        T0
+  B:0090H.1       PUBLIC        T2_EX
+  B:00B0H.5       PUBLIC        T1
+  B:00A8H.7       PUBLIC        EA
+  B:0090H.0       PUBLIC        T2
+  D:00A8H         PUBLIC        IE
+  B:0080H.0       PUBLIC        P0_0
+  B:0080H.1       PUBLIC        P0_1
+  B:00A0H.0       PUBLIC        P2_0
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 22
+
+
+  B:0080H.2       PUBLIC        P0_2
+  B:00A0H.1       PUBLIC        P2_1
+  B:0090H.2       PUBLIC        P1_2
+  B:0080H.3       PUBLIC        P0_3
+  B:00A0H.2       PUBLIC        P2_2
+  B:0090H.3       PUBLIC        P1_3
+  B:0080H.4       PUBLIC        P0_4
+  B:00A0H.3       PUBLIC        P2_3
+  B:0090H.4       PUBLIC        P1_4
+  B:0080H.5       PUBLIC        P0_5
+  B:00C8H.6       PUBLIC        EXF2
+  B:00B0H.6       PUBLIC        RD
+  B:00A0H.4       PUBLIC        P2_4
+  B:0090H.5       PUBLIC        P1_5
+  B:0080H.6       PUBLIC        P0_6
+  B:00A0H.5       PUBLIC        P2_5
+  B:0090H.6       PUBLIC        P1_6
+  B:0080H.7       PUBLIC        P0_7
+  B:00A8H.4       PUBLIC        ES
+  B:00A0H.6       PUBLIC        P2_6
+  B:0090H.7       PUBLIC        P1_7
+  B:00A0H.7       PUBLIC        P2_7
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:00B0H.2       PUBLIC        INT0
+  B:0098H.1       PUBLIC        TI
+  B:00B0H.3       PUBLIC        INT1
+  B:00B8H.4       PUBLIC        PS
+  B:00D0H.2       PUBLIC        OV
+  C:046FH         PUBLIC        main
+  B:00C8H.1       PUBLIC        C_T2
+  B:00B0H.7       PUBLIC        WR
+  B:00C8H.5       PUBLIC        RCLK
+  B:00C8H.4       PUBLIC        TCLK
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  B:00C8H.0       PUBLIC        CP_RL2
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.7       PUBLIC        TF1
+  B:00A8H.5       PUBLIC        ET2
+  B:00C8H.7       PUBLIC        TF2
+  B:0098H.2       PUBLIC        RB8
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.2       PUBLIC        IT1
+  B:00A8H.2       PUBLIC        EX1
+  B:0098H.3       PUBLIC        TB8
+  B:00D0H.0       PUBLIC        P
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  B:0098H.5       PUBLIC        SM2
+  B:00B8H.1       PUBLIC        PT0
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 23
+
+
+  B:00B8H.3       PUBLIC        PT1
+  B:00D0H.3       PUBLIC        RS0
+  B:0088H.4       PUBLIC        TR0
+  B:00B8H.5       PUBLIC        PT2
+  B:00D0H.4       PUBLIC        RS1
+  B:0088H.6       PUBLIC        TR1
+  B:00C8H.2       PUBLIC        TR2
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  B:00C8H.3       PUBLIC        EXEN2
+  B:0098H.4       PUBLIC        REN
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.0       PUBLIC        RXD
+  B:00B0H.1       PUBLIC        TXD
+  B:00D0H.5       PUBLIC        F0
+  B:00D0H.1       PUBLIC        F1
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:046FH         LINE#         48
+  C:046FH         LINE#         49
+  C:046FH         LINE#         51
+  C:0472H         LINE#         54
+  C:0475H         LINE#         59
+  C:0484H         LINE#         64
+  C:0492H         LINE#         67
+  C:04A1H         LINE#         70
+  C:04A4H         LINE#         72
+  C:04A4H         LINE#         73
+  C:04A4H         LINE#         74
+  C:04A7H         LINE#         75
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        SCH51
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  B:0090H.7       PUBLIC        I2C_SCL
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00D0H.6       PUBLIC        AC
+  B:00B0H.4       PUBLIC        T0
+  B:0090H.1       PUBLIC        T2_EX
+  B:00B0H.5       PUBLIC        T1
+  B:00A8H.7       PUBLIC        EA
+  B:0090H.0       PUBLIC        T2
+  D:00A8H         PUBLIC        IE
+  D:0021H         PUBLIC        SCH_tasks_G
+  B:0080H.0       PUBLIC        P0_0
+  B:0080H.1       PUBLIC        P0_1
+  B:00A0H.0       PUBLIC        P2_0
+  B:0080H.2       PUBLIC        P0_2
+  B:00A0H.1       PUBLIC        P2_1
+  B:0090H.2       PUBLIC        P1_2
+  B:0080H.3       PUBLIC        P0_3
+  B:00A0H.2       PUBLIC        P2_2
+  B:0090H.3       PUBLIC        P1_3
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 24
+
+
+  B:0080H.4       PUBLIC        P0_4
+  B:00A0H.3       PUBLIC        P2_3
+  B:0090H.4       PUBLIC        P1_4
+  B:0080H.5       PUBLIC        P0_5
+  B:00C8H.6       PUBLIC        EXF2
+  B:00B0H.6       PUBLIC        RD
+  B:00A0H.4       PUBLIC        P2_4
+  B:0090H.5       PUBLIC        P1_5
+  B:0080H.6       PUBLIC        P0_6
+  B:00A0H.5       PUBLIC        P2_5
+  B:0090H.6       PUBLIC        P1_6
+  B:0080H.7       PUBLIC        P0_7
+  B:00A8H.4       PUBLIC        ES
+  B:00A0H.6       PUBLIC        P2_6
+  B:0090H.7       PUBLIC        P1_7
+  B:00A0H.7       PUBLIC        P2_7
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:00B0H.2       PUBLIC        INT0
+  B:0098H.1       PUBLIC        TI
+  B:00B0H.3       PUBLIC        INT1
+  C:023BH         PUBLIC        _SCH_Add_Task
+  B:00B8H.4       PUBLIC        PS
+  B:00D0H.2       PUBLIC        OV
+  C:04E1H         PUBLIC        SCH_Report_Status
+  B:00C8H.1       PUBLIC        C_T2
+  B:00B0H.7       PUBLIC        WR
+  B:00C8H.5       PUBLIC        RCLK
+  B:00C8H.4       PUBLIC        TCLK
+  D:0087H         PUBLIC        PCON
+  D:0036H         PUBLIC        Error_code_G
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  B:00B0H.3       PUBLIC        LED_DIGIT_0
+  B:00B0H.4       PUBLIC        LED_DIGIT_1
+  B:00B0H.5       PUBLIC        LED_DIGIT_2
+  B:00B0H.6       PUBLIC        LED_DIGIT_3
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  B:00C8H.0       PUBLIC        CP_RL2
+  D:0037H         SYMBOL        Last_error_code_G
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.7       PUBLIC        TF1
+  B:00A8H.5       PUBLIC        ET2
+  B:00C8H.7       PUBLIC        TF2
+  B:0098H.2       PUBLIC        RB8
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.2       PUBLIC        IT1
+  B:00A8H.2       PUBLIC        EX1
+  B:0098H.3       PUBLIC        TB8
+  D:0038H         SYMBOL        Error_tick_count_G
+  B:00D0H.0       PUBLIC        P
+  B:0098H.7       PUBLIC        SM0
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 25
+
+
+  B:0098H.6       PUBLIC        SM1
+  B:0098H.5       PUBLIC        SM2
+  B:00B8H.1       PUBLIC        PT0
+  B:00B8H.3       PUBLIC        PT1
+  B:00D0H.3       PUBLIC        RS0
+  B:0088H.4       PUBLIC        TR0
+  B:00B8H.5       PUBLIC        PT2
+  B:00D0H.4       PUBLIC        RS1
+  B:0088H.6       PUBLIC        TR1
+  B:00C8H.2       PUBLIC        TR2
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  C:02F7H         PUBLIC        SCH_Dispatch_Tasks
+  B:00C8H.3       PUBLIC        EXEN2
+  B:0098H.4       PUBLIC        REN
+  D:00C8H         PUBLIC        T2CON
+  C:03E7H         PUBLIC        _SCH_Delete_Task
+  B:00B0H.0       PUBLIC        RXD
+  B:00B0H.1       PUBLIC        TXD
+  B:00D0H.5       PUBLIC        F0
+  C:0675H         SYMBOL        SCH_Go_To_Sleep
+  B:00D0H.1       PUBLIC        F1
+  B:0090H.6       PUBLIC        I2C_SDA
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          SCH_DISPATCH_TASKS
+  -------         DO            SCH_DISPATCH_TASKS
+  D:0014H         SYMBOL        Index
+  -------         ENDDO         Index
+  C:02F7H         LINE#         69
+  C:02F7H         LINE#         70
+  C:02F7H         LINE#         74
+  C:02FAH         LINE#         75
+  C:02FAH         LINE#         76
+  C:0309H         LINE#         77
+  C:0309H         LINE#         78
+  C:031CH         LINE#         80
+  C:0326H         LINE#         84
+  C:0336H         LINE#         85
+  C:0336H         LINE#         86
+  C:033BH         LINE#         87
+  C:033BH         LINE#         88
+  C:033BH         LINE#         89
+  C:0344H         LINE#         92
+  C:0347H         LINE#         95
+  -------         ENDPROC       SCH_DISPATCH_TASKS
+  -------         PROC          _SCH_ADD_TASK
+  D:0014H         SYMBOL        pFunction
+  D:0016H         SYMBOL        DELAY
+  D:0002H         SYMBOL        PERIOD
+  -------         DO            PERIOD
+  D:0006H         SYMBOL        Index
+  -------         ENDDO         Index
+  C:023BH         LINE#         143
+  C:0243H         LINE#         146
+  C:0243H         LINE#         147
+  C:0245H         LINE#         150
+  C:025AH         LINE#         151
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 26
+
+
+  C:025AH         LINE#         152
+  C:025BH         LINE#         153
+  C:025DH         LINE#         156
+  C:0260H         LINE#         157
+  C:0260H         LINE#         161
+  C:0263H         LINE#         164
+  C:0266H         LINE#         165
+  C:0266H         LINE#         168
+  C:0273H         LINE#         170
+  C:0280H         LINE#         171
+  C:028DH         LINE#         173
+  C:0297H         LINE#         175
+  C:0299H         LINE#         176
+  -------         ENDPROC       _SCH_ADD_TASK
+  -------         PROC          _SCH_DELETE_TASK
+  D:0007H         SYMBOL        TASK_INDEX
+  -------         DO            TASK_INDEX
+  B:0020H.0       SYMBOL        Return_code
+  -------         ENDDO         Return_code
+  C:03E7H         LINE#         191
+  C:03E7H         LINE#         192
+  C:03E7H         LINE#         195
+  C:03F6H         LINE#         196
+  C:03F6H         LINE#         200
+  C:03F9H         LINE#         203
+  C:03FBH         LINE#         204
+  C:03FDH         LINE#         206
+  C:03FDH         LINE#         207
+  C:03FFH         LINE#         208
+  C:03FFH         LINE#         210
+  C:040BH         LINE#         211
+  C:0417H         LINE#         212
+  C:0423H         LINE#         214
+  C:042DH         LINE#         216
+  C:042FH         LINE#         217
+  -------         ENDPROC       _SCH_DELETE_TASK
+  -------         PROC          SCH_REPORT_STATUS
+  C:04E1H         LINE#         240
+  C:04E1H         LINE#         241
+  C:04E1H         LINE#         245
+  C:04E7H         LINE#         246
+  C:04E7H         LINE#         248
+  C:04EEH         LINE#         250
+  C:04F1H         LINE#         252
+  C:04F5H         LINE#         253
+  C:04F5H         LINE#         254
+  C:04FBH         LINE#         255
+  C:04FCH         LINE#         257
+  C:04FCH         LINE#         258
+  C:0501H         LINE#         259
+  C:0501H         LINE#         260
+  C:0502H         LINE#         262
+  C:0502H         LINE#         263
+  C:0508H         LINE#         264
+  C:0508H         LINE#         265
+  C:0515H         LINE#         266
+  C:0515H         LINE#         267
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/10/2001  11:27:57  PAGE 27
+
+
+  C:0517H         LINE#         268
+  C:0517H         LINE#         269
+  C:0517H         LINE#         270
+  C:0517H         LINE#         272
+  -------         ENDPROC       SCH_REPORT_STATUS
+  -------         PROC          SCH_GO_TO_SLEEP
+  C:0675H         LINE#         297
+  C:0675H         LINE#         298
+  C:0675H         LINE#         299
+  C:0678H         LINE#         305
+  -------         ENDPROC       SCH_GO_TO_SLEEP
+  -------         ENDMOD        SCH51
+
+  -------         MODULE        ?C?SIDIV
+  C:002EH         PUBLIC        ?C?SIDIV
+  -------         ENDMOD        ?C?SIDIV
+
+  -------         MODULE        ?C?ICALL
+  C:0064H         PUBLIC        ?C?ICALL
+  -------         ENDMOD        ?C?ICALL
+
+  -------         MODULE        ?C?UIDIV
+  C:006AH         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

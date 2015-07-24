@@ -1,0 +1,88 @@
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 17:58:17 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Demo program for ADC -> Bargraph display
+   8          
+   9          
+  10             Required linker options (see Chapter 14 for details):
+  11          
+  12             OVERLAY 
+  13             (main ~ (ADC_Max150_Get_Sample,BARGRAPH_Update), 
+  14             sch_dispatch_tasks ! (ADC_Max150_Get_Sample,BARGRAPH_Update))
+  15          
+  16          
+  17             COPYRIGHT
+  18             ---------
+  19          
+  20             This code is from the book:
+  21          
+  22             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  23             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  24          
+  25             This code is copyright (c) 2001 by Michael J. Pont.
+  26           
+  27             See book for copyright details and other information.
+  28          
+  29          -*------------------------------------------------------------------*/
+  30          
+  31          #include "Main.h"
+  32          #include "2_01_12g.h"
+  33          #include "ADC_m150.h"
+  34          #include "BarGraph.h"
+  35          
+  36          /* ............................................................... */
+  37          /* ............................................................... */
+  38          
+  39          void main(void)
+  40             {
+  41   1         SCH_Init_T2();      // Set up the scheduler
+  42   1         ADC_Max150_Init();  // Prepare the ADC
+  43   1         BARGRAPH_Init();    // Prepare a bargraph-type display (P4)
+  44   1      
+  45   1         // Read the ADC regularly  
+  46   1         SCH_Add_Task(ADC_Max150_Get_Sample, 10, 1000);
+  47   1      
+  48   1         // Simply display the count here (bargraph display)
+  49   1         SCH_Add_Task(BARGRAPH_Update, 12, 1000);
+  50   1      
+  51   1         // All tasks added: start running the scheduler
+  52   1         SCH_Start();   
+  53   1      
+  54   1         while(1)
+  55   1            {
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 17:58:17 PAGE 2   
+
+  56   2            SCH_Dispatch_Tasks();
+  57   2            }
+  58   1         }
+  59          
+  60          /*------------------------------------------------------------------*-
+  61            ---- END OF FILE -------------------------------------------------
+  62          -*------------------------------------------------------------------*/
+  63          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     47    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

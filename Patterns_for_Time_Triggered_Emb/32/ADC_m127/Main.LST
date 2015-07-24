@@ -1,0 +1,78 @@
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 10:36:47 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Main.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\Main.c BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple test program for I2C (Max127 ADC) library.
+   8          
+   9             Connect a Max127 to the SDA and SCL pins described 
+  10             in the library file (I2C_Core.C).
+  11          
+  12             Terminating resistors not generally required on the bus.
+  13          
+  14          
+  15             COPYRIGHT
+  16             ---------
+  17          
+  18             This code is from the book:
+  19          
+  20             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  21             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  22          
+  23             This code is copyright (c) 2001 by Michael J. Pont.
+  24           
+  25             See book for copyright details and other information.
+  26          
+  27          -*------------------------------------------------------------------*/
+  28          
+  29          #include "Main.h"
+  30          #include "ADC_m127.h"
+  31          #include "Delay_T0.h"
+  32          
+  33          extern tByte ADC_G;
+  34          
+  35          // In this test program, we define the error code variable here
+  36          // (Usually in the scheduler library)
+  37          tByte Error_code_G = 0;
+  38          
+  39          void main( void )
+  40             {
+  41   1         while(1) 
+  42   1            {
+  43   2            I2C_ADC_Max127_Read();
+  44   2            P1 = ADC_G;
+  45   2            P2 = Error_code_G;
+  46   2            Hardware_Delay_T0(1000);
+  47   2            }   
+  48   1         }
+  49          
+  50          /*------------------------------------------------------------------*-
+  51            ---- END OF FILE -------------------------------------------------
+  52          -*------------------------------------------------------------------*/
+  53          
+
+
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 10:36:47 PAGE 2   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     18    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

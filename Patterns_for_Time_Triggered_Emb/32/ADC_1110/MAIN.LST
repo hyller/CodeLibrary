@@ -1,0 +1,107 @@
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 12:00:55 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple test program for SPI code library.
+   8          
+   9             Reads from Max1110 / 1111 SPI ADC.
+  10          
+  11          
+  12             COPYRIGHT
+  13             ---------
+  14          
+  15             This code is from the book:
+  16          
+  17             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  18             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  19          
+  20             This code is copyright (c) 2001 by Michael J. Pont.
+  21           
+  22             See book for copyright details and other information.
+  23          
+  24          -*------------------------------------------------------------------*/
+  25          
+  26          #include "Main.h"
+  27          #include "SPI_Core.h"
+  28          #include "SPI_1110.h"
+  29          #include "Delay_T0.h"
+  30          
+  31          // In this test program, we define the error code variable here.
+  32          tByte Error_code_G = 0;
+  33          
+  34          void main(void)
+  35             {
+  36   1         tByte Data1 = 0;
+  37   1         tByte Data2 = 0;
+  38   1      
+  39   1         tWord Data_address = 0;
+  40   1      
+  41   1         // See text for details 
+  42   1      
+  43   1         // SPI Control Register.
+  44   1         // Bit 0 = SPR0
+  45   1         // Bit 1 = SPR1 (these two control the clock rate)
+  46   1         // Bit 2 = CPHA (transfer format, see p15 of AT89S53 docs)
+  47   1         // Bit 3 = CPOL (clock polarity, 1 = high when idle, 0 = low when idle)
+  48   1         // Bit 4 = MSTR (1 for master, 0 for slave)
+  49   1         // Bit 5 = DORD (data order, 1 for LSB first, 0 for MSB first)
+  50   1         // Bit 6 = SPE  (enable SPI)
+  51   1         // Bit 7 = SPIE (enable SPI interrupt, if ES is also 1)
+  52   1      
+  53   1         // To interface with the MAX1110 ADC, we need a clock rate in the range 
+  54   1         // 50-500 kHz, so with a 12 MHz oscillator SPR0 and SPR1 are set at 1 and 0, 
+  55   1         // so SPI speed is Fosc / 64, which is 187.5 kHz
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 12:00:55 PAGE 2   
+
+  56   1         // 
+  57   1         // CPHA and CPOL both need to be zero, see MAX1110 docs
+  58   1         // DORD needs to be zero (MSB first)
+  59   1         // MSTR, SPE, SPIE need to be one
+  60   1         //  SPCR = 0x52;
+  61   1         SPI_Init_AT89S53(0x52);
+  62   1      
+  63   1         while (1) 
+  64   1            {
+  65   2            // Read ADC byte
+  66   2            Data2 = SPI_MAX1110_Read_Byte();
+  67   2      
+  68   2            // Display data
+  69   2            P2 = 255 - Data2;
+  70   2      
+  71   2            // Display error codes (if any)
+  72   2            P3 = 255 - Error_code_G;
+  73   2      
+  74   2            Hardware_Delay_T0(1000);
+  75   2            }   
+  76   1         }
+  77          
+  78          /*------------------------------------------------------------------*-
+  79            ---- END OF FILE -------------------------------------------------
+  80          -*------------------------------------------------------------------*/
+  81          
+  82          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     43    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

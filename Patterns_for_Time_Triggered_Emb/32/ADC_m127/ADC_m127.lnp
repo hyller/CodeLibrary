@@ -1,0 +1,6 @@
+"ADC_m127.obj",
+"Delay_t0.obj",
+"I2c_core.obj",
+"Main.obj" 
+TO "ADC_m127" 
+RAMSIZE(256) 

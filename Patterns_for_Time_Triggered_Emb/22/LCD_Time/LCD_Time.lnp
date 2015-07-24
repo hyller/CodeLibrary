@@ -1,0 +1,10 @@
+"DELAY_T0.obj",
+"MAIN.obj",
+"SCH51.obj",
+"LCD_A.obj",
+"ELAP_LCD.obj",
+"CHAR_MAP.obj",
+"2_01_12G.obj" 
+TO "LCD_Time" 
+RAMSIZE(256) 
+OVERLAY ( main ~ (Elapsed_Time_LCD_Update,LCD_Update), Sch_Dispatch_Tasks ! (Elapsed_Time_LCD_Update,LCD_Update)) 

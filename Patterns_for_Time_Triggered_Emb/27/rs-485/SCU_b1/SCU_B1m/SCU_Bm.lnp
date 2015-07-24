@@ -1,0 +1,12 @@
+"DELAY_T0.obj",
+"LED_FLAS.obj",
+"MAIN.obj",
+"SCH51.obj",
+"TLIGHT_B.obj",
+"SCU_BM.obj" 
+TO "SCU_Bm" 
+RAMSIZE(256) 
+OVERLAY (main ~ (LED_Flash_Update,TRAFFIC_LIGHTS_Update), 
+   SCH_Dispatch_Tasks ! (LED_Flash_Update,TRAFFIC_LIGHTS_Update))
+
+CODE( 0X0000-0X4FFF )

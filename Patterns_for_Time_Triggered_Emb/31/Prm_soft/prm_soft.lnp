@@ -1,0 +1,7 @@
+"2_01_12G.obj",
+"MAIN.obj",
+"SCH51.obj",
+"PRM_SOFT.obj" 
+TO "prm_soft" 
+RAMSIZE(256) 
+OVERLAY (main ~ (PRM_Soft_Update, PRM_Soft_Test), SCH_Dispatch_Tasks ! (PRM_Soft_Update, PRM_Soft_Test)) 

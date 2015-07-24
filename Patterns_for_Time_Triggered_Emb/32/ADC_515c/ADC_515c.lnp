@@ -1,0 +1,8 @@
+"BARGRAPH.obj",
+"MAIN.obj",
+"SCH51.obj",
+"2_01_10I.obj",
+"ADC_515C.obj" 
+TO "ADC_515c" 
+RAMSIZE(256) 
+OVERLAY (main ~ (AD_Get_Sample,Bargraph_Update), sch_dispatch_tasks ! (AD_Get_Sample,Bargraph_Update)) 

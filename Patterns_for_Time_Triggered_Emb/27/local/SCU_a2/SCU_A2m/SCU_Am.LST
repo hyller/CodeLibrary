@@ -1,0 +1,736 @@
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE SCU_AM
+OBJECT MODULE PLACED IN .\SCU_Am.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\SCU_Am.c OPTIMIZE(SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             SCU_Am.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             This is an implementation of SCU SCHEDULER (LOCAL) for 8051/52.
+   8             AND an implementation of SCU SCHEDULER (RS-232) for 8051/52.
+   9          
+  10             --- See Chapter 27 ---
+  11          
+  12             *** MASTER NODE ***
+  13             *** CHECKS FOR SLAVE ACKNOWLEDEMENTS ***
+  14             *** Local / RS-232 version (no 'enable' support) ***
+  15          
+  16             *** Uses 1232 watchdog timer ***
+  17          
+  18             *** Both Master and Slave share the same tick rate (5 ms) ***
+  19          
+  20          
+  21             COPYRIGHT
+  22             ---------
+  23          
+  24             This code is from the book:
+  25          
+  26             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  27             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  28          
+  29             This code is copyright (c) 2001 by Michael J. Pont.
+  30           
+  31             See book for copyright details and other information.
+  32          
+  33          -*------------------------------------------------------------------*/
+  34          
+  35          #include "Main.h"
+  36          #include "Port.h"
+  37          
+  38          #include "SCU_Am.H"
+  39          #include "Delay_T0.h"
+  40          #include "TLight_B.h"
+  41          
+  42          // ------ Public variable definitions ------------------------------
+  43          
+  44          tByte Tick_message_data_G[NUMBER_OF_SLAVES] = {'1','2'};  
+  45          tByte Ack_message_data_G[NUMBER_OF_SLAVES];
+  46          
+  47          // ------ Public variable declarations -----------------------------
+  48          
+  49          // The array of tasks (see Sch51.c)
+  50          extern sTask SCH_tasks_G[SCH_MAX_TASKS];
+  51          
+  52          // The error code variable (see Sch51.c)
+  53          extern tByte Error_code_G;
+  54          
+  55          // ------ Private variable definitions -----------------------------
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 2   
+
+  56          
+  57          static tByte Current_slave_index_G = 0;
+  58          static bit First_ack_G = 1;
+  59          static bit WATCHDOG_state_G = 0;
+  60          
+  61          // ------ Private function prototypes ------------------------------
+  62          
+  63          static void SCU_A_MASTER_Reset_the_Network(void);
+  64          static void SCU_A_MASTER_Shut_Down_the_Network(void);
+  65          static void SCU_A_MASTER_Switch_To_Backup_Slave(const tByte);
+  66          
+  67          static void SCU_A_MASTER_Send_Tick_Message(const tByte);
+  68          static bit  SCU_A_MASTER_Process_Ack(const tByte);
+  69          
+  70          static void  SCU_A_MASTER_Watchdog_Init(void);
+  71          static void  SCU_A_MASTER_Watchdog_Refresh(void) reentrant;
+  72          
+  73          // ------ Private constants ----------------------------------------
+  74          
+  75          // Slave IDs may be any NON-ZERO tByte value (all must be different)
+  76          // NOTE: ID 0x00 is for error handling.
+  77          static const tByte MAIN_SLAVE_IDs[NUMBER_OF_SLAVES] = {0x31,0x32};
+  78          static const tByte BACKUP_SLAVE_IDs[NUMBER_OF_SLAVES] = {0x31,0x32};
+  79          
+  80          #define NO_NETWORK_ERROR (1) 
+  81          #define NETWORK_ERROR (0)
+  82          
+  83          // Adjust (if required) to increase interval between network resets
+  84          // (in the event of sustained network error)
+  85          #define SLAVE_RESET_INTERVAL 0U
+  86          
+  87          // ------ Private variables ----------------------------------------
+  88          
+  89          static tWord Slave_reset_attempts_G[NUMBER_OF_SLAVES];
+  90          
+  91          // See MAIN_SLAVE_IDs[] above
+  92          static tByte Current_Slave_IDs_G[NUMBER_OF_SLAVES] = {0};
+  93          
+  94          static bit Message_byte_G = 1;
+  95          
+  96          /*------------------------------------------------------------------*-
+  97          
+  98            SCU_A_MASTER_Init_T1_T2()
+  99          
+ 100            Scheduler initialisation function.  Prepares scheduler data 
+ 101            structures and sets up timer interrupts at required rate.
+ 102            You must call this function before using the scheduler.  
+ 103          
+ 104            BAUD_RATE - The required baud rate.
+ 105          
+ 106          -*------------------------------------------------------------------*/
+ 107          void SCU_A_MASTER_Init_T1_T2(const tWord BAUD_RATE) 
+ 108             {
+ 109   1         tByte Task_index;
+ 110   1         tByte Slave_index;
+ 111   1      
+ 112   1         // No interrupts (yet)
+ 113   1         EA = 0;
+ 114   1      
+ 115   1         // Start the watchdog
+ 116   1         SCU_A_MASTER_Watchdog_Init();
+ 117   1      
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 3   
+
+ 118   1         Network_error_pin = NO_NETWORK_ERROR;
+ 119   1      
+ 120   1         // ------ Set up the scheduler ----------------------------------
+ 121   1         // Sort out the tasks
+ 122   1         for (Task_index = 0; Task_index < SCH_MAX_TASKS; Task_index++) 
+ 123   1            {
+ 124   2            SCH_Delete_Task(Task_index);
+ 125   2            }
+ 126   1      
+ 127   1         // Reset the global error variable
+ 128   1         // - SCH_Delete_Task() will generate an error code, 
+ 129   1         //   (because the task array is empty)
+ 130   1         Error_code_G = 0;
+ 131   1      
+ 132   1         // We allow any combination of ID numbers in slaves
+ 133   1         // - but reserve ID 0x00
+ 134   1         for (Slave_index = 0; Slave_index < NUMBER_OF_SLAVES; Slave_index++)
+ 135   1            {
+ 136   2            Slave_reset_attempts_G[Slave_index] = 0;
+ 137   2            Current_Slave_IDs_G[Slave_index] = MAIN_SLAVE_IDs[Slave_index];
+ 138   2            }
+ 139   1      
+ 140   1         // ------ Set the baud rate (begin) -----------------------------
+ 141   1         PCON &= 0x7F;   // Set SMOD bit to 0 (don't double baud rates)
+ 142   1      
+ 143   1         //  Receiver enabled
+ 144   1         //  *9-bit data*, 1 start bit, 1 stop bit, variable baud rate (asynchronous)
+ 145   1         SCON = 0xD2;
+ 146   1      
+ 147   1         TMOD |= 0x20;   // T1 in mode 2, 8-bit auto reload
+ 148   1      
+ 149   1         TH1 = (256 - (tByte)((((tLong)OSC_FREQ / 100) * 3125) 
+ 150   1                  / ((tLong) BAUD_RATE * OSC_PER_INST * 1000)));
+ 151   1      
+ 152   1         TL1 = TH1;  
+ 153   1         TR1 = 1;  // Run the timer
+ 154   1         TI = 1;   // Send first character (dummy)
+ 155   1         // ------ Set the baud rate (end) -------------------------------
+ 156   1      
+ 157   1         // Serial interrupt *NOT* enabled
+ 158   1         ES = 0;
+ 159   1         // ------ Set up the serial link (end) --------------------------
+ 160   1      
+ 161   1         // ------ Set up Timer 2 (begin) --------------------------------
+ 162   1         // Crystal is assumed to be 12 MHz, 12 osc/increment
+ 163   1         //
+ 164   1         // The Timer 2 resolution is 0.000001 seconds (1 µs)
+ 165   1         // The required Timer 2 overflow is 0.005 seconds (5 ms)
+ 166   1         // - this takes 5000 timer ticks
+ 167   1         // Reload value is 65536 - 5000 = 60536 (dec) = 0xEC78
+ 168   1      
+ 169   1         T2CON = 0x04;   // load Timer 2 control register
+ 170   1         T2MOD = 0x00;   // load Timer 2 mode register
+ 171   1      
+ 172   1         TH2    = 0xEC;  // load timer 2 high byte
+ 173   1         RCAP2H = 0xEC;  // load timer 2 reload capture reg, high byte
+ 174   1         TL2    = 0x78;  // load timer 2 low byte
+ 175   1         RCAP2L = 0x78;  // load timer 2 reload capture reg, low byte
+ 176   1         
+ 177   1         ET2   = 1;  // Timer 2 interrupt is enabled
+ 178   1      
+ 179   1         TR2   = 1;  // Start Timer 2   
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 4   
+
+ 180   1         // ------ Set up Timer 2 (end) ----------------------------------
+ 181   1         }
+ 182          
+ 183          /*------------------------------------------------------------------*-
+ 184          
+ 185            SCU_A_MASTER_Start()
+ 186          
+ 187            Starts the scheduler, by enabling interrupts.
+ 188          
+ 189            NOTE: Usually called after all regular tasks are added,
+ 190            to keep the tasks synchronised.
+ 191          
+ 192            NOTE: ONLY THE SCHEDULER INTERRUPT SHOULD BE ENABLED!!! 
+ 193          
+ 194            NOTE: Delays here (2ms) assume a baud rate of at leadt 9600 baud.
+ 195            You will need to fine-tune this code if you opt for a lower baud
+ 196            rate.
+ 197           
+ 198          -*------------------------------------------------------------------*/
+ 199          void SCU_A_MASTER_Start(void) 
+ 200             {
+ 201   1         tByte Slave_ID;
+ 202   1         tByte Num_active_slaves;
+ 203   1         tByte Id, i;
+ 204   1         bit First_byte = 0;
+ 205   1         bit Slave_replied_correctly;
+ 206   1         tByte Slave_index;
+ 207   1      
+ 208   1         // Refresh the watchdog
+ 209   1         SCU_A_MASTER_Watchdog_Refresh();
+ 210   1      
+ 211   1         // Place system in 'safe state'
+ 212   1         SCU_A_MASTER_Enter_Safe_State();
+ 213   1      
+ 214   1         // Report error as we wait to start
+ 215   1         Network_error_pin = NETWORK_ERROR;
+ 216   1      
+ 217   1         Error_code_G = ERROR_SCH_WAITING_FOR_SLAVE_TO_ACK;
+ 218   1         SCH_Report_Status(); // Sch not yet running - do this manually
+ 219   1      
+ 220   1         // Pause here (3000 ms), to time-out all the slaves
+ 221   1         // (This is the means by which we synchronise the network)
+ 222   1         for (i = 0; i < 100; i++)
+ 223   1            {
+ 224   2            Hardware_Delay_T0(30);
+ 225   2            SCU_A_MASTER_Watchdog_Refresh();
+ 226   2            }     
+ 227   1      
+ 228   1         // Currently disconnected from all slaves
+ 229   1         Num_active_slaves = 0;
+ 230   1      
+ 231   1         // After the initial (long) delay, all (operational) slaves will have timed out.
+ 232   1         // All operational slaves will now be in the 'READY TO START' state
+ 233   1         // Send them a (single-byte) message to get them started
+ 234   1         // DO THIS TWICE IN A ROW, WITH COMMAND BIT 
+ 235   1         // This cannot happen under normal circumstances
+ 236   1         Slave_index = 0;
+ 237   1         do {
+ 238   2            // Refresh the watchdog
+ 239   2            SCU_A_MASTER_Watchdog_Refresh();
+ 240   2      
+ 241   2            // Clear 'first byte' flag
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 5   
+
+ 242   2            First_byte = 0;
+ 243   2      
+ 244   2            // Find the slave ID for this slave 
+ 245   2            Slave_ID = (tByte) Current_Slave_IDs_G[Slave_index];  
+ 246   2      
+ 247   2            // Send a 'Slave ID' message
+ 248   2            TI = 0;
+ 249   2            TB8 = 1; // Set command bit
+ 250   2            SBUF = Slave_ID;          
+ 251   2      
+ 252   2            // Wait to give slave time to reply
+ 253   2            Hardware_Delay_T0(5);   
+ 254   2      
+ 255   2            // Check we had a reply 
+ 256   2            if (RI == 1) 
+ 257   2               {
+ 258   3               // Get the reply data
+ 259   3               Id = (tByte) SBUF;  
+ 260   3               RI = 0;
+ 261   3      
+ 262   3               // Check reply - with command bit
+ 263   3               if ((Id == Slave_ID) && (RB8 == 1))
+ 264   3                  {
+ 265   4                  First_byte = 1;
+ 266   4                  }
+ 267   3               }   
+ 268   2      
+ 269   2            // Send second byte
+ 270   2            TI = 0;
+ 271   2            TB8 = 1;
+ 272   2            SBUF = Slave_ID;   
+ 273   2      
+ 274   2            // Wait to give slave time to reply
+ 275   2            Hardware_Delay_T0(5);   
+ 276   2      
+ 277   2            // Check we had a reply
+ 278   2            Slave_replied_correctly = 0;
+ 279   2            if (RI != 0)
+ 280   2               {
+ 281   3               // Get the reply data
+ 282   3               Id = (tByte) SBUF;  
+ 283   3               RI = 0;
+ 284   3      
+ 285   3               if ((Id == Slave_ID) && (RB8 == 1) && (First_byte == 1))
+ 286   3                  {
+ 287   4                  Slave_replied_correctly = 1;
+ 288   4                  }
+ 289   3               }
+ 290   2      
+ 291   2            if (Slave_replied_correctly)
+ 292   2               {
+ 293   3               // Slave responded correctly
+ 294   3               Num_active_slaves++;
+ 295   3               Slave_index++;
+ 296   3               }
+ 297   2            else
+ 298   2               {
+ 299   3               // Slave did not reply correctly 
+ 300   3               // - try to switch to backup device (if available)
+ 301   3               if (Current_Slave_IDs_G[Slave_index] != BACKUP_SLAVE_IDs[Slave_index])
+ 302   3                  {
+ 303   4                  // There is a backup available: switch to backup and try again
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 6   
+
+ 304   4                  Current_Slave_IDs_G[Slave_index] = BACKUP_SLAVE_IDs[Slave_index];
+ 305   4                  }
+ 306   3               else
+ 307   3                  {
+ 308   4                  // No backup available (or backup failed too) - have to continue
+ 309   4                  // NOTE: we don't abort the loop, to allow for more flexible
+ 310   4                  // error handling (below).
+ 311   4                  Slave_index++;
+ 312   4                  }
+ 313   3               }
+ 314   2            } while (Slave_index < NUMBER_OF_SLAVES);
+ 315   1      
+ 316   1         // DEAL WITH CASE OF MISSING SLAVE(S) HERE ...
+ 317   1         if (Num_active_slaves < NUMBER_OF_SLAVES)
+ 318   1            {
+ 319   2            // User-defined error handling here...
+ 320   2            // 1 or more slaves have not replied
+ 321   2            // NOTE: In some circumstances you may wish to abort if slaves are missing
+ 322   2            // - or reconfigure the network.
+ 323   2      
+ 324   2            // Here we display error and shut down the network
+ 325   2            Error_code_G = ERROR_SCH_ONE_OR_MORE_SLAVES_DID_NOT_START;
+ 326   2            SCU_A_MASTER_Shut_Down_the_Network();
+ 327   2            }
+ 328   1         else
+ 329   1            {
+ 330   2            Error_code_G = 0;
+ 331   2            Network_error_pin = NO_NETWORK_ERROR;
+ 332   2            }
+ 333   1      
+ 334   1         // Get ready to send first tick message
+ 335   1         Message_byte_G = 1;
+ 336   1         First_ack_G = 1;
+ 337   1         Current_slave_index_G = 0;
+ 338   1      
+ 339   1         // Start the scheduler
+ 340   1         EA = 1;   
+ 341   1         }
+ 342          
+ 343          
+ 344          /*------------------------------------------------------------------*-
+ 345          
+ 346            SCU_A_MASTER_Update_T2
+ 347          
+ 348            This is the scheduler ISR.  It is called at a rate determined by 
+ 349            the timer settings in SCU_A_MASTER_Init_T2().  This version is 
+ 350            triggered by Timer 2 interrupts: timer is automatically reloaded.
+ 351          
+ 352          -*------------------------------------------------------------------*/
+ 353          void SCU_A_MASTER_Update_T2(void) interrupt INTERRUPT_Timer_2_Overflow  
+ 354             {
+ 355   1         tByte Task_index;
+ 356   1         tByte Previous_slave_index;
+ 357   1      
+ 358   1         TF2 = 0; // Must manually clear this. 
+ 359   1      
+ 360   1         // Refresh the watchdog
+ 361   1         SCU_A_MASTER_Watchdog_Refresh();
+ 362   1      
+ 363   1         // Default
+ 364   1         Network_error_pin = NO_NETWORK_ERROR;
+ 365   1      
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 7   
+
+ 366   1         // Keep track of the current slave
+ 367   1         // FIRST VALUE IS 0
+ 368   1         Previous_slave_index = Current_slave_index_G;   
+ 369   1      
+ 370   1         // Assume 2-byte messages sent and received
+ 371   1         // - it takes two ticks to deliver each message
+ 372   1         if (Message_byte_G == 0)
+ 373   1            {
+ 374   2            Message_byte_G = 1;  
+ 375   2            }
+ 376   1         else
+ 377   1            {
+ 378   2            Message_byte_G = 0;
+ 379   2      
+ 380   2            if (++Current_slave_index_G >= NUMBER_OF_SLAVES)
+ 381   2               {
+ 382   3               Current_slave_index_G = 0;
+ 383   3               }
+ 384   2            }
+ 385   1      
+ 386   1         // Check that the appropriate slave responded to the previous message:
+ 387   1         // (if it did, store the data sent by this slave)
+ 388   1         if (SCU_A_MASTER_Process_Ack(Previous_slave_index) == RETURN_ERROR)
+ 389   1            {
+ 390   2            Network_error_pin = NETWORK_ERROR;
+ 391   2            Error_code_G = ERROR_SCH_LOST_SLAVE;
+ 392   2      
+ 393   2            // If we have lost contact with a slave, we attempt to
+ 394   2            // switch to a backup device (if one is available) as we reset the network
+ 395   2            //
+ 396   2            // NOTE: We don't do this every tick (or the the network will be constantly reset)
+ 397   2            //
+ 398   2            // Choose a value of SLAVE_RESET_INTERVAL to allow resets (say) every 5 seconds
+ 399   2            if (++Slave_reset_attempts_G[Previous_slave_index] >= SLAVE_RESET_INTERVAL)
+ 400   2               {
+ 401   3               SCU_A_MASTER_Reset_the_Network();
+ 402   3               }
+ 403   2            }
+ 404   1         else
+ 405   1            {
+ 406   2            // Reset this counter
+ 407   2            Slave_reset_attempts_G[Previous_slave_index] = 0;
+ 408   2            }
+ 409   1      
+ 410   1         // Send 'tick' message to all connected slaves
+ 411   1         // (sends one data byte to the current slave)
+ 412   1         SCU_A_MASTER_Send_Tick_Message(Current_slave_index_G);
+ 413   1      
+ 414   1         // NOTE: calculations are in *TICKS* (not milliseconds)
+ 415   1         for (Task_index = 0; Task_index < SCH_MAX_TASKS; Task_index++)
+ 416   1            {
+ 417   2            // Check if there is a task at this location
+ 418   2            if (SCH_tasks_G[Task_index].pTask)
+ 419   2               {
+ 420   3               if (SCH_tasks_G[Task_index].Delay == 0)
+ 421   3                  {
+ 422   4                  // The task is due to run
+ 423   4                  SCH_tasks_G[Task_index].RunMe += 1;  // Increment the run flag
+ 424   4      
+ 425   4                  if (SCH_tasks_G[Task_index].Period)
+ 426   4                     {
+ 427   5                     // Schedule periodic tasks to run again
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 8   
+
+ 428   5                     SCH_tasks_G[Task_index].Delay = SCH_tasks_G[Task_index].Period;
+ 429   5                     }
+ 430   4                  }
+ 431   3               else
+ 432   3                  {
+ 433   4                  // Not yet ready to run: just decrement the delay 
+ 434   4                  SCH_tasks_G[Task_index].Delay -= 1;
+ 435   4                  }
+ 436   3               }         
+ 437   2            }
+ 438   1         }   
+ 439          
+ 440          /*------------------------------------------------------------------*-
+ 441          
+ 442            SCU_A_MASTER_Send_Tick_Message()
+ 443          
+ 444            This function sends a tick message, over the USART network.
+ 445            The receipt of this message will cause an interrupt to be generated
+ 446            in the slave(s): this invoke the scheduler 'update' function
+ 447            in the slave(s).
+ 448          
+ 449          -*------------------------------------------------------------------*/
+ 450          void SCU_A_MASTER_Send_Tick_Message(const tByte SLAVE_INDEX) 
+ 451             {
+ 452   1         tLong Timeout;
+ 453   1      
+ 454   1         // Find the slave ID for this slave 
+ 455   1         tByte Slave_ID = (tByte) Current_Slave_IDs_G[SLAVE_INDEX];
+ 456   1      
+ 457   1         // Sending one byte of data at a time, depending on index value
+ 458   1         // If Message_byte_G is 0, send first byte (the slave ID)
+ 459   1         if (Message_byte_G == 0)
+ 460   1            {
+ 461   2            Timeout = 0;
+ 462   2            while ((++Timeout) && (TI == 0));  
+ 463   2      
+ 464   2            if (Timeout == 0)
+ 465   2               {
+ 466   3               // UART did not respond - error
+ 467   3               Error_code_G = ERROR_USART_TI; 
+ 468   3               return;
+ 469   3               } 
+ 470   2      
+ 471   2            TI = 0;                                            
+ 472   2            TB8 = 1;  // Set 'Command' bit
+ 473   2            SBUF = Slave_ID;
+ 474   2            }
+ 475   1         else
+ 476   1            {
+ 477   2            // Message_byte_G is 1, send the data byte 
+ 478   2            Timeout = 0;
+ 479   2            while ((++Timeout) && (TI == 0));  
+ 480   2      
+ 481   2            if (Timeout == 0)
+ 482   2               {
+ 483   3               // usart did not respond - error
+ 484   3               Error_code_G = ERROR_USART_TI; 
+ 485   3               return;
+ 486   3               } 
+ 487   2      
+ 488   2            TI = 0;
+ 489   2            TB8 = 0;
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 9   
+
+ 490   2            SBUF = Tick_message_data_G[SLAVE_INDEX];
+ 491   2            }
+ 492   1       
+ 493   1         // Data sent - return
+ 494   1         }
+ 495          
+ 496          
+ 497          /*------------------------------------------------------------------*-
+ 498          
+ 499            SCU_A_MASTER_Process_Ack()
+ 500          
+ 501            Make sure the slave (SLAVE_ID) has acknowledged the previous
+ 502            message that was sent.  If it has, extract the message data
+ 503            from the USART hardware: if not, call the appropriate error
+ 504            handler.
+ 505          
+ 506            Slave_index - The index of the slave. 
+ 507          
+ 508            RETURNS:  RETURN_NORMAL - Ack received (data in Ack_message_data_G)
+ 509                      RETURN_ERROR  - No ack received (-> no data)
+ 510          
+ 511          -*------------------------------------------------------------------*/
+ 512          
+ 513          bit SCU_A_MASTER_Process_Ack(const tByte Slave_index) 
+ 514             {
+ 515   1         tByte Message_contents;
+ 516   1         tByte Slave_ID;
+ 517   1      
+ 518   1         // First time this is called there is no ack tick to check 
+ 519   1         // - we simply return 'OK'
+ 520   1         if (First_ack_G)
+ 521   1            {
+ 522   2            First_ack_G = 0;
+ 523   2            return RETURN_NORMAL;
+ 524   2            }
+ 525   1      
+ 526   1         // Find the slave ID for this slave 
+ 527   1         Slave_ID = (tByte) Current_Slave_IDs_G[Slave_index];
+ 528   1      
+ 529   1         // Data should already be in the buffer
+ 530   1         if (RI == 0)
+ 531   1            {
+ 532   2            // Slave has not replied to last tick message
+ 533   2      
+ 534   2            // Set error LED
+ 535   2            Network_error_pin = NETWORK_ERROR;
+ 536   2      
+ 537   2            return RETURN_ERROR;
+ 538   2            } 
+ 539   1      
+ 540   1         // There is data - get it
+ 541   1         Message_contents = (tByte) SBUF;
+ 542   1         RI = 0;
+ 543   1      
+ 544   1         // This is the reply to the last message 
+ 545   1         // - reverse the message byte interpretation 
+ 546   1         if (Message_byte_G == 1)
+ 547   1            {
+ 548   2            // Check the 'command bit' is set
+ 549   2            if (RB8 == 1)
+ 550   2               {
+ 551   3               // Check that the ID is correct
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 10  
+
+ 552   3               if (Slave_ID == (tByte) Message_contents)
+ 553   3                  {
+ 554   4                  // Required Ack message was received
+ 555   4                  return RETURN_NORMAL;
+ 556   4                  }
+ 557   3               }
+ 558   2      
+ 559   2             // Something is wrong...
+ 560   2      
+ 561   2             // Set error LED
+ 562   2             Network_error_pin = NETWORK_ERROR;
+ 563   2      
+ 564   2             return RETURN_ERROR;
+ 565   2             }
+ 566   1          else
+ 567   1             {  
+ 568   2             // There *ARE* data available 
+ 569   2             // Extract the data from the slave message
+ 570   2             //
+ 571   2             // NOTE: We *assume* these data are OK
+ 572   2             // - you may wish to send crucial data twice, etc.
+ 573   2             Ack_message_data_G[Slave_index] = Message_contents;
+ 574   2        
+ 575   2             return RETURN_NORMAL;  // return the slave data
+ 576   2             }
+ 577   1         }
+ 578          
+ 579          /*------------------------------------------------------------------*-
+ 580          
+ 581            SCU_A_MASTER_Reset_the_Network()
+ 582          
+ 583            This function resets (that is, restarts) the whole network.
+ 584          
+ 585          -*------------------------------------------------------------------*/
+ 586          void SCU_A_MASTER_Reset_the_Network(void)
+ 587             {
+ 588   1         EA = 0;   // Disable interrupts
+ 589   1         while(1); // Watchdog will time out
+ 590   1         }
+ 591          
+ 592          /*------------------------------------------------------------------*-
+ 593          
+ 594            SCU_A_MASTER_Shut_Down_the_Network()
+ 595          
+ 596            This function shuts down the whole network.
+ 597          
+ 598          -*------------------------------------------------------------------*/
+ 599          void SCU_A_MASTER_Shut_Down_the_Network(void)
+ 600             {
+ 601   1         EA = 0; // Disable interrupts
+ 602   1      
+ 603   1         Network_error_pin = NETWORK_ERROR;
+ 604   1         SCH_Report_Status(); // Sch not running - do this manually
+ 605   1      
+ 606   1         while(1)
+ 607   1            {
+ 608   2            SCU_A_MASTER_Watchdog_Refresh();
+ 609   2            }
+ 610   1         }
+ 611          
+ 612          
+ 613          /*------------------------------------------------------------------*-
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 11  
+
+ 614          
+ 615            SCU_A_MASTER_Enter_Safe_State()
+ 616          
+ 617            This is the state enterted by the system when:
+ 618            (1) The node is powered up or reset
+ 619            (2) The Master node cannot detect a slave
+ 620            (3) The network has an error
+ 621          
+ 622            Try to ensure that the system is in a 'safe' state in these 
+ 623            circumstances.
+ 624          
+ 625          -*------------------------------------------------------------------*/
+ 626          void SCU_A_MASTER_Enter_Safe_State(void)
+ 627             {
+ 628   1         // USER DEFINED - Edit as required
+ 629   1         TRAFFIC_LIGHTS_Display_Safe_Output();
+ 630   1         } 
+ 631          
+ 632          /*------------------------------------------------------------------*-
+ 633          
+ 634            SCU_A_MASTER_Watchdog_Init()
+ 635          
+ 636            This function sets up the watchdog timer.
+ 637          
+ 638            If the Master fails (or other error develop), 
+ 639            no tick messages will arrive, and the scheduler
+ 640            will stop.  
+ 641          
+ 642            To detect this situation, we have a (hardware) watchdog
+ 643            running in the slave.  This watchdog - which should be set to
+ 644            overflow at around 100ms - is used to set the system into a
+ 645            known (safe) state.  The slave will then wait (indefinitely)
+ 646            for the problem to be resolved.
+ 647          
+ 648            NOTE: The slave will not be generating Ack messages in these 
+ 649            circumstances.  The Master (if running) will therefore be aware
+ 650            that there is a problem.  
+ 651          
+ 652          -*------------------------------------------------------------------*/
+ 653          void SCU_A_MASTER_Watchdog_Init(void)   
+ 654             {
+ 655   1         // INIT NOT REQUIRED FOR 1232 EXTERNAL WATCHDOG
+ 656   1         // - May be required wwith different watchdog hardware
+ 657   1         //
+ 658   1         // Edit as required
+ 659   1         }
+ 660          
+ 661          
+ 662          /*------------------------------------------------------------------*-
+ 663          
+ 664            SCU_A_MASTER_Watchdog_Refresh()
+ 665          
+ 666            Feed the external (1232) watchdog.
+ 667          
+ 668            Timeout is between ~60 and 250 ms (hardware dependent)
+ 669          
+ 670            Assumes external 1232 watchdog
+ 671          
+ 672          -*------------------------------------------------------------------*/
+ 673          void SCU_A_MASTER_Watchdog_Refresh(void) reentrant
+ 674             {
+ 675   1         // Change the state of the watchdog pin
+C51 COMPILER V6.10  SCU_AM                                                                 04/19/2001 13:53:12 PAGE 12  
+
+ 676   1         if (WATCHDOG_state_G == 1)
+ 677   1            {
+ 678   2            WATCHDOG_state_G = 0;
+ 679   2            WATCHDOG_pin = 0;
+ 680   2            }
+ 681   1         else
+ 682   1            {
+ 683   2            WATCHDOG_state_G = 1;
+ 684   2            WATCHDOG_pin = 1;
+ 685   2            } 
+ 686   1         }    
+ 687          
+ 688          
+ 689          /*------------------------------------------------------------------*-
+ 690            ---- END OF FILE -------------------------------------------------
+ 691          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    775    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15      15
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      3       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

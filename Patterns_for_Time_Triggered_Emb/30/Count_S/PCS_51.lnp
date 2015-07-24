@@ -1,0 +1,12 @@
+"2_01_12G.obj",
+"BARGRAPH.obj",
+"MAIN.obj",
+"PULCNT_S.obj",
+"SCH51.obj" 
+TO "PCS_51" 
+RAMSIZE(256) 
+OVERLAY 
+   (main ~ (PC_SOFT_Poll_Count, PC_SOFT_Get_Count, BARGRAPH_Update), 
+   SCH_Dispatch_Tasks ! (PC_SOFT_Poll_Count, PC_SOFT_Get_Count, 
+   BARGRAPH_Update))
+

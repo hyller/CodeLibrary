@@ -1,0 +1,10 @@
+"SCH51.obj",
+"LCD_A.obj",
+"DELAY_T0.obj",
+"MAIN.obj",
+"KEYPAD.obj",
+"LCD_KEY.obj",
+"2_05_11G.obj" 
+TO "LCD_Key" 
+RAMSIZE(256) 
+OVERLAY (main ~ (LCD_Update, LCD_KEY_Update), SCH_dispatch_tasks ! (LCD_Update, LCD_KEY_Update)) 

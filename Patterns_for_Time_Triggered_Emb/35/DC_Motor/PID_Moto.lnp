@@ -1,0 +1,15 @@
+"Char_map.obj",
+"Main.obj",
+"PIDmotor.obj",
+"Sch51.obj",
+"2_01_10i.obj",
+"PC_O.obj",
+"PC_O_in.obj" 
+TO "PID_Moto" 
+RAMSIZE(256) 
+OVERLAY (main ~ (PID_MOTOR_Poll_Speed_Pulse, 
+   PID_MOTOR_Control_Motor, PC_LINK_O_Update), 
+   SCH_Dispatch_Tasks ! (PID_MOTOR_Poll_Speed_Pulse, 
+   PID_MOTOR_Control_Motor, PC_LINK_O_Update))
+
+CODE( 0X0000-0X7FFF )

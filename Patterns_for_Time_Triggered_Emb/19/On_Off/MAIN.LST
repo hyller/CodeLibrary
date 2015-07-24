@@ -1,0 +1,94 @@
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 16:15:50 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6           
+   7             Demo program for ON-OFF SWITCH pattern.
+   8          
+   9             12 MHz oscillator, Standard 8051/52 (12 osc / machine cycle)
+  10          
+  11             Required linker options (see Chapter 14 for details):
+  12          
+  13             OVERLAY (main ~ (SWITCH_ON_OFF_Update, LED_Flash_Switch_Update), 
+  14             SCH_Dispatch_Tasks ! (SWITCH_ON_OFF_Update,LED_Flash_Switch_Update))
+  15          
+  16          
+  17             COPYRIGHT
+  18             ---------
+  19          
+  20             This code is from the book:
+  21          
+  22             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  23             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  24          
+  25             This code is copyright (c) 2001 by Michael J. Pont.
+  26           
+  27             See book for copyright details and other information.
+  28          
+  29          -*------------------------------------------------------------------*/
+  30          
+  31          #include "Main.h"
+  32          #include "Swit_C.h"
+  33          #include "0_01_12g.H"
+  34          #include "LED_Swit.h"
+  35          
+  36          /* ............................................................... */
+  37          /* ............................................................... */
+  38          
+  39          void main(void)
+  40             {
+  41   1         // Set up the scheduler 
+  42   1         SCH_Init_T0();
+  43   1      
+  44   1         // Set up the switch pin
+  45   1         SWITCH_ON_OFF_Init();
+  46   1      
+  47   1         // Prepare for the 'Flash_LED' task
+  48   1         LED_Flash_Switch_Init();
+  49   1      
+  50   1         // Add a 'SWITCH_ON_OFF_Update' task, every ~200 ms.
+  51   1         // Scheduler timings is in ticks. 
+  52   1         // [1 ms tick interval - see Sch 'init' function]
+  53   1         SCH_Add_Task(SWITCH_ON_OFF_Update, 0, 200);
+  54   1      
+  55   1         // Add LED task
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 16:15:50 PAGE 2   
+
+  56   1         // Here, LED will only flash while switch is in ON state
+  57   1         SCH_Add_Task(LED_Flash_Switch_Update, 0, 1000);
+  58   1      
+  59   1         SCH_Start();
+  60   1      
+  61   1         while(1)
+  62   1            {
+  63   2            SCH_Dispatch_Tasks();
+  64   2            }
+  65   1         }
+  66          
+  67          /*------------------------------------------------------------------*-
+  68            ---- END OF FILE -------------------------------------------------
+  69          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     46    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

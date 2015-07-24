@@ -1,0 +1,188 @@
+C51 COMPILER V6.10  I2C_ROM                                                                04/19/2001 11:47:04 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE I2C_ROM
+OBJECT MODULE PLACED IN .\I2C_ROM.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\I2C_ROM.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             I2C_ROM.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             I2C library functions which are intended to allow
+   8             use of 2-wire serial EEPROMs (specifically, AT24C64).
+   9          
+  10             Easily extended / adapted to work with other 2-wire EEPROMs.
+  11          
+  12             COPYRIGHT
+  13             ---------
+  14          
+  15             This code is from the book:
+  16          
+  17             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  18             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  19          
+  20             This code is copyright (c) 2001 by Michael J. Pont.
+  21           
+  22             See book for copyright details and other information.
+  23          
+  24          -*------------------------------------------------------------------*/
+  25          
+  26          #include "Main.h"
+  27          #include "Delay_T0.h"
+  28          #include "I2C_Core.h"
+  29          #include "I2C_ROM.h"
+  30          
+  31          // ------ Public variable declarations -----------------------------
+  32          
+  33          extern tByte Error_code_G;
+  34          
+  35          // ------ Private constants ----------------------------------------
+  36          
+  37          // Device identifier of the EEPROM used in this example
+  38          // - see text / Philips documentation for IDs used by other devices
+  39          #define I2C_EEPROM_ID 0xA0 
+  40          
+  41          
+  42          /*------------------------------------------------------------------*-
+  43          
+  44            I2C_Write_Byte_AT24C64()
+  45          
+  46            Send a byte of data to the EEPROM.
+  47            
+  48          -*------------------------------------------------------------------*/
+  49          void I2C_Write_Byte_AT24C64(const tWord address, tByte content)
+  50             {
+  51   1         tByte MSByte;  // Most significant byte of data address
+  52   1         tByte LSByte;  // Least significant byte of data address
+  53   1      
+  54   1         I2C_Send_Start();   // Generate START condition
+  55   1      
+C51 COMPILER V6.10  I2C_ROM                                                                04/19/2001 11:47:04 PAGE 2   
+
+  56   1         // Send SLAVE address with write request
+  57   1         if (I2C_Write_Byte(I2C_EEPROM_ID | I2C_WRITE))
+  58   1           {
+  59   2           Error_code_G = ERROR_I2C_WRITE_BYTE_AT24C64;
+  60   2           return;
+  61   2           }
+  62   1      
+  63   1         // MSByte of address
+  64   1         MSByte = (address >> 8) & 0x00FF;
+  65   1         
+  66   1         // LSByte of Address
+  67   1         LSByte = address & 0x00FF;
+  68   1      
+  69   1         // Send memory address
+  70   1         if (I2C_Write_Byte(MSByte))
+  71   1           {
+  72   2           Error_code_G = ERROR_I2C_WRITE_BYTE_AT24C64;
+  73   2           return;
+  74   2           }
+  75   1      
+  76   1         // Send memory address
+  77   1         if (I2C_Write_Byte(LSByte))
+  78   1           {
+  79   2           Error_code_G = ERROR_I2C_WRITE_BYTE_AT24C64;
+  80   2           return;
+  81   2           }
+  82   1      
+  83   1         // Send content to memory address
+  84   1         if (I2C_Write_Byte(content))
+  85   1           {
+  86   2           Error_code_G = ERROR_I2C_WRITE_BYTE_AT24C64;
+  87   2           return;
+  88   2           }
+  89   1      
+  90   1         I2C_Send_Stop();    
+  91   1      
+  92   1         return;
+  93   1         }
+  94          
+  95          
+  96          /*------------------------------------------------------------------*-
+  97          
+  98            I2C_Read_Byte_AT24C64()
+  99          
+ 100            Read a byte of data from the EEPROM.
+ 101          
+ 102          -*------------------------------------------------------------------*/
+ 103          tByte I2C_Read_Byte_AT24C64(tWord address)
+ 104             {
+ 105   1         tByte MSByte;  // Most significant byte of data address
+ 106   1         tByte LSByte;  // Least significant byte of data address
+ 107   1         tByte Result = 0;
+ 108   1      
+ 109   1         I2C_Send_Start();   // Generate START condition
+ 110   1      
+ 111   1         // Send SLAVE address with dummy write request
+ 112   1         if (I2C_Write_Byte(I2C_EEPROM_ID|I2C_WRITE))
+ 113   1            {
+ 114   2            Error_code_G = ERROR_I2C_READ_BYTE_AT24C64;
+ 115   2            return 0;
+ 116   2            }
+ 117   1      
+C51 COMPILER V6.10  I2C_ROM                                                                04/19/2001 11:47:04 PAGE 3   
+
+ 118   1         // MSByte of address
+ 119   1         MSByte = (address >> 8) & 0x00FF;
+ 120   1         
+ 121   1         // LSByte of Address
+ 122   1         LSByte = address & 0x00FF;
+ 123   1      
+ 124   1         // Send memory address
+ 125   1         if (I2C_Write_Byte(MSByte))
+ 126   1           {
+ 127   2           Error_code_G = ERROR_I2C_READ_BYTE_AT24C64;
+ 128   2           return 0;
+ 129   2           }
+ 130   1      
+ 131   1         // Send memory address
+ 132   1         if (I2C_Write_Byte(LSByte))
+ 133   1           {
+ 134   2           Error_code_G = ERROR_I2C_READ_BYTE_AT24C64;
+ 135   2           return 0;
+ 136   2           }
+ 137   1      
+ 138   1         I2C_Send_Start();   // Generate START condition
+ 139   1      
+ 140   1         // Send SLAVE address with read request
+ 141   1         if (I2C_Write_Byte(I2C_EEPROM_ID | I2C_READ))
+ 142   1            {
+ 143   2            Error_code_G = ERROR_I2C_READ_BYTE_AT24C64;
+ 144   2            return 0;
+ 145   2            }
+ 146   1      
+ 147   1         Result = I2C_Read_Byte();   // Read memory content
+ 148   1      
+ 149   1         // Don´t perform a MASTER ACK
+ 150   1         I2C_Send_Stop();            
+ 151   1      
+ 152   1         return(Result);
+ 153   1         }
+ 154          
+ 155          /*------------------------------------------------------------------*-
+ 156            ---- END OF FILE -------------------------------------------------
+ 157          -*------------------------------------------------------------------*/
+ 158          
+ 159          
+ 160          
+ 161          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    151    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

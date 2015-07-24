@@ -1,0 +1,70 @@
+C51 COMPILER V6.10  MAIN                                                                   04/10/2001 14:53:13 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Demo program for simple PID function: see Chapter 35 for details.
+   8          
+   9             [Intended simply to allow function timing]
+  10          
+  11          
+  12             COPYRIGHT
+  13             ---------
+  14          
+  15             This code is from the book:
+  16          
+  17             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  18             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  19          
+  20             This code is copyright (c) 2001 by Michael J. Pont.
+  21           
+  22             See book for copyright details and other information.
+  23          
+  24          -*------------------------------------------------------------------*/
+  25          
+  26          #include "Main.h"
+  27          #include "PID_f1.h"
+  28          
+  29          /* ............................................................... */
+  30          /* ............................................................... */
+  31          
+  32          void main(void)
+  33             {
+  34   1         float x,y,z;
+  35   1      
+  36   1         while(1)
+  37   1            {
+  38   2            x = PID_Control(y,z);
+  39   2            }
+  40   1         }
+  41          
+  42          /*------------------------------------------------------------------*-
+  43            ---- END OF FILE -------------------------------------------------
+  44          -*------------------------------------------------------------------*/
+  45          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     33    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      12
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V6.10  MAIN                                                                   04/10/2001 14:53:13 PAGE 2   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

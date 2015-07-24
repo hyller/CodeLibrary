@@ -1,0 +1,40 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.a*; *.src)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt)
+ pExt (*.plm)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (Target 1), 0x0000 // Tools: 'MCS-51'
+GRPOPT 1,(Source Group 1),1,0,0
+
+OPTFFF 1,1,1,0,0,0,0,0,<.\LED_FLAS.C><LED_FLAS.C> 
+OPTFFF 1,2,1,0,0,0,0,0,<.\MAIN.C><MAIN.C> 
+OPTFFF 1,3,1,0,0,0,0,0,<.\SCH51.C><SCH51.C> 
+OPTFFF 1,4,1,0,0,0,0,0,<.\TLIGHT_B.C><TLIGHT_B.C> 
+OPTFFF 1,5,1,0,0,0,0,0,<.\DELAY_T0.C><DELAY_T0.C> 
+OPTFFF 1,6,1,0,0,0,0,0,<.\SCU_BS.C><SCU_BS.C> 
+
+
+TARGOPT 1, (Target 1)
+ CLK51=12000000
+  OPTTT 1,1,1,0
+  OPTHX 0,65535,0,0,0
+  OPTLX 120,65,8,<.\>
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 1,0,1
+  OPTBL 0,(Data Sheet)<DATASHTS\ATMEL\DOC0313.PDF>
+  OPTBL 1,(Add on databooks)<DATASHTS\ADDBOOKS.PDF>
+  OPTBL 2,(Instruction Set Manual)<DATASHTS\ATMEL\DOC0509.PDF>
+  OPTDL (S8051.DLL)()(DP51.DLL)(-p52)(S8051.DLL)()(TP51.DLL)(-p52)
+  OPTDBG 509,0,()()()()()()()()()() ()()()()
+  OPTDF 0x0
+  OPTLE <>
+  OPTLC <>
+EndOpt
+

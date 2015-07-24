@@ -1,0 +1,6 @@
+itoa-udigits.o itoa-udigits.o: itoa-udigits.c ../include/libc-symbols.h \
+  ../config.h
+
+../include/libc-symbols.h:
+
+../config.h:

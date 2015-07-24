@@ -1,0 +1,8 @@
+"MAIN.obj",
+"DELAY_T0.obj",
+"HSCH51.obj",
+"LED_HYB.obj",
+"2_01_24h.obj" 
+TO "2_01_24h" 
+RAMSIZE(256) 
+OVERLAY (main ~ (LED_Short_Update, LED_Long_Update),hSCH_dispatch_tasks ! (LED_Short_Update, LED_Long_Update)) 

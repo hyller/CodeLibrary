@@ -1,0 +1,10 @@
+export LIBS=-liberty -lintl -liconv -lwsock32 -lole32 -luuid
+export DEFSPLUS = -U_FILE_OFFSET_BITS
+
+.PHONY: all
+all:
+	./configure --prefix=c:/progra~1/LibC
+
+#	make all
+#	make check
+#	make install prefix=c:/temp/ed

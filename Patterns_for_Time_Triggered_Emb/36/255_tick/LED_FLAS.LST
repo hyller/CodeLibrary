@@ -1,0 +1,677 @@
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE LED_FLAS
+OBJECT MODULE PLACED IN .\LED_FLAS.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\LED_FLAS.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND CODE LISTINCLUDE S
+                    -YMBOLS
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             LED_flas.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6             
+   7             Simple 'Flash LED' test function for scheduler.
+   8          
+   9          
+  10             COPYRIGHT
+  11             ---------
+  12          
+  13             This code is from the book:
+  14          
+  15             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17          
+  18             This code is copyright (c) 2001 by Michael J. Pont.
+  19           
+  20             See book for copyright details and other information.
+  21          
+  22          -*------------------------------------------------------------------*/
+  23          
+  24          #include "Main.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     Main.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1     
+   7      =1     'Project Header' (see Chap 9) for project 255_TICK (see Chap 37)
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  #ifndef _MAIN_H
+  25      =1  #define _MAIN_H
+  26      =1  
+  27      =1  //------------------------------------------------------------------
+  28      =1  // WILL NEED TO EDIT THIS SECTION FOR EVERY PROJECT
+  29      =1  //------------------------------------------------------------------
+  30      =1  
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 2   
+
+  31      =1  // Must include the appropriate microcontroller header file here
+  32      =1  #include <AT89x52.h>
+   1      =2  /*--------------------------------------------------------------------------
+   2      =2  AT89X52.H
+   3      =2  
+   4      =2  Header file for the low voltage Flash Atmel AT89C52 and AT89LV52.
+   5      =2  Copyright (c) 1995-1996 Keil Software, Inc.  All rights reserved.
+   6      =2  --------------------------------------------------------------------------*/
+   7      =2  
+   8      =2  #ifndef AT89X52_HEADER_FILE
+   9      =2  #define AT89X52_HEADER_FILE 1
+  10      =2  
+  11      =2  /*------------------------------------------------
+  12      =2  Byte Registers
+  13      =2  ------------------------------------------------*/
+  14      =2  sfr P0      = 0x80;
+  15      =2  sfr SP      = 0x81;
+  16      =2  sfr DPL     = 0x82;
+  17      =2  sfr DPH     = 0x83;
+  18      =2  sfr PCON    = 0x87;
+  19      =2  sfr TCON    = 0x88;
+  20      =2  sfr TMOD    = 0x89;
+  21      =2  sfr TL0     = 0x8A;
+  22      =2  sfr TL1     = 0x8B;
+  23      =2  sfr TH0     = 0x8C;
+  24      =2  sfr TH1     = 0x8D;
+  25      =2  sfr P1      = 0x90;
+  26      =2  sfr SCON    = 0x98;
+  27      =2  sfr SBUF    = 0x99;
+  28      =2  sfr P2      = 0xA0;
+  29      =2  sfr IE      = 0xA8;
+  30      =2  sfr P3      = 0xB0;
+  31      =2  sfr IP      = 0xB8;
+  32      =2  sfr T2CON   = 0xC8;
+  33      =2  sfr T2MOD   = 0xC9;
+  34      =2  sfr RCAP2L  = 0xCA;
+  35      =2  sfr RCAP2H  = 0xCB;
+  36      =2  sfr TL2     = 0xCC;
+  37      =2  sfr TH2     = 0xCD;
+  38      =2  sfr PSW     = 0xD0;
+  39      =2  sfr ACC     = 0xE0;
+  40      =2  sfr B       = 0xF0;
+  41      =2  
+  42      =2  /*------------------------------------------------
+  43      =2  P0 Bit Registers
+  44      =2  ------------------------------------------------*/
+  45      =2  sbit P0_0 = 0x80;
+  46      =2  sbit P0_1 = 0x81;
+  47      =2  sbit P0_2 = 0x82;
+  48      =2  sbit P0_3 = 0x83;
+  49      =2  sbit P0_4 = 0x84;
+  50      =2  sbit P0_5 = 0x85;
+  51      =2  sbit P0_6 = 0x86;
+  52      =2  sbit P0_7 = 0x87;
+  53      =2  
+  54      =2  /*------------------------------------------------
+  55      =2  PCON Bit Values
+  56      =2  ------------------------------------------------*/
+  57      =2  #define IDL_    0x01
+  58      =2  
+  59      =2  #define STOP_   0x02
+  60      =2  #define PD_     0x02    /* Alternate definition */
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 3   
+
+  61      =2  
+  62      =2  #define GF0_    0x04
+  63      =2  #define GF1_    0x08
+  64      =2  #define SMOD_   0x80
+  65      =2  
+  66      =2  /*------------------------------------------------
+  67      =2  TCON Bit Registers
+  68      =2  ------------------------------------------------*/
+  69      =2  sbit IT0  = 0x88;
+  70      =2  sbit IE0  = 0x89;
+  71      =2  sbit IT1  = 0x8A;
+  72      =2  sbit IE1  = 0x8B;
+  73      =2  sbit TR0  = 0x8C;
+  74      =2  sbit TF0  = 0x8D;
+  75      =2  sbit TR1  = 0x8E;
+  76      =2  sbit TF1  = 0x8F;
+  77      =2  
+  78      =2  /*------------------------------------------------
+  79      =2  TMOD Bit Values
+  80      =2  ------------------------------------------------*/
+  81      =2  #define T0_M0_   0x01
+  82      =2  #define T0_M1_   0x02
+  83      =2  #define T0_CT_   0x04
+  84      =2  #define T0_GATE_ 0x08
+  85      =2  #define T1_M0_   0x10
+  86      =2  #define T1_M1_   0x20
+  87      =2  #define T1_CT_   0x40
+  88      =2  #define T1_GATE_ 0x80
+  89      =2  
+  90      =2  #define T1_MASK_ 0xF0
+  91      =2  #define T0_MASK_ 0x0F
+  92      =2  
+  93      =2  /*------------------------------------------------
+  94      =2  P1 Bit Registers
+  95      =2  ------------------------------------------------*/
+  96      =2  sbit P1_0 = 0x90;
+  97      =2  sbit P1_1 = 0x91;
+  98      =2  sbit P1_2 = 0x92;
+  99      =2  sbit P1_3 = 0x93;
+ 100      =2  sbit P1_4 = 0x94;
+ 101      =2  sbit P1_5 = 0x95;
+ 102      =2  sbit P1_6 = 0x96;
+ 103      =2  sbit P1_7 = 0x97;
+ 104      =2  
+ 105      =2  sbit T2   = 0x90;       /* External input to Timer/Counter 2, clock out */
+ 106      =2  sbit T2EX = 0x91;       /* Timer/Counter 2 capture/reload trigger & dir ctl */
+ 107      =2  
+ 108      =2  /*------------------------------------------------
+ 109      =2  SCON Bit Registers
+ 110      =2  ------------------------------------------------*/
+ 111      =2  sbit RI   = 0x98;
+ 112      =2  sbit TI   = 0x99;
+ 113      =2  sbit RB8  = 0x9A;
+ 114      =2  sbit TB8  = 0x9B;
+ 115      =2  sbit REN  = 0x9C;
+ 116      =2  sbit SM2  = 0x9D;
+ 117      =2  sbit SM1  = 0x9E;
+ 118      =2  sbit SM0  = 0x9F;
+ 119      =2  
+ 120      =2  /*------------------------------------------------
+ 121      =2  P2 Bit Registers
+ 122      =2  ------------------------------------------------*/
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 4   
+
+ 123      =2  sbit P2_0 = 0xA0;
+ 124      =2  sbit P2_1 = 0xA1;
+ 125      =2  sbit P2_2 = 0xA2;
+ 126      =2  sbit P2_3 = 0xA3;
+ 127      =2  sbit P2_4 = 0xA4;
+ 128      =2  sbit P2_5 = 0xA5;
+ 129      =2  sbit P2_6 = 0xA6;
+ 130      =2  sbit P2_7 = 0xA7;
+ 131      =2  
+ 132      =2  /*------------------------------------------------
+ 133      =2  IE Bit Registers
+ 134      =2  ------------------------------------------------*/
+ 135      =2  sbit EX0  = 0xA8;       /* 1=Enable External interrupt 0 */
+ 136      =2  sbit ET0  = 0xA9;       /* 1=Enable Timer 0 interrupt */
+ 137      =2  sbit EX1  = 0xAA;       /* 1=Enable External interrupt 1 */
+ 138      =2  sbit ET1  = 0xAB;       /* 1=Enable Timer 1 interrupt */
+ 139      =2  sbit ES   = 0xAC;       /* 1=Enable Serial port interrupt */
+ 140      =2  sbit ET2  = 0xAD;       /* 1=Enable Timer 2 interrupt */
+ 141      =2  
+ 142      =2  sbit EA   = 0xAF;       /* 0=Disable all interrupts */
+ 143      =2  
+ 144      =2  /*------------------------------------------------
+ 145      =2  P3 Bit Registers (Mnemonics & Ports)
+ 146      =2  ------------------------------------------------*/
+ 147      =2  sbit P3_0 = 0xB0;
+ 148      =2  sbit P3_1 = 0xB1;
+ 149      =2  sbit P3_2 = 0xB2;
+ 150      =2  sbit P3_3 = 0xB3;
+ 151      =2  sbit P3_4 = 0xB4;
+ 152      =2  sbit P3_5 = 0xB5;
+ 153      =2  sbit P3_6 = 0xB6;
+ 154      =2  sbit P3_7 = 0xB7;
+ 155      =2  
+ 156      =2  sbit RXD  = 0xB0;       /* Serial data input */
+ 157      =2  sbit TXD  = 0xB1;       /* Serial data output */
+ 158      =2  sbit INT0 = 0xB2;       /* External interrupt 0 */
+ 159      =2  sbit INT1 = 0xB3;       /* External interrupt 1 */
+ 160      =2  sbit T0   = 0xB4;       /* Timer 0 external input */
+ 161      =2  sbit T1   = 0xB5;       /* Timer 1 external input */
+ 162      =2  sbit WR   = 0xB6;       /* External data memory write strobe */
+ 163      =2  sbit RD   = 0xB7;       /* External data memory read strobe */
+ 164      =2  
+ 165      =2  /*------------------------------------------------
+ 166      =2  IP Bit Registers
+ 167      =2  ------------------------------------------------*/
+ 168      =2  sbit PX0  = 0xB8;
+ 169      =2  sbit PT0  = 0xB9;
+ 170      =2  sbit PX1  = 0xBA;
+ 171      =2  sbit PT1  = 0xBB;
+ 172      =2  sbit PS   = 0xBC;
+ 173      =2  sbit PT2  = 0xBD;
+ 174      =2  
+ 175      =2  /*------------------------------------------------
+ 176      =2  T2CON Bit Registers
+ 177      =2  ------------------------------------------------*/
+ 178      =2  sbit CP_RL2= 0xC8;      /* 0=Reload, 1=Capture select */
+ 179      =2  sbit C_T2 = 0xC9;       /* 0=Timer, 1=Counter */
+ 180      =2  sbit TR2  = 0xCA;       /* 0=Stop timer, 1=Start timer */
+ 181      =2  sbit EXEN2= 0xCB;       /* Timer 2 external enable */
+ 182      =2  sbit TCLK = 0xCC;       /* 0=Serial clock uses Timer 1 overflow, 1=Timer 2 */
+ 183      =2  sbit RCLK = 0xCD;       /* 0=Serial clock uses Timer 1 overflow, 1=Timer 2 */
+ 184      =2  sbit EXF2 = 0xCE;       /* Timer 2 external flag */
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 5   
+
+ 185      =2  sbit TF2  = 0xCF;       /* Timer 2 overflow flag */
+ 186      =2  
+ 187      =2  /*------------------------------------------------
+ 188      =2  T2MOD Bit Values
+ 189      =2  ------------------------------------------------*/
+ 190      =2  #define DCEN_   0x01    /* 1=Timer 2 can be configured as up/down counter */
+ 191      =2  #define T2OE_   0x02    /* Timer 2 output enable */
+ 192      =2  
+ 193      =2  /*------------------------------------------------
+ 194      =2  PSW Bit Registers
+ 195      =2  ------------------------------------------------*/
+ 196      =2  sbit P    = 0xD0;
+ 197      =2  sbit FL   = 0xD1;
+ 198      =2  sbit OV   = 0xD2;
+ 199      =2  sbit RS0  = 0xD3;
+ 200      =2  sbit RS1  = 0xD4;
+ 201      =2  sbit F0   = 0xD5;
+ 202      =2  sbit AC   = 0xD6;
+ 203      =2  sbit CY   = 0xD7;
+ 204      =2  
+ 205      =2  /*------------------------------------------------
+ 206      =2  Interrupt Vectors:
+ 207      =2  Interrupt Address = (Number * 8) + 3
+ 208      =2  ------------------------------------------------*/
+ 209      =2  #define IE0_VECTOR	0  /* 0x03 External Interrupt 0 */
+ 210      =2  #define TF0_VECTOR	1  /* 0x0B Timer 0 */
+ 211      =2  #define IE1_VECTOR	2  /* 0x13 External Interrupt 1 */
+ 212      =2  #define TF1_VECTOR	3  /* 0x1B Timer 1 */
+ 213      =2  #define SIO_VECTOR	4  /* 0x23 Serial port */
+ 214      =2  
+ 215      =2  #define TF2_VECTOR	5  /* 0x2B Timer 2 */
+ 216      =2  #define EX2_VECTOR	5  /* 0x2B External Interrupt 2 */
+ 217      =2  
+ 218      =2  /*------------------------------------------------
+ 219      =2  ------------------------------------------------*/
+ 220      =2  #endif
+ 221      =2  
+ 222      =2  
+  33      =1  
+  34      =1  // Include oscillator / chip details here 
+  35      =1  // (essential if generic delays / timeouts are used)
+  36      =1  //  -
+  37      =1  // Oscillator / resonator frequency (in Hz) e.g. (11059200UL)
+  38      =1  #define OSC_FREQ (12000000UL)
+  39      =1  
+  40      =1  // Number of oscillations per instruction (4, 6 or 12)
+  41      =1  // 12 - Original 8051 / 8052 and numerous modern versions
+  42      =1  //  6 - Various Infineon and Philips devices, etc.
+  43      =1  //  4 - Dallas, etc.
+  44      =1  //
+  45      =1  // Take care with Dallas devices 
+  46      =1  // - Timers default to *12* osc ticks unless CKCON is modified 
+  47      =1  // - If using generic code on a Dallas device, use 12 here
+  48      =1  #define OSC_PER_INST (12)
+  49      =1  
+  50      =1  //------------------------------------------------------------------
+  51      =1  // SHOULD NOT NEED TO EDIT THE SECTIONS BELOW
+  52      =1  //------------------------------------------------------------------
+  53      =1  typedef unsigned char tByte;
+  54      =1  typedef unsigned int  tWord;
+  55      =1  typedef unsigned long tLong;
+  56      =1  
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 6   
+
+  57      =1  // Misc #defines
+  58      =1  #ifndef TRUE
+  59      =1  #define FALSE 0
+  60      =1  #define TRUE (!FALSE)
+  61      =1  #endif
+  62      =1  
+  63      =1  #define RETURN_NORMAL (bit) 0
+  64      =1  #define RETURN_ERROR (bit) 1
+  65      =1  
+  66      =1  
+  67      =1  //------------------------------------------------------------------
+  68      =1  // Interrupts
+  69      =1  // - see Chapter 13.  
+  70      =1  //------------------------------------------------------------------
+  71      =1  
+  72      =1  // Generic 8051/52 timer interrupts (used in most schedulers)
+  73      =1  #define INTERRUPT_Timer_0_Overflow 1
+  74      =1  #define INTERRUPT_Timer_1_Overflow 3
+  75      =1  #define INTERRUPT_Timer_2_Overflow 5
+  76      =1  
+  77      =1  // Additional interrupts (used in shared-clock schedulers)
+  78      =1  #define INTERRUPT_EXTERNAL_0 0
+  79      =1  #define INTERRUPT_EXTERNAL_1 2
+  80      =1  #define INTERRUPT_UART_Rx_Tx 4
+  81      =1  #define INTERRUPT_CAN_c515c 17
+  82      =1  
+  83      =1  //------------------------------------------------------------------
+  84      =1  // Error codes 
+  85      =1  // - see Chapter 14. 
+  86      =1  //------------------------------------------------------------------
+  87      =1  
+  88      =1  #define ERROR_SCH_TOO_MANY_TASKS (1)
+  89      =1  #define ERROR_SCH_CANNOT_DELETE_TASK (2)
+  90      =1  
+  91      =1  #define ERROR_SCH_WAITING_FOR_SLAVE_TO_ACK (3)
+  92      =1  #define ERROR_SCH_WAITING_FOR_START_COMMAND_FROM_MASTER (3)
+  93      =1  
+  94      =1  #define ERROR_SCH_ONE_OR_MORE_SLAVES_DID_NOT_START (4)
+  95      =1  #define ERROR_SCH_LOST_SLAVE (5)
+  96      =1  
+  97      =1  #define ERROR_SCH_CAN_BUS_ERROR (6)
+  98      =1  
+  99      =1  #define ERROR_I2C_WRITE_BYTE (10)
+ 100      =1  #define ERROR_I2C_READ_BYTE (11)
+ 101      =1  #define ERROR_I2C_WRITE_BYTE_AT24C64 (12)
+ 102      =1  #define ERROR_I2C_READ_BYTE_AT24C64 (13)
+ 103      =1  #define ERROR_I2C_DS1621 (14)
+ 104      =1  
+ 105      =1  #define ERROR_USART_TI (21)
+ 106      =1  #define ERROR_USART_WRITE_CHAR (22)
+ 107      =1  
+ 108      =1  #define ERROR_SPI_EXCHANGE_BYTES_TIMEOUT (31)
+ 109      =1  #define ERROR_SPI_X25_TIMEOUT (32)
+ 110      =1  #define ERROR_SPI_MAX1110_TIMEOUT (33)
+ 111      =1  
+ 112      =1  #define ERROR_ADC_MAX150_TIMEOUT (44)
+ 113      =1  
+ 114      =1  #endif
+ 115      =1  
+ 116      =1  /*------------------------------------------------------------------*-
+ 117      =1    ---- END OF FILE -------------------------------------------------
+ 118      =1  -*------------------------------------------------------------------*/
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 7   
+
+  25          #include "Port.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     Port.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1  
+   7      =1    'Port Header' (see Chap 10) for project 255_TICK (see Chap 36)
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  // ------ Sch51.C ----------------------------------------
+  25      =1  
+  26      =1  // Comment this line out if error reporting is NOT required
+  27      =1  #define SCH_REPORT_ERRORS
+  28      =1  
+  29      =1  #ifdef SCH_REPORT_ERRORS
+  30      =1  // The port on which error codes will be displayed
+  31      =1  // ONLY USED IF ERRORS ARE REPORTED
+  32      =1  #define Error_port P2
+  33      =1  
+  34      =1  #endif
+  35      =1  
+  36      =1  // ------ LED_Flas.C -----------------------------------------------
+  37      =1  
+  38      =1  // Connect LED from +5V (etc) to this pin, via appropriate resistor
+  39      =1  // [see Chapter 7 for details]
+  40      =1  sbit LED_pin = P1^5;
+  41      =1  
+  42      =1  
+  43      =1  /*------------------------------------------------------------------*-
+  44      =1    ---- END OF FILE -------------------------------------------------
+  45      =1  -*------------------------------------------------------------------*/
+  46      =1  
+  47      =1  
+  48      =1  
+  26          #include "LED_flas.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     LED_flas.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1     
+   7      =1     - See LED_flas.C for details.
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 8   
+
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  // ------ Public function prototypes -------------------------------
+  25      =1  
+  26      =1  void LED_Flash_Init(void);
+  27      =1  void LED_Flash_Update(void);
+  28      =1  
+  29      =1  /*------------------------------------------------------------------*-
+  30      =1    ---- END OF FILE -------------------------------------------------
+  31      =1  -*------------------------------------------------------------------*/
+  27          
+  28          // ------ Private variable definitions -----------------------------
+  29          
+  30          static bit LED_state_G;
+  31          
+  32          /*------------------------------------------------------------------*-
+  33          
+  34            LED_Flash_Init()
+  35          
+  36            - See below.
+  37          
+  38          -*------------------------------------------------------------------*/
+  39          void LED_Flash_Init(void)
+  40             {
+  41   1         LED_state_G = 0;
+  42   1         }
+  43          
+  44          
+  45          /*------------------------------------------------------------------*-
+  46          
+  47            LED_Flash_Update()
+  48          
+  49            Flashes an LED (or pulses a buzzer, etc) on a specified port pin.
+  50          
+  51            Must schedule at twice the required flash rate: thus, for 1 Hz
+  52            flash (on for 0.5 seconds, off for 0.5 seconds) must schedule
+  53            at 2 Hz.
+  54          
+  55          -*------------------------------------------------------------------*/
+  56          void LED_Flash_Update(void)
+  57             {
+  58   1         // Change the LED from OFF to ON (or vice versa)
+  59   1         if (LED_state_G == 1)
+  60   1            {
+  61   2            LED_state_G = 0;
+  62   2            LED_pin = 0;
+  63   2            }
+  64   1         else
+  65   1            {
+  66   2            LED_state_G = 1;
+  67   2            LED_pin = 1;
+  68   2            }
+  69   1         }
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 9   
+
+  70          
+  71          /*------------------------------------------------------------------*-
+  72            ---- END OF FILE -------------------------------------------------
+  73          -*------------------------------------------------------------------*/
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 10  
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION LED_Flash_Init (BEGIN)
+                                           ; SOURCE LINE # 39
+                                           ; SOURCE LINE # 40
+                                           ; SOURCE LINE # 41
+0000 C200        R     CLR     LED_state_G
+                                           ; SOURCE LINE # 42
+0002 22                RET     
+             ; FUNCTION LED_Flash_Init (END)
+
+             ; FUNCTION LED_Flash_Update (BEGIN)
+                                           ; SOURCE LINE # 56
+                                           ; SOURCE LINE # 57
+                                           ; SOURCE LINE # 59
+0000 300005      R     JNB     LED_state_G,?C0002
+                                           ; SOURCE LINE # 60
+                                           ; SOURCE LINE # 61
+0003 C200        R     CLR     LED_state_G
+                                           ; SOURCE LINE # 62
+0005 C295              CLR     LED_pin
+                                           ; SOURCE LINE # 63
+0007 22                RET     
+0008         ?C0002:
+                                           ; SOURCE LINE # 65
+                                           ; SOURCE LINE # 66
+0008 D200        R     SETB    LED_state_G
+                                           ; SOURCE LINE # 67
+000A D295              SETB    LED_pin
+                                           ; SOURCE LINE # 68
+                                           ; SOURCE LINE # 69
+000C         ?C0004:
+000C 22                RET     
+             ; FUNCTION LED_Flash_Update (END)
+
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 11  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+LED_pin. . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0095H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+LED_state_G. . . . . . . . . . . . . .  STATIC   DATA   BIT      0000H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+T2 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+tLong. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_LONG   -----  4
+tByte. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_CHAR   -----  1
+P0_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0080H  1
+P1_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+P0_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0081H  1
+FL . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D1H  1
+P2_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A0H  1
+P1_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+P0_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0082H  1
+tWord. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_INT    -----  2
+P3_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+P2_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A1H  1
+P1_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0092H  1
+P0_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0083H  1
+P3_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+P2_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A2H  1
+P1_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0093H  1
+P0_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0084H  1
+P3_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+P2_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A3H  1
+P1_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0094H  1
+P0_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0085H  1
+EXF2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CEH  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+P3_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+P2_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A4H  1
+P1_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0095H  1
+P0_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0086H  1
+P3_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+P2_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A5H  1
+P1_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0096H  1
+P0_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0087H  1
+P3_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+P2_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A6H  1
+P1_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0097H  1
+P3_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+P2_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A7H  1
+P3_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+LED_Flash_Init . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+T2EX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+C_T2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C9H  1
+C51 COMPILER V6.10  LED_FLAS                                                               04/09/2001 14:58:14 PAGE 12  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+RCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CDH  1
+TCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CCH  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+CP_RL2 . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C8H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+ET2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ADH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+TF2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CFH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+PT2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BDH  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+TR2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CAH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+EXEN2. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CBH  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+LED_Flash_Update . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     16    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

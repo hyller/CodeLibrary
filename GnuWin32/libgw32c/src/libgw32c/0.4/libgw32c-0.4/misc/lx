@@ -1,0 +1,12 @@
+fgetxattr.c
+flistxattr.c
+fremovexattr.c
+fsetxattr.c
+getxattr.c
+lgetxattr.c
+listxattr.c
+llistxattr.c
+lremovexattr.c
+lsetxattr.c
+removexattr.c
+setxattr.c

@@ -1,0 +1,39 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.a*; *.src)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt)
+ pExt (*.plm)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (Target 1), 0x0000 // Tools: 'MCS-51'
+GRPOPT 1,(Source Group 1),1,0,0
+
+OPTFFF 1,1,1,0,0,0,0,0,<.\BARGRAPH.C><BARGRAPH.C> 
+OPTFFF 1,2,1,0,0,0,0,0,<.\MAIN.C><MAIN.C> 
+OPTFFF 1,3,1,0,0,83,90,0,<.\SCH51.C><SCH51.C> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,44,0,0,0,44,0,0,0,212,2,0,0,109,1,0,0 }
+OPTFFF 1,4,1,0,0,131,138,0,<.\2_01_10I.C><2_01_10I.C> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,0,0,0,0,0,0,0,0,168,2,0,0,65,1,0,0 }
+OPTFFF 1,5,1,0,0,0,0,0,<.\ADC_515C.C><ADC_515C.C> 
+
+
+TARGOPT 1, (Target 1)
+ CLK51=20000000
+  OPTTT 1,0,1,0
+  OPTHX 0,65535,0,0,0
+  OPTLX 120,65,8,<.\>
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 0,0,1
+  OPTBL 0,(User's Manual)<DATASHTS\INFINEON\M515A.PDF>
+  OPTBL 1,(Add on databooks)<DATASHTS\ADDBOOKS.PDF>
+  OPTBL 2,(C500 Instruction Set Manual)<DATASHTS\INFINEON\C500ISM.PDF>
+  OPTDL (S8051.DLL)()(D500.DLL)(-p515A)(S8051.DLL)()(T500.DLL)(-p515A)
+  OPTDBG 509,0,()()()()()()()()()() ()()()()
+  OPTDF 0x82
+  OPTLE <>
+  OPTLC <>
+EndOpt
+

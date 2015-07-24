@@ -1,0 +1,241 @@
+C51 COMPILER V6.10  SPI_X25                                                                04/19/2001 11:47:53 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE SPI_X25
+OBJECT MODULE PLACED IN .\Spi_x25.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\Spi_x25.c BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             SPI_X25.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple SPI library for Atmel AT89S53
+   8             - allows data storage on Xicor X25138 EEPROM (or similar)
+   9          
+  10          
+  11             COPYRIGHT
+  12             ---------
+  13          
+  14             This code is from the book:
+  15          
+  16             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  17             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  18          
+  19             This code is copyright (c) 2001 by Michael J. Pont.
+  20           
+  21             See book for copyright details and other information.
+  22          
+  23          -*------------------------------------------------------------------*/
+  24          
+  25          #include "Main.H"
+  26          #include "Port.h"
+  27          
+  28          #include "SPI_Core.h"
+  29          #include "SPI_X25.h"
+  30          #include "TimeoutH.h"
+  31          
+  32          // ------ Public variable declarations -----------------------------
+  33          
+  34          // Used to display the error code
+  35          // See Main.H for details of error codes
+  36          // See Port.H for details of the error port
+  37          extern tByte Error_code_G;
+  38          
+  39          // ------ Private function prototypes ------------------------------
+  40          
+  41          void SPI_Delay_T0(void);
+  42          void SPI_X25_Read_Status_Register(void);
+  43          
+  44          /*------------------------------------------------------------------*-
+  45          
+  46            SPI_X25_Write_Byte()
+  47          
+  48            Store a byte of data on the EEPROM.
+  49          
+  50          -*------------------------------------------------------------------*/
+  51          void SPI_X25_Write_Byte(const tWord ADDRESS, const tByte DATA)
+  52             {
+  53   1         // 0. We check the status register
+  54   1         SPI_X25_Read_Status_Register();  
+  55   1         
+C51 COMPILER V6.10  SPI_X25                                                                04/19/2001 11:47:53 PAGE 2   
+
+  56   1         // 1. Pin /CS is pulled low to select the device
+  57   1         SPI_CS = 0;
+  58   1        
+  59   1         // 2. The 'Write Enable' instruction is sent (0x06)
+  60   1         SPI_Exchange_Bytes(0x06);
+  61   1      
+  62   1         // 3. The /CS must now be pulled high
+  63   1         SPI_CS = 1;
+  64   1      
+  65   1         // 4. Wait (briefly)
+  66   1         SPI_Delay_T0();
+  67   1      
+  68   1         // 5. Pin /CS is pulled low to select the device
+  69   1         SPI_CS = 0;
+  70   1        
+  71   1         // 6. The 'Write' instruction is sent (0x02)
+  72   1         SPI_Exchange_Bytes(0x02);
+  73   1      
+  74   1         // 7. The address we wish to read from is sent.  
+  75   1         //    NOTE: we send a 16-bit address: 
+  76   1         //    - depending on the size of the device, some bits may be ignored.
+  77   1         SPI_Exchange_Bytes((ADDRESS >> 8) & 0x00FF);  // Send MSB
+  78   1         SPI_Exchange_Bytes(ADDRESS & 0x00FF);         // Send LSB
+  79   1      
+  80   1         // 8. The data to be written is shifted out on MOSI
+  81   1         SPI_Exchange_Bytes(DATA);
+  82   1      
+  83   1         // 9. Pull the /CS pin high to complete the operation
+  84   1         SPI_CS = 1;
+  85   1         }
+  86          
+  87          
+  88          /*------------------------------------------------------------------*-
+  89          
+  90            SPI_X25_Read_Byte()
+  91          
+  92            Read a byte of data from the EEPROM.
+  93          
+  94          -*------------------------------------------------------------------*/
+  95          tByte SPI_X25_Read_Byte(const tWord ADDRESS)
+  96             {
+  97   1         tByte Data;
+  98   1      
+  99   1         // 0. We check the status register
+ 100   1         SPI_X25_Read_Status_Register();  
+ 101   1         
+ 102   1         // 1. Pin /CS is pulled low to select the device
+ 103   1         SPI_CS = 0;
+ 104   1        
+ 105   1         // 2. The 'Read' instruction is sent (0x03)
+ 106   1         SPI_Exchange_Bytes(0x03);
+ 107   1      
+ 108   1         // 3. The address we wish to read from is sent.  
+ 109   1         // NOTE: we send a 16-bit address: 
+ 110   1         // depending on the size of the device, some bits may be ignored.
+ 111   1         SPI_Exchange_Bytes((ADDRESS >> 8) & 0x00FF);
+ 112   1         SPI_Exchange_Bytes(ADDRESS & 0x00FF);
+ 113   1      
+ 114   1         // 4. The data requested is shifted out on SO by sending a dummy byte
+ 115   1         Data = SPI_Exchange_Bytes(0x00);
+ 116   1      
+ 117   1         // 5. We pull the /CS pin high to complete the operation
+C51 COMPILER V6.10  SPI_X25                                                                04/19/2001 11:47:53 PAGE 3   
+
+ 118   1         SPI_CS = 1;
+ 119   1      
+ 120   1         return Data; // Return SPI data byte
+ 121   1         }
+ 122          
+ 123          /*------------------------------------------------------------------*-
+ 124          
+ 125            SPI_X25_Read_Status_Register()
+ 126          
+ 127            We read the status register only to make sure that previous
+ 128            'Write' operations (if any) are now complete.
+ 129          
+ 130            To do this, we check the WIP ('Write In Progress') flag.
+ 131          
+ 132            *** NB: THE INTERNAL EEPROM WRITE OPERATION TAKES UP 10ms ***
+ 133            *** Schedule writes (and reads after writes) at sensible ***
+ 134            *** intervals - or you will get task jitter ***
+ 135          
+ 136            We timeout after ~15ms.
+ 137          
+ 138            Uses T0 for (hardware) timeout - see Chapter 15.
+ 139          
+ 140          -*------------------------------------------------------------------*/
+ 141          void SPI_X25_Read_Status_Register()
+ 142             {
+ 143   1         tByte Data;
+ 144   1         bit Wip;
+ 145   1      
+ 146   1         // Configure Timer 0 as a 16-bit timer 
+ 147   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+ 148   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+ 149   1      
+ 150   1         ET0 = 0;  // No interrupts
+ 151   1      
+ 152   1         // Simple timeout feature - approx 15ms
+ 153   1         TH0 = T_15ms_H; // See TimeoutH.H for T_ details
+ 154   1         TL0 = T_15ms_L;
+ 155   1         TF0 = 0; // Clear flag
+ 156   1         TR0 = 1; // Start timer
+ 157   1      
+ 158   1         do {
+ 159   2            // 0. Pin /CS is pulled low to select the device
+ 160   2            SPI_CS = 0;
+ 161   2      
+ 162   2            // 1. The 'RDSR' instruction is sent (0x05)
+ 163   2            SPI_Exchange_Bytes(0x05);
+ 164   2      
+ 165   2            // 2. The contents of the ROM status register are read
+ 166   2            Data = SPI_Exchange_Bytes(0x00);
+ 167   2      
+ 168   2            // 3. Pull the /CS pin high to complete the operation
+ 169   2            SPI_CS = 1;
+ 170   2      
+ 171   2            // Check the WIP flag
+ 172   2            Wip = (Data & 0x01);
+ 173   2            } while ((Wip != 0) && (TF0 != 1));
+ 174   1      
+ 175   1         TR0 = 0;  
+ 176   1      
+ 177   1         if (TF0 == 1)
+ 178   1            {
+ 179   2            // ROM timed out
+C51 COMPILER V6.10  SPI_X25                                                                04/19/2001 11:47:53 PAGE 4   
+
+ 180   2            Error_code_G = ERROR_SPI_X25_TIMEOUT;
+ 181   2            }
+ 182   1         } 
+ 183          
+ 184          /*------------------------------------------------------------------*-
+ 185          
+ 186            SPI_Delay_T0()
+ 187          
+ 188            A delay of approx 50 µs using 'timeout' code.
+ 189          
+ 190          -*------------------------------------------------------------------*/
+ 191          void SPI_Delay_T0(void)
+ 192             {
+ 193   1         // Configure Timer 0 as a 16-bit timer 
+ 194   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+ 195   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+ 196   1      
+ 197   1         ET0 = 0;  // No interrupts
+ 198   1      
+ 199   1         // Simple timeout feature - approx 50 µs
+ 200   1         TH0 = T_50micros_H; // See TimeoutH.H for T_ details
+ 201   1         TL0 = T_50micros_L;
+ 202   1         TF0 = 0; // Clear flag
+ 203   1         TR0 = 1; // Start timer
+ 204   1      
+ 205   1         while (!TF0);
+ 206   1      
+ 207   1         TR0 = 0;  
+ 208   1         }
+ 209            
+ 210          /*------------------------------------------------------------------*-
+ 211            ---- END OF FILE -------------------------------------------------
+ 212          -*------------------------------------------------------------------*/ 
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    159    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

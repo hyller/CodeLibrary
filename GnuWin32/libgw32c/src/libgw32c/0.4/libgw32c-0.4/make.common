@@ -1,0 +1,21 @@
+# Where to install the library and object files.
+libdir = $(exec_prefix)/lib
+inst_libdir = $(libdir)
+
+# Where to install the shared object for charset transformation.
+gconvdir = $(libdir)/gconv
+inst_gconvdir = $(gconvdir)
+
+DEFS = -DHAVE_CONFIG_H
+INCLUDES = -I. -I.. -I../include \
+	-include ../include/libc-symbols.h
+AM_CCASFLAGS = $(INCLUDES)
+	
+AM_LDFLAGS = -Wl,-s
+
+# Rule to make compiled resource (Windows)
+%-rc.o: %.rc
+	windres -i $< -o $@
+
+../libgw32c.a: ../libgw32c.a~
+	cp -fp ../libgw32c.a~ ../libgw32c.a

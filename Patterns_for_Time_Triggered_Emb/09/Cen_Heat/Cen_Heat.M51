@@ -1,0 +1,107 @@
+BL51 BANKED LINKER/LOCATER V4.03                                                        04/18/2001  09:23:57  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V4.03, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE CEN_HEAT.obj, MAIN.obj TO Cen_Heat RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  CEN_HEAT.obj (CEN_HEAT)
+  MAIN.obj (MAIN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  Cen_Heat (CEN_HEAT)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     000FH     UNIT         ?PR?MAIN?MAIN
+            CODE    0012H     000CH     UNIT         ?C_C51STARTUP
+            CODE    001EH     0001H     UNIT         ?PR?C_HEAT_INIT?CEN_HEAT
+            CODE    001FH     0001H     UNIT         ?PR?C_HEAT_GET_REQUIRED_TEMPERATURE?CEN_HEAT
+            CODE    0020H     0001H     UNIT         ?PR?C_HEAT_GET_ACTUAL_TEMPERATURE?CEN_HEAT
+            CODE    0021H     0001H     UNIT         ?PR?C_HEAT_CONTROL_BOILER?CEN_HEAT
+
+
+
+OVERLAY MAP OF MODULE:   Cen_Heat (CEN_HEAT)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?C_HEAT_INIT?CEN_HEAT
+  +--> ?PR?C_HEAT_GET_REQUIRED_TEMPERATURE?CEN_HEAT
+  +--> ?PR?C_HEAT_GET_ACTUAL_TEMPERATURE?CEN_HEAT
+  +--> ?PR?C_HEAT_CONTROL_BOILER?CEN_HEAT
+
+
+
+SYMBOL TABLE OF MODULE:  Cen_Heat (CEN_HEAT)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        CEN_HEAT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/18/2001  09:23:57  PAGE 2
+
+
+  C:0020H         PUBLIC        C_HEAT_Get_Actual_temperature
+  C:001EH         PUBLIC        C_HEAT_Init
+  C:0021H         PUBLIC        C_HEAT_Control_Boiler
+  C:001FH         PUBLIC        C_HEAT_Get_Required_Temperature
+  -------         PROC          C_HEAT_INIT
+  C:001EH         LINE#         28
+  C:001EH         LINE#         29
+  C:001EH         LINE#         31
+  -------         ENDPROC       C_HEAT_INIT
+  -------         PROC          C_HEAT_GET_REQUIRED_TEMPERATURE
+  C:001FH         LINE#         35
+  C:001FH         LINE#         36
+  C:001FH         LINE#         38
+  -------         ENDPROC       C_HEAT_GET_REQUIRED_TEMPERATURE
+  -------         PROC          C_HEAT_GET_ACTUAL_TEMPERATURE
+  C:0020H         LINE#         42
+  C:0020H         LINE#         43
+  C:0020H         LINE#         45
+  -------         ENDPROC       C_HEAT_GET_ACTUAL_TEMPERATURE
+  -------         PROC          C_HEAT_CONTROL_BOILER
+  C:0021H         LINE#         49
+  C:0021H         LINE#         50
+  C:0021H         LINE#         52
+  -------         ENDPROC       C_HEAT_CONTROL_BOILER
+  -------         ENDMOD        CEN_HEAT
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0003H         PUBLIC        main
+  -------         PROC          MAIN
+  C:0003H         LINE#         28
+  C:0003H         LINE#         29
+  C:0003H         LINE#         31
+  C:0006H         LINE#         33
+  C:0006H         LINE#         34
+  C:0006H         LINE#         37
+  C:0009H         LINE#         41
+  C:000CH         LINE#         44
+  C:000FH         LINE#         45
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

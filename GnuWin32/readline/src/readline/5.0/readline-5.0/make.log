@@ -1,0 +1,547 @@
+test -d shlib || mkdir shlib
+( cd shlib ; make - --unix all )
+make[1]: Entering directory `/cygdrive/k/Devel/readline/5.0/readline-5.0/shlib'
+rm -f readline.so
+gcc -c -DHAVE_CONFIG_H  -D__GW32__ -D_LARGEFILE_SOURCE=1 -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64     -idirafter e:/progra~1/gnuwin32/include -idirafter h:/glibc/include    -I. -I.. -I../../readline-5.0-src -DRL_LIBRARY_VERSION='"5.0"' -Wall -O3 -fms-extensions -mms-bitfields  -fno-exceptions -fomit-frame-pointer -march=i386 -mcpu=i686   -fpic -o readline.o ../../readline-5.0-src/readline.c 
+cc1.exe: warning: -fpic ignored for target (all code is position independent)
+../../readline-5.0-src/readline.c:527: warning: '_rl_dispatch' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/readline.c:535: warning: '_rl_dispatch_subseq' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/readline.c:718: warning: 'rl_initialize' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/readline.c:873: warning: `reset_default_bindings' defined but not used
+mv readline.o readline.so
+rm -f vi_mode.so
+gcc -c -DHAVE_CONFIG_H  -D__GW32__ -D_LARGEFILE_SOURCE=1 -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64     -idirafter e:/progra~1/gnuwin32/include -idirafter h:/glibc/include    -I. -I.. -I../../readline-5.0-src -DRL_LIBRARY_VERSION='"5.0"' -Wall -O3 -fms-extensions -mms-bitfields  -fno-exceptions -fomit-frame-pointer -march=i386 -mcpu=i686   -fpic -o vi_mode.o ../../readline-5.0-src/vi_mode.c 
+cc1.exe: warning: -fpic ignored for target (all code is position independent)
+../../readline-5.0-src/vi_mode.c:351: warning: 'rl_vi_next_word' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/vi_mode.c:372: warning: 'rl_vi_end_word' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/vi_mode.c:390: warning: 'rl_vi_fWord' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/vi_mode.c:407: warning: 'rl_vi_bWord' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/vi_mode.c:431: warning: 'rl_vi_eWord' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/vi_mode.c:462: warning: 'rl_vi_fword' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/vi_mode.c:488: warning: 'rl_vi_bword' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/vi_mode.c:527: warning: 'rl_vi_eword' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/vi_mode.c:602: warning: 'rl_vi_insertion_mode' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/vi_mode.c:796: warning: 'rl_vi_check' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/vi_mode.c:1073: warning: 'rl_vi_delete' defined locally after being referenced with dllimport linkage.
+../../readline-5.0-src/vi_mode.c:1269: warning: 'rl_vi_bracktype' defined locally after being referenced with dllimport linkage.
+mv vi_mode.o vi_mode.so
+rm -f funmap.so
+gcc -c -DHAVE_CONFIG_H  -D__GW32__ -D_LARGEFILE_SOURCE=1 -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64     -idirafter e:/progra~1/gnuwin32/include -idirafter h:/glibc/include    -I. -I.. -I../../readline-5.0-src -DRL_LIBRARY_VERSION='"5.0"' -Wall -O3 -fms-extensions -mms-bitfields  -fno-exceptions -fomit-frame-pointer -march=i386 -mcpu=i686   -fpic -o funmap.o ../../readline-5.0-src/funmap.c 
+cc1.exe: warning: -fpic ignored for target (all code is position independent)
+../../readline-5.0-src/funmap.c:62: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:62: error: (near initialization for `default_funmap[0].function')
+../../readline-5.0-src/funmap.c:62: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:62: error: (near initialization for `default_funmap[0]')
+../../readline-5.0-src/funmap.c:63: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:63: error: (near initialization for `default_funmap[1].function')
+../../readline-5.0-src/funmap.c:63: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:63: error: (near initialization for `default_funmap[1]')
+../../readline-5.0-src/funmap.c:64: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:64: error: (near initialization for `default_funmap[2].function')
+../../readline-5.0-src/funmap.c:64: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:64: error: (near initialization for `default_funmap[2]')
+../../readline-5.0-src/funmap.c:65: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:65: error: (near initialization for `default_funmap[3].function')
+../../readline-5.0-src/funmap.c:65: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:65: error: (near initialization for `default_funmap[3]')
+../../readline-5.0-src/funmap.c:66: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:66: error: (near initialization for `default_funmap[4].function')
+../../readline-5.0-src/funmap.c:66: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:66: error: (near initialization for `default_funmap[4]')
+../../readline-5.0-src/funmap.c:67: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:67: error: (near initialization for `default_funmap[5].function')
+../../readline-5.0-src/funmap.c:67: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:67: error: (near initialization for `default_funmap[5]')
+../../readline-5.0-src/funmap.c:68: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:68: error: (near initialization for `default_funmap[6].function')
+../../readline-5.0-src/funmap.c:68: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:68: error: (near initialization for `default_funmap[6]')
+../../readline-5.0-src/funmap.c:69: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:69: error: (near initialization for `default_funmap[7].function')
+../../readline-5.0-src/funmap.c:69: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:69: error: (near initialization for `default_funmap[7]')
+../../readline-5.0-src/funmap.c:70: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:70: error: (near initialization for `default_funmap[8].function')
+../../readline-5.0-src/funmap.c:70: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:70: error: (near initialization for `default_funmap[8]')
+../../readline-5.0-src/funmap.c:71: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:71: error: (near initialization for `default_funmap[9].function')
+../../readline-5.0-src/funmap.c:71: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:71: error: (near initialization for `default_funmap[9]')
+../../readline-5.0-src/funmap.c:72: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:72: error: (near initialization for `default_funmap[10].function')
+../../readline-5.0-src/funmap.c:72: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:72: error: (near initialization for `default_funmap[10]')
+../../readline-5.0-src/funmap.c:73: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:73: error: (near initialization for `default_funmap[11].function')
+../../readline-5.0-src/funmap.c:73: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:73: error: (near initialization for `default_funmap[11]')
+../../readline-5.0-src/funmap.c:74: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:74: error: (near initialization for `default_funmap[12].function')
+../../readline-5.0-src/funmap.c:74: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:74: error: (near initialization for `default_funmap[12]')
+../../readline-5.0-src/funmap.c:75: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:75: error: (near initialization for `default_funmap[13].function')
+../../readline-5.0-src/funmap.c:75: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:75: error: (near initialization for `default_funmap[13]')
+../../readline-5.0-src/funmap.c:76: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:76: error: (near initialization for `default_funmap[14].function')
+../../readline-5.0-src/funmap.c:76: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:76: error: (near initialization for `default_funmap[14]')
+../../readline-5.0-src/funmap.c:77: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:77: error: (near initialization for `default_funmap[15].function')
+../../readline-5.0-src/funmap.c:77: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:77: error: (near initialization for `default_funmap[15]')
+../../readline-5.0-src/funmap.c:78: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:78: error: (near initialization for `default_funmap[16].function')
+../../readline-5.0-src/funmap.c:78: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:78: error: (near initialization for `default_funmap[16]')
+../../readline-5.0-src/funmap.c:79: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:79: error: (near initialization for `default_funmap[17].function')
+../../readline-5.0-src/funmap.c:79: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:79: error: (near initialization for `default_funmap[17]')
+../../readline-5.0-src/funmap.c:80: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:80: error: (near initialization for `default_funmap[18].function')
+../../readline-5.0-src/funmap.c:80: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:80: error: (near initialization for `default_funmap[18]')
+../../readline-5.0-src/funmap.c:81: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:81: error: (near initialization for `default_funmap[19].function')
+../../readline-5.0-src/funmap.c:81: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:81: error: (near initialization for `default_funmap[19]')
+../../readline-5.0-src/funmap.c:82: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:82: error: (near initialization for `default_funmap[20].function')
+../../readline-5.0-src/funmap.c:82: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:82: error: (near initialization for `default_funmap[20]')
+../../readline-5.0-src/funmap.c:83: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:83: error: (near initialization for `default_funmap[21].function')
+../../readline-5.0-src/funmap.c:83: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:83: error: (near initialization for `default_funmap[21]')
+../../readline-5.0-src/funmap.c:84: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:84: error: (near initialization for `default_funmap[22].function')
+../../readline-5.0-src/funmap.c:84: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:84: error: (near initialization for `default_funmap[22]')
+../../readline-5.0-src/funmap.c:85: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:85: error: (near initialization for `default_funmap[23].function')
+../../readline-5.0-src/funmap.c:85: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:85: error: (near initialization for `default_funmap[23]')
+../../readline-5.0-src/funmap.c:86: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:86: error: (near initialization for `default_funmap[24].function')
+../../readline-5.0-src/funmap.c:86: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:86: error: (near initialization for `default_funmap[24]')
+../../readline-5.0-src/funmap.c:87: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:87: error: (near initialization for `default_funmap[25].function')
+../../readline-5.0-src/funmap.c:87: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:87: error: (near initialization for `default_funmap[25]')
+../../readline-5.0-src/funmap.c:88: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:88: error: (near initialization for `default_funmap[26].function')
+../../readline-5.0-src/funmap.c:88: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:88: error: (near initialization for `default_funmap[26]')
+../../readline-5.0-src/funmap.c:89: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:89: error: (near initialization for `default_funmap[27].function')
+../../readline-5.0-src/funmap.c:89: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:89: error: (near initialization for `default_funmap[27]')
+../../readline-5.0-src/funmap.c:90: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:90: error: (near initialization for `default_funmap[28].function')
+../../readline-5.0-src/funmap.c:90: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:90: error: (near initialization for `default_funmap[28]')
+../../readline-5.0-src/funmap.c:91: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:91: error: (near initialization for `default_funmap[29].function')
+../../readline-5.0-src/funmap.c:91: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:91: error: (near initialization for `default_funmap[29]')
+../../readline-5.0-src/funmap.c:92: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:92: error: (near initialization for `default_funmap[30].function')
+../../readline-5.0-src/funmap.c:92: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:92: error: (near initialization for `default_funmap[30]')
+../../readline-5.0-src/funmap.c:93: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:93: error: (near initialization for `default_funmap[31].function')
+../../readline-5.0-src/funmap.c:93: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:93: error: (near initialization for `default_funmap[31]')
+../../readline-5.0-src/funmap.c:94: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:94: error: (near initialization for `default_funmap[32].function')
+../../readline-5.0-src/funmap.c:94: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:94: error: (near initialization for `default_funmap[32]')
+../../readline-5.0-src/funmap.c:95: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:95: error: (near initialization for `default_funmap[33].function')
+../../readline-5.0-src/funmap.c:95: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:95: error: (near initialization for `default_funmap[33]')
+../../readline-5.0-src/funmap.c:96: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:96: error: (near initialization for `default_funmap[34].function')
+../../readline-5.0-src/funmap.c:96: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:96: error: (near initialization for `default_funmap[34]')
+../../readline-5.0-src/funmap.c:97: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:97: error: (near initialization for `default_funmap[35].function')
+../../readline-5.0-src/funmap.c:97: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:97: error: (near initialization for `default_funmap[35]')
+../../readline-5.0-src/funmap.c:98: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:98: error: (near initialization for `default_funmap[36].function')
+../../readline-5.0-src/funmap.c:98: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:98: error: (near initialization for `default_funmap[36]')
+../../readline-5.0-src/funmap.c:99: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:99: error: (near initialization for `default_funmap[37].function')
+../../readline-5.0-src/funmap.c:99: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:99: error: (near initialization for `default_funmap[37]')
+../../readline-5.0-src/funmap.c:100: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:100: error: (near initialization for `default_funmap[38].function')
+../../readline-5.0-src/funmap.c:100: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:100: error: (near initialization for `default_funmap[38]')
+../../readline-5.0-src/funmap.c:101: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:101: error: (near initialization for `default_funmap[39].function')
+../../readline-5.0-src/funmap.c:101: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:101: error: (near initialization for `default_funmap[39]')
+../../readline-5.0-src/funmap.c:102: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:102: error: (near initialization for `default_funmap[40].function')
+../../readline-5.0-src/funmap.c:102: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:102: error: (near initialization for `default_funmap[40]')
+../../readline-5.0-src/funmap.c:103: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:103: error: (near initialization for `default_funmap[41].function')
+../../readline-5.0-src/funmap.c:103: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:103: error: (near initialization for `default_funmap[41]')
+../../readline-5.0-src/funmap.c:104: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:104: error: (near initialization for `default_funmap[42].function')
+../../readline-5.0-src/funmap.c:104: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:104: error: (near initialization for `default_funmap[42]')
+../../readline-5.0-src/funmap.c:105: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:105: error: (near initialization for `default_funmap[43].function')
+../../readline-5.0-src/funmap.c:105: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:105: error: (near initialization for `default_funmap[43]')
+../../readline-5.0-src/funmap.c:106: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:106: error: (near initialization for `default_funmap[44].function')
+../../readline-5.0-src/funmap.c:106: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:106: error: (near initialization for `default_funmap[44]')
+../../readline-5.0-src/funmap.c:107: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:107: error: (near initialization for `default_funmap[45].function')
+../../readline-5.0-src/funmap.c:107: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:107: error: (near initialization for `default_funmap[45]')
+../../readline-5.0-src/funmap.c:108: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:108: error: (near initialization for `default_funmap[46].function')
+../../readline-5.0-src/funmap.c:108: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:108: error: (near initialization for `default_funmap[46]')
+../../readline-5.0-src/funmap.c:109: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:109: error: (near initialization for `default_funmap[47].function')
+../../readline-5.0-src/funmap.c:109: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:109: error: (near initialization for `default_funmap[47]')
+../../readline-5.0-src/funmap.c:110: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:110: error: (near initialization for `default_funmap[48].function')
+../../readline-5.0-src/funmap.c:110: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:110: error: (near initialization for `default_funmap[48]')
+../../readline-5.0-src/funmap.c:111: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:111: error: (near initialization for `default_funmap[49].function')
+../../readline-5.0-src/funmap.c:111: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:111: error: (near initialization for `default_funmap[49]')
+../../readline-5.0-src/funmap.c:112: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:112: error: (near initialization for `default_funmap[50].function')
+../../readline-5.0-src/funmap.c:112: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:112: error: (near initialization for `default_funmap[50]')
+../../readline-5.0-src/funmap.c:113: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:113: error: (near initialization for `default_funmap[51].function')
+../../readline-5.0-src/funmap.c:113: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:113: error: (near initialization for `default_funmap[51]')
+../../readline-5.0-src/funmap.c:114: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:114: error: (near initialization for `default_funmap[52].function')
+../../readline-5.0-src/funmap.c:114: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:114: error: (near initialization for `default_funmap[52]')
+../../readline-5.0-src/funmap.c:115: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:115: error: (near initialization for `default_funmap[53].function')
+../../readline-5.0-src/funmap.c:115: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:115: error: (near initialization for `default_funmap[53]')
+../../readline-5.0-src/funmap.c:117: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:117: error: (near initialization for `default_funmap[54].function')
+../../readline-5.0-src/funmap.c:117: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:117: error: (near initialization for `default_funmap[54]')
+../../readline-5.0-src/funmap.c:119: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:119: error: (near initialization for `default_funmap[55].function')
+../../readline-5.0-src/funmap.c:119: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:119: error: (near initialization for `default_funmap[55]')
+../../readline-5.0-src/funmap.c:120: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:120: error: (near initialization for `default_funmap[56].function')
+../../readline-5.0-src/funmap.c:120: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:120: error: (near initialization for `default_funmap[56]')
+../../readline-5.0-src/funmap.c:121: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:121: error: (near initialization for `default_funmap[57].function')
+../../readline-5.0-src/funmap.c:121: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:121: error: (near initialization for `default_funmap[57]')
+../../readline-5.0-src/funmap.c:122: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:122: error: (near initialization for `default_funmap[58].function')
+../../readline-5.0-src/funmap.c:122: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:122: error: (near initialization for `default_funmap[58]')
+../../readline-5.0-src/funmap.c:123: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:123: error: (near initialization for `default_funmap[59].function')
+../../readline-5.0-src/funmap.c:123: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:123: error: (near initialization for `default_funmap[59]')
+../../readline-5.0-src/funmap.c:124: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:124: error: (near initialization for `default_funmap[60].function')
+../../readline-5.0-src/funmap.c:124: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:124: error: (near initialization for `default_funmap[60]')
+../../readline-5.0-src/funmap.c:125: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:125: error: (near initialization for `default_funmap[61].function')
+../../readline-5.0-src/funmap.c:125: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:125: error: (near initialization for `default_funmap[61]')
+../../readline-5.0-src/funmap.c:126: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:126: error: (near initialization for `default_funmap[62].function')
+../../readline-5.0-src/funmap.c:126: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:126: error: (near initialization for `default_funmap[62]')
+../../readline-5.0-src/funmap.c:127: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:127: error: (near initialization for `default_funmap[63].function')
+../../readline-5.0-src/funmap.c:127: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:127: error: (near initialization for `default_funmap[63]')
+../../readline-5.0-src/funmap.c:128: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:128: error: (near initialization for `default_funmap[64].function')
+../../readline-5.0-src/funmap.c:128: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:128: error: (near initialization for `default_funmap[64]')
+../../readline-5.0-src/funmap.c:129: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:129: error: (near initialization for `default_funmap[65].function')
+../../readline-5.0-src/funmap.c:129: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:129: error: (near initialization for `default_funmap[65]')
+../../readline-5.0-src/funmap.c:130: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:130: error: (near initialization for `default_funmap[66].function')
+../../readline-5.0-src/funmap.c:130: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:130: error: (near initialization for `default_funmap[66]')
+../../readline-5.0-src/funmap.c:131: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:131: error: (near initialization for `default_funmap[67].function')
+../../readline-5.0-src/funmap.c:131: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:131: error: (near initialization for `default_funmap[67]')
+../../readline-5.0-src/funmap.c:132: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:132: error: (near initialization for `default_funmap[68].function')
+../../readline-5.0-src/funmap.c:132: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:132: error: (near initialization for `default_funmap[68]')
+../../readline-5.0-src/funmap.c:133: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:133: error: (near initialization for `default_funmap[69].function')
+../../readline-5.0-src/funmap.c:133: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:133: error: (near initialization for `default_funmap[69]')
+../../readline-5.0-src/funmap.c:134: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:134: error: (near initialization for `default_funmap[70].function')
+../../readline-5.0-src/funmap.c:134: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:134: error: (near initialization for `default_funmap[70]')
+../../readline-5.0-src/funmap.c:135: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:135: error: (near initialization for `default_funmap[71].function')
+../../readline-5.0-src/funmap.c:135: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:135: error: (near initialization for `default_funmap[71]')
+../../readline-5.0-src/funmap.c:136: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:136: error: (near initialization for `default_funmap[72].function')
+../../readline-5.0-src/funmap.c:136: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:136: error: (near initialization for `default_funmap[72]')
+../../readline-5.0-src/funmap.c:137: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:137: error: (near initialization for `default_funmap[73].function')
+../../readline-5.0-src/funmap.c:137: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:137: error: (near initialization for `default_funmap[73]')
+../../readline-5.0-src/funmap.c:138: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:138: error: (near initialization for `default_funmap[74].function')
+../../readline-5.0-src/funmap.c:138: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:138: error: (near initialization for `default_funmap[74]')
+../../readline-5.0-src/funmap.c:139: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:139: error: (near initialization for `default_funmap[75].function')
+../../readline-5.0-src/funmap.c:139: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:139: error: (near initialization for `default_funmap[75]')
+../../readline-5.0-src/funmap.c:140: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:140: error: (near initialization for `default_funmap[76].function')
+../../readline-5.0-src/funmap.c:140: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:140: error: (near initialization for `default_funmap[76]')
+../../readline-5.0-src/funmap.c:141: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:141: error: (near initialization for `default_funmap[77].function')
+../../readline-5.0-src/funmap.c:141: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:141: error: (near initialization for `default_funmap[77]')
+../../readline-5.0-src/funmap.c:142: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:142: error: (near initialization for `default_funmap[78].function')
+../../readline-5.0-src/funmap.c:142: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:142: error: (near initialization for `default_funmap[78]')
+../../readline-5.0-src/funmap.c:143: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:143: error: (near initialization for `default_funmap[79].function')
+../../readline-5.0-src/funmap.c:143: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:143: error: (near initialization for `default_funmap[79]')
+../../readline-5.0-src/funmap.c:146: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:146: error: (near initialization for `default_funmap[80].function')
+../../readline-5.0-src/funmap.c:146: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:146: error: (near initialization for `default_funmap[80]')
+../../readline-5.0-src/funmap.c:147: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:147: error: (near initialization for `default_funmap[81].function')
+../../readline-5.0-src/funmap.c:147: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:147: error: (near initialization for `default_funmap[81]')
+../../readline-5.0-src/funmap.c:148: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:148: error: (near initialization for `default_funmap[82].function')
+../../readline-5.0-src/funmap.c:148: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:148: error: (near initialization for `default_funmap[82]')
+../../readline-5.0-src/funmap.c:149: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:149: error: (near initialization for `default_funmap[83].function')
+../../readline-5.0-src/funmap.c:149: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:149: error: (near initialization for `default_funmap[83]')
+../../readline-5.0-src/funmap.c:150: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:150: error: (near initialization for `default_funmap[84].function')
+../../readline-5.0-src/funmap.c:150: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:150: error: (near initialization for `default_funmap[84]')
+../../readline-5.0-src/funmap.c:151: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:151: error: (near initialization for `default_funmap[85].function')
+../../readline-5.0-src/funmap.c:151: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:151: error: (near initialization for `default_funmap[85]')
+../../readline-5.0-src/funmap.c:152: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:152: error: (near initialization for `default_funmap[86].function')
+../../readline-5.0-src/funmap.c:152: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:152: error: (near initialization for `default_funmap[86]')
+../../readline-5.0-src/funmap.c:153: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:153: error: (near initialization for `default_funmap[87].function')
+../../readline-5.0-src/funmap.c:153: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:153: error: (near initialization for `default_funmap[87]')
+../../readline-5.0-src/funmap.c:154: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:154: error: (near initialization for `default_funmap[88].function')
+../../readline-5.0-src/funmap.c:154: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:154: error: (near initialization for `default_funmap[88]')
+../../readline-5.0-src/funmap.c:155: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:155: error: (near initialization for `default_funmap[89].function')
+../../readline-5.0-src/funmap.c:155: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:155: error: (near initialization for `default_funmap[89]')
+../../readline-5.0-src/funmap.c:156: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:156: error: (near initialization for `default_funmap[90].function')
+../../readline-5.0-src/funmap.c:156: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:156: error: (near initialization for `default_funmap[90]')
+../../readline-5.0-src/funmap.c:157: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:157: error: (near initialization for `default_funmap[91].function')
+../../readline-5.0-src/funmap.c:157: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:157: error: (near initialization for `default_funmap[91]')
+../../readline-5.0-src/funmap.c:158: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:158: error: (near initialization for `default_funmap[92].function')
+../../readline-5.0-src/funmap.c:158: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:158: error: (near initialization for `default_funmap[92]')
+../../readline-5.0-src/funmap.c:159: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:159: error: (near initialization for `default_funmap[93].function')
+../../readline-5.0-src/funmap.c:159: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:159: error: (near initialization for `default_funmap[93]')
+../../readline-5.0-src/funmap.c:160: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:160: error: (near initialization for `default_funmap[94].function')
+../../readline-5.0-src/funmap.c:160: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:160: error: (near initialization for `default_funmap[94]')
+../../readline-5.0-src/funmap.c:161: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:161: error: (near initialization for `default_funmap[95].function')
+../../readline-5.0-src/funmap.c:161: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:161: error: (near initialization for `default_funmap[95]')
+../../readline-5.0-src/funmap.c:162: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:162: error: (near initialization for `default_funmap[96].function')
+../../readline-5.0-src/funmap.c:162: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:162: error: (near initialization for `default_funmap[96]')
+../../readline-5.0-src/funmap.c:163: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:163: error: (near initialization for `default_funmap[97].function')
+../../readline-5.0-src/funmap.c:163: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:163: error: (near initialization for `default_funmap[97]')
+../../readline-5.0-src/funmap.c:164: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:164: error: (near initialization for `default_funmap[98].function')
+../../readline-5.0-src/funmap.c:164: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:164: error: (near initialization for `default_funmap[98]')
+../../readline-5.0-src/funmap.c:165: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:165: error: (near initialization for `default_funmap[99].function')
+../../readline-5.0-src/funmap.c:165: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:165: error: (near initialization for `default_funmap[99]')
+../../readline-5.0-src/funmap.c:166: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:166: error: (near initialization for `default_funmap[100].function')
+../../readline-5.0-src/funmap.c:166: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:166: error: (near initialization for `default_funmap[100]')
+../../readline-5.0-src/funmap.c:167: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:167: error: (near initialization for `default_funmap[101].function')
+../../readline-5.0-src/funmap.c:167: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:167: error: (near initialization for `default_funmap[101]')
+../../readline-5.0-src/funmap.c:168: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:168: error: (near initialization for `default_funmap[102].function')
+../../readline-5.0-src/funmap.c:168: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:168: error: (near initialization for `default_funmap[102]')
+../../readline-5.0-src/funmap.c:169: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:169: error: (near initialization for `default_funmap[103].function')
+../../readline-5.0-src/funmap.c:169: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:169: error: (near initialization for `default_funmap[103]')
+../../readline-5.0-src/funmap.c:170: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:170: error: (near initialization for `default_funmap[104].function')
+../../readline-5.0-src/funmap.c:170: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:170: error: (near initialization for `default_funmap[104]')
+../../readline-5.0-src/funmap.c:171: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:171: error: (near initialization for `default_funmap[105].function')
+../../readline-5.0-src/funmap.c:171: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:171: error: (near initialization for `default_funmap[105]')
+../../readline-5.0-src/funmap.c:172: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:172: error: (near initialization for `default_funmap[106].function')
+../../readline-5.0-src/funmap.c:172: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:172: error: (near initialization for `default_funmap[106]')
+../../readline-5.0-src/funmap.c:173: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:173: error: (near initialization for `default_funmap[107].function')
+../../readline-5.0-src/funmap.c:173: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:173: error: (near initialization for `default_funmap[107]')
+../../readline-5.0-src/funmap.c:174: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:174: error: (near initialization for `default_funmap[108].function')
+../../readline-5.0-src/funmap.c:174: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:174: error: (near initialization for `default_funmap[108]')
+../../readline-5.0-src/funmap.c:175: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:175: error: (near initialization for `default_funmap[109].function')
+../../readline-5.0-src/funmap.c:175: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:175: error: (near initialization for `default_funmap[109]')
+../../readline-5.0-src/funmap.c:176: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:176: error: (near initialization for `default_funmap[110].function')
+../../readline-5.0-src/funmap.c:176: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:176: error: (near initialization for `default_funmap[110]')
+../../readline-5.0-src/funmap.c:177: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:177: error: (near initialization for `default_funmap[111].function')
+../../readline-5.0-src/funmap.c:177: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:177: error: (near initialization for `default_funmap[111]')
+../../readline-5.0-src/funmap.c:178: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:178: error: (near initialization for `default_funmap[112].function')
+../../readline-5.0-src/funmap.c:178: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:178: error: (near initialization for `default_funmap[112]')
+../../readline-5.0-src/funmap.c:179: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:179: error: (near initialization for `default_funmap[113].function')
+../../readline-5.0-src/funmap.c:179: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:179: error: (near initialization for `default_funmap[113]')
+../../readline-5.0-src/funmap.c:180: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:180: error: (near initialization for `default_funmap[114].function')
+../../readline-5.0-src/funmap.c:180: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:180: error: (near initialization for `default_funmap[114]')
+../../readline-5.0-src/funmap.c:181: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:181: error: (near initialization for `default_funmap[115].function')
+../../readline-5.0-src/funmap.c:181: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:181: error: (near initialization for `default_funmap[115]')
+../../readline-5.0-src/funmap.c:182: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:182: error: (near initialization for `default_funmap[116].function')
+../../readline-5.0-src/funmap.c:182: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:182: error: (near initialization for `default_funmap[116]')
+../../readline-5.0-src/funmap.c:183: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:183: error: (near initialization for `default_funmap[117].function')
+../../readline-5.0-src/funmap.c:183: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:183: error: (near initialization for `default_funmap[117]')
+../../readline-5.0-src/funmap.c:184: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:184: error: (near initialization for `default_funmap[118].function')
+../../readline-5.0-src/funmap.c:184: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:184: error: (near initialization for `default_funmap[118]')
+../../readline-5.0-src/funmap.c:185: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:185: error: (near initialization for `default_funmap[119].function')
+../../readline-5.0-src/funmap.c:185: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:185: error: (near initialization for `default_funmap[119]')
+../../readline-5.0-src/funmap.c:186: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:186: error: (near initialization for `default_funmap[120].function')
+../../readline-5.0-src/funmap.c:186: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:186: error: (near initialization for `default_funmap[120]')
+../../readline-5.0-src/funmap.c:187: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:187: error: (near initialization for `default_funmap[121].function')
+../../readline-5.0-src/funmap.c:187: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:187: error: (near initialization for `default_funmap[121]')
+../../readline-5.0-src/funmap.c:190: error: initializer element is not constant
+../../readline-5.0-src/funmap.c:190: error: (near initialization for `default_funmap[122]')
+make[1]: *** [funmap.so] Fout 1
+make[1]: Leaving directory `/cygdrive/k/Devel/readline/5.0/readline-5.0/shlib'
+make: [shared] Fout 2 (genegeerd)
+o2dll -o readline.dll -l libreadline readline.o vi_mode.o funmap.o keymaps.o parens.o search.o rltty.o complete.o bind.o isearch.o display.o signals.o util.o kill.o undo.o macro.o input.o callback.o terminal.o text.o nls.o misc.o compat.o xmalloc.o history.o histexpand.o histfile.o histsearch.o shell.o mbutil.o tilde.o wcwidth.o readline-dllversion.o
+RD = "."
+LIBRC = "./readline-dll-res.rc"
+RD = "./res"
+LIBRC = "./res/readline-dll-res.rc"
+Creating resource code readline-dll-res.o from ./res/readline-dll-res.rc
+Using resource object file:  readline-dll-res.o
+Using definitions file: readline.def
+Creating dynamic library readline5.dll and import library libreadline.dll.a
+Creating library file: libreadline.dll.a
+Creating Microsoft import library: readline.lib
+Microsoft (R) Library Manager Version 6.00.8447
+Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
+
+   Creating library readline.lib and object readline.exp
+
+Creating Borland import library: readline-bcc.lib
+
+Borland Implib Version 3.0.22 Copyright (c) 1991, 2000 Inprise Corporation
+Warning duplicate symbol: _rl_term_dc
+Warning duplicate symbol: _rl_term_ic
+Warning duplicate symbol: rl_vi_bword
+Warning duplicate symbol: rl_vi_eword
+Warning duplicate symbol: rl_vi_fword

@@ -1,0 +1,10 @@
+"2_01_12s.obj",
+"Cloc_Mx4.obj",
+"Delay_t0.obj",
+"I2C_1621.obj",
+"I2c_Core.obj",
+"LED_Mx4.obj",
+"Main.obj",
+"Sch51.obj" 
+TO "Sch_stab" 
+RAMSIZE(256) 

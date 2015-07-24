@@ -1,0 +1,107 @@
+C51 COMPILER V6.10  ADC_515C                                                               04/19/2001 10:38:54 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE ADC_515C
+OBJECT MODULE PLACED IN .\ADC_515C.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\ADC_515C.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             ADC_515c.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Simple, single-channel, 8-bit A-D (input) library for C515c
+   8          
+   9          
+  10             COPYRIGHT
+  11             ---------
+  12          
+  13             This code is from the book:
+  14          
+  15             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17          
+  18             This code is copyright (c) 2001 by Michael J. Pont.
+  19           
+  20             See book for copyright details and other information.
+  21          
+  22          -*------------------------------------------------------------------*/
+  23          
+  24          #include "Main.H"
+  25          
+  26          // ------ Public variable definitions ------------------------------
+  27          // Stores the latest ADC reading
+  28          tByte Analog_G;
+  29          
+  30          /*------------------------------------------------------------------*-
+  31          
+  32            AD_Init()
+  33          
+  34            Set up the A-D converter.
+  35          
+  36          -*------------------------------------------------------------------*/
+  37          void AD_Init(void)
+  38             {
+  39   1         // Select internally-triggered single conversion
+  40   1         // Reading from P6.0 (single channel)
+  41   1         ADEX = 0;  // Internal A/D trigger
+  42   1         ADM = 0;   // Single conversion  
+  43   1         MX2 = MX1 = MX0 = 0;  // Read from Channel 0 (Pin 6.0)
+  44   1       
+  45   1         // Leave ADCON1 at reset value: prescalar is /4  
+  46   1         }
+  47          
+  48          /*------------------------------------------------------------------*-
+  49          
+  50            AD_Get_Sample()
+  51          
+  52            Get a single data sample (8 bits) from the (10-bit) ADC.
+  53          
+  54          -*------------------------------------------------------------------*/
+  55          void AD_Get_Sample(void)
+C51 COMPILER V6.10  ADC_515C                                                               04/19/2001 10:38:54 PAGE 2   
+
+  56             {
+  57   1         tWord Time_out_loop = 1;
+  58   1      
+  59   1         // Take sample from A-D
+  60   1         // Write (value not important) to ADDATL to start conversion
+  61   1         ADDATL = 0x01; 
+  62   1      
+  63   1         // Take sample from A-D (with simple loop time-out)
+  64   1         while ((BSY == 1) && (Time_out_loop != 0));
+  65   1            {
+  66   2        //    Time_out_loop++;  // Disable for use in dScope...
+  67   2            }
+  68   1      
+  69   1         if (!Time_out_loop)
+  70   1            {
+  71   2            Analog_G = 0;
+  72   2            }
+  73   1         else 
+  74   1            {     
+  75   2            // 10-bit A-D result is now available
+  76   2            Analog_G = ADDATH;  // Read only 8 most significant 8-bits of A-D
+  77   2            }
+  78   1         } 
+  79          
+  80          /*------------------------------------------------------------------*-
+  81            ---- END OF FILE -------------------------------------------------
+  82          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     36    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

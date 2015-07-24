@@ -1,0 +1,63 @@
+test_usleep.o test_usleep.o: test_usleep.c ../include/libc-symbols.h \
+  ../config.h h:/mingw/3.3.1/include/stdio.h \
+  h:/mingw/3.3.1/include/_mingw.h h:/mingw/3.3.1/include/stddef.h \
+  h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stddef.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stddefx.h \
+  h:/mingw/3.3.1/include/stdarg.h \
+  h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stdarg.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stdargx.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stdiox.h \
+  h:/mingw/3.3.1/mingw32/include/features.h \
+  h:/mingw/3.3.1/mingw32/include/sys/cdefs.h ../include/gnu/stubs.h \
+  h:/mingw/3.3.1/include/sys/types.h \
+  h:/mingw/3.3.1/mingw32/include/winx/sys/typesx.h \
+  h:/mingw/3.3.1/mingw32/include/bits/types.h \
+  h:/mingw/3.3.1/mingw32/include/bits/wordsize.h \
+  h:/mingw/3.3.1/mingw32/include/bits/typesizes.h \
+  h:/mingw/3.3.1/mingw32/include/stdio_ext.h \
+  h:/mingw/3.3.1/include/errno.h \
+  h:/mingw/3.3.1/mingw32/include/winx/errnox.h
+
+../include/libc-symbols.h:
+
+../config.h:
+
+h:/mingw/3.3.1/include/stdio.h:
+
+h:/mingw/3.3.1/include/_mingw.h:
+
+h:/mingw/3.3.1/include/stddef.h:
+
+h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stddef.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stddefx.h:
+
+h:/mingw/3.3.1/include/stdarg.h:
+
+h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stdarg.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stdargx.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stdiox.h:
+
+h:/mingw/3.3.1/mingw32/include/features.h:
+
+h:/mingw/3.3.1/mingw32/include/sys/cdefs.h:
+
+../include/gnu/stubs.h:
+
+h:/mingw/3.3.1/include/sys/types.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/sys/typesx.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/types.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/wordsize.h:
+
+h:/mingw/3.3.1/mingw32/include/bits/typesizes.h:
+
+h:/mingw/3.3.1/mingw32/include/stdio_ext.h:
+
+h:/mingw/3.3.1/include/errno.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/errnox.h:

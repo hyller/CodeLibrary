@@ -1,0 +1,234 @@
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 16:17:09 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND SYMBOLS
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Test program for keypad library, based on c515c
+   8          
+   9             Sends output (to PC) over serial (RS232) link
+  10          
+  11             Required linker options (see Chapter 14 for details):
+  12          
+  13             OVERLAY (main ~ (PC_LINK_Update, Keypad_RS232_Update), 
+  14             SCH_Dispatch_Tasks ! (PC_LINK_Update, Keypad_RS232_Update))
+  15          
+  16          
+  17             COPYRIGHT
+  18             ---------
+  19          
+  20             This code is from the book:
+  21          
+  22             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  23             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  24          
+  25             This code is copyright (c) 2001 by Michael J. Pont.
+  26           
+  27             See book for copyright details and other information.
+  28          
+  29          -*------------------------------------------------------------------*/
+  30          
+  31          #include "Main.h"
+  32          #include "2_01_10i.h"
+  33          
+  34          #include "PC_O_in.h"
+  35          #include "Keypad.h"
+  36          #include "Keyp_232.h"
+  37          
+  38          /* ............................................................... */
+  39          /* ............................................................... */
+  40          
+  41          void main(void)
+  42             {
+  43   1         // Set up the scheduler
+  44   1         SCH_Init_T2();
+  45   1      
+  46   1         // Set baud rate to 9600, using internal baud rate generator
+  47   1         PC_LINK_O_Init_Internal(9600);
+  48   1      
+  49   1         // Prepare the keypad
+  50   1         KEYPAD_Init();
+  51   1      
+  52   1         // Prepare the Keypad -> RS232 library
+  53   1         Keypad_RS232_Init();
+  54   1       
+  55   1         // We have to schedule this task (~100x a second is enough here)
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 16:17:09 PAGE 2   
+
+  56   1         // - this writes data to PC 
+  57   1         //
+  58   1         // TIMING IS IN TICKS (1 ms tick interval)
+  59   1         SCH_Add_Task(PC_LINK_O_Update, 10, 10);
+  60   1      
+  61   1         // Read the keypad every ~50 ms
+  62   1         SCH_Add_Task(Keypad_RS232_Update, 0, 50);
+  63   1      
+  64   1         SCH_Start();
+  65   1      
+  66   1         while(1)
+  67   1            {
+  68   2            SCH_Dispatch_Tasks();
+  69   2            }
+  70   1         }
+  71          
+  72          /*------------------------------------------------------------------*-
+  73            ---- END OF FILE -------------------------------------------------
+  74          -*------------------------------------------------------------------*/
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 16:17:09 PAGE 3   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+T2I0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C8H  1
+T2I1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C9H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+P4 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E8H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+T2 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0097H  1
+BD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DFH  1
+tLong. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_LONG   -----  4
+sTask. . . . . . . . . . . . . . . . .  TYPEDEF  DATA   STRUCT   -----  7
+  pTask. . . . . . . . . . . . . . . .  MEMBER   -----  PTR      0000H  2
+  Delay. . . . . . . . . . . . . . . .  MEMBER   -----  U_INT    0002H  2
+  Period . . . . . . . . . . . . . . .  MEMBER   -----  U_INT    0004H  2
+  RunMe. . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0006H  1
+T2R0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CBH  1
+T2R1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CCH  1
+tByte. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_CHAR   -----  1
+IEN0 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+EADC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+IEN1 . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+IADC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C0H  1
+tWord. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_INT    -----  2
+I2FR . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CDH  1
+I3FR . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CEH  1
+EXF2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C7H  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+T2CM . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CAH  1
+ADCON0 . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D8H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IEX2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C1H  1
+PC_LINK_O_Update . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+IEX3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C2H  1
+IEX4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C3H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+IEX5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C4H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+IEX6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C5H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+INT2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0094H  1
+_SCH_Add_Task. . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+INT3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+INT4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+INT5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0092H  1
+INT6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0093H  1
+ADEX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DDH  1
+INT8 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EDH  1
+T2EX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0095H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+main . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+T2PS . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CFH  1
+ADST . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00E8H  1
+SCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00E9H  1
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 16:17:09 PAGE 4   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+RXDC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EFH  1
+TXDC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EEH  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+KEYPAD_Init. . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+SCH_Init_T2. . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+SWDT . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BEH  1
+Keypad_RS232_Update. . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+ET2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ADH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+_PC_LINK_O_Init_Internal . . . . . . .  EXTERN   CODE   PROC     -----  -----
+TF2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C6H  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+EX2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SCH_Start. . . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+EX3. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+EX4. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+ADM. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DBH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+EX5. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+EAL. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+EX6. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BDH  1
+CLKOUT . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0096H  1
+MX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D8H  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+MX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D9H  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+MX2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DAH  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+CLK. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DEH  1
+SCH_Dispatch_Tasks . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+EXEN2. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BFH  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+T2CON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C8H  1
+SRI. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EAH  1
+BSY. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DCH  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+WDT. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AEH  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+SLS. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ECH  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+Keypad_RS232_Init. . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+STO. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EBH  1
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 16:17:09 PAGE 5   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+F1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D1H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+IRCON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     54    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

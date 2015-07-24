@@ -1,0 +1,5 @@
+"MAIN.obj",
+"LOOP_DEL.obj",
+"LED_FLAS.obj" 
+TO "S_Delay" 
+RAMSIZE(256) 

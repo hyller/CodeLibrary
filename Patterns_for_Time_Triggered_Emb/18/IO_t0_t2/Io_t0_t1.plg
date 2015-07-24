@@ -1,0 +1,92 @@
+Build target 'Target 1'
+compiling SCH51.C...
+compiling MENU_A.C...
+.\MENU_A.C(38): error  318: can't open file 'PC_IO_T1.h'
+.\MENU_A.C(61): warning C206: 'PC_LINK_IO_Update': missing function-prototype
+.\MENU_A.C(63): warning C206: 'PC_LINK_IO_Get_Char_From_Buffer': missing function-prototype
+.\MENU_A.C(65): error C202: 'PC_LINK_IO_NO_CHAR': undefined identifier
+.\MENU_A.C(83): warning C206: 'PC_LINK_IO_Write_String_To_Buffe': missing function-prototype
+.\MENU_A.C(83): error C267: 'PC_LINK_IO_Write_String_To_Buffe': requires ANSI-style prototype
+.\MENU_A.C(102): warning C206: 'PC_LINK_IO_Write_Char_To_Buffer': missing function-prototype
+compiling MAIN.C...
+.\MAIN.C(31): error  318: can't open file 'PC_IO_T1.h'
+.\MAIN.C(43): warning C206: 'PC_LINK_IO_Init_T1': missing function-prototype
+.\MAIN.C(43): error C267: 'PC_LINK_IO_Init_T1': requires ANSI-style prototype
+compiling 0_05_11G.C...
+compiling PC_IO.c...
+compiling PC_IO_T2.c...
+.\PC_IO_T2.c(29): error  318: can't open file 'PC_IO_T1.h'
+.\PC_IO_T2.C(75): error C202: 'RC2H': undefined identifier
+.\PC_IO_T2.C(76): error C202: 'RC2H': undefined identifier
+.\PC_IO_T2.C(77): error C202: 'RC2L': undefined identifier
+.\PC_IO_T2.C(78): error C202: 'RC2L': undefined identifier
+.\PC_IO_T2.C(90): warning C206: 'PC_LINK_IO_Write_String_To_Buffe': missing function-prototype
+.\PC_IO_T2.C(90): error C267: 'PC_LINK_IO_Write_String_To_Buffe': requires ANSI-style prototype
+Target not created
+Build target 'Target 1'
+compiling MENU_A.C...
+compiling MAIN.C...
+.\MAIN.C(31): error  318: can't open file 'PC_IO_T1.h'
+.\MAIN.C(43): warning C206: 'PC_LINK_IO_Init_T1': missing function-prototype
+.\MAIN.C(43): error C267: 'PC_LINK_IO_Init_T1': requires ANSI-style prototype
+compiling PC_IO_T2.c...
+.\PC_IO_T2.c(29): error  318: can't open file 'PC_IO_T1.h'
+.\PC_IO_T2.C(75): error C202: 'RC2H': undefined identifier
+.\PC_IO_T2.C(76): error C202: 'RC2H': undefined identifier
+.\PC_IO_T2.C(77): error C202: 'RC2L': undefined identifier
+.\PC_IO_T2.C(78): error C202: 'RC2L': undefined identifier
+.\PC_IO_T2.C(90): warning C206: 'PC_LINK_IO_Write_String_To_Buffe': missing function-prototype
+.\PC_IO_T2.C(90): error C267: 'PC_LINK_IO_Write_String_To_Buffe': requires ANSI-style prototype
+Target not created
+Build target 'Target 1'
+compiling MAIN.C...
+.\MAIN.C(31): error  318: can't open file 'PC_IO_T1.h'
+.\MAIN.C(43): warning C206: 'PC_LINK_IO_Init_T1': missing function-prototype
+.\MAIN.C(43): error C267: 'PC_LINK_IO_Init_T1': requires ANSI-style prototype
+compiling PC_IO_T2.c...
+.\PC_IO_T2.C(75): error C202: 'RC2H': undefined identifier
+.\PC_IO_T2.C(76): error C202: 'RC2H': undefined identifier
+.\PC_IO_T2.C(77): error C202: 'RC2L': undefined identifier
+.\PC_IO_T2.C(78): error C202: 'RC2L': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling MAIN.C...
+compiling PC_IO_T2.c...
+.\PC_IO_T2.C(75): error C202: 'RC2H': undefined identifier
+.\PC_IO_T2.C(76): error C202: 'RC2H': undefined identifier
+.\PC_IO_T2.C(77): error C202: 'RC2L': undefined identifier
+.\PC_IO_T2.C(78): error C202: 'RC2L': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling PC_IO_T2.c...
+.\PC_IO_T2.C(75): error C202: 'RC2': undefined identifier
+.\PC_IO_T2.C(76): error C202: 'RC2H': undefined identifier
+.\PC_IO_T2.C(77): error C202: 'RC2': undefined identifier
+.\PC_IO_T2.C(78): error C202: 'RC2L': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling PC_IO_T2.c...
+linking...
+creating hex file from "Io_t0_t1"...
+"Io_t0_t1" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+creating hex file from "Io_t0_t2"...
+"Io_t0_t2" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling PC_IO_T2.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_PC_LINK_IO_INIT_T2?PC_IO_T2
+
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _PC_LINK_IO_INIT_T1
+    MODULE:  MAIN.obj (MAIN)
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PC_LINK_IO_INIT_T1
+    MODULE:  MAIN.obj (MAIN)
+    ADDRESS: 05DDH
+
+creating hex file from "Io_t0_t2"...
+"Io_t0_t2" - 0 Error(s), 3 Warning(s).

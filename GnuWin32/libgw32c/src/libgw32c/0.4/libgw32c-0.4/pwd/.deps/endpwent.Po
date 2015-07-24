@@ -1,0 +1,5 @@
+endpwent.o endpwent.o: endpwent.c ../include/libc-symbols.h ../config.h
+
+../include/libc-symbols.h:
+
+../config.h:

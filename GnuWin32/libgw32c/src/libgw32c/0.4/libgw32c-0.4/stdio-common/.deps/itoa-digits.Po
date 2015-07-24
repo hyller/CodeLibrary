@@ -1,0 +1,6 @@
+itoa-digits.o itoa-digits.o: itoa-digits.c ../include/libc-symbols.h \
+  ../config.h
+
+../include/libc-symbols.h:
+
+../config.h:

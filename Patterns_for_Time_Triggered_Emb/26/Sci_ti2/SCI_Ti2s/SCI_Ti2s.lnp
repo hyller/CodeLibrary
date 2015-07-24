@@ -1,0 +1,7 @@
+"LED_FLAS.obj",
+"MAIN.obj",
+"SCH51.obj",
+"SCI_TI2S.obj",
+"TLIGHT_A.obj" 
+TO "SCI_Ti2s" 
+RAMSIZE(256) 

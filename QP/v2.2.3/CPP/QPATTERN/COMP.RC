@@ -1,0 +1,121 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "comp.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG DIALOG DISCARDABLE  0, 0, 126, 89
+STYLE DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Orthogonal Component"
+FONT 9, "Fixedsys"
+BEGIN
+    ICON            IDI_QP,IDC_STATIC,6,4,20,20
+    CTEXT           "12:00 PM",IDC_TIME,10,59,42,16,SS_CENTERIMAGE | 
+                    SS_SUNKEN | WS_BORDER
+    GROUPBOX        "Timekeeping",IDC_STATIC,6,45,114,37
+    CONTROL         "&12 Hr Mode",IDC_12H,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,60,56,56,10
+    CONTROL         "&24 Hr Mode",IDC_24H,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,60,67,56,10
+    EDITTEXT        IDC_ALARM,51,21,23,12,ES_UPPERCASE | WS_DISABLED
+    GROUPBOX        "Alarm",IDC_STATIC,44,4,76,37
+    CONTROL         "&On",IDC_ON,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,88,14,28,10
+    CONTROL         "O&ff",IDC_OFF,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,
+                    88,25,28,10
+    ICON            IDI_BELL,IDC_BELL,23,21,20,20,NOT WS_VISIBLE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 120
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 82
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "comp.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_QP                  ICON    DISCARDABLE     "res\\qp.ico"
+IDI_BELL                ICON    DISCARDABLE     "res\\bell.ico"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

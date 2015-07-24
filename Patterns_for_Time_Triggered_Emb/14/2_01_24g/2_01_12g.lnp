@@ -1,0 +1,6 @@
+"LED_FLAS.obj",
+"MAIN.obj",
+"SCH51.obj",
+"2_01_24g.obj" 
+TO "2_01_12g" 
+RAMSIZE(256) 

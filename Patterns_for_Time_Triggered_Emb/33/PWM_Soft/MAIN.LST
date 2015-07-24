@@ -1,0 +1,80 @@
+C51 COMPILER V6.10  MAIN                                                                   03/16/2001 06:57:38 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Test program for 'Software PWM' library.
+   8          
+   9             See Chapter 33 for details.
+  10          
+  11          
+  12             COPYRIGHT
+  13             ---------
+  14          
+  15             This code is from the book:
+  16          
+  17             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  18             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  19          
+  20             This code is copyright (c) 2001 by Michael J. Pont.
+  21           
+  22             See book for copyright details and other information.
+  23          
+  24          -*------------------------------------------------------------------*/
+  25          
+  26          #include "Main.h"
+  27          #include "2_01_12g.h"
+  28          #include "PWM_Soft.h"
+  29          
+  30          /* ............................................................... */
+  31          /* ............................................................... */
+  32          
+  33          void main()
+  34             {
+  35   1         SCH_Init_T2();  
+  36   1      
+  37   1         PWM_Soft_Init();  
+  38   1      
+  39   1         // Call every millisecond to update PWM output
+  40   1         SCH_Add_Task(PWM_Soft_Update, 0, 1);
+  41   1      
+  42   1         // Call every five seconds to change PWM control value
+  43   1         SCH_Add_Task(PWM_Soft_Test, 10, 3000);
+  44   1      
+  45   1         SCH_Start();
+  46   1      
+  47   1         while(1)
+  48   1            {
+  49   2            SCH_Dispatch_Tasks();
+  50   2            }     
+  51   1         } 
+  52          
+  53          /*------------------------------------------------------------------*-
+  54            ---- END OF FILE -------------------------------------------------
+  55          -*------------------------------------------------------------------*/
+C51 COMPILER V6.10  MAIN                                                                   03/16/2001 06:57:38 PAGE 2   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     44    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,314 @@
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 13:57:32 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Main.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\Main.c OPTIMIZE(0,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Testing hardware timeouts.
+   8          
+   9          
+  10             COPYRIGHT
+  11             ---------
+  12          
+  13             This code is from the book:
+  14          
+  15             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17          
+  18             This code is copyright (c) 2001 by Michael J. Pont.
+  19           
+  20             See book for copyright details and other information.
+  21          
+  22          -*------------------------------------------------------------------*/
+  23          
+  24          #include "Main.H"
+  25          #include "TimeoutH.H"
+  26          
+  27          // Function prototypes
+  28          void Test_50micros(void);  
+  29          void Test_500micros(void);  
+  30          void Test_1ms(void);  
+  31          void Test_5ms(void);  
+  32          void Test_10ms(void);  
+  33          void Test_15ms(void);  
+  34          void Test_20ms(void);  
+  35          void Test_50ms(void);  
+  36          
+  37          // TIMEOUT code variable & TIMEOUT code (dummy here)
+  38          #define TIMEOUT 0xFF
+  39          tByte Error_code_G;
+  40          
+  41          /*------------------------------------------------------------------*/
+  42          void main(void)
+  43             {
+  44   1         while(1) 
+  45   1            {
+  46   2            Test_50micros();  
+  47   2            Test_500micros();  
+  48   2            Test_1ms();  
+  49   2            Test_5ms();  
+  50   2            Test_10ms();  
+  51   2            Test_15ms();  
+  52   2            Test_20ms();  
+  53   2            Test_50ms();  
+  54   2            }
+  55   1         }
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 13:57:32 PAGE 2   
+
+  56          
+  57          /*------------------------------------------------------------------*/
+  58          void Test_50micros(void)
+  59             {
+  60   1         // Configure Timer 0 as a 16-bit timer 
+  61   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+  62   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+  63   1      
+  64   1         ET0 = 0;  // No interrupts
+  65   1      
+  66   1         // Simple timeout feature - approx 50 µs
+  67   1         TH0 = T_50micros_H; // See TimeoutH.H for T_ details
+  68   1         TL0 = T_50micros_L;
+  69   1         TF0 = 0; // Clear flag
+  70   1         TR0 = 1; // Start timer
+  71   1      
+  72   1         while (!TF0);
+  73   1      
+  74   1         TR0 = 0;  
+  75   1      
+  76   1         // Normally need to report timeout TIMEOUTs
+  77   1         // (this test is for demo purposes here)
+  78   1         if (TF0 == 1)
+  79   1            {
+  80   2            // Operation timed out
+  81   2            Error_code_G = TIMEOUT;
+  82   2            }
+  83   1         }
+  84          
+  85          /*------------------------------------------------------------------*/
+  86          void Test_500micros(void)
+  87             {
+  88   1         // Configure Timer 0 as a 16-bit timer 
+  89   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+  90   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+  91   1      
+  92   1         ET0 = 0;  // No interrupts
+  93   1      
+  94   1         // Simple timeout feature - approx 500 µs
+  95   1         TH0 = T_500micros_H; // See TimeoutH.H for T_ details
+  96   1         TL0 = T_500micros_L;
+  97   1         TF0 = 0; // Clear flag
+  98   1         TR0 = 1; // Start timer
+  99   1      
+ 100   1         while (!TF0);
+ 101   1      
+ 102   1         TR0 = 0;  
+ 103   1      
+ 104   1         // Normally need to report timeout TIMEOUTs
+ 105   1         // (this test is for demo purposes here)
+ 106   1         if (TF0 == 1)
+ 107   1            {
+ 108   2            // Operation timed out
+ 109   2            Error_code_G = TIMEOUT;
+ 110   2            }
+ 111   1         }
+ 112          
+ 113          /*------------------------------------------------------------------*/
+ 114          void Test_1ms(void)
+ 115             {
+ 116   1         // Configure Timer 0 as a 16-bit timer 
+ 117   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 13:57:32 PAGE 3   
+
+ 118   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+ 119   1      
+ 120   1         ET0 = 0;  // No interrupts
+ 121   1      
+ 122   1         // Simple timeout feature - approx 1 ms
+ 123   1         TH0 = T_01ms_H; // See TimeoutH.H for T_ details
+ 124   1         TL0 = T_01ms_L;
+ 125   1         TF0 = 0; // Clear flag
+ 126   1         TR0 = 1; // Start timer
+ 127   1      
+ 128   1         while (!TF0);
+ 129   1      
+ 130   1         TR0 = 0;  
+ 131   1      
+ 132   1         // Normally need to report timeout TIMEOUTs
+ 133   1         // (this test is for demo purposes here)
+ 134   1         if (TF0 == 1)
+ 135   1            {
+ 136   2            // Operation timed out
+ 137   2            Error_code_G = TIMEOUT;
+ 138   2            }
+ 139   1         }
+ 140          
+ 141          /*------------------------------------------------------------------*/
+ 142          void Test_5ms(void)
+ 143             {
+ 144   1         // Configure Timer 0 as a 16-bit timer 
+ 145   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+ 146   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+ 147   1      
+ 148   1         ET0 = 0;  // No interrupts
+ 149   1      
+ 150   1         // Simple timeout feature - approx 10 ms
+ 151   1         TH0 = T_05ms_H; // See TimeoutH.H for T_ details
+ 152   1         TL0 = T_05ms_L;
+ 153   1         TF0 = 0; // Clear flag
+ 154   1         TR0 = 1; // Start timer
+ 155   1      
+ 156   1         while (!TF0);
+ 157   1      
+ 158   1         TR0 = 0;  
+ 159   1      
+ 160   1         // Normally need to report timeout TIMEOUTs
+ 161   1         // (this test is for demo purposes here)
+ 162   1         if (TF0 == 1)
+ 163   1            {
+ 164   2            // Operation timed out
+ 165   2            Error_code_G = TIMEOUT;
+ 166   2            }
+ 167   1         }
+ 168          
+ 169          /*------------------------------------------------------------------*/
+ 170          void Test_10ms(void)
+ 171             {
+ 172   1         // Configure Timer 0 as a 16-bit timer 
+ 173   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+ 174   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+ 175   1      
+ 176   1         ET0 = 0;  // No interrupts
+ 177   1      
+ 178   1         // Simple timeout feature - approx 10 ms
+ 179   1         TH0 = T_10ms_H; // See TimeoutH.H for T_ details
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 13:57:32 PAGE 4   
+
+ 180   1         TL0 = T_10ms_L;
+ 181   1         TF0 = 0; // Clear flag
+ 182   1         TR0 = 1; // Start timer
+ 183   1      
+ 184   1         while (!TF0);
+ 185   1      
+ 186   1         TR0 = 0;  
+ 187   1      
+ 188   1         // Normally need to report timeout TIMEOUTs
+ 189   1         // (this test is for demo purposes here)
+ 190   1         if (TF0 == 1)
+ 191   1            {
+ 192   2            // Operation timed out
+ 193   2            Error_code_G = TIMEOUT;
+ 194   2            }
+ 195   1         }
+ 196          
+ 197          /*------------------------------------------------------------------*/
+ 198          void Test_15ms(void)
+ 199             {
+ 200   1         // Configure Timer 0 as a 16-bit timer 
+ 201   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+ 202   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+ 203   1      
+ 204   1         ET0 = 0;  // No interrupts
+ 205   1      
+ 206   1         // Simple timeout feature - approx 10 ms
+ 207   1         TH0 = T_15ms_H; // See TimeoutH.H for T_ details
+ 208   1         TL0 = T_15ms_L;
+ 209   1         TF0 = 0; // Clear flag
+ 210   1         TR0 = 1; // Start timer
+ 211   1      
+ 212   1         while (!TF0);
+ 213   1      
+ 214   1         TR0 = 0;  
+ 215   1      
+ 216   1         // Normally need to report timeout TIMEOUTs
+ 217   1         // (this test is for demo purposes here)
+ 218   1         if (TF0 == 1)
+ 219   1            {
+ 220   2            // Operation timed out
+ 221   2            Error_code_G = TIMEOUT;
+ 222   2            }
+ 223   1         }
+ 224          
+ 225          /*------------------------------------------------------------------*/
+ 226          void Test_20ms(void)
+ 227             {
+ 228   1         // Configure Timer 0 as a 16-bit timer 
+ 229   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+ 230   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+ 231   1      
+ 232   1         ET0 = 0;  // No interrupts
+ 233   1      
+ 234   1         // Simple timeout feature - approx 10 ms
+ 235   1         TH0 = T_20ms_H; // See TimeoutH.H for T_ details
+ 236   1         TL0 = T_20ms_L;
+ 237   1         TF0 = 0; // Clear flag
+ 238   1         TR0 = 1; // Start timer
+ 239   1      
+ 240   1         while (!TF0);
+ 241   1      
+C51 COMPILER V6.10  MAIN                                                                   04/18/2001 13:57:32 PAGE 5   
+
+ 242   1         TR0 = 0;  
+ 243   1      
+ 244   1         // Normally need to report timeout TIMEOUTs
+ 245   1         // (this test is for demo purposes here)
+ 246   1         if (TF0 == 1)
+ 247   1            {
+ 248   2            // Operation timed out
+ 249   2            Error_code_G = TIMEOUT;
+ 250   2            }
+ 251   1         }
+ 252          
+ 253          /*------------------------------------------------------------------*/
+ 254          void Test_50ms(void)
+ 255             {
+ 256   1         // Configure Timer 0 as a 16-bit timer 
+ 257   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+ 258   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+ 259   1      
+ 260   1         ET0 = 0;  // No interrupts
+ 261   1      
+ 262   1         // Simple timeout feature - approx 10 ms
+ 263   1         TH0 = T_50ms_H; // See TimeoutH.H for T_ details
+ 264   1         TL0 = T_50ms_L;
+ 265   1         TF0 = 0; // Clear flag
+ 266   1         TR0 = 1; // Start timer
+ 267   1      
+ 268   1         while (!TF0);
+ 269   1      
+ 270   1         TR0 = 0;  
+ 271   1      
+ 272   1         // Normally need to report timeout TIMEOUTs
+ 273   1         // (this test is for demo purposes here)
+ 274   1         if (TF0 == 1)
+ 275   1            {
+ 276   2            // Operation timed out
+ 277   2            Error_code_G = TIMEOUT;
+ 278   2            }
+ 279   1         }
+ 280          
+ 281          /*------------------------------------------------------------------*-
+ 282            ---- END OF FILE -------------------------------------------------
+ 283          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    267    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

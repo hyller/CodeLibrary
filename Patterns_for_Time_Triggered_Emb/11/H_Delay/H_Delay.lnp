@@ -1,0 +1,5 @@
+"MAIN.obj",
+"DELAY_T0.obj",
+"LED_FLAS.obj" 
+TO "H_Delay" 
+RAMSIZE(256) 

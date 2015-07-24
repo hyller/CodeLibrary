@@ -1,0 +1,12 @@
+iswctype.c
+iswctype_l.c
+test_wcfuncs.c
+test_wctype.c
+towctrans.c
+towctrans_l.c
+wcfuncs.c
+wcfuncs_l.c
+wctrans.c
+wctrans_l.c
+wctype.c
+wctype_l.c

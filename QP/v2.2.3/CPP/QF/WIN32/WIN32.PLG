@@ -1,0 +1,27 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Win32 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\miro\LOCALS~1\Temp\RSP6E.tmp" with contents
+[
+/nologo /MT /W3 /ZI /Od /I "../source" /I "." /I "../include" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\QP\Cpp\QF\Source\Qtimer.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\miro\LOCALS~1\Temp\RSP6E.tmp" 
+Creating command line "link.exe -lib /nologo /out:"Debug\Qf_win32.lib"  .\Debug\Qactive.obj .\Debug\Qepool.obj .\Debug\Qequeue.obj .\Debug\Qf.obj .\Debug\Qfsm.obj .\Debug\Qhsm.obj .\Debug\QhsmTran.obj .\Debug\Qtimer.obj .\Debug\Win32.obj "
+<h3>Output Window</h3>
+Compiling...
+Qtimer.cpp
+Creating library...
+
+
+
+<h3>Results</h3>
+Qf_win32.lib - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

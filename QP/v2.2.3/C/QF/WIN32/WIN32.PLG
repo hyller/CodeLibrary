@@ -1,0 +1,25 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Win32 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\miro\LOCALS~1\Temp\RSP72.tmp" with contents
+[
+/nologo /MT /W3 /ZI /Od /I "." /I "../include" /I "../source" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\QP\C\QF\Source\Qtimer.c"
+]
+Creating command line "cl.exe @C:\DOCUME~1\miro\LOCALS~1\Temp\RSP72.tmp" 
+<h3>Output Window</h3>
+Compiling...
+Qtimer.c
+
+
+
+<h3>Results</h3>
+Qtimer.obj - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

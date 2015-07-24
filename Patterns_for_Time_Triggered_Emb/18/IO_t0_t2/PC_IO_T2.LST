@@ -1,0 +1,122 @@
+C51 COMPILER V6.10  PC_IO_T2                                                               04/18/2001 16:08:41 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE PC_IO_T2
+OBJECT MODULE PLACED IN .\PC_IO_T2.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\PC_IO_T2.c OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             PC_IO_T2.C (v1.01)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             PC link library. Bidirectional. T2 used for baud rate generation.
+   8          
+   9             Uses the USART, and Pins 3.1 (Tx) and 3.0 (Rx) 
+  10          
+  11             See text for details (Chapter 18).
+  12          
+  13          
+  14             COPYRIGHT
+  15             ---------
+  16          
+  17             This code is from the book:
+  18          
+  19             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  20             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  21          
+  22             This code is copyright (c) 2001 by Michael J. Pont.
+  23           
+  24             See book for copyright details and other information.
+  25          
+  26          -*------------------------------------------------------------------*/
+  27          
+  28          #include "Main.h"
+  29          #include "PC_IO_T2.h"
+  30          
+  31          // ------ Public variable declarations -----------------------------
+  32          
+  33          extern tByte In_read_index_G;     
+  34          extern tByte In_waiting_index_G;  
+  35          
+  36          extern tByte Out_written_index_G;  
+  37          extern tByte Out_waiting_index_G;  
+  38          
+  39          /*------------------------------------------------------------------*-
+  40          
+  41            PC_LINK_IO_Init_T2()
+  42          
+  43            This version uses T2 for baud rate generation.
+  44          
+  45          -*------------------------------------------------------------------*/
+  46          void PC_LINK_IO_Init_T2(const tWord BAUD_RATE)
+  47             {
+  48   1         tWord RCAP2;
+  49   1      
+  50   1         PCON &= 0x7F;   // Set SMOD bit to 0 (don't double baud rates)
+  51   1      
+  52   1         //  Receiver enabled.
+  53   1         //  8-bit data, 1 start bit, 1 stop bit, 
+  54   1         //  Variable baud rate (asynchronous)
+  55   1         //  Receive flag will only be set if a valid stop bit is received
+C51 COMPILER V6.10  PC_IO_T2                                                               04/18/2001 16:08:41 PAGE 2   
+
+  56   1         //  Set TI (transmit buffer is empty)
+  57   1         SCON = 0x72;
+  58   1      
+  59   1         // T2 used for baud rate generation.
+  60   1         // Gives accurate baud rates, even at 12 MHz, etc...
+  61   1         T2CON = 0x34; // Load timer 2 control register
+  62   1         T2MOD = 0x00; // Load timer 2 mode register
+  63   1         ET2   = 0;
+  64   1      
+  65   1         // Typically, as a timer, T2  would increment at fOSC /12. 
+  66   1         // As a baud rate generator, it increments at fOSC /2. 
+  67   1         //
+  68   1         // The baud rate (Mode 1 or 3) is given by the formula:
+  69   1         //
+  70   1         // Baud rate = fOSC /(32 * [65536 - (RCAP2H, RCAP2L)])
+  71   1         //
+  72   1         // This allows us to do the following:
+  73   1         RCAP2  = 65536 - (tWord)((tLong)OSC_FREQ/((tLong)32 * BAUD_RATE));
+  74   1         RCAP2H = RCAP2 / 256;
+  75   1         TH2    = RCAP2H;
+  76   1         RCAP2L = RCAP2 % 256;
+  77   1         TL2    = RCAP2L;
+  78   1      
+  79   1         TR2   = 1;  // Start timer 2
+  80   1      
+  81   1         TI = 1;     // Send first character (dummy)
+  82   1      
+  83   1         // Set up the buffers for reading and writing
+  84   1         In_read_index_G = 0;
+  85   1         In_waiting_index_G = 0;
+  86   1         Out_written_index_G = 0;
+  87   1         Out_waiting_index_G = 0;
+  88   1      
+  89   1         PC_LINK_IO_Write_String_To_Buffer("Serial OK\n");
+  90   1      
+  91   1         // Interrupt *NOT* enabled
+  92   1         ES = 0;
+  93   1         }
+  94          
+  95          /*------------------------------------------------------------------*-
+  96            ---- END OF FILE -------------------------------------------------
+  97          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     84    ----
+   CONSTANT SIZE    =     11    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

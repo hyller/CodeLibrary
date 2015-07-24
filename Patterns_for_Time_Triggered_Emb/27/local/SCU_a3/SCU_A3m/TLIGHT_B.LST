@@ -1,0 +1,315 @@
+C51 COMPILER V6.10  TLIGHT_B                                                               04/19/2001 13:56:37 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE TLIGHT_B
+OBJECT MODULE PLACED IN .\TLIGHT_B.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\TLIGHT_B.C OPTIMIZE(SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             TLight_B.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6             
+   7             Traffic light control program 
+   8          
+   9             Duplex version 
+  10             - has information about bulb status on other node.
+  11          
+  12          
+  13             COPYRIGHT
+  14             ---------
+  15          
+  16             This code is from the book:
+  17          
+  18             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  19             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  20          
+  21             This code is copyright (c) 2001 by Michael J. Pont.
+  22           
+  23             See book for copyright details and other information.
+  24          
+  25          -*------------------------------------------------------------------*/
+  26          
+  27          #include "Main.h"
+  28          #include "TLight_B.h"
+  29          #include "Port.h"
+  30          
+  31          // ------ Private constants ----------------------------------------
+  32          
+  33          // Easy to change logic here
+  34          #define ON  0
+  35          #define OFF 1
+  36          
+  37          // Times in each of the (four) possible light states
+  38          // (Times are in seconds - must call the update task once per second)
+  39          //
+  40          #define RED_DURATION  (10)
+  41          #define RED_AND_AMBER_DURATION  (10)
+  42          
+  43          // NOTE: 
+  44          // GREEN_DURATION must equal RED_DURATION
+  45          // AMBER_DURATION must equal RED_AND_AMBER_DURATION
+  46          #define GREEN_DURATION RED_DURATION 
+  47          #define AMBER_DURATION RED_AND_AMBER_DURATION
+  48          
+  49          // Must specify whether this is a MASTER or a SLAVE unit
+  50          #define MASTER_SLAVE MASTER
+  51          
+  52          // ------ Public variable declarations -----------------------------
+  53          
+  54          extern tByte Tick_message_data_G;  
+  55          extern tByte Ack_message_data_G;
+C51 COMPILER V6.10  TLIGHT_B                                                               04/19/2001 13:56:37 PAGE 2   
+
+  56          
+  57          // ------ Private variables ----------------------------------------
+  58          
+  59          // The state of the system
+  60          static eLight_State Light_state_G;
+  61          
+  62          // ------ Private function prototypes ------------------------------
+  63          
+  64          bit TRAFFIC_LIGHTS_Check_for_Hardware_Faults(void) reentrant;
+  65          bit TRAFFIC_LIGHTS_Check_Local_Bulb(void);
+  66          
+  67          /*------------------------------------------------------------------*-
+  68          
+  69            TRAFFIC_LIGHTS_Init()
+  70          
+  71            Prepare for scheduling.
+  72          
+  73          -*-----------------------------------------------------------------*/
+  74          void TRAFFIC_LIGHTS_Init(void)
+  75             {
+  76   1         // Master and slave must start in opposite states
+  77   1         if (MASTER_SLAVE == MASTER)
+  78   1            {
+  79   2            Light_state_G = RED;
+  80   2            }
+  81   1         else
+  82   1            {
+  83   2            Light_state_G = GREEN;
+  84   2            }
+  85   1      
+  86   1         // Display safe output until scheduler starts
+  87   1         TRAFFIC_LIGHTS_Display_Safe_Output();
+  88   1         }
+  89          
+  90          /*------------------------------------------------------------------*-
+  91          
+  92            TRAFFIC_LIGHTS_Update()
+  93          
+  94            Must be scheduled once per second.
+  95          
+  96          -*------------------------------------------------------------------*/
+  97          void TRAFFIC_LIGHTS_Update(void)
+  98             {
+  99   1         static tWord Time_in_state;
+ 100   1      
+ 101   1         // Check for blown bulbs on master or slave
+ 102   1         TRAFFIC_LIGHTS_Check_for_Hardware_Faults();
+ 103   1      
+ 104   1         // This is the main update code
+ 105   1         switch (Light_state_G)
+ 106   1            {
+ 107   2            case RED: 
+ 108   2               {
+ 109   3               Red_light = ON;
+ 110   3               Amber_light = OFF;
+ 111   3               Green_light = OFF;
+ 112   3      
+ 113   3               if (++Time_in_state == RED_DURATION)
+ 114   3                  {
+ 115   4                  Light_state_G = RED_AMBER;
+ 116   4                  Time_in_state = 0;
+ 117   4                  }
+C51 COMPILER V6.10  TLIGHT_B                                                               04/19/2001 13:56:37 PAGE 3   
+
+ 118   3      
+ 119   3               break;
+ 120   3               }
+ 121   2      
+ 122   2            case RED_AMBER: 
+ 123   2               {
+ 124   3               Red_light = ON;
+ 125   3               Amber_light = ON;
+ 126   3               Green_light = OFF;
+ 127   3      
+ 128   3               if (++Time_in_state == RED_AND_AMBER_DURATION)
+ 129   3                  {
+ 130   4                  Light_state_G = GREEN;
+ 131   4                  Time_in_state = 0;
+ 132   4                  }
+ 133   3      
+ 134   3               break;
+ 135   3               }
+ 136   2      
+ 137   2            case GREEN: 
+ 138   2               {
+ 139   3               Red_light = OFF;
+ 140   3               Amber_light = OFF;
+ 141   3               Green_light = ON;
+ 142   3      
+ 143   3               if (++Time_in_state == GREEN_DURATION)
+ 144   3                  {
+ 145   4                  Light_state_G = AMBER;
+ 146   4                  Time_in_state = 0;
+ 147   4                  }
+ 148   3      
+ 149   3               break;
+ 150   3               }
+ 151   2      
+ 152   2            case AMBER: 
+ 153   2               {
+ 154   3               Red_light = OFF;
+ 155   3               Amber_light = ON;
+ 156   3               Green_light = OFF;
+ 157   3      
+ 158   3               if (++Time_in_state == AMBER_DURATION)
+ 159   3                  {
+ 160   4                  Light_state_G = RED;
+ 161   4                  Time_in_state = 0;
+ 162   4                  }
+ 163   3      
+ 164   3               break;
+ 165   3               }
+ 166   2      
+ 167   2            case BULB_BLOWN: 
+ 168   2               {
+ 169   3               // Blown bulb detected
+ 170   3               // Switch all bulbs off
+ 171   3               // (Drivers won't be happy, but it will be clear
+ 172   3               //  that something is wrong)
+ 173   3               Red_light = OFF;
+ 174   3               Amber_light = OFF;
+ 175   3               Green_light = OFF;
+ 176   3      
+ 177   3               // We remain in this state until state
+ 178   3               // is changed manually, or system is reset
+ 179   3               break;
+C51 COMPILER V6.10  TLIGHT_B                                                               04/19/2001 13:56:37 PAGE 4   
+
+ 180   3               }
+ 181   2            }
+ 182   1         }
+ 183          
+ 184          /*------------------------------------------------------------------*-
+ 185          
+ 186            TRAFFIC_LIGHTS_Check_for_Hardware_Faults()
+ 187          
+ 188            Tests for and reports errors.
+ 189          
+ 190          -*------------------------------------------------------------------*/
+ 191          bit TRAFFIC_LIGHTS_Check_for_Hardware_Faults(void) reentrant
+ 192             {
+ 193   1         tByte Return = RETURN_NORMAL;
+ 194   1      
+ 195   1         // Check the status of the other node
+ 196   1         if (MASTER_SLAVE == MASTER) 
+ 197   1            {
+ 198   2            // This is a master unit
+ 199   2            // - check the status of the slave unit
+ 200   2            if (Ack_message_data_G == RETURN_ERROR)
+ 201   2               {
+ 202   3               // A bulb has blown on the SLAVE unit
+ 203   3               Light_state_G = BULB_BLOWN;
+ 204   3               Return = RETURN_ERROR;
+ 205   3               }
+ 206   2            }
+ 207   1         else
+ 208   1            {
+ 209   2            // This is a slave unit
+ 210   2            // - check the status of the master unit
+ 211   2            if (Tick_message_data_G == RETURN_ERROR)
+ 212   2               {
+ 213   3               // A bulb has blown on the MASTER unit
+ 214   3               Light_state_G = BULB_BLOWN;
+ 215   3               Return = RETURN_ERROR;
+ 216   3               }
+ 217   2            }
+ 218   1      
+ 219   1         // We check the local bulb status every time
+ 220   1         if (TRAFFIC_LIGHTS_Check_Local_Bulb() == RETURN_ERROR)
+ 221   1            {
+ 222   2            Light_state_G = BULB_BLOWN;
+ 223   2      
+ 224   2            // Must report this to the other node!
+ 225   2            if (MASTER_SLAVE == MASTER)
+ 226   2               {
+ 227   3               Tick_message_data_G = RETURN_ERROR; 
+ 228   3               }
+ 229   2            else
+ 230   2               {
+ 231   3               Ack_message_data_G = RETURN_ERROR; 
+ 232   3               }
+ 233   2      
+ 234   2            Return = RETURN_ERROR;
+ 235   2            }
+ 236   1      
+ 237   1         return (bit) Return;
+ 238   1         }
+ 239          
+ 240          /*------------------------------------------------------------------*-
+ 241          
+C51 COMPILER V6.10  TLIGHT_B                                                               04/19/2001 13:56:37 PAGE 5   
+
+ 242            TRAFFIC_LIGHTS_Check_Local_Bulb()
+ 243          
+ 244            Check the status of the local bulbs (DUMMY FUNCTION HERE)
+ 245          
+ 246          -*------------------------------------------------------------------*/
+ 247          bit TRAFFIC_LIGHTS_Check_Local_Bulb(void)
+ 248              {
+ 249   1          // This dummy function confirms the bulbs are OK
+ 250   1          //
+ 251   1          // - See Chapter 32 for complete version of this function.
+ 252   1          return RETURN_NORMAL;
+ 253   1          }
+ 254          
+ 255          /*------------------------------------------------------------------*-
+ 256          
+ 257            TRAFFIC_LIGHTS_Display_Safe_Output()
+ 258          
+ 259            Used in the event of system failure, etc.
+ 260          
+ 261          -*------------------------------------------------------------------*/
+ 262          void TRAFFIC_LIGHTS_Display_Safe_Output(void)
+ 263             {
+ 264   1         if (TRAFFIC_LIGHTS_Check_for_Hardware_Faults() == RETURN_NORMAL)
+ 265   1            {
+ 266   2            // Bulbs are OK on both nodes
+ 267   2            // - best thing to do is to display STOP
+ 268   2            Red_light = ON;
+ 269   2            Amber_light = OFF;
+ 270   2            Green_light = OFF;
+ 271   2            }
+ 272   1         else
+ 273   1            {
+ 274   2            // At least one bulb has blown 
+ 275   2            // - best thing we can do is extinguish all bulbs
+ 276   2            Red_light = OFF;
+ 277   2            Amber_light = OFF;
+ 278   2            Green_light = OFF;
+ 279   2            } 
+ 280   1         }
+ 281          
+ 282          /*------------------------------------------------------------------*-
+ 283            ---- END OF FILE -------------------------------------------------
+ 284          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    211    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,45 @@
+crypt_util.o crypt_util.o: crypt_util.c ../include/libc-symbols.h \
+  ../config.h h:/mingw/3.3.1/include/string.h \
+  h:/mingw/3.3.1/include/_mingw.h h:/mingw/3.3.1/include/stddef.h \
+  h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stddef.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stddefx.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stringx.h \
+  h:/mingw/3.3.1/mingw32/include/features.h \
+  h:/mingw/3.3.1/mingw32/include/sys/cdefs.h ../include/gnu/stubs.h \
+  ufc-crypt.h h:/mingw/3.3.1/include/stdint.h \
+  h:/mingw/3.3.1/mingw32/include/winx/stdintx.h crypt.h crypt-private.h \
+  ../include/bits/libc-lock.h
+
+../include/libc-symbols.h:
+
+../config.h:
+
+h:/mingw/3.3.1/include/string.h:
+
+h:/mingw/3.3.1/include/_mingw.h:
+
+h:/mingw/3.3.1/include/stddef.h:
+
+h:/mingw/3.3.1/lib/gcc-lib/mingw32/3.3.1/include/stddef.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stddefx.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stringx.h:
+
+h:/mingw/3.3.1/mingw32/include/features.h:
+
+h:/mingw/3.3.1/mingw32/include/sys/cdefs.h:
+
+../include/gnu/stubs.h:
+
+ufc-crypt.h:
+
+h:/mingw/3.3.1/include/stdint.h:
+
+h:/mingw/3.3.1/mingw32/include/winx/stdintx.h:
+
+crypt.h:
+
+crypt-private.h:
+
+../include/bits/libc-lock.h:

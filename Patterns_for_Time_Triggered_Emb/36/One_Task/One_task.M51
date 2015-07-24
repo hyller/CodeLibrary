@@ -1,0 +1,233 @@
+BL51 BANKED LINKER/LOCATER V4.03                                                        04/19/2001  12:10:21  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V4.03, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE MAIN.obj TO One_task RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  MAIN.obj (MAIN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  One_task (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         ?DT?MAIN
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0017H     UNIT         ?PR?TIMER_2_INIT?MAIN
+            CODE    001AH     000EH     UNIT         ?PR?MAIN?MAIN
+                    0028H     0003H                  *** GAP ***
+            CODE    002BH     0003H     ABSOLUTE     
+            CODE    002EH     0033H     UNIT         ?PR?LED_FLASH_UPDATE?MAIN
+            CODE    0061H     000CH     UNIT         ?C_C51STARTUP
+            CODE    006DH     0004H     UNIT         ?PR?LED_FLASH_INIT?MAIN
+            CODE    0071H     0004H     UNIT         ?PR?GO_TO_SLEEP?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   One_task (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?TIMER_2_INIT?MAIN
+  +--> ?PR?LED_FLASH_INIT?MAIN
+  +--> ?PR?GO_TO_SLEEP?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  One_task (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/19/2001  12:10:21  PAGE 2
+
+
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:0090H.5       PUBLIC        LED_pin
+  D:0090H         PUBLIC        P1
+  D:000AH         SYMBOL        LED_state_G
+  B:00D0H.6       PUBLIC        AC
+  B:00B0H.4       PUBLIC        T0
+  B:00B0H.5       PUBLIC        T1
+  B:00A8H.7       PUBLIC        EA
+  B:0090H.0       PUBLIC        T2
+  C:0003H         PUBLIC        Timer_2_Init
+  B:0080H.0       PUBLIC        P0_0
+  B:0090H.0       PUBLIC        P1_0
+  B:0080H.1       PUBLIC        P0_1
+  B:00D0H.1       PUBLIC        FL
+  B:00A0H.0       PUBLIC        P2_0
+  B:0090H.1       PUBLIC        P1_1
+  B:0080H.2       PUBLIC        P0_2
+  B:00B0H.0       PUBLIC        P3_0
+  B:00A0H.1       PUBLIC        P2_1
+  B:0090H.2       PUBLIC        P1_2
+  B:0080H.3       PUBLIC        P0_3
+  B:00B0H.1       PUBLIC        P3_1
+  B:00A0H.2       PUBLIC        P2_2
+  B:0090H.3       PUBLIC        P1_3
+  B:0080H.4       PUBLIC        P0_4
+  B:00B0H.2       PUBLIC        P3_2
+  B:00A0H.3       PUBLIC        P2_3
+  B:0090H.4       PUBLIC        P1_4
+  B:0080H.5       PUBLIC        P0_5
+  B:00C8H.6       PUBLIC        EXF2
+  B:00B0H.7       PUBLIC        RD
+  B:00B0H.3       PUBLIC        P3_3
+  B:00A0H.4       PUBLIC        P2_4
+  B:0090H.5       PUBLIC        P1_5
+  B:0080H.6       PUBLIC        P0_6
+  B:00B0H.4       PUBLIC        P3_4
+  B:00A0H.5       PUBLIC        P2_5
+  B:0090H.6       PUBLIC        P1_6
+  B:0080H.7       PUBLIC        P0_7
+  B:00B0H.5       PUBLIC        P3_5
+  B:00A8H.4       PUBLIC        ES
+  B:00A0H.6       PUBLIC        P2_6
+  B:0090H.7       PUBLIC        P1_7
+  B:00B0H.6       PUBLIC        P3_6
+  B:00A0H.7       PUBLIC        P2_7
+  B:00B0H.7       PUBLIC        P3_7
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:00B0H.2       PUBLIC        INT0
+  B:00B0H.3       PUBLIC        INT1
+  B:0098H.1       PUBLIC        TI
+  C:006DH         PUBLIC        LED_Flash_Init
+  D:00CBH         PUBLIC        RCAP2H
+  B:00B8H.4       PUBLIC        PS
+  B:0090H.1       PUBLIC        T2EX
+  B:00D0H.2       PUBLIC        OV
+  D:00CAH         PUBLIC        RCAP2L
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/19/2001  12:10:21  PAGE 3
+
+
+  C:001AH         PUBLIC        main
+  B:00C8H.1       PUBLIC        C_T2
+  B:00B0H.6       PUBLIC        WR
+  B:00C8H.5       PUBLIC        RCLK
+  B:00C8H.4       PUBLIC        TCLK
+  D:0087H         PUBLIC        PCON
+  C:0071H         PUBLIC        Go_To_Sleep
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  B:00C8H.0       PUBLIC        CP_RL2
+  B:00A8H.1       PUBLIC        ET0
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.5       PUBLIC        TF0
+  B:00A8H.5       PUBLIC        ET2
+  B:0088H.7       PUBLIC        TF1
+  B:00C8H.7       PUBLIC        TF2
+  B:0098H.2       PUBLIC        RB8
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.2       PUBLIC        EX1
+  B:0098H.3       PUBLIC        TB8
+  B:0088H.2       PUBLIC        IT1
+  D:00CDH         PUBLIC        TH2
+  B:00D0H.0       PUBLIC        P
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  B:0098H.5       PUBLIC        SM2
+  D:00CCH         PUBLIC        TL2
+  B:00B8H.1       PUBLIC        PT0
+  B:00D0H.3       PUBLIC        RS0
+  B:00B8H.3       PUBLIC        PT1
+  B:00D0H.4       PUBLIC        RS1
+  B:00B8H.5       PUBLIC        PT2
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  B:00C8H.2       PUBLIC        TR2
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  B:00C8H.3       PUBLIC        EXEN2
+  B:0098H.4       PUBLIC        REN
+  D:00C9H         PUBLIC        T2MOD
+  D:00C8H         PUBLIC        T2CON
+  C:002EH         PUBLIC        LED_Flash_Update
+  B:00B0H.0       PUBLIC        RXD
+  B:00B0H.1       PUBLIC        TXD
+  B:00D0H.5       PUBLIC        F0
+  -------         PROC          MAIN
+  C:001AH         LINE#         42
+  C:001AH         LINE#         43
+  C:001AH         LINE#         44
+  C:001DH         LINE#         46
+  C:0020H         LINE#         48
+  C:0022H         LINE#         50
+  C:0022H         LINE#         51
+  C:0022H         LINE#         52
+  C:0025H         LINE#         53
+  -------         ENDPROC       MAIN
+BL51 BANKED LINKER/LOCATER V4.03                                                      04/19/2001  12:10:21  PAGE 4
+
+
+  -------         PROC          TIMER_2_INIT
+  C:0003H         LINE#         58
+  C:0003H         LINE#         59
+  C:0003H         LINE#         70
+  C:0006H         LINE#         71
+  C:0009H         LINE#         73
+  C:000CH         LINE#         74
+  C:000FH         LINE#         75
+  C:0012H         LINE#         76
+  C:0015H         LINE#         80
+  C:0017H         LINE#         83
+  C:0019H         LINE#         84
+  -------         ENDPROC       TIMER_2_INIT
+  -------         PROC          LED_FLASH_INIT
+  C:006DH         LINE#         93
+  C:006DH         LINE#         94
+  C:006DH         LINE#         95
+  C:0070H         LINE#         96
+  -------         ENDPROC       LED_FLASH_INIT
+  -------         PROC          LED_FLASH_UPDATE
+  -------         DO            LED_FLASH_UPDATE
+  D:0008H         SYMBOL        Call_count
+  -------         ENDDO         Call_count
+  C:002EH         LINE#         109
+  C:0032H         LINE#         115
+  C:0034H         LINE#         117
+  C:0045H         LINE#         118
+  C:0045H         LINE#         120
+  C:0045H         LINE#         122
+  C:004BH         LINE#         126
+  C:0050H         LINE#         127
+  C:0050H         LINE#         128
+  C:0053H         LINE#         129
+  C:0055H         LINE#         130
+  C:0057H         LINE#         132
+  C:0057H         LINE#         133
+  C:005AH         LINE#         134
+  C:005CH         LINE#         135
+  C:005CH         LINE#         136
+  -------         ENDPROC       LED_FLASH_UPDATE
+  -------         PROC          GO_TO_SLEEP
+  C:0071H         LINE#         160
+  C:0071H         LINE#         161
+  C:0071H         LINE#         162
+  C:0074H         LINE#         168
+  -------         ENDPROC       GO_TO_SLEEP
+  -------         ENDMOD        MAIN
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

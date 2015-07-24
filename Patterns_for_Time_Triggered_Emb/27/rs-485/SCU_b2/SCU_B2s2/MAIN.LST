@@ -1,0 +1,102 @@
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 14:00:16 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\MAIN.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\MAIN.C OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Main.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Test program for shared-clock (UART) scheduler for 89C52, etc.
+   8          
+   9             *** RS-485 SLAVE CODE ***
+  10          
+  11             --- HARDWARE ASSUMED ---
+  12             --- 89C52 (or any 8051/52 device with T2)
+  13             --- Max489 RS-485 tranceiver [see text for conns] 
+  14             --- DS1232 (or similar) external watchdog [see text for conns]
+  15          
+  16             *** Both Master and Slave share the same tick rate (5 ms) ***
+  17             *** - See Master code for details ***
+  18          
+  19             Required linker options (see Chapter 14 for details):
+  20          
+  21             OVERLAY (main ~ (LED_Flash_Update,TRAFFIC_LIGHTS_Update), 
+  22             SCH_Dispatch_Tasks ! (LED_Flash_Update,TRAFFIC_LIGHTS_Update))
+  23           
+  24          
+  25             COPYRIGHT
+  26             ---------
+  27          
+  28             This code is from the book:
+  29          
+  30             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  31             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  32          
+  33             This code is copyright (c) 2001 by Michael J. Pont.
+  34           
+  35             See book for copyright details and other information.
+  36          
+  37          -*------------------------------------------------------------------*/
+  38          
+  39          #include "Main.h"
+  40          
+  41          #include "LED_Flas.h"
+  42          #include "SCU_Bs.H"
+  43          #include "TLight_B.h"
+  44          
+  45          /* ............................................................... */
+  46          /* ............................................................... */
+  47          
+  48          void main(void)
+  49             {
+  50   1         // Set up the scheduler 
+  51   1         SCU_B_SLAVE_Init_T1(9600);
+  52   1      
+  53   1         // Set up the flash LED task (demo purposes)
+  54   1         LED_Flash_Init();
+  55   1      
+C51 COMPILER V6.10  MAIN                                                                   04/19/2001 14:00:16 PAGE 2   
+
+  56   1         // Prepare for the traffic light task
+  57   1         TRAFFIC_LIGHTS_Init();
+  58   1      
+  59   1         // Add a 'flash LED' task (on for 1000 ms, off for 1000 ms)
+  60   1         SCH_Add_Task(LED_Flash_Update, 0, 200);
+  61   1      
+  62   1         // Add a 'traffic lights' task
+  63   1         SCH_Add_Task(TRAFFIC_LIGHTS_Update, 10, 200);
+  64   1      
+  65   1         // Start the scheduler
+  66   1         SCU_B_SLAVE_Start();
+  67   1      
+  68   1         while(1)
+  69   1            {
+  70   2            SCH_Dispatch_Tasks();
+  71   2            }
+  72   1         }
+  73          
+  74          /*------------------------------------------------------------------*-
+  75            ---- END OF FILE -------------------------------------------------
+  76          -*------------------------------------------------------------------*/
+  77          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     51    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,342 @@
+C51 COMPILER V6.10  PC_IO                                                                  04/10/2001 11:50:58 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE PC_IO
+OBJECT MODULE PLACED IN .\PC_IO.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\PC_IO.c OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             PC_IO.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Core files for simple PC link library for 8051 family
+   8          
+   9             Uses the USART, and Pins 3.1 (Tx) and 3.0 (Rx) 
+  10          
+  11             See text for details (Chapter 18).
+  12          
+  13          
+  14             COPYRIGHT
+  15             ---------
+  16          
+  17             This code is from the book:
+  18          
+  19             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  20             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  21          
+  22             This code is copyright (c) 2001 by Michael J. Pont.
+  23           
+  24             See book for copyright details and other information.
+  25          
+  26          -*------------------------------------------------------------------*/
+  27          
+  28          #include "Main.h"
+  29          #include "PC_IO.h"
+  30          
+  31          // ------ Public variable definitions ------------------------------
+  32          
+  33          tByte In_read_index_G;     // Data in buffer that has been read 
+  34          tByte In_waiting_index_G;  // Data in buffer not yet read
+  35          
+  36          tByte Out_written_index_G;  // Data in buffer that has been written 
+  37          tByte Out_waiting_index_G;  // Data in buffer not yet written
+  38          
+  39          // ------ Public variable declarations -----------------------------
+  40          
+  41          // The error code variable
+  42          //
+  43          // See Main.H for port on which error codes are displayed
+  44          // and for details of error codes
+  45          extern tByte Error_code_G;
+  46          
+  47          // ------ Private function prototypes ------------------------------
+  48          
+  49          void PC_LINK_IO_Send_Char(const char);
+  50          
+  51          // ------ Private constants ----------------------------------------
+  52          
+  53          // The receive buffer length
+  54          #define RECV_BUFFER_LENGTH 8
+  55          
+C51 COMPILER V6.10  PC_IO                                                                  04/10/2001 11:50:58 PAGE 2   
+
+  56          // The transmit buffer length
+  57          #define TRAN_BUFFER_LENGTH 50
+  58          
+  59          // Value returned by PC_LINK_IO_Get_Char if no character is 
+  60          // available in buffer
+  61          //#define NO_CHAR 127 
+  62          
+  63          #define XON  0x11
+  64          #define XOFF 0x13
+  65          
+  66          // ------ Private variables ----------------------------------------
+  67          
+  68          static tByte Recv_buffer[RECV_BUFFER_LENGTH];
+  69          static tByte Tran_buffer[TRAN_BUFFER_LENGTH];
+  70          
+  71          
+  72          /*------------------------------------------------------------------*-
+  73          
+  74            PC_LINK_IO_Update()
+  75          
+  76            Checks for character in the UART (hardware) receive buffer
+  77            Sends next character from the software transmit buffer
+  78            
+  79          -*------------------------------------------------------------------*/
+  80          void PC_LINK_IO_Update(void)
+  81             {
+  82   1         // Deal with transmit bytes here
+  83   1      
+  84   1         // Is there any data ready to send?
+  85   1         if (Out_written_index_G < Out_waiting_index_G)
+  86   1            {
+  87   2            PC_LINK_IO_Send_Char(Tran_buffer[Out_written_index_G]);     
+  88   2      
+  89   2            Out_written_index_G++;
+  90   2            }
+  91   1         else
+  92   1            {
+  93   2            // No data to send - just reset the buffer index
+  94   2            Out_waiting_index_G = 0;
+  95   2            Out_written_index_G = 0;
+  96   2            }
+  97   1      
+  98   1         // Only dealing with received bytes here
+  99   1         // -> Just check the RI flag
+ 100   1         if (RI == 1)
+ 101   1            {
+ 102   2            // Flag only set when a valid stop bit is received, 
+ 103   2            // -> data ready to be read into the received buffer
+ 104   2      
+ 105   2            // Want to read into index 0, if old data has been read
+ 106   2            // (simple ~circular buffer)
+ 107   2            if (In_waiting_index_G == In_read_index_G)
+ 108   2               { 
+ 109   3               In_waiting_index_G = 0;
+ 110   3               In_read_index_G = 0;
+ 111   3               } 
+ 112   2            
+ 113   2            // Read the data from USART buffer   
+ 114   2            Recv_buffer[In_waiting_index_G] = SBUF;
+ 115   2      
+ 116   2            if (In_waiting_index_G < RECV_BUFFER_LENGTH)
+ 117   2               {
+C51 COMPILER V6.10  PC_IO                                                                  04/10/2001 11:50:58 PAGE 3   
+
+ 118   3               // Increment without overflowing buffer
+ 119   3               In_waiting_index_G++;
+ 120   3               }
+ 121   2          
+ 122   2            RI = 0;  // Clear RT flag
+ 123   2            }
+ 124   1         }
+ 125          
+ 126          /*------------------------------------------------------------------*-
+ 127          
+ 128            PC_LINK_IO_Write_Char_To_Buffer()
+ 129          
+ 130            Stores a character in the 'write' buffer, ready for 
+ 131            later transmission
+ 132           
+ 133          -*------------------------------------------------------------------*/
+ 134          void PC_LINK_IO_Write_Char_To_Buffer(const char CHARACTER)
+ 135             {
+ 136   1         // Write to the buffer *only* if there is space
+ 137   1         if (Out_waiting_index_G < TRAN_BUFFER_LENGTH)
+ 138   1            {
+ 139   2            Tran_buffer[Out_waiting_index_G] = CHARACTER;
+ 140   2            Out_waiting_index_G++;     
+ 141   2            }
+ 142   1         else
+ 143   1            {
+ 144   2            // Write buffer is full
+ 145   2            // Increase the size of TRAN_BUFFER_LENGTH
+ 146   2            // or increase the rate at which UART 'update' function is called 
+ 147   2            // or reduce the amount of data sent to PC
+ 148   2            Error_code_G = ERROR_USART_WRITE_CHAR;
+ 149   2            }
+ 150   1         }
+ 151          
+ 152          
+ 153          /*------------------------------------------------------------------*-
+ 154          
+ 155            PC_LINK_IO_Write_String_To_Buffer()
+ 156          
+ 157            Copies a (null terminated) string to the character buffer.  
+ 158            (The contents of the buffer are then passed over the serial link)
+ 159          
+ 160            STR_PTR - Pointer to the NULL-TERMINATED string.  
+ 161          
+ 162          -*------------------------------------------------------------------*/
+ 163          void PC_LINK_IO_Write_String_To_Buffer(const char* const STR_PTR)
+ 164             {
+ 165   1         tByte i = 0;
+ 166   1      
+ 167   1         while (STR_PTR[i] != '\0')
+ 168   1            {
+ 169   2            PC_LINK_IO_Write_Char_To_Buffer(STR_PTR[i]);
+ 170   2            i++;
+ 171   2            }
+ 172   1         }
+ 173          
+ 174          /*------------------------------------------------------------------*-
+ 175          
+ 176            PC_LINK_IO_Get_Char_From_Buffer()
+ 177          
+ 178            Retrieves a character from the (software) buffer, if available
+ 179          
+C51 COMPILER V6.10  PC_IO                                                                  04/10/2001 11:50:58 PAGE 4   
+
+ 180            The character from the buffer is returned, or - if no 
+ 181            data are available - PC_LINK_IO_NO_CHAR is returned.
+ 182          
+ 183          -*------------------------------------------------------------------*/
+ 184          char PC_LINK_IO_Get_Char_From_Buffer(void)
+ 185             {
+ 186   1         char Ch = PC_LINK_IO_NO_CHAR;
+ 187   1      
+ 188   1         // If there is new data in the buffer
+ 189   1         if (In_read_index_G < In_waiting_index_G)
+ 190   1            {
+ 191   2            Ch = Recv_buffer[In_read_index_G];
+ 192   2      
+ 193   2            if (In_read_index_G < RECV_BUFFER_LENGTH)
+ 194   2               {
+ 195   3               In_read_index_G++;
+ 196   3               }
+ 197   2            }
+ 198   1         
+ 199   1         return Ch;
+ 200   1         }
+ 201          
+ 202          /*------------------------------------------------------------------*-
+ 203          
+ 204            PC_LINK_IO_Send_Char()
+ 205          
+ 206            Based on Keil sample code, with added (loop) timeouts.
+ 207            Implements Xon / Off control.
+ 208          
+ 209            Uses on-chip UART hardware.
+ 210          
+ 211          -*------------------------------------------------------------------*/
+ 212          void PC_LINK_IO_Send_Char(const char CHARACTER)
+ 213             {
+ 214   1         tLong Timeout1 = 0;
+ 215   1         tLong Timeout2 = 0;
+ 216   1      
+ 217   1         if (CHARACTER == '\n')  
+ 218   1            {
+ 219   2            if (RI)  
+ 220   2               {
+ 221   3               if (SBUF == XOFF)  
+ 222   3                  {
+ 223   4                  Timeout2 = 0;
+ 224   4                  do {
+ 225   5                     RI = 0;
+ 226   5                      
+ 227   5                     // Wait for uart (with simple timeout)
+ 228   5                     Timeout1 = 0;
+ 229   5                     while ((++Timeout1) && (RI == 0));  
+ 230   5      
+ 231   5                     if (Timeout1 == 0)
+ 232   5                        {
+ 233   6                        // USART did not respond - error
+ 234   6                        Error_code_G = ERROR_USART_TI;
+ 235   6                        return;
+ 236   6                        } 
+ 237   5      
+ 238   5                     } while ((++Timeout2) && (SBUF != XON));
+ 239   4      
+ 240   4                  if (Timeout2 == 0)
+ 241   4                     {
+C51 COMPILER V6.10  PC_IO                                                                  04/10/2001 11:50:58 PAGE 5   
+
+ 242   5                     // uart did not respond - error
+ 243   5                     Error_code_G = ERROR_USART_TI;
+ 244   5                     return;
+ 245   5                     } 
+ 246   4      
+ 247   4                  RI = 0; 
+ 248   4                  }
+ 249   3               }
+ 250   2      
+ 251   2            Timeout1 = 0;
+ 252   2            while ((++Timeout1) && (TI == 0));  
+ 253   2      
+ 254   2            if (Timeout1 == 0)
+ 255   2               {
+ 256   3               // uart did not respond - error
+ 257   3               Error_code_G = ERROR_USART_TI;
+ 258   3               return;
+ 259   3               } 
+ 260   2      
+ 261   2            TI = 0;
+ 262   2            SBUF = 0x0d;  // output CR  
+ 263   2            }
+ 264   1        
+ 265   1         if (RI)  
+ 266   1            {
+ 267   2            if (SBUF == XOFF)  
+ 268   2               {
+ 269   3               Timeout2 = 0;
+ 270   3      
+ 271   3               do {
+ 272   4                  RI = 0;
+ 273   4      
+ 274   4                  // Wait for USART (with simple timeout)
+ 275   4                  Timeout1 = 0;
+ 276   4                  while ((++Timeout1) && (RI == 0));  
+ 277   4      
+ 278   4                  if (Timeout1 == 0)
+ 279   4                     {
+ 280   5                     // USART did not respond - error
+ 281   5                     Error_code_G = ERROR_USART_TI;
+ 282   5                     return;
+ 283   5                     } 
+ 284   4      
+ 285   4                  } while ((++Timeout2) && (SBUF != XON));
+ 286   3            
+ 287   3               RI = 0; 
+ 288   3               }
+ 289   2           }
+ 290   1      
+ 291   1         Timeout1 = 0;
+ 292   1         while ((++Timeout1) && (TI == 0));  
+ 293   1      
+ 294   1         if (Timeout1 == 0)
+ 295   1            {
+ 296   2            // USART did not respond - error
+ 297   2            Error_code_G = ERROR_USART_TI;
+ 298   2            return;
+ 299   2            } 
+ 300   1      
+ 301   1         TI = 0;
+ 302   1      
+ 303   1         SBUF = CHARACTER;
+C51 COMPILER V6.10  PC_IO                                                                  04/10/2001 11:50:58 PAGE 6   
+
+ 304   1         }
+ 305          
+ 306          
+ 307          /*------------------------------------------------------------------*-
+ 308            ---- END OF FILE -------------------------------------------------
+ 309          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    457    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     62      12
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

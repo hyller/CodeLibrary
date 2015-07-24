@@ -1,0 +1,5 @@
+This library is an emulation of a part of the GNU C library for
+MS-Windows. See http://www.gnu.org/software/libc/libc.html
+for the authors of Glibc.
+The emulation code, consisting of intefaces to the Win32 API has
+been written by Kees Zeelenberg <kzlg@users.sourceforge.net>

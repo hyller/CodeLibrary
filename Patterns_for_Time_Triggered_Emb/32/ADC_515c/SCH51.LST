@@ -1,0 +1,342 @@
+C51 COMPILER V6.10  SCH51                                                                  04/19/2001 10:38:52 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE SCH51
+OBJECT MODULE PLACED IN .\SCH51.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\SCH51.C OPTIMIZE(6,SPEED) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             SCH51.C (v1.00) 
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             *** THESE ARE THE CORE SCHEDULER FUNCTIONS ***
+   8             --- These functions may be used with all 8051 devices ---
+   9          
+  10             *** SCH_MAX_TASKS *must* be set by the user ***
+  11             --- see "Sch51.H" ---
+  12          
+  13             *** Includes (optional) power-saving mode ***
+  14             --- You must ensure that the power-down mode is adapted ---
+  15             --- to match your chosen device (or disabled altogether) ---
+  16          
+  17          
+  18             COPYRIGHT
+  19             ---------
+  20          
+  21             This code is from the book:
+  22          
+  23             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  24             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  25          
+  26             This code is copyright (c) 2001 by Michael J. Pont.
+  27           
+  28             See book for copyright details and other information.
+  29          
+  30          -*------------------------------------------------------------------*/
+  31          
+  32          #include "Main.h"
+  33          #include "Port.h"
+  34          
+  35          #include "Sch51.h"
+  36          
+  37          // ------ Public variable definitions ------------------------------
+  38          
+  39          // The array of tasks
+  40          sTask SCH_tasks_G[SCH_MAX_TASKS];
+  41          
+  42          // Used to display the error code
+  43          // See Main.H for details of error codes
+  44          // See Port.H for details of the error port
+  45          tByte Error_code_G = 0;
+  46          
+  47          // ------ Private function prototypes ------------------------------
+  48          
+  49          static void SCH_Go_To_Sleep(void);
+  50          
+  51          // ------ Private variables ----------------------------------------
+  52          
+  53          // Keeps track of time since last error was recorded (see below)
+  54          static tWord Error_tick_count_G;
+  55          
+C51 COMPILER V6.10  SCH51                                                                  04/19/2001 10:38:52 PAGE 2   
+
+  56          // The code of the last error (reset after ~1 minute)
+  57          static tByte Last_error_code_G;
+  58          
+  59          
+  60          /*------------------------------------------------------------------*-
+  61          
+  62            SCH_Dispatch_Tasks()
+  63          
+  64            This is the 'dispatcher' function.  When a task (function)
+  65            is due to run, SCH_Dispatch_Tasks() will run it.
+  66            This function must be called (repeatedly) from the main loop.
+  67          
+  68          -*------------------------------------------------------------------*/
+  69          void SCH_Dispatch_Tasks(void) 
+  70             {
+  71   1         tByte Index;
+  72   1      
+  73   1         // Dispatches (runs) the next task (if one is ready)
+  74   1         for (Index = 0; Index < SCH_MAX_TASKS; Index++)
+  75   1            {
+  76   2            if (SCH_tasks_G[Index].RunMe > 0) 
+  77   2               {
+  78   3               (*SCH_tasks_G[Index].pTask)();  // Run the task
+  79   3      
+  80   3               SCH_tasks_G[Index].RunMe -= 1;   // Reset / reduce RunMe flag
+  81   3      
+  82   3               // Periodic tasks will automatically run again
+  83   3               // - if this is a 'one shot' task, remove it from the array
+  84   3               if (SCH_tasks_G[Index].Period == 0)
+  85   3                  {
+  86   4                  SCH_Delete_Task(Index);
+  87   4                  }
+  88   3               }
+  89   2            }
+  90   1      
+  91   1         // Report system status
+  92   1         SCH_Report_Status();  
+  93   1      
+  94   1         // The scheduler enters idle mode at this point 
+  95   1         SCH_Go_To_Sleep();          
+  96   1         }
+  97          
+  98          /*------------------------------------------------------------------*-
+  99          
+ 100            SCH_Add_Task()
+ 101          
+ 102            Causes a task (function) to be executed at regular intervals 
+ 103            or after a user-defined delay
+ 104          
+ 105            Fn_P   - The name of the function which is to be scheduled.
+ 106                     NOTE: All scheduled functions must be 'void, void' -
+ 107                     that is, they must take no parameters, and have 
+ 108                     a void return type. 
+ 109                             
+ 110            DELAY  - The interval (TICKS) before the task is first executed
+ 111          
+ 112            PERIOD - If 'PERIOD' is 0, the function is only called once,
+ 113                     at the time determined by 'DELAY'.  If PERIOD is non-zero,
+ 114                     then the function is called repeatedly at an interval
+ 115                     determined by the value of PERIOD (see below for examples
+ 116                     which should help clarify this).
+ 117          
+C51 COMPILER V6.10  SCH51                                                                  04/19/2001 10:38:52 PAGE 3   
+
+ 118          
+ 119            RETURN VALUE:  
+ 120          
+ 121            Returns the position in the task array at which the task has been 
+ 122            added.  If the return value is SCH_MAX_TASKS then the task could 
+ 123            not be added to the array (there was insufficient space).  If the
+ 124            return value is < SCH_MAX_TASKS, then the task was added 
+ 125            successfully.  
+ 126          
+ 127            Note: this return value may be required, if a task is
+ 128            to be subsequently deleted - see SCH_Delete_Task().
+ 129          
+ 130            EXAMPLES:
+ 131          
+ 132            Task_ID = SCH_Add_Task(Do_X,1000,0);
+ 133            Causes the function Do_X() to be executed once after 1000 sch ticks.            
+ 134          
+ 135            Task_ID = SCH_Add_Task(Do_X,0,1000);
+ 136            Causes the function Do_X() to be executed regularly, every 1000 sch ticks.            
+ 137          
+ 138            Task_ID = SCH_Add_Task(Do_X,300,1000);
+ 139            Causes the function Do_X() to be executed regularly, every 1000 ticks.
+ 140            Task will be first executed at T = 300 ticks, then 1300, 2300, etc.            
+ 141           
+ 142          -*------------------------------------------------------------------*/
+ 143          tByte SCH_Add_Task(void (code * pFunction)(), 
+ 144                             const tWord DELAY, 
+ 145                             const tWord PERIOD)    
+ 146             {
+ 147   1         tByte Index = 0;
+ 148   1         
+ 149   1         // First find a gap in the array (if there is one)
+ 150   1         while ((SCH_tasks_G[Index].pTask != 0) && (Index < SCH_MAX_TASKS))
+ 151   1            {
+ 152   2            Index++;
+ 153   2            } 
+ 154   1         
+ 155   1         // Have we reached the end of the list?   
+ 156   1         if (Index == SCH_MAX_TASKS)
+ 157   1            {
+ 158   2            // Task list is full
+ 159   2            //
+ 160   2            // Set the global error variable
+ 161   2            Error_code_G = ERROR_SCH_TOO_MANY_TASKS;
+ 162   2      
+ 163   2            // Also return an error code
+ 164   2            return SCH_MAX_TASKS;  
+ 165   2            }
+ 166   1            
+ 167   1         // If we're here, there is a space in the task array
+ 168   1         SCH_tasks_G[Index].pTask  = pFunction;
+ 169   1           
+ 170   1         SCH_tasks_G[Index].Delay  = DELAY;
+ 171   1         SCH_tasks_G[Index].Period = PERIOD;
+ 172   1      
+ 173   1         SCH_tasks_G[Index].RunMe  = 0;
+ 174   1      
+ 175   1         return Index; // return position of task (to allow later deletion)
+ 176   1         }
+ 177          
+ 178          /*------------------------------------------------------------------*-
+ 179          
+C51 COMPILER V6.10  SCH51                                                                  04/19/2001 10:38:52 PAGE 4   
+
+ 180            SCH_Delete_Task()
+ 181          
+ 182            Removes a task from the scheduler.  Note that this does
+ 183            *not* delete the associated function from memory: 
+ 184            it simply means that it is no longer called by the scheduler. 
+ 185           
+ 186            TASK_INDEX - The task index.  Provided by SCH_Add_Task(). 
+ 187          
+ 188            RETURN VALUE:  RETURN_ERROR or RETURN_NORMAL
+ 189          
+ 190          -*------------------------------------------------------------------*/
+ 191          bit SCH_Delete_Task(const tByte TASK_INDEX) 
+ 192             {
+ 193   1         bit Return_code;
+ 194   1      
+ 195   1         if (SCH_tasks_G[TASK_INDEX].pTask == 0)
+ 196   1            {
+ 197   2            // No task at this location...
+ 198   2            //
+ 199   2            // Set the global error variable
+ 200   2            Error_code_G = ERROR_SCH_CANNOT_DELETE_TASK;
+ 201   2      
+ 202   2            // ...also return an error code
+ 203   2            Return_code = RETURN_ERROR;
+ 204   2            }
+ 205   1         else
+ 206   1            {
+ 207   2            Return_code = RETURN_NORMAL;
+ 208   2            }      
+ 209   1         
+ 210   1         SCH_tasks_G[TASK_INDEX].pTask   = 0x0000;
+ 211   1         SCH_tasks_G[TASK_INDEX].Delay   = 0;
+ 212   1         SCH_tasks_G[TASK_INDEX].Period  = 0;
+ 213   1      
+ 214   1         SCH_tasks_G[TASK_INDEX].RunMe   = 0;
+ 215   1      
+ 216   1         return Return_code;       // return status
+ 217   1         }
+ 218          
+ 219          
+ 220          /*------------------------------------------------------------------*-
+ 221          
+ 222            SCH_Report_Status()
+ 223          
+ 224            Simple function to display error codes.
+ 225          
+ 226            This version displays code on a port with attached LEDs:
+ 227            adapt, if required, to report errors over serial link, etc.
+ 228          
+ 229            Errors are only displayed for a limited period 
+ 230            (60000 ticks = 1 minute at 1ms tick interval).
+ 231            After this the the error code is reset to 0. 
+ 232          
+ 233            This code may be easily adapted to display the last
+ 234            error 'for ever': this may be appropriate in your
+ 235            application.
+ 236          
+ 237            See Chapter 10 for further information.
+ 238          
+ 239          -*------------------------------------------------------------------*/
+ 240          void SCH_Report_Status(void)
+ 241             {
+C51 COMPILER V6.10  SCH51                                                                  04/19/2001 10:38:52 PAGE 5   
+
+ 242   1      #ifdef SCH_REPORT_ERRORS
+                 // ONLY APPLIES IF WE ARE REPORTING ERRORS
+                 // Check for a new error code
+                 if (Error_code_G != Last_error_code_G)
+                    {
+                    // Negative logic on LEDs assumed
+                    Error_port = 255 - Error_code_G;
+                    
+                    Last_error_code_G = Error_code_G;
+              
+                    if (Error_code_G != 0)
+                       {
+                       Error_tick_count_G = 60000;
+                       }
+                    else
+                       {
+                       Error_tick_count_G = 0;
+                       }
+                    }
+                 else
+                    {
+                    if (Error_tick_count_G != 0)
+                       {
+                       if (--Error_tick_count_G == 0)
+                          {
+                          Error_code_G = 0; // Reset error code
+                          }
+                       }
+                    }
+              #endif
+ 272   1         }
+ 273          
+ 274          
+ 275          /*------------------------------------------------------------------*-
+ 276          
+ 277            SCH_Go_To_Sleep()
+ 278          
+ 279            This scheduler enters 'idle mode' between clock ticks
+ 280            to save power.  The next clock tick will return the processor
+ 281            to the normal operating state.
+ 282          
+ 283            Note: a slight performance improvement is possible if this
+ 284            function is implemented as a macro, or if the code here is simply 
+ 285            pasted into the 'dispatch' function.  
+ 286          
+ 287            However, by making this a function call, it becomes easier 
+ 288            - during development - to assess the performance of the 
+ 289            scheduler, using the 'performance analyser' in the Keil 
+ 290            hardware simulator. See Chapter 14 for examples for this. 
+ 291          
+ 292            *** May wish to disable this if using a watchdog ***
+ 293          
+ 294            *** ADAPT AS REQUIRED FOR YOUR HARDWARE ***
+ 295          
+ 296          -*------------------------------------------------------------------*/
+ 297          void SCH_Go_To_Sleep()
+ 298             {
+ 299   1         PCON |= 0x01;    // Enter idle mode (generic 8051 version)
+ 300   1      
+ 301   1         // Entering idle mode requires TWO consecutive instructions 
+ 302   1         // on 80c515 / 80c505 - to avoid accidental triggering
+ 303   1         //PCON |= 0x01;    // Enter idle mode (#1)
+C51 COMPILER V6.10  SCH51                                                                  04/19/2001 10:38:52 PAGE 6   
+
+ 304   1         //PCON |= 0x20;    // Enter idle mode (#2)
+ 305   1         }
+ 306          
+ 307          /*------------------------------------------------------------------*-
+ 308            ---- END OF FILE -------------------------------------------------
+ 309          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    257    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     18       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

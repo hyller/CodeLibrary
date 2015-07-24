@@ -1,0 +1,5 @@
+LIBRARY     TIME.DLL
+
+EXPORTS
+    gettimeofday                   @2    @0   ; gettimeofday
+    tzset                          @1    @1   ; tzset

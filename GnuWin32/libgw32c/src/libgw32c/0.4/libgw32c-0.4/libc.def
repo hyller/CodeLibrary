@@ -1,0 +1,781 @@
+; dlltool --export-all-symbols --output-def=libc.def DLLTMPDIR.libc.a/C-address.o DLLTMPDIR.libc.a/C-collate.o DLLTMPDIR.libc.a/C-ctype.o DLLTMPDIR.libc.a/C-identification.o DLLTMPDIR.libc.a/C-measurement.o DLLTMPDIR.libc.a/C-messages.o DLLTMPDIR.libc.a/C-monetary.o DLLTMPDIR.libc.a/C-name.o DLLTMPDIR.libc.a/C-numeric.o DLLTMPDIR.libc.a/C-paper.o DLLTMPDIR.libc.a/C-telephone.o DLLTMPDIR.libc.a/C-time.o DLLTMPDIR.libc.a/C_name.o DLLTMPDIR.libc.a/SYS_libc.o DLLTMPDIR.libc.a/__fsetlocking.o DLLTMPDIR.libc.a/__sigaddset.o DLLTMPDIR.libc.a/_strerror.o DLLTMPDIR.libc.a/a64l.o DLLTMPDIR.libc.a/access.o DLLTMPDIR.libc.a/alarm.o DLLTMPDIR.libc.a/alphasort.o DLLTMPDIR.libc.a/alphasort64.o DLLTMPDIR.libc.a/argp-ba.o DLLTMPDIR.libc.a/argp-eexst.o DLLTMPDIR.libc.a/argp-fmtstream.o DLLTMPDIR.libc.a/argp-fs-xinl.o DLLTMPDIR.libc.a/argp-help.o DLLTMPDIR.libc.a/argp-parse.o DLLTMPDIR.libc.a/argp-pv.o DLLTMPDIR.libc.a/argp-pvh.o DLLTMPDIR.libc.a/argp-xinl.o DLLTMPDIR.libc.a/argz-addsep.o DLLTMPDIR.libc.a/argz-append.o DLLTMPDIR.libc.a/argz-count.o DLLTMPDIR.libc.a/argz-create.o DLLTMPDIR.libc.a/argz-ctsep.o DLLTMPDIR.libc.a/argz-delete.o DLLTMPDIR.libc.a/argz-extract.o DLLTMPDIR.libc.a/argz-insert.o DLLTMPDIR.libc.a/argz-next.o DLLTMPDIR.libc.a/argz-replace.o DLLTMPDIR.libc.a/argz-stringify.o DLLTMPDIR.libc.a/basename.o DLLTMPDIR.libc.a/bcopy.o DLLTMPDIR.libc.a/brk.o DLLTMPDIR.libc.a/bsearch.o DLLTMPDIR.libc.a/bzero.o DLLTMPDIR.libc.a/canonicalize.o DLLTMPDIR.libc.a/catgets.o DLLTMPDIR.libc.a/cfmakeraw.o DLLTMPDIR.libc.a/cfsetspeed.o DLLTMPDIR.libc.a/chdir.o DLLTMPDIR.libc.a/chflags.o DLLTMPDIR.libc.a/chown.o DLLTMPDIR.libc.a/chroot.o DLLTMPDIR.libc.a/clock.o DLLTMPDIR.libc.a/clock_getcpuclockid.o DLLTMPDIR.libc.a/clock_getres.o DLLTMPDIR.libc.a/clock_gettime.o DLLTMPDIR.libc.a/clock_nanosleep.o DLLTMPDIR.libc.a/clock_settime.o DLLTMPDIR.libc.a/closedir.o DLLTMPDIR.libc.a/cpuspeed.o DLLTMPDIR.libc.a/crypt-entry.o DLLTMPDIR.libc.a/crypt.o DLLTMPDIR.libc.a/crypt_util.o DLLTMPDIR.libc.a/cuserid.o DLLTMPDIR.libc.a/dirfd.o DLLTMPDIR.libc.a/dirname.o DLLTMPDIR.libc.a/dladdr.o DLLTMPDIR.libc.a/dlclose.o DLLTMPDIR.libc.a/dlerror.o DLLTMPDIR.libc.a/dlopen.o DLLTMPDIR.libc.a/dlsym.o DLLTMPDIR.libc.a/dlvsym.o DLLTMPDIR.libc.a/drand48-iter.o DLLTMPDIR.libc.a/drand48.o DLLTMPDIR.libc.a/drand48_r.o DLLTMPDIR.libc.a/efgcvt.o DLLTMPDIR.libc.a/efgcvt_r.o DLLTMPDIR.libc.a/enbl-secure.o DLLTMPDIR.libc.a/endgrent.o DLLTMPDIR.libc.a/endhstent.o DLLTMPDIR.libc.a/endpwent.o DLLTMPDIR.libc.a/envz.o DLLTMPDIR.libc.a/erand48.o DLLTMPDIR.libc.a/erand48_r.o DLLTMPDIR.libc.a/err.o DLLTMPDIR.libc.a/errlist.o DLLTMPDIR.libc.a/errno.o DLLTMPDIR.libc.a/error.o DLLTMPDIR.libc.a/euidaccess.o DLLTMPDIR.libc.a/fchdir.o DLLTMPDIR.libc.a/fchflags.o DLLTMPDIR.libc.a/fchmod.o DLLTMPDIR.libc.a/fchown.o DLLTMPDIR.libc.a/fcntl.o DLLTMPDIR.libc.a/fdatasync.o DLLTMPDIR.libc.a/fesetround.o DLLTMPDIR.libc.a/ffs.o DLLTMPDIR.libc.a/fgetxattr.o DLLTMPDIR.libc.a/flistxattr.o DLLTMPDIR.libc.a/flockfile.o DLLTMPDIR.libc.a/fork.o DLLTMPDIR.libc.a/fpathconf.o DLLTMPDIR.libc.a/fremovexattr.o DLLTMPDIR.libc.a/fseeko.o DLLTMPDIR.libc.a/fseeko64.o DLLTMPDIR.libc.a/fsetxattr.o DLLTMPDIR.libc.a/fstab.o DLLTMPDIR.libc.a/fstat.o DLLTMPDIR.libc.a/fstat64.o DLLTMPDIR.libc.a/fstatfs.o DLLTMPDIR.libc.a/fstatfs64.o DLLTMPDIR.libc.a/fstatvfs.o DLLTMPDIR.libc.a/fstatvfs64.o DLLTMPDIR.libc.a/ftello.o DLLTMPDIR.libc.a/ftello64.o DLLTMPDIR.libc.a/ftruncate.o DLLTMPDIR.libc.a/ftruncate64.o DLLTMPDIR.libc.a/ftrylockfile.o DLLTMPDIR.libc.a/fts.o DLLTMPDIR.libc.a/ftw.o DLLTMPDIR.libc.a/ftw64.o DLLTMPDIR.libc.a/funlockfile.o DLLTMPDIR.libc.a/futimes.o DLLTMPDIR.libc.a/fxstat.o DLLTMPDIR.libc.a/fxstat64.o DLLTMPDIR.libc.a/get_clockfreq.o DLLTMPDIR.libc.a/getclktck.o DLLTMPDIR.libc.a/getcwd.o DLLTMPDIR.libc.a/getdirname.o DLLTMPDIR.libc.a/getdomain.o DLLTMPDIR.libc.a/getdtsz.o DLLTMPDIR.libc.a/getegid.o DLLTMPDIR.libc.a/geteuid.o DLLTMPDIR.libc.a/getgid.o DLLTMPDIR.libc.a/getgrent.o DLLTMPDIR.libc.a/getgrent_r.o DLLTMPDIR.libc.a/getgrgid.o DLLTMPDIR.libc.a/getgrnam.o DLLTMPDIR.libc.a/getgroups.o DLLTMPDIR.libc.a/gethostbyaddr.o DLLTMPDIR.libc.a/gethostbyname.o DLLTMPDIR.libc.a/gethostid.o DLLTMPDIR.libc.a/gethostname.o DLLTMPDIR.libc.a/gethstent.o DLLTMPDIR.libc.a/getline.o DLLTMPDIR.libc.a/getloadavg.o DLLTMPDIR.libc.a/getlogin.o DLLTMPDIR.libc.a/getmachinfo.o DLLTMPDIR.libc.a/getntptimeofday.o DLLTMPDIR.libc.a/getopt.o DLLTMPDIR.libc.a/getopt1.o DLLTMPDIR.libc.a/getopt_init.o DLLTMPDIR.libc.a/getosinfo.o DLLTMPDIR.libc.a/getpagesize.o DLLTMPDIR.libc.a/getpass.o DLLTMPDIR.libc.a/getpgid.o DLLTMPDIR.libc.a/getpgrp.o DLLTMPDIR.libc.a/getppid.o DLLTMPDIR.libc.a/getpriority.o DLLTMPDIR.libc.a/getpwent.o DLLTMPDIR.libc.a/getpwnam.o DLLTMPDIR.libc.a/getpwuid.o DLLTMPDIR.libc.a/getrlimit.o DLLTMPDIR.libc.a/getrlimit64.o DLLTMPDIR.libc.a/getsid.o DLLTMPDIR.libc.a/getsysstats.o DLLTMPDIR.libc.a/gettimeofday.o DLLTMPDIR.libc.a/getuid.o DLLTMPDIR.libc.a/getusershell.o DLLTMPDIR.libc.a/getwd.o DLLTMPDIR.libc.a/getxattr.o DLLTMPDIR.libc.a/global-locale.o DLLTMPDIR.libc.a/group_member.o DLLTMPDIR.libc.a/gtty.o DLLTMPDIR.libc.a/hsearch.o DLLTMPDIR.libc.a/hsearch_r.o DLLTMPDIR.libc.a/hxstat64.o DLLTMPDIR.libc.a/init-first.o DLLTMPDIR.libc.a/init-misc.o DLLTMPDIR.libc.a/insremque.o DLLTMPDIR.libc.a/ioctl.o DLLTMPDIR.libc.a/itoa-digits.o DLLTMPDIR.libc.a/itoa-udigits.o DLLTMPDIR.libc.a/jrand48.o DLLTMPDIR.libc.a/jrand48_r.o DLLTMPDIR.libc.a/kill.o DLLTMPDIR.libc.a/l64a.o DLLTMPDIR.libc.a/lchmod.o DLLTMPDIR.libc.a/lchown.o DLLTMPDIR.libc.a/lcong48.o DLLTMPDIR.libc.a/lcong48_r.o DLLTMPDIR.libc.a/lgetxattr.o DLLTMPDIR.libc.a/link.o DLLTMPDIR.libc.a/listxattr.o DLLTMPDIR.libc.a/llistxattr.o DLLTMPDIR.libc.a/lrand48.o DLLTMPDIR.libc.a/lrand48_r.o DLLTMPDIR.libc.a/lremovexattr.o DLLTMPDIR.libc.a/lsearch.o DLLTMPDIR.libc.a/lsetxattr.o DLLTMPDIR.libc.a/lshift.o DLLTMPDIR.libc.a/lstat.o DLLTMPDIR.libc.a/lstat64.o DLLTMPDIR.libc.a/lutimes.o DLLTMPDIR.libc.a/lxstat.o DLLTMPDIR.libc.a/lxstat64.o DLLTMPDIR.libc.a/madvise.o DLLTMPDIR.libc.a/md5-crypt.o DLLTMPDIR.libc.a/md5.o DLLTMPDIR.libc.a/memfrob.o DLLTMPDIR.libc.a/mempcpy.o DLLTMPDIR.libc.a/memrchr.o DLLTMPDIR.libc.a/mkdir.o DLLTMPDIR.libc.a/mkdtemp.o DLLTMPDIR.libc.a/mkfifo.o DLLTMPDIR.libc.a/mknod.o DLLTMPDIR.libc.a/mkstemp64.o DLLTMPDIR.libc.a/mkstemps.o DLLTMPDIR.libc.a/mktemp.o DLLTMPDIR.libc.a/mlock.o DLLTMPDIR.libc.a/mlockall.o DLLTMPDIR.libc.a/mmap.o DLLTMPDIR.libc.a/mmap64.o DLLTMPDIR.libc.a/mntent.o DLLTMPDIR.libc.a/mntent_r.o DLLTMPDIR.libc.a/mprotect.o DLLTMPDIR.libc.a/mrand48.o DLLTMPDIR.libc.a/mrand48_r.o DLLTMPDIR.libc.a/mremap.o DLLTMPDIR.libc.a/msort.o DLLTMPDIR.libc.a/msync.o DLLTMPDIR.libc.a/mtrace.o DLLTMPDIR.libc.a/munlock.o DLLTMPDIR.libc.a/munlockall.o DLLTMPDIR.libc.a/munmap.o DLLTMPDIR.libc.a/nanosleep.o DLLTMPDIR.libc.a/nice.o DLLTMPDIR.libc.a/nl_langinfo.o DLLTMPDIR.libc.a/nrand48.o DLLTMPDIR.libc.a/nrand48_r.o DLLTMPDIR.libc.a/open_catalog.o DLLTMPDIR.libc.a/opendir.o DLLTMPDIR.libc.a/pathconf.o DLLTMPDIR.libc.a/pipe.o DLLTMPDIR.libc.a/progname.o DLLTMPDIR.libc.a/qefgcvt.o DLLTMPDIR.libc.a/qefgcvt_r.o DLLTMPDIR.libc.a/qsort.o DLLTMPDIR.libc.a/rand.o DLLTMPDIR.libc.a/rand_r.o DLLTMPDIR.libc.a/random.o DLLTMPDIR.libc.a/random_r.o DLLTMPDIR.libc.a/rawmemchr.o DLLTMPDIR.libc.a/readdir.o DLLTMPDIR.libc.a/readdir64.o DLLTMPDIR.libc.a/readdir64_r.o DLLTMPDIR.libc.a/readdir_r.o DLLTMPDIR.libc.a/readlink.o DLLTMPDIR.libc.a/readv.o DLLTMPDIR.libc.a/remove.o DLLTMPDIR.libc.a/removexattr.o DLLTMPDIR.libc.a/rename.o DLLTMPDIR.libc.a/rewinddir.o DLLTMPDIR.libc.a/rmdir.o DLLTMPDIR.libc.a/rootdir.o DLLTMPDIR.libc.a/rshift.o DLLTMPDIR.libc.a/sbrk.o DLLTMPDIR.libc.a/scandir.o DLLTMPDIR.libc.a/scandir64.o DLLTMPDIR.libc.a/secure-getenv.o DLLTMPDIR.libc.a/seed48.o DLLTMPDIR.libc.a/seed48_r.o DLLTMPDIR.libc.a/seekdir.o DLLTMPDIR.libc.a/select.o DLLTMPDIR.libc.a/setdomain.o DLLTMPDIR.libc.a/setegid.o DLLTMPDIR.libc.a/setenv.o DLLTMPDIR.libc.a/setgid.o DLLTMPDIR.libc.a/setgrent.o DLLTMPDIR.libc.a/sethostid.o DLLTMPDIR.libc.a/sethostname.o DLLTMPDIR.libc.a/sethstent.o DLLTMPDIR.libc.a/setlogin.o DLLTMPDIR.libc.a/setntptimeofday.o DLLTMPDIR.libc.a/setpgid.o DLLTMPDIR.libc.a/setpgrp.o DLLTMPDIR.libc.a/setpriority.o DLLTMPDIR.libc.a/setpwent.o DLLTMPDIR.libc.a/setregid.o DLLTMPDIR.libc.a/setreuid.o DLLTMPDIR.libc.a/setrlimit.o DLLTMPDIR.libc.a/setrlimit64.o DLLTMPDIR.libc.a/settimeofday.o DLLTMPDIR.libc.a/setuid.o DLLTMPDIR.libc.a/setxattr.o DLLTMPDIR.libc.a/sigaction.o DLLTMPDIR.libc.a/sigaddset.o DLLTMPDIR.libc.a/sigfillset.o DLLTMPDIR.libc.a/siglist.o DLLTMPDIR.libc.a/sigprocmask.o DLLTMPDIR.libc.a/sleep.o DLLTMPDIR.libc.a/speed.o DLLTMPDIR.libc.a/splitpath.o DLLTMPDIR.libc.a/srand48.o DLLTMPDIR.libc.a/srand48_r.o DLLTMPDIR.libc.a/stat.o DLLTMPDIR.libc.a/stat64.o DLLTMPDIR.libc.a/stat64_to_32.o DLLTMPDIR.libc.a/statfs.o DLLTMPDIR.libc.a/statfs64.o DLLTMPDIR.libc.a/statfsbsd.o DLLTMPDIR.libc.a/statfsx64.o DLLTMPDIR.libc.a/statvfs.o DLLTMPDIR.libc.a/statvfs64.o DLLTMPDIR.libc.a/stpcpy.o DLLTMPDIR.libc.a/stpncpy.o DLLTMPDIR.libc.a/strchrnul.o DLLTMPDIR.libc.a/strfry.o DLLTMPDIR.libc.a/strlcat.o DLLTMPDIR.libc.a/strlcpy.o DLLTMPDIR.libc.a/strmode.o DLLTMPDIR.libc.a/strncase.o DLLTMPDIR.libc.a/strndup.o DLLTMPDIR.libc.a/strnlen.o DLLTMPDIR.libc.a/strptime.o DLLTMPDIR.libc.a/strsep.o DLLTMPDIR.libc.a/strsignal.o DLLTMPDIR.libc.a/strtok_r.o DLLTMPDIR.libc.a/strverscmp.o DLLTMPDIR.libc.a/symlink.o DLLTMPDIR.libc.a/sync.o DLLTMPDIR.libc.a/syscall.o DLLTMPDIR.libc.a/sysconf.o DLLTMPDIR.libc.a/sysinfo.o DLLTMPDIR.libc.a/tcdrain.o DLLTMPDIR.libc.a/tcflow.o DLLTMPDIR.libc.a/tcflush.o DLLTMPDIR.libc.a/tcgetattr.o DLLTMPDIR.libc.a/tcgetpgrp.o DLLTMPDIR.libc.a/tcgetsid.o DLLTMPDIR.libc.a/tcsendbrk.o DLLTMPDIR.libc.a/tcsetattr.o DLLTMPDIR.libc.a/tcsetpgrp.o DLLTMPDIR.libc.a/telldir.o DLLTMPDIR.libc.a/tempnam.o DLLTMPDIR.libc.a/tempname.o DLLTMPDIR.libc.a/times.o DLLTMPDIR.libc.a/tmpfile.o DLLTMPDIR.libc.a/tmpfile64.o DLLTMPDIR.libc.a/tmpnam.o DLLTMPDIR.libc.a/tmpnam_r.o DLLTMPDIR.libc.a/truncate.o DLLTMPDIR.libc.a/truncate64.o DLLTMPDIR.libc.a/tsearch.o DLLTMPDIR.libc.a/ttyname.o DLLTMPDIR.libc.a/tzset.o DLLTMPDIR.libc.a/ulimit.o DLLTMPDIR.libc.a/uname.o DLLTMPDIR.libc.a/unlink.o DLLTMPDIR.libc.a/usleep.o DLLTMPDIR.libc.a/ustat.o DLLTMPDIR.libc.a/utime.o DLLTMPDIR.libc.a/utimes.o DLLTMPDIR.libc.a/versionsort.o DLLTMPDIR.libc.a/versionsort64.o DLLTMPDIR.libc.a/vlimit.o DLLTMPDIR.libc.a/wait.o DLLTMPDIR.libc.a/wait3.o DLLTMPDIR.libc.a/wait4.o DLLTMPDIR.libc.a/waitid.o DLLTMPDIR.libc.a/waitpid.o DLLTMPDIR.libc.a/winerr.o DLLTMPDIR.libc.a/wordcopy.o DLLTMPDIR.libc.a/wsacleanup.o DLLTMPDIR.libc.a/wsaerr.o DLLTMPDIR.libc.a/wsinit.o DLLTMPDIR.libc.a/xmknod.o DLLTMPDIR.libc.a/xpg_basename.o DLLTMPDIR.libc.a/xstat.o DLLTMPDIR.libc.a/xstat64.o libc-rc.o
+EXPORTS
+	ws_init @ 1
+	CreateLink @ 2
+	DecodeError @ 3
+	FileInformationToStat64 @ 4
+	GetFileAttributeData @ 5
+	GetFileInformationByName @ 6
+	GetMachInfo @ 7
+	GetOsInfo @ 8
+	GetStat64ByHandle @ 9
+	GetStat64ByName @ 10
+	GetVendorID @ 11
+	GetVolumeSerialNumber @ 12
+	GetXStat64ByName @ 13
+	IsWin31 @ 14
+	IsWin9x @ 15
+	IsWinCE @ 16
+	IsWinNT @ 17
+	PrintWinErr @ 18
+	ResolveLink @ 19
+	WSAErr @ 20
+	WinErr @ 21
+	_IO_flockfile @ 22 DATA
+	_IO_ftrylockfile @ 23 DATA
+	_IO_funlockfile @ 24 DATA
+	__access @ 25
+	__addmntent @ 26
+	__addmntentstr @ 27
+	__argp_error @ 28
+	__argp_failure @ 29
+	__argp_fmtstream_ensure @ 30
+	__argp_fmtstream_free @ 31
+	__argp_fmtstream_point @ 32
+	__argp_fmtstream_printf @ 33
+	__argp_fmtstream_putc @ 34
+	__argp_fmtstream_puts @ 35
+	__argp_fmtstream_set_lmargin @ 36
+	__argp_fmtstream_set_rmargin @ 37
+	__argp_fmtstream_set_wmargin @ 38
+	__argp_fmtstream_update @ 39
+	__argp_fmtstream_write @ 40
+	__argp_help @ 41
+	__argp_input @ 42
+	__argp_make_fmtstream @ 43
+	__argp_parse @ 44
+	__argp_state_help @ 45
+	__argp_usage @ 46
+	__argz_add @ 47
+	__argz_add_sep @ 48
+	__argz_append @ 49
+	__argz_count @ 50
+	__argz_create @ 51
+	__argz_create_sep @ 52
+	__argz_extract @ 53
+	__argz_insert @ 54
+	__argz_next @ 55
+	__argz_replace @ 56
+	__argz_stringify @ 57
+	__brk @ 58
+	__bzero @ 59
+	__canonicalize_file_name @ 60
+	__chdir @ 61
+	__chown @ 62
+	__closedir @ 63
+	__crypt_r @ 64
+	__curbrk @ 65 DATA
+	__cxstat64 @ 66
+	__dlvsym @ 67
+	__drand48_iterate @ 68
+	__encrypt_r @ 69
+	__endmntent @ 70
+	__erand48_r @ 71
+	__error @ 72
+	__error_at_line @ 73
+	__euidaccess @ 74
+	__fchdir @ 75
+	__fchmod @ 76
+	__fchown @ 77
+	__fcntl @ 78
+	__ffs @ 79
+	__flockfile @ 80
+	__fork @ 81
+	__fpathconf @ 82
+	__fsetlocking @ 83
+	__fstat @ 84
+	__fstatfs @ 85
+	__fstatfs64 @ 86
+	__fstatvfs @ 87
+	__fstatvfs64 @ 88
+	__ftruncate @ 89
+	__ftruncate64 @ 90
+	__ftrylockfile @ 91
+	__funlockfile @ 92
+	__futimes @ 93
+	__fxstat @ 94
+	__fxstat64 @ 95
+	__gen_tempname @ 96
+	__get_avphys_pages @ 97
+	__get_clockfreq @ 98
+	__get_errno @ 99
+	__get_nprocs @ 100
+	__get_nprocs_conf @ 101
+	__get_phys_pages @ 102
+	__getclktck @ 103
+	__getcwd @ 104
+	__getdtablesize @ 105
+	__getegid @ 106
+	__geteuid @ 107
+	__getgid @ 108
+	__getgroups @ 109
+	__getline @ 110
+	__getmntent_r @ 111
+	__getntptimeofday @ 112
+	__getopt_initialized @ 113 DATA
+	__getpagesize @ 114
+	__getpgid @ 115
+	__getppid @ 116
+	__getrlimit @ 117
+	__getrlimit64 @ 118
+	__gettimeofday @ 119
+	__getuid @ 120
+	__group_member @ 121
+	__hasmntopt @ 122
+	__hdestroy @ 123
+	__hutimes @ 124
+	__init_des @ 125
+	__init_des_r @ 126
+	__init_misc @ 127
+	__initstate @ 128
+	__initstate_r @ 129
+	__ioctl @ 130
+	__jrand48_r @ 131
+	__kill @ 132
+	__lchown @ 133
+	__lcong48_r @ 134
+	__libc_drand48_data @ 135 DATA
+	__libc_enable_secure @ 136 DATA
+	__libc_init @ 137
+	__libc_init_first @ 138
+	__libc_init_secure @ 139
+	__libc_multiple_libcs @ 140 DATA
+	__libc_nanosleep @ 141
+	__libc_readv @ 142
+	__libc_tcdrain @ 143
+	__libc_tsd_LOCALE_data @ 144 DATA
+	__libc_wait @ 145
+	__libc_waitid @ 146 DATA
+	__libc_waitpid @ 147
+	__link @ 148
+	__lstat @ 149
+	__lutimes @ 150
+	__lxstat @ 151
+	__lxstat64 @ 152
+	__md5_buffer @ 153
+	__md5_crypt @ 154
+	__md5_crypt_r @ 155
+	__md5_finish_ctx @ 156
+	__md5_init_ctx @ 157
+	__md5_process_block @ 158
+	__md5_process_bytes @ 159
+	__md5_read_ctx @ 160
+	__md5_stream @ 161
+	__mempcpy @ 162
+	__memrchr @ 163
+	__mkdir @ 164
+	__mknod @ 165
+	__mmap @ 166
+	__mmap64 @ 167
+	__mpn_lshift @ 168
+	__mpn_rshift @ 169
+	__mprotect @ 170
+	__munmap @ 171
+	__nanosleep @ 172 DATA
+	__nrand48_r @ 173
+	__open_catalog @ 174
+	__opendir @ 175
+	__option_is_end @ 176
+	__option_is_short @ 177
+	__path_search @ 178
+	__pathconf @ 179
+	__pipe @ 180
+	__progname @ 181 DATA
+	__progname_full @ 182 DATA
+	__pthread_clock_gettime @ 183
+	__pthread_clock_settime @ 184
+	__random @ 185
+	__random_r @ 186
+	__rawmemchr @ 187
+	__readdir @ 188
+	__readdir64 @ 189
+	__readdir64_r @ 190
+	__readdir_r @ 191
+	__readv @ 192 DATA
+	__realpath @ 193
+	__rewinddir @ 194
+	__rmdir @ 195
+	__rstatfsx64 @ 196
+	__sbrk @ 197
+	__secure_getenv @ 198
+	__seed48_r @ 199
+	__seekdir @ 200
+	__select @ 201
+	__setkey_r @ 202
+	__setmntent @ 203
+	__setntptimeofday @ 204
+	__setpgid @ 205
+	__setregid @ 206
+	__setreuid @ 207
+	__setrlimit @ 208
+	__setrlimit64 @ 209
+	__setstate @ 210
+	__setstate_r @ 211
+	__settimeofday @ 212
+	__sigaction @ 213
+	__sigaddset @ 214
+	__sigprocmask @ 215
+	__sleep @ 216
+	__srand48_r @ 217
+	__srandom @ 218
+	__srandom_r @ 219
+	__stat @ 220
+	__stat64 @ 221
+	__statfs @ 222
+	__statfs64 @ 223
+	__statfsbsd @ 224
+	__statfsx64 @ 225
+	__statvfs @ 226
+	__statvfs64 @ 227
+	__stpcpy @ 228
+	__stpncpy @ 229
+	__strchrnul @ 230
+	__strerror_r @ 231
+	__strncasecmp @ 232
+	__strndup @ 233
+	__strnlen @ 234
+	__strsep @ 235
+	__strsep_g @ 236 DATA
+	__strtok_r @ 237
+	__strverscmp @ 238
+	__sysconf @ 239
+	__tcgetattr @ 240
+	__tdelete @ 241
+	__tdestroy @ 242
+	__telldir @ 243
+	__tfind @ 244
+	__times @ 245
+	__truncate @ 246
+	__truncate64 @ 247
+	__tsearch @ 248
+	__twalk @ 249
+	__tzname_cur_max @ 250 DATA
+	__tzname_max @ 251
+	__ulimit @ 252
+	__uname @ 253
+	__unlink @ 254
+	__utimes @ 255
+	__w32_gethostbyaddr @ 256
+	__w32_gethostbyname @ 257
+	__w32_gethostname @ 258
+	__wait @ 259 DATA
+	__wait3 @ 260
+	__wait4 @ 261
+	__waitid @ 262
+	__waitpid @ 263 DATA
+	__xmknod @ 264
+	__xpg_basename @ 265
+	__xstat @ 266
+	__xstat64 @ 267
+	_argp_input @ 268 DATA
+	_argp_unlock_xxx @ 269
+	_fxstat @ 270 DATA
+	_getopt_internal @ 271
+	_itoa_lower_digits @ 272 DATA
+	_itoa_upper_digits @ 273 DATA
+	_libc_intl_domainname @ 274 DATA
+	_lxstat @ 275 DATA
+	_nl_C_LC_ADDRESS @ 276 DATA
+	_nl_C_LC_COLLATE @ 277 DATA
+	_nl_C_LC_CTYPE @ 278 DATA
+	_nl_C_LC_CTYPE_class @ 279 DATA
+	_nl_C_LC_CTYPE_class32 @ 280 DATA
+	_nl_C_LC_CTYPE_class_alnum @ 281 DATA
+	_nl_C_LC_CTYPE_class_alpha @ 282 DATA
+	_nl_C_LC_CTYPE_class_blank @ 283 DATA
+	_nl_C_LC_CTYPE_class_cntrl @ 284 DATA
+	_nl_C_LC_CTYPE_class_digit @ 285 DATA
+	_nl_C_LC_CTYPE_class_graph @ 286 DATA
+	_nl_C_LC_CTYPE_class_lower @ 287 DATA
+	_nl_C_LC_CTYPE_class_print @ 288 DATA
+	_nl_C_LC_CTYPE_class_punct @ 289 DATA
+	_nl_C_LC_CTYPE_class_space @ 290 DATA
+	_nl_C_LC_CTYPE_class_upper @ 291 DATA
+	_nl_C_LC_CTYPE_class_xdigit @ 292 DATA
+	_nl_C_LC_CTYPE_map_tolower @ 293 DATA
+	_nl_C_LC_CTYPE_map_toupper @ 294 DATA
+	_nl_C_LC_CTYPE_tolower @ 295 DATA
+	_nl_C_LC_CTYPE_toupper @ 296 DATA
+	_nl_C_LC_CTYPE_width @ 297 DATA
+	_nl_C_LC_IDENTIFICATION @ 298 DATA
+	_nl_C_LC_MEASUREMENT @ 299 DATA
+	_nl_C_LC_MESSAGES @ 300 DATA
+	_nl_C_LC_MONETARY @ 301 DATA
+	_nl_C_LC_NAME @ 302 DATA
+	_nl_C_LC_NUMERIC @ 303 DATA
+	_nl_C_LC_PAPER @ 304 DATA
+	_nl_C_LC_TELEPHONE @ 305 DATA
+	_nl_C_LC_TIME @ 306 DATA
+	_nl_C_codeset @ 307 DATA
+	_nl_C_name @ 308 DATA
+	_nl_POSIX_name @ 309 DATA
+	_nl_global_locale @ 310 DATA
+	_option_is_end @ 311 DATA
+	_option_is_short @ 312 DATA
+	_quicksort @ 313
+	_splitpath @ 314
+	_sys_errlist_internal @ 315 DATA
+	_sys_nerr_internal @ 316 DATA
+	_sys_siglist @ 317 DATA
+	_sys_siglist_internal @ 318 DATA
+	_ufc_dofinalperm_r @ 319
+	_ufc_doit_r @ 320
+	_ufc_foobar @ 321 DATA
+	_ufc_mk_keytab_r @ 322
+	_ufc_output_conversion_r @ 323
+	_ufc_setup_salt_r @ 324
+	_wordcopy_bwd_aligned @ 325
+	_wordcopy_bwd_dest_aligned @ 326
+	_wordcopy_fwd_aligned @ 327
+	_wordcopy_fwd_dest_aligned @ 328
+	_xmknod @ 329 DATA
+	_xstat @ 330 DATA
+	a64l @ 331
+	access @ 332 DATA
+	addmntent @ 333 DATA
+	alarm @ 334
+	alphasort @ 335
+	alphasort64 @ 336
+	argp_err_exit_status @ 337 DATA
+	argp_error @ 338 DATA
+	argp_failure @ 339 DATA
+	argp_help @ 340 DATA
+	argp_parse @ 341 DATA
+	argp_program_bug_address @ 342 DATA
+	argp_program_version @ 343 DATA
+	argp_program_version_hook @ 344 DATA
+	argp_state_help @ 345 DATA
+	argp_usage @ 346 DATA
+	argz_add @ 347 DATA
+	argz_add_sep @ 348 DATA
+	argz_append @ 349 DATA
+	argz_count @ 350 DATA
+	argz_create @ 351 DATA
+	argz_create_sep @ 352 DATA
+	argz_delete @ 353
+	argz_extract @ 354 DATA
+	argz_insert @ 355 DATA
+	argz_next @ 356 DATA
+	argz_replace @ 357 DATA
+	argz_stringify @ 358 DATA
+	attr2mode @ 359
+	basename @ 360
+	bcopy @ 361
+	brk @ 362 DATA
+	bsearch @ 363
+	bzero @ 364 DATA
+	canonicalize_file_name @ 365 DATA
+	catclose @ 366
+	catgets @ 367
+	catopen @ 368
+	cfgetispeed @ 369
+	cfgetospeed @ 370
+	cfmakeraw @ 371
+	cfsetispeed @ 372
+	cfsetospeed @ 373
+	cfsetspeed @ 374
+	chdir @ 375 DATA
+	chflags @ 376
+	chown @ 377 DATA
+	chroot @ 378
+	clock @ 379
+	clock_getcpuclockid @ 380
+	clock_getres @ 381
+	clock_gettime @ 382
+	clock_nanosleep @ 383
+	clock_settime @ 384
+	closedir @ 385 DATA
+	crypt @ 386
+	crypt_r @ 387 DATA
+	cuserid @ 388
+	debugprint @ 389
+	devrootdir @ 390
+	dirfd @ 391
+	dirname @ 392
+	dladdr @ 393
+	dlclose @ 394
+	dlerror @ 395
+	dlopen @ 396
+	dlsym @ 397
+	dlvsym @ 398 DATA
+	drand48 @ 399
+	drand48_r @ 400
+	ecvt @ 401
+	ecvt_r @ 402
+	encrypt @ 403
+	encrypt_r @ 404 DATA
+	endfsent @ 405
+	endgrent @ 406
+	endhostent @ 407
+	endmntent @ 408 DATA
+	endpwent @ 409
+	endusershell @ 410
+	envz_add @ 411
+	envz_entry @ 412
+	envz_get @ 413
+	envz_merge @ 414
+	envz_remove @ 415
+	envz_strip @ 416
+	erand48 @ 417
+	erand48_r @ 418 DATA
+	err @ 419
+	error @ 420 DATA
+	error_at_line @ 421 DATA
+	error_message_count @ 422 DATA
+	error_one_per_line @ 423 DATA
+	error_print_progname @ 424 DATA
+	errx @ 425
+	euidaccess @ 426 DATA
+	fchdir @ 427 DATA
+	fchflags @ 428
+	fchmod @ 429 DATA
+	fchown @ 430 DATA
+	fcntl @ 431 DATA
+	fcrypt @ 432 DATA
+	fcvt @ 433
+	fcvt_r @ 434
+	fdatasync @ 435
+	fesetround @ 436
+	ffs @ 437 DATA
+	ffsl @ 438 DATA
+	fgetxattr @ 439
+	file_exists @ 440
+	flistxattr @ 441
+	flockfile @ 442 DATA
+	fork @ 443 DATA
+	fpathconf @ 444 DATA
+	fremovexattr @ 445
+	frootdir @ 446
+	fseeko @ 447
+	fseeko64 @ 448
+	fsetxattr @ 449
+	fstat @ 450 DATA
+	fstat64 @ 451
+	fstatfs @ 452 DATA
+	fstatfs64 @ 453 DATA
+	fstatvfs @ 454 DATA
+	fstatvfs64 @ 455 DATA
+	ftello @ 456
+	ftello64 @ 457
+	ftruncate @ 458 DATA
+	ftruncate64 @ 459 DATA
+	ftrylockfile @ 460 DATA
+	fts_children @ 461
+	fts_close @ 462
+	fts_open @ 463
+	fts_read @ 464
+	fts_set @ 465
+	ftw @ 466
+	ftw64 @ 467
+	funlockfile @ 468 DATA
+	futimes @ 469 DATA
+	gcvt @ 470
+	get_avphys_pages @ 471 DATA
+	get_current_dir_name @ 472
+	get_nprocs @ 473 DATA
+	get_nprocs_conf @ 474 DATA
+	get_phys_pages @ 475 DATA
+	getcpuspeed @ 476
+	getdomainname @ 477
+	getdtablesize @ 478 DATA
+	getegid @ 479 DATA
+	geteuid @ 480 DATA
+	getexecdir @ 481
+	getexecparent @ 482
+	getexecpath @ 483
+	getfsent @ 484
+	getfsfile @ 485
+	getfsspec @ 486
+	getgid @ 487 DATA
+	getgranularity @ 488
+	getgrent @ 489
+	getgrent_r @ 490
+	getgrgid @ 491
+	getgrnam @ 492
+	getgroups @ 493 DATA
+	gethostent @ 494
+	gethostid @ 495
+	getline @ 496 DATA
+	getloadavg @ 497
+	getlogin @ 498
+	getlongpath @ 499
+	getmntent @ 500
+	getmntent_r @ 501 DATA
+	getntptimeofday @ 502 DATA
+	getopt @ 503
+	getopt_long @ 504
+	getopt_long_only @ 505
+	getpagesize @ 506 DATA
+	getpass @ 507
+	getpgid @ 508 DATA
+	getpgrp @ 509
+	getppid @ 510 DATA
+	getpriority @ 511
+	getprogname @ 512
+	getpwent @ 513
+	getpwnam @ 514
+	getpwuid @ 515
+	getrlimit @ 516 DATA
+	getrlimit64 @ 517 DATA
+	getrootdirs @ 518
+	getshortpath @ 519
+	getsid @ 520
+	gettimeofday @ 521 DATA
+	getuid @ 522 DATA
+	getuname @ 523
+	getusershell @ 524
+	getwd @ 525
+	getxattr @ 526
+	group_member @ 527 DATA
+	gtty @ 528
+	handle2mode @ 529
+	hashval @ 530
+	hasmntopt @ 531 DATA
+	hcreate @ 532
+	hcreate_r @ 533
+	hdestroy @ 534 DATA
+	hdestroy_r @ 535
+	hsearch @ 536
+	hsearch_r @ 537
+	initstate @ 538 DATA
+	initstate_r @ 539 DATA
+	insque @ 540
+	ioctl @ 541 DATA
+	issymlink @ 542
+	jrand48 @ 543
+	jrand48_r @ 544 DATA
+	kill @ 545 DATA
+	l64a @ 546
+	lchmod @ 547
+	lchown @ 548 DATA
+	lcong48 @ 549
+	lcong48_r @ 550 DATA
+	lfind @ 551
+	lgetxattr @ 552
+	link @ 553 DATA
+	listxattr @ 554
+	llistxattr @ 555
+	lock @ 556
+	lock64 @ 557
+	lrand48 @ 558
+	lrand48_r @ 559
+	lremovexattr @ 560
+	lsearch @ 561
+	lsetxattr @ 562
+	lstat @ 563 DATA
+	lstat64 @ 564
+	lutimes @ 565 DATA
+	madvise @ 566 DATA
+	memfrob @ 567
+	mempcpy @ 568 DATA
+	memrchr @ 569 DATA
+	mkdir @ 570 DATA
+	mkdtemp @ 571
+	mkfifo @ 572
+	mknod @ 573 DATA
+	mkstemp64 @ 574
+	mkstemps @ 575
+	mktemp @ 576
+	mlock @ 577
+	mlockall @ 578
+	mmap @ 579 DATA
+	mmap64 @ 580 DATA
+	mode2osflags @ 581
+	mprotect @ 582 DATA
+	mrand48 @ 583
+	mrand48_r @ 584
+	mremap @ 585 DATA
+	msync @ 586
+	mtrace @ 587
+	munlock @ 588
+	munlockall @ 589
+	munmap @ 590 DATA
+	muntrace @ 591
+	nanosleep @ 592 DATA
+	nftw @ 593
+	nftw64 @ 594
+	nice @ 595
+	nl_langinfo @ 596
+	nrand48 @ 597
+	nrand48_r @ 598 DATA
+	opendir @ 599 DATA
+	optarg @ 600 DATA
+	opterr @ 601 DATA
+	optind @ 602 DATA
+	optopt @ 603 DATA
+	osflags2mode @ 604
+	path2mode @ 605
+	pathconf @ 606 DATA
+	pipe @ 607 DATA
+	posix2winfullpath @ 608
+	posix2winpath @ 609
+	posix_madvise @ 610
+	posix_mremap @ 611
+	program_invocation_name @ 612 DATA
+	program_invocation_short_name @ 613 DATA
+	program_name @ 614 DATA
+	qecvt @ 615
+	qecvt_r @ 616
+	qfcvt @ 617
+	qfcvt_r @ 618
+	qgcvt @ 619
+	qsort @ 620
+	rand @ 621
+	rand_r @ 622
+	random @ 623 DATA
+	random_r @ 624 DATA
+	rawmemchr @ 625 DATA
+	readdir @ 626 DATA
+	readdir64 @ 627 DATA
+	readdir64_r @ 628 DATA
+	readdir_r @ 629 DATA
+	readlink @ 630
+	readv @ 631 DATA
+	realpath @ 632 DATA
+	remove @ 633
+	removexattr @ 634
+	remque @ 635
+	rename @ 636
+	rewinddir @ 637 DATA
+	rmdir @ 638 DATA
+	rootdir @ 639
+	sbrk @ 640 DATA
+	scandir @ 641
+	scandir64 @ 642
+	seed48 @ 643
+	seed48_r @ 644 DATA
+	seekdir @ 645 DATA
+	select @ 646 DATA
+	setdomainname @ 647
+	setegid @ 648
+	setenv @ 649
+	setfsent @ 650
+	setgid @ 651
+	setgrent @ 652
+	sethostent @ 653
+	sethostid @ 654
+	sethostname @ 655
+	setkey @ 656
+	setkey_r @ 657 DATA
+	setlogin @ 658
+	setmntent @ 659 DATA
+	setntptimeofday @ 660 DATA
+	setpgid @ 661 DATA
+	setpgrp @ 662
+	setpriority @ 663
+	setpwent @ 664
+	setregid @ 665 DATA
+	setreuid @ 666 DATA
+	setrlimit @ 667 DATA
+	setrlimit64 @ 668 DATA
+	setstate @ 669 DATA
+	setstate_r @ 670 DATA
+	settimeofday @ 671 DATA
+	setuid @ 672
+	setusershell @ 673
+	setxattr @ 674
+	sigaction @ 675 DATA
+	sigaddset @ 676
+	sigfillset @ 677
+	sigprocmask @ 678 DATA
+	sleep @ 679 DATA
+	srand @ 680 DATA
+	srand48 @ 681
+	srand48_r @ 682 DATA
+	srandom @ 683 DATA
+	srandom_r @ 684 DATA
+	stat @ 685 DATA
+	stat64 @ 686 DATA
+	stat64_to_32 @ 687
+	statfs @ 688 DATA
+	statfs64 @ 689 DATA
+	statfsbsd @ 690 DATA
+	statfsx64 @ 691 DATA
+	statvfs @ 692 DATA
+	statvfs64 @ 693 DATA
+	stpcpy @ 694 DATA
+	stpncpy @ 695 DATA
+	strchrnul @ 696 DATA
+	strerror_r @ 697 DATA
+	strfry @ 698
+	strlcat @ 699
+	strlcpy @ 700
+	strmode @ 701
+	strncasecmp @ 702 DATA
+	strndup @ 703 DATA
+	strnlen @ 704 DATA
+	strptime @ 705
+	strsep @ 706 DATA
+	strsignal @ 707
+	strtok_r @ 708 DATA
+	strverscmp @ 709 DATA
+	symlink @ 710
+	sync @ 711
+	sys_siglist @ 712 DATA
+	syscall @ 713
+	sysconf @ 714 DATA
+	sysinfo @ 715
+	tcdrain @ 716 DATA
+	tcflow @ 717
+	tcflush @ 718
+	tcgetattr @ 719 DATA
+	tcgetpgrp @ 720
+	tcgetsid @ 721
+	tcsendbreak @ 722
+	tcsetattr @ 723
+	tcsetpgrp @ 724
+	tdelete @ 725 DATA
+	tdestroy @ 726 DATA
+	telldir @ 727 DATA
+	tempnam @ 728
+	tfind @ 729 DATA
+	times @ 730 DATA
+	tm_year_base @ 731 DATA
+	tmpfile @ 732
+	tmpfile64 @ 733
+	tmpnam @ 734
+	tmpnam_r @ 735
+	truncate @ 736 DATA
+	truncate64 @ 737 DATA
+	tsearch @ 738 DATA
+	ttyname @ 739
+	twalk @ 740 DATA
+	ulimit @ 741 DATA
+	uname @ 742 DATA
+	unix2winpath @ 743
+	unlink @ 744 DATA
+	unsetenv @ 745
+	usleep @ 746
+	ustat @ 747
+	utime @ 748
+	utimes @ 749 DATA
+	verr @ 750
+	verrx @ 751
+	versionsort @ 752
+	versionsort64 @ 753
+	vlimit @ 754
+	vsn2drive @ 755
+	vwarn @ 756
+	vwarnx @ 757
+	w32_gethostbyaddr @ 758 DATA
+	w32_gethostbyname @ 759 DATA
+	w32_gethostname @ 760 DATA
+	w32_same_file @ 761
+	wait @ 762 DATA
+	wait3 @ 763 DATA
+	wait4 @ 764 DATA
+	waitid @ 765 DATA
+	waitpid @ 766 DATA
+	warn @ 767
+	warnx @ 768
+	werrno @ 769
+	win2posixfullpath @ 770
+	win2posixpath @ 771
+	win2unixpath @ 772
+	win32_longpath @ 773
+	winmajor @ 774
+	winminor @ 775
+	winos @ 776
+	winplatform @ 777
+	ws_cleanup @ 778
+	BackupLink @ 779

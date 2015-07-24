@@ -1,0 +1,17 @@
+/v /s /c /P- /LE:\BC45\LIB +
+C0L.OBJ +
+..\OBJ\AIO.OBJ         +
+..\OBJ\CFG.OBJ         +
+..\OBJ\CLK.OBJ         +
+..\OBJ\COMM_PC.OBJ     +
+..\OBJ\COMM_PCA.OBJ    +
+..\OBJ\COMMRTOS.OBJ    +
+..\OBJ\DIO.OBJ         +
+..\OBJ\OS_CPU_A.OBJ    +
+..\OBJ\OS_CPU_C.OBJ    +
+..\OBJ\PC.OBJ          +
+..\OBJ\TEST.OBJ        +
+..\OBJ\TMR.OBJ         +
+..\OBJ\uCOS_II.OBJ,..\OBJ\TEST,..\OBJ\TEST,CL.LIB +
+FP87.LIB               +
+MATHL.LIB

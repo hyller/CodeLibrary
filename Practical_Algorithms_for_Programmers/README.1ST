@@ -1,0 +1,41 @@
+Source Code
+
+PRACTICAL ALGORITHMS FOR PROGRAMMERS
+
+Revision 1.02
+
+
+This file contains the source files and makefiles as published
+in the second printing of the book. Where differences exist with
+the first printing, they are explained in the notes that appear
+in each directory.
+
+This code is copyrighted by the authors. Only personal use is
+allowed (such as for study). To obtain a license to use this code
+commercially, professionally, or for resale, you must purchase the
+license and code from the authors using the coupon at the back of
+the book.
+
+In addition you will receive the latest code with all bug fixes and
+corrections, as well as an FTP site to which all updates are
+posted for the latest corrections, refinements, and porting notes.
+You will also get the source code for programs referred to but not
+printed in the book. Most important of these, is the source code to
+Microsoft's sliding-window compression algorithm used in
+compress.exe.
+
+If you do not have the coupon from the book you can order the
+diskette and license for $25 US, ($28 in Canada and Mexico, $32
+overseas) from the authors at:
+
+Pacific Data Works
+P.O. Box 272062
+Houston TX 77277-2062
+USA
+
+Fax: (713) 668-6548
+
+Money orders, checks drawn on US Banks, MasterCard, Visa, and
+American Express accepted.
+
+(c) Copyright 1996, Andrew Binstock and John Rex

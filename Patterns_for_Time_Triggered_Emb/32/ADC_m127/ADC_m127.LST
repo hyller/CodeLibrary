@@ -1,0 +1,144 @@
+C51 COMPILER V6.10  ADC_M127                                                               04/19/2001 10:36:44 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE ADC_M127
+OBJECT MODULE PLACED IN .\ADC_m127.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\ADC_m127.c BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             ADC_m127.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Code library for Max127 (I2C) ADC.
+   8          
+   9          
+  10             COPYRIGHT
+  11             ---------
+  12          
+  13             This code is from the book:
+  14          
+  15             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17          
+  18             This code is copyright (c) 2001 by Michael J. Pont.
+  19           
+  20             See book for copyright details and other information.
+  21          
+  22          -*------------------------------------------------------------------*/
+  23          
+  24          #include "Main.H"
+  25          #include "Port.h"
+  26          
+  27          #include "I2C_Core.h"
+  28          #include "ADC_m127.h"
+  29          
+  30          #include "Delay_t0.h"
+  31          
+  32          // ------ Public variable definitions ------------------------------
+  33          
+  34          // The ADC value
+  35          tByte ADC_G;
+  36          
+  37          // ------ Public variable declarations -----------------------------
+  38          
+  39          // The error codes - see scheduler
+  40          extern tByte Error_code_G;
+  41          
+  42          // ------ Private constants ----------------------------------------
+  43          
+  44          // Chip address = 0101xxxW
+  45          #define I2C_MAX127_ADDRESS (80) 
+  46          
+  47          // Start bit set
+  48          // Normal power mode (not in power-down mode)
+  49          // Range 0 - 5V
+  50          #define I2C_MAX127_MODE (0x80)
+  51          
+  52          
+  53          // ------ Private variable definitions------------------------------
+  54          
+  55          // The ADC channel (0 - 7)
+C51 COMPILER V6.10  ADC_M127                                                               04/19/2001 10:36:44 PAGE 2   
+
+  56          // *** Value here is required channel value << 4 ***
+  57          // *** We are using Channel 2 ***
+  58          static tByte I2C_MAX127_Channel_G = 0x20;
+  59          
+  60          
+  61          /*------------------------------------------------------------------*-
+  62          
+  63            I2C_ADC_Max127_Read()
+  64          
+  65            Reads from the I2C 12-bit ADC
+  66          
+  67            The channel used is given by ADC_Channel_G
+  68          
+  69            This version reads only 8-bits (most sig) data
+  70          
+  71          -*-------------------------------------------------------------------*/
+  72          void I2C_ADC_Max127_Read(void)
+  73             {
+  74   1         I2C_Send_Start(); // Generate I2C START condition
+  75   1         
+  76   1         // Send DAC device address (with write access request)
+  77   1         if (I2C_Write_Byte(I2C_MAX127_ADDRESS | I2C_WRITE))    
+  78   1            {
+  79   2            Error_code_G = ERROR_I2C_ADC_MAX127;
+  80   2            return;
+  81   2            }
+  82   1         
+  83   1         // Set the ADC mode and channel - see above
+  84   1         if (I2C_Write_Byte(I2C_MAX127_MODE | I2C_MAX127_Channel_G)) 
+  85   1            {
+  86   2            Error_code_G = ERROR_I2C_ADC_MAX127;
+  87   2            return;
+  88   2            }
+  89   1         
+  90   1         I2C_Send_Stop(); // Generate STOP condition
+  91   1      
+  92   1         I2C_Send_Start(); // Generate START condition (again)
+  93   1             
+  94   1         // Send Max127 device address (with READ access request)
+  95   1         if (I2C_Write_Byte(I2C_MAX127_ADDRESS | I2C_READ))  
+  96   1            {
+  97   2            Error_code_G = ERROR_I2C_ADC_MAX127;
+  98   2            return;
+  99   2            }
+ 100   1         
+ 101   1         // Receive first (MS) byte from I2C bus
+ 102   1         ADC_G = I2C_Read_Byte();
+ 103   1         
+ 104   1         I2C_Send_Master_Ack(); // Perform a MASTER ACK
+ 105   1         
+ 106   1         // Here we require temperature only accurate to 1 degree C
+ 107   1         // - we discard LS byte (perform a dummy read)
+ 108   1         I2C_Read_Byte();
+ 109   1         
+ 110   1         I2C_Send_Master_NAck(); // Perform a MASTER NACK
+ 111   1         
+ 112   1         I2C_Send_Stop(); // Generate STOP condition
+ 113   1         }
+ 114          
+ 115          /*------------------------------------------------------------------*-
+ 116          ---- END OF FILE -------------------------------------------------
+ 117          -*------------------------------------------------------------------*/
+C51 COMPILER V6.10  ADC_M127                                                               04/19/2001 10:36:44 PAGE 3   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     66    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

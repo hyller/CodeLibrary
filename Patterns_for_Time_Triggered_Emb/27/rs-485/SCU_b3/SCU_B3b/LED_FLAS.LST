@@ -1,0 +1,98 @@
+C51 COMPILER V6.10  LED_FLAS                                                               04/19/2001 14:03:31 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE LED_FLAS
+OBJECT MODULE PLACED IN .\LED_FLAS.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\LED_FLAS.C OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             LED_flas.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6             
+   7             Simple 'Flash LED' test function for scheduler.
+   8          
+   9          
+  10             COPYRIGHT
+  11             ---------
+  12          
+  13             This code is from the book:
+  14          
+  15             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17          
+  18             This code is copyright (c) 2001 by Michael J. Pont.
+  19           
+  20             See book for copyright details and other information.
+  21          
+  22          -*------------------------------------------------------------------*/
+  23          
+  24          #include "Main.h"
+  25          #include "Port.h"
+  26          #include "LED_flas.h"
+  27          
+  28          // ------ Private variable definitions -----------------------------
+  29          
+  30          static bit LED_state_G;
+  31          
+  32          /*------------------------------------------------------------------*-
+  33          
+  34            LED_Flash_Init()
+  35          
+  36            - See below.
+  37          
+  38          -*------------------------------------------------------------------*/
+  39          void LED_Flash_Init(void)
+  40             {
+  41   1         LED_state_G = 0;
+  42   1         }
+  43          
+  44          
+  45          /*------------------------------------------------------------------*-
+  46          
+  47            LED_Flash_Update()
+  48          
+  49            Flashes an LED (or pulses a buzzer, etc) on a specified port pin.
+  50          
+  51            Must schedule at twice the required flash rate: thus, for 1 Hz
+  52            flash (on for 0.5 seconds, off for 0.5 seconds) must schedule
+  53            at 2 Hz.
+  54          
+  55          -*------------------------------------------------------------------*/
+C51 COMPILER V6.10  LED_FLAS                                                               04/19/2001 14:03:31 PAGE 2   
+
+  56          void LED_Flash_Update(void)
+  57             {
+  58   1         // Change the LED from OFF to ON (or vice versa)
+  59   1         if (LED_state_G == 1)
+  60   1            {
+  61   2            LED_state_G = 0;
+  62   2            LED_pin = 0;
+  63   2            }
+  64   1         else
+  65   1            {
+  66   2            LED_state_G = 1;
+  67   2            LED_pin = 1;
+  68   2            }
+  69   1         }
+  70          
+  71          /*------------------------------------------------------------------*-
+  72            ---- END OF FILE -------------------------------------------------
+  73          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     16    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,5 @@
+"MAIN.obj",
+"PWM_515C.obj",
+"ADC_515c.obj" 
+TO "PWM_Hard" 
+RAMSIZE(256) 

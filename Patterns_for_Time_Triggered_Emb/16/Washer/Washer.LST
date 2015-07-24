@@ -1,0 +1,344 @@
+C51 COMPILER V6.10  WASHER                                                                 04/18/2001 14:01:45 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE WASHER
+OBJECT MODULE PLACED IN .\Washer.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\Washer.c BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             Washer.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             Multi-state framework for washing-machine controller.
+   8          
+   9          
+  10             COPYRIGHT
+  11             ---------
+  12          
+  13             This code is from the book:
+  14          
+  15             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17          
+  18             This code is copyright (c) 2001 by Michael J. Pont.
+  19           
+  20             See book for copyright details and other information.
+  21          
+  22          -*------------------------------------------------------------------*/
+  23          
+  24          #include "Main.H"
+  25          #include "Washer.H"
+  26          
+  27          // ------ Private data type declarations ---------------------------
+  28          
+  29          // Possible system states
+  30          typedef enum {START, FILL_DRUM, HEAT_WATER, 
+  31                        WASH_01, WASH_02, ERROR} eSystem_state;
+  32          
+  33          // ------ Private function prototypes ------------------------------
+  34          
+  35          tByte WASHER_Read_Selector_Dial(void);
+  36          bit   WASHER_Read_Start_Switch(void);
+  37          bit   WASHER_Read_Water_Level(void);
+  38          bit   WASHER_Read_Water_Temperature(void);
+  39          
+  40          void  WASHER_Control_Detergent_Hatch(bit);
+  41          void  WASHER_Control_Door_Lock(bit);
+  42          void  WASHER_Control_Motor(bit);
+  43          void  WASHER_Control_Pump(bit);
+  44          void  WASHER_Control_Water_Heater(bit);
+  45          void  WASHER_Control_Water_Valve(bit);
+  46          
+  47          // ------ Private constants ----------------------------------------
+  48          
+  49          #define OFF 0
+  50          #define ON 1
+  51          
+  52          #define MAX_FILL_DURATION (tLong) 1000
+  53          #define MAX_WATER_HEAT_DURATION (tLong) 1000
+  54          
+  55          #define WASH_01_DURATION 30000
+C51 COMPILER V6.10  WASHER                                                                 04/18/2001 14:01:45 PAGE 2   
+
+  56          
+  57          // ------ Private variables ----------------------------------------
+  58          
+  59          static eSystem_state System_state_G;
+  60          
+  61          static tWord Time_in_state_G;
+  62          
+  63          static tByte Program_G;
+  64          
+  65          // Ten different programs are supported
+  66          // Each one may or may not use detergent
+  67          static tByte Detergent_G[10] = {1,1,1,0,0,1,0,1,1,0};
+  68          
+  69          // Each one may or may not use hot water
+  70          static tByte Hot_Water_G[10] = {1,1,1,0,0,1,0,1,1,0};
+  71          
+  72          /* --------------------------------------------------------------- */
+  73          void WASHER_Init(void)
+  74             {
+  75   1         // Set up initial state
+  76   1         // Motor is off
+  77   1         WASHER_Control_Motor(OFF);
+  78   1      
+  79   1         // Pump is off
+  80   1         WASHER_Control_Pump(OFF);
+  81   1      
+  82   1         // Heater is off
+  83   1         WASHER_Control_Water_Heater(OFF);
+  84   1      
+  85   1         // Valve is closed
+  86   1         WASHER_Control_Water_Valve(OFF);
+  87   1      
+  88   1         // Wait (indefinately) until START is pressed
+  89   1         while (WASHER_Read_Start_Switch() != 1);
+  90   1      
+  91   1         System_state_G = START;
+  92   1      
+  93   1         // Read the selector dial
+  94   1         Program_G = WASHER_Read_Selector_Dial();
+  95   1         }
+  96          
+  97          
+  98          /* --------------------------------------------------------------- */
+  99          void WASHER_Update(void)
+ 100             {
+ 101   1         static tWord Time_in_state;
+ 102   1      
+ 103   1         switch (System_state_G)
+ 104   1            {
+ 105   2            case START: 
+ 106   2               {
+ 107   3               // For demo purposes only
+ 108   3               P1 = (tByte) System_state_G;
+ 109   3      
+ 110   3               // Lock the door
+ 111   3               WASHER_Control_Door_Lock(ON);
+ 112   3      
+ 113   3               // Start filling the drum
+ 114   3               WASHER_Control_Water_Valve(ON);
+ 115   3      
+ 116   3               // Release the detergent (if any)
+ 117   3               if (Detergent_G[Program_G] == 1)
+C51 COMPILER V6.10  WASHER                                                                 04/18/2001 14:01:45 PAGE 3   
+
+ 118   3                  {
+ 119   4                  WASHER_Control_Detergent_Hatch(ON);
+ 120   4                  }
+ 121   3      
+ 122   3               // Ready to go to next state
+ 123   3               System_state_G = FILL_DRUM;
+ 124   3               Time_in_state_G = 0;
+ 125   3      
+ 126   3               break;
+ 127   3               }
+ 128   2      
+ 129   2            case FILL_DRUM: 
+ 130   2               {
+ 131   3               // For demo purposes only
+ 132   3               P1 = (tByte) System_state_G;
+ 133   3      
+ 134   3               // Remain in this state until drum is full
+ 135   3               // NOTE: Timeout facility included here
+ 136   3               if (++Time_in_state_G >= MAX_FILL_DURATION)
+ 137   3                  {
+ 138   4                  // Should have filled the drum by now...
+ 139   4                  System_state_G = ERROR;
+ 140   4                  }
+ 141   3      
+ 142   3               // Check the water level
+ 143   3               if (WASHER_Read_Water_Level() == 1)
+ 144   3                  {
+ 145   4                  // Drum is full
+ 146   4      
+ 147   4                  // Does the program require hot water?
+ 148   4                  if (Hot_Water_G[Program_G] == 1)
+ 149   4                     {
+ 150   5                     WASHER_Control_Water_Heater(ON);
+ 151   5      
+ 152   5                     // Ready to go to next state
+ 153   5                     System_state_G = HEAT_WATER;
+ 154   5                     Time_in_state_G = 0;
+ 155   5                     }
+ 156   4                  else
+ 157   4                     {
+ 158   5                     // Using cold water only
+ 159   5                     // Ready to go to next state
+ 160   5                     System_state_G = WASH_01;
+ 161   5                     Time_in_state_G = 0;
+ 162   5                     }
+ 163   4                  }
+ 164   3               break;
+ 165   3               }
+ 166   2      
+ 167   2            case HEAT_WATER: 
+ 168   2               {
+ 169   3               // For demo purposes only
+ 170   3               P1 = (tByte) System_state_G;
+ 171   3      
+ 172   3               // Remain in this state until water is hot
+ 173   3               // NOTE: Timeout facility included here
+ 174   3               if (++Time_in_state_G >= MAX_WATER_HEAT_DURATION)
+ 175   3                  {
+ 176   4                  // Should have warmed the water by now...
+ 177   4                  System_state_G = ERROR;
+ 178   4                  }
+ 179   3      
+C51 COMPILER V6.10  WASHER                                                                 04/18/2001 14:01:45 PAGE 4   
+
+ 180   3               // Check the water temperature
+ 181   3               if (WASHER_Read_Water_Temperature() == 1)
+ 182   3                  {
+ 183   4                  // Water is at required temperature
+ 184   4                  // Ready to go to next state
+ 185   4                  System_state_G = WASH_01;
+ 186   4                  Time_in_state_G = 0;
+ 187   4                  }
+ 188   3      
+ 189   3               break;
+ 190   3               }
+ 191   2      
+ 192   2            case WASH_01: 
+ 193   2               {
+ 194   3               // For demo purposes only
+ 195   3               P1 = (tByte) System_state_G;
+ 196   3      
+ 197   3               // All wash program involve WASH_01
+ 198   3               // Drum is slowly rotated to ensure clothes are fully wet
+ 199   3               WASHER_Control_Motor(ON);
+ 200   3      
+ 201   3               if (++Time_in_state >= WASH_01_DURATION)
+ 202   3                  {
+ 203   4                  System_state_G = WASH_02;
+ 204   4                  Time_in_state = 0;
+ 205   4                  }
+ 206   3      
+ 207   3               break;
+ 208   3               }
+ 209   2      
+ 210   2            // REMAINING WASH PHASES OMITTED HERE ...
+ 211   2      
+ 212   2            case WASH_02: 
+ 213   2               {
+ 214   3               // For demo purposes only
+ 215   3               P1 = (tByte) System_state_G;
+ 216   3      
+ 217   3               break;
+ 218   3               }
+ 219   2      
+ 220   2            case ERROR: 
+ 221   2               {
+ 222   3               // For demo purposes only
+ 223   3               P1 = (tByte) System_state_G;
+ 224   3      
+ 225   3               break;
+ 226   3               }
+ 227   2            }
+ 228   1         }
+ 229          
+ 230          /* --------------------------------------------------------------- */
+ 231          tByte WASHER_Read_Selector_Dial(void)
+ 232             {
+ 233   1         // User code here...
+ 234   1      
+ 235   1         return 0;
+ 236   1         }
+ 237          
+ 238          /* --------------------------------------------------------------- */
+ 239          bit WASHER_Read_Start_Switch(void)
+ 240             {
+ 241   1         // User code here...
+C51 COMPILER V6.10  WASHER                                                                 04/18/2001 14:01:45 PAGE 5   
+
+ 242   1      
+ 243   1         return 1;
+ 244   1         }
+ 245          
+ 246          /* --------------------------------------------------------------- */
+ 247          bit WASHER_Read_Water_Level(void)
+ 248             {
+ 249   1         // User code here...
+ 250   1      
+ 251   1         return 1;
+ 252   1         }
+ 253          
+ 254          /* --------------------------------------------------------------- */
+ 255          bit WASHER_Read_Water_Temperature(void)
+ 256             {
+ 257   1         // User code here...
+ 258   1      
+ 259   1         return 1;
+ 260   1         }
+ 261          
+ 262          /* --------------------------------------------------------------- */
+ 263          void WASHER_Control_Detergent_Hatch(bit State)
+ 264             {
+ 265   1         bit Tmp = State;
+ 266   1         // User code here...
+ 267   1         }
+ 268          
+ 269          /* --------------------------------------------------------------- */
+ 270          void WASHER_Control_Door_Lock(bit State)
+ 271             {
+ 272   1         bit Tmp = State;
+ 273   1         // User code here...
+ 274   1         }
+ 275          
+ 276          /* --------------------------------------------------------------- */
+ 277          void WASHER_Control_Motor(bit State)
+ 278             {
+ 279   1         bit Tmp = State;
+ 280   1         // User code here...
+ 281   1         }
+ 282          
+ 283          /* --------------------------------------------------------------- */
+ 284          void WASHER_Control_Pump(bit State)
+ 285             {
+ 286   1         bit Tmp = State;
+ 287   1         // User code here...
+ 288   1         }
+ 289          
+ 290          /* --------------------------------------------------------------- */
+ 291          void WASHER_Control_Water_Heater(bit State)
+ 292             {
+ 293   1         bit Tmp = State;
+ 294   1         // User code here...
+ 295   1         }
+ 296          
+ 297          /* --------------------------------------------------------------- */
+ 298          void WASHER_Control_Water_Valve(bit State)
+ 299             {
+ 300   1         bit Tmp = State;
+ 301   1         // User code here...
+ 302   1         }
+ 303          
+C51 COMPILER V6.10  WASHER                                                                 04/18/2001 14:01:45 PAGE 6   
+
+ 304          /*------------------------------------------------------------------*-
+ 305            ---- END OF FILE -------------------------------------------------
+ 306          -*------------------------------------------------------------------*/
+ 307          
+ 308          
+ 309          
+ 310          
+ 311          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    302    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     26    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----      12
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

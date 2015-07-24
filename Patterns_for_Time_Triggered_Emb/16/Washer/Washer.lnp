@@ -1,0 +1,7 @@
+"2_01_12g.obj",
+"Main.obj",
+"Sch51.obj",
+"Washer.obj" 
+TO "Washer" 
+RAMSIZE(256) 
+CODE( 0X0000-0X1FFF )

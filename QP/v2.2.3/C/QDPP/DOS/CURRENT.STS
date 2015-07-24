@@ -1,0 +1,33 @@
+[shared-]
+	pmark="d:\cpp\qf\dos\dos.cpp" 72 1
+	version=3
+[debug-]
+	target="d:\cpp\qdpp_dos\qdpp.exe"
+	synonym=;D:\CPP\QDPP_DOS
+	watch=aPhil'CPP
+	watch=n'CPP
+	genericbp='E  "{,d:\cpp\qdpp_dos\dos.cpp,D:\CPP\QDPP_DOS\QDPP.EXE} .49"
+	srcwin=vs1+ /a+b+c+l+s+t+
+[cv]
+	wndstate=0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1
+	wndstate=1 60 22 0 1 0 1 0 0 0 0 0 0 0 -1
+	wndstate=2 57 27 1 12 0 1 0 4 0 17 0 0 0 -1
+	wndstate=3 61 48 16 1 1 1 0 0 0 71 52 0 0 -1
+	wndstate=4 67 12 3 13 0 0 0 0 0 0 0 0 0 -1
+	wndstate=5 67 9 0 22 0 0 0 0 0 0 0 0 0 -1
+	wndstate=6 67 9 3 25 0 0 0 0 0 0 0 0 0 -1
+	wndstate=7 13 48 67 1 0 1 0 0 0 0 0 0 0 -1
+	wndstate=8 67 9 0 31 0 0 0 0 0 0 0 0 0 -1
+	wndstate=9 80 9 0 40 0 1 0 1 0 1 0 0 0 -1
+	command=use auto
+	command=n10
+	screensize=50
+	command=oh+
+	command=ov+
+	command=oa+
+	command=oc+
+	command=of+
+	command=o3-
+	command=ollf   
+	tracespeed=250
+	callargs=1

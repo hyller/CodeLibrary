@@ -1,0 +1,8 @@
+"MAIN.obj",
+"SCH51.obj",
+"DELAY_T0.obj",
+"LED_FLAS.obj",
+"TLIGHT_A.obj",
+"SCI_TI2M.obj" 
+TO "SCI_Ti2m" 
+RAMSIZE(256) 

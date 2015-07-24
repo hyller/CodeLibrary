@@ -1,0 +1,30 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: RTK32 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\miro\LOCALS~1\Temp\RSP1B.tmp" with contents
+[
+/nologo /MT /W3 /O2 /I "." /I "../include" /I "../source" /I "d:\tools\rtos32/include" /D "RTK32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\QP\Cpp\QF\Source\Qepool.cpp"
+"D:\QP\Cpp\QF\Source\Qequeue.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\miro\LOCALS~1\Temp\RSP1B.tmp" 
+Creating command line "link.exe -lib /nologo /out:"Release\Qf_rtk32a.lib"  .\Release\Qactive.obj .\Release\Qepool.obj .\Release\Qequeue.obj .\Release\Qf.obj .\Release\Qfsm.obj .\Release\Qhsm.obj .\Release\QhsmTran.obj .\Release\Qtimer.obj .\Release\RTK32a.obj "
+<h3>Output Window</h3>
+Compiling...
+Qepool.cpp
+Qequeue.cpp
+Generating Code...
+Creating library...
+
+
+
+<h3>Results</h3>
+Qf_rtk32a.lib - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

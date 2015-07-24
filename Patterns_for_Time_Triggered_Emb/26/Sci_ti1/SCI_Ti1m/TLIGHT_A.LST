@@ -1,0 +1,1050 @@
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE TLIGHT_A
+OBJECT MODULE PLACED IN .\TLIGHT_A.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\TLIGHT_A.C OPTIMIZE(6,SIZE) BROWSE DEBUG OBJECTEXTEND CODE LISTINCLUDE SY
+                    -MBOLS
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             TLight_A.C (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6             
+   7             Traffic light control program 
+   8          
+   9             Simplex version 
+  10             - has no information about bulb status on other node.
+  11          
+  12          
+  13             COPYRIGHT
+  14             ---------
+  15          
+  16             This code is from the book:
+  17          
+  18             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  19             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  20          
+  21             This code is copyright (c) 2001 by Michael J. Pont.
+  22           
+  23             See book for copyright details and other information.
+  24          
+  25          -*------------------------------------------------------------------*/
+  26          
+  27          #include "Main.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     Main.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1     
+   7      =1     'Project Header' (see Chap 9) for project SCI_Ti1m (see Chap 26)
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  #ifndef _MAIN_H
+  25      =1  #define _MAIN_H
+  26      =1  
+  27      =1  //------------------------------------------------------------------
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 2   
+
+  28      =1  // WILL NEED TO EDIT THIS SECTION FOR EVERY PROJECT
+  29      =1  //------------------------------------------------------------------
+  30      =1  
+  31      =1  // Must include the appropriate microcontroller header file here
+  32      =1  #include <AT89x52.h>
+   1      =2  /*--------------------------------------------------------------------------
+   2      =2  AT89X52.H
+   3      =2  
+   4      =2  Header file for the low voltage Flash Atmel AT89C52 and AT89LV52.
+   5      =2  Copyright (c) 1995-1996 Keil Software, Inc.  All rights reserved.
+   6      =2  --------------------------------------------------------------------------*/
+   7      =2  
+   8      =2  #ifndef AT89X52_HEADER_FILE
+   9      =2  #define AT89X52_HEADER_FILE 1
+  10      =2  
+  11      =2  /*------------------------------------------------
+  12      =2  Byte Registers
+  13      =2  ------------------------------------------------*/
+  14      =2  sfr P0      = 0x80;
+  15      =2  sfr SP      = 0x81;
+  16      =2  sfr DPL     = 0x82;
+  17      =2  sfr DPH     = 0x83;
+  18      =2  sfr PCON    = 0x87;
+  19      =2  sfr TCON    = 0x88;
+  20      =2  sfr TMOD    = 0x89;
+  21      =2  sfr TL0     = 0x8A;
+  22      =2  sfr TL1     = 0x8B;
+  23      =2  sfr TH0     = 0x8C;
+  24      =2  sfr TH1     = 0x8D;
+  25      =2  sfr P1      = 0x90;
+  26      =2  sfr SCON    = 0x98;
+  27      =2  sfr SBUF    = 0x99;
+  28      =2  sfr P2      = 0xA0;
+  29      =2  sfr IE      = 0xA8;
+  30      =2  sfr P3      = 0xB0;
+  31      =2  sfr IP      = 0xB8;
+  32      =2  sfr T2CON   = 0xC8;
+  33      =2  sfr T2MOD   = 0xC9;
+  34      =2  sfr RCAP2L  = 0xCA;
+  35      =2  sfr RCAP2H  = 0xCB;
+  36      =2  sfr TL2     = 0xCC;
+  37      =2  sfr TH2     = 0xCD;
+  38      =2  sfr PSW     = 0xD0;
+  39      =2  sfr ACC     = 0xE0;
+  40      =2  sfr B       = 0xF0;
+  41      =2  
+  42      =2  /*------------------------------------------------
+  43      =2  P0 Bit Registers
+  44      =2  ------------------------------------------------*/
+  45      =2  sbit P0_0 = 0x80;
+  46      =2  sbit P0_1 = 0x81;
+  47      =2  sbit P0_2 = 0x82;
+  48      =2  sbit P0_3 = 0x83;
+  49      =2  sbit P0_4 = 0x84;
+  50      =2  sbit P0_5 = 0x85;
+  51      =2  sbit P0_6 = 0x86;
+  52      =2  sbit P0_7 = 0x87;
+  53      =2  
+  54      =2  /*------------------------------------------------
+  55      =2  PCON Bit Values
+  56      =2  ------------------------------------------------*/
+  57      =2  #define IDL_    0x01
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 3   
+
+  58      =2  
+  59      =2  #define STOP_   0x02
+  60      =2  #define PD_     0x02    /* Alternate definition */
+  61      =2  
+  62      =2  #define GF0_    0x04
+  63      =2  #define GF1_    0x08
+  64      =2  #define SMOD_   0x80
+  65      =2  
+  66      =2  /*------------------------------------------------
+  67      =2  TCON Bit Registers
+  68      =2  ------------------------------------------------*/
+  69      =2  sbit IT0  = 0x88;
+  70      =2  sbit IE0  = 0x89;
+  71      =2  sbit IT1  = 0x8A;
+  72      =2  sbit IE1  = 0x8B;
+  73      =2  sbit TR0  = 0x8C;
+  74      =2  sbit TF0  = 0x8D;
+  75      =2  sbit TR1  = 0x8E;
+  76      =2  sbit TF1  = 0x8F;
+  77      =2  
+  78      =2  /*------------------------------------------------
+  79      =2  TMOD Bit Values
+  80      =2  ------------------------------------------------*/
+  81      =2  #define T0_M0_   0x01
+  82      =2  #define T0_M1_   0x02
+  83      =2  #define T0_CT_   0x04
+  84      =2  #define T0_GATE_ 0x08
+  85      =2  #define T1_M0_   0x10
+  86      =2  #define T1_M1_   0x20
+  87      =2  #define T1_CT_   0x40
+  88      =2  #define T1_GATE_ 0x80
+  89      =2  
+  90      =2  #define T1_MASK_ 0xF0
+  91      =2  #define T0_MASK_ 0x0F
+  92      =2  
+  93      =2  /*------------------------------------------------
+  94      =2  P1 Bit Registers
+  95      =2  ------------------------------------------------*/
+  96      =2  sbit P1_0 = 0x90;
+  97      =2  sbit P1_1 = 0x91;
+  98      =2  sbit P1_2 = 0x92;
+  99      =2  sbit P1_3 = 0x93;
+ 100      =2  sbit P1_4 = 0x94;
+ 101      =2  sbit P1_5 = 0x95;
+ 102      =2  sbit P1_6 = 0x96;
+ 103      =2  sbit P1_7 = 0x97;
+ 104      =2  
+ 105      =2  sbit T2   = 0x90;       /* External input to Timer/Counter 2, clock out */
+ 106      =2  sbit T2EX = 0x91;       /* Timer/Counter 2 capture/reload trigger & dir ctl */
+ 107      =2  
+ 108      =2  /*------------------------------------------------
+ 109      =2  SCON Bit Registers
+ 110      =2  ------------------------------------------------*/
+ 111      =2  sbit RI   = 0x98;
+ 112      =2  sbit TI   = 0x99;
+ 113      =2  sbit RB8  = 0x9A;
+ 114      =2  sbit TB8  = 0x9B;
+ 115      =2  sbit REN  = 0x9C;
+ 116      =2  sbit SM2  = 0x9D;
+ 117      =2  sbit SM1  = 0x9E;
+ 118      =2  sbit SM0  = 0x9F;
+ 119      =2  
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 4   
+
+ 120      =2  /*------------------------------------------------
+ 121      =2  P2 Bit Registers
+ 122      =2  ------------------------------------------------*/
+ 123      =2  sbit P2_0 = 0xA0;
+ 124      =2  sbit P2_1 = 0xA1;
+ 125      =2  sbit P2_2 = 0xA2;
+ 126      =2  sbit P2_3 = 0xA3;
+ 127      =2  sbit P2_4 = 0xA4;
+ 128      =2  sbit P2_5 = 0xA5;
+ 129      =2  sbit P2_6 = 0xA6;
+ 130      =2  sbit P2_7 = 0xA7;
+ 131      =2  
+ 132      =2  /*------------------------------------------------
+ 133      =2  IE Bit Registers
+ 134      =2  ------------------------------------------------*/
+ 135      =2  sbit EX0  = 0xA8;       /* 1=Enable External interrupt 0 */
+ 136      =2  sbit ET0  = 0xA9;       /* 1=Enable Timer 0 interrupt */
+ 137      =2  sbit EX1  = 0xAA;       /* 1=Enable External interrupt 1 */
+ 138      =2  sbit ET1  = 0xAB;       /* 1=Enable Timer 1 interrupt */
+ 139      =2  sbit ES   = 0xAC;       /* 1=Enable Serial port interrupt */
+ 140      =2  sbit ET2  = 0xAD;       /* 1=Enable Timer 2 interrupt */
+ 141      =2  
+ 142      =2  sbit EA   = 0xAF;       /* 0=Disable all interrupts */
+ 143      =2  
+ 144      =2  /*------------------------------------------------
+ 145      =2  P3 Bit Registers (Mnemonics & Ports)
+ 146      =2  ------------------------------------------------*/
+ 147      =2  sbit P3_0 = 0xB0;
+ 148      =2  sbit P3_1 = 0xB1;
+ 149      =2  sbit P3_2 = 0xB2;
+ 150      =2  sbit P3_3 = 0xB3;
+ 151      =2  sbit P3_4 = 0xB4;
+ 152      =2  sbit P3_5 = 0xB5;
+ 153      =2  sbit P3_6 = 0xB6;
+ 154      =2  sbit P3_7 = 0xB7;
+ 155      =2  
+ 156      =2  sbit RXD  = 0xB0;       /* Serial data input */
+ 157      =2  sbit TXD  = 0xB1;       /* Serial data output */
+ 158      =2  sbit INT0 = 0xB2;       /* External interrupt 0 */
+ 159      =2  sbit INT1 = 0xB3;       /* External interrupt 1 */
+ 160      =2  sbit T0   = 0xB4;       /* Timer 0 external input */
+ 161      =2  sbit T1   = 0xB5;       /* Timer 1 external input */
+ 162      =2  sbit WR   = 0xB6;       /* External data memory write strobe */
+ 163      =2  sbit RD   = 0xB7;       /* External data memory read strobe */
+ 164      =2  
+ 165      =2  /*------------------------------------------------
+ 166      =2  IP Bit Registers
+ 167      =2  ------------------------------------------------*/
+ 168      =2  sbit PX0  = 0xB8;
+ 169      =2  sbit PT0  = 0xB9;
+ 170      =2  sbit PX1  = 0xBA;
+ 171      =2  sbit PT1  = 0xBB;
+ 172      =2  sbit PS   = 0xBC;
+ 173      =2  sbit PT2  = 0xBD;
+ 174      =2  
+ 175      =2  /*------------------------------------------------
+ 176      =2  T2CON Bit Registers
+ 177      =2  ------------------------------------------------*/
+ 178      =2  sbit CP_RL2= 0xC8;      /* 0=Reload, 1=Capture select */
+ 179      =2  sbit C_T2 = 0xC9;       /* 0=Timer, 1=Counter */
+ 180      =2  sbit TR2  = 0xCA;       /* 0=Stop timer, 1=Start timer */
+ 181      =2  sbit EXEN2= 0xCB;       /* Timer 2 external enable */
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 5   
+
+ 182      =2  sbit TCLK = 0xCC;       /* 0=Serial clock uses Timer 1 overflow, 1=Timer 2 */
+ 183      =2  sbit RCLK = 0xCD;       /* 0=Serial clock uses Timer 1 overflow, 1=Timer 2 */
+ 184      =2  sbit EXF2 = 0xCE;       /* Timer 2 external flag */
+ 185      =2  sbit TF2  = 0xCF;       /* Timer 2 overflow flag */
+ 186      =2  
+ 187      =2  /*------------------------------------------------
+ 188      =2  T2MOD Bit Values
+ 189      =2  ------------------------------------------------*/
+ 190      =2  #define DCEN_   0x01    /* 1=Timer 2 can be configured as up/down counter */
+ 191      =2  #define T2OE_   0x02    /* Timer 2 output enable */
+ 192      =2  
+ 193      =2  /*------------------------------------------------
+ 194      =2  PSW Bit Registers
+ 195      =2  ------------------------------------------------*/
+ 196      =2  sbit P    = 0xD0;
+ 197      =2  sbit FL   = 0xD1;
+ 198      =2  sbit OV   = 0xD2;
+ 199      =2  sbit RS0  = 0xD3;
+ 200      =2  sbit RS1  = 0xD4;
+ 201      =2  sbit F0   = 0xD5;
+ 202      =2  sbit AC   = 0xD6;
+ 203      =2  sbit CY   = 0xD7;
+ 204      =2  
+ 205      =2  /*------------------------------------------------
+ 206      =2  Interrupt Vectors:
+ 207      =2  Interrupt Address = (Number * 8) + 3
+ 208      =2  ------------------------------------------------*/
+ 209      =2  #define IE0_VECTOR	0  /* 0x03 External Interrupt 0 */
+ 210      =2  #define TF0_VECTOR	1  /* 0x0B Timer 0 */
+ 211      =2  #define IE1_VECTOR	2  /* 0x13 External Interrupt 1 */
+ 212      =2  #define TF1_VECTOR	3  /* 0x1B Timer 1 */
+ 213      =2  #define SIO_VECTOR	4  /* 0x23 Serial port */
+ 214      =2  
+ 215      =2  #define TF2_VECTOR	5  /* 0x2B Timer 2 */
+ 216      =2  #define EX2_VECTOR	5  /* 0x2B External Interrupt 2 */
+ 217      =2  
+ 218      =2  /*------------------------------------------------
+ 219      =2  ------------------------------------------------*/
+ 220      =2  #endif
+ 221      =2  
+ 222      =2  
+  33      =1  
+  34      =1  // Include oscillator / chip details here 
+  35      =1  // (essential if generic delays / timeouts are used)
+  36      =1  //  -
+  37      =1  // Oscillator / resonator frequency (in Hz) e.g. (11059200UL)
+  38      =1  #define OSC_FREQ (12000000UL)
+  39      =1  
+  40      =1  // Number of oscillations per instruction (4, 6 or 12)
+  41      =1  // 12 - Original 8051 / 8052 and numerous modern versions
+  42      =1  //  6 - Various Infineon and Philips devices, etc.
+  43      =1  //  4 - Dallas, etc.
+  44      =1  //
+  45      =1  // Take care with Dallas devices 
+  46      =1  // - Timers default to *12* osc ticks unless CKCON is modified 
+  47      =1  // - If using generic code on a Dallas device, use 12 here
+  48      =1  #define OSC_PER_INST (12)
+  49      =1  
+  50      =1  //------------------------------------------------------------------
+  51      =1  // SHOULD NOT NEED TO EDIT THE SECTIONS BELOW
+  52      =1  //------------------------------------------------------------------
+  53      =1  typedef unsigned char tByte;
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 6   
+
+  54      =1  typedef unsigned int  tWord;
+  55      =1  typedef unsigned long tLong;
+  56      =1  
+  57      =1  // Misc #defines
+  58      =1  #ifndef TRUE
+  59      =1  #define FALSE 0
+  60      =1  #define TRUE (!FALSE)
+  61      =1  #endif
+  62      =1  
+  63      =1  #define RETURN_NORMAL (bit) 0
+  64      =1  #define RETURN_ERROR (bit) 1
+  65      =1  
+  66      =1  
+  67      =1  //------------------------------------------------------------------
+  68      =1  // Interrupts
+  69      =1  // - see Chapter 13.  
+  70      =1  //------------------------------------------------------------------
+  71      =1  
+  72      =1  // Generic 8051/52 timer interrupts (used in most schedulers)
+  73      =1  #define INTERRUPT_Timer_0_Overflow 1
+  74      =1  #define INTERRUPT_Timer_1_Overflow 3
+  75      =1  #define INTERRUPT_Timer_2_Overflow 5
+  76      =1  
+  77      =1  // Additional interrupts (used in shared-clock schedulers)
+  78      =1  #define INTERRUPT_EXTERNAL_0 0
+  79      =1  #define INTERRUPT_EXTERNAL_1 2
+  80      =1  #define INTERRUPT_UART_Rx_Tx 4
+  81      =1  #define INTERRUPT_CAN_c515c 17
+  82      =1  
+  83      =1  //------------------------------------------------------------------
+  84      =1  // Error codes 
+  85      =1  // - see Chapter 14. 
+  86      =1  //------------------------------------------------------------------
+  87      =1  
+  88      =1  #define ERROR_SCH_TOO_MANY_TASKS (1)
+  89      =1  #define ERROR_SCH_CANNOT_DELETE_TASK (2)
+  90      =1  
+  91      =1  #define ERROR_SCH_WAITING_FOR_SLAVE_TO_ACK (3)
+  92      =1  #define ERROR_SCH_WAITING_FOR_START_COMMAND_FROM_MASTER (3)
+  93      =1  
+  94      =1  #define ERROR_SCH_ONE_OR_MORE_SLAVES_DID_NOT_START (4)
+  95      =1  #define ERROR_SCH_LOST_SLAVE (5)
+  96      =1  
+  97      =1  #define ERROR_SCH_CAN_BUS_ERROR (6)
+  98      =1  
+  99      =1  #define ERROR_I2C_WRITE_BYTE (10)
+ 100      =1  #define ERROR_I2C_READ_BYTE (11)
+ 101      =1  #define ERROR_I2C_WRITE_BYTE_AT24C64 (12)
+ 102      =1  #define ERROR_I2C_READ_BYTE_AT24C64 (13)
+ 103      =1  #define ERROR_I2C_DS1621 (14)
+ 104      =1  
+ 105      =1  #define ERROR_USART_TI (21)
+ 106      =1  #define ERROR_USART_WRITE_CHAR (22)
+ 107      =1  
+ 108      =1  #define ERROR_SPI_EXCHANGE_BYTES_TIMEOUT (31)
+ 109      =1  #define ERROR_SPI_X25_TIMEOUT (32)
+ 110      =1  #define ERROR_SPI_MAX1110_TIMEOUT (33)
+ 111      =1  
+ 112      =1  #define ERROR_ADC_MAX150_TIMEOUT (44)
+ 113      =1  
+ 114      =1  #endif
+ 115      =1  
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 7   
+
+ 116      =1  /*------------------------------------------------------------------*-
+ 117      =1    ---- END OF FILE -------------------------------------------------
+ 118      =1  -*------------------------------------------------------------------*/
+  28          #include "Port.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     Port.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1  
+   7      =1    'Port Header' (see Chap 10) for the project SCI_Ti1M (Chap 26)
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  // ------ Sch51.C ----------------------------------------
+  25      =1  
+  26      =1  // Comment this line out if error reporting is NOT required
+  27      =1  #define SCH_REPORT_ERRORS
+  28      =1  
+  29      =1  #ifdef SCH_REPORT_ERRORS
+  30      =1  // The port on which error codes will be displayed
+  31      =1  // ONLY USED IF ERRORS ARE REPORTED
+  32      =1  #define Error_port P1
+  33      =1  
+  34      =1  #endif
+  35      =1  
+  36      =1  // ------ SCI_Ti1m.C -------------------------------------------------
+  37      =1  
+  38      =1  // This pin is wired to the interrupt input pin
+  39      =1  // (usually Pin 3.2 or Pin 3.3) of the slave microcontroller
+  40      =1  sbit Interrupt_output_pin = P2^5;
+  41      =1  
+  42      =1  // ------ TLight_A.C ----------------------------------------------
+  43      =1  
+  44      =1  sbit Red_light   = (P2^0);
+  45      =1  sbit Amber_light = (P2^1);
+  46      =1  sbit Green_light = (P2^2);
+  47      =1  
+  48      =1  
+  49      =1  // ------ LED_Flas.C -----------------------------------------------
+  50      =1  
+  51      =1  // For flashing LED
+  52      =1  sbit LED_pin = P2^7;
+  53      =1  
+  54      =1  
+  55      =1  /*------------------------------------------------------------------*-
+  56      =1    ---- END OF FILE -------------------------------------------------
+  57      =1  -*------------------------------------------------------------------*/
+  58      =1  
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 8   
+
+  59      =1  
+  60      =1  
+  29          
+  30          #include "TLight_A.h"
+   1      =1  /*------------------------------------------------------------------*-
+   2      =1  
+   3      =1     TLight_A.H (v1.00)
+   4      =1  
+   5      =1    ------------------------------------------------------------------
+   6      =1     
+   7      =1     - See TLight_A.C for details.
+   8      =1  
+   9      =1  
+  10      =1     COPYRIGHT
+  11      =1     ---------
+  12      =1  
+  13      =1     This code is from the book:
+  14      =1  
+  15      =1     PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  16      =1     [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  17      =1  
+  18      =1     This code is copyright (c) 2001 by Michael J. Pont.
+  19      =1   
+  20      =1     See book for copyright details and other information.
+  21      =1  
+  22      =1  -*------------------------------------------------------------------*/
+  23      =1  
+  24      =1  // ------ Public data type declarations ----------------------------
+  25      =1  
+  26      =1  // Possible system states
+  27      =1  typedef 
+  28      =1  enum {RED, RED_AMBER, GREEN, AMBER, BULB_BLOWN} eLight_State;
+  29      =1  
+  30      =1  
+  31      =1  // ------ Public constants -----------------------------------------
+  32      =1  
+  33      =1  #define MASTER 1
+  34      =1  #define SLAVE 0
+  35      =1  
+  36      =1  // ------ Public function prototypes -------------------------------
+  37      =1  
+  38      =1  void TRAFFIC_LIGHTS_Init(void);
+  39      =1  void TRAFFIC_LIGHTS_Update(void);
+  40      =1  
+  41      =1  void TRAFFIC_LIGHTS_Display_Safe_Output(void);
+  42      =1  
+  43      =1  /*------------------------------------------------------------------*-
+  44      =1    ---- END OF FILE -------------------------------------------------
+  45      =1  -*------------------------------------------------------------------*/
+  31          
+  32          // ------ Private constants ----------------------------------------
+  33          
+  34          // Easy to change logic here
+  35          #define ON  0
+  36          #define OFF 1
+  37          
+  38          // Times in each of the (four) possible light states
+  39          // (Times are in seconds - must call the update task once per second)
+  40          //
+  41          #define RED_DURATION  (10)
+  42          #define RED_AND_AMBER_DURATION  (10)
+  43          
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 9   
+
+  44          // NOTE: 
+  45          // GREEN_DURATION must equal RED_DURATION
+  46          // AMBER_DURATION must equal RED_AND_AMBER_DURATION
+  47          #define GREEN_DURATION RED_DURATION 
+  48          #define AMBER_DURATION RED_AND_AMBER_DURATION
+  49          
+  50          // Must specify whether this is a MASTER or a SLAVE unit
+  51          #define MASTER_SLAVE MASTER
+  52          
+  53          // ------ Private variables ----------------------------------------
+  54          
+  55          // The state of the system
+  56          static eLight_State Light_state_G;
+  57          
+  58          // ------ Private function prototypes ------------------------------
+  59          
+  60          bit TRAFFIC_LIGHTS_Check_Local_Bulb(void);
+  61          
+  62          /*------------------------------------------------------------------*-
+  63          
+  64            TRAFFIC_LIGHTS_Init()
+  65          
+  66            Prepare for scheduling.
+  67          
+  68          -*-----------------------------------------------------------------*/
+  69          void TRAFFIC_LIGHTS_Init(void)
+  70             {
+  71   1         // Master and slave must start in opposite states
+  72   1         if (MASTER_SLAVE == MASTER)
+  73   1            {
+  74   2            Light_state_G = RED;
+  75   2            }
+  76   1         else
+  77   1            {
+  78   2            Light_state_G = GREEN;
+  79   2            }
+  80   1      
+  81   1         // Display safe output until scheduler starts
+  82   1         TRAFFIC_LIGHTS_Display_Safe_Output();
+  83   1         }
+  84          
+  85          /*------------------------------------------------------------------*-
+  86          
+  87            TRAFFIC_LIGHTS_Update()
+  88          
+  89            Must be scheduled once per second.
+  90          
+  91          -*------------------------------------------------------------------*/
+  92          void TRAFFIC_LIGHTS_Update(void)
+  93             {
+  94   1         static tWord Time_in_state;
+  95   1      
+  96   1         // Check for blown bulbs on this node
+  97   1         TRAFFIC_LIGHTS_Check_Local_Bulb();
+  98   1      
+  99   1         // This is the main update code
+ 100   1         switch (Light_state_G)
+ 101   1            {
+ 102   2            case RED: 
+ 103   2               {
+ 104   3               Red_light = ON;
+ 105   3               Amber_light = OFF;
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 10  
+
+ 106   3               Green_light = OFF;
+ 107   3      
+ 108   3               if (++Time_in_state == RED_DURATION)
+ 109   3                  {
+ 110   4                  Light_state_G = RED_AMBER;
+ 111   4                  Time_in_state = 0;
+ 112   4                  }
+ 113   3      
+ 114   3               break;
+ 115   3               }
+ 116   2      
+ 117   2            case RED_AMBER: 
+ 118   2               {
+ 119   3               Red_light = ON;
+ 120   3               Amber_light = ON;
+ 121   3               Green_light = OFF;
+ 122   3      
+ 123   3               if (++Time_in_state == RED_AND_AMBER_DURATION)
+ 124   3                  {
+ 125   4                  Light_state_G = GREEN;
+ 126   4                  Time_in_state = 0;
+ 127   4                  }
+ 128   3      
+ 129   3               break;
+ 130   3               }
+ 131   2      
+ 132   2            case GREEN: 
+ 133   2               {
+ 134   3               Red_light = OFF;
+ 135   3               Amber_light = OFF;
+ 136   3               Green_light = ON;
+ 137   3      
+ 138   3               if (++Time_in_state == GREEN_DURATION)
+ 139   3                  {
+ 140   4                  Light_state_G = AMBER;
+ 141   4                  Time_in_state = 0;
+ 142   4                  }
+ 143   3      
+ 144   3               break;
+ 145   3               }
+ 146   2      
+ 147   2            case AMBER: 
+ 148   2               {
+ 149   3               Red_light = OFF;
+ 150   3               Amber_light = ON;
+ 151   3               Green_light = OFF;
+ 152   3      
+ 153   3               if (++Time_in_state == AMBER_DURATION)
+ 154   3                  {
+ 155   4                  Light_state_G = RED;
+ 156   4                  Time_in_state = 0;
+ 157   4                  }
+ 158   3      
+ 159   3               break;
+ 160   3               }
+ 161   2      
+ 162   2            case BULB_BLOWN: 
+ 163   2               {
+ 164   3               // Blown bulb detected
+ 165   3               // Switch all bulbs off
+ 166   3               // (Drivers won't be happy, but it will be clear
+ 167   3               //  that something is wrong)
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 11  
+
+ 168   3               Red_light = OFF;
+ 169   3               Amber_light = OFF;
+ 170   3               Green_light = OFF;
+ 171   3      
+ 172   3               // We remain in this state until state
+ 173   3               // is changed manually, or system is reset
+ 174   3               break;
+ 175   3               }
+ 176   2            }
+ 177   1         }
+ 178          
+ 179          /*------------------------------------------------------------------*-
+ 180          
+ 181            TRAFFIC_LIGHTS_Check_Local_Bulb()
+ 182          
+ 183            Check the status of the local bulbs (DUMMY FUNCTION HERE)
+ 184          
+ 185          -*------------------------------------------------------------------*/
+ 186          bit TRAFFIC_LIGHTS_Check_Local_Bulb(void)
+ 187              {
+ 188   1          // This dummy function confirms the bulbs are OK
+ 189   1          //
+ 190   1          // - See Chapter 32 for further info.
+ 191   1          return RETURN_NORMAL;
+ 192   1          }
+ 193          
+ 194          /*------------------------------------------------------------------*-
+ 195          
+ 196            TRAFFIC_LIGHTS_Display_Safe_Output()
+ 197          
+ 198            Used in the event of system failure, etc.
+ 199          
+ 200          -*------------------------------------------------------------------*/
+ 201          void TRAFFIC_LIGHTS_Display_Safe_Output(void)
+ 202             {
+ 203   1         if (TRAFFIC_LIGHTS_Check_Local_Bulb() == RETURN_NORMAL)
+ 204   1            {
+ 205   2            // Bulbs are OK 
+ 206   2            // - best thing to do is to display STOP
+ 207   2            Red_light = ON;
+ 208   2            Amber_light = OFF;
+ 209   2            Green_light = OFF;
+ 210   2            }
+ 211   1         else
+ 212   1            {
+ 213   2            // At least one bulb has blown 
+ 214   2            // - best thing we can do is extinguish all bulbs
+ 215   2            Red_light = OFF;
+ 216   2            Amber_light = OFF;
+ 217   2            Green_light = OFF;
+ 218   2            } 
+ 219   1         }
+ 220          
+ 221          /*------------------------------------------------------------------*-
+ 222            ---- END OF FILE -------------------------------------------------
+ 223          -*------------------------------------------------------------------*/
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 12  
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION TRAFFIC_LIGHTS_Init (BEGIN)
+                                           ; SOURCE LINE # 69
+                                           ; SOURCE LINE # 70
+                                           ; SOURCE LINE # 72
+                                           ; SOURCE LINE # 73
+                                           ; SOURCE LINE # 74
+0000 E4                CLR     A
+0001 F500        R     MOV     Light_state_G,A
+                                           ; SOURCE LINE # 75
+                                           ; SOURCE LINE # 77
+                                           ; SOURCE LINE # 78
+                                           ; SOURCE LINE # 79
+0003         ?C0002:
+                                           ; SOURCE LINE # 82
+0003 120000      R     LCALL   TRAFFIC_LIGHTS_Display_Safe_Outp
+                                           ; SOURCE LINE # 83
+0006 22                RET     
+             ; FUNCTION TRAFFIC_LIGHTS_Init (END)
+
+             ; FUNCTION TRAFFIC_LIGHTS_Update (BEGIN)
+                                           ; SOURCE LINE # 92
+                                           ; SOURCE LINE # 93
+                                           ; SOURCE LINE # 97
+0000 120000      R     LCALL   TRAFFIC_LIGHTS_Check_Local_Bulb
+                                           ; SOURCE LINE # 100
+0003 E500        R     MOV     A,Light_state_G
+0005 14                DEC     A
+0006 6029              JZ      ?C0007
+0008 14                DEC     A
+0009 6042              JZ      ?C0009
+000B 14                DEC     A
+000C 605B              JZ      ?C0011
+000E 14                DEC     A
+000F 6073              JZ      ?C0013
+0011 2404              ADD     A,#04H
+0013 7075              JNZ     ?C0014
+                                           ; SOURCE LINE # 101
+                                           ; SOURCE LINE # 102
+0015         ?C0005:
+                                           ; SOURCE LINE # 103
+                                           ; SOURCE LINE # 104
+0015 C2A0              CLR     Red_light
+                                           ; SOURCE LINE # 105
+0017 D2A1              SETB    Amber_light
+                                           ; SOURCE LINE # 106
+0019 D2A2              SETB    Green_light
+                                           ; SOURCE LINE # 108
+001B 0500        R     INC     Time_in_state+01H
+001D E500        R     MOV     A,Time_in_state+01H
+001F 7002              JNZ     ?C0019
+0021 0500        R     INC     Time_in_state
+0023         ?C0019:
+0023 640A              XRL     A,#0AH
+0025 4500        R     ORL     A,Time_in_state
+0027 7061              JNZ     ?C0014
+                                           ; SOURCE LINE # 109
+                                           ; SOURCE LINE # 110
+0029 750001      R     MOV     Light_state_G,#01H
+                                           ; SOURCE LINE # 111
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 13  
+
+002C F500        R     MOV     Time_in_state,A
+002E F500        R     MOV     Time_in_state+01H,A
+                                           ; SOURCE LINE # 112
+                                           ; SOURCE LINE # 114
+0030 22                RET     
+                                           ; SOURCE LINE # 115
+                                           ; SOURCE LINE # 117
+0031         ?C0007:
+                                           ; SOURCE LINE # 118
+                                           ; SOURCE LINE # 119
+0031 C2A0              CLR     Red_light
+                                           ; SOURCE LINE # 120
+0033 C2A1              CLR     Amber_light
+                                           ; SOURCE LINE # 121
+0035 D2A2              SETB    Green_light
+                                           ; SOURCE LINE # 123
+0037 0500        R     INC     Time_in_state+01H
+0039 E500        R     MOV     A,Time_in_state+01H
+003B 7002              JNZ     ?C0020
+003D 0500        R     INC     Time_in_state
+003F         ?C0020:
+003F 640A              XRL     A,#0AH
+0041 4500        R     ORL     A,Time_in_state
+0043 7045              JNZ     ?C0014
+                                           ; SOURCE LINE # 124
+                                           ; SOURCE LINE # 125
+0045 750002      R     MOV     Light_state_G,#02H
+                                           ; SOURCE LINE # 126
+0048 F500        R     MOV     Time_in_state,A
+004A F500        R     MOV     Time_in_state+01H,A
+                                           ; SOURCE LINE # 127
+                                           ; SOURCE LINE # 129
+004C 22                RET     
+                                           ; SOURCE LINE # 130
+                                           ; SOURCE LINE # 132
+004D         ?C0009:
+                                           ; SOURCE LINE # 133
+                                           ; SOURCE LINE # 134
+004D D2A0              SETB    Red_light
+                                           ; SOURCE LINE # 135
+004F D2A1              SETB    Amber_light
+                                           ; SOURCE LINE # 136
+0051 C2A2              CLR     Green_light
+                                           ; SOURCE LINE # 138
+0053 0500        R     INC     Time_in_state+01H
+0055 E500        R     MOV     A,Time_in_state+01H
+0057 7002              JNZ     ?C0021
+0059 0500        R     INC     Time_in_state
+005B         ?C0021:
+005B 640A              XRL     A,#0AH
+005D 4500        R     ORL     A,Time_in_state
+005F 7029              JNZ     ?C0014
+                                           ; SOURCE LINE # 139
+                                           ; SOURCE LINE # 140
+0061 750003      R     MOV     Light_state_G,#03H
+                                           ; SOURCE LINE # 141
+0064 F500        R     MOV     Time_in_state,A
+0066 F500        R     MOV     Time_in_state+01H,A
+                                           ; SOURCE LINE # 142
+                                           ; SOURCE LINE # 144
+0068 22                RET     
+                                           ; SOURCE LINE # 145
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 14  
+
+                                           ; SOURCE LINE # 147
+0069         ?C0011:
+                                           ; SOURCE LINE # 148
+                                           ; SOURCE LINE # 149
+0069 D2A0              SETB    Red_light
+                                           ; SOURCE LINE # 150
+006B C2A1              CLR     Amber_light
+                                           ; SOURCE LINE # 151
+006D D2A2              SETB    Green_light
+                                           ; SOURCE LINE # 153
+006F 0500        R     INC     Time_in_state+01H
+0071 E500        R     MOV     A,Time_in_state+01H
+0073 7002              JNZ     ?C0022
+0075 0500        R     INC     Time_in_state
+0077         ?C0022:
+0077 640A              XRL     A,#0AH
+0079 4500        R     ORL     A,Time_in_state
+007B 700D              JNZ     ?C0014
+                                           ; SOURCE LINE # 154
+                                           ; SOURCE LINE # 155
+007D F500        R     MOV     Light_state_G,A
+                                           ; SOURCE LINE # 156
+007F F500        R     MOV     Time_in_state,A
+0081 F500        R     MOV     Time_in_state+01H,A
+                                           ; SOURCE LINE # 157
+                                           ; SOURCE LINE # 159
+0083 22                RET     
+                                           ; SOURCE LINE # 160
+                                           ; SOURCE LINE # 162
+0084         ?C0013:
+                                           ; SOURCE LINE # 163
+                                           ; SOURCE LINE # 168
+0084 D2A0              SETB    Red_light
+                                           ; SOURCE LINE # 169
+0086 D2A1              SETB    Amber_light
+                                           ; SOURCE LINE # 170
+0088 D2A2              SETB    Green_light
+                                           ; SOURCE LINE # 174
+                                           ; SOURCE LINE # 175
+                                           ; SOURCE LINE # 176
+                                           ; SOURCE LINE # 177
+008A         ?C0014:
+008A 22                RET     
+             ; FUNCTION TRAFFIC_LIGHTS_Update (END)
+
+             ; FUNCTION TRAFFIC_LIGHTS_Check_Local_Bulb (BEGIN)
+                                           ; SOURCE LINE # 186
+                                           ; SOURCE LINE # 187
+                                           ; SOURCE LINE # 191
+0000 C3                CLR     C
+                                           ; SOURCE LINE # 192
+0001         ?C0015:
+0001 22                RET     
+             ; FUNCTION TRAFFIC_LIGHTS_Check_Local_Bulb (END)
+
+             ; FUNCTION TRAFFIC_LIGHTS_Display_Safe_Outp (BEGIN)
+                                           ; SOURCE LINE # 201
+                                           ; SOURCE LINE # 202
+                                           ; SOURCE LINE # 203
+0000 120000      R     LCALL   TRAFFIC_LIGHTS_Check_Local_Bulb
+0003 4007              JC      ?C0016
+                                           ; SOURCE LINE # 204
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 15  
+
+                                           ; SOURCE LINE # 207
+0005 C2A0              CLR     Red_light
+                                           ; SOURCE LINE # 208
+0007 D2A1              SETB    Amber_light
+                                           ; SOURCE LINE # 209
+0009 D2A2              SETB    Green_light
+                                           ; SOURCE LINE # 210
+000B 22                RET     
+000C         ?C0016:
+                                           ; SOURCE LINE # 212
+                                           ; SOURCE LINE # 215
+000C D2A0              SETB    Red_light
+                                           ; SOURCE LINE # 216
+000E D2A1              SETB    Amber_light
+                                           ; SOURCE LINE # 217
+0010 D2A2              SETB    Green_light
+                                           ; SOURCE LINE # 218
+                                           ; SOURCE LINE # 219
+0012         ?C0018:
+0012 22                RET     
+             ; FUNCTION TRAFFIC_LIGHTS_Display_Safe_Outp (END)
+
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 16  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+LED_pin. . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A7H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+T2 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+tLong. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_LONG   -----  4
+BULB_BLOWN . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+tByte. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_CHAR   -----  1
+P0_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0080H  1
+P1_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+P0_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0081H  1
+FL . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D1H  1
+P2_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A0H  1
+P1_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+P0_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0082H  1
+Interrupt_output_pin . . . . . . . . .  ABSBIT   -----  BIT      00A5H  1
+tWord. . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_INT    -----  2
+P3_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+P2_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A1H  1
+P1_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0092H  1
+P0_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0083H  1
+P3_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+P2_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A2H  1
+P1_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0093H  1
+P0_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0084H  1
+P3_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+P2_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A3H  1
+P1_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0094H  1
+P0_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0085H  1
+EXF2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CEH  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+P3_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+P2_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A4H  1
+P1_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0095H  1
+P0_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0086H  1
+P3_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+P2_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A5H  1
+P1_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0096H  1
+P0_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0087H  1
+Red_light. . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A0H  1
+P3_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+P2_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A6H  1
+P1_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0097H  1
+P3_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+P2_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A7H  1
+P3_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+T2EX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+RED_AMBER. . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 17  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+Light_state_G. . . . . . . . . . . . .  STATIC   DATA   U_CHAR   0002H  1
+TRAFFIC_LIGHTS_Init. . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+TRAFFIC_LIGHTS_Check_Local_Bulb. . . .  PUBLIC   CODE   PROC     0000H  -----
+C_T2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C9H  1
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+RCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CDH  1
+TCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CCH  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+CP_RL2 . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C8H  1
+eLight_State . . . . . . . . . . . . .  TYPEDEF  -----  U_CHAR   -----  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+ET2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ADH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+TF2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CFH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+PT2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BDH  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+TRAFFIC_LIGHTS_Display_Safe_Outp . . .  PUBLIC   CODE   PROC     0000H  -----
+TR2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CAH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+RED. . . . . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+EXEN2. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CBH  1
+Amber_light. . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A1H  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+AMBER. . . . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+Green_light. . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A2H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+GREEN. . . . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+TRAFFIC_LIGHTS_Update. . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Time_in_state. . . . . . . . . . . .  STATIC   DATA   U_INT    0000H  2
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    167    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V6.10  TLIGHT_A                                                               04/18/2001 16:49:09 PAGE 18  
+
+   DATA SIZE        =      3    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

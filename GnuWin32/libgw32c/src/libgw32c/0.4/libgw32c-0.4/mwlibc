@@ -1,0 +1,5 @@
+cp -bfp dirent/libdirent.a libdir.a
+cp -bfp dl/libdl.a libdl.a
+cp -bfp libc.a libdir.a libdl.a libgw32c.a $MINGWDIR/mingw32/lib/
+cp -bfp libc.dll H:/gnuwin32/bin
+cp -bfp libc.dll "e:/program files/gnuwin32/bin"

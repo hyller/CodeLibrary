@@ -1,0 +1,4 @@
+; h:\MINGW\BIN\dlltool.exe --add-indirect --export-all-symbols --output-def libtime.def DLLTMPDIR.libtime.a/gettimeofday.o DLLTMPDIR.libtime.a/tzset.o
+EXPORTS
+	tzset @ 1 ; 
+	gettimeofday @ 2 ; 

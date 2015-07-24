@@ -1,0 +1,5 @@
+ttyname.o ttyname.o: ttyname.c ../include/libc-symbols.h ../config.h
+
+../include/libc-symbols.h:
+
+../config.h:

@@ -1,0 +1,11 @@
+"MAIN.obj",
+"BARGRAPH.obj",
+"SCH51.obj",
+"PULCNT_H.obj",
+"2_01_12g.obj" 
+TO "PC_Hard" 
+RAMSIZE(256) 
+OVERLAY 
+   (main ~ (PC_HARD_Get_Count_T0, BARGRAPH_Update), 
+   SCH_Dispatch_Tasks ! (PC_HARD_Get_Count_T0, BARGRAPH_Update))
+

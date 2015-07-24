@@ -1,0 +1,8 @@
+"MAIN.obj",
+"SCH51.obj",
+"2_01_12G.obj",
+"CLOC_MX4.obj",
+"LED_MX4.obj" 
+TO "LED_Time" 
+RAMSIZE(256) 
+OVERLAY (main ~ (CLOCK_LED_Time_Update,LED_MX4_Display_Update), SCH_dispatch_tasks !(CLOCK_LED_Time_Update,LED_MX4_Display_Update)) 

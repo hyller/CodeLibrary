@@ -1,0 +1,214 @@
+C51 COMPILER V6.10  2_01_10I                                                               04/10/2001 15:42:07 PAGE 1   
+
+
+C51 COMPILER V6.10, COMPILATION OF MODULE 2_01_10I
+OBJECT MODULE PLACED IN .\2_01_10i.OBJ
+COMPILER INVOKED BY: C:\KEIL\C51\BIN\C51.EXE .\2_01_10i.c BROWSE DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          /*------------------------------------------------------------------*-
+   2          
+   3             2_01_10i.c (v1.00)
+   4          
+   5            ------------------------------------------------------------------
+   6          
+   7             *** THIS IS A SCHEDULER FOR 80C515C (etc.) ***
+   8             *** For use in single-processor applications  ***
+   9          
+  10             *** Uses T2 for timing, 16-bit auto reload ***
+  11          
+  12             *** This version assumes 10 MHz crystal on 515c ***
+  13             *** 1 ms (approx) tick interval ***
+  14          
+  15             *** Includes display of error codes ***
+  16          
+  17          
+  18             COPYRIGHT
+  19             ---------
+  20          
+  21             This code is from the book:
+  22          
+  23             PATTERNS FOR TIME-TRIGGERED EMBEDDED SYSTEMS by Michael J. Pont 
+  24             [Pearson Education, 2001; ISBN: 0-201-33138-1].
+  25          
+  26             This code is copyright (c) 2001 by Michael J. Pont.
+  27           
+  28             See book for copyright details and other information.
+  29          
+  30          -*------------------------------------------------------------------*/
+  31          
+  32          #include "Main.h"
+  33          #include "2_01_10i.H"
+  34          
+  35          // ------ Public variable declarations -----------------------------
+  36          
+  37          // The array of tasks (see Sch51.C)
+  38          extern sTask SCH_tasks_G[SCH_MAX_TASKS];
+  39          
+  40          // Used to display the error code
+  41          // See Main.H for details of error codes
+  42          // See Port.H for details of the error port
+  43          extern tByte Error_code_G;
+  44          
+  45          /*------------------------------------------------------------------*-
+  46          
+  47            SCH_Init_T2()
+  48          
+  49            Scheduler initialisation function.  Prepares scheduler data 
+  50            structures and sets up timer interrupts at required rate.
+  51            Must call this function before using the scheduler.  
+  52          
+  53          -*------------------------------------------------------------------*/
+  54          void SCH_Init_T2(void) 
+  55             {
+C51 COMPILER V6.10  2_01_10I                                                               04/10/2001 15:42:07 PAGE 2   
+
+  56   1         tByte i;
+  57   1      
+  58   1         // Sort out the tasks
+  59   1         for (i = 0; i < SCH_MAX_TASKS; i++) 
+  60   1            {
+  61   2            SCH_Delete_Task(i);
+  62   2            }
+  63   1      
+  64   1         // Reset the global error variable
+  65   1         // - SCH_Delete_Task() will generate an error code, 
+  66   1         //   (because the task array is empty)
+  67   1         Error_code_G = 0;
+  68   1      
+  69   1         // Now set up Timer 2
+  70   1         // 16-bit timer function with automatic reload
+  71   1         // Crystal is assumed to be 10 MHz
+  72   1         // Using c515c, so timer can be incremented at 1/6 crystal frequency
+  73   1         // if prescalar is not used
+  74   1      
+  75   1         // Prescaler not used -> Crystal/6
+  76   1         T2PS = 0;
+  77   1      
+  78   1         // The Timer 2 resolution is  0.0000006 seconds (0.6 µs)
+  79   1         // The required Timer 2 overflow is 0.001 seconds (1 ms)
+  80   1         // - this takes  1666.666666667 timer ticks (can't get precise timing)
+  81   1         // Reload value is 65536 - 1667 = 63869 (dec) = 0xF97D
+  82   1         TH2 = 0xF9; 
+  83   1         TL2 = 0x7D;
+  84   1           
+  85   1         // Compare/capture Channel 0 
+  86   1         // Disabled
+  87   1         // Compare Register CRC on: 0x0000;
+  88   1         CRCH = 0xF9;
+  89   1         CRCL = 0x7D;
+  90   1      
+  91   1         //  Mode 0 for all channels
+  92   1         T2CON |= 0x11;
+  93   1      
+  94   1         //  timer 2 overflow interrupt is enabled
+  95   1         ET2 = 1;
+  96   1         //  timer 2 external reload interrupt is disabled
+  97   1         EXEN2 = 0;
+  98   1        
+  99   1         //  CC0/ext3 interrupt is disabled
+ 100   1         EX3 = 0;
+ 101   1        
+ 102   1         // Compare/capture Channel 1-3 
+ 103   1         // Disabled
+ 104   1         CCL1 = 0x00;
+ 105   1         CCH1 = 0x00;
+ 106   1         CCL2 = 0x00;
+ 107   1         CCH2 = 0x00;
+ 108   1         CCL3 = 0x00;
+ 109   1         CCH3 = 0x00;
+ 110   1        
+ 111   1         // Interrupts Channel 1-3 
+ 112   1         // Disabled
+ 113   1         EX4 = 0;
+ 114   1         EX5 = 0;
+ 115   1         EX6 = 0;
+ 116   1        
+ 117   1         // all above mentioned modes for Channel 0 to Channel 3 
+C51 COMPILER V6.10  2_01_10I                                                               04/10/2001 15:42:07 PAGE 3   
+
+ 118   1         CCEN = 0x00;
+ 119   1         // ------ Set up Timer 2 (end) ----------------------------------
+ 120   1         }
+ 121          
+ 122          /*------------------------------------------------------------------*-
+ 123          
+ 124            SCH_Start()
+ 125          
+ 126            Starts the scheduler, by enabling interrupts.
+ 127          
+ 128            NOTE: Usually called after all regular tasks are added,
+ 129            to keep the tasks synchronised.
+ 130          
+ 131            NOTE: ONLY THE SCHEDULER INTERRUPT SHOULD BE ENABLED!!! 
+ 132           
+ 133          -*------------------------------------------------------------------*/
+ 134          void SCH_Start(void) 
+ 135             {
+ 136   1         // Comment out as required, depending on compiler used
+ 137   1         //EA = 1;   // Use with C51 v5.X
+ 138   1         EAL = 1;  // Use with C51 v6.X
+ 139   1         }
+ 140          
+ 141          /*------------------------------------------------------------------*-
+ 142            
+ 143            SCH_Update()
+ 144          
+ 145            This is the scheduler ISR.  It is called at a rate determined by 
+ 146            the timer settings in SCH_Init_T2().  This version is 
+ 147            triggered by Timer 2 interrupts: timer is automatically reloaded.
+ 148           
+ 149          -*------------------------------------------------------------------*/
+ 150          void SCH_Update(void) interrupt INTERRUPT_Timer_2_Overflow  
+ 151             {
+ 152   1         tByte Index;
+ 153   1      
+ 154   1         TF2 = 0; // Have to manually clear this. 
+ 155   1      
+ 156   1         // NOTE: calculations are in *TICKS* (not milliseconds)
+ 157   1         for (Index = 0; Index < SCH_MAX_TASKS; Index++)
+ 158   1            {
+ 159   2            // Check if there is a task at this location
+ 160   2            if (SCH_tasks_G[Index].pTask)
+ 161   2               {
+ 162   3               if (SCH_tasks_G[Index].Delay == 0)
+ 163   3                  {
+ 164   4                  // The task is due to run
+ 165   4                  SCH_tasks_G[Index].RunMe += 1;  // Incr. the run flag
+ 166   4      
+ 167   4                  if (SCH_tasks_G[Index].Period)
+ 168   4                     {
+ 169   5                     // Schedule periodic tasks to run again
+ 170   5                     SCH_tasks_G[Index].Delay = SCH_tasks_G[Index].Period;
+ 171   5                     }
+ 172   4                  }
+ 173   3               else
+ 174   3                  {
+ 175   4                  // Not yet ready to run: just decrement the delay 
+ 176   4                  SCH_tasks_G[Index].Delay -= 1;
+ 177   4                  }
+ 178   3               }         
+ 179   2            }
+C51 COMPILER V6.10  2_01_10I                                                               04/10/2001 15:42:07 PAGE 4   
+
+ 180   1         }   
+ 181          
+ 182          /*------------------------------------------------------------------*-
+ 183            ---- END OF FILE -------------------------------------------------
+ 184          -*------------------------------------------------------------------*/
+ 185          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    192    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

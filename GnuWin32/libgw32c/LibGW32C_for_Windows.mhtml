@@ -1,0 +1,910 @@
+From: <Saved by Blink>
+Subject: LibGW32C for Windows
+Date: Wed, 7 Jul 2015 09:08:47 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_EFF3_79273D86.6BD8CA90"
+
+------=_NextPart_000_EFF3_79273D86.6BD8CA90
+Content-Type: text/html
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://gnuwin32.sourceforge.net/packages/libgw32c.htm
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
+w3.org/TR/html4/loose.dtd"><html><head><meta charset=3D"windows-1252">
+<title>LibGW32C for Windows</title>
+
+<meta name=3D"title" content=3D"libgw32c for Windows">
+<meta name=3D"description" content=3D"libgw32c {whatisit}">
+<meta name=3D"keywords" content=3D"libgw32c, 0.4, gnu, win32,
+win32s, win64, gnuwin32, i386,i a64, x86-64,
+gnuwin64, gnuwin, mswindows, ms-windows, windows,=20
+95, 98, me, nt, 2000, 2k, xp, 2003, vista">
+<meta name=3D"robots" content=3D"index, follow">
+<meta name=3D"revisit-after" content=3D"5 days">
+<!-- libgw32c, windows, gnuwin32 --></head><body><cmt>
+
+
+<h1>LibGW32C for Windows</h1>
+
+<hr>
+
+<p>LibGW32C: GNU C library
+</p>
+
+
+<h2><a name=3D"version">Version</a></h2>
+
+<p>0.4</p>
+
+<h2><a name=3D"description">Description</a></h2>
+<p>This is an implementation of a small part of GLibC, just enough to compi=
+le
+most Unix programs on MS Windows. It contains functions for passwords, proc=
+ess
+id's groups, and strings. Most are interfaces to the MS-Windows Win32 API.
+Some are just dummy functions that do nothing.
+
+</p><p>The following functions are provided:
+
+</p><ul>
+  <li>a64l=20
+  </li><li>__access=20
+  </li><li>access=20
+  </li><li>__addmntent
+  </li><li>addmntent
+  </li><li>__addmntentstr=20
+  </li><li>alarm
+  </li><li>alphasort
+  </li><li>alphasort64
+  </li><li>argp_err_exit_status=20
+  </li><li>__argp_error=20
+  </li><li>argp_error=20
+  </li><li>__argp_failure=20
+  </li><li>argp_failure=20
+  </li><li>__argp_fmtstream_ensure
+  </li><li>__argp_fmtstream_free
+  </li><li>__argp_fmtstream_point
+  </li><li>__argp_fmtstream_printf
+  </li><li>__argp_fmtstream_putc
+  </li><li>__argp_fmtstream_puts
+  </li><li>__argp_fmtstream_set_lmargin=20
+  </li><li>__argp_fmtstream_set_rmargin=20
+  </li><li>__argp_fmtstream_set_wmargin=20
+  </li><li>__argp_fmtstream_update
+  </li><li>__argp_fmtstream_write
+  </li><li>__argp_help
+  </li><li>argp_help
+  </li><li>__argp_input=20
+  </li><li>_argp_input
+  </li><li>__argp_make_fmtstream
+  </li><li>__argp_parse=20
+  </li><li>argp_parse=20
+  </li><li>argp_program_bug_address
+  </li><li>argp_program_version=20
+  </li><li>argp_program_version_hook
+  </li><li>__argp_state_help
+  </li><li>argp_state_help
+  </li><li>_argp_unlock_xxx=20
+  </li><li>__argp_usage=20
+  </li><li>argp_usage=20
+  </li><li>__argz_add=20
+  </li><li>argz_add=20
+  </li><li>__argz_add_sep=20
+  </li><li>argz_add_sep=20
+  </li><li>__argz_append
+  </li><li>argz_append
+  </li><li>__argz_count=20
+  </li><li>argz_count=20
+  </li><li>__argz_create
+  </li><li>argz_create
+  </li><li>__argz_create_sep
+  </li><li>argz_create_sep
+  </li><li>argz_delete
+  </li><li>__argz_extract=20
+  </li><li>argz_extract=20
+  </li><li>__argz_insert
+  </li><li>argz_insert
+  </li><li>__argz_next
+  </li><li>argz_next
+  </li><li>__argz_replace=20
+  </li><li>argz_replace=20
+  </li><li>__argz_stringify=20
+  </li><li>argz_stringify=20
+  </li><li>attr2mode
+  </li><li>BackupLink=20
+  </li><li>basename=20
+  </li><li>bcopy
+  </li><li>__brk
+  </li><li>brk
+  </li><li>bsearch
+  </li><li>__bzero
+  </li><li>bzero
+  </li><li>__canonicalize_file_name
+  </li><li>canonicalize_file_name
+  </li><li>catclose=20
+  </li><li>catgets
+  </li><li>catopen
+  </li><li>cfgetispeed
+  </li><li>cfgetospeed
+  </li><li>cfmakeraw
+  </li><li>cfsetispeed
+  </li><li>cfsetospeed
+  </li><li>cfsetspeed=20
+  </li><li>__chdir
+  </li><li>chdir
+  </li><li>chflags
+  </li><li>__chown
+  </li><li>chown
+  </li><li>chroot=20
+  </li><li>clock
+  </li><li>clock_getcpuclockid
+  </li><li>clock_getres=20
+  </li><li>clock_gettime
+  </li><li>clock_nanosleep
+  </li><li>clock_settime
+  </li><li>__closedir=20
+  </li><li>closedir=20
+  </li><li>CreateLink=20
+  </li><li>crypt
+  </li><li>__crypt_r
+  </li><li>crypt_r
+  </li><li>__curbrk=20
+  </li><li>cuserid
+  </li><li>__cxstat64=20
+  </li><li>debugprint=20
+  </li><li>DecodeError
+  </li><li>devrootdir=20
+  </li><li>dirfd
+  </li><li>dirname
+  </li><li>dladdr=20
+  </li><li>dlclose
+  </li><li>dlerror
+  </li><li>dlopen=20
+  </li><li>dlsym
+  </li><li>__dlvsym=20
+  </li><li>dlvsym=20
+  </li><li>drand48
+  </li><li>__drand48_iterate
+  </li><li>drand48_r
+  </li><li>ecvt=20
+  </li><li>ecvt_r=20
+  </li><li>encrypt
+  </li><li>__encrypt_r
+  </li><li>encrypt_r
+  </li><li>endfsent=20
+  </li><li>endgrent=20
+  </li><li>endhostent=20
+  </li><li>__endmntent
+  </li><li>endmntent
+  </li><li>endpwent=20
+  </li><li>endusershell=20
+  </li><li>envz_add=20
+  </li><li>envz_entry=20
+  </li><li>envz_get=20
+  </li><li>envz_merge=20
+  </li><li>envz_remove
+  </li><li>envz_strip=20
+  </li><li>erand48
+  </li><li>__erand48_r
+  </li><li>erand48_r
+  </li><li>err
+  </li><li>__error
+  </li><li>error
+  </li><li>__error_at_line
+  </li><li>error_at_line
+  </li><li>error_message_count
+  </li><li>error_one_per_line=20
+  </li><li>error_print_progname=20
+  </li><li>errx=20
+  </li><li>__euidaccess=20
+  </li><li>euidaccess=20
+  </li><li>__fchdir=20
+  </li><li>fchdir=20
+  </li><li>fchflags=20
+  </li><li>__fchmod=20
+  </li><li>fchmod=20
+  </li><li>__fchown=20
+  </li><li>fchown=20
+  </li><li>__fcntl
+  </li><li>fcntl
+  </li><li>fcrypt=20
+  </li><li>fcvt=20
+  </li><li>fcvt_r=20
+  </li><li>fdatasync
+  </li><li>fesetround=20
+  </li><li>__ffs
+  </li><li>ffs
+  </li><li>ffsl=20
+  </li><li>fgetxattr
+  </li><li>file_exists
+  </li><li>FileInformationToStat64
+  </li><li>flistxattr=20
+  </li><li>__flockfile
+  </li><li>flockfile
+  </li><li>__fork=20
+  </li><li>fork=20
+  </li><li>__fpathconf
+  </li><li>fpathconf
+  </li><li>fremovexattr=20
+  </li><li>frootdir=20
+  </li><li>fseeko=20
+  </li><li>fseeko64=20
+  </li><li>__fsetlocking
+  </li><li>fsetxattr
+  </li><li>__fstat
+  </li><li>fstat
+  </li><li>fstat64
+  </li><li>__fstatfs
+  </li><li>fstatfs
+  </li><li>__fstatfs64
+  </li><li>fstatfs64
+  </li><li>__fstatvfs=20
+  </li><li>fstatvfs=20
+  </li><li>__fstatvfs64=20
+  </li><li>fstatvfs64=20
+  </li><li>ftello=20
+  </li><li>ftello64=20
+  </li><li>__ftruncate
+  </li><li>ftruncate
+  </li><li>__ftruncate64
+  </li><li>ftruncate64
+  </li><li>__ftrylockfile=20
+  </li><li>ftrylockfile=20
+  </li><li>fts_children=20
+  </li><li>fts_close
+  </li><li>fts_open=20
+  </li><li>fts_read=20
+  </li><li>fts_set
+  </li><li>ftw
+  </li><li>ftw64
+  </li><li>__funlockfile
+  </li><li>funlockfile
+  </li><li>__futimes
+  </li><li>futimes
+  </li><li>__fxstat=20
+  </li><li>_fxstat
+  </li><li>__fxstat64=20
+  </li><li>gcvt=20
+  </li><li>__gen_tempname=20
+  </li><li>__get_avphys_pages=20
+  </li><li>get_avphys_pages=20
+  </li><li>__get_clockfreq
+  </li><li>get_current_dir_name=20
+  </li><li>__get_errno
+  </li><li>__get_nprocs=20
+  </li><li>get_nprocs=20
+  </li><li>__get_nprocs_conf
+  </li><li>get_nprocs_conf
+  </li><li>__get_phys_pages=20
+  </li><li>get_phys_pages=20
+  </li><li>__getclktck
+  </li><li>getcpuspeed
+  </li><li>__getcwd=20
+  </li><li>getdomainname
+  </li><li>__getdtablesize
+  </li><li>getdtablesize
+  </li><li>__getegid
+  </li><li>getegid
+  </li><li>__geteuid
+  </li><li>geteuid
+  </li><li>getexecdir=20
+  </li><li>getexecparent
+  </li><li>getexecpath
+  </li><li>GetFileAttributeData=20
+  </li><li>GetFileInformationByName
+  </li><li>getfsent=20
+  </li><li>getfsfile
+  </li><li>getfsspec
+  </li><li>__getgid=20
+  </li><li>getgid=20
+  </li><li>getgranularity=20
+  </li><li>getgrent=20
+  </li><li>getgrent_r=20
+  </li><li>getgrgid=20
+  </li><li>getgrnam=20
+  </li><li>__getgroups
+  </li><li>getgroups
+  </li><li>gethostent=20
+  </li><li>gethostid
+  </li><li>__getline
+  </li><li>getline
+  </li><li>getloadavg=20
+  </li><li>getlogin=20
+  </li><li>getlongpath
+  </li><li>GetMachInfo
+  </li><li>getmntent
+  </li><li>__getmntent_r
+  </li><li>getmntent_r
+  </li><li>__getntptimeofday
+  </li><li>getntptimeofday
+  </li><li>getopt=20
+  </li><li>__getopt_initialized=20
+  </li><li>_getopt_internal=20
+  </li><li>getopt_long
+  </li><li>getopt_long_only=20
+  </li><li>GetOsInfo
+  </li><li>__getpagesize
+  </li><li>getpagesize
+  </li><li>getpass
+  </li><li>__getpgid
+  </li><li>getpgid
+  </li><li>getpgrp
+  </li><li>__getppid
+  </li><li>getppid
+  </li><li>getpriority
+  </li><li>getprogname
+  </li><li>getpwent=20
+  </li><li>getpwnam=20
+  </li><li>getpwuid=20
+  </li><li>__getrlimit
+  </li><li>getrlimit
+  </li><li>__getrlimit64
+  </li><li>getrlimit64
+  </li><li>getrootdirs
+  </li><li>getshortpath=20
+  </li><li>getsid=20
+  </li><li>GetStat64ByHandle
+  </li><li>GetStat64ByName
+  </li><li>__gettimeofday=20
+  </li><li>gettimeofday=20
+  </li><li>__getuid=20
+  </li><li>getuid=20
+  </li><li>getuname=20
+  </li><li>getusershell=20
+  </li><li>GetVendorID
+  </li><li>GetVolumeSerialNumber
+  </li><li>getwd
+  </li><li>getxattr=20
+  </li><li>GetXStat64ByName=20
+  </li><li>__group_member=20
+  </li><li>group_member=20
+  </li><li>gtty=20
+  </li><li>handle2mode
+  </li><li>hashval
+  </li><li>__hasmntopt
+  </li><li>hasmntopt
+  </li><li>hcreate
+  </li><li>hcreate_r
+  </li><li>__hdestroy=20
+  </li><li>hdestroy=20
+  </li><li>hdestroy_r=20
+  </li><li>hsearch
+  </li><li>hsearch_r
+  </li><li>__hutimes
+  </li><li>__init_des=20
+  </li><li>__init_des_r=20
+  </li><li>__init_misc
+  </li><li>__initstate
+  </li><li>initstate
+  </li><li>__initstate_r
+  </li><li>initstate_r
+  </li><li>insque=20
+  </li><li>_IO_flockfile
+  </li><li>_IO_ftrylockfile=20
+  </li><li>_IO_funlockfile
+  </li><li>__ioctl
+  </li><li>ioctl
+  </li><li>issymlink
+  </li><li>IsWin31
+  </li><li>IsWin9x
+  </li><li>IsWinCE
+  </li><li>IsWinNT
+  </li><li>_itoa_lower_digits=20
+  </li><li>_itoa_upper_digits=20
+  </li><li>jrand48
+  </li><li>__jrand48_r
+  </li><li>jrand48_r
+  </li><li>__kill=20
+  </li><li>kill=20
+  </li><li>l64a=20
+  </li><li>lchmod=20
+  </li><li>__lchown=20
+  </li><li>lchown=20
+  </li><li>lcong48
+  </li><li>__lcong48_r
+  </li><li>lcong48_r
+  </li><li>lfind
+  </li><li>lgetxattr
+  </li><li>__libc_drand48_data
+  </li><li>__libc_enable_secure=20
+  </li><li>__libc_init
+  </li><li>__libc_init_first
+  </li><li>__libc_init_secure=20
+  </li><li>_libc_intl_domainname
+  </li><li>__libc_multiple_libcs
+  </li><li>__libc_nanosleep=20
+  </li><li>__libc_readv=20
+  </li><li>__libc_tcdrain=20
+  </li><li>__libc_tsd_LOCALE_data
+  </li><li>__libc_wait
+  </li><li>__libc_waitid
+  </li><li>__libc_waitpid=20
+  </li><li>__link=20
+  </li><li>link=20
+  </li><li>listxattr
+  </li><li>llistxattr=20
+  </li><li>lock=20
+  </li><li>lock64=20
+  </li><li>lrand48
+  </li><li>lrand48_r
+  </li><li>lremovexattr=20
+  </li><li>lsearch
+  </li><li>lsetxattr
+  </li><li>__lstat
+  </li><li>lstat
+  </li><li>lstat64
+  </li><li>__lutimes
+  </li><li>lutimes
+  </li><li>__lxstat=20
+  </li><li>_lxstat
+  </li><li>__lxstat64=20
+  </li><li>madvise
+  </li><li>__md5_buffer=20
+  </li><li>__md5_crypt
+  </li><li>__md5_crypt_r
+  </li><li>__md5_finish_ctx=20
+  </li><li>__md5_init_ctx=20
+  </li><li>__md5_process_block
+  </li><li>__md5_process_bytes
+  </li><li>__md5_read_ctx=20
+  </li><li>__md5_stream=20
+  </li><li>memfrob
+  </li><li>__mempcpy
+  </li><li>mempcpy
+  </li><li>__memrchr
+  </li><li>memrchr
+  </li><li>__mkdir
+  </li><li>mkdir
+  </li><li>mkdtemp
+  </li><li>mkfifo=20
+  </li><li>__mknod
+  </li><li>mknod
+  </li><li>mkstemp64
+  </li><li>mkstemps=20
+  </li><li>mktemp=20
+  </li><li>mlock
+  </li><li>mlockall=20
+  </li><li>__mmap=20
+  </li><li>mmap=20
+  </li><li>__mmap64=20
+  </li><li>mmap64=20
+  </li><li>mode2osflags=20
+  </li><li>__mpn_lshift=20
+  </li><li>__mpn_rshift=20
+  </li><li>__mprotect=20
+  </li><li>mprotect=20
+  </li><li>mrand48
+  </li><li>mrand48_r
+  </li><li>mremap=20
+  </li><li>msync
+  </li><li>mtrace=20
+  </li><li>munlock
+  </li><li>munlockall=20
+  </li><li>__munmap=20
+  </li><li>munmap=20
+  </li><li>muntrace=20
+  </li><li>__nanosleep
+  </li><li>nanosleep
+  </li><li>nftw=20
+  </li><li>nftw64=20
+  </li><li>nice=20
+  </li><li>_nl_C_codeset
+  </li><li>_nl_C_LC_ADDRESS=20
+  </li><li>_nl_C_LC_COLLATE=20
+  </li><li>_nl_C_LC_CTYPE=20
+  </li><li>_nl_C_LC_CTYPE_class=20
+  </li><li>_nl_C_LC_CTYPE_class32
+  </li><li>_nl_C_LC_CTYPE_class_alnum
+  </li><li>_nl_C_LC_CTYPE_class_alpha
+  </li><li>_nl_C_LC_CTYPE_class_blank
+  </li><li>_nl_C_LC_CTYPE_class_cntrl
+  </li><li>_nl_C_LC_CTYPE_class_digit
+  </li><li>_nl_C_LC_CTYPE_class_graph
+  </li><li>_nl_C_LC_CTYPE_class_lower
+  </li><li>_nl_C_LC_CTYPE_class_print
+  </li><li>_nl_C_LC_CTYPE_class_punct
+  </li><li>_nl_C_LC_CTYPE_class_space
+  </li><li>_nl_C_LC_CTYPE_class_upper
+  </li><li>_nl_C_LC_CTYPE_class_xdigit
+  </li><li>_nl_C_LC_CTYPE_map_tolower
+  </li><li>_nl_C_LC_CTYPE_map_toupper
+  </li><li>_nl_C_LC_CTYPE_tolower
+  </li><li>_nl_C_LC_CTYPE_toupper
+  </li><li>_nl_C_LC_CTYPE_width=20
+  </li><li>_nl_C_LC_IDENTIFICATION
+  </li><li>_nl_C_LC_MEASUREMENT=20
+  </li><li>_nl_C_LC_MESSAGES
+  </li><li>_nl_C_LC_MONETARY
+  </li><li>_nl_C_LC_NAME
+  </li><li>_nl_C_LC_NUMERIC=20
+  </li><li>_nl_C_LC_PAPER=20
+  </li><li>_nl_C_LC_TELEPHONE=20
+  </li><li>_nl_C_LC_TIME
+  </li><li>_nl_C_name=20
+  </li><li>_nl_global_locale
+  </li><li>nl_langinfo
+  </li><li>_nl_POSIX_name=20
+  </li><li>nrand48
+  </li><li>__nrand48_r
+  </li><li>nrand48_r
+  </li><li>__open_catalog=20
+  </li><li>__opendir
+  </li><li>opendir
+  </li><li>optarg=20
+  </li><li>opterr=20
+  </li><li>optind=20
+  </li><li>__option_is_end
+  </li><li>_option_is_end=20
+  </li><li>__option_is_short
+  </li><li>_option_is_short=20
+  </li><li>optopt=20
+  </li><li>osflags2mode=20
+  </li><li>path2mode
+  </li><li>__path_search
+  </li><li>__pathconf=20
+  </li><li>pathconf=20
+  </li><li>__pipe=20
+  </li><li>pipe=20
+  </li><li>posix2winfullpath
+  </li><li>posix2winpath
+  </li><li>posix_madvise
+  </li><li>posix_mremap=20
+  </li><li>PrintWinErr
+  </li><li>__progname=20
+  </li><li>__progname_full
+  </li><li>program_invocation_name
+  </li><li>program_invocation_short_name
+  </li><li>program_name=20
+  </li><li>__pthread_clock_gettime
+  </li><li>__pthread_clock_settime
+  </li><li>qecvt
+  </li><li>qecvt_r
+  </li><li>qfcvt
+  </li><li>qfcvt_r
+  </li><li>qgcvt
+  </li><li>qsort
+  </li><li>_quicksort=20
+  </li><li>rand=20
+  </li><li>rand_r=20
+  </li><li>__random=20
+  </li><li>random=20
+  </li><li>__random_r=20
+  </li><li>random_r=20
+  </li><li>__rawmemchr
+  </li><li>rawmemchr
+  </li><li>__readdir
+  </li><li>readdir
+  </li><li>__readdir64
+  </li><li>readdir64
+  </li><li>__readdir64_r
+  </li><li>readdir64_r
+  </li><li>__readdir_r
+  </li><li>readdir_r
+  </li><li>readlink=20
+  </li><li>__readv
+  </li><li>readv
+  </li><li>__realpath=20
+  </li><li>realpath=20
+  </li><li>remove=20
+  </li><li>removexattr
+  </li><li>remque=20
+  </li><li>rename=20
+  </li><li>ResolveLink
+  </li><li>__rewinddir
+  </li><li>rewinddir
+  </li><li>__rmdir
+  </li><li>rmdir
+  </li><li>rootdir
+  </li><li>__rstatfsx64=20
+  </li><li>__sbrk=20
+  </li><li>sbrk=20
+  </li><li>scandir
+  </li><li>scandir64
+  </li><li>__secure_getenv
+  </li><li>seed48=20
+  </li><li>__seed48_r=20
+  </li><li>seed48_r=20
+  </li><li>__seekdir
+  </li><li>seekdir
+  </li><li>__select=20
+  </li><li>select=20
+  </li><li>setdomainname
+  </li><li>setegid
+  </li><li>setenv=20
+  </li><li>setfsent=20
+  </li><li>setgid=20
+  </li><li>setgrent=20
+  </li><li>sethostent=20
+  </li><li>sethostid
+  </li><li>sethostname
+  </li><li>setkey=20
+  </li><li>__setkey_r=20
+  </li><li>setkey_r=20
+  </li><li>setlogin=20
+  </li><li>__setmntent
+  </li><li>setmntent
+  </li><li>__setntptimeofday
+  </li><li>setntptimeofday
+  </li><li>__setpgid
+  </li><li>setpgid
+  </li><li>setpgrp
+  </li><li>setpriority
+  </li><li>setpwent=20
+  </li><li>__setregid=20
+  </li><li>setregid=20
+  </li><li>__setreuid=20
+  </li><li>setreuid=20
+  </li><li>__setrlimit
+  </li><li>setrlimit
+  </li><li>__setrlimit64
+  </li><li>setrlimit64
+  </li><li>__setstate=20
+  </li><li>setstate=20
+  </li><li>__setstate_r=20
+  </li><li>setstate_r=20
+  </li><li>__settimeofday=20
+  </li><li>settimeofday=20
+  </li><li>setuid=20
+  </li><li>setusershell=20
+  </li><li>setxattr=20
+  </li><li>__sigaction
+  </li><li>sigaction
+  </li><li>__sigaddset
+  </li><li>sigaddset
+  </li><li>sigfillset=20
+  </li><li>__sigprocmask
+  </li><li>sigprocmask
+  </li><li>__sleep
+  </li><li>sleep
+  </li><li>_splitpath=20
+  </li><li>srand
+  </li><li>srand48
+  </li><li>__srand48_r
+  </li><li>srand48_r
+  </li><li>__srandom
+  </li><li>srandom
+  </li><li>__srandom_r
+  </li><li>srandom_r
+  </li><li>__stat=20
+  </li><li>stat=20
+  </li><li>__stat64=20
+  </li><li>stat64=20
+  </li><li>stat64_to_32=20
+  </li><li>__statfs=20
+  </li><li>statfs=20
+  </li><li>__statfs64=20
+  </li><li>statfs64=20
+  </li><li>__statfsbsd
+  </li><li>statfsbsd
+  </li><li>__statfsx64
+  </li><li>statfsx64
+  </li><li>__statvfs
+  </li><li>statvfs
+  </li><li>__statvfs64
+  </li><li>statvfs64
+  </li><li>__stpcpy=20
+  </li><li>stpcpy=20
+  </li><li>__stpncpy
+  </li><li>stpncpy
+  </li><li>__strchrnul
+  </li><li>strchrnul
+  </li><li>__strerror_r=20
+  </li><li>strerror_r=20
+  </li><li>strfry=20
+  </li><li>strlcat
+  </li><li>strlcpy
+  </li><li>strmode
+  </li><li>__strncasecmp
+  </li><li>strncasecmp
+  </li><li>__strndup
+  </li><li>strndup
+  </li><li>__strnlen
+  </li><li>strnlen
+  </li><li>strptime=20
+  </li><li>__strsep=20
+  </li><li>strsep=20
+  </li><li>__strsep_g=20
+  </li><li>strsignal
+  </li><li>__strtok_r=20
+  </li><li>strtok_r=20
+  </li><li>__strverscmp=20
+  </li><li>strverscmp=20
+  </li><li>symlink
+  </li><li>sync=20
+  </li><li>_sys_errlist_internal
+  </li><li>_sys_nerr_internal=20
+  </li><li>_sys_siglist=20
+  </li><li>sys_siglist
+  </li><li>_sys_siglist_internal
+  </li><li>syscall
+  </li><li>__sysconf
+  </li><li>sysconf
+  </li><li>sysinfo
+  </li><li>tcdrain
+  </li><li>tcflow=20
+  </li><li>tcflush
+  </li><li>__tcgetattr
+  </li><li>tcgetattr
+  </li><li>tcgetpgrp
+  </li><li>tcgetsid=20
+  </li><li>tcsendbreak
+  </li><li>tcsetattr
+  </li><li>tcsetpgrp
+  </li><li>__tdelete
+  </li><li>tdelete
+  </li><li>__tdestroy=20
+  </li><li>tdestroy=20
+  </li><li>__telldir
+  </li><li>telldir
+  </li><li>tempnam
+  </li><li>__tfind
+  </li><li>tfind
+  </li><li>__times
+  </li><li>times
+  </li><li>tm_year_base=20
+  </li><li>tmpfile
+  </li><li>tmpfile64
+  </li><li>tmpnam=20
+  </li><li>tmpnam_r=20
+  </li><li>__truncate=20
+  </li><li>truncate=20
+  </li><li>__truncate64=20
+  </li><li>truncate64=20
+  </li><li>__tsearch
+  </li><li>tsearch
+  </li><li>ttyname
+  </li><li>__twalk
+  </li><li>twalk
+  </li><li>__tzname_cur_max=20
+  </li><li>__tzname_max=20
+  </li><li>_ufc_dofinalperm_r=20
+  </li><li>_ufc_doit_r
+  </li><li>_ufc_foobar
+  </li><li>_ufc_mk_keytab_r=20
+  </li><li>_ufc_output_conversion_r
+  </li><li>_ufc_setup_salt_r
+  </li><li>__ulimit=20
+  </li><li>ulimit=20
+  </li><li>__uname
+  </li><li>uname
+  </li><li>unix2winpath=20
+  </li><li>__unlink=20
+  </li><li>unlink=20
+  </li><li>unsetenv=20
+  </li><li>usleep=20
+  </li><li>ustat
+  </li><li>utime
+  </li><li>__utimes=20
+  </li><li>utimes=20
+  </li><li>verr=20
+  </li><li>verrx
+  </li><li>versionsort
+  </li><li>versionsort64
+  </li><li>vlimit=20
+  </li><li>vsn2drive
+  </li><li>vwarn
+  </li><li>vwarnx=20
+  </li><li>__w32_gethostbyaddr
+  </li><li>w32_gethostbyaddr
+  </li><li>__w32_gethostbyname
+  </li><li>w32_gethostbyname
+  </li><li>__w32_gethostname
+  </li><li>w32_gethostname
+  </li><li>w32_same_file
+  </li><li>__wait=20
+  </li><li>wait=20
+  </li><li>__wait3
+  </li><li>wait3
+  </li><li>__wait4
+  </li><li>wait4
+  </li><li>__waitid=20
+  </li><li>waitid=20
+  </li><li>__waitpid
+  </li><li>waitpid
+  </li><li>warn=20
+  </li><li>warnx
+  </li><li>werrno=20
+  </li><li>win2posixfullpath
+  </li><li>win2posixpath
+  </li><li>win2unixpath=20
+  </li><li>win32_longpath=20
+  </li><li>WinErr=20
+  </li><li>winmajor=20
+  </li><li>winminor=20
+  </li><li>winos
+  </li><li>winplatform
+  </li><li>_wordcopy_bwd_aligned
+  </li><li>_wordcopy_bwd_dest_aligned
+  </li><li>_wordcopy_fwd_aligned
+  </li><li>_wordcopy_fwd_dest_aligned
+  </li><li>ws_cleanup=20
+  </li><li>ws_init
+  </li><li>WSAErr=20
+  </li><li>__xmknod=20
+  </li><li>_xmknod
+  </li><li>__xpg_basename=20
+  </li><li>__xstat
+  </li><li>_xstat=20
+  </li><li>__xstat64
+</li></ul>
+<p>The documentation of most of these functions is in the Glibc-documentati=
+on,
+in the Linux manpages and in the FreeBsd manpages.
+
+</p><h2><a name=3D"homepage">Homepage</a></h2>
+
+<p></p><p><a href=3D"http://www.gnu.org/software/libc/libc.html">http://www=
+.gnu.org/software/libc/libc.html</a> </p><p></p>
+<p>Sources: <a href=3D"http://gnuwin32.sourceforge.net/packages/libgw32c.ht=
+m"></a></p>
+
+<h2><a name=3D"download">Download</a></h2>
+<p></p>
+&nbsp;<table border=3D"0" cellspacing=3D"5">
+<thead>
+<tr><th>Description</th><th></th><th>Download</th><th></th><th>Size</th><th=
+></th><th>Last change</th><th></th><th>Md5sum</th></tr>
+</thead>
+<tbody><tr><td>&nbsp;</td></tr>
+<tr><td>=95&nbsp;Developer files</td><td>&nbsp;</td><td><a href=3D"http://g=
+nuwin32.sourceforge.net/downlinks/libgw32c-lib-zip.php">Zip</a></td><td>&nb=
+sp;</td>		<td align=3D"right"><code>643174</code></td><td>&nbsp;</td><td>10=
+ January 2004</td>		<td>&nbsp;</td><td><code>55b41650239b13d2b0d79c100d1606=
+65</code></td></tr>
+<tr><td>=95&nbsp;Sources</td><td>&nbsp;</td><td><a href=3D"http://gnuwin32.=
+sourceforge.net/downlinks/libgw32c-src-zip.php">Zip</a></td><td>&nbsp;</td>=
+		<td align=3D"right"><code>2226097</code></td><td>&nbsp;</td><td>10 Januar=
+y 2004</td>		<td>&nbsp;</td><td><code>f8c7c821033c9ed141c347edf3c30477</cod=
+e></td></tr>
+<tr><td>=95&nbsp;Original source</td><td></td><td colspan=3D"8"><a href=3D"=
+http://gnuwin32.sourceforge.net/packages/libgw32c.htm"></a></td></tr>
+</tbody></table>
+<p>You can also download the files from the GnuWin32
+<a href=3D"http://sourceforge.net/project/showfiles.php?group_id=3D23617&am=
+p;package_id=3D39492">files page</a>.
+New releases of the port of this package
+can be
+<a href=3D"http://sourceforge.net/project/filemodule_monitor.php?filemodule=
+_id=3D39492">
+monitored</a>.
+</p>
+
+<h2><a name=3D"install">Installation, Usage and Help</a></h2>
+<p>Use of LibGw32c as a separate development library is very complicated. T=
+he most practical way is to copy the source code for the necessary function=
+s to your own source code and to adapt your include files and Makefiles. Fo=
+r some functions you must also link with the following standard libraries: =
+- libole32.a - libuuid.a - libwsock32.a
+</p><p><a href=3D"http://gnuwin32.sourceforge.net/install.html">General Ins=
+tallation Instructions</a></p>
+<p><a href=3D"http://gnuwin32.sourceforge.net/lists.html">GnuWin32 Help (fe=
+ature requests, bugs, etc)</a></p>
+
+<h2><a name=3D"requirements">Requirements</a></h2>
+
+<ul>
+<li>Win32, i.e. MS-Windows 95 / 98 / ME / NT / 2000 / XP / 2003 / Vista wit=
+h msvcrt.dll and msvcp60.dll.
+If msvcrt.dll or msvcp60.dll is not in your Windows/System
+folder, get them from <a href=3D"http://support.microsoft.com/default.aspx?=
+scid=3Dkb;en-us;259403">
+Microsoft</a>,
+or (msvcrt.dll only) by installing <a href=3D"http://www.microsoft.com/wind=
+ows/ie">
+Internet Explorer</a> 4.0 or higher.
+</li>
+
+</ul>
+<p><span style=3D"visibility: hidden">
+libgw32c,0.4,gnu,win32,win32s,win64,gnuwin32,i386,ia64,x86-64,
+gnuwin64,gnuwin,mswindows,ms-windows,windows,95,98,me,nt,2000,2k,xp,2003,vi=
+sta
+</span></p>
+
+
+
+</cmt><div><object id=3D"ClCache" click=3D"sendMsg" host=3D"" width=3D"0" h=
+eight=3D"0"></object></div></body></html>
+------=_NextPart_000_EFF3_79273D86.6BD8CA90--

@@ -1,0 +1,534 @@
+autoscan: warning: missing AC_CHECK_DECLS([sys_siglist]) wanted by: 
+	stdio-common/siglist.c:62
+autoscan: warning: missing AC_CHECK_FUNCS([__argz_count]) wanted by: 
+	string/argz-count.c:26
+autoscan: warning: missing AC_CHECK_FUNCS([__argz_next]) wanted by: 
+	string/argz-next.c:25
+autoscan: warning: missing AC_CHECK_FUNCS([__argz_stringify]) wanted by: 
+	string/argz-stringify.c:27
+autoscan: warning: missing AC_CHECK_FUNCS([__fpending]) wanted by: 
+	stdio-common/stdio_ext.h:76
+autoscan: warning: missing AC_CHECK_FUNCS([alarm]) wanted by: 
+	test-skeleton.c:293
+	time/clocktest.c:28
+	posix/alarm.bak.c:3
+	posix/alarm.c:1
+	posix/test_alarm.bak.c:12
+	posix/test_alarm.c:11
+autoscan: warning: missing AC_CHECK_FUNCS([atexit]) wanted by: 
+	test-skeleton.c:225
+	win32/wsinit.c:21
+	misc/gethostbyaddr.bak.c:17
+	misc/gethostbyname.bak.c:16
+	misc/gethostname.bak.c:51
+autoscan: warning: missing AC_CHECK_FUNCS([btowc]) wanted by: 
+	wcsmbs/tst-btowc.c:33
+	wcsmbs/tst-btowc.c:49
+	wcsmbs/tst-btowc.c:66
+	wcsmbs/wchar.h:289
+autoscan: warning: missing AC_CHECK_FUNCS([clock_gettime]) wanted by: 
+	rt/clock_gettime.c:45
+	rt/clock_nanosleep.c:57
+	rt/tst-clock.c:78
+	posix/clock_nanosleep.c:57
+autoscan: warning: missing AC_CHECK_FUNCS([dup2]) wanted by: 
+	stdio-common/tst-perror.c:45
+	stdio-common/tst-perror.c:100
+autoscan: warning: missing AC_CHECK_FUNCS([endgrent]) wanted by: 
+	grp/endgrent.bak.c:4
+	grp/endgrent.c:4
+autoscan: warning: missing AC_CHECK_FUNCS([endpwent]) wanted by: 
+	pwd/endpwent.c:28
+autoscan: warning: missing AC_CHECK_FUNCS([euidaccess]) wanted by: 
+	io/euidaccess.c:123
+	io/euidaccess.c:225
+autoscan: warning: missing AC_CHECK_FUNCS([fdatasync]) wanted by: 
+	misc/fdatasync.c:25
+autoscan: warning: missing AC_CHECK_FUNCS([fesetround]) wanted by: 
+	math/fenv.h:89
+	fpu/fesetround.c:24
+autoscan: warning: missing AC_CHECK_FUNCS([ftruncate]) wanted by: 
+	stdio-common/tst-perror.c:98
+	misc/truncate.c:36
+autoscan: warning: missing AC_CHECK_FUNCS([gethostbyaddr]) wanted by: 
+	misc/gethostbyaddr.bak.c:7
+	misc/gethostbyaddr.bak.c:23
+	misc/gethostbyaddr.c:17
+autoscan: warning: missing AC_CHECK_FUNCS([gethostbyname]) wanted by: 
+	misc/gethostbyname.bak.c:22
+	misc/gethostbyname.c:14
+	misc/gethostid.bak.c:34
+	misc/gethostid.c:41
+autoscan: warning: missing AC_CHECK_FUNCS([gethostname]) wanted by: 
+	misc/gethostid.c:40
+	misc/gethostname.bak.c:57
+	misc/gethostname.c:14
+autoscan: warning: missing AC_CHECK_FUNCS([getmntent]) wanted by: 
+	misc/mntent.c:41
+	misc/mntent.h:72
+	misc/mntentx.bak.h:72
+	misc/tst-mntent.c:67
+autoscan: warning: missing AC_CHECK_FUNCS([getpass]) wanted by: 
+	misc/getpass.bak.c:20
+	misc/getpass.c:22
+autoscan: warning: missing AC_CHECK_FUNCS([gettimeofday]) wanted by: 
+	time/getntptimeofday.c:73
+	time/gettimeofday.bak.c:6
+	time/gettimeofday.c:54
+	time/gettimeofday_d.bak.c:37
+	time/gettimeofday_d.c:37
+	time/test_getntptimeofday.c:19
+	time/test_gettimeofday.bak.c:19
+	time/test_settimeofday.bak.c:6
+	time/test_settimeofday.bak.c:14
+	misc/mkstemps.c:92
+autoscan: warning: missing AC_CHECK_FUNCS([getusershell]) wanted by: 
+	misc/getusershell.c:57
+autoscan: warning: missing AC_CHECK_FUNCS([hasmntopt]) wanted by: 
+	misc/mntent.h:92
+	misc/mntentx.bak.h:92
+	misc/tst-mntent.c:24
+autoscan: warning: missing AC_CHECK_FUNCS([inet_ntoa]) wanted by: 
+	misc/gethostid.bak.c:35
+	misc/gethostid.c:42
+autoscan: warning: missing AC_CHECK_FUNCS([mbrlen]) wanted by: 
+	wcsmbs/wchar.h:312
+	wcsmbs/wchar.h:318
+autoscan: warning: missing AC_CHECK_FUNCS([memchr]) wanted by: 
+	libio/iogetdelim.c:92
+	argp/argp-fmtstream.c:166
+autoscan: warning: missing AC_CHECK_FUNCS([memmove]) wanted by: 
+	win32/setenv_BSD.c:120
+	wcsmbs/wmemmove.c:30
+	string/argz-delete.c:34
+	string/argz-insert.c:54
+	string/argz-insert.c:55
+	string/envz.c:168
+	string/memmove.c:42
+	stdlib/canonicalize.c:213
+	misc/efgcvt_r.c:137
+	argp/argp-fmtstream.c:143
+	argp/argp-fmtstream.c:206
+	argp/argp-fmtstream.c:286
+	argp/argp-fmtstream.c:331
+	argp/argp-fmtstream.c:381
+autoscan: warning: missing AC_CHECK_FUNCS([mempcpy]) wanted by: 
+	posix/tst-truncate.c:64
+	posix/tst-truncate.c:64
+	iconv/iconvconfig.c:399
+	iconv/iconvconfig.c:508
+	iconv/iconvconfig.c:510
+	iconv/iconvconfig.c:515
+	iconv/iconvconfig.c:645
+	iconv/iconvconfig.c:646
+	iconv/iconvconfig.c:1038
+	iconv/iconvconfig.c:1044
+	iconv/iconv_prog.c:168
+	iconv/strtab.c:296
+	catgets/gencat.c:382
+autoscan: warning: missing AC_CHECK_FUNCS([memset]) wanted by: 
+	wcsmbs/btowc.c:70
+	wcsmbs/tst-mbrtowc.c:41
+	wcsmbs/tst-mbrtowc.c:54
+	wcsmbs/tst-mbrtowc.c:60
+	wcsmbs/tst-mbrtowc.c:75
+	wcsmbs/tst-mbrtowc.c:80
+	wcsmbs/tst-mbrtowc.c:85
+	wcsmbs/tst-mbrtowc.c:91
+	wcsmbs/tst-mbrtowc.c:109
+	wcsmbs/tst-mbrtowc.c:114
+	wcsmbs/tst-mbrtowc.c:119
+	wcsmbs/tst-mbrtowc.c:125
+	wcsmbs/tst-mbrtowc.c:195
+	wcsmbs/tst-wcrtomb.c:65
+	wcsmbs/tst-wcrtomb.c:66
+	wcsmbs/wctob.c:53
+	time/alt_digit.c:43
+	time/alt_digit.c:114
+	time/era.c:55
+	time/getdate.c:61
+	time/tst-ftime_l.c:27
+	time/tst-strptime.c:74
+	time/tst-strptime.c:122
+	rt/tst-clock.c:43
+	rt/tst-clock.c:72
+	rt/tst-clock.c:73
+	posix/fnmatch.c:334
+	posix/getopt.c:332
+	posix/getopt.c:443
+	posix/tst-truncate.c:82
+	misc/err.c:77
+	misc/error.c:209
+	misc/tst-tsearch.c:128
+	locale/programs/3level.h:307
+	io/ftw.c:483
+	iconv/gconv_open.c:88
+	iconv/gconv_open.c:126
+	iconv/gconv_open.c:204
+	iconv/gconv_trans.c:370
+	iconv/skeleton.c:493
+	crypt/md5-crypt.c:226
+	crypt/md5-crypt.c:227
+	crypt/md5-crypt.c:229
+	crypt/md5-crypt.c:231
+	catgets/gencat.c:892
+	catgets/gencat.c:942
+	argp/argp-fmtstream.c:145
+	argp/argp-help.c:1563
+	argp/argp-parse.c:539
+	argp/argp-parse.c:542
+	argp/argp-parse.c:922
+	argp/argp-parse.c:925
+autoscan: warning: missing AC_CHECK_FUNCS([mkfifo]) wanted by: 
+	io/mkfifo.bak.c:4
+	io/mkfifo.c:35
+autoscan: warning: missing AC_CHECK_FUNCS([munmap]) wanted by: 
+	libio/libioP.h:803
+	iconv/iconv_charmap.c:185
+	iconv/iconv_charmap.c:194
+	iconv/iconv_prog.c:320
+	iconv/iconv_prog.c:329
+autoscan: warning: missing AC_CHECK_FUNCS([nl_langinfo]) wanted by: 
+	locale/langinfo.h:575
+	locale/nl_langinfo.c:36
+	iconv/iconv_prog.c:233
+	iconv/iconv_prog.c:235
+	catgets/gencat.c:1323
+autoscan: warning: missing AC_CHECK_FUNCS([pathconf]) wanted by: 
+	stdlib/canonicalize.c:102
+autoscan: warning: missing AC_CHECK_FUNCS([putenv]) wanted by: 
+	stdlib/setenv.bak.c:16
+	stdlib/setenv.bak.c:25
+	stdlib/setenv.c:16
+	stdlib/setenv.c:25
+autoscan: warning: missing AC_CHECK_FUNCS([realpath]) wanted by: 
+	win32/fullpath.c:78
+autoscan: warning: missing AC_CHECK_FUNCS([select]) wanted by: 
+	misc/sys/select.bak.h:102
+autoscan: warning: missing AC_CHECK_FUNCS([setenv]) wanted by: 
+	test-skeleton.c:206
+	win32/setenv_BSD.c:84
+	time/tst-getdate.c:86
+	time/tst-mktime.c:34
+	time/tst-mktime.c:56
+	time/tst-posixtz.c:41
+	time/tst-posixtz.c:62
+	time/tst-posixtz.c:74
+	stdlib/setenv.bak.c:5
+	stdlib/setenv.c:5
+	stdlib/setenv.h:10
+	stdio-common/tst-tmpnam.c:30
+autoscan: warning: missing AC_CHECK_FUNCS([sethostname]) wanted by: 
+	win32/sysinfo.bak.c:49
+	win32/sysinfo.c:51
+	misc/sethostname.c:25
+autoscan: warning: missing AC_CHECK_FUNCS([setlocale]) wanted by: 
+	wcsmbs/tst-btowc.c:83
+	wcsmbs/tst-btowc.c:102
+	wcsmbs/tst-btowc.c:118
+	wcsmbs/tst-btowc.c:137
+	wcsmbs/tst-mbrtowc.c:141
+	wcsmbs/tst-mbrtowc.c:163
+	wcsmbs/tst-mbrtowc.c:164
+	wcsmbs/tst-mbrtowc.c:166
+	wcsmbs/tst-mbrtowc.c:167
+	wcsmbs/tst-mbrtowc.c:170
+	wcsmbs/tst-mbrtowc.c:171
+	wcsmbs/tst-wcrtomb.c:38
+	wcsmbs/tst-wcrtomb.c:39
+	wcsmbs/tst-wcrtomb.c:41
+	wcsmbs/tst-wcrtomb.c:42
+	wcsmbs/tst-wcrtomb.c:44
+	wcsmbs/tst-wcrtomb.c:45
+	wcsmbs/wcsmbs-tst1.c:21
+	time/tst-ftime_l.c:61
+	time/tst-ftime_l.c:63
+	time/tst-ftime_l.c:81
+	time/tst-ftime_l.c:83
+	time/tst-ftime_l.c:106
+	time/tst-ftime_l.c:108
+	time/tst-strptime.c:124
+	time/tst-strptime.c:170
+	locale/programs/localedef.h:136
+	locale/programs/localedef.h:137
+	locale/programs/localedef.h:140
+	iconv/iconvconfig.c:281
+	iconv/iconv_prog.c:130
+	catgets/catgets.c:44
+	catgets/gencat.c:172
+	catgets/gencat.c:188
+	catgets/gencat.c:1322
+	catgets/gencat.c:1324
+	catgets/test-gencat.c:10
+	catgets/test-gencat.c:12
+autoscan: warning: missing AC_CHECK_FUNCS([stpcpy]) wanted by: 
+	test-skeleton.c:112
+	test-skeleton.c:112
+	test-skeleton.c:112
+	iconv/iconvconfig.c:1038
+autoscan: warning: missing AC_CHECK_FUNCS([strcasecmp]) wanted by: 
+	win32/progname.c:100
+autoscan: warning: missing AC_CHECK_FUNCS([strchr]) wanted by: 
+	win32/rootdir.bak.c:34
+	win32/rootdir.c:43
+	win32/rootdir.c:44
+	time/alt_digit.c:64
+	time/era.c:115
+	time/era.c:119
+	string/argz-next.c:30
+	string/envz.c:166
+	string/strsep.c:49
+	stdlib/canonicalize.c:117
+	posix/fnmatch.c:174
+	posix/fnmatch.c:176
+	misc/mntent_r.c:152
+	misc/mntent_r.c:160
+	misc/mntent_r.c:180
+	misc/mntent_r.c:197
+	misc/mntent_r.c:345
+	io/ftw.c:396
+	io/ftw.c:432
+	io/hxstat64.c:61
+	iconv/gconv_conf.c:386
+	iconv/gconv_conf.c:471
+	iconv/gconv_conf.c:478
+	iconv/gconv_open.c:46
+	iconv/gconv_open.c:48
+	iconv/gconv_open.c:143
+	iconv/gconv_open.c:144
+	iconv/iconvconfig.c:670
+	iconv/iconv_prog.c:183
+	iconv/iconv_prog.c:188
+	catgets/catgets.c:40
+	catgets/catgets.c:50
+	catgets/open_catalog.c:51
+	argp/argp-help.c:1355
+	argp/argp-help.c:1447
+	argp/argp-parse.c:771
+autoscan: warning: missing AC_CHECK_FUNCS([strcspn]) wanted by: 
+	wcsmbs/wcsmbsload.c:134
+	crypt/md5-crypt.c:72
+autoscan: warning: missing AC_CHECK_FUNCS([strdup]) wanted by: 
+	win32/rootdir.c:19
+	win32/rootdir.c:39
+	stdlib/setenv.bak.c:15
+	stdlib/setenv.c:15
+	io/symlink.bak.c:50
+	io/symlink.c:62
+	iconv/iconvconfig.c:357
+	iconv/iconv_prog.c:407
+	catgets/gencat.c:233
+	argp/argp-test.c:74
+autoscan: warning: missing AC_CHECK_FUNCS([strerror]) wanted by: 
+	string/strerror.c:35
+	string/_strerror.c:26
+	stdio/tst-fseek.c:39
+	stdio/tst-seek.c:45
+	misc/error.c:118
+	misc/error.c:156
+	iconv/tst-iconv2.c:69
+	iconv/tst-iconv2.c:69
+	csu/errno.c:209
+autoscan: warning: missing AC_CHECK_FUNCS([strncasecmp]) wanted by: 
+	time/strptime.c:124
+autoscan: warning: missing AC_CHECK_FUNCS([strpbrk]) wanted by: 
+	string/strsep.c:54
+	string/strtok_r.c:56
+autoscan: warning: missing AC_CHECK_FUNCS([strrchr]) wanted by: 
+	win32/progname.bak.c:77
+	win32/progname.bak.c:87
+	win32/progname.bak.c:97
+	win32/progname.c:66
+	win32/progname.c:76
+	win32/progname.c:86
+	string/basename.c:37
+	misc/dirname.c:32
+	misc/init-misc.c:34
+	io/hxstat64.c:151
+	io/stat.bak.c:235
+	io/symlink.bak.c:53
+	io/symlink.c:67
+	argp/argp-parse.c:127
+	argp/argp-parse.c:598
+autoscan: warning: missing AC_CHECK_FUNCS([strspn]) wanted by: 
+	string/strtok_r.c:47
+	misc/mntent_r.c:164
+	misc/mntent_r.c:196
+	misc/mntent_r.c:203
+	misc/mntent_r.c:207
+	misc/mntent_r.c:211
+autoscan: warning: missing AC_CHECK_FUNCS([strstr]) wanted by: 
+	string/argz-replace.c:68
+	string/argz-replace.c:80
+	misc/mntent_r.c:336
+	io/readlink.bak.c:84
+	io/readlink.c:101
+autoscan: warning: missing AC_CHECK_FUNCS([strtol]) wanted by: 
+	time/strptime.c:245
+	time/strptime.c:261
+	time/strptime.c:269
+	time/strptime.c:277
+	time/strptime.c:287
+	time/strptime.c:294
+	time/strptime.c:301
+	time/strptime.c:336
+	time/strptime.c:356
+	time/strptime.c:363
+	time/strptime.c:370
+	time/strptime.c:377
+	time/strptime.c:384
+	time/strptime.c:397
+	time/strptime.c:407
+	iconv/gconv_conf.c:294
+	iconv/iconvconfig.c:597
+autoscan: warning: missing AC_CHECK_FUNCS([strtoul]) wanted by: 
+	posix/test_alarm.bak.c:10
+	posix/test_alarm.c:9
+	misc/test_usleep.bak.c:10
+	misc/test_usleep.c:10
+autoscan: warning: missing AC_CHECK_FUNCS([sysinfo]) wanted by: 
+	win32/sysinfo.bak.c:30
+	win32/sysinfo.c:32
+	posix/test_uname.bak.c:17
+	posix/test_uname.bak.c:27
+	posix/test_uname.c:28
+autoscan: warning: missing AC_CHECK_FUNCS([tzset]) wanted by: 
+	time/gettimeofday.bak.c:12
+	time/gettimeofday_d.bak.c:17
+	time/tst-posixtz.c:75
+	time/tzset.bak.c:15
+autoscan: warning: missing AC_CHECK_FUNCS([uname]) wanted by: 
+	win32/sysinfo.bak.c:8
+	win32/sysinfo.c:10
+	posix/test_uname.bak.c:14
+	posix/test_uname.c:18
+	posix/sys/utsname.h:69
+autoscan: warning: missing AC_CHECK_FUNCS([utime]) wanted by: 
+	io/test-utime.c:54
+	io/test-utime.c:79
+	io/utime.c:35
+autoscan: warning: missing AC_CHECK_FUNCS([utmpname]) wanted by: 
+	include/login/utmp.h:60
+autoscan: warning: missing AC_CHECK_FUNCS([wcwidth]) wanted by: 
+	wcsmbs/wchar.h:358
+	wcsmbs/wcwidth.c:24
+autoscan: warning: missing AC_CHECK_HEADERS([float.h]) wanted by: 
+	stdlib/strtod.c:56
+	misc/efgcvt.c:24
+	misc/efgcvt_r.c:21
+	misc/qefgcvt.c:20
+	misc/qefgcvt_r.c:21
+autoscan: warning: missing AC_CHECK_HEADERS([sgtty.h]) wanted by: 
+	misc/gtty.c:20
+autoscan: warning: missing AC_FUNC_CLOSEDIR_VOID wanted by: 
+	dirent/dirent.bak.c:206
+	dirent/dirent.c:207
+	dirent/scandir.c:99
+	dirent/tst-dir.c:44
+	dirent/tst-dir.c:84
+	dirent/tst-dir.c:88
+autoscan: warning: missing AC_FUNC_FORK wanted by: 
+	test-skeleton.c:246
+	crypt/speeds.c:118
+autoscan: warning: missing AC_FUNC_FSEEKO wanted by: 
+	stdio/fseeko.c:33
+	stdio/tst-fseek.c:118
+	stdio/tst-fseek.c:157
+	stdio/tst-fseek.c:211
+	stdio/tst-fseek.c:265
+	stdio/tst-fseek.c:441
+	stdio/tst-fseek.c:473
+	stdio/tst-seek.c:129
+	stdio/ftello.c:34
+	stdio/tst-fseek.c:446
+	stdio/tst-fseek.c:449
+	stdio/tst-fseek.c:478
+	stdio/tst-fseek.c:481
+	stdio/tst-seek.c:59
+	stdio/tst-seek.c:72
+	stdio/tst-seek.c:135
+autoscan: warning: missing AC_FUNC_GETLOADAVG wanted by: 
+	misc/getloadavg.c:31
+autoscan: warning: missing AC_FUNC_GETMNTENT wanted by: 
+	misc/mntent.c:41
+	misc/mntent.h:72
+	misc/mntentx.bak.h:72
+	misc/tst-mntent.c:67
+autoscan: warning: missing AC_FUNC_GETPGRP wanted by: 
+	posix/getpgrp.c:24
+autoscan: warning: missing AC_FUNC_MBRTOWC wanted by: 
+	wcsmbs/tst-mbrtowc.c:42
+	wcsmbs/tst-mbrtowc.c:43
+	wcsmbs/tst-mbrtowc.c:45
+	wcsmbs/tst-mbrtowc.c:47
+	wcsmbs/tst-mbrtowc.c:55
+	wcsmbs/tst-mbrtowc.c:56
+	wcsmbs/tst-mbrtowc.c:61
+	wcsmbs/tst-mbrtowc.c:76
+	wcsmbs/tst-mbrtowc.c:81
+	wcsmbs/tst-mbrtowc.c:82
+	wcsmbs/tst-mbrtowc.c:86
+	wcsmbs/tst-mbrtowc.c:87
+	wcsmbs/tst-mbrtowc.c:88
+	wcsmbs/tst-mbrtowc.c:92
+	wcsmbs/tst-mbrtowc.c:93
+	wcsmbs/tst-mbrtowc.c:94
+	wcsmbs/tst-mbrtowc.c:95
+	wcsmbs/tst-mbrtowc.c:110
+	wcsmbs/tst-mbrtowc.c:115
+	wcsmbs/tst-mbrtowc.c:116
+	wcsmbs/tst-mbrtowc.c:120
+	wcsmbs/tst-mbrtowc.c:121
+	wcsmbs/tst-mbrtowc.c:122
+	wcsmbs/tst-mbrtowc.c:126
+	wcsmbs/tst-mbrtowc.c:127
+	wcsmbs/tst-mbrtowc.c:128
+	wcsmbs/tst-mbrtowc.c:129
+	wcsmbs/tst-mbrtowc.c:197
+	wcsmbs/wchar.h:301
+	wcsmbs/wchar.h:321
+autoscan: warning: missing AC_FUNC_MKTIME wanted by: 
+	time/getdate.c:65
+	time/getdate.c:243
+	time/mktime.c:398
+	time/mktime.c:494
+	time/mktime.c:519
+	time/tst-mktime.c:22
+	time/tst-mktime.c:46
+	time/tst-mktime.c:57
+autoscan: warning: missing AC_FUNC_MMAP wanted by: 
+	libio/libioP.h:806
+	libio/libioP.h:814
+	iconv/iconv_charmap.c:170
+	iconv/iconv_prog.c:304
+autoscan: warning: missing AC_FUNC_SETPGRP wanted by: 
+	posix/setpgrp.c:22
+autoscan: warning: missing AC_FUNC_SETVBUF_REVERSED wanted by: 
+	test-skeleton.c:222
+autoscan: warning: missing AC_FUNC_STRCOLL wanted by: 
+	dirent/alphasort.c:25
+	dirent/alphasort64.c:25
+autoscan: warning: missing AC_FUNC_STRERROR_R wanted by: 
+	misc/error.c:103
+autoscan: warning: missing AC_FUNC_STRFTIME wanted by: 
+	time/tst-ftime_l.c:33
+	time/tst-ftime_l.c:88
+	time/tst-ftime_l.c:111
+	time/tst-mktime.c:29
+	time/tst-strftime.c:46
+	time/tst-strptime.c:81
+autoscan: warning: missing AC_FUNC_UTIME_NULL wanted by: 
+	io/test-utime.c:54
+	io/test-utime.c:79
+	io/utime.c:35
+autoscan: warning: missing AC_REPLACE_FNMATCH wanted by: 
+	posix/fnmatch.c:64
+	posix/fnmatch.c:320
+autoscan: warning: missing AC_TYPE_SIGNAL wanted by: 
+	test-skeleton.c:294
+	time/clocktest.c:23
+	crypt/speeds.c:117
+	crypt/speeds.c:131
+autoscan: warning: missing AM_GNU_GETTEXT wanted by: 
+	intl/libintl.h:46
+	intl/libintl.h:106

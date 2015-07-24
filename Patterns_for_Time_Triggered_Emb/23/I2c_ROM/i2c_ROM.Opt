@@ -1,0 +1,40 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.a*; *.src)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt)
+ pExt (*.plm)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (Target 1), 0x0000 // Tools: 'MCS-51'
+GRPOPT 1,(Source Group 1),1,0,0
+
+OPTFFF 1,1,1,0,0,0,0,0,<.\MAIN.C><MAIN.C> 
+OPTFFF 1,2,1,0,0,0,0,0,<.\DELAY_T0.C><DELAY_T0.C> 
+OPTFFF 1,3,1,0,0,38,44,0,<.\I2C_CORE.C><I2C_CORE.C> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,246,255,255,255,69,0,0,0,177,2,0,0,138,1,0,0 }
+OPTFFF 1,4,1,0,0,151,151,0,<.\I2C_ROM.C><I2C_ROM.C> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,135,0,0,0,135,0,0,0,66,3,0,0,204,1,0,0 }
+
+ExtF <.\Port.h> 50,59,0,{ 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,0,0,0,0,0,0,0,0,187,2,0,0,69,1,0,0 }
+ExtF <.\I2c_rom.h> 1,1,0,{ 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,27,0,0,0,27,0,0,0,214,2,0,0,96,1,0,0 }
+
+TARGOPT 1, (Target 1)
+ CLK51=12000000
+  OPTTT 1,0,1,0
+  OPTHX 0,65535,0,0,0
+  OPTLX 120,65,8,<.\>
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 1,0,1
+  OPTBL 0,(Data Sheet)<DATASHTS\ATMEL\DOC0313.PDF>
+  OPTBL 1,(Add on databooks)<DATASHTS\ADDBOOKS.PDF>
+  OPTBL 2,(Instruction Set Manual)<DATASHTS\ATMEL\DOC0509.PDF>
+  OPTDL (S8051.DLL)()(DP51.DLL)(-p52)(S8051.DLL)()(TP51.DLL)(-p52)
+  OPTDBG 509,0,()()()()()()()()()() ()()()()
+  OPTDF 0x0
+  OPTLE <>
+  OPTLC <>
+EndOpt
+
