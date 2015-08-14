@@ -1,0 +1,26 @@
+Things Todo:
+
+- Make the library choose the best optimal mask pattern.
+    As for now, it allways chooses mask 3 when set to autochoose.
+
+- Better Makefiles
+	- Use Autotools or CMake
+	- Make them work on windows, linux and os x
+	- Discover if there is no gtk+-2.0 and then don't build -w support in sample program.
+
+- With some sizes, there are white lines between the data modules
+
+- make Python bindings more object oriented
+
+- Create man pages for programs and headers
+
+- Create doxygen or other documentation
+
+- Support other graphic libraries than cairo.
+
+- Option to read data from file
+
+- Option to list statistics
+	which version, ecLevel and encodeMode can have how many characters?
+	(possibility to print only for specified version, ecLevel and/or encode mode)
+	
