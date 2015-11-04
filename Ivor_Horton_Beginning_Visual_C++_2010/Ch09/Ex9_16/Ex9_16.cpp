@@ -1,0 +1,38 @@
+// Ex9_16.cpp : main project file.
+// Using a class library in a separate assembly
+
+#include "stdafx.h"
+#include "GlassBox.h"
+#using <Ex9_16lib.dll>
+
+using namespace System;
+using namespace Ex9_16lib;
+
+int main(array<System::String ^> ^args)
+{
+ array<IContainer^>^ containers = { gcnew Box(2.0, 3.0, 4.0),
+                                    gcnew GlassBox(2.0, 3.0, 4.0),
+                                    gcnew Box(4.0, 5.0, 6.0),
+                                    gcnew GlassBox(4.0, 5.0, 6.0)
+                                  };
+
+  Console::WriteLine(L"The array of containers have the following volumes:");
+  for each(IContainer^ container in containers)
+    container->ShowVolume();           // Output the volume of a box
+
+  Console::WriteLine(L"\nNow pushing the containers on the stack...");
+
+  Stack^ stack = gcnew Stack;          // Create the stack
+  for each(IContainer^ container in containers)
+    stack->Push(container);
+
+  
+  Console::WriteLine(
+         L"Popping the containers off the stack presents them in reverse order:");
+  Object^ item;
+  while((item = stack->Pop()) != nullptr)
+    safe_cast<IContainer^>(item)->ShowVolume();
+
+  Console::WriteLine();
+  return 0;
+}

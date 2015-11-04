@@ -1,0 +1,8 @@
+﻿     1>ResourceCompile:
+         Microsoft (R) Windows (R) Resource Compiler Version 6.1.7000.0
+         
+         Copyright (C) Microsoft Corporation.  All rights reserved.
+         
+         
+       LinkEmbedManifest:
+         Sketcher.vcxproj -> C:\Beginning Visual C++ 2010\Projects\Ch15 retry Sketcher\Sketcher\Debug\Sketcher.exe
