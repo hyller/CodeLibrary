@@ -1,0 +1,231 @@
+# English translations for GNU Hello package.
+# Copyright (C) 2008 Free Software Foundation, Inc.
+# This file is distributed under the same license as the GNU Hello package.
+# Automatically generated, 2008.
+#
+# All this catalog "translates" are quotation characters.
+# The msgids must be ASCII and therefore cannot contain real quotation
+# characters, only substitutes like grave accent (0x60), apostrophe (0x27)
+# and double quote (0x22). These substitutes look strange; see
+# http://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html
+#
+# This catalog translates grave accent (0x60) and apostrophe (0x27) to
+# left single quotation mark (U+2018) and right single quotation mark (U+2019).
+# It also translates pairs of apostrophe (0x27) to
+# left single quotation mark (U+2018) and right single quotation mark (U+2019)
+# and pairs of quotation mark (0x22) to
+# left double quotation mark (U+201C) and right double quotation mark (U+201D).
+#
+# When output to an UTF-8 terminal, the quotation characters appear perfectly.
+# When output to an ISO-8859-1 terminal, the single quotation marks are
+# transliterated to apostrophes (by iconv in glibc 2.2 or newer) or to
+# grave/acute accent (by libiconv), and the double quotation marks are
+# transliterated to 0x22.
+# When output to an ASCII terminal, the single quotation marks are
+# transliterated to apostrophes, and the double quotation marks are
+# transliterated to 0x22.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU Hello 2.4\n"
+"Report-Msgid-Bugs-To: bug-hello@gnu.org\n"
+"POT-Creation-Date: 2008-12-09 10:50-0800\n"
+"PO-Revision-Date: 2008-12-09 10:50-0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/hello.c:100
+#, c-format
+msgid "%s: extra operand: %s\n"
+msgstr "%s: extra operand: %s\n"
+
+#: src/hello.c:102
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr "Try ‘%s --help’ for more information.\n"
+
+#: src/hello.c:109
+#, c-format
+msgid "hello, world\n"
+msgstr "hello, world\n"
+
+#. TRANSLATORS: Use box drawing characters or other fancy stuff
+#. if your encoding (e.g., UTF-8) allows it.  If done so add the
+#. following note, please:
+#.
+#. [Note: For best viewing results use a UTF-8 locale, please.]
+#.
+#: src/hello.c:118
+#, c-format
+msgid ""
+"+---------------+\n"
+"| Hello, world! |\n"
+"+---------------+\n"
+msgstr ""
+"+---------------+\n"
+"| Hello, world! |\n"
+"+---------------+\n"
+
+#: src/hello.c:128
+msgid "Hello, world!"
+msgstr "Hello, world!"
+
+#. TRANSLATORS: --help output 1 (synopsis)
+#. no-wrap
+#: src/hello.c:150
+#, c-format
+msgid "Usage: %s [OPTION]...\n"
+msgstr "Usage: %s [OPTION]...\n"
+
+#. TRANSLATORS: --help output 2 (brief description)
+#. no-wrap
+#: src/hello.c:155
+msgid "Print a friendly, customizable greeting.\n"
+msgstr "Print a friendly, customizable greeting.\n"
+
+#. TRANSLATORS: --help output 3: options 1/2
+#. no-wrap
+#: src/hello.c:161
+msgid ""
+"  -h, --help          display this help and exit\n"
+"  -v, --version       display version information and exit\n"
+msgstr ""
+"  -h, --help          display this help and exit\n"
+"  -v, --version       display version information and exit\n"
+
+#. TRANSLATORS: --help output 4: options 2/2
+#. no-wrap
+#: src/hello.c:168
+msgid ""
+"  -t, --traditional       use traditional greeting format\n"
+"  -n, --next-generation   use next-generation greeting format\n"
+"  -g, --greeting=TEXT     use TEXT as the greeting message\n"
+msgstr ""
+"  -t, --traditional       use traditional greeting format\n"
+"  -n, --next-generation   use next-generation greeting format\n"
+"  -g, --greeting=TEXT     use TEXT as the greeting message\n"
+
+#. TRANSLATORS: --help output 5 (end)
+#. TRANSLATORS: the placeholder indicates the bug-reporting address
+#. for this application.  Please add _another line_ with the
+#. address for translation bugs.
+#. no-wrap
+#: src/hello.c:179
+#, c-format
+msgid "Report bugs to <%s>.\n"
+msgstr "Report bugs to <%s>.\n"
+
+#: src/hello.c:197
+#, c-format
+msgid ""
+"Copyright (C) %s Free Software Foundation, Inc.\n"
+"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"This is free software: you are free to change and redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"Copyright (C) %s Free Software Foundation, Inc.\n"
+"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"This is free software: you are free to change and redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+
+#: gnulib/lib/error.c:125
+msgid "Unknown system error"
+msgstr "Unknown system error"
+
+#: gnulib/lib/getopt.c:526 gnulib/lib/getopt.c:542
+#, c-format
+msgid "%s: option `%s' is ambiguous\n"
+msgstr "%s: option ‘%s’ is ambiguous\n"
+
+#: gnulib/lib/getopt.c:575 gnulib/lib/getopt.c:579
+#, c-format
+msgid "%s: option `--%s' doesn't allow an argument\n"
+msgstr "%s: option ‘--%s’ doesn't allow an argument\n"
+
+#: gnulib/lib/getopt.c:588 gnulib/lib/getopt.c:593
+#, c-format
+msgid "%s: option `%c%s' doesn't allow an argument\n"
+msgstr "%s: option ‘%c%s’ doesn't allow an argument\n"
+
+#: gnulib/lib/getopt.c:636 gnulib/lib/getopt.c:655 gnulib/lib/getopt.c:971
+#: gnulib/lib/getopt.c:990
+#, c-format
+msgid "%s: option `%s' requires an argument\n"
+msgstr "%s: option ‘%s’ requires an argument\n"
+
+#: gnulib/lib/getopt.c:693 gnulib/lib/getopt.c:696
+#, c-format
+msgid "%s: unrecognized option `--%s'\n"
+msgstr "%s: unrecognized option ‘--%s’\n"
+
+#: gnulib/lib/getopt.c:704 gnulib/lib/getopt.c:707
+#, c-format
+msgid "%s: unrecognized option `%c%s'\n"
+msgstr "%s: unrecognized option ‘%c%s’\n"
+
+#: gnulib/lib/getopt.c:759 gnulib/lib/getopt.c:762
+#, c-format
+msgid "%s: illegal option -- %c\n"
+msgstr "%s: illegal option -- %c\n"
+
+#: gnulib/lib/getopt.c:768 gnulib/lib/getopt.c:771
+#, c-format
+msgid "%s: invalid option -- %c\n"
+msgstr "%s: invalid option -- %c\n"
+
+#: gnulib/lib/getopt.c:823 gnulib/lib/getopt.c:839 gnulib/lib/getopt.c:1043
+#: gnulib/lib/getopt.c:1061
+#, c-format
+msgid "%s: option requires an argument -- %c\n"
+msgstr "%s: option requires an argument -- %c\n"
+
+#: gnulib/lib/getopt.c:892 gnulib/lib/getopt.c:908
+#, c-format
+msgid "%s: option `-W %s' is ambiguous\n"
+msgstr "%s: option ‘-W %s’ is ambiguous\n"
+
+#: gnulib/lib/getopt.c:932 gnulib/lib/getopt.c:950
+#, c-format
+msgid "%s: option `-W %s' doesn't allow an argument\n"
+msgstr "%s: option ‘-W %s’ doesn't allow an argument\n"
+
+#: gnulib/lib/closeout.c:112
+msgid "write error"
+msgstr "write error"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK) and
+#. U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+#: gnulib/lib/quotearg.c:266
+msgid "`"
+msgstr "`"
+
+#: gnulib/lib/quotearg.c:267
+msgid "'"
+msgstr "'"
+
+#: gnulib/lib/xalloc-die.c:34
+msgid "memory exhausted"
+msgstr "memory exhausted"

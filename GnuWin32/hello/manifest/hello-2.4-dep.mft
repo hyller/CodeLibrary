@@ -1,0 +1,4 @@
+bin/libiconv2.dll 
+bin/libintl3.dll 
+manifest/hello-2.4-dep.mft
+manifest/hello-2.4-dep.ver 85266dbd17583f6fe304daa98b7c898f

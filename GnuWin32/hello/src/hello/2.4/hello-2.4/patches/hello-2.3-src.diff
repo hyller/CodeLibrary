@@ -1,0 +1,61 @@
+diff -ipuwr --binary --strip-trailing-cr -x '*.bak' -x '*.orig' -x '*.rej' -x '*.new' -x '*~' -x debian -x '*.po' -x '*.pot' hello-2.3-orig/src/Makefile.in hello-2.3-src/src/Makefile.in
+--- hello-2.3-orig/src/Makefile.in	2007-06-29 22:48:13.000000000 +0200
++++ hello-2.3-src/src/Makefile.in	2008-02-10 10:10:10.281250000 +0100
+@@ -34,7 +34,8 @@
+ # along with this program; if not, write to the Free Software Foundation,
+ # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ 
+-VPATH = @srcdir@
++resdir = @top_builddir@/resource
++VPATH = @srcdir@ $(resdir)
+ pkgdatadir = $(datadir)/@PACKAGE@
+ pkglibdir = $(libdir)/@PACKAGE@
+ pkgincludedir = $(includedir)/@PACKAGE@
+@@ -93,7 +94,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
+ binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
+ PROGRAMS = $(bin_PROGRAMS)
+ am_hello_OBJECTS = hello.$(OBJEXT)
+-hello_OBJECTS = $(am_hello_OBJECTS)
++hello_OBJECTS = $(am_hello_OBJECTS) hello-res.$(OBJEXT)
+ hello_DEPENDENCIES = ../gnulib/lib/libgnu.a
+ DEFAULT_INCLUDES = -I. -I$(top_builddir)@am__isrc@
+ depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
+@@ -165,7 +166,7 @@ INSTALL_SCRIPT = @INSTALL_SCRIPT@
+ INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+ INTLLIBS = @INTLLIBS@
+ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
+-LDFLAGS = @LDFLAGS@
++LDFLAGS = @LDFLAGS@ $(VERSADD)
+ LIBGNU_LIBDEPS = @LIBGNU_LIBDEPS@
+ LIBGNU_LTLIBDEPS = @LIBGNU_LTLIBDEPS@
+ LIBICONV = @LIBICONV@
+@@ -206,6 +207,9 @@ STDBOOL_H = @STDBOOL_H@
+ STRIP = @STRIP@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
++MAJOR=$(shell echo $(VERSION) | sed -e "s/\..*$$//")
++MINOR=$(shell echo $(VERSION) | sed -e "s/^[^\.]*\.0*\([0-9]\+\).*$$/\1/") 
++VERSADD = -Wl,--major-image-version=$(MAJOR) -Wl,--minor-image-version=$(MINOR) 
+ WCHAR_H = @WCHAR_H@
+ WCTYPE_H = @WCTYPE_H@
+ XGETTEXT = @XGETTEXT@
+@@ -267,7 +271,7 @@ AM_CPPFLAGS = -I$(top_srcdir)/gnulib/lib
+ all: all-am
+ 
+ .SUFFIXES:
+-.SUFFIXES: .c .o .obj
++.SUFFIXES: .c .o .obj .rc .exe
+ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+@@ -332,6 +336,10 @@ distclean-compile:
+ 
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hello.Po@am__quote@
+ 
++# Rule to make compiled resource (Windows)
++.rc.o:
++	windres --include-dir $(resdir) -i $< -o $@
++	
+ .c.o:
+ @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+ @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po

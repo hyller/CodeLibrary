@@ -1,0 +1,6 @@
+     ../../hello-2.4-src/src/hello.c \
+     ../../hello-2.4-src/gnulib/lib/error.c \
+     ../../hello-2.4-src/gnulib/lib/getopt.c \
+     ../../hello-2.4-src/gnulib/lib/closeout.c \
+     ../../hello-2.4-src/gnulib/lib/quotearg.c \
+     ../../hello-2.4-src/gnulib/lib/xalloc-die.c

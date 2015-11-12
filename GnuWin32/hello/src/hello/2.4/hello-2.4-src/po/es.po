@@ -1,0 +1,249 @@
+# Mensajes en español para GNU hello.
+# Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002 Free Software Foundation, Inc.
+# Javier Romañach <jromanac@dial.eunet.es>, 1996.
+# Santiago Vila Doncel <sanvila@unex.es>, 1997, 1998, 1999, 2000, 2001, 2002, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU hello 2.1.96\n"
+"Report-Msgid-Bugs-To: bug-hello@gnu.org\n"
+"POT-Creation-Date: 2008-12-09 10:50-0800\n"
+"PO-Revision-Date: 2006-11-21 10:31+0100\n"
+"Last-Translator: Santiago Vila Doncel <sanvila@unex.es>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: src/hello.c:100
+#, c-format
+msgid "%s: extra operand: %s\n"
+msgstr "%s: operando extra: %s\n"
+
+#: src/hello.c:102
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr "Pruebe `%s --help' para más información.\n"
+
+#: src/hello.c:109
+#, c-format
+msgid "hello, world\n"
+msgstr "hola mundo\n"
+
+#. TRANSLATORS: Use box drawing characters or other fancy stuff
+#. if your encoding (e.g., UTF-8) allows it.  If done so add the
+#. following note, please:
+#.
+#. [Note: For best viewing results use a UTF-8 locale, please.]
+#.
+#: src/hello.c:118
+#, c-format
+msgid ""
+"+---------------+\n"
+"| Hello, world! |\n"
+"+---------------+\n"
+msgstr ""
+"+---------------+\n"
+"| ¡Hola, mundo! |\n"
+"+---------------+\n"
+
+#: src/hello.c:128
+msgid "Hello, world!"
+msgstr "¡Hola mundo!"
+
+#. TRANSLATORS: --help output 1 (synopsis)
+#. no-wrap
+#: src/hello.c:150
+#, c-format
+msgid "Usage: %s [OPTION]...\n"
+msgstr "Modo de empleo: %s [OPCIÓN]...\n"
+
+#. TRANSLATORS: --help output 2 (brief description)
+#. no-wrap
+#: src/hello.c:155
+msgid "Print a friendly, customizable greeting.\n"
+msgstr "Muestra un saludo amistoso y configurable.\n"
+
+#. TRANSLATORS: --help output 3: options 1/2
+#. no-wrap
+#: src/hello.c:161
+msgid ""
+"  -h, --help          display this help and exit\n"
+"  -v, --version       display version information and exit\n"
+msgstr ""
+"  -h, --help          muestra esta ayuda y finaliza\n"
+"  -v, --version       muestra información sobre la versión y termina\n"
+
+#. TRANSLATORS: --help output 4: options 2/2
+#. no-wrap
+#: src/hello.c:168
+msgid ""
+"  -t, --traditional       use traditional greeting format\n"
+"  -n, --next-generation   use next-generation greeting format\n"
+"  -g, --greeting=TEXT     use TEXT as the greeting message\n"
+msgstr ""
+"  -t, --traditional       utiliza el formato de saludo tradicional\n"
+"  -n, --next-generation   utiliza el formato de saludo más novedoso\n"
+"  -g, --greeting=TEXTO    utiliza TEXTO como mensaje de saludo\n"
+
+# Véase "A bug's life".
+#. TRANSLATORS: --help output 5 (end)
+#. TRANSLATORS: the placeholder indicates the bug-reporting address
+#. for this application.  Please add _another line_ with the
+#. address for translation bugs.
+#. no-wrap
+#: src/hello.c:179
+#, c-format
+msgid "Report bugs to <%s>.\n"
+msgstr ""
+"Comunicar bichos a <%s>.\n"
+"Comunicar errores de traducción a <es@li.org>.\n"
+
+#: src/hello.c:197
+#, fuzzy, c-format
+msgid ""
+"Copyright (C) %s Free Software Foundation, Inc.\n"
+"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"This is free software: you are free to change and redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"Copyright (C) %s Free Software Foundation, Inc.\n"
+"Licencia: GNU GPL v2+ <http://www.gnu.org/licenses/gpl.html>\n"
+"Esto es software libre. No hay NINGUNA GARANTÍA, hasta donde permite la "
+"ley.\n"
+
+#: gnulib/lib/error.c:125
+msgid "Unknown system error"
+msgstr "Error del sistema desconocido"
+
+#: gnulib/lib/getopt.c:526 gnulib/lib/getopt.c:542
+#, c-format
+msgid "%s: option `%s' is ambiguous\n"
+msgstr "%s: la opción `%s' es ambigua\n"
+
+#: gnulib/lib/getopt.c:575 gnulib/lib/getopt.c:579
+#, c-format
+msgid "%s: option `--%s' doesn't allow an argument\n"
+msgstr "%s: la opción `--%s' no admite ningún argumento\n"
+
+#: gnulib/lib/getopt.c:588 gnulib/lib/getopt.c:593
+#, c-format
+msgid "%s: option `%c%s' doesn't allow an argument\n"
+msgstr "%s: la opción `%c%s' no admite ningún argumento\n"
+
+#: gnulib/lib/getopt.c:636 gnulib/lib/getopt.c:655 gnulib/lib/getopt.c:971
+#: gnulib/lib/getopt.c:990
+#, c-format
+msgid "%s: option `%s' requires an argument\n"
+msgstr "%s: la opción `%s' requiere un argumento\n"
+
+#: gnulib/lib/getopt.c:693 gnulib/lib/getopt.c:696
+#, c-format
+msgid "%s: unrecognized option `--%s'\n"
+msgstr "%s: opción no reconocida `--%s'\n"
+
+#: gnulib/lib/getopt.c:704 gnulib/lib/getopt.c:707
+#, c-format
+msgid "%s: unrecognized option `%c%s'\n"
+msgstr "%s: opción no reconocida `%c%s'\n"
+
+#: gnulib/lib/getopt.c:759 gnulib/lib/getopt.c:762
+#, c-format
+msgid "%s: illegal option -- %c\n"
+msgstr "%s: opción ilegal -- %c\n"
+
+#: gnulib/lib/getopt.c:768 gnulib/lib/getopt.c:771
+#, c-format
+msgid "%s: invalid option -- %c\n"
+msgstr "%s: opción inválida -- %c\n"
+
+#: gnulib/lib/getopt.c:823 gnulib/lib/getopt.c:839 gnulib/lib/getopt.c:1043
+#: gnulib/lib/getopt.c:1061
+#, c-format
+msgid "%s: option requires an argument -- %c\n"
+msgstr "%s: la opción requiere un argumento -- %c\n"
+
+#: gnulib/lib/getopt.c:892 gnulib/lib/getopt.c:908
+#, c-format
+msgid "%s: option `-W %s' is ambiguous\n"
+msgstr "%s: la opción `-W %s' es ambigua\n"
+
+#: gnulib/lib/getopt.c:932 gnulib/lib/getopt.c:950
+#, c-format
+msgid "%s: option `-W %s' doesn't allow an argument\n"
+msgstr "%s: la opción `-W %s' no admite ningún argumento\n"
+
+#: gnulib/lib/closeout.c:112
+msgid "write error"
+msgstr "error de escritura"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK) and
+#. U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+#: gnulib/lib/quotearg.c:266
+msgid "`"
+msgstr "«"
+
+#: gnulib/lib/quotearg.c:267
+msgid "'"
+msgstr "»"
+
+#: gnulib/lib/xalloc-die.c:34
+msgid "memory exhausted"
+msgstr "memoria agotada"
+
+#~ msgid "Too many arguments\n"
+#~ msgstr "Demasiados argumentos\n"
+
+#~ msgid "GNU hello, THE greeting printing program.\n"
+#~ msgstr "GNU hello, EL programa que imprime un saludo.\n"
+
+#~ msgid ""
+#~ "Copyright (C) %s Free Software Foundation, Inc.\n"
+#~ "There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A\n"
+#~ "PARTICULAR PURPOSE.  You may redistribute copies of GNU %s under the "
+#~ "terms\n"
+#~ "of the GNU General Public License.\n"
+#~ "For more information about these matters, see the file named COPYING.\n"
+#~ msgstr ""
+#~ "Copyright (C) %s Free Software Foundation, Inc.\n"
+#~ "No hay NINGUNA garantía; ni siquiera de COMERCIABILIDAD o IDONEIDAD PARA "
+#~ "UN\n"
+#~ "FIN DETERMINADO. Se pueden redistribuir copias de GNU %s bajo los "
+#~ "términos\n"
+#~ "de la Licencia Pública General de GNU.\n"
+#~ "Para más información sobre estas cuestiones, vea el fichero llamado "
+#~ "COPYING.\n"
+
+#~ msgid "%s: Incompatible flags: -m and -t\n"
+#~ msgstr "%s: Opciones incompatibles: -m y -t\n"
+
+#~ msgid "%s: Who are you?\n"
+#~ msgstr "%s: ¿Quién es usted?\n"
+
+# Sé que habría que buscar alguna otra palabra para `spool', pero ahora
+# mismo no se me ocurre ninguna apropiada, *y que además se entienda*.
+#~ msgid "%s: Cannot find your mail spool file.\n"
+#~ msgstr "%s: No se puede encontrar el fichero de `spool' de su correo.\n"
+
+# Sugerencia: No sucede, no ocurre. sv
+# preferiría mantener la informalidad. jr
+#~ msgid "Nothing happens here."
+#~ msgstr "Aquí no pasa nada."

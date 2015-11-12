@@ -1,0 +1,212 @@
+# Translation of hello-2.3.90 to Dutch.
+# Copyright (C) 1996, 2000, 2002, 2007 Free Software Foundation, Inc.
+#
+# Erick Branderhorst <branderh@debian.org>, 1996.
+# Ivo Timmermans <ivo@debian.org>, 2000, 2002.
+# Benno Schulenberg <benno@vertaalt.nl>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: hello 2.3.90\n"
+"Report-Msgid-Bugs-To: bug-hello@gnu.org\n"
+"POT-Creation-Date: 2008-12-09 10:50-0800\n"
+"PO-Revision-Date: 2007-10-16 19:00+0200\n"
+"Last-Translator: Benno Schulenberg <benno@vertaalt.nl>\n"
+"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/hello.c:100
+#, c-format
+msgid "%s: extra operand: %s\n"
+msgstr "%s: overtollig argument: %s\n"
+
+#: src/hello.c:102
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr "Typ '%s --help' voor meer informatie.\n"
+
+# Ima to smisel prevajati? :-)
+#: src/hello.c:109
+#, c-format
+msgid "hello, world\n"
+msgstr "hallo, wereld\n"
+
+#. TRANSLATORS: Use box drawing characters or other fancy stuff
+#. if your encoding (e.g., UTF-8) allows it.  If done so add the
+#. following note, please:
+#.
+#. [Note: For best viewing results use a UTF-8 locale, please.]
+#.
+#: src/hello.c:118
+#, c-format
+msgid ""
+"+---------------+\n"
+"| Hello, world! |\n"
+"+---------------+\n"
+msgstr ""
+"+----------------+\n"
+"| Hallo, wereld! |\n"
+"+----------------+\n"
+
+#: src/hello.c:128
+msgid "Hello, world!"
+msgstr "Hallo, wereld!"
+
+#. TRANSLATORS: --help output 1 (synopsis)
+#. no-wrap
+#: src/hello.c:150
+#, c-format
+msgid "Usage: %s [OPTION]...\n"
+msgstr "Gebruik:  %s [OPTIE]...\n"
+
+#. TRANSLATORS: --help output 2 (brief description)
+#. no-wrap
+#: src/hello.c:155
+msgid "Print a friendly, customizable greeting.\n"
+msgstr "Een vriendelijke, aanpasbare groet weergeven.\n"
+
+#. TRANSLATORS: --help output 3: options 1/2
+#. no-wrap
+#: src/hello.c:161
+msgid ""
+"  -h, --help          display this help and exit\n"
+"  -v, --version       display version information and exit\n"
+msgstr ""
+"  -h, --help          deze hulptekst tonen en stoppen\n"
+"  -v, --version       versie-informatie tonen en stoppen\n"
+
+#. TRANSLATORS: --help output 4: options 2/2
+#. no-wrap
+#: src/hello.c:168
+msgid ""
+"  -t, --traditional       use traditional greeting format\n"
+"  -n, --next-generation   use next-generation greeting format\n"
+"  -g, --greeting=TEXT     use TEXT as the greeting message\n"
+msgstr ""
+"  -g, --greeting=TEKST    deze tekst tonen in plaats van standaardgroet\n"
+"  -n, --next-generation   de moderne opmaak gebruiken\n"
+"  -t, --traditional       de traditionele opmaak gebruiken\n"
+
+#. TRANSLATORS: --help output 5 (end)
+#. TRANSLATORS: the placeholder indicates the bug-reporting address
+#. for this application.  Please add _another line_ with the
+#. address for translation bugs.
+#. no-wrap
+#: src/hello.c:179
+#, c-format
+msgid "Report bugs to <%s>.\n"
+msgstr ""
+"Rapporteer gebreken in het programma aan <%s>;\n"
+"meld fouten in de vertaling aan <vertaling@vrijschrift.org>.\n"
+
+#: src/hello.c:197
+#, c-format
+msgid ""
+"Copyright (C) %s Free Software Foundation, Inc.\n"
+"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"This is free software: you are free to change and redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"Copyright (C) %s Free Software Foundation, Inc.\n"
+"Dit is vrije software: u mag het vrijelijk wijzigen en verder verspreiden.\n"
+"De precieze licentie is GPLv3+: GNU GPL versie 3 of later;\n"
+"zie http://gnu.org/licenses/gpl.html voor de volledige tekst.\n"
+"Er is GEEN GARANTIE, voor zover de wet dit toestaat.\n"
+
+#: gnulib/lib/error.c:125
+msgid "Unknown system error"
+msgstr "Onbekende systeemfout"
+
+#: gnulib/lib/getopt.c:526 gnulib/lib/getopt.c:542
+#, c-format
+msgid "%s: option `%s' is ambiguous\n"
+msgstr "%s: optie '%s' is niet eenduidig\n"
+
+#: gnulib/lib/getopt.c:575 gnulib/lib/getopt.c:579
+#, c-format
+msgid "%s: option `--%s' doesn't allow an argument\n"
+msgstr "%s: optie '--%s' staat geen argument toe\n"
+
+#: gnulib/lib/getopt.c:588 gnulib/lib/getopt.c:593
+#, c-format
+msgid "%s: option `%c%s' doesn't allow an argument\n"
+msgstr "%s: optie '%c%s' staat geen argument toe\n"
+
+#: gnulib/lib/getopt.c:636 gnulib/lib/getopt.c:655 gnulib/lib/getopt.c:971
+#: gnulib/lib/getopt.c:990
+#, c-format
+msgid "%s: option `%s' requires an argument\n"
+msgstr "%s: optie '%s' vereist een argument\n"
+
+#: gnulib/lib/getopt.c:693 gnulib/lib/getopt.c:696
+#, c-format
+msgid "%s: unrecognized option `--%s'\n"
+msgstr "%s: onbekende optie '--%s'\n"
+
+#: gnulib/lib/getopt.c:704 gnulib/lib/getopt.c:707
+#, c-format
+msgid "%s: unrecognized option `%c%s'\n"
+msgstr "%s: onbekende optie '%c%s'\n"
+
+#: gnulib/lib/getopt.c:759 gnulib/lib/getopt.c:762
+#, c-format
+msgid "%s: illegal option -- %c\n"
+msgstr "%s: ongeldige optie -- %c\n"
+
+#: gnulib/lib/getopt.c:768 gnulib/lib/getopt.c:771
+#, c-format
+msgid "%s: invalid option -- %c\n"
+msgstr "%s: ongeldige optie -- %c\n"
+
+#: gnulib/lib/getopt.c:823 gnulib/lib/getopt.c:839 gnulib/lib/getopt.c:1043
+#: gnulib/lib/getopt.c:1061
+#, c-format
+msgid "%s: option requires an argument -- %c\n"
+msgstr "%s: optie vereist een argument -- %c\n"
+
+#: gnulib/lib/getopt.c:892 gnulib/lib/getopt.c:908
+#, c-format
+msgid "%s: option `-W %s' is ambiguous\n"
+msgstr "%s: optie '-W %s' is niet eenduidig\n"
+
+#: gnulib/lib/getopt.c:932 gnulib/lib/getopt.c:950
+#, c-format
+msgid "%s: option `-W %s' doesn't allow an argument\n"
+msgstr "%s: optie '-W %s' staat geen argument toe\n"
+
+#: gnulib/lib/closeout.c:112
+msgid "write error"
+msgstr "schrijffout"
+
+#. TRANSLATORS:
+#. Get translations for open and closing quotation marks.
+#.
+#. The message catalog should translate "`" to a left
+#. quotation mark suitable for the locale, and similarly for
+#. "'".  If the catalog has no translation,
+#. locale_quoting_style quotes `like this', and
+#. clocale_quoting_style quotes "like this".
+#.
+#. For example, an American English Unicode locale should
+#. translate "`" to U+201C (LEFT DOUBLE QUOTATION MARK), and
+#. should translate "'" to U+201D (RIGHT DOUBLE QUOTATION
+#. MARK).  A British English Unicode locale should instead
+#. translate these to U+2018 (LEFT SINGLE QUOTATION MARK) and
+#. U+2019 (RIGHT SINGLE QUOTATION MARK), respectively.
+#.
+#. If you don't know what to put here, please see
+#. <http://en.wikipedia.org/wiki/Quotation_mark#Glyphs>
+#. and use glyphs suitable for your language.
+#: gnulib/lib/quotearg.c:266
+msgid "`"
+msgstr "‘"
+
+#: gnulib/lib/quotearg.c:267
+msgid "'"
+msgstr "’"
+
+#: gnulib/lib/xalloc-die.c:34
+msgid "memory exhausted"
+msgstr "onvoldoende geheugen beschikbaar"

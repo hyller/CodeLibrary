@@ -1,0 +1,464 @@
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/Makefile calc-2.11.10.1/Makefile
+--- calc-2.11.10.1-orig/Makefile	2004-07-29 07:18:56.000000000 +0200
++++ calc-2.11.10.1/Makefile	2005-03-06 18:59:47.218750000 +0100
+@@ -46,6 +46,8 @@ MAKEFILE_REV= $$Revision: 29.73 $$
+ # calculator by David I. Bell with help/mods from others
+ # Makefile by Landon Curt Noll
+ 
++VERSION = 2.11.10.1
++
+ ##############################################################################
+ #-=-=-=-=-=-=-=-=- You may want to change some values below -=-=-=-=-=-=-=-=-#
+ ##############################################################################
+@@ -970,6 +972,7 @@ MKDIR_ARG= -p
+ EXT=
+ #EXT=.exe
+ 
++
+ ################
+ # compiler set #
+ ################
+@@ -1159,6 +1162,8 @@ CC= ${PURIFY} ${LCC}
+ #LCC= cc
+ #CC= ${PURIFY} ${LCC}
+ 
++-include win32.mkdef
++
+ ##############################################################################
+ #-=-=-=-=-=-=-=-=- Be careful if you change something below -=-=-=-=-=-=-=-=-#
+ ##############################################################################
+@@ -1229,7 +1234,7 @@ LIBOBJS= addop.o assocfunc.o blkcpy.o bl
+ 	md5.o obj.o opcodes.o pix.o poly.o prime.o qfunc.o qio.o \
+ 	qmath.o qmod.o qtrans.o quickhash.o seed.o shs.o shs1.o size.o \
+ 	string.o symbol.o token.o value.o version.o zfunc.o zio.o \
+-	zmath.o zmod.o zmul.o zprime.o zrand.o zrandom.o
++	zmath.o zmod.o zmul.o zprime.o zrand.o zrandom.o  calc-dllversion.o
+ 
+ # the calculator source files
+ #
+@@ -1241,7 +1246,7 @@ CALCSRC= calc.c
+ #
+ # There MUST be a .o for every .c in CALCSRC.
+ #
+-CALCOBJS= calc.o
++CALCOBJS= calc.o calc-res.o
+ 
+ # these .h files are needed by programs that use libcalc.a
+ #
+@@ -1478,7 +1483,7 @@ OBJS= ${LIBOBJS} ${CALCOBJS} ${UTIL_OBJS
+ 
+ # Libaraies created and used to build calc
+ #
+-CALC_LIBS= libcalc.a custom/libcustcalc.a
++CALC_LIBS= libcalc.dll.a custom/libcustcalc.a
+ 
+ # list of sample programs to that need to be built to satisfy sample/.all
+ #
+@@ -1511,12 +1516,19 @@ TARGETS= ${LICENSE} ${CALC_LIBS} custom/
+ #
+ ###
+ 
++.SUFFIXES:
++.SUFFIXES: .c .o ${EXT} .rc .a
++
+ all: .hsrc ${TARGETS}
+ 
++# Rule to make compiled resource (Windows)
++.rc.o:
++	windres --include-dir $(resdir) -i $< -o $@
++
+ calc${EXT}: .hsrc ${CALC_LIBS} ${CALCOBJS}
+ 	${RM} -f $@
+ 	${CC} ${LDFLAGS} ${CALCOBJS} ${CALC_LIBS} ${LD_DEBUG} \
+-	      ${READLINE_LIB} -o $@
++	      ${READLINE_LIB} $(LIBS) -o $@
+ 
+ libcalc.a: ${LIBOBJS} ${MAKE_FILE}
+ 	-rm -f libcalc.a
+@@ -1524,9 +1536,12 @@ libcalc.a: ${LIBOBJS} ${MAKE_FILE}
+ 	${RANLIB} libcalc.a
+ 	${CHMOD} 0644 libcalc.a
+ 
++libcalc.dll.a: libcalc.a custom/libcustcalc.a
++	a2dll $^ $(LIBS)
++
+ calc.1: calc.man ${MAKE_FILE}
+ 	-rm -f calc.1
+-	${SED} -e 's:$${LIBDIR}:${LIBDIR}:g' \
++	${SED} -e 's,$${LIBDIR},${LIBDIR},g' \
+ 	       -e 's,$${BINDIR},${BINDIR},g' \
+ 	       -e 's,$${CALCPATH},${CALCPATH},g' \
+ 	       -e 's,$${SCRIPTDIR},${SCRIPTDIR},g' \
+@@ -1543,7 +1558,7 @@ calc.1: calc.man ${MAKE_FILE}
+ ##
+ 
+ calc.o: calc.c ${MAKE_FILE}
+-	${CC} ${CFLAGS} ${ALLOW_CUSTOM} -c calc.c
++	${CC} ${CALCCFLAGS} ${ALLOW_CUSTOM} -c calc.c
+ 
+ config.o: config.c ${MAKE_FILE}
+ 	${CC} ${CFLAGS} ${ALLOW_CUSTOM} -c config.c
+@@ -2031,7 +2046,7 @@ have_fpos.h: have_fpos.c ${MAKE_FILE}
+ 	${Q}echo '' >> have_fpos.h
+ 	${Q}echo '' >> have_fpos.h
+ 	${Q}echo '#endif /* !__HAVE_FPOS_H__ */' >> have_fpos.h
+-	-${Q}rm -f have_fpos${EXT} have_fpos.o fpos_tmp
++#	-${Q}rm -f have_fpos${EXT} have_fpos.o fpos_tmp
+ 	${Q}echo 'have_fpos.h formed'
+ 	-@if [ -z "${Q}" ]; then \
+ 	    echo ''; \
+@@ -2075,7 +2090,7 @@ have_fpos_pos.h: have_fpos_pos.c have_fp
+ 	${Q}echo '' >> have_fpos_pos.h
+ 	${Q}echo '' >> have_fpos_pos.h
+ 	${Q}echo '#endif /* !__HAVE_FPOS_POS_H__ */' >> have_fpos_pos.h
+-	-${Q}rm -f have_fpos_pos${EXT} have_fpos_pos.o fpos_tmp
++#	-${Q}rm -f have_fpos_pos${EXT} have_fpos_pos.o fpos_tmp
+ 	${Q}echo 'have_fpos_pos.h formed'
+ 	-@if [ -z "${Q}" ]; then \
+ 	    echo ''; \
+@@ -3462,7 +3477,7 @@ tags: ${CALCSRC} ${LIBSRC} ${H_SRC} ${BU
+ 
+ clean:
+ 	${V} echo '=-=-=-=-= start of $@ rule =-=-=-=-='
+-	-rm -f ${LIBOBJS}
++	-rm -f ${LIBOBJS} calc-dll-res.o
+ 	-rm -f ${CALCOBJS}
+ 	-rm -f ${UTIL_OBJS}
+ 	-rm -f ${UTIL_TMP}
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/calc.c calc-2.11.10.1/calc.c
+--- calc-2.11.10.1-orig/calc.c	2004-02-23 15:04:01.000000000 +0100
++++ calc-2.11.10.1/calc.c	2005-03-06 16:39:17.281250000 +0100
+@@ -48,7 +48,7 @@
+  * See:
+  *	http://sources.redhat.com/cygwin/
+  */
+-# include "../getopt/getopt.h"
++# include <getopt.h>
+ # define strdup _strdup
+ # define isatty _isatty
+ #endif /* Windoz */
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/func.c calc-2.11.10.1/func.c
+--- calc-2.11.10.1-orig/func.c	2004-07-26 07:55:50.000000000 +0200
++++ calc-2.11.10.1/func.c	2005-03-06 16:33:12.859375000 +0100
+@@ -5418,7 +5418,7 @@ f_fflush(int count, VALUE **vals)
+ 	i = 0;
+ 	errno = 0;
+ 	if (count == 0) {
+-		i = flushall();
++		i = _flushall();
+ 	} else {
+ 		for (n = 0; n < count; n++) {
+ 			if (vals[n]->v_type != V_FILE)
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/have_fpos.c calc-2.11.10.1/have_fpos.c
+--- calc-2.11.10.1-orig/have_fpos.c	2001-03-17 22:55:52.000000000 +0100
++++ calc-2.11.10.1/have_fpos.c	2005-03-06 16:28:37.734375000 +0100
+@@ -54,6 +54,7 @@ main(void)
+ 	printf("#undef HAVE_FPOS\n");
+ 	printf("#define HAVE_FPOS 1  /* yes */\n\n");
+ 	printf("typedef fpos_t FILEPOS;\n");
++	printf("#define FPOS_POS_BITS %d\n\n", sizeof(fpos_t)*8);
+ #endif
+ 	/* exit(0); */
+ 	return 0;
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/help.c calc-2.11.10.1/help.c
+--- calc-2.11.10.1-orig/help.c	2001-04-10 23:49:45.000000000 +0200
++++ calc-2.11.10.1/help.c	2005-03-06 18:38:45.953125000 +0100
+@@ -47,6 +47,11 @@
+ # define pclose _pclose
+ #endif
+ 
++#ifdef ENABLE_RELOCATABLE
++# include <relocate.h>
++#else
++# define relocatex (dir,path) (path)
++#endif
+ 
+ /*
+  * some help topics are symbols, so we alias them to nice filenames
+@@ -184,6 +189,8 @@ givehelp(char *type)
+ 	FILE *stream;		/* help file stream */
+ 	char *helppath;		/* path to the help file */
+ 	char *c;
++	char *customhelpdir = relocatex (INSTALLDIR, CUSTOMHELPDIR);
++	char *helpdir = relocatex (INSTALLDIR, HELPDIR);
+ 
+ 	/*
+ 	 * check permissions to see if we are allowed to help
+@@ -246,10 +253,10 @@ givehelp(char *type)
+ 	/*
+ 	 * open the helpfile (looking in HELPDIR first)
+ 	 */
+-	if (sizeof(CUSTOMHELPDIR) > sizeof(HELPDIR)) {
+-		helppath = (char *)malloc(sizeof(CUSTOMHELPDIR)+1+strlen(type));
++	if (strlen(customhelpdir) > strlen(helpdir)) {
++		helppath = (char *)malloc(strlen(customhelpdir)+1+strlen(type));
+ 	} else {
+-		helppath = (char *)malloc(sizeof(HELPDIR)+1+strlen(type));
++		helppath = (char *)malloc(strlen(helpdir)+1+strlen(type));
+ 	}
+ 	if (helppath == NULL) {
+ 		fprintf(stderr, "malloc failure in givehelp()\n");
+@@ -290,5 +297,7 @@ givehelp(char *type)
+ 	 * cleanup
+ 	 */
+ 	free(helppath);
++	free (customhelpdir);
++	free (helpdir);
+ 	return;
+ }
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/input.c calc-2.11.10.1/input.c
+--- calc-2.11.10.1-orig/input.c	2002-03-12 10:41:13.000000000 +0100
++++ calc-2.11.10.1/input.c	2005-03-06 18:44:51.250000000 +0100
+@@ -56,6 +56,12 @@
+ #include "conf.h"
+ #include "hist.h"
+ 
++#ifdef ENABLE_RELOCATABLE
++# include <relocate.h>
++#else
++# define relocatex (dir,path) (path)
++#endif
++
+ extern int stdin_tty;		/* TRUE if stdin is a tty */
+ extern FILE *f_open(char *name, char *mode);
+ extern FILE *curstream(void);
+@@ -199,10 +205,24 @@ opensearchfile(char *name, char *pathlis
+ 			*cp++ = PATHCHAR;
+ 		strcpy(cp, name);
+ 		i = openfile(path);
++#ifdef ENABLE_RELOCATABLE
++		if (i < 0) {
++			char *relocpath = relocatex (INSTALLDIR, path);
++			i = openfile (relocpath);
++			free (relocpath);
++		}
++#endif /* ENABLE_RELOCATABLE */
+ 		if ((i < 0) &&
+ 		    (extension != NULL && extension[0] != '\0')) {
+ 			strcat(path, extension);
+ 			i = openfile(path);
++#ifdef ENABLE_RELOCATABLE
++			if (i < 0) {
++				char *relocpath = relocatex (INSTALLDIR, path);
++				i = openfile (relocpath);
++				free (relocpath);
++			}
++#endif /* ENABLE_RELOCATABLE */
+ 		}
+ 	} while ((i < 0) && *pathlist);
+ 
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/lib_calc.c calc-2.11.10.1/lib_calc.c
+--- calc-2.11.10.1-orig/lib_calc.c	2004-07-26 08:35:39.000000000 +0200
++++ calc-2.11.10.1/lib_calc.c	2005-03-06 18:42:55.453125000 +0100
+@@ -91,6 +91,12 @@ typedef struct {int fd;} ttystruct;
+ # endif
+ #endif /* Windoz */
+ 
++#ifdef ENABLE_RELOCATABLE
++# include <relocate.h>
++#else
++# define relocatex (dir,path) (path)
++#endif
++
+ /*
+  * in case we do not have certain .h files
+  */
+@@ -406,13 +412,13 @@ initenv(void)
+ 	c = (no_env ? NULL : getenv(CALCPATH));
+ 	calcpath = (c ? strdup(c) : NULL);
+ 	if (calcpath == NULL)
+-		calcpath = DEFAULTCALCPATH;
++		calcpath = relocatex (INSTALLDIR, DEFAULTCALCPATH);
+ 
+ 	/* determine the $CALCRC value */
+ 	c = (no_env ? NULL : getenv(CALCRC));
+ 	calcrc = (c ? strdup(c) : NULL);
+ 	if (calcrc == NULL)
+-		calcrc = DEFAULTCALCRC;
++		calcrc = relocatex (INSTALLDIR, DEFAULTCALCRC);
+ 	if (strlen(calcrc) > MAX_CALCRC) {
+ 		math_error("The $CALCRC variable is longer than %d chars",
+ 			   MAX_CALCRC);
+@@ -423,7 +429,7 @@ initenv(void)
+ 	c = (no_env ? NULL : getenv(CALCBINDINGS));
+ 	calcbindings = (c ? strdup(c) : NULL);
+ 	if (calcbindings == NULL)
+-		calcbindings = DEFAULTCALCBINDINGS;
++		calcbindings = relocatex (INSTALLDIR, DEFAULTCALCBINDINGS);
+ 
+ 	/* determine the $HOME value */
+ 	c = (no_env ? NULL : getenv(HOME));
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/sample/Makefile calc-2.11.10.1/sample/Makefile
+--- calc-2.11.10.1-orig/sample/Makefile	2003-01-14 03:00:26.000000000 +0100
++++ calc-2.11.10.1/sample/Makefile	2005-03-06 16:51:09.484375000 +0100
+@@ -339,6 +339,8 @@ ILDFLAGS=
+ LCC= gcc
+ CC= ${PURIFY} ${LCC}
+ 
++-include ../win32.mkdef
++
+ ##############################################################################
+ #-=-=-=-=-=-=-=-=- Be careful if you change something below -=-=-=-=-=-=-=-=-#
+ ##############################################################################
+@@ -395,13 +397,13 @@ test_random.o: test_random.c
+ 	${CC} ${CFLAGS} ${ALLOW_CUSTOM} test_random.c -c
+ 
+ test_random: test_random.o ../libcalc.a
+-	${CC} ${LDFLAGS} test_random.o ${CALC_LIBS} ${LD_DEBUG} -o test_random
++	${CC} ${LDFLAGS} test_random.o ${CALC_LIBS} $(LIBS) ${LD_DEBUG} -o test_random
+ 
+ many_random.o: many_random.c
+ 	${CC} ${CFLAGS} ${ALLOW_CUSTOM} many_random.c -c
+ 
+ many_random: many_random.o ../libcalc.a
+-	${CC} ${LDFLAGS} many_random.o ${CALC_LIBS} ${LD_DEBUG} -o many_random
++	${CC} ${LDFLAGS} many_random.o ${CALC_LIBS} $(LIBS) ${LD_DEBUG} -o many_random
+ 
+ ##
+ #
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/win32/fposval.h calc-2.11.10.1/win32/fposval.h
+--- calc-2.11.10.1-orig/win32/fposval.h	2004-10-23 03:21:36.000000000 +0200
++++ calc-2.11.10.1/win32/fposval.h	2005-03-06 14:08:43.671875000 +0100
+@@ -10,11 +10,11 @@
+ /* what are our file position & size types? */
+ #undef FILEPOS_BITS
+ #define FILEPOS_BITS 64
+-#define SWAP_HALF_IN_FILEPOS(dest, src)		(*(dest) = *(src))
++#define SWAP_HALF_IN_FILEPOS(dest, src)	memcpy((void *)(dest), (void *)(src), sizeof(FPOS_POS_BITS))
+ 
+ #undef OFF_T_BITS
+ #define OFF_T_BITS 32
+-#define SWAP_HALF_IN_OFF_T(dest, src)		(*(dest) = *(src))
++#define SWAP_HALF_IN_OFF_T(dest, src)	memcpy((void *)(dest), (void *)(src), 4)
+ 
+ #undef DEV_BITS
+ #define DEV_BITS 32
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/win32/have_offscl.h calc-2.11.10.1/win32/have_offscl.h
+--- calc-2.11.10.1-orig/win32/have_offscl.h	2004-10-23 03:21:36.000000000 +0200
++++ calc-2.11.10.1/win32/have_offscl.h	2005-03-06 14:08:42.484375000 +0100
+@@ -7,8 +7,7 @@
+ #define __HAVE_OFFSCL_H__
+ 
+ 
+-#undef HAVE_OFF_T_SCALAR
+-#define HAVE_OFF_T_SCALAR /* off_t is a simple value */
++#undef HAVE_OFF_T_SCALAR /* off_t is not a simple value */
+ 
+ 
+ #endif /* !__HAVE_OFFSCL_H__ */
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/win32/have_posscl.h calc-2.11.10.1/win32/have_posscl.h
+--- calc-2.11.10.1-orig/win32/have_posscl.h	2004-10-23 03:21:35.000000000 +0200
++++ calc-2.11.10.1/win32/have_posscl.h	2005-03-06 14:08:40.109375000 +0100
+@@ -7,8 +7,8 @@
+ #define __HAVE_POSSCL_H__
+ 
+ 
++/* FILEPOS is not a simple value */
+ #undef HAVE_FILEPOS_SCALAR
+-#define HAVE_FILEPOS_SCALAR /* FILEPOS is a simple value */
+ 
+ 
+ #endif /* !__HAVE_POSSCL_H__ */
+diff -ipuwr -x config.log -x config.status -x config.cache -x '*.Po' -x '*.pot' calc-2.11.10.1-orig/win32.mkdef calc-2.11.10.1/win32.mkdef
+--- calc-2.11.10.1-orig/win32.mkdef	2004-07-28 02:23:27.000000000 +0200
++++ calc-2.11.10.1/win32.mkdef	2005-03-07 22:03:00.515625000 +0100
+@@ -1,60 +1,56 @@
+ TERMCONTROL=-DUSE_WIN32
+-HAVE_VSPRINTF=-UDONT_HAVE_VSPRINTF
+ BYTE_ORDER=-DLITTLE_ENDIAN
+-LONG_BITS=32
+-HAVE_FPOS=-DHAVE_NO_FPOS
+-HAVE_FPOS_POS=-DHAVE_NO_FPOS_POS
+-FPOS_POS_BITS=-UFPOS_POS_BITS
+-FPOS_BITS=-DFPOS_BITS=64
+-OFF_T_BITS=-DOFF_T_BITS=32
+-DEV_BITS=-DDEV_BITS=32
+-INODE_BITS=-DINODE_BITS=16
+-HAVE_OFFSCL=-UOFF_T_NON_SCALAR
+-HAVE_POSSCL=-UFILEPOS_NON_SCALAR
+-HAVE_CONST=-UHAVE_NO_CONST
+-HAVE_UID_T=-DHAVE_NO_UID_T
+-HAVE_NEWSTR=-UHAVE_NO_NEWSTR
+-HAVE_MEMMOVE=-UHAVE_NO_MEMMOVE
+-HAVE_USTAT=-DHAVE_NO_USTAT
+-HAVE_GETSID=-DHAVE_NO_GETSID
+-HAVE_GETPGID=-DHAVE_NO_GETPGID
+-HAVE_GETTIME=-DHAVE_NO_GETTIME
+-HAVE_GETPRID=-DHAVE_NO_GETPRID
+-HAVE_URANDOM_H=NO
+-HAVE_GETRUSAGE=-DHAVE_NO_GETRUSAGE
+-HAVE_STRDUP=-UHAVE_NO_STRDUP
+-ALIGN32=-DMUST_ALIGN32
+-HAVE_MALLOC_H=YES
+-HAVE_STDLIB_H=YES
+-HAVE_STRING_H=YES
+-HAVE_TIMES_H=NO
+-HAVE_SYS_TIMES_H=NO
+-HAVE_TIME_H=YES
+-HAVE_SYS_TIME_H=NO
+-HAVE_UNISTD_H=NO
+-
+-BINDIR=/usr/bin/calc
+-LIBDIR=/lib/calc
+-HELPDIR=/lib/calc/help
+-CALC_INCDIR=/include/calc
+-CUSTOMCALDIR=/lib/calc/custom
+-CUSTOMHELPDIR=/lib/calc/help/custhelp
++
++prefix=c:/progra~1/Calc
++BINDIR=${prefix}/bin
++LIBDIR=${prefix}/lib
++CALC_SHAREDIR=${prefix}/share/calc
++HELPDIR=${CALC_SHAREDIR}/help
++CALC_INCDIR=${prefix}/include/calc
++CUSTOMCALDIR=${CALC_SHAREDIR}/calc/custom
++CUSTOMHELPDIR=${CALC_SHAREDIR}/help/custhelp
+ SCRIPTDIR=/lib/calc/cscript
+-MANDIR=/usr/man/man1
+-CATDIR=/usr/man/cat1
++MANDIR=${prefix}/man/man1
++CATDIR=${prefix}/man/cat1
+ MANEXT=1
+ CATEXT=1
+ NROFF=nroff
+ NROFF_ARG=
+ MANMAKE=
+ MANMODE=
+-CALCPATH=./cal
+-CALCRC='/lib/calc/startup:~/.calcrc:./.calcinit'
++CALCPATH= .;./cal;~/.cal;${CALC_SHAREDIR};${CUSTOMCALDIR}
++CALCRC= ${CALC_SHAREDIR}/startup;~/.calcrc;./.calcinit
+ USE_READLINE=-DUSE_READLINE
+ READLINE_LIB=
+ READLINE_INCLUDE=
+ CALCPAGER=less.exe
++ECHO_PROG=echo
+ 
+ EXT=.exe
+ 
+ ECHO=
++
++CCMISC = -D__GW32__ -D_LARGEFILE_SOURCE=1 -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 \
++	-Wall -O3 -fms-extensions -mms-bitfields  -fno-exceptions -fomit-frame-pointer -march=i386 -mcpu=i686 \
++	-idirafter E:/Progra~1/GnuWin32/include -idirafter H:/glibc/include	\
++	-DINSTALLDIR=\"$(prefix)\"  -DENABLE_RELOCATABLE
++CFLAGS = -DCALC_SRC -D_EXPORTING ${CCWARN} ${CCOPT} ${CCMISC}
++ICFLAGS = ${CFLAGS}
++CALCCFLAGS = -DCALC_SRC ${CCWARN} ${CCOPT} ${CCMISC}
++
++LIBS = -LE:/Progra~1/GnuWin32/lib -lgw32c -liberty -luuid -lole32 -lreadline -lhistory
++
++CALC_LIBS = libcalc.dll.a custom/libcustcalc.a
++
++LDFLAGS = -Wl,-s -Wl,--force-exe-suffix -Wl,--enable-auto-import \
++	-Wl,--enable-runtime-pseudo-reloc -Wl,--allow-multiple-definition \
++	$(VERSADD)
++
++resdir = ./res
++VPATH = . $(resdir)
++
++MAJOR=$(shell echo $(VERSION) | sed -e "s/\..*$$//")\
++MINOR=$(shell echo $(VERSION) | sed -e "s/^[^\.]*\.0*\([0-9]\+\).*$$/\1/") \
++VERSADD = -Wl,--major-image-version=$(MAJOR) -Wl,--minor-image-version=$(MINOR) 
++
++MAKE_FILE=

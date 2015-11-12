@@ -1,0 +1,56 @@
+TERMCONTROL=-DUSE_WIN32
+BYTE_ORDER=-DLITTLE_ENDIAN
+
+prefix=c:/progra~1/Calc
+BINDIR=${prefix}/bin
+LIBDIR=${prefix}/lib
+CALC_SHAREDIR=${prefix}/share/calc
+HELPDIR=${CALC_SHAREDIR}/help
+CALC_INCDIR=${prefix}/include/calc
+CUSTOMCALDIR=${CALC_SHAREDIR}/calc/custom
+CUSTOMHELPDIR=${CALC_SHAREDIR}/help/custhelp
+SCRIPTDIR=/lib/calc/cscript
+MANDIR=${prefix}/man/man1
+CATDIR=${prefix}/man/cat1
+MANEXT=1
+CATEXT=1
+NROFF=nroff
+NROFF_ARG=
+MANMAKE=
+MANMODE=
+CALCPATH= .;./cal;~/.cal;${CALC_SHAREDIR};${CUSTOMCALDIR}
+CALCRC= ${CALC_SHAREDIR}/startup;~/.calcrc;./.calcinit
+USE_READLINE=-DUSE_READLINE
+READLINE_LIB=
+READLINE_INCLUDE=
+CALCPAGER=less.exe
+ECHO_PROG=echo
+
+EXT=.exe
+
+ECHO=
+
+CCMISC = -D__GW32__ -D_LARGEFILE_SOURCE=1 -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 \
+	-Wall -O3 -fms-extensions -mms-bitfields  -fno-exceptions -fomit-frame-pointer -march=i386 -mcpu=i686 \
+	-idirafter E:/Progra~1/GnuWin32/include -idirafter H:/glibc/include	\
+	-DINSTALLDIR=\"$(prefix)\"  -DENABLE_RELOCATABLE
+CFLAGS = -DCALC_SRC -D_EXPORTING ${CCWARN} ${CCOPT} ${CCMISC}
+ICFLAGS = ${CFLAGS}
+CALCCFLAGS = -DCALC_SRC ${CCWARN} ${CCOPT} ${CCMISC}
+
+LIBS = -LE:/Progra~1/GnuWin32/lib -lgw32c -liberty -luuid -lole32 -lreadline -lhistory
+
+CALC_LIBS = libcalc.dll.a custom/libcustcalc.a
+
+LDFLAGS = -Wl,-s -Wl,--force-exe-suffix -Wl,--enable-auto-import \
+	-Wl,--enable-runtime-pseudo-reloc -Wl,--allow-multiple-definition \
+	$(VERSADD)
+
+resdir = ./res
+VPATH = . $(resdir)
+
+MAJOR=$(shell echo $(VERSION) | sed -e "s/\..*$$//")\
+MINOR=$(shell echo $(VERSION) | sed -e "s/^[^\.]*\.0*\([0-9]\+\).*$$/\1/") \
+VERSADD = -Wl,--major-image-version=$(MAJOR) -Wl,--minor-image-version=$(MINOR) 
+
+MAKE_FILE=

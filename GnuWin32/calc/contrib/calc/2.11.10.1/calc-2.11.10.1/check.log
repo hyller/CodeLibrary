@@ -1,0 +1,4399 @@
+CALCPATH=./cal ./calc.exe -d -q read regress
+000: Beginning regression tests
+001: Some of these tests may take a while ...
+002: Within each section, output should be numbered sequentially
+003: parsed global definitions
+004: parsed vrfy()
+005: parsed prob(str)
+006: parsed getglobalvar()
+007: parsed test_booleans()
+008: parsed test_variables()
+009: parsed test_arithmetic()
+010: parsed test_config()
+011: parsed muldivcheck(a, b, c, str)
+012: parsed squarecheck(a, b, str)
+013: parsed powercheck(a, p1, p2, str)
+014: parsed fraccheck(a, b, c, str)
+015: parsed algcheck(a, b, str)
+016: parsed test_bignums()
+017: parsed test_functions()
+018: _ = 49
+019: __ = 63
+020: parsed _test_underscore
+021: reserved for future use
+022: reserved for future use
+023: parsed test_assoc()
+024: parsed test_list()
+025: parsed test_rand()
+026: parsed test_mode()
+027: read -once surd
+028: parsed test_obj()
+029: parsed test_prime()
+030: read lucas_chk
+031: parsed test_lucas()
+032: parsed test_newop()
+033: read -once test2300
+034: parsed test_xx_incdec()
+035: parsed test_round()
+036: read -once test2600
+037: parsed test_2600()
+038: read -once test2700
+039: parsed test_2700()
+040: mat mat_C[2] = {1,2}
+041: C[0] = mat_C
+042: global mat_D
+043: parsed test_matrix()
+044: parsed test_strings()
+045: read -once test3100
+046: parsed test_matobj()
+047: parsed test_poly()
+048: read -once test3300
+049: parsed test_det()
+050: read -once test3400
+051: parsed test_trig()
+052: read -once test3500
+053: parsed test_frem()
+054: parsed test_error()
+055: define g_param() = (param(2) = param(1))
+056: define h_param() = (param(1)++, param(2)--)
+057: global u_glob = 5
+058: global v_glob = 10
+059: g_param(u_glob, `v_glob) == 5
+060: u_glob == 5
+061: v_glob == 5
+062: h_param(`u_glob, `v_glob) == 5
+063: u_glob == 6
+064: v_glob == 4
+065: parsed test_param()
+066: parsed test_noarg
+067: read -once test4000
+068: parsed test_ptest()
+069: read -once test4100
+070: parsed test_redc()
+071: parsed test_fileops()
+072: mat_X = mat[4]
+073: mat mat_X1, mat_X2[2]; mat mat_X3[3]
+074: mat mat_Z0, mat_Z1 [2] = {1,2}
+075: parsed test_matdcl()
+076: parsed test_objmat()
+077: read -once test4600
+078: parsed test_fileop()
+079: x_081 = isqrt(2e5000)
+080: s_x_081 = str(x_081)
+081: d_081 = rm("-f", "test082.cal")
+082: write test082.cal
+083: read "./test082.cal"
+084: d081 = rm("test082.cal")
+085: __ == 63
+086: x_081 == isqrt(2e5000)
+087: parsed test_fileop()
+088: parsed test_fileop()
+089: global a = 10, b, c d = 20, e, f
+090: a == 10
+091: b == 0
+092: c == 20
+093: d == 20
+094: e == 0
+095: f == 0
+096: static a b = 30, c, e = 30
+097: a == 30
+098: b == 30
+099: c == 0
+100: e == 30
+101: global a, b
+102: a == 10
+103: b == 0
+104: static mat A, B[2,2] = {1,2,3,4}
+105: define f100(x,y) = (mat [2,2] = {x,0,0,y}) * A
+106: define g100(x) = (mat[2,2] = {x,x,x,x}) + B
+107: define h100(a,b,c,d) = ((B = {a,b,c,d}), null())
+108: global A, B
+109: A == 0
+110: B == 0
+111: test(f100(2,3) == (mat[2,2] = {2, 4, 9, 12}))
+112: test(g100(4) == (mat[2,2] = {5,6,7,8}))
+113: test(h100(2,3,5,7) == null())
+114: test(g100(4) == (mat[2,2] = {6,7,9,11}))
+115: global obj point {x,y} P, Q = {1,2}, R={3,4}, S
+116: P.x == 1
+117: P.y == 2
+118: Q.x == 1
+119: Q.y == 2
+120: R.x == 3
+121: R.y == 4
+122: S.x == 0
+123: S.y == 0
+124: parsed test_listsearch()
+125: parsed test_filesearch()
+126: read -once test5100
+127: parsed test_newdecl()
+128: read -once test5200
+129: parsed test_globstat()
+130: define test_newop3(x) {if (x < 0) goto l130; ++x; l130: return x;}
+131: test_newop2(100) == 101
+132: test_newop2(-100) == -100
+133: define test_newop3(x) ...
+134: test_newop3(2) == 1
+135: test_newop3(3) == 2
+136: test_newop3(4) == 3
+137: parsed test_random()
+138: for (s5500 = 0, i = 0; i < 5; i++) s5500 += i;
+139: s5500 == 10
+140: i == 5
+141: for (s5500 = 0, i = 0; i < 9; i++) { s5500 += i; }
+142: s5500 == 36
+143: i == 9
+144: s5500 == 45
+145: i == 10
+146: { local i; for (s5500 = 0, i = 0; i < 10; i++) s5500 += i; ... }
+147: s5500 == 45
+148: i == 9
+149: parsed test_newsyn()
+150: s5500 == 45
+151: i == 9
+152: obj xx5600 {} xx5600
+153: xx5600_print() = printf("xx")
+155: parsed test_commaeq()
+156: parsed test_size()
+157: global A, B
+158: global X5800, Y5800
+159: obj xy5800 {x, y}
+160: test_assign()
+161: isobjtype("xy5900") == 0
+162: obj xy5900 {x, y}
+163: isobjtype("xy5900") == 1
+164: isdefined("fun5900") == 0
+165: define fun5900() { return 1; }
+166: isdefined("fun5900") == 2
+167: isdefined("fun5900") == 0
+168: test_is()
+169: parsed test_blk()
+170: parsed test_blkcpy()
+171: parsed test_name()
+172: parsed test_blkprintf()
+173: parsed test_sha()
+174: parsed test_sha1()
+175: parsed test_md5()
+176: define g7500a(a,b) = a = b
+177: define g7500b(a,b) = a + b
+178: define g7500c(a,b) = *(a + b)
+179: define g7500d(a) = &a
+180: define g7500e(a,b) = *a = b
+181: parsed test_ptr()
+182: parsed test_newstring()
+183: parsed test_newcomb()
+184: define f7900(a,b,n) {... }
+185: define g7900(a,b,n) = ...
+186: parsed test_bigcomb()
+187: read -once natnumset;
+188: parsed test_natnumset()
+189: define func8200(x,y)
+190: parsed test_somenew()
+191: parsed test_quit()
+200: Reserved for top level test use
+298: parsed count_errors()
+299: Ending main part of regression test suite read
+
+300: Beginning test_booleans
+301: if (1)
+302: if (2)
+303: if (1) else
+304: if (1) else
+305: if (0) else
+306: if (0) else
+307: if 1 == 1
+308: if 1 == 1
+309: if 1 != 2
+310: if 1 != 2
+311: vrfy 1
+312: vrfy 2 == 2
+313: vrfy 2 != 3
+314: vrfy 2 <  3
+315: vrfy 2 <= 2
+316: vrfy 2 <= 3
+317: vrfy 3 >  2
+318: vrfy 2 >= 2
+319: vrfy 3 >= 2
+320: vrfy !0
+321: vrfy !1 == 0
+322: (1 ? 2 ? 3 : 4 : 5) == 3
+323: Ending test_booleans
+
+350: Beginning test_variables
+351: x1 == 5
+352: x2 == 10
+353: x3 == 14
+354: g1 == 16
+355: g2 == 79
+356: globalvar == 22
+357: getglobalvar() == 22
+358: x1 == 40
+359: g1 == 207
+360: x1++ == 5
+361: x1 == 6
+362: ++x1 == 7
+363: x1 == 10
+364: x1 == 4
+365: x1 == 12
+366: x1 == 3
+367: x2 == 14
+368: x1 == 14
+369: if (2 && 3)
+370: if (2 && 0)
+371: if (0 && 2)
+372: if (0 && 0)
+373: if (2 || 0)
+374: if (0 || 2)
+375: if (0 || 0)
+376: (2 || 3) == 2
+377: (2 || 0) == 2
+378: (0 || 3) == 3
+379: (0 || 0) == 0
+380: (2 && 3) == 3
+381: (2 && 0) == 0
+382: (0 && 3) == 0
+383: x = 2 || prob('2 || prob()'
+384: x = 0 && prob('0 && prob()'
+385: Ending test_variables
+
+400: Beginning test_arithmetic
+401: 3 + 4 == 7
+402: 4 - 1 == 3
+403: 2 * 3 == 6
+404: 8 / 4 == 2
+405: 2 ^ 3 == 8
+406: 9-4-2 == 3
+407: 9-4+2 == 7
+408: -5+2 == -3
+409: 2*3+1 == 7
+410: 1+2*3 == 7
+411: (1+2)*3 == 9
+412: 2*(3+1) == 8
+413: 9-(2+3) == 4
+414: 9+(2-3) == 8
+415: (2+3)*(4+5) == 45
+416: 10/(2+3) == 2
+417: 12/3+4 == 8
+418: 6+12/3 == 10
+419: 2+3 == 1+4
+420: -(2+3) == -5
+421: 7&18 == 2
+422: 3|17 == 19
+423: 2&3|1 == 3
+424: 2&(3|1) == 2
+425: 3<<4 == 48
+426: 5>>1 == 2
+427: 3<<-1 == 1
+428: 5>>-2 == 20
+429: 1<<2<<3 == 65536
+430: (1<<2)<<3 == 32
+431: 2^3^2 == 512
+432: (2^3)^2 == 64
+433: 4//3==1
+434: 4//-3==-1
+435: 0.75//-0.51==-1
+436: 0.75//-0.50==-1
+437: 0.75//-0.49==-1
+438: (3/4)//(-1/4)==-3
+439: 7%3==1
+440: 0-.5==-.5
+441: 0^0 == 1
+442: 0^1 == 0
+443: 1^0 == 1
+444: 1^1 == 1
+445: 1/(.8+.8i)==.625-.625i
+446: (.6+.8i)*(3.6-4.8i)==6
+447: -16^-2 == -1/256
+448: -7^2 == -49
+449: -3! == -6
+450: Ending test_arithmetic
+
+500: Beginning test_config
+501: callcfg = config("all")
+502: callcfg == startcfg
+503: callcfg = config("all","oldstd")
+504: callcfg == startcfg
+505: oldcfg = config("all");
+506: config("all") == oldcfg
+507: oldcfg==config("all","newstd")
+508: defcfg == config("all")
+509: config("mode") == "real"
+510: config("display") == 20
+511: config("epsilon") == 1e-20
+512: config("trace") == 0
+513: config("maxprint") == 16
+514: config("mul2") == 20
+515: config("sq2") == 20
+516: config("pow2") == 40
+517: config("redc2") == 50
+518: config("tilde")
+519: config("tab")
+520: config("quomod") == 0
+521: config("quo") == 2
+522: config("mod") == 0
+523: config("sqrt") == 24
+524: config("appr") == 24
+525: config("cfappr") == 0
+526: config("cfsim") == 8
+527: config("outround") == 24
+528: config("round") == 24
+529: config("leadzero") == 1
+530: config("fullzero") == 0
+531: config("maxscan") == 20
+532: config("prompt") == "; "
+533: config("more") == ";; "
+534: test unused
+535: config("outround", 2) == 24
+536: config("leadzero","n") == 1
+537: test unused
+538: config("prompt", "> ") == "; "
+539: config("more", ">> ") == ";; "
+540: config("all") == oldcfg
+541: config("all",callcfg) == oldcfg
+542: config("display",2) == 20
+543: config("leadzero",0) == 1
+544: config("fullzero",1) == 0
+545: strprintf("%d %d %d", 0, 1, 2) == ".00 1.00 2.00"
+546: config("display",20) == 2
+547: config("leadzero",1) == 0
+548: config("fullzero",0) == 1
+549: strprintf("%d %d %d", 0, 1, 2) == "0 1 2"
+550: config("all",callcfg) == startcfg
+551: config("all") == callcfg
+552: config("all") == startcfg
+553: strlen(config("program")) > 0
+554: strlen(config("basename")) > 0
+555: strlen(config("version")) > 0
+556: config("mode2") == "off"
+557: Ending test_config
+
+600: Beginning test_bignums
+601: muldivcheck 1
+602: muldivcheck 2
+603: muldivcheck 3
+604: muldivcheck 4
+605: muldivcheck 5
+606: squarecheck 1
+607: squarecheck 2
+608: squarecheck 3
+609: squarecheck 4
+610: squarecheck 5
+611: squarecheck 6
+612: primetest R19
+613: primetest R23
+614: primetest M127
+615: primetest M521
+616: powercheck 1
+617: powercheck 2
+618: powercheck 3
+619: fraccheck 1
+620: fraccheck 2
+621: fraccheck 3
+622: algcheck 1
+623: algcheck 2
+624: algcheck 3
+625: algcheck 4
+626: algcheck 5
+627: algcheck 6
+628: algcheck 7
+629: algcheck 8
+630: algcheck 9
+631: algcheck 10
+632: Ending test_bignums
+
+700: Beginning test_functions
+701: abs(3) == 3
+702: abs(-4) == 4
+703: avg(7) == 7
+704: avg(3,5) == 4
+705: cmp(2,3) == -1
+706: cmp(6,6) == 0
+707: cmp(7,4) == 1
+708: comb(9,9) == 1
+709: comb(5,2) == 10
+710: conj(4) == 4
+711: conj(2-3i) == 2+3i
+712: den(17) == 1
+713: den(3/7) == 7
+714: den(-2/3) == 3
+715: digits(0) == 1
+716: digits(9) == 1
+717: digits(10) == 2
+718: digits(-691) == 3
+719: eval('2+3') == 5
+720: fcnt(11,3) == 0
+721: fcnt(18,3) == 2
+722: fib(0) == 0
+723: fib(1) == 1
+724: fib(9) == 34
+725: frem(12,5) == 12
+726: frem(45,3) == 5
+727: fact(0) == 1
+728: fact(1) == 1
+729: fact(5) == 120
+730: frac(3) == 0
+731: frac(2/3) == 2/3
+732: frac(17/3) == 2/3
+733: gcd(0,3) == 3
+734: gcd(1,12) == 1
+735: gcd(11,7) == 1
+736: gcd(20,65) == 5
+737: gcdrem(20,3) == 20
+738: gcdrem(100,6) == 25
+739: highbit(1) == 0
+740: highbit(15) == 3
+741: hypot(3,4) == 5
+742: ilog(90,3) == 4
+743: ilog10(123) == 2
+744: ilog2(17) == 4
+745: im(3) == 0
+746: im(2+3i) == 3
+747: fact(20) == 2432902008176640000
+748: fact(100) == 100*fact(99)
+749: comb(100,25) == 100!/75!/25!
+750: perm(100,50) == 100!/50!
+751: test unused
+752: test unused
+753: test unused
+754: test unused
+755: test unused
+756: test unused
+757: int(5) == 5
+758: int(19/3) == 6
+759: inverse(3/2) == 2/3
+760: iroot(18,2) == 4
+761: iroot(100,3) == 4
+762: iseven(10) == 1
+763: iseven(13) == 0
+764: iseven('a') == 0
+765: isint(7) == 1
+766: isint(19/2) == 0
+767: isint('a') == 0
+768: islist(3) == 0
+769: islist(list(2,3)) == 1
+770: ismat(3) == 0
+771: ismult(7,3) == 0
+772: ismult(15,5) == 1
+773: isnull(3) == 0
+774: isnull(null()) == 1
+775: isnum(2/3) == 1
+776: isnum('xx') == 0
+777: isobj(3) == 0
+778: isodd(7) == 1
+779: isodd(8) == 0
+780: isodd('a') == 0
+781: isqrt(27) == 5
+782: isreal(3) == 1
+783: isreal('x') == 0
+784: isreal(2+3i) == 0
+785: isstr(5) == 0
+786: isstr('foo') == 1
+787: isrel(10,14) == 0
+788: isrel(15,22) == 1
+789: issimple(6) == 1
+790: issimple(3-2i) == 1
+791: issimple(list(5)) == 0
+792: issq(26) == 0
+793: issq(9/4) == 1
+794: test unused
+795: istype(9,4) == 1
+796: istype(3,'xx') == 0
+797: jacobi(2,7) == 1
+798: jacobi(6,13) == -1
+799: lcm(3,4,5,6) == 60
+800: lcmfact(8) == 840
+801: lfactor(21,5) == 3
+802: lfactor(97,20) == 1
+803: lowbit(12) == 2
+804: lowbit(17) == 0
+805: ltol(1) == 0
+806: max(3,-9,7,4) == 7
+807: meq(13,33,10) == 1
+808: meq(7,19,11) == 0
+809: min(9,5,12) == 5
+810: minv(13,97) == 15
+811: mne(16,37,10) == 1
+812: mne(46,79,11) == 0
+813: norm(4) == 16
+814: norm(2-3i) == 13
+815: num(7) == 7
+816: num(11/4) == 11
+817: num(-9/5) == -9
+818: char(ord('a')+2) == 'c'
+819: perm(7,3) == 210
+820: pfact(10) == 210
+821: places(3/7) == -1
+822: places(.347) == 3
+823: places(17) == 0
+824: pmod(3,36,37) == 1
+825: poly(2,3,5,2) == 19
+826: ptest(101,10) == 1
+827: ptest(221,30) == 0
+828: re(9) == 9
+829: re(-7+3i) == -7
+830: scale(3,4) == 48
+831: sgn(-4) == -1
+832: sgn(0) == 0
+833: sgn(3) == 1
+834: size(7) == 1
+835: sqrt(121) == 11
+836: ssq(2,3,4) == 29
+837: str(45) == '45'
+838: strcat('a','bc','def')=='abcdef'
+839: strlen('') == 0
+840: strlen('abcd') == 4
+841: substr('abcd',2,1) == 'b'
+842: substr('abcd',3,4) == 'cd'
+843: substr('abcd',1,3) == 'abc'
+844: xor(17,17) == 0
+845: xor(12,5) == 9
+846: mmin(3,7) == 3
+847: mmin(4,7) == -3
+848: digit(123,2) == 1
+849: ismult(3/4, 1/7) == 0
+850: gcd(3/4,1/7) == 1/28
+851: gcd(2,3,1/2) == 1/2
+852: gcd(17,7,1/7) == 1/7
+853: gcd(2) == 2
+854: gcd(-2) == 2
+855: floor(1.5) == 1
+856: floor(.5) == 0
+857: floor(-.5) == -1
+858: floor(-1.5) == -2
+859: ceil(1.5) == 2
+860: ceil(.5) == 1
+861: ceil(-.5) == 0
+862: ceil(-1.5) == -1
+863: frac(-7.2) == -.2
+864: gcd(4, 5, 1/3) == 1/3
+865: ltol(7/25) == 24/25
+866: hmean(1,2,3) == 18/11
+867: ilog2(2^-20) == -20
+868: ord("DBell") == 68
+869: cmp("a","b") == -1
+870: cmp("abcd","abc") == 1
+871: cmp(3,4i) == 1-1i
+872: cmp(4,4i) == 1-1i
+873: cmp(5,4i) == 1-1i
+874: cmp(-5,4i) == -1-1i
+875: cmp(-4i,5) == -1-1i
+876: cmp(-4i,-5) == 1-1i
+877: cmp(3i,4i) == -1i
+878: cmp(4i,4i) == 0
+879: cmp(5i,4i) == 1i
+880: cmp(3+4i,5) == -1+1i
+881: cmp(3+4i,-5) == 1+1i
+882: cmp(3+4i,3+4i) == 0
+883: cmp(3+4i,3-4i) == 1i
+884: cmp(3+4i,2+3i) == 1+1i
+885: cmp(3+4i,-4-5i) == 1+1i
+886: comb(7,0) == 1
+887: comb(0,0) == 1
+888: perm(7,0) == 1
+889: perm(0,0) == 1
+890: isfile(files(0)) == 1
+891: isfile(0) == 0
+892: ismult(4^67, 2^59) == 1
+893: ismult(13, 4/67) == 0
+894: ismult(13, 7/56) == 1
+895: isnum(2i) == 1
+896: iseven(1/3) == 0
+897: isodd(1/3) == 0
+898: isrel(-5, 6) == 1
+899: isrel(-2, 6) == 0
+900: bit(9,0) == 1
+901: bit(9,1) == 0
+902: bit(9,2) == 0
+903: bit(9,3) == 1
+904: bit(1.25, -2) == 1
+905: bit(1.25, -1) == 0
+906: bit(1.25, 0) == 1
+907: bit(pi(), 1) == 1
+908: bit(pi(), -2) == 0
+909: bit(pi(), -3) == 1
+910: istype(2, 3.0) == 1
+911: istype(2, "2") == 0
+912: istype(2, 3i) == 0
+913: istype(2i+2, 3i) == 1
+914: a = epsilon()
+915: epsilon(a) == epsilon()
+916: epsilon(a) == epsilon()
+917: epsilon(a) == epsilon()
+918: epsilon() == a
+919: b = 1e-6
+920: epsilon(b) == a
+921: epsilon(b) == epsilon()
+922: epsilon(b) == epsilon()
+923: epsilon(b) == epsilon()
+924: epsilon() == 1e-6
+925: epsilon(a) == b
+926: epsilon(a) == epsilon()
+927: epsilon(a) == epsilon()
+928: epsilon(a) == epsilon()
+929: epsilon(a) == a
+930: quomod(13,5,a,b) == 1
+931: a == 2
+932: b == 3
+933: quomod(15.6,5.2,a,b) == 0
+934: a == 3
+935: b == 0
+936: putenv("abcd=efg")
+937: getenv("abcd") == "efg"
+938: putenv("abcd","123")
+939: getenv("abcd") == "123"
+940: isnull(getenv("notavar")) == 1
+941: a = "abcdefg"
+942: strpos(a, "c") == 3
+943: strpos(a, "def") == 4
+944: strpos(a, "defg") == 4
+945: strpos(a, "defgh") == 0
+946: strpos(a, "abc") == 1
+947: strpos(a, "xyz") == 0
+948: strpos(a, a) == 1
+949: test skipped for windows or cygwin systems
+950: test skipped for windows or cygwin systems
+951: test disabled due to stdin dependency
+952: test removed
+953: test removed
+954: isstr(cmdbuf()) == 1
+955: abs(root(4,3,0.1)-1.5874) < 0.1
+956: a = 2^300 + 69962309754533779525365054067
+957: a /= 2^211
+958: appr(a, 1e-20) == 2^89
+959: digits(5e149) == 150
+960: highbit(2) == 1
+961: highbit(3) == 1
+962: highbit(4) == 2
+963: highbit(-15) == 3
+964: highbit(2^27) == 27
+965: a = 12.34
+966: digit(a,2) == 0
+967: digit(a,1) == 1
+968: digit(a,0) == 2
+969: digit(a,-1) == 3
+970: digit(a,-2) == 4
+971: a = 10/7
+972: digit(a,1) == 0
+973: digit(a,0) == 1
+974: digit(a,-1) == 4
+975: digit(a,-2) == 2
+976: digit(a,-3) == 8
+977: digits(0) == 1
+978: digits(0.0123) == 1
+979: digits(3.7) == 1
+980: digits(-27) == 2
+981: digits(-99.7) == 2
+982: ilog2(1) == 0
+983: ilog2(2) == 1
+984: ilog2(3) == 1
+985: ilog2(4) == 2
+986: ilog2(1/15) == -4
+987: places(3) == 0
+988: places(0.0123) == 4
+989: places(3.70) == 1
+990: places(1e-10) == 10
+991: places(/37) == -1
+992: ilog10(7.7) == 0
+993: ilog10(77.7) == 1
+994: ilog10(777) == 2
+995: ilog10(.00777) == -3
+996: ilog10(1e27) == 27
+997: lowbit(2) == 1
+998: lowbit(3) == 0
+999: lowbit(4) == 2
+1000: lowbit(-15) == 0
+1001: lowbit(2^27) == 27
+1002: char(0102) == 'B'
+1003: char(0x6f) == 'o'
+1004: char(119) == 'w'
+1005: char(0145) == 'e'
+1006: char(0x6e) == 'n'
+1007: den(-1.25) == 4
+1008: den(121/33) == 3
+1009: gcd(9/10, 11/5, 4/25) == 0.02
+1010: gcd(0,0,0,0,0) == 0
+1011: hypot(3, 4, 1e-6) == 5
+1012: hypot(2,-3,1e-6) == 3605551/1e6
+1013: im(-4.25 - 7i) == -7
+1014: lcm(12, -24, 30) == -120
+1015: lcm(9/10, 11/5, 4/25) == 79.2
+1016: lcm(2) == 2
+1017: max(2) == 2
+1018: min(2) == 2
+1019: re(-4.25 - 7i) == -4.25
+1020: size("abc") == 3
+1021: str("") == ""
+1022: str(null()) == ""
+1023: str("Ernest Bowen") == "Ernest Bowen"
+1024: strlen("a b	c\d") == 7
+1025: xor(2) == 2
+1026: xor(5, 3, 7, 2, 9) == 10
+1027: xor(0,0) == 0
+1028: xor(0,1) == 1
+1029: xor(1,0) == 1
+1030: xor(1,1) == 0
+1031: xor(5,3,-7,2,9) == -12
+1032: fib(-2) == -1
+1033: fib(-1) == 1
+1034: fib(-10) == -55
+1035: ilog(1/8, 3) == -2
+1036: ilog(8.9, 3) == 1
+1037: iroot(1,9) == 1
+1038: iroot(pi()^8,5)
+1039: isqrt(8.5) == 2
+1040: isqrt(2e56) == 14142135623730950488016887242
+1041: near(22/7, 3.15, .01) == -1
+1042: near(22/7, 3.15, .005) == 1
+1043: isqrt(3.4) == 11.56
+1044: pi(1e-5) == 3.14159
+1045: pi = pi(1e-10)
+1046: pi == 3.1415926536
+1047: polar(2,pi/2,1e-5)==2i
+1048: power(exp(1,1e-20),pi(1e-20)*1i/2,1e-20) == 1i
+1049: ssq(1+2i, 3-4i, 5 +6i) == -21+40i
+1050: isreal(ln(1 + 1e-10i, 1e-5))
+1051: isreal(exp(pi(1e-10)*1i, 1e-5))
+1052: cfappr(43/30, 10, 0) == 10/7
+1053: cfappr(43/30, 10, 1) == 13/9
+1054: cfappr(43/30, 10, 16) == 10/7
+1055: cfappr(6/5, 1/2, 16) == 1
+1056: cfsim(13,8) == 0
+1057: cfsim(1057,8) == 0
+1058: mod(11,5,0) == 1
+1059: mod(11,5,1) == -4
+1060: mod(-11,5,2) == -1
+1061: mod(-11,-5,3) == 4
+1062: mod(12.5,5,16) == 2.5
+1063: mod(12.5,5,17) == -2.5
+1064: mod(12.5,5,24) == 2.5
+1065: mod(-7.5,-5,24) == 2.5
+1066: quo(11,5,0) == 2
+1067: quo(11,5,1) == 3
+1068: quo(-11,5,2) == -2
+1069: quo(-11,-5,3) == 3
+1070: quo(12.5,5,16) == 2
+1071: quo(12.5,5,17) == 3
+1072: quo(12.5,5,24) == 2
+1073: quo(-7.5,-5,24) == 2
+1074: frac(2.5 + 3i) == .5
+1075: root(1i,1000,1e-2) == 1
+1076: scale(2+3i,2) == 8+12i
+1077: frem(8,4) == 2
+1078: jacobi(80,199) == 1
+1079: test(1)
+1080: !test(0)
+1081: hnrmod(2^177-1,1,177,-1)==0
+1082: hnrmod(2^178-2,1,177,-1)==0
+1083: hnrmod(2^178-3,1,177,1)==2^177-4
+1084: hnrmod(2^179-4,1,177,0)==2^177-4
+1085: hnrmod(1234567^2,13,17,-1)==1155404
+1086: hnrmod(3276^54,45,415,1)==3276^54%(45*2^415+1)
+1087: hnrmod(3276^54,45,415,0)==3276^54%(45*2^415)
+1088: hnrmod(3276^54,45,415,-1)==3276^54%(45*2^415-1)
+1089: hnrmod(10^40, 17, 51, 1) == 33827019788296445
+1090: hnrmod(3192487935759423423521,16,65,1)==241008883965895164956
+1091: a = 2868611690182699929873981931
+1092: b = 502922899875329926125584830
+1093: minv(b,a) == 1111092570983877189739032190
+1094: mod(minv(b,a)*b,a) == 1
+1095: popcnt(32767) == 15
+1096: popcnt(3/2) == 3
+1097: popcnt(-237/39929,1) == 17
+1098: popcnt(-237/39929,0) == 7
+1099: popcnt(-237/39929) == 17
+1100: popcnt(pi(1e-20)) == 65
+1101: popcnt(pi(1e-20),0) == 69
+1102: popcnt(17^777) == 1593
+1103: hnrmod(21<<100+5,3,100,1) == (21<<100+5)%(3<<100+1)
+1104: hnrmod(21<<500+7,3,500,1) == (21<<500+7)%(3<<500+1)
+1105: hnrmod(-767256,84,1,0) == (-767256)%(84<<1+0)
+1106: hnrmod(-831150,75,1,0) == (-831150)%(75<<1+0)
+1107: hnrmod(-767256,84,1,1) == (-767256)%(84<<1+1)
+1108: hnrmod(-831150,75,1,1) == (-831150)%(75<<1+1)
+1109: hnrmod(-767256,84,1,-1) == (-767256)%(84<<1-1)
+1110: hnrmod(-831150,75,1,-1) == (-831150)%(75<<1-1)
+1111: hnrmod(21<<100+5,3,100,0) == (21<<100+5)%(3<<100+0)
+1112: hnrmod(21<<500+7,3,500,-1) == (21<<500+7)%(3<<500-1)
+1113: catalan(2) == 2
+1114: catalan(3) == 5
+1115: catalan(4) == 14
+1116: catalan(20) == 6564120420
+1117: bernoulli(0) == 1
+1118: bernoulli(1) == -1/2
+1119: bernoulli(2) == 1/6
+1120: bernoulli(3) == 0
+1121: bernoulli(4) == -1/30
+1122: bernoulli(5) == 0
+1123: bernoulli(6) == 1/42
+1124: bernoulli(32) == -7709321041217/510
+1125: euler(0) == 1
+1126: euler(1) == 0
+1127: euler(2) == -1
+1128: euler(3) == 0
+1129: freeeuler() == null()
+1130: euler(4) == 5
+1131: euler(5) == 0
+1132: euler(6) == -61
+1130: euler(32) == 177519391579539289436664789665
+1133: freeeuler() == null()
+1134: a = 123456.789
+1135: digit(a, 6, 100) == 0
+1136: digit(a, 5, 100) == 0
+1137: digit(a, 4, 100) == 0
+1138: digit(a, 3, 100) == 0
+1139: digit(a, 2, 100) == 12
+1140: digit(a, 1, 100) == 34
+1141: digit(a, 0, 100) == 56
+1142: digit(a, -1, 100) == 78
+1143: digit(a, -2, 100) == 90
+1144: digit(a, -3, 100) == 0
+1145: digit(a, -4, 100) == 0
+1146: digit(a, -5, 100) == 0
+1146: digit(a, -6, 100) == 0
+1147: digits(a, 100) == 3
+1148: digits(2^256-1, 256) == 32
+1149: places(0.0123, 2) == -1
+1150: places(0.625, 2) == 3
+1151: places(0.625, 8) == 1
+1152: places(171/2^7120.625, 2) == 712
+1152: places(171/2^7120.625, 64) == 119
+1153: sleep(1/5) == null()
+1154: sleep(1) == null()
+1155: Ending test_functions
+
+1200: Beginning _test_underscore
+1201: _a == 27
+1202: _ == 49
+1203: __ == 63
+1204: __a == 23209
+1205: Ending _test_underscore
+
+1300: Beginning associations test
+1301: size(a) == 0
+1302: a["curds"] = 13
+1303: a["curds"] == 13
+1304: a[13] = 17
+1305: a[13] == 17
+1306: a[a["curds"]] == 17
+1307: a[17] = 19
+1308: a[17] == 19
+1309: a[a["curds"]+4] == 19
+1310: size(a) == 3
+1311: (a[[search(a,17)]] == 17
+1312: isnull(search(a,16))
+1313: a["curds","whey"] = "spider"
+1314: a["curds","whey"] == "spider"
+1315: a[[rsearch(a,"spider")]] == "spider"
+1316: b = a
+1317: b[17] == 19
+1318: a == b
+1319: isassoc(a) == 1
+1320: isassoc(1) == 0
+1321: quomod(13, 5, A[1], A[2]) == 1
+1322: A[1] == 2
+1323: A[2] == 3
+1324: Ending associations test
+
+1400: Beginning list test
+1401: a == list(2,3,5)
+1402: a[[0]] == 2
+1403: a[[1]] == 3
+1404: a[[2]] == 5
+1405: size(a) == 3
+1406: search(a,3) == 1
+1407: isnull(search(a,3,2))
+1408: rsearch(a,3,2) == 1
+1409: push(a,7)
+1410: search(a,7) == 0
+1411: pop(a) == 7
+1412: size(a) == 3
+1413: append(a,7)
+1414: search(a,7) == 3
+1415: size(a) == 4
+1416: remove(a) == 7
+1417: size(a) == 3
+1418: b = a
+1419: insert(a,1,7)
+1420: search(a,2) == 0
+1421: search(a,7) == 1
+1422: search(a,3) == 2
+1423: search(a,5) == 3
+1424: size(a) == 4
+1425: remove(a) == 7
+1426: search(a,2) == 0
+1427: search(a,3) == 1
+1428: search(a,5) == 2
+1429: size(a) == 3
+1430: a == b
+1431: A = list(1,2,3)
+1432: B = list(4,5)
+1433: C = join(A,B)
+1434: D = list(1,2,3,4,5)
+1435: C == D
+1436: E = list(5,4,3,2,1)
+1437: reverse(D) == E
+1438: sort(list(1,3,5,2,4))==D
+1439: head(D,2) == list(1,2)
+1440: head(D,-2) == list(2,1)
+1441: head(D,5) == D
+1442: head(D,6) == D
+1443: head(D,-5) == E
+1444: head(D,-6) == E
+1445: tail(E,2) == list(2,1)
+1446: tail(E,-2) == list(1,2)
+1447: tail(E,5) == E
+1448: tail(E,6) == E
+1449: tail(E,-5) == D
+1450: tail(E,-6) == D
+1451: segment(D,1,3) == list(2,3,4)
+1452: segment(D,3,1) == list(4,3,2)
+1453: segment(D,0,2) == head(D,3)
+1454: segment(D,2,0) == tail(E,3)
+1455: segment(D,0,4) == head(D,5)
+1456: segment(D,4,0) == head(E,5)
+1457: segment(D,3,4) == tail(D,2)
+1458: segment(D,4,3) == head(E,2)
+1459: join loop test
+1460: mod(x,10,0) == y0
+1461: mod(x,10,1) == y1
+1462: mod(x,10,2) == y0
+1463: mod(x,10,3) == y1
+1464: mod(x,10,4) == y0
+1465: mod(x,10,5) == y1
+1466: mod(x,10,6) == y0
+1467: mod(x,10,7) == y1
+1468: mod(x,10,8) == y2
+1469: mod(x,10,9) == y3
+1470: mod(x,10,10) == y2
+1471: mod(x,10,11) == y3
+1472: mod(x,10,12) == y2
+1473: mod(x,10,13) == y3
+1474: mod(x,10,14) == y2
+1475: mod(x,10,15) == y3
+1476: mod(x,10,16) == y4
+1477: mod(x,10,16) == y4
+1478: mod(x,10,18) == y4
+1479: mod(x,10,18) == y4
+1480: mod(x,10,20) == y4
+1481: mod(x,10,21) == y4
+1482: mod(x,10,22) == y4
+1483: mod(x,10,23) == y4
+1484: mod(x,10,24) == y4
+1485: mod(x,10,25) == y4
+1486: mod(x,10,26) == y4
+1487: mod(x,10,27) == y4
+1488: mod(x,10,28) == y4
+1489: mod(x,10,29) == y4
+1490: mod(x,10,30) == y4
+1491: mod(x,10,31) == y4
+1492: list1 = list(3,1,"x",2,null())
+1493: list2 = list(null(),1,2,3,"x")
+1494: sort(list1) == list2
+1495: A = list(1,2,3,4)
+1496: B = makelist(4) = {1,2,3,4}
+1497: A == B
+1498: (A = {,,5}) == list(1,2,5,4)
+1499: Ending list test
+
+1500: Beginning rand test
+1501: tmp = srand(0)
+1502: init = srand()
+1503: state0 = srand(0)
+1504: state0 == init
+1505: tmp = srand(0)
+1506: rand() == 0x1fe5b46fba7e069d
+1507: rand() == 0x308d32d9bdf2dc6f
+1508: tmp = srand(init)
+1509: rand() == 0x1fe5b46fba7e069d
+1510: rand() == 0x308d32d9bdf2dc6f
+1511: tmp = srand(0)
+1512: rand(12345678901234567890) == 0x1fe5b46fba7e069d
+1513: rand(216091) == 0xc234
+1514: rand(100) == 0x59
+1515: rand(-46,46) == 0x2d
+1516: tmp = srand(0)
+1517: rand(2^64) == 0x1fe5b46fba7e069d
+1518: rand(0,2^64) == 0x308d32d9bdf2dc6f
+1519: tmp = srand(0)
+1520: srand() == init
+1521: tmp = srand(0x87e6ec938ff55aa5<<64)
+1522: test disabled
+1523: tmp = srand(state0)
+1524: srand() == init
+1525: tmp = srand(init)
+1526: srand() == init
+1527: tmp == init
+1528: tmp = srand(0)
+1529: randbit(64) == 0x1fe5b46fba7e069d
+1530: randbit(128) == 0x308d32d9bdf2dc6f45d3e3b3361b79e4
+1531: randbit(64) == 0xd4ef1e3336022d81
+1532: randbit(128) == 0x66b086e6c34e42124a1fc5d4e5c6f598
+1533: tmp = srand(0)
+1534: randbit(32) == 0x1fe5b46f
+1535: randbit(32) == 0xba7e069d
+1536: randbit(1) == 0x0
+1537: randbit(5) == 0xc
+1538: randbit(33) == 0x46996cde
+1539: randbit(25) == 0x1f2dc6f
+1540: randbit(2) == 0x1
+1541: randbit(13) == 0x2e9
+1542: randbit(18) == 0x3c766
+1543: randbit(8) == 0x6c
+1544: randbit(9) == 0x6d
+1545: randbit(70) == 0x39e4d4ef1e3336022d
+1546: test unused
+1547: randbit(8) == 0x81
+1548: randbit(65) == 0xcd610dcd869c8424
+1549: randbit(63) == 0x4a1fc5d4e5c6f598
+1550: tmp = srand(1)
+1551: n = 1
+1552: num(n)
+1553: den(n)
+1554: randbit(64) == 0xbf989a4c504a541d
+1555: tmp = srand(0)
+1556: randbit(20) == 0x1fe5b
+1557: randbit(20) == 0x46fba
+1558: randbit(20) == 0x7e069
+1559: randbit(20) == 0xd308d
+1560: tmp = srand(0)
+1561: randbit(-20) == 20
+1562: randbit(20) == 290746
+1563: randbit(-20) == 20
+1564: randbit(20) == 864397
+1565: tmp = srand(0)
+1566: randbit() == 0
+1567: randbit() == 0
+1568: randbit() == 0
+1569: randbit() == 1
+1570: seed() >= 0
+1571: seed() < 2^64
+1572: isrand(srand(seed()))
+1573: Ending rand test
+
+1600: Beginning mode/base test
+1601: tmp = config("mode", "frac")
+1602: tmp = config("mode", "frac")
+1603: base() == 1/3
+1604: tmp = config("mode", "int")
+1605: tmp == "fraction"
+1606: base() == -10
+1607: tmp = config("mode", "real")
+1608: tmp == "integer"
+1609: base() == 10
+1610: tmp = config("mode", "exp")
+1611: tmp == "real"
+1612: base() == 1e20
+1613: tmp = config("mode", "hex")
+1614: tmp == "scientific"
+1615: base() == 16
+1616: tmp = config("mode", "oct")
+1617: tmp == "hexadecimal"
+1618: base() == 8
+1619: tmp = config("mode", "bin")
+1620: tmp == "octal"
+1621: base() == 2
+1622: tmp = config("mode", "real")
+1623: tmp == "binary"
+1624: tmp = base(1/3)
+1625: config("mode") == "fraction"
+1626: tmp = base(-10)
+1627: config("mode") == "integer"
+1628: tmp = base(10)
+1629: config("mode") == "real"
+1630: tmp = base(1e20)
+1631: config("mode") == "scientific"
+1632: tmp = base(16)
+1633: config("mode") == "hexadecimal"
+1634: tmp = base(8)
+1635: config("mode") == "octal"
+1636: tmp = base(2)
+1637: config("mode") == "binary"
+1638: tmp = base(8)
+1639: str(0x8000000) == "020000000000"
+1640: str(0xffffffff) == "037777777777"
+1641: str(3e9) == "026264057000"
+1642: tmp = base(16)
+1643: str(0x8000000) == "0x80000000"
+1644: str(0xffffffff) == "0xffffffff"
+1645: str(3e9) == "0xb2d05e00"
+1646: tmp = base(10)
+1647: config("mode") == "real"
+1648: str(0x80000000) == "2147483648"
+1649: str(0xffffffff) == "4294967295"
+1650: str(3e9) == "3000000000"
+1651: base2() == 0
+1652: base2(0) == 0
+1653: base2() == 0
+1654: base2(16) == 0
+1655: base2() == 16
+1656: str(3e9) == "3000000000 /* 0xb2d05e00 */"
+1657: base2(16) == 16
+1658: str(23209) == "23209 /* 23209 */"
+1659: str(3/2) == "1.5 /* 3/2 */"
+1660: base() == 10
+1661: base2(0) == 1/3
+1662: Ending mode/base test
+
+1700: Beginning read test
+1701: value == 0
+1702: read "test1700";
+1703: value == 1
+1704: read -once "test1700";
+**** Non-true result (0): 1705: value == 1
+1706: read "test1700.cal";
+**** Non-true result (0): 1707: value == 2
+1708: read -once "test1700.cal";
+**** Non-true result (0): 1709: value == 2
+1710: read "test1700.cal";
+**** Non-true result (0): 1711: value == 3
+1712: {++value;} read "test1700.cal";
+**** Non-true result (0): 1713: value == 5
+1714: {++value;} read -once "test1700.cal";
+**** Non-true result (0): 1715: value == 6
+1716: Ending read test
+
+1800: Beginning object test
+1801: surd_type == -1
+1802: a = surd(2,3)
+1803: a == surd(2,3)
+1804: surd_value(a) == 2+3i
+1805: conj(a) == surd(2,-3)
+1806: norm(a) == 13
+1807: a+1 == surd(3,3)
+1808: b = surd(3,4)
+1809: a+b == surd(5,7)
+1810: a-b == surd(-1,-1)
+1811: ++a == surd(3,3)
+1812: --a == surd(2,3)
+1813: -a == surd(-2,-3)
+1814: a*2 == surd(4,6)
+1815: a*b == surd(-6,17)
+1816: a^2 == surd(-5,12)
+1817: scale(a,2) == surd(8,12)
+1818: a<<3 == surd(16,24)
+1819: a/2 == surd(1,1.5)
+1820: a/b == surd(0.72,0.04)
+1821: 1/b == surd(0.12,-0.16)
+1822: inverse(b) == 1/b
+1823: a != b
+1824: surd_type = 2
+1825: surd_type == 2
+1826: sgn(a) == 1
+1827: a < b
+1828: a < a
+1829: isobj(a) == 1
+1830: obj pt {x,y}, PP = obj pair {A,B} = {obj pt, obj pt}
+1831: Ending object test
+
+1900: Beginning prime builtins test
+1901: isprime(-3) == 1
+1902: isprime(-1) == 0
+1903: isprime(0) == 0
+1904: isprime(1) == 0
+1905: isprime(2) == 1
+1906: isprime(3) == 1
+1907: isprime(4) == 0
+1908: isprime(5) == 1
+1909: isprime(17) == 1
+1910: isprime(100) == 0
+1911: isprime(21701,-1) == 1
+1912: isprime(65521,-1) == 1
+1913: isprime(65535,-1) == 0
+1914: isprime(65536,-1) == 0
+1915: isprime(1234577) == 1
+1916: isprime(1234579) == 0
+1917: isprime(2^31-9) == 0
+1918: isprime(2^31-1) == 1
+1919: isprime(2^31+11) == 0
+1920: isprime(2^31+11) == 1
+1921: isprime(3e9) == 0
+1922: isprime(3e9+19) == 1
+1923: isprime(2^32-7) == 0
+1924: isprime(2^32-5) == 1
+1925: isprime(2^32,-1) == 0
+1926: isprime(2^32+1,-1) == -1
+1927: isprime(3^99,2) == 2
+1928: isprime(3^99,2) == 0
+1929: nextprime(-3) == 5
+1930: nextprime(0) == 2
+1931: nextprime(1) == 2
+1932: nextprime(2) == 3
+1933: nextprime(3) == 5
+1934: nextprime(4) == 5
+1935: nextprime(5) == 7
+1936: nextprime(17) == 19
+1937: nextprime(100) == 101
+1938: nextprime(21701,-1) == 21713
+1939: nextprime(65519) == 65521
+1940: nextprime(65520) == 65521
+1941: nextprime(65521,-1) == 65537
+1942: nextprime(65531) == 65537
+1943: nextprime(65535,-1) == 65537
+1944: nextprime(65536) == 65537
+1945: nextprime(1234576,2)==1234577
+1946: nextprime(2^31-9) == 2^31-1
+1947: nextprime(2^31-1) == 2^31+11
+1948: nextprime(3e9) == 3e9+19
+1949: nextprime(2^32-7) == 2^32-5
+1950: nextprime(2^32,-1) == -1
+1951: nextprime(2^32+5,-1) == -1
+1952: nextprime(3^99,-1) == -1
+1953: nextprime(3^99,2) == 2
+1954: prevprime(-3,-1) == 2
+1955: prevprime(0,-1) == 0
+1956: prevprime(1,-1) == 0
+1957: prevprime(2,-2) == 0
+1958: prevprime(5) == 3
+1959: prevprime(4) == 3
+1960: prevprime(7) == 5
+1961: prevprime(19) == 17
+1962: prevprime(100) == 97
+1963: prevprime(21713,-1) == 21701
+1964: prevprime(65520) == 65519
+1965: prevprime(65521) == 65519
+1966: prevprime(65520) == 65521
+1967: prevprime(65523) == 65521
+1968: prevprime(65531) == 65521
+1969: prevprime(65535) == 65521
+1970: prevprime(65536) == 65521
+1971: prevprime(65537) == 65521
+1972: prevprime(65539) == 65537
+1973: prevprime(1234578,2)==1234577
+1974: prevprime(2^31-1) == 2^31-19
+1975: prevprime(2^31+11) == 2^31-1
+1976: prevprime(3e9) == 3e9-17
+1977: prevprime(2^32-3) == 2^32-5
+1978: prevprime(2^32-1) == 2^32-5
+1979: prevprime(2^32,-1) == -1
+1980: prevprime(3^99,-1) == -1
+1981: prevprime(3^99,2) == 2
+1982: pix(-1) == 0
+1983: pix(1) == 0
+1984: pix(2) == 1
+1985: pix(3) == 2
+1986: pix(100) == 25
+1987: pix(1000) == 168
+1988: pix(10000) == 1229
+1989: pix(100000) == 9592
+1990: pix(2^19+59) == 43393
+1991: pix(1000000) == 78498
+1992: pix(10000000) == 664579
+1993: pix(2^32-6) == 203280220
+1994: pix(2^32-5) == 203280221
+1995: pix(2^32-1) == 203280221
+1996: pfact(40) == 7420738134810
+1997: pfact(200)/pfact(198)==199
+1998: nextprime(3e9)==nextcand(3e9)
+1999: prevprime(3e9)==prevcand(3e9)
+2000: nextcand(2^100,0)-2^100 == 3
+2001: nextcand(2^100)-2^100 == 277
+2002: 2^100-prevcand(2^100,0) == 5
+2003: 2^100-prevcand(2^100) == 15
+2004: nextcand(2^50,4,5)-2^50 == 55
+2005: 2^50-prevcand(2^50,4,5) == 27
+2006: nextprime(2^32-6) == 2^32-5
+2007: nextprime(2^32-5) == 2^32+15
+2008: prevprime(2^32-1) == 2^32-5
+2009: prevcand(2^50,4,5,0,4) == 0
+2010: 2^50-prevcand(2^50,4,5,1,4) == 27
+2011: prevcand(2^50,4,5,2,4) == 2
+2012: 2^50-prevcand(2^50,4,5,3,4) == 113
+2013: 2^50-prevcand(2^50,4,5,7,17) == 813
+2014: nextcand(2^50,4,5,0,4) == 0
+2015: nextcand(2^50,4,5,1,4)-2^50 == 145
+2016: nextcand(2^50,4,5,2,4) == 0
+2017: nextcand(2^50,4,5,3,4)-2^50 == 55
+2018: nextcand(2^50,4,5,7,17)-2^50 == 853
+2019: ptest(2^100+277) == 1
+2020: ptest(2^50-27,4,5) == 1
+2021: ptest(2^50+55,4,5) == 1
+2022: ptest(2^32+1,10) == 0
+2023: lfactor(1001,100) == 7
+2024: lfactor(1001,4) == 7
+2025: lfactor(1001,3) == 1
+2026: lfactor(127,10000) == 1
+2027: lfactor(2^19-1,10000) == 1
+2028: lfactor(2^31-1,10000) == 1
+2029: lfactor(2^32-5,10000) == 1
+2030: lfactor(2^38+7,50000) == 1
+2031: lfactor(1009^2,pix(1009)) == 1009
+2032: lfactor(1009^2,pix(1009)-1) == 1
+2033: lfactor(65519*65521,7000) == 65519
+2034: lfactor(65521^2,pix(65521)) == 65521
+2035: lfactor(65521^2,pix(65521)-1) == 1
+2036: lfactor(524309^6,100000) == 524309
+2037: Ending prime builtins test
+
+2100: Beginning lucas check test
+2101: lucas_chk(100,1) == 1
+2102: Ending lucas check test
+
+2200: Beginning new operator functionality test
+2201: (v = 3) = 4
+2202: v == 4
+2203: (v += 3) *= 4
+2204: v == 28
+2205: A == A2
+2206: matfill(B = A, 4)
+2207: A == A2
+2208: size(B) == 3
+2209: B[0] == 4
+2210: B[1] == 4
+2211: B[2] == 4
+2212: a = 3
+2213: ++(b = a)
+2214: a == 3
+2215: b == 4
+2216: ++++a
+2217: a == 5
+2218: (++a)++ == 6
+2219: a == 7
+2220: (++a) *= b
+2221: a == 32
+2222: b == 4
+2223: ++(a*=b) == 129
+2224: a == 129
+2225: b == 4
+2226: (a = (--a / b++))-- == 32
+2227: a == 31
+2228: b == 5
+2229: (++++a / ----b) == 11
+2230: a == 33
+2231: b == 3
+2232: (a/=(--a/++b))-- == 4
+2233: a == 3
+2234: b == 4
+2235: v = a----
+2236: v == 3
+2237: a == 1
+2238: a = ----v
+2239: a == 1
+2240: v == 1
+2241: v = a++++
+2242: a == 3
+2243: v == 1
+2244: a = ++++v
+2245: a == 3
+2246: v == 3
+2247: a = ----v----
+2248: a == 1
+2249: v == -1
+2250: v = ++++a++++
+2251: a == 5
+2252: v == 3
+2253: a = ++++v----
+2254: a == 5
+2255: v == 3
+2256: v = --++a--++
+2257: a == 5
+2258: v == 5
+2259: a = -++v
+2260: a == -6
+2261: v == 6
+2262: Ending new operator functionality test
+
+2300: Beginning object increment/decrement test
+2301: A = mkmat(1,2,3)
+2302: ckmat(A,1,2,3) == 1
+2303: B = A++
+2304: ckmat(B,1,2,3) == 1
+2305: ckmat(A,2,3,4) == 1
+2306: B = A--
+2307: ckmat(A,1,2,3) == 1
+2308: ckmat(B,2,3,4) == 1
+2309: B = ++A
+2310: ckmat(A,2,3,4) == 1
+2311: ckmat(B,2,3,4) == 1
+2312: B = --A
+2313: ckmat(A,1,2,3) == 1
+2314: ckmat(B,1,2,3) == 1
+2315: n = 1
+2316: n + n + n + n++ == 4
+2317: n == 2
+2318: n = 1
+2319: n + n + n++ == 3
+2320: n == 2
+2321: n = 1
+2322: n + n++ == 3
+2323: n == 2
+2315: Ending object increment/decrement test
+
+2400: Beginning config rounding mode test
+2401: mode = 0
+2402: appr(-5.44,0.1,mode) == -5.5
+2403: appr(5.44,0.1,mode) == 5.4
+2404: appr(5.7,1,mode) == 5
+2405: appr(-5.7,1,mode) == -6
+2406: appr(-5.44,-0.1,mode) == -5.4
+2407: appr(5.44,-0.1,mode) == 5.5
+2408: appr(5.7,-1,mode) == 6
+2409: appr(-5.7,-1,mode) == -5
+2410: mode = 1
+2411: appr(-5.44,0.1,mode) == -5.4
+2412: appr(5.44,0.1,mode) == 5.5
+2413: appr(5.7,1,mode) == 6
+2414: appr(-5.7,1,mode) == -5
+2415: appr(-5.44,-0.1,mode) == -5.5
+2416: appr(5.44,-0.1,mode) == 5.4
+2417: appr(5.7,-1,mode) == 5
+2418: appr(-5.7,-1,mode) == -6
+2419: mode = 2
+2420: appr(-5.44,0.1,mode) == -5.4
+2421: appr(5.44,0.1,mode) == 5.4
+2422: appr(5.7,1,mode) == 5
+2423: appr(-5.7,1,mode) == -5
+2424: mode = 3
+2425: appr(-5.44,0.1,mode) == -5.5
+2426: appr(5.44,0.1,mode) == 5.5
+2427: appr(5.7,1,mode) == 6
+2428: appr(-5.7,1,mode) == -6
+2429: mode = 4
+2430: appr(-5.44,0.1,mode) == -5.5
+2431: appr(5.44,0.1,mode) == 5.4
+2432: appr(5.7,1,mode) == 5
+2433: appr(-5.7,1,mode) == -6
+2434: mode = 5
+2435: appr(-5.44,0.1,mode) == -5.4
+2436: appr(5.44,0.1,mode) == 5.5
+2437: appr(5.7,1,mode) == 6
+2438: appr(-5.7,1,mode) == -5
+2439: mode = 6
+2440: appr(-5.44,0.1,mode) == -5.4
+2441: appr(5.44,0.1,mode) == 5.4
+2442: appr(5.7,1,mode) == 5
+2443: appr(-5.7,1,mode) == -5
+2444: appr(-5.44,-0.1,mode) == -5.5
+2445: appr(5.44,-0.1,mode) == 5.5
+2446: appr(5.7,-1,mode) == 6
+2447: appr(-5.7,-1,mode) == -6
+2448: mode = 7
+2449: appr(-5.44,0.1,mode) == -5.5
+2450: appr(5.44,0.1,mode) == 5.5
+2451: appr(5.7,1,mode) == 6
+2452: appr(-5.7,1,mode) == -6
+2453: appr(-5.44,-0.1,mode) == -5.4
+2454: appr(5.44,-0.1,mode) == 5.4
+2455: appr(5.7,-1,mode) == 5
+2456: appr(-5.7,-1,mode) == -5
+2457: mode = 8
+2458: appr(-5.44,0.1,mode) == -5.4
+2459: appr(5.44,0.1,mode) == 5.4
+2460: appr(5.7,1,mode) == 6
+2461: appr(-5.7,1,mode) == -6
+2462: mode = 9
+2463: appr(-5.44,0.1,mode) == -5.5
+2464: appr(5.44,0.1,mode) == 5.5
+2465: appr(5.7,1,mode) == 5
+2466: appr(-5.7,1,mode) == -5
+2467: mode = 10
+2468: appr(-5.44,0.1,mode) == -5.5
+2469: appr(5.44,0.1,mode) == 5.4
+2470: appr(5.7,1,mode) == 6
+2471: appr(-5.7,1,mode) == -5
+2472: appr(-5.44,-0.1,mode) == -5.4
+2473: appr(5.44,-0.1,mode) == 5.5
+2474: appr(5.7,-1,mode) == 5
+2475: appr(-5.7,-1,mode) == -6
+2476: mode = 11
+2477: appr(-5.44,0.1,mode) == -5.4
+2478: appr(5.44,0.1,mode) == 5.5
+2479: appr(5.7,1,mode) == 5
+2480: appr(-5.7,1,mode) == -6
+2481: appr(-5.44,-0.1,mode) == -5.5
+2482: appr(5.44,-0.1,mode) == 5.4
+2483: appr(5.7,-1,mode) == 6
+2484: appr(-5.7,-1,mode) == -5
+2485: mode = 12
+2486: appr(-5.44,0.1,mode) == -5.4
+2487: appr(5.44,0.1,mode) == 5.4
+2488: appr(5.7,1,mode) == 6
+2489: appr(-5.7,1,mode) == -6
+2490: appr(-5.44,-0.1,mode) == -5.5
+2491: appr(5.44,-0.1,mode) == 5.5
+2492: appr(5.7,-1,mode) == 5
+2493: appr(-5.7,-1,mode) == -5
+2494: mode = 13
+2495: appr(-5.44,0.1,mode) == -5.5
+2496: appr(5.44,0.1,mode) == 5.5
+2497: appr(5.7,1,mode) == 5
+2498: appr(-5.7,1,mode) == -5
+2499: appr(-5.44,-0.1,mode) == -5.4
+2500: appr(5.44,-0.1,mode) == 5.4
+2501: appr(5.7,-1,mode) == 6
+2502: appr(-5.7,-1,mode) == -6
+2503: mode = 14
+2504: appr(-5.44,0.1,mode) == -5.5
+2505: appr(5.44,0.1,mode) == 5.4
+2506: appr(5.7,1,mode) == 6
+2507: appr(-5.7,1,mode) == -5
+2508: appr(-5.44,-0.1,mode) == -5.5
+2509: appr(5.44,-0.1,mode) == 5.4
+2510: appr(5.7,-1,mode) == 6
+2511: appr(-5.7,-1,mode) == -5
+2512: mode = 15
+2513: appr(-5.44,0.1,mode) == -5.4
+2514: appr(5.44,0.1,mode) == 5.5
+2515: appr(5.7,1,mode) == 5
+2516: appr(-5.7,1,mode) == -6
+2517: appr(-5.44,-0.1,mode) == -5.4
+2518: appr(5.44,-0.1,mode) == 5.5
+2519: appr(5.7,-1,mode) == 5
+2520: appr(-5.7,-1,mode) == -6
+2521: Ending config rounding mode test
+
+2600: Beginning extensive numeric function test
+2601: i = config("sqrt")
+2602: mult: no errors
+2603: appr: no errors
+2604: exp: no errors
+2605: ln: no errors
+2606: power: no errors
+2607: gcd: no errors
+2608: sqrt0: no errors
+2609: sqrt1: no errors
+2610: sqrt2: no errors
+2611: sqrt3: no errors
+2612: sqrt4: no errors
+2613: sqrt5: no errors
+2614: sqrt6: no errors
+2615: sqrt7: no errors
+2616: sqrt8: no errors
+2617: sqrt9: no errors
+2618: sqrt10: no errors
+2619: sqrt11: no errors
+2620: sqrt12: no errors
+2621: sqrt13: no errors
+2622: sqrt14: no errors
+2623: sqrt15: no errors
+2624: sqrt16: no errors
+2625: sqrt17: no errors
+2626: sqrt18: no errors
+2627: sqrt19: no errors
+2628: sqrt20: no errors
+2629: sqrt21: no errors
+2630: sqrt22: no errors
+2631: sqrt23: no errors
+2632: sqrt24: no errors
+2633: sqrt25: no errors
+2634: sqrt26: no errors
+2635: sqrt27: no errors
+2636: sqrt28: no errors
+2637: sqrt29: no errors
+2638: sqrt30: no errors
+2639: sqrt31: no errors
+2640: i = config("sqrt", i)
+2641: i = epsilon(1e-100),;
+2642: ln(exp(6)) == 6
+2643: ln(exp(4)^4) == 16
+2644: ln(exp(6.5)^8) == 52
+2645: ln(exp(5)^16) == 80
+2646: ln(exp(4.5)^4) == 18
+2647: ln(exp(4)^8) == 32
+2648: ln(exp(60/11)^11) == 60
+2649: ln(exp(6)^11) == 90
+2650: ln(exp(80/17)^17) == 80
+2651: ln(exp(6)^15) == 90
+2652: ln(exp(5)^18) == 90
+2653: epsilon(i),;
+2654: Ending extensive numeric function test
+
+2700: Beginning complex sqrt test
+2701: complex sqrt0: no errors
+2702: complex sqrt1: no errors
+2703: complex sqrt2: no errors
+2704: complex sqrt3: no errors
+2705: complex sqrt4: no errors
+2706: complex sqrt5: no errors
+2707: complex sqrt6: no errors
+2708: complex sqrt7: no errors
+2709: complex sqrt8: no errors
+2710: complex sqrt9: no errors
+2711: complex sqrt10: no errors
+2712: complex sqrt11: no errors
+2713: complex sqrt12: no errors
+2714: complex sqrt13: no errors
+2715: complex sqrt14: no errors
+2716: complex sqrt15: no errors
+2717: complex sqrt16: no errors
+2718: complex sqrt17: no errors
+2719: complex sqrt18: no errors
+2720: complex sqrt19: no errors
+2721: complex sqrt20: no errors
+2722: complex sqrt21: no errors
+2723: complex sqrt22: no errors
+2724: complex sqrt23: no errors
+2725: complex sqrt24: no errors
+2726: complex sqrt25: no errors
+2727: complex sqrt26: no errors
+2728: complex sqrt27: no errors
+2729: complex sqrt28: no errors
+2730: complex sqrt29: no errors
+2731: complex sqrt30: no errors
+2732: complex sqrt31: no errors
+2733: Ending complex sqrt test
+
+2800: Beginning test_matrix
+2801: b[0,0] == 0
+2802: b[0,1] == 0
+2803: b[0,2] == 0
+2804: b[0,3] == 1
+2805: b[1,0] == 1
+2806: b[1,1] == 0
+2807: b[1,2] == 0
+2808: b[1,3] == 0
+2809: b[2,0] == 1
+2810: b[2,1] == 1
+2811: b[2,2] == 1
+2812: b[2,3] == 1
+2813: b[3,0] == 1
+2814: b[3,1] == 2
+2815: b[3,2] == 4
+2816: b[3,3] == 8
+2817: det(b) == -2
+2818: binv[0,0] == 0
+2819: binv[0,1] == 1
+2820: binv[0,2] == 0
+2821: binv[0,3] == 0
+2822: binv[1,0] == 2
+2823: binv[1,1] == -3/2
+2824: binv[1,2] == 2
+2825: binv[1,3] == -1/2
+2826: binv[2,0] == -3
+2827: binv[2,1] == 1/2
+2828: binv[2,2] == -1
+2829: binv[2,3] == 1/2
+2830: binv[3,0] == 1
+2831: binv[3,1] == 0
+2832: binv[3,2] == 0
+2833: binv[3,3] == 0
+2834: inverse(b) == binv
+2835: avg(b) == b
+2836: avg(binv) == binv
+2837: (b+binv)/2 == avg(b,binv)
+2838: ismat(b) == 1
+2839: matsum(b) == 21
+2840: matsum(binv) == 1
+2841: c[0] == 1
+2842: c[1] == 2+3i
+2843: c[2] == -5+4i
+2844: c[3] == 6+5i
+2845: c[4] == -7i
+2846: matsum(c) == 4+5i
+2847: matdim(b) == 2
+2848: matdim(c) == 1
+2849: matdim(c) == 4
+2850: matmax(c,1) == 4
+2851: matmin(c,1) == 0
+2852: matmin(d,1) == -1
+2853: matmin(d,3) == -3
+2854: matmin(d,1) == 1
+2855: matmin(d,3) == 3
+2856: size(binv) == 16
+2857: size(c) == 5
+2858: size(d) == 945
+2859: size(e) == 25
+2860: matfill(d,1)
+2861: matsum(d) == 945
+2862: matfill(e,1,0)
+2863: matsum(d) == 945
+2864: matsum(e) == 20
+2865: search(binv,1) == 1
+2866: search(binv,2) == 4
+2867: search(binv,2,4) == 4
+2868: search(binv,2,5) == 6
+2869: rsearch(binv,2) == 6
+2870: rsearch(binv,2,6) == 6
+2871: rsearch(binv,2,5) == 4
+2872: A[0] == 1
+2873: A[1] == 2
+2874: A[0] = A
+2875: B = A[0]
+2876: B[0] == 1
+2877: B[1] == 2
+2878: mat_D = mat_C[0]
+2879: mat_D[0] == 1
+2880: mat_D[1] == 2
+2881: quomod(15.6,5.2,M[0],M[1]) == 0
+2882: M[0] == 3
+2883: M[1] == 0
+2884: isident(id0) == 1
+2885: isident(id1) == 1
+2886: isident(noid0) == 0
+2887: isident(noid1) == 0
+2888: isident(noid2) == 0
+2889: xp[0] == 2
+2890: xp[1] == 3
+2891: xp[2] == 4
+2892: yp[0] == 3
+2893: yp[1] == 4
+2894: yp[2] == 5
+2895: zp[0] == -1
+2896: zp[1] == 2
+2897: zp[2] == -1
+2898: cp(xp,yp) == zp
+2899: cp(yp,xp) == -zp
+2900: matfill(zero3,0)
+2901: cp(xp,xp) == zero3
+2902: dp(xp,yp) == 38
+2903: dp(yp,xp) == 38
+2904: dp(zp,dp(xp,yp)*zp) == 228
+2905: ssq(X, Y, X + Y) == Z
+2906: mod(x,10,0) == y0
+2907: mod(x,10,1) == y1
+2908: mod(x,10,2) == y0
+2909: mod(x,10,3) == y1
+2910: mod(x,10,4) == y0
+2911: mod(x,10,5) == y1
+2912: mod(x,10,6) == y0
+2913: mod(x,10,7) == y1
+2914: mod(x,10,8) == y2
+2915: mod(x,10,9) == y3
+2916: mod(x,10,10) == y2
+2917: mod(x,10,11) == y3
+2918: mod(x,10,12) == y2
+2919: mod(x,10,13) == y3
+2920: mod(x,10,14) == y2
+2921: mod(x,10,15) == y3
+2922: mod(x,10,16) == y4
+2923: mod(x,10,16) == y4
+2924: mod(x,10,18) == y4
+2925: mod(x,10,18) == y4
+2926: mod(x,10,20) == y4
+2927: mod(x,10,21) == y4
+2928: mod(x,10,22) == y4
+2929: mod(x,10,23) == y4
+2930: mod(x,10,24) == y4
+2931: mod(x,10,25) == y4
+2932: mod(x,10,26) == y4
+2933: mod(x,10,27) == y4
+2934: mod(x,10,28) == y4
+2935: mod(x,10,29) == y4
+2936: mod(x,10,30) == y4
+2937: mod(x,10,31) == y4
+2938: Ending mat_functions
+
+3000: Beginning test_strings
+3001: x = 'string'
+3002: y = "string"
+3003: z = x
+3004: z == "string"
+3005: z != "foo"
+3006: z != 3
+3007: '' == ""
+3008: "a" == "a"
+3009: "c" != "d"
+3010: "" != "a"
+3011: "rs" < "rt"
+3012: "rs < "ss"
+3013: "rs" <= "rs"
+3014: "rs" <= "tu"
+3015: "rs" > "cd"
+3016: "rs" >= "rs"
+3017: "rs" >= "cd"
+3018: "abc" > "ab"
+3019: Ending test_strings
+
+3100: Beginning test_matobj
+3101: det(A) == -78
+3102: det(A^2) == 6084
+3103: det(A^3) == -474552
+3104: det(A^-1) == -1/78
+3105: md = 0
+3106: B[0,0] = res(2)
+3107: B[0,1] = res(3)
+3108: B[1,0] = res(5)
+3109: B[1,1] = res(7)
+3110: md = 0
+3111: det(B) == res(-1)
+3112: md = 1
+3113: det(B) == 0
+3114: md = 2
+3115: det(B) == res(1)
+3116: md = 3
+3117: det(B) == res(2)
+3118: md = 4
+3119: det(B) == res(3)
+3120: md = 5
+3121: det(B) == res(4)
+3122: md = 6
+3123: det(B) == res(5)
+3124: md = 7
+3125: det(B) == res(6)
+3126: md = 8
+3127: det(B) == res(7)
+3128: md = 9
+3129: det(B) == res(8)
+3130: md = 10
+3131: det(B) == res(9)
+3132: md = 11
+3133: det(B) == res(10)
+3134: md = 12
+3135: det(B) == res(11)
+3136: md = 13
+3137: det(B) == res(12)
+3138: md = 14
+3139: det(B) == res(13)
+3140: md = 15
+3141: det(B) == res(14)
+3142: Ending test_matobj
+
+3200: Beginning test_matobj
+3201: poly(2,3,5,2) == 19
+3202: poly(list(5,3,2),2) == 19
+3203: poly(list(5,3,2)) == 5
+3204: poly(2) == 2
+3205: poly(list(5,3,2),2,3) == 19
+3206: poly(list()) == 0
+3207: poly(list(),2,3) == 0
+3208: poly(list(list(5,3,2)),7,2) == 19
+3209: poly(list(list(1,2,3),list(4,5),6),7) == 323
+3210: poly(list(list(1,2,3),list(4,5),6),7,8) == 811
+3211: poly(list(list(1,2,3),list(4,5),6),7,8,9)==811
+3212: poly(list(5,3,2), list() == 5
+3213: poly(list(5,3,2), list(2)) == 19
+3214: poly(list(5,3,2), list(2,3)) == 19
+3215: poly(list(list(list(0,0,0,0,0,1))),2,3,4)==4^5
+3216: poly(list(list(list(0,0,0,0,0,1))),2,list(3,4))==4^5
+3217: Ending test_poly
+
+3300: Beginning test_det
+3301: testi(0): no errors
+3302: testi(1): no errors
+3303: testi(2): no errors
+3304: testi(3): no errors
+3305: testi(4): no errors
+3306: testi(5): no errors
+3307: testi(6): no errors
+3308: testi(7): no errors
+3309: testi(8): no errors
+3310: testi(9): no errors
+3311: testi(10): no errors
+3312: testi(11): no errors
+3313: testi(12): no errors
+3314: testi(13): no errors
+3315: testi(14): no errors
+3316: testi(15): no errors
+3317: testi(16): no errors
+3318: testi(17): no errors
+3319: testi(18): no errors
+3320: testr(0): no errors
+3321: testr(1): no errors
+3322: testr(2): no errors
+3323: testr(3): no errors
+3324: testr(4): no errors
+3325: testr(5): no errors
+3326: testr(6): no errors
+3327: testr(7): no errors
+3328: testr(8): no errors
+3329: Ending test_det
+
+3400: Beginning test_trig
+3401: acot(cot(x)): no errors
+3402: tan(x/2)-csc(x)+cot(x): no errors
+3403: tan(x)-cot(x)+2*cot(2*x): no errors
+3404: cot(x/2)-csc(x)-cot(x): no errors
+3405: atan(tan(x)): no errors
+3406: sec(x)-sec(x+2*N*pi): no errors
+3407: Ending test_trig
+
+3500: Beginning test_frem
+3501: frem/fcnt: no errors
+3502: gcdrem: no errors
+3503: gcdrem #2: no errors
+3504: Ending test_frem
+
+3600: Beginning test_error
+3601: ecnt += 148
+3602: strx = "x"
+3603: e99 = error(99)
+3604: 1/0 == error(10001)
+3605: 0/0 == error(10002)
+3606: 2 + "x" == error(10003)
+3607: "x" - 2 == error(10004)
+3608: "x" * "y" == error(10005)
+3609: "x" / "y" == error(10006)
+3610: -list(1) == error(10007)
+3611: "x"^2 == error(10008)
+3612: inverse("x") == error(10009)
+3613: ++strx == error(10010)
+3614: strx == error(10010)
+3615: strx = "x"
+3616: strx++ == "x"
+3617: strx == error(10010)
+3618: strx = "x"
+3619: strx == error(10011)
+3620: int("x") == error(10012)
+3621: frac("x") == error(10013)
+3622: conj("x") == error(10014)
+3623: appr("x",.1) == error(10015)
+3624: appr(1.27,.1i) == error(10016)
+3625: appr(1.27,.1,.1) == error(10017)
+3626: round("x") == error(10018)
+3627: round(1.25,.1) == error(10019)
+3628: round(1.25,"x") == error(10019)
+3629: round(1.25,1,.1) == error(10020)
+3630: bround("x") == error(10021)
+3631: bround(1.25,.1) == error(10022)
+3632: bround(1.25,"x") == error(10022)
+3633: bround(1.25,1,.1) == error(10023)
+3634: sqrt("x") == error(10024)
+3635: sqrt(2,"x") == error(10025)
+3636: sqrt(2,0) == error(10025)
+3637: sqrt(2,.1,.1) == error(10026)
+3638: root("x",3) == error(10027)
+3639: root(3,"x") == error(10028)
+3640: root(3,-2) == error(10028)
+3641: root(3,0) == error(10028)
+3642: root(3,.1) == error(10028)
+3643: root(3,2,"x") == error(10029)
+3644: root(3,2,0) == error(10029)
+3645: norm("x") == error(10030)
+3646: list() << 2 == error(10031)
+3647: 1.5 << 2 == error(10031)
+3648: 3 << "x" == error(10032)
+3649: 3 << 1.5 == error(10032)
+3650: 3 << 2^31 == error(10032)
+3651: scale("x",2) == error(10033)
+3652: scale(3,"x") == error(10034)
+3653: scale(3,1.5) == error(10034)
+3654: scale(3,2^31) == error(10034)
+3655: "x" ^ 3 == error(10035)
+3656: 2 ^ "x" == error(10036)
+3657: 2 ^ 2.5 == error(10036)
+3658: power("x",2.1) == error(10037)
+3659: power(2,"x") == error(10038)
+3660: power(2,2.1,"x") == error(10039)
+3661: quo("x",3) == error(10040)
+3662: quo(8,"x") == error(10041)
+3663: quo(8,3,"x") == error(10042)
+3664: quo(8,3,2.1) == error(10042)
+3665: mod("x",3) == error(10043)
+3666: mod(8,"x") == error(10044)
+3667: mod(8,3,"x") == error(10045)
+3668: mod(8,3,2.1) == error(10045)
+3669: sgn("x") == error(10046)
+3670: abs("x") == error(10047)
+3671: abs(2+3i,"x") == error(10048)
+3672: abs(2+3i,0) == error(10048)
+3673: list1 = list(2,3,"x",4,5)
+3674: avg(list1) == error(10003)
+3675: iserror(e99) == 99
+3676: e99 + 2 == e99
+3677: e99 - 2 == e99
+3678: e99 * 2 == e99
+3679: e99 / 2 == e99
+3680: e99 // 2 == e99
+3681: e99 % 2 == e99
+3682: e99 ^ 2 == e99
+3683: 2 + e99 == e99
+3684: 2 - e99 == e99
+3685: 2 * e99 == e99
+3686: 2 / e99 == e99
+3687: 2 // e99 == e99
+3688: 2 % e99 == e99
+3689: 2 ^ e99 == e99
+3690: -e99 == e99
+3691: inverse(e99) == e99
+3692: ++e99 == e99
+3693: --e99 == e99
+3694: int(e99) == e99
+3695: frac(e99) == e99
+3696: conj(e99) == e99
+3697: norm(e99) == e99
+3698: sgn(e99) == e99
+3699: appr(e99,1,0) == e99
+3700: round(e99) == e99
+3701: bround(e99) == e99
+3702: sqrt(e99) == e99
+3703: a = newerror("alpha")
+3704: b = newerror("beta")
+3705: c = newerror("alpha")
+3706: a == c
+3707: strerror(a) == "alpha"
+3708: n = iserror(a)
+3709: a == error(n)
+3710: newerror() == newerror("???")
+3711: newerror("") == newerror()
+3712: e9999 = error(9999)
+3713: errno() == 9999
+3714: error() == e9999
+3716: x = newerror("Alpha")
+3717: n = iserror(x)
+3718: errno() == n
+3719: error() == x
+3720: strerror() == "Alpha"
+3721: errno() == n
+3722: errno() == 9999
+3723: error() == e9999
+3725: a = 1/0
+3726: strerror() == "Division by zero"
+3727: n = 8191
+3729: errcount() == ecnt
+3730: Ending test_error
+
+3800: Beginning test_param
+3801: u = 5
+3802: v = 10
+3803: g_param(u, `v) == 5
+3804: u == 5
+3805: v == 5
+3806: h_param(`u, `v) == 5
+3807: u == 6
+3808: v == 4
+3809: Ending test_param
+
+3900: Beginning test_noarg
+3901: A = list(1,,3)
+3902: A[[0]] == 1
+3903: isnull(A[[1]])
+3904: A[[2]] == 3
+3905: size(A) == 3
+3906: B = list(,,)
+3907: isnull(B[[0]])
+3908: isnull(B[[1]])
+3909: isnull(B[[2]])
+3910: size(B) == 3
+3911: mat C[] = {,,}
+3912: C[0] == 0
+3913: C[1] == 0
+3914: C[2] == 0
+3915: size(C) == 3
+3916: mat D[] = { }
+3917: D[0] == 0
+3918: size(D) == 1
+3919: Ending test_noarg
+
+4000: Beginning test_ptest
+4001: ptimes(1,250): 250 probable primes: passed
+4002: ptimes(3,50): 50 probable primes: passed
+4003: ptimes(5,20): 20 probable primes: passed
+4004: ctimes(1,7500): 7500 probable primes: passed
+4005: ctimes(3,500): 500 probable primes: passed
+4006: ctimes(5,200): 200 probable primes: passed
+4007: crtimes(2^30,2^31,2500): 2500 probable primes: passed
+4008: crtimes(2^300,2^301,75): 75 probable primes: passed
+4009: testprevcand(1,250): 250 successful tests
+4010: testprevcand(3,25): 25 successful tests
+4011: testprevcand(5,10): 10 successful tests
+4012: testnextcand(1,250): 250 successful tests
+4013: testnextcand(3,25): 25 successful tests
+4014: testnextcand(5,10): 10 successful tests
+4015: Ending test_ptest
+
+4100: Beginning test_redc
+4101: testall(10,,500): passed 10 tests
+4102: testall(200): passed 200 tests
+4103: times(3,3000): no error(s)
+4104: times(30,300): no error(s)
+4105: times(300,30): no error(s)
+4106: times(1000,3): no error(s)
+4107: powtimes(100): passed
+4108: powtimes(250): passed
+4109: inittimes(10): 1311 successful tests: passed
+4110: inittimes(100,70): 70 successful tests: passed
+4111: inittimes(1000,4): 4 successful tests: passed
+4112: Ending test_redc
+
+4200: Beginning test_fileops
+4201: x = rm("-f", "junk4200")
+4202: !iserror(f = fopen("junk4200", "w+"))
+4203: !iserror(fputs(f, LCN))
+4204: isnull(rewind(f))
+4205: fgetfield(f) == L
+4206: fgetfield(f) == C
+4207: fgetfield(f) == N
+4208: isnull(fgetfield(f))
+4209: isnull(rewind(f))
+4210: fgetline(f) == L
+4211: fgetline(f) == C
+4212: fgetline(f) == N
+4213: isnull(fgetline(f))
+4214: isnull(rewind(f))
+4215: fgets(f) == strcat(L,"\n")
+4216: fgets(f) == strcat(C,"\n")
+4217: fgets(f) == strcat(N,"\n")
+4218: isnull(fgets(f))
+4219: isnull(rewind(f))
+4220: fgetstr(f) == LCN
+4221: isnull(fclose(f))
+4222: isnull(fclose(f))
+4223: !iserror(f)
+4224: isnulll(fputstr(f, L, C, N))
+4225: isnull(rewind(f))
+4226: fgetstr(f) == L
+4227: fgetstr(f) == C
+4228: fgetstr(f) == N
+4229: isnull(fgetstr(f))
+4230: n = ftell(f)
+4231: isnull(fputs(f,L,"\n",C,"\n",N,"\n"))
+4232: fseek(f, n)
+4233: fgetstr(f) == LCN
+4234: isnull(fclose(f))
+4235: a = exp(27, 1e-1000)
+4236: b = sqrt(7 + 5i, 1e-2000)
+4237: c = config("display", 1000)
+4238: !iserror(f=fopen("junk4200","w+"))
+4239: !iserror(fprintf(f, "%f\n\tand\n\t%r",a,b))
+4240: isnull(rewind(f))
+4241: fscanf(f,"%f and %r",x,y)==2
+4242: x == a && y == b
+4243: !iserror(freopen(f, "w+"))
+4244: L = "Landon\n"
+4245: C = "	Curt\n"
+4246: N = "\t\tNoll\n"
+4247: isnull(fputs(f, L, "|", C, "[", N, "]" ))
+4248: isnull(rewind(f))
+4249: fscanf(f, "%[^|]%*c%[^[]%*c%[^]]", x,y,z) == 3
+4250: x == L && y == C && z == N
+4251: isnull(rewind(f))
+4252: fscanf(f, "%*[^|]%*c%n%*[^[]%*c%n", m, n) == 2
+4253: fseek(f, m)
+4254: fscanf(f, "%3c", x) == 1
+4255: x == "	Cu"
+4256: fseek(f, n)
+4257: fscanf(f, "%s", y) == 1
+4258: y == "Noll"
+4259: isnull(fclose(f))
+4260: x = rm("junk4200")
+4261: Ending test_fileops
+
+4300: Beginning test_matdcl
+4301: size(mat_X0) == 4
+4302: size(mat_X1) == 2
+4303: size(mat_X2) == 2
+4304: size(mat_X3) == 3
+4305: ismat(mat_X0)
+4306: ismat(mat_X1)
+4307: ismat(mat_X2)
+4308: ismat(mat_X3)
+4309: mat_Y0 = mat[4]
+4310: size(mat_Y0) == 4
+4311: size(mat_Y1) == 2
+4312: size(mat_Y2) == 2
+4313: size(mat_Y3) == 3
+4314: ismat(mat_Y0)
+4315: ismat(mat_Y1)
+4316: ismat(mat_Y2)
+4317: ismat(mat_Y3)
+4318: size(mat_Z0) == 2
+4319: size(mat_Z1) == 2
+4320: ismat(mat_Z0)
+4321: ismat(mat_Z1)
+4322: mat_Z0 == mat_Z1
+4323: mat_Z0 == (mat[2] = {1,2})
+4324: mat_Z0[0] == 1
+4325: mat_Z0[1] == 2
+4326: mat_Z1 = {,3}
+4327: mat_Z0 != mat_Z1
+4328: mat_Z1[0] == 1
+4329: mat_Z1[1] == 3
+4330: mat_X3 = {2,3,5}
+4331: mat_X3 += {3,4,5}
+4332: mat_X3[0] == 5
+4333: mat_X3[1] == 7
+4334: mat_X3[2] == 10
+4335: mat_Y3 = mat_X3
+4336: mat_Y3 -= {0,1,}
+4337: mat_Y3[0] == 0
+4338: mat_Y3[1] == 6
+4339: mat_Y3[2] == 8
+4340: ecnt += 2
+4341: mat_Y3 += 2
+4342: mat_Y3 == error(10003)
+4343: errcount() == ecnt
+4344: mat_Z0 += { }
+4345: mat_Z0[0] == 2
+4346: mat_Z0[1] == 4
+4347: mat_Y0 = {mat_Z0, ,mat_Z1, mat_X3}
+4348: size(mat_Y0) == 4
+4349: for (i=0; i < 4; ++i) mat_X0[i] = size(mat_Y0[i])
+4350: mat_X0==(mat[4]={2,1,2,3})
+4351: mat_Y0[0] == mat_Z0
+4352: mat_Y0[1] == 0
+4353: mat_Y0[2] == mat_Z1
+4354: mat_Y0[3] == mat_X3
+4355: mat_Y0[0][0] == 2
+4356: mat_Y0[0][1] == 4
+4357: mat_Y0[2][0] == 1
+4358: mat_Y0[2][1] == 3
+4359: mat_Y0[3][0] == 5
+4360: mat_Y0[3][1] == 7
+4361: mat_Y0[3][2] == 10
+4362: M0 = {(mat[2]={5,17}), ...}
+4363: M1 = {(mat[2]={5,3}), ...}
+4364: M2 = M0+M1
+4365: M2[0,0]==(mat[2]={10,20})
+4366: M2[0,1]==(mat[2]={5,9})
+4367: M2[1,0]==(mat[2]={3,20})
+4368: M2[1,1]==(mat[2]={4,4})
+4369: Ending test_matdcl
+
+4400: Beginning test_objmat
+4401: surd_type == -1
+4402: P = {M0,M1}
+4403: P == surd(M0,M1)
+4404: P != surd(M1,M0)
+4405: conj(P)==surd(M0,-M1)
+4406: Q = surd_value(P)
+4407: ismat(Q)
+4408: Q == (mat[2]={5+3i,17+4i})
+4409: R = {M2,M3}
+4410: norm(R) == M4
+4411: det(surd_value(R^2)) == -23-6i
+4412: det(norm(R^5))==268107761663283843865
+4413: S = {M2+M3, M2-M3}
+4414: T = {M2+3*M3, 5*M2-M3}
+4415: U = {(M4 -= {50,80,110,180}), M4+M2}
+4416: det(surd_value(R*S*T*U)) == 480-15040i
+4417: det(surd_value(R*S+T*U)) == 78+514i
+4418: V = norm(det(surd_value(R^5+S^5+T^5+U^5)))
+4419: V == 41952632964892462488299378
+4420: V = norm(det(surd_value(R^5-S^5+T^5-U^5)))
+4421: V == 40891924356202870926321650
+4422: (mat [3] = {2,3,5})+(mat[3] = {7,11,13}) == (mat[3]={9,14,18})
+4423: (mat [2,2] = {2,3,5,7})^2 == (mat[2,2] = {19, 27, 45, 64})
+4424: (mat [] = {1,2,3}) == (mat[3] = {1,2,3})
+4425: mat A[3] = {2,3,5}
+4426: mat A[3] = {A[0], A[2], A[1]}
+4427: A == (mat[3] = {2, 5, 3})
+4428: B = mat[3] = {2,5,3}
+4429: A == B
+4430: mat A[2] = {A[1], A[2]}
+4431: A == (mat[2] = {5, 3})
+4432: A = B
+4433: A = {A[0], A[2], A[1]}
+4434: A == (mat[3] = {2, 3, 3})
+4435: A = mat[3] = {1,2} = {,3,4}
+4436: A == (mat[3] = {1,3,4})
+4437: mat A[4] = {1,2,3,4}
+4438: A = {,5,,6}
+4439: A == (mat[4] = {1,5,3,6})
+4440: A = {7}
+4441: A == (mat[4] = {7,5,3,6})
+4442: mat M[2]
+4443: mat A, B, C [3] = {M, M, M}
+4444: A = {{2, 3}, {5, 7}, {11, 13}}
+4445: B = {{1, 2}, {3, 4}, {5, 6}}
+4446: C = {{3, 5}, {8, 11}, {16, 19}}
+4447: A + B == C
+4448: mat A[2][3]
+4449: A = {{1, 2, 3}, {4, 5, 6}}
+4450: A[0][1] == 2
+4451: A[1,0] == 4
+4452: B = mat[2][3] = {{1, 2, 3}, {4, 5, 6}}
+4453: A == B
+4454: mat A[2][3] = {{1, 2, 3}, {4, 5, 6}}
+4455: A == B
+4456: mat A[2][3] = {{1,2,3},4}
+4457: A[0] == (mat[3] = {1,2,3})
+4458: A[1] == 4
+4459: A += {{3,5,7}, 11}
+4460: A[0] == (mat[3]={4,7,10})
+4461: A[1] == 15
+4462: mat A[2,2][2,2]={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}}
+4463: B = A^2
+4464: B[0,0] == (mat[2,2] = {118, 132, 166, 188})
+4465: Ending test_objmat
+
+4500: reserved for future expansion of test_objmat
+
+4600: Beginning test_fileop
+4601: ttest(0,0): passed
+4602: stest(): passed
+4603: ttest(1,1): passed
+4604: stest(): passed
+4605: ttest(2,2): passed
+4606: stest(): passed
+4607: ttest(3,3): passed
+4608: stest(): passed
+4609: ttest(4,4): passed
+4610: stest(): passed
+4611: ttest(5,5): passed
+4612: stest(): passed
+4613: ttest(6,6): passed
+4614: stest(): passed
+4615: ttest(7,7): passed
+4616: stest(): passed
+4617: ttest(8,8): passed
+4618: stest(): passed
+4619: ttest(9,9): passed
+4620: stest(): passed
+4621: Ending test_fileop
+
+4700: Beginning test_charset
+4701: "\a" == char(7)
+4702: "\v" == char(11)
+4703: "\e" == char(27)
+4704: "\\" == char(92)
+4705: "\101" == "A"
+4706: "\123" == char(0123)
+4707: "\123\124" == "ST"
+4708: "\311" == char(201)
+4709: "\119" == "	9"
+4710: "\765" == "õ"
+4711: "\x61" == "a"
+4712: "\x73" == "s"
+4713: "\xea" == char(234)
+4714: "\x61\x62\x63" == "abc"
+4715: "\x8g" == "g"
+4716: eval('"\\\\"') == "\\"
+4717: Ending test_charset
+
+4800: Beginning test_strprintf
+4801: callcfg = config("all")
+4802: c = config("mode", "frac")
+4803: c = config("outround", 24)
+4804: c = config("display", 2)
+4805: c = config("tilde", 0)
+4806: c = config("leadzero", 0)
+4807: c = config("fullzero", 0)
+4808: strprintf("%d%d", 27, 29) == "2729"
+4809: strprintf("%5d%3d", 27, 29) == "   27 29"; 
+4810: strprintf("%-5d%-3d", 27, 29) == "27   29 "
+4811: strprintf("%f", 1.375) == "1.38"
+4812: strprintf("%f", 1.385) == "1.38"
+4813: strprintf("%f", .375) == ".38"
+4814: strprintf("%f", .385) == ".38"
+4815: c = config("tilde", 1)
+4816: strprintf("%f", 1.375) == "~1.38"
+4817: strprintf("%f", 27/29) == "~.93"
+4818: strprintf("%r", 27/29) == "27/29"
+4819: strprintf("%o", 27/29) == "033/035"
+4820: strprintf("%x", 27/29) == "0x1b/0x1d"
+4821: strprintf("%b", 27/29) == "0b11011/0b11101"
+4822: strprintf("%e", 12345) == "~1.23e4"
+4823: c = config("tilde", 0)
+4824: strprintf("%e", 12345) == "1.23e4"
+4825: strprintf("%.3e", 12345) == "1.234e4"
+4826: strprintf("%e", .00012345) == "1.23e-4"
+4827: strprintf("%d %d", 27) == "27 "
+4828: strprintf("%d", 27, 29) == "27"
+4829: strprintf("%r = %f", 27/29, 27/29) == "27/29 = .93"
+4830: strprintf("%s", "abc") == "abc"
+4831: strprintf("%f", "abc") == "abc"
+4832: strprintf("%e", "abc") == "abc"
+4833: strprintf("%5s", "abc") == "  abc"
+4834: strprintf("%-5s", "abc") == "abc	 "
+4835: c = config("all", callcfg)
+4836: Ending test_strprintf
+
+4900: Beginning test_listsearch
+4901: L = list()
+4902: isnull(search(L,1))
+4903: isnull(search(L,1))
+4904: L = list(0,1,2,3,0,1,2,3,0,1)
+4905: search(L,0) == 0
+4906: rsearch(L,0) == 8
+4907: search(L,0,2) == 4
+4908: rsearch(L,0,7) == 4
+4909: isnull(search(L,2,7))
+4910: isnull(rsearch(L,3,2))
+4911: isnull(search(L,0,1,4)
+4912: isnull(rsearch(L,0,1,4)
+4913: search(L,0,-5) == 8
+4914: rsearch(L,0,-9,-2) == 4
+4915: isnull(search(L,3,20)
+4916: isnull(search(L,3,0,-20)
+4917: isnull(rsearch(L,3,20,2)
+4918: rsearch(L,3,-20,20) == 7
+4919: Ending test_strprintf
+
+5000: Beginning test_filesearch
+5001: x = rm("-f", "junk5000")
+5002: f = fopen("junk5000", "w")
+5003: if (iserror(f)) { ... }
+5004: s = "alpha beta gamma "
+5005: fputs(f, s)
+5006: fflush(f)
+5007: test unused
+5008: ecnt += 16
+5009: search(f, 45) == error(10122)
+5010: search(f, "a", 1/2) == error(10123)
+5011: search(f, "a", 0, "b") == error(10124)
+5012: search(f, "a") == error(10126)
+5013: rsearch(f, 45) == error(10128)
+5014: rsearch(f, "a", "b") == error(10129)
+5015: rsearch(f, "a", 0, "b") == error(10130)
+5016: rsearch(f,"a",0) == error(10132)
+5017: errcount() == ecnt
+5018: if (freopen(f, "r")) { ... }
+5019: fsize(f) == 17
+5020: search(f, s, 0) == 0
+5021: ftell(f) == 17
+5022: rsearch(f, s, 0) == 0
+5023: ftell(f) == 16
+5024: search(f, "", 2) == 2
+5025: ftell(f) == 2
+5026: search(f, "", 17) == 17
+5027: ftell(f) == 17
+5028: isnull(search(f, "", 100))
+5029: ftell(f) == 17
+5030: rsearch(f, "", 5) == 5
+5031: ftell(f) == 5
+5032: search(f, "beta", 0) == 6
+5033: ftell(f) == 10
+5034: rsearch(f, "beta", 100) == 6
+5035: ftell(f) == 9
+5036: search(f, "a", 2) == 4
+5037: ftell(f) == 5
+5038: search(f, "a", 4) == 4
+5039: search(f, "m") == 13
+5040: search(f, "m") == 14
+5041: isnull(search(f, "m"))
+5042: rsearch(f, "m", 14) == 14
+5043: isnull(search(f, "beta", 7))
+5044: ftell(f) == 14
+5045: search(f,"a",2,15) == 4
+5046: ftell(f) == 5
+5047: isnull(search(f,"a",2,4))
+5048: ftell(f) == 4
+5049: search(f,"a",,5) == 4
+5050: rsearch(f,"a",2,15) == 12
+5051: ftell(f) == 12
+5052: rsearch(f,"a",2,12) == 9
+5053: ecnt += 2
+5054: a = 2 + ""
+5055: g = fopen(3, "r")
+5056: c = 5^2
+5057: errcount() == ecnt
+5058: ecnt += 4
+5059: a = newerror("alpha")
+5060: b = newerror("beta")
+5061: c = newerror("alpha")
+5062: d = newerror("beta")
+5063: errcount() == ecnt
+5064: a == c
+5065: b == d
+5066: error(0)
+5067: strerror() == "No error"
+5068: fclose(f)
+5069: rm("junk5000")
+5070: Ending test_filesearch
+
+5100: Beginning test_newdecl
+5101: test5100(1)
+5102: a5100 == 0
+5103: b5100 == 2
+5104: test5100(1)
+5105: a5100 == 0
+5106: b5100 == 3
+5107: test5100(1)
+5108: a5100 == 0
+5109: b5100 == 4
+5110: test5100(2)
+5111: a5100 == 3
+5112: b5100 == 4
+5113: test5100(2)
+5114: a5100 == 4
+5115: b5100 == 4
+5116: test5100(2)
+5117: a5100 == 5
+5118: b5100 == 4
+5119: test5100(3)
+5120: a5100 == 5
+5121: b5100 == 5
+5122: test5100(9)
+5123: a5100 == 5
+5124: b5100 == 6
+5125: test5100(0)
+5126: a5100 == 5
+5127: b5100 == 6
+5128: test5100(-1)
+5129: a5100 == 5
+5130: b5100 == 6
+5131: Ending test_newdecl
+
+5200: Beginning test_globstat
+5201: a5200 == 10
+5202: eval("a5200") == 10
+5203: f5200(1) == 21
+5204: a5200 == 10
+5205: eval("a5200") == 10
+5206: h5200(2) == 12
+5207: a5200 == 10
+5208: eval("a5200") == 10
+5209: g5200(3) == 33
+5210: a5200 == 30
+5211: eval("a5200") == 30
+5212: h5200(4) == 34
+5213: f5200(5) == 25
+5214: h5200(6) == 36
+5215: g5200(7) == 37
+5216: f5200(8) == 28
+5217: g5200(9) == 39
+5218: a5200 == 30
+5219: eval("a5200") == 30
+5220: Ending test_globstat
+
+5300: Beginning random test
+5301: tmp = srandom(0)
+5302: init = srandom()
+5303: state0 = srandom(0)
+5304: state0 == init
+5305: tmp = srandom(0)
+5306: random() == 0x7fb838a8a0a95046
+5307: random() == 0xb9d9d9fb4440f7bb
+5308: tmp = srandom(init)
+5309: random() == 0x7fb838a8a0a95046
+5310: random() == 0xb9d9d9fb4440f7bb
+5311: tmp = srandom(0)
+5312: random(12345678901234567890) == 0x7fb838a8a0a95046
+5313: random(216091) == 0x2e767
+5314: random(100) == 0x33
+5315: random(-46,46) == -0xc
+5316: tmp = srandom(0)
+5317: random(2^64) == 0x7fb838a8a0a95046
+5318: random(0,2^64) == 0xb9d9d9fb4440f7bb
+5319: tmp = srandom(0)
+5320: srandom() == init
+5321: tmp = srandom(0x87e6ec938ff55aa5<<64)
+5322: srandom() == init
+5323: tmp = srandom(state0)
+5324: srandom() == init
+5325: tmp = srandom(init)
+5326: srandom() == init
+5327: tmp == init
+5328: tmp = srandomom(0)
+5329: randombit(64) == 0x7fb838a8a0a95046
+5330: randombit(128) == 0xb9d9d9fb4440f7bbc1a7bd3b4e853fc9
+5331: randombit(64) == 0x2d4e1588719986aa
+5332: randombit(128) == 0x8d68905434b020ccb849e17a03a5c441
+5333: tmp = srandom(0)
+5334: randombit(32) == 0x7fb838a8
+5335: randombit(32) == 0xa0a95046
+5336: randombit(1) == 0x1
+5337: randombit(5) == 0xe
+5338: randombit(33) == 0xececfda2
+5339: randombit(25) == 0x40f7bb
+5340: randombit(2) == 0x3
+5341: randombit(13) == 0xd3
+5342: randombit(18) == 0x37a76
+5343: randombit(8) == 0x9d
+5344: randombit(9) == 0x14
+5345: randombit(70) == 0x3fc92d4e1588719986
+5346: randombit(123) == 0x5546b4482a1a5810665c24f0bd01d2e
+5347: randombit(8) == 0x22
+5348: randombit(65) == 0x1d2a104aaf523699
+5349: randombit(63) == 0x60e63d498ba690ec
+5350: randombit(1) == 0x1
+5351: randombit(2) == 0x3
+5352: randombit(4) == 0x0
+5353: randombit(3) == 0x0
+5354: state1 = srandom()
+5355: tmp = srandom(0)
+5356: randombit(20) == 523139
+5357: randombit(20) == 567456
+5358: randombit(20) == 693508
+5359: randombit(20) == 440793
+5360: tmp = srandom(0)
+5361: randombit(-20) == 20
+5362: randombit(20) == 567456
+5363: randombit(-20) == 20
+5364: randombit(20) == 440793
+5365: tmp = srandom(0)
+5366: randombit() == 0
+5367: randombit() == 1
+5368: randombit() == 1
+5369: tmp = srandom(state1)
+5370: random(-46,46) == -0x7
+5371: random(21701,23209) == 23061
+5372: random(0x22,0x1d2a104aaf523699) == 0x17c97dfa80bbdf1b
+5373: random(0x2d4e16aa,0x7fb83046) == 0x48e98d92
+5374: random(-0x2d4986aa,0x7fb83846) == 0x3b3f6c0c
+5375: random(-0x2d9986aa,-0x7fb9504) == -0x235f9ce1
+5376: tmp = srandom(init)
+5377: state0 = srandom(0,1)
+5378: randombit(123) == 0x4cf8834399f8832d5c1ec35f20095f0
+5379: state1 = srandom(123455432112345,1)
+5380: randombit(123) == 0x437c9618d5a9c07d935b0ff7cef7346
+5381: tmp = srandom(0,1)
+5382: randombit(-123) == 123
+5383: srandom() == state1
+5384: tmp = srandom(0,2)
+5385: randombit(123) == 0x7d53b2dbfe1edcb07df84f7fe96d5e9
+5386: tmp = srandom(0,3)
+5387: randombit(123) == 0x365cbae1adb9a706816abe3b64c1f2a
+5388: tmp = srandom(0,4)
+5389: randombit(123) == 0x63d9621736e59a3a5a8311117a1ef01
+5390: tmp = srandom(0,5)
+5391: randombit(123) == 0x38d90517d6d532d1efb6eaf26bf927
+5392: tmp = srandom(0,6)
+5393: randombit(123) == 0x146f2a1ce8cabcc313ab24f73747fbc
+5394: tmp = srandom(0,7)
+5395: randombit(123) == 0x7a4a2b4ed817e5267358ea2979155d8
+5396: tmp = srandom(0,8)
+5397: randombit(123) == 0x5f30f211464854a37989cca3a8ecd0a
+5398: tmp = srandom(0,9)
+5399: randombit(123) == 0x73aa8e572ee77682ae317804ed8d6e5
+5400: tmp = srandom(0,10)
+5401: randombit(123) == 0x49c7acca8f461ad2edf4cb7651f18d3
+5402: tmp = srandom(0,11)
+5403: randombit(123) == 0x6042e2169a73140ffab1881df99a0ee
+5404: tmp = srandom(0,12)
+5405: randombit(123) == 0x7b98097947d478611d96f4d7a1cd2af
+5406: tmp = srandom(0,13)
+5407: randombit(123) == 0x12324fd76d7a4a5a979765be2d57cfa
+5408: tmp = srandom(0,14)
+5409: randombit(123) == 0x377ff9ef04ee24887984995f91489a3
+5410: tmp = srandom(0,15)
+5411: randombit(123) == 0x7db2b6245c5a24a1a52f74c8f828c6f
+5412: tmp = srandom(0,16)
+5413: randombit(123) == 0x5958e6cc460c28a5e741706fd442f12
+5414: tmp = srandom(0,17)
+5415: randombit(123) == 0x68c40ccf3805b2734d0d2881ca268d
+5416: tmp = srandom(0,18)
+5417: randombit(123) == 0x4afc6cd3b9e14dadc5b75c6a81602e5
+5418: tmp = srandom(0,19)
+5419: randombit(123) == 0x3ea4d30abf7da6596d2425e0a9a6348
+5420: tmp = srandom(0,20)
+5421: randombit(123) == 0x77f848c70d4622ed41956eceb3f15f6
+5422: randombit(123) == 0x5bfa034925acaf7ad5ba5d8f7f32369
+5423: randombit(123) == 0x761100a4cecbdac8c8d539dee0e278e
+5424: tmp = srandom(7^23+19,2)
+5425: randombit(123) == 0x89b7ec9413e8af84a0c64ffc64d5a8
+5426: tmp = srandom(7^23+19,3)
+5427: randombit(123) == 0x7a2b8a6ca93a29deb1c3a674a30bf26
+5428: tmp = srandom(7^23+19,4)
+5429: randombit(123) == 0x5425c6614dffcc0f376de4e9355c7df
+5430: tmp = srandom(7^23+19,5)
+5431: randombit(123) == 0x70fca502499fa3717e346df5438886d
+5432: tmp = srandom(7^23+19,6)
+5433: randombit(123) == 0x6ff886ac0918ad503290544af2cbd03
+5434: tmp = srandom(7^23+19,7)
+5435: randombit(123) == 0x5747d8c33d6d6dc53357779dffcc430
+5436: tmp = srandom(7^23+19,8)
+5437: randombit(123) == 0x12769f65324d5e7986120b0caf071ad
+5438: tmp = srandom(7^23+19,9)
+5439: randombit(123) == 0x3f94d3585b986539158f6ccd97d261e
+5440: tmp = srandom(7^23+19,10)
+5441: randombit(123) == 0x12874c359fffc6c0eda2aebfea97c71
+5442: tmp = srandom(7^23+19,11)
+5443: randombit(123) == 0x7e0480a70c6f32f6594db8fd58ada7
+5444: tmp = srandom(7^23+19,12)
+5445: randombit(123) == 0x7f900aa8c7b9dacb6bf4ca0f5f81cb8
+5446: tmp = srandom(7^23+19,13)
+5447: randombit(123) == 0x39311c5aa41e42bb5d7807bdb60aecc
+5448: tmp = srandom(7^23+19,14)
+5449: randombit(123) == 0x508bc8c5bd4555262b7ecd32a1ecd8e
+5450: tmp = srandom(7^23+19,15)
+5451: randombit(123) == 0x442d2076b8d58d3815841180e8401b6
+5452: tmp = srandom(7^23+19,16)
+5453: randombit(123) == 0x38db53974de9d3eea82a6ba35d2dc53
+5454: tmp = srandom(7^23+19,17)
+5455: randombit(123) == 0x42c1d9d86c9c67acb518ee008ce8f38
+5456: tmp = srandom(7^23+19,18)
+5457: randombit(123) == 0x10dc81d7ef0a7aeb4aea1d4ac1fac2a
+5458: tmp = srandom(7^23+19,19)
+5459: randombit(123) == 0x469f8d91b643e0bcc4b5d5c2fe61cfb
+5460: tmp = srandom(7^23+19,20)
+5461: randombit(123) == 0x7f056e87cfcbe04a072e17502ef38f5
+5462: randombit(123) == 0x5d10d7665e56dee0ec5ea7d918ba073
+5463: randombit(123) == 0x2058f802dd42b3aee4e734eacc13057
+5464: seed() >= 0
+5465: seed() < 2^64
+5466: israndom(srandom(seed()))
+5467: random(10,11) == 10
+5468: random(10,11) == 10
+5469: random(10,11) == 10
+5470: random(0,1) == 0
+5471: random(0,1) == 0
+5472: Ending test_random
+
+5500: Beginning test_newsyn
+5501: for (s5500 = 0, i = 0; i < 5; i++) s5500 += i;
+5502: s5500 == 10
+5503: i == 5
+5504: for (s5500 = 0, i = 0; i < 6; i++) { s5500 += i; }
+5505: s5500 == 15
+5506: i == 6
+5507: for (s5500 = 0, i = 0; i < 3; i++) { s5500 += i; }
+5508: s5500 == 3
+5509: i == 3
+5510: s5500 == 45
+5511: i == 11
+5512: { local i; for (s5500 = 0, i = 0; i < 10; i++) s5500 += i; ... }
+5513: s5500 == 55
+5514: i == 11
+5515: i = 0
+5516: s5500 = 0
+5517: while (++i < 4) s5500 += i;
+5518: s5500 == 6
+5519: i == 4
+5520: i = 0
+5521: s5500 = 0
+5522: while (++i < 7) { s5500 += i; }
+5523: s5500 == 21
+5524: i == 7
+5525: i = 0
+5526: s5500 = 0
+5527: while (++i < 8) { s5500 += i; }
+5528: s5500 == 28
+5529: i == 8
+5530: i = 0
+5531: s5500 = 0
+5532: do s5500 += i; while (++i < 12);
+5533: s5500 == 66
+5534: i == 12
+5535: i = 0
+5536: s5500 = 0
+5537: do { s5500 += i; } while (++i < 14);
+5538: s5500 == 91
+5539: i == 14
+5540: i = 0
+5541: s5500 = 0
+5542: do { s5500 += i; } while (++i < 13);
+5543: s5500 == 78
+5544: i == 13
+5545: i == 13
+5546: i == 13
+5547: Ending test_newsyn
+5548: s5500 == 78
+
+5600: Beginning test_commaeq
+5601: i = 5
+5602: i == 5
+5603: i += 2 *= 3 -= 1
+5604: i == 20
+5607: ++i /= 7
+5608: i == 3
+5609: mat A[3] = {1,2,xx5600}
+5610: A[2] == xx5600
+5611: strprintf("%d", xx5600) == "xx"
+5612: obj xy5600 A = {1, 2} = {3, 4}
+5613: A.x == 3
+5614: A.y == 4
+5613: obj xy5600 B = {A,A}
+5615: B.x.x == 3
+5616: B.y.y == 4
+5617: obj xy5600 C
+5618: C = {1, 2} = {C, C}
+5619: C.x.x == 1
+5620: C.y.x.y == 2
+5621: D = 7
+5622: obj xy5600 D = {1,2} = {D,D}
+5623: D.x == 7
+5624: D.y == 7
+5625: mat A[3] = {1,2,3}, mat B[2] = {1,2}
+5626: A[0] == 1
+5627: B[1] == 2
+5628: ((a5600 = 2, b5600) = 3) && a5600 + b5600 == 5
+5629: (2 ? a5600 : b5600 = 4) && a5600 == 4
+5630: (0 ? a5600 : b5600 = 5) && b5600 == 5
+5631: (a5600 || b5600 = 6) && a5600 == 6 && b5600 == 5
+5632: (a5600 && b5600 = 7) && a5600 == 6 && b5600 == 7
+5633: Ending test_commaeq
+
+5700: Beginning test_size
+5701: sizeof(0) == 0
+5702: sizeof(1) == 0
+5703: sizeof(-1) == 0
+5704: z = 0
+5705: sizeof(z) == 0
+5706: z = 1
+5707: sizeof(z) == 0
+5708: z = -1
+5709: sizeof(z) == 0
+5710: q = 13/2
+5711: sizeof(13)*2 == sizeof(q)
+5712: q = 13
+5713: sizeof(13) == sizeof(q)
+5714: q = (17^139 + 674) / (17^139 + 686)
+5715: sizeof(17^139 + 674)*2 == sizeof(q)
+5716: q = 1/13
+5717: sizeof(13) == sizeof(q)
+5718: q = 1/(17^139 + 674)
+5717: sizeof(17^139 + 674) == sizeof(q)
+5718: sizeof(17^139 + 674) == sizeof(-q)
+5719: sizeof(-(17^139 + 674)) == sizeof(-q)
+5720: q = 1/-13
+5721: sizeof(13) == sizeof(q)
+5722: c = 0 + 4i
+5723: sizeof(3) == sizeof(c)
+5724: c = 3 + 0i
+5725: sizeof(3) == sizeof(c)
+5726: c = 1 + 4i
+5727: sizeof(3) == sizeof(c)
+5728: c = 3 + 1i
+5729: sizeof(3) == sizeof(c)
+5730: c = -1 + 4i
+5731: sizeof(3) == sizeof(c)
+5732: c = 3 + -1i
+5733: sizeof(3) == sizeof(c)
+5734: c = 3 + 4i
+5735: sizeof(3)*2 == sizeof(c)
+5736: z = 17^139 + 686
+5737: c = z + z*1i
+5738: sizeof(z)*2 == sizeof(c)
+5739: q = 1/(17^139 + 674)
+5740: c = q + q*1i
+5741: sizeof(q)*2 == sizeof(c)
+5742: c = (z*q) + (1/(z*q))*1i
+5743: sizeof(z*q)*2 == sizeof(c)
+5744: sizeof(z)*4 == sizeof(c)
+5745: sizeof(q)*4 == sizeof(c)
+5746: size(0) == 1
+5747: size(1) == 1
+5748: size(13^10) == 1
+5749: size(z) == 1
+5750: size(q) == 1
+5751: size(c) == 1
+5752: mat m[] = {z,q,c}
+5753: size(m) == size(z)+size(q)+size(c)
+5754: sizeof(m) == sizeof(z)+sizeof(q)+sizeof(c)
+5755: list(z,q,c,m)
+5756: size(l) == 4
+5757: sizeof(l) == 2*sizeof(m)
+5758: a = assoc()
+5759: a["z"] = z+1
+5760: a["q"] = q+2
+5761: a["c"] = c+3
+5762: a[m] = m
+5763: a[l] = l
+5764: size(a) == 5
+5765: sizeof(a) == 25*sizeof(z)
+5766: sizeof(z) < memsize(z)
+5767: sizeof(q) < memsize(q)
+5768: sizeof(c) < memsize(c)
+5769: sizeof(m) < memsize(m)
+5770: sizeof(l) < memsize(l)
+5771: sizeof(a) < memsize(a)
+5772: Ending test_size
+
+5800: Beginning test_assign
+5801: A = base+1
+5802: B = base+2
+5803: X5800 = base+3
+5804: Y5800 = base+4
+5805: obj xy5800 A={1,2}, obj xy5000 B={3,4}
+5806: X5800 = A
+5807: X5800 == A
+5808: X5800 = Y5800 = B
+5809: X5800 == B
+5810: Y5800 == B
+5811: Ending test_assign
+5812: define xy5800_assign(a,b) { }
+5820: Beginning test_assign
+5821: A = base+1
+5822: B = base+2
+5823: X5800 = base+3
+5824: Y5800 = base+4
+5825: obj xy5800 A={1,2}, obj xy5000 B={3,4}
+5826: X5800 = A
+5827: X5800 == B
+5828: X5800 = Y5800 = A
+5829: X5800 == B
+5830: Y5800 == B
+5831: Ending test_assign
+5832: undefine xy5800_assign
+5840: Beginning test_assign
+5841: A = base+1
+5842: B = base+2
+5843: X5800 = base+3
+5844: Y5800 = base+4
+5845: obj xy5800 A={1,2}, obj xy5000 B={3,4}
+5846: X5800 = A
+5847: X5800 == A
+5848: X5800 = Y5800 = B
+5849: X5800 == B
+5850: Y5800 == B
+5851: Ending test_assign
+5852: define xy5800_assign(a, b) = a.y = b
+5853: X5800 = 9
+5854: X5800 == (obj xy5800 = {3,9})
+5855: asserr = newerror("Incompatible types for =")
+5856: xy5800_assign(a, b) { ... };
+5857: ecnt += 2
+5858: X5800 = 2 + 3i
+5859: X5800 == (obj xy5800 = {3,9})
+5860: errno() > 0
+5861: strerror() == "Incompatible types for ="
+5862: X5800 = 2
+5863: X5800 == (obj xy5800 = {2,0})
+5864: X5800 = obj xy5800 = {1,2}
+5865: X5800 == (obj xy5800 = {1,2})
+5866: define f5800(a5800 = mat[2] = {3,4}) = 5 * a5800;
+5867: f5800() == (mat[] = {15,20})
+5868: End of 5800 sequence
+
+5900: Beginning test_is
+5901: a = assoc()
+5902: ofd = fopen("NUL:", "rb")
+5903: cfd = fopen("NUL:", "rb")
+5904: fclose(cfd)
+5905: blk = blk()
+5906: nblk = blk("blk5900")
+5907: cfg = config("all")
+5908: ecnt += 2
+5909: serr = error(1)
+5910: nerr = newerror("curds")
+5911: odd = 23209
+5912: even = odd*10
+5913: hash = sha()
+5914: id[3,3] = {1,0,0,0,1,0,0,0,1}
+5915: list = list(2,3,4)
+5916: mat matrix[2]
+5917: nul = null()
+5918: obj xy5900 object
+5919: rand = srand(0)
+5920: random = srandom(0)
+5921: real = 345.23045897
+5922: prime = 3217
+5923: square = prine^2
+5924: string = "a string"
+5925: com = 3+4i
+5926: test unused
+5927: test unused
+5928: test unused
+5929: test unused
+5930: isassoc(loc) == 0
+5931: isassoc(a) == 1
+5932: isassoc(ofd) == 0
+5933: isassoc(cfd) == 0
+5934: isassoc(blk) == 0
+5935: isassoc(nblk) == 0
+5936: isassoc(cfg) == 0
+5937: isassoc(serr) == 0
+5938: isassoc(nerr) == 0
+5939: isassoc(odd) == 0
+5940: isassoc(even) == 0
+5941: isassoc(hash) == 0
+5942: isassoc(id) == 0
+5943: isassoc(list) == 0
+5944: isassoc(matrix) == 0
+5945: isassoc(nul) == 0
+5946: isassoc(object) == 0
+5947: isassoc(rand) == 0
+5948: isassoc(random) == 0
+5949: isassoc(real) == 0
+5950: isassoc(prime) == 0
+5951: isassoc(square) == 0
+5952: isassoc(string) == 0
+5953: isassoc(com) == 0
+5954: test unused
+5955: test unused
+5955: test unused
+5956: test unused
+5957: test unused
+5958: test unused
+5959: test unused
+5960: isatty(loc) == 0
+5961: isatty(a) == 0
+5962: isatty(ofd) == 0
+5963: isatty(cfd) == 0
+5964: isatty(blk) == 0
+5965: isatty(nblk) == 0
+5966: isatty(cfg) == 0
+5967: isatty(serr) == 0
+5968: isatty(nerr) == 0
+5969: isatty(odd) == 0
+5970: isatty(even) == 0
+5971: isatty(hash) == 0
+5972: isatty(id) == 0
+5973: isatty(list) == 0
+5974: isatty(matrix) == 0
+5975: isatty(nul) == 0
+5976: isatty(object) == 0
+5977: isatty(rand) == 0
+5978: isatty(random) == 0
+5979: isatty(real) == 0
+5980: isatty(prime) == 0
+5981: isatty(square) == 0
+5982: isatty(string) == 0
+5983: isatty(com) == 0
+5984: test disabled due to stdin dependency
+5985: test unused
+5986: test unused
+5987: isatty(files(3)) == 0
+5988: test unused
+5989: test unused
+5990: isblk(loc) == 0
+5991: isblk(a) == 0
+5992: isblk(ofd) == 0
+5993: isblk(cfd) == 0
+5994: isblk(blk) == 1
+5995: isblk(nblk) == 2
+5996: isblk(cfg) == 0
+5997: isblk(serr) == 0
+5998: isblk(nerr) == 0
+5999: isblk(odd) == 0
+6000: isblk(even) == 0
+6001: isblk(hash) == 0
+6002: isblk(id) == 0
+6003: isblk(list) == 0
+6004: isblk(matrix) == 0
+6005: isblk(nul) == 0
+6006: isblk(object) == 0
+6007: isblk(rand) == 0
+6008: isblk(random) == 0
+6009: isblk(real) == 0
+6010: isblk(prime) == 0
+6011: isblk(square) == 0
+6012: isblk(string) == 0
+6013: isblk(com) == 0
+6014: test unused
+6015: test unused
+6015: test unused
+6016: test unused
+6017: test unused
+6018: test unused
+6019: test unused
+6020: isconfig(loc) == 0
+6021: isconfig(a) == 0
+6022: isconfig(ofd) == 0
+6023: isconfig(cfd) == 0
+6024: isconfig(blk) == 0
+6025: isconfig(nblk) == 0
+6026: isconfig(cfg) == 1
+6027: isconfig(serr) == 0
+6028: isconfig(nerr) == 0
+6029: isconfig(odd) == 0
+6030: isconfig(even) == 0
+6031: isconfig(hash) == 0
+6032: isconfig(id) == 0
+6033: isconfig(list) == 0
+6034: isconfig(matrix) == 0
+6035: isconfig(nul) == 0
+6036: isconfig(object) == 0
+6037: isconfig(rand) == 0
+6038: isconfig(random) == 0
+6039: isconfig(real) == 0
+6040: isconfig(prime) == 0
+6041: isconfig(square) == 0
+6042: isconfig(string) == 0
+6043: isconfig(com) == 0
+6044: test unused
+6045: test unused
+6045: test unused
+6046: test unused
+6047: test unused
+6048: test unused
+6049: test unused
+6050: isdefined("loc") == 0
+6051: isdefined("a") == 0
+6052: isdefined("ofd") == 0
+6053: isdefined("cfd") == 0
+6054: isdefined("blk") == 1
+6055: isdefined("nblk") == 0
+6056: isdefined("cfg") == 0
+6057: isdefined("serr") == 0
+6058: isdefined("nerr") == 0
+6059: isdefined("odd") == 0
+6060: isdefined("even") == 0
+6061: isdefined("hash") == 1
+6062: isdefined("id") == 0
+6063: isdefined("list") == 1
+6064: isdefined("matrix") == 0
+6065: isdefined("nul") == 0
+6066: isdefined("object") == 0
+6067: isdefined("rand") == 1
+6068: isdefined("random") == 1
+6069: isdefined("real") == 0
+6070: isdefined("prime") == 0
+6071: isdefined("square") == 0
+6072: isdefined("string") == 0
+6073: isdefined("abs") == 1
+6074: isdefined("notafunc") == 0
+6075: isdefined("com") == 0
+6076: test unused
+6077: test unused
+6078: test unused
+6079: test unused
+6080: iserror(loc) == 0
+6081: iserror(a) == 0
+6082: iserror(ofd) == 0
+6083: iserror(cfd) == 0
+6084: iserror(blk) == 0
+6085: iserror(nblk) == 0
+6086: iserror(cfg) == 0
+6087: iserror(serr) == 1
+6088: iserror(nerr) > 0
+6089: iserror(odd) == 0
+6090: iserror(even) == 0
+6091: iserror(hash) == 0
+6092: iserror(id) == 0
+6093: iserror(list) == 0
+6094: iserror(matrix) == 0
+6095: iserror(nul) == 0
+6096: iserror(object) == 0
+6097: iserror(rand) == 0
+6098: iserror(random) == 0
+6099: iserror(real) == 0
+6100: iserror(prime) == 0
+6101: iserror(square) == 0
+6102: iserror(string) == 0
+6103: iserror(com) == 0
+6104: test unused
+6105: test unused
+6105: test unused
+6106: test unused
+6107: test unused
+6108: test unused
+6109: test unused
+6110: iseven(loc) == 1
+6111: iseven(a) == 0
+6112: iseven(ofd) == 0
+6113: iseven(cfd) == 0
+6114: iseven(blk) == 0
+6115: iseven(nblk) == 0
+6116: iseven(cfg) == 0
+6117: iseven(serr) == 0
+6118: iseven(nerr) == 0
+6119: iseven(odd) == 0
+6120: iseven(even) == 1
+6121: iseven(hash) == 0
+6122: iseven(id) == 0
+6123: iseven(list) == 0
+6124: iseven(matrix) == 0
+6125: iseven(nul) == 0
+6126: iseven(object) == 0
+6127: iseven(rand) == 0
+6128: iseven(random) == 0
+6129: iseven(real) == 0
+6130: iseven(prime) == 0
+6131: iseven(square) == 0
+6132: iseven(string) == 0
+6133: iseven(com) == 0
+6134: test unused
+6135: test unused
+6135: test unused
+6136: test unused
+6137: test unused
+6138: test unused
+6139: test unused
+6140: isfile(loc) == 0
+6141: isfile(a) == 0
+6142: isfile(ofd) == 1
+6143: isfile(cfd) == 1
+6144: isfile(blk) == 0
+6145: isfile(nblk) == 0
+6146: isfile(cfg) == 0
+6147: isfile(serr) == 0
+6148: isfile(nerr) == 0
+6149: isfile(odd) == 0
+6150: isfile(even) == 0
+6151: isfile(hash) == 0
+6152: isfile(id) == 0
+6153: isfile(list) == 0
+6154: isfile(matrix) == 0
+6155: isfile(nul) == 0
+6156: isfile(object) == 0
+6157: isfile(rand) == 0
+6158: isfile(random) == 0
+6159: isfile(real) == 0
+6160: isfile(prime) == 0
+6161: isfile(square) == 0
+6162: isfile(string) == 0
+6163: isfile(com) == 0
+6164: isfile(files(0)) == 1
+6165: isfile(files(1)) == 1
+6166: isfile(files(2)) == 1
+6167: isfile(files(3)) == 1
+6168: test unused
+6169: test unused
+6170: ishash(loc) == 0
+6171: ishash(a) == 0
+6172: ishash(ofd) == 0
+6173: ishash(cfd) == 0
+6174: ishash(blk) == 0
+6175: ishash(nblk) == 0
+6176: ishash(cfg) == 0
+6177: ishash(serr) == 0
+6178: ishash(nerr) == 0
+6179: ishash(odd) == 0
+6180: ishash(even) == 0
+6181: ishash(hash) == 1
+6182: ishash(id) == 0
+6183: ishash(list) == 0
+6184: ishash(matrix) == 0
+6185: ishash(nul) == 0
+6186: ishash(object) == 0
+6187: ishash(rand) == 0
+6188: ishash(random) == 0
+6189: ishash(real) == 0
+6190: ishash(prime) == 0
+6191: ishash(square) == 0
+6192: ishash(string) == 0
+6193: ishash(com) == 0
+6194: test unused
+6195: test unused
+6196: test unused
+6197: test unused
+6198: test unused
+6199: test unused
+6200: isident(loc) == 0
+6201: isident(a) == 0
+6202: isident(ofd) == 0
+6203: isident(cfd) == 0
+6204: isident(blk) == 0
+6205: isident(nblk) == 0
+6206: isident(cfg) == 0
+6207: isident(serr) == 0
+6208: isident(nerr) == 0
+6209: isident(odd) == 0
+6210: isident(even) == 0
+6211: isident(hash) == 0
+6212: isident(id) == 1
+6213: isident(list) == 0
+6214: isident(matrix) == 0
+6215: isident(nul) == 0
+6216: isident(object) == 0
+6217: isident(rand) == 0
+6218: isident(random) == 0
+6219: isident(real) == 0
+6220: isident(prime) == 0
+6221: isident(square) == 0
+6222: isident(string) == 0
+6223: isident(com) == 0
+6224: test unused
+6225: test unused
+6226: test unused
+6227: test unused
+6228: test unused
+6229: test unused
+6230: isint(loc) == 1
+6231: isint(a) == 0
+6232: isint(ofd) == 0
+6233: isint(cfd) == 0
+6234: isint(blk) == 0
+6235: isint(nblk) == 0
+6236: isint(cfg) == 0
+6237: isint(serr) == 0
+6238: isint(nerr) == 0
+6239: isint(odd) == 1
+6240: isint(even) == 1
+6241: isint(hash) == 0
+6242: isint(id) == 0
+6243: isint(list) == 0
+6244: isint(matrix) == 0
+6245: isint(nul) == 0
+6246: isint(object) == 0
+6247: isint(rand) == 0
+6248: isint(random) == 0
+6249: isint(real) == 0
+6250: isint(prime) == 1
+6251: isint(square) == 1
+6252: isint(string) == 0
+6253: isint(com) == 0
+6254: test unused
+6255: test unused
+6255: test unused
+6256: test unused
+6257: test unused
+6258: test unused
+6259: test unused
+6260: islist(loc) == 0
+6261: islist(a) == 0
+6262: islist(ofd) == 0
+6263: islist(cfd) == 0
+6264: islist(blk) == 0
+6265: islist(nblk) == 0
+6266: islist(cfg) == 0
+6267: islist(serr) == 0
+6268: islist(nerr) == 0
+6269: islist(odd) == 0
+6270: islist(even) == 0
+6271: islist(hash) == 0
+6272: islist(id) == 0
+6273: islist(list) == 1
+6274: islist(matrix) == 0
+6275: islist(nul) == 0
+6276: islist(object) == 0
+6277: islist(rand) == 0
+6278: islist(random) == 0
+6279: islist(real) == 0
+6280: islist(prime) == 0
+6281: islist(square) == 0
+6282: islist(string) == 0
+6283: islist(com) == 0
+6284: test unused
+6255: test unused
+6285: test unused
+6286: test unused
+6287: test unused
+6288: test unused
+6289: test unused
+6290: ismat(loc) == 0
+6291: ismat(a) == 0
+6292: ismat(ofd) == 0
+6293: ismat(cfd) == 0
+6294: ismat(blk) == 0
+6295: ismat(nblk) == 0
+6296: ismat(cfg) == 0
+6297: ismat(serr) == 0
+6298: ismat(nerr) == 0
+6299: ismat(odd) == 0
+6300: ismat(even) == 0
+6301: ismat(hash) == 0
+6302: ismat(id) == 1
+6303: ismat(list) == 0
+6304: ismat(matrix) == 1
+6305: ismat(nul) == 0
+6306: ismat(object) == 0
+6307: ismat(rand) == 0
+6308: ismat(random) == 0
+6309: ismat(real) == 0
+6310: ismat(prime) == 0
+6311: ismat(square) == 0
+6312: ismat(string) == 0
+6313: ismat(com) == 0
+6314: test unused
+6215: test unused
+6315: test unused
+6316: test unused
+6317: test unused
+6318: test unused
+6319: test unused
+6320: ismult(odd,even) == 0
+6321: ismult(even,odd) == 1
+6322: ismult(odd,odd) == 1
+6323: ismult(even,prime) == 0
+6324: ismult(square,prime) == 1
+6325: ismult(real,prime) == 0
+6326: ismult(real,real*34) == 0
+6327: ismult(real*34,real) == 1
+6328: test unused
+6329: test unused
+6330: isnull(loc) == 0
+6331: isnull(a) == 0
+6332: isnull(ofd) == 0
+6333: isnull(cfd) == 0
+6334: isnull(blk) == 0
+6335: isnull(nblk) == 0
+6336: isnull(cfg) == 0
+6337: isnull(serr) == 0
+6338: isnull(nerr) == 0
+6339: isnull(odd) == 0
+6340: isnull(even) == 0
+6341: isnull(hash) == 0
+6342: isnull(id) == 0
+6343: isnull(list) == 0
+6344: isnull(matrix) == 0
+6345: isnull(nul) == 1
+6346: isnull(object) == 0
+6347: isnull(rand) == 0
+6348: isnull(random) == 0
+6349: isnull(real) == 0
+6350: isnull(prime) == 0
+6351: isnull(square) == 0
+6352: isnull(string) == 0
+6353: isnull(com) == 0
+6354: test unused
+6355: test unused
+6355: test unused
+6356: test unused
+6357: test unused
+6358: test unused
+6359: test unused
+6360: isnum(loc) == 1
+6361: isnum(a) == 0
+6362: isnum(ofd) == 0
+6363: isnum(cfd) == 0
+6364: isnum(blk) == 0
+6365: isnum(nblk) == 0
+6366: isnum(cfg) == 0
+6367: isnum(serr) == 0
+6368: isnum(nerr) == 0
+6369: isnum(odd) == 1
+6370: isnum(even) == 1
+6371: isnum(hash) == 0
+6372: isnum(id) == 0
+6373: isnum(list) == 0
+6374: isnum(matrix) == 0
+6375: isnum(nul) == 0
+6376: isnum(object) == 0
+6377: isnum(rand) == 0
+6378: isnum(random) == 0
+6379: isnum(real) == 1
+6380: isnum(prime) == 1
+6381: isnum(square) == 1
+6382: isnum(string) == 0
+6379: isnum(com) == 1
+6384: test unused
+6385: test unused
+6385: test unused
+6386: test unused
+6387: test unused
+6388: test unused
+6389: test unused
+6390: isobj(loc) == 0
+6391: isobj(a) == 0
+6392: isobj(ofd) == 0
+6393: isobj(cfd) == 0
+6394: isobj(blk) == 0
+6395: isobj(nblk) == 0
+6396: isobj(cfg) == 0
+6397: isobj(serr) == 0
+6398: isobj(nerr) == 0
+6399: isobj(odd) == 0
+6400: isobj(even) == 0
+6401: isobj(hash) == 0
+6402: isobj(id) == 0
+6403: isobj(list) == 0
+6404: isobj(matrix) == 0
+6405: isobj(nul) == 0
+6406: isobj(object) == 1
+6407: isobj(rand) == 0
+6408: isobj(random) == 0
+6409: isobj(real) == 0
+6410: isobj(prime) == 0
+6411: isobj(square) == 0
+6412: isobj(string) == 0
+6413: isobj(com) == 0
+6414: test unused
+6415: test unused
+6415: test unused
+6416: test unused
+6417: test unused
+6418: test unused
+6419: test unused
+6420: isobjtype("loc") == 0
+6421: isobjtype("a") == 0
+6422: isobjtype("ofd") == 0
+6423: isobjtype("xy5800") == 1
+6424: isobjtype("xy5900") == 1
+6425: test unused
+6426: test unused
+6427: test unused
+6428: test unused
+6429: test unused
+6430: isodd(loc) == 0
+6431: isodd(a) == 0
+6432: isodd(ofd) == 0
+6433: isodd(cfd) == 0
+6434: isodd(blk) == 0
+6435: isodd(nblk) == 0
+6436: isodd(cfg) == 0
+6437: isodd(serr) == 0
+6438: isodd(nerr) == 0
+6439: isodd(odd) == 1
+6440: isodd(even) == 0
+6441: isodd(hash) == 0
+6442: isodd(id) == 0
+6443: isodd(list) == 0
+6444: isodd(matrix) == 0
+6445: isodd(nul) == 0
+6446: isodd(object) == 0
+6447: isodd(rand) == 0
+6448: isodd(random) == 0
+6449: isodd(real) == 0
+6450: isodd(prime) == 1
+6451: isodd(square) == 1
+6452: isodd(string) == 0
+6453: isodd(com) == 0
+6454: test unused
+6455: test unused
+6455: test unused
+6456: test unused
+6457: test unused
+6458: test unused
+6459: test unused
+6460: isprime(loc) == 0
+6461: isprime(odd) == 1
+6462: isprime(even) == 0
+6463: isprime(prime) == 1
+6464: isprime(square) == 0
+6465: test unused
+6466: test unused
+6468: test unused
+6468: test unused
+6469: test unused
+6470: isrand(loc) == 0
+6471: isrand(a) == 0
+6472: isrand(ofd) == 0
+6473: isrand(cfd) == 0
+6474: isrand(blk) == 0
+6475: isrand(nblk) == 0
+6476: isrand(cfg) == 0
+6477: isrand(serr) == 0
+6478: isrand(nerr) == 0
+6479: isrand(odd) == 0
+6480: isrand(even) == 0
+6481: isrand(hash) == 0
+6482: isrand(id) == 0
+6483: isrand(list) == 0
+6484: isrand(matrix) == 0
+6485: isrand(nul) == 0
+6486: isrand(object) == 0
+6487: isrand(rand) == 1
+6488: isrand(random) == 0
+6489: isrand(real) == 0
+6490: isrand(prime) == 0
+6491: isrand(square) == 0
+6492: isrand(string) == 0
+6493: isrand(com) == 0
+6494: test unused
+6495: test unused
+6495: test unused
+6496: test unused
+6497: test unused
+6498: test unused
+6499: test unused
+6500: israndom(loc) == 0
+6501: israndom(a) == 0
+6502: israndom(ofd) == 0
+6503: israndom(cfd) == 0
+6504: israndom(blk) == 0
+6505: israndom(nblk) == 0
+6506: israndom(cfg) == 0
+6507: israndom(serr) == 0
+6508: israndom(nerr) == 0
+6509: israndom(odd) == 0
+6510: israndom(even) == 0
+6511: israndom(hash) == 0
+6512: israndom(id) == 0
+6513: israndom(list) == 0
+6514: israndom(matrix) == 0
+6515: israndom(nul) == 0
+6516: israndom(object) == 0
+6517: israndom(rand) == 0
+6518: israndom(random) == 1
+6519: israndom(real) == 0
+6520: israndom(prime) == 0
+6521: israndom(square) == 0
+6522: israndom(string) == 0
+6523: israndom(com) == 0
+6524: test unused
+6525: test unused
+6526: test unused
+6527: test unused
+6528: test unused
+6529: test unused
+6530: isreal(loc) == 1
+6531: isreal(a) == 0
+6532: isreal(ofd) == 0
+6533: isreal(cfd) == 0
+6534: isreal(blk) == 0
+6535: isreal(nblk) == 0
+6536: isreal(cfg) == 0
+6537: isreal(serr) == 0
+6538: isreal(nerr) == 0
+6539: isreal(odd) == 1
+6540: isreal(even) == 1
+6541: isreal(hash) == 0
+6542: isreal(id) == 0
+6543: isreal(list) == 0
+6544: isreal(matrix) == 0
+6545: isreal(nul) == 0
+6546: isreal(object) == 0
+6547: isreal(rand) == 0
+6548: isreal(random) == 0
+6549: isreal(real) == 1
+6550: isreal(prime) == 1
+6551: isreal(square) == 1
+6552: isreal(string) == 0
+6553: isreal(com) == 0
+6554: test unused
+6555: test unused
+6555: test unused
+6556: test unused
+6557: test unused
+6558: test unused
+6559: test unused
+6560: isrel(odd,even) == 0
+6561: isrel(even,odd) == 0
+6562: isrel(odd,odd) == 0
+6563: isrel(even,prime) == 1
+6564: isrel(square,prime) == 0
+6565: isrel(prime,square) == 0
+6566: isrel(even,square) == 1
+6567: isrel(prime,even) == 1
+6568: test unused
+6569: test unused
+6570: bit(odd,0) == 1
+6571: bit(odd,1) == 0
+6572: bit(odd,2) == 0
+6573: bit(odd,3) == 1
+6574: bit(real,4) == 1
+6575: bit(real,5) == 0
+6576: bit(real,6) == 1
+6577: bit(real,7) == 0
+6578: test unused
+6579: test unused
+6580: issimple(loc) == 1
+6581: issimple(a) == 0
+6582: issimple(ofd) == 0
+6583: issimple(cfd) == 0
+6584: issimple(blk) == 0
+6585: issimple(nblk) == 0
+6586: issimple(cfg) == 0
+6587: issimple(serr) == 0
+6588: issimple(nerr) == 0
+6589: issimple(odd) == 1
+6590: issimple(even) == 1
+6591: issimple(hash) == 0
+6592: issimple(id) == 0
+6593: issimple(list) == 0
+6594: issimple(matrix) == 0
+6595: issimple(nul) == 1
+6596: issimple(object) == 0
+6597: issimple(rand) == 0
+6598: issimple(random) == 0
+6599: issimple(real) == 1
+6600: issimple(prime) == 1
+6601: issimple(square) == 1
+6602: issimple(string) == 1
+6603: issimple(com) == 1
+6604: test unused
+6605: test unused
+6606: test unused
+6607: test unused
+6608: test unused
+6609: test unused
+6610: issq(loc) == 1
+6611: issq(odd) == 0
+6612: issq(even) == 0
+6613: issq(prime) == 0
+6614: issq(square) == 1
+6615: test unused
+6616: test unused
+6618: test unused
+6618: test unused
+6619: test unused
+6620: isstr(loc) == 0
+6621: isstr(a) == 0
+6622: isstr(ofd) == 0
+6623: isstr(cfd) == 0
+6624: isstr(blk) == 0
+6625: isstr(nblk) == 0
+6626: isstr(cfg) == 0
+6627: isstr(serr) == 0
+6628: isstr(nerr) == 0
+6629: isstr(odd) == 0
+6630: isstr(even) == 0
+6631: isstr(hash) == 0
+6632: isstr(id) == 0
+6633: isstr(list) == 0
+6634: isstr(matrix) == 0
+6635: isstr(nul) == 0
+6636: isstr(object) == 0
+6637: isstr(rand) == 0
+6638: isstr(random) == 0
+6639: isstr(real) == 0
+6640: isstr(prime) == 0
+6641: isstr(square) == 0
+6642: isstr(string) == 1
+6643: isstr(com) == 0
+6644: test unused
+6645: test unused
+6645: test unused
+6646: test unused
+6647: test unused
+6648: test unused
+6649: test unused
+6650: istype(odd,even) == 1
+6651: istype(even,odd) == 1
+6652: istype(odd,odd) == 1
+6653: istype(even,prime) == 1
+6654: istype(square,prime) == 1
+6655: istype(prime,square) == 1
+6656: istype(even,square) == 1
+6657: istype(prime,even) == 1
+6658: istype(prime,com) == 0
+6659: istype(matrix,com) == 0
+6660: istype(matrix,list) == 0
+6661: istype(matrix,odd) == 0
+6662: istype(a,odd) == 0
+6663: blkfree("blk5900")
+6664: fclose(ofd)
+6665: Ending test_is
+
+6700: Beginning test_blk
+6701: A = blk(20);
+6702: size(A) == 20
+6703: sizeof(A) == 256
+6704: B = A;
+6705: size(B) == 20
+6706: A == B
+6707: A[5] = 21;
+6708: A[5] == 21
+6709: A[6] = "abc";
+6710: A[6] == ord("a")
+6711: A[7] = 260;
+6712: A[7] == 4
+6713: A[8] = 3+4i;
+6714: A[8] == 3
+6715: A != B
+6716: C = blk(A, ,128);
+6717: size(C) == size(A)
+6718: sizeof(C) == 128
+6719: C == A
+6720: C = blk(A,30);
+6721: size(C) == 30
+6722: C != A;
+6723: C = blk(C,20);
+6724: C == A
+6725: A[29] = 7;
+6726: A[29] == 7
+6727: size(A) == 30
+6728: A = blk(A, 20);
+6729: A[29] == 0
+6730: A = blk(A,0) = {1,,3,5};
+6731: A[4] == 5
+6732: size(A) == 5
+6733: B = A;
+6734: C=blk(A)={,,,,,,,,,,0xbb};
+6735: A == B
+6736: C[10] == 0xbb
+6737: A1 = blk("blk6700");
+6738: A2 = blk("blk6700");
+6739: A1 == A2
+6740: size(A1) == 0
+6741: sizeof(A1) == 256
+6742: test disabled: test(A1) == 0
+6743: test disabled: str(A1) == "blk6700"
+6744: blocks() == 1
+6745: blocks(1) == A1
+6746: B1 = blk("+++6700", , 10);
+6747: size(B1) == 15
+6748: sizeof(B1) == 20
+6749: test(B1) == 1
+6750: test disabled: str(B1) == "+++6700"
+6751: blocks() == 2
+6752: blocks(2) == B1
+6753: B1 != A1
+6754: A1[15] = 29;
+6755: A1[15] == 29
+6756: A2[15] == 29
+6757: size(A1) == 16
+6758: test(A1) == 1
+6759: A1[99] = 11;
+6760: size(A1) == 100
+6761: A1[99] == 11
+6762: null(blk(A1, , 1000));
+6763: size(A1) == 100
+6764: sizeof(A1) == 1000
+6765: A1[99] == 11
+6766: A1 = blk(A1, 10);
+6767: size(A1) == 10
+6768: test(A1) == 0
+6769: A1[99] == 0
+6770: blkfree(A1);
+6771: blocks() == 1
+6772: blocks(1) == A1
+6773: size(A1) == 0
+6774: sizeof(A1) == 0
+6775: test(A1) == 0
+6776: test disabled: str(A1) == "blk6700"
+6777: A1 == A2
+6778: null(blk("blk6700"));
+6779: size(A1) == 0
+6780: sizeof(A1) == 1000
+6781: A1[100] = 0xff;
+6782: A2[100] == 0xff
+6783: mat A1[2] = {A1, B1};
+6784: A1[0] == A2
+6785: A1[1] == B1
+6786: A1[0][100] == 0xff
+6800: reserved for future expansion of test_blk
+6899: Ending test_blk
+
+6800: Beginning test_blkcpy
+6801: A = blk() = {1,2,3,4,5};
+6802: B = blk();
+6803: blkcpy(B, A);
+6804: A == B
+6805: blkcpy(B, A, ,10)
+6806: size(B) == 15
+6807: blkcpy(A, 3, B, 15);
+6808: size(B) == 17
+6809: B[16] == 5
+6810: x = rm("-f", "blk6800")
+6811: A1 = blk("blk6800");
+6812: size(A1) == 0
+6813: blkcpy(A1, A);
+6814: size(A1) == 5
+6815: blkcpy(A1, A, ,100);
+6816: size(A1) == 105
+6817: B1 = blk("beta")
+6818: size(B1) == 0
+6819: blkcpy(B1, A1, 5, 100, 0)
+6820: size(B1) == 105
+6821: blkcpy(C = blk(), B1,5,,100);
+6822: C == A
+6823: fs = fopen("junk6800", "w+");
+6824: blkcpy(fs, A);
+6825: size(f) == 5
+6826: blkcpy(B = blk(), fs);
+6827: B == A
+6828: blkcpy(fs, A, ,100);
+6829: size(f) == 105
+6830: blkcpy(C = blk(), fs,2,,100)
+6831: C == (blk() = {1,2}
+6832: A = blk();
+6833: blkcpy(A, "blk6800");
+6834: size(A) == 9
+6835: blkcpy(A, "beta", , 7);
+6836: size(A) == 12
+6837: S = strprintf("%s", A[0]);
+6838: S == "blk6800beta"
+6839: S = strprintf("%s", A[8]);
+6840: S == "eta"
+6841: mat M1[2,2] = {1,2,3,4};
+6842: mat M2[4];
+6843: blkcpy(M2, M1)
+6844: M2 == (mat[4]={1,2,3,4}
+6845: blkcpy(M2, M2, 2, 2, 0);
+6846: M2 == (mat[4]={1,2,1,2}
+6847: B = blk()
+6848: blkcpy(B, M1)
+6849: B == (blk() = {1,2,3,4}
+6850: blkcpy(B,2,2,M2);
+6851: M2 == (mat[4]={3,4,1,2})
+6852: L1 = makelist(4);
+6853: blkcpy(L1, M2);
+6854: blkcpy(M2, L1, 2, ,2);
+6855: M2 == (mat[4]={1,2,1,2}
+6856: L2 = makelist(4);
+6857: blkcpy(L2, L1);
+6858: L1 == L2
+6859: blkcpy(L2, L1, 2, 2, 0)
+6860: L2 == list(3,4,3,4)
+6861: M2[0] = L2;
+6862: blkcpy(M2, M2[0]);
+6863: M2 == (mat[4]={3,4,3,4})
+6864: M2[2] = list(1,2,3,4);
+6865: blkcpy(M2[2], M2);
+6866: M2[2][[2]][[2]] == 3
+6867: fclose(fs)
+6868: x = rm("junk6800")
+6868: Ending test_blkcpy
+
+6900: Beginning test_name
+6901: x = rm("-f", "junk6900")
+6902: f = fopen("junk6900", "w")
+6903: name(f) == "junk6900"
+6904: fclose(f)
+6905: name(f) == null()
+6906: A = blk("blk6900")
+6907: name(A) == "blk6900"
+6908: blkfree("blk6900");
+6909: name(A) == "blk6900"
+6910: name(27) == null()
+6911: x = rm("junk6900")
+6912: Ending test_name
+
+7000: Beginning test_blkprintf
+7001: A = blk("alpha")
+7002: B = blk();
+7003: copy("abc yz", A);
+7004: copy("defg", B);
+7005: strprintf("%s", A) == "abc yz"
+7006: strprintf("%s", A[2]) == "c yz"
+7007: strprintf("%s", A[7]) == ""
+7008: strprintf("%c", A == "a"
+7009: strprintf("%c", A[4]) == "y"
+7010: strprintf("%s", B) == "defg"
+7011: strprintf("%s", B[1]) == "efg"
+7012: strprintf("%s", B[7]) == ""
+7013: strprintf("%c", B == "d"
+7014: strprintf("%c", B[2]) == "f"
+7015: Ending test_blkprintf
+
+7100: Beginning test_sha
+7101: y = sha();
+7102: z = sha();
+7103: y == z
+7104: sha("") == y
+7105: y = sha(y,1);
+7106: y == sha(1)
+7107: sha(y,2) == sha(1,2)
+7108: sha(sha()) == 0xf96cea198ad1dd5617ac084a3d92c6107708c0ef
+7109: sha(sha("a"))==0x37f297772fae4cb1ba39b6cf9cf0381180bd62f2
+7110: sha(sha("ab"))==0x488373d362684af3d3f7a6a408b59dfe85419e09
+7111: sha(sha("abc"))==0x0164b8a914cd2a5e74c4f7ff082c4d97f1edf880
+7112: sha(sha("abcd"))==0x082c73b06f71185d840fb4b28eb3abade67714bc
+7113: sha(sha("abcde"))==0xd624e34951bb800f0acae773001df8cffe781ba8
+7114: sha(sha("abcdef"))==0x2a589f7750598dc0ea0a608719e04327f609279a
+7115: sha(sha("abcdefg"))==0x5bdf01f9298e9d19d3f8d15520fd74eed600b497
+7116: sha(sha("abcdefgh"))==0x734ba8b31975d0dbae4d6e249f4e8da270796c94
+7117: sha(sha(1)) == 0x864c8d09e828c7c31d62693736a5a9302c282777
+7118: sha(sha(2)) == 0x2c0b59c512cb20fad6bb0883b69c9f5a46545808
+7119: sha(sha(22/7)==0x7ddb7f8a7e9d70757f157744fddea7a6c6a6bcc6
+7120: sha(sha(isqrt(2e1000)==0x6db8d9cf0b018b8f9cbbf5aa1edb8066d19e1bb0
+7121: sha("x", "y", "z") == sha("xyz")
+7122: sha(sha("this is", 7^19-8, ..., "hash")) == 0x21e4...
+7123: z = sha(list(1,2,3), "curds and whey", 2^21701-1, pi(1e-100));
+7124: sha(z) == 257075527903934749824451356785709876382198951165
+7125: y = sha()
+7126: y = sha(y, list(1,2,3), "curds and whey")
+7127: y = sha(y, 2^21701-1)
+7128: y = sha(y, pi(1e-100))
+7129: y == z
+7130: B = blk() = {"a", "b", "c"};
+7131: sha(B) == sha("abc")
+7132: B1 = blk() = {1,2,3,4};
+7133: B2 = blk() = {5,6,7,8};
+7134: B = blk() = {1,2,3,4,5,6,7,8};
+7135: sha(B1, B2) == sha(B)
+7136: sha(B[1], B[3], B[5]) == sha("")
+7137: L = list(1,2,3)
+7138: mat M[3] = {4,5,6}
+7139: sha(sha(L), M, B) == sha(L, M, B)
+7140: sha(sha(L, M), B) == sha(L, M, B)
+7141: Ending test_sha
+
+7200: Beginning test_sha1
+7201: y = sha1();
+7202: z = sha1();
+7203: y == z
+7204: z = sha1(1);
+7205: sha1(y,1) == z
+7206: sha1(z,2) == sha1(1,2)
+7207: sha1(sha1()) == 0xda39a3ee5e6b4b0d3255bfef95601890afd80709
+7208: sha1("x", "y", "z") == sha1("xyz")
+7209: sha1(sha1("this is",7^19-8,"a composit",3i+4.5,"hash")) == ...
+7210: z = sha1(list(1,2,3), "curds and whey", 2^21701-1, pi(1e-100));
+7211: sha1(z) == 0x158cc87deeb9dd478ca14e3ab359205b0fb15b83
+7212: y = sha1();
+7213: y = sha1(y, list(1,2,3), "curds and whey");
+7214: y = sha1(y, 2^21701-1);
+7215: y = sha1(y, pi(1e-100));
+7216: y == z
+7217: sha1(sha1("a"))==0x86f7e437faa5a7fce15d1ddcb9eaeaea377667b8
+7218: sha1(sha1("ab"))==0xda23614e02469a0d7c7bd1bdab5c9c474b1904dc
+7219: sha1(sha1("abc"))==0xa9993e364706816aba3e25717850c26c9cd0d89d
+7220: sha1(sha1("abcd"))==0x81fe8bfe87576c3ecb22426f8e57847382917acf
+7221: sha1(sha1("abcde"))==0x03de6c570bfe24bfc328ccd7ca46b76eadaf4334
+7222: sha1(sha1("abcdef"))==0x1f8ac10f23c5b5bc1167bda84b833e5c057a77d2
+7223: sha1(sha1("abcdefg"))==0x2fb5e13419fc89246865e7a324f476ec624e8740
+7224: sha1(sha1("abcdefgh"))==0x425af12a0743502b322e93a015bcf868e324d56a
+7225: sha1(sha1(1))==0x53dd4e1734ad47d45e41c23e4ce42d7f1f98c1e8
+7226: sha1(sha1(22/7))==0xf8e2510f85f7b9bf088b321188e9f70620f44246
+7227: sha1(sha1(isqrt(2e1000)))==0x6852a1365c51050c3d039e3c5d9cf29c12283ef4
+7228: L = list(1,2,3)
+7229: mat M[3] = {4,5,6}
+7230: B = blk() = {7,8,9}
+7231: sha1(sha1(L), M, B) == sha1(L, M, B)
+7232: sha1(sha1(L, M), B) == sha1(L, M, B)
+7233: Ending test_sha1
+
+7300: Beginning test_md5
+7301: y = md5();
+7302: z = md5();
+7303: y == z
+7304: y = md5(y,1);
+7305: z = md5(1);
+7306: y == z
+7307: md5(z,2) == md5(1,2)
+7308: md5(md5()) == 0xd41d8cd98f00b204e9800998ecf8427e
+7309: md5("x", "y", "z") == md5("xyz")
+7310: md5(md5("this is", 7^19-8, "a composit", 3i+4.5, "hash")) == ...
+7311: z = md5(list(1,2,3), "curds and whey", 2^21701-1, pi(1e-100));
+7312: md5(z) == 0x487462e577eabef0302dd13af6632546
+7313: y = md5();
+7314: y = md5(y, list(1,2,3), "curds and whey")
+7315: y = md5(y, 2^21701-1);
+7316: y = md5(y, pi(1e-100));
+7317: y == z
+7318: md5(md5("a")) == 0x0cc175b9c0f1b6a831c399e269772661
+7319: md5(md5("ab")) == 0x187ef4436122d1cc2f40dc2b92f0eba0
+7320: md5(md5("abc")) == 0x900150983cd24fb0d6963f7d28e17f72
+7321: md5(md5("abcd")) == 0xe2fc714c4727ee9395f324cd2e7f331f
+7322: md5(md5("abcde")) == 0xab56b4d92b40713acc5af89985d4b786
+7323: md5(md5("abcdef")) == 0xe80b5017098950fc58aad83c8c14978e
+7324: md5(md5("abcdefg")) == 0x7ac66c0f148de9519b8bd264312c4d64
+7325: md5(md5("abcdefgh")) == 0xe8dc4081b13434b45189a720b77b6818
+7326: md5(md5(1)) == 0x44fe7987067ac45311c88772038f60d1
+7327: md5(md5(22/7) == 0x9274b951e1dfb9cba22af1c127daa8e7
+7328: md5(md5(isqrt(2e1000))) == 0xe56ac4b8cad869e738a04fedc97058f3
+7329: L = list(1,2,3)
+7330: mat M[3] = {4,5,6}
+7331: B = blk() = {7,8,9}
+7332: md5(md5(L), M, B) == md5(L, M, B)
+7333: md5(md5(L, M), B) == md5(L, M, B)
+7334: Ending test_md5
+
+7400: Beginning test_savedot
+7401: saveval(1);
+7402: a7400 = 2;
+7403: . == 2;
+7404: (. += 3, . == 5)
+7405: . == 5;
+7406: a7400 = 5; b7400 = 6;
+7407: . == 6
+7408: a7400 = 7; b7400 = 8; null()
+7409: . == 6
+7410: saveval(0);
+7411: a7400 = 9;
+7412: . == 6
+7413: a7400 = 2; saveval(1); b7400 = 3; saveval(0); c7400 = 4;
+7414: . == 3
+7415: free(.);
+7416: isnull(.)
+7417: a7400 = 4;
+7418: isnull(.)
+7419: saveval(1);
+7420: obj pair7400 {one,two} = {1,2};
+7421: . .one == 1
+7422: Ending test_savedot
+
+7500: Beginning test_ptr
+7501: isoctet(27) == 0
+7502: isptr(27) == 0
+7503: B = blk() = {1,2,3,4,5,6};
+7504: isoctet(B[0]) == 1
+7505: isnum(B[0]) == 0
+7506: isptr(B[0]) == 0
+7507: isoctet(*B[0]) == 0
+7508: isnum(*B[0]) == 1
+7509: isoctet(&B[0]) == 0
+7510: isptr(&B[0]) == 1
+7511: *B[3]== B[3]
+7512: *&B[3] == B[3]
+7513: &B[0] + 3 == &B[3]
+7514: &B[3] - &B[0] == 3
+7515: &B[3 - 3 == &B[1]
+7516: &B[3] > &B[0]
+7517: swap(B[0], B[5]);
+7518: B[0] == 6 && B[5] == 1
+7519: p = &B[0], q = &B[5]
+7520: isoctet(p) == 0
+7521: isptr(p) == 1
+7522: isoctet(*p) == 1
+7523: isptr(*p) == 0
+7524: p == &B[0]
+7525: q != p
+7526: q > p
+7527: *p == B[0]
+7528: &B[1] == p + 1
+7529: q == p + 5
+7530: *p = 1, *q = 6
+7531: B[0] == 1 && B[5] == 6
+7532: a = *p, b = *q
+7533: a == 1 && b == 6
+7534: *(p + 3) = 7;
+7535: B[3] == 7
+7536: *(q - 2) = 8;
+7537: B[3] == 8
+7538: p0 = p++;
+7539: p0 == &B[0] && p == &B[1]
+7540: q0 = --q
+7541: q0 == &B[4] && q == q0
+7542: a = *p++, b = *q--;
+7543: a == 2 && b == 5
+7544: p - &B[0] == 2 && q == &B[0] + 3
+7545: a = *--q, b = *----q;
+7546: q == &B[0]
+7547: a == 3 && b == 1
+7548: a = (*p)++;
+7549: a == 3 && B[2] == 4
+7550: a = ++(*++p)++;
+7551: a == 9 && B[3] == 10
+7552: A = blk() = {1,2,3};
+7553: g7500a(A[0],5) == 5
+7554: A[0] == 5
+7555: g7500a(`A[0],5) == 5
+7556: A[0] == 5
+7557: g7500b(&A[0],3) == &A[3]
+7558: g7500c(&A[0], 2) == 3
+7559: g7500d(`A[0]) == &A[0]
+7560: p = &A[0];
+7561: g7500a(*p, 6) == 6
+7562: *p == 6
+7563: g7500a(`*p,6) == 6
+7564: *p == 6
+7565: g7500b(p,3) == p + 3
+7566: g7500c(p,2) == 3
+7567: g7500d(`*p) == p
+7568: g7500e(p,4) == 4
+7569: A[0] == 4
+7570: g7500e(p+2,5) == 5
+7571: A[2] == 5
+7572: A = 27, p = &A;
+7573: isptr(A) == 0
+7574: isptr(&A) == 2
+7575: isptr(p) == 2
+7576: *p == 27
+7577: p == &A
+7578: *p = 45;
+7579: A == 45
+7580: q = p;
+7581: q == &A
+7582: q = &p
+7583: *q == p
+7584: **q == A
+7585: ***q == A
+7586: M = mat[4] = {1,2,3,4};
+7587: p = &M[0], *p = 5;
+7588: M[0] == 5
+7589: *++p = 6;
+7590: M[1] == 6
+7591: q = p++;
+7592: q == &M[1]
+7593: p == &M[2]
+7594: quomod(17,5,*p,*q);
+7595: M[1] == 3 && M[2] == 2
+7596: swap(*p, *q);
+7597: M[1] == 2 && M[2] == 3
+7598: A = *M = {7,8};
+7599: M == (mat[4] = {5,2,3,4})
+7600: A == (mat[4] = {7,8,3,4})
+7601: A = &A;
+7602: &A == A && *A == A
+7603: A = &B, B = &A;
+7604: **A == A && ***A == B
+7605: M[3] = 7;
+7606: *g7500b(&M[1], 2) == 7
+7607: *g7500b(&M[1], 2) = 8;
+7608: M[3] == 8
+7609: M[3] = list(9,10);
+7610: (*g7500b(&M[1], 2))[[1]] == 10
+7611: a = 24, b = 4 * 6, c= 4!;
+7612: isptr(&*a) == 4
+7613: &*a == &24
+7614: &*a == &*b
+7615: &*a != &*c
+7616: a = b = "abc", c = strcat("a", "bc");
+7617: isptr(&*a) == 3
+7618: &*a == &"abc"
+7619: &*a == &*b
+7620: &*a != &*c
+7621: a = c;
+7622: &*a == &*c
+7623: c = 4!, p = &*c, free(c)
+7624: isnull(*p)
+7625: Ending test_ptr
+
+7700: Beginning test_newstring
+7701: A = "abcdef", B = "xyz";
+7702: A + B == "abcdefxyz"
+7703: -A == "fedcba"
+7704: A - B == "abcdefzyx"
+7705: 2 * B == "xyzxyz"
+7706: -2 * B == "zyxzyx"
+7707: B * 3 == "xyzxyzxyz"
+7708: 2.5 * B == "xyzxyzx"
+7709: 0 * B == ""
+7710: 2 * "12" == "121212"
+7711: A/2 == "abc"
+7712: A | B == "y\173\173def"
+7713: A & B == "``b"
+7714: A \ B == "\1\2\1def"
+7715: A ~ B == "\31\e\31def"
+7716: ~B == "\207\206\205"
+7717: C = "abcdef";
+7718: &*A == &*C
+7719: D = "abc
+7720: size(D) == 6
+7721: strlen(D) == 3
+7722: strcat(D,B) == "abcxyz"
+7723: bit(A,0) == 1
+7724: !bit(A,12)
+7725: bit(A,13)
+7726: lowbit(A) == 0
+7727: highbit(A) == 46
+7728: #A == 21
+7729: A[2] == "c"
+7730: char(A[2]) == "c"
+7731: A[2] == 99
+7731: ord(A[2]) == 99
+7732: A[2] == A[0] + 2
+7733: 3 * A[2] == 297
+7734: 3 * char(A[2]) == "ccc"
+7735: head(A,3) == "abc"
+7736: head(A,-3) == "cba"
+7737: tail(A,3) == "def"
+7738: tail(A,-3) == "fed"
+7739: segment(A,2) == "c"
+7740: segment(A,2,4) == "cde"
+7741: segment(A,4,2) == "edc"
+7742: search(A, "c") == 2
+7743: search(A, "x") == null()
+7744: search("abbcbc", "bc") == 2
+7745: search("abbcbc", "bc", 2) == 2
+7746: search("abbcbc", "bc", 3) == 4
+7747: search("abbcbc", "bc", -3) == 4
+7748: search("abbcbc", "bc", -4) == 2
+7749: search("abbcbc", "bc", , 3) == null()
+7750: search("abbcbc", "bc", , 4) == 2
+7751: rsearch("abbcbc", "bc") == 4
+7752: p = &A[0];
+7753: -*p == -97
+7754: ~*p == char(158)
+7755: /-#~*p == -1/5
+7756: A[0] = "A";
+7757: A == "Abcdef"
+7758: A[1] = 173;
+7759: A == "A\255cdef"
+7760: setbit(A,10);
+7761: A == "A\255gdef"
+7762: setbit(A, 16, 0);
+7763: A == "A­fdef"
+7764: q = "curds" " and " "whey"
+7765: q == "curds and whey"
+7766: q = "chongo" ' was ' "here"
+7767: q == "chongo was here"
+7768: Ending test_newstring
+
+7800: Beginning test_newcomb
+7801: comb(2, 5) == 0
+7802: comb(2, -2) == 0
+7803: comb(1/2, 4) == -5/128
+7804: comb(1/2, 5) == 7/256
+7805: perm(2, -1) == 1/3
+7806: perm(2, -2) == 1/12
+7807: perm(2, -3) == 1/60
+7808: perm(1/2, 4) == -15/16
+7809: perm(1/2, 5) == 105/32
+7810: perm(1/2, -1) == 2/3
+7811: perm(1/2, -2) == 4/15
+7812: Ending test_newcomb
+
+7900: Starting test_bigcomb
+7901: a = 1234/4321
+7902: b = 3456/6543
+7903: n = 47
+7904: v1 = perm(a + b, n)
+7905: v2 = 0
+7906: for (i=0;i<=n;i++) v2 += comb(n,i)*perm(a,i)*perm(b,n-i)
+7910: v1 == v2
+7911: f7900(-10,10,5) == g7900(10,10,5)
+7912: f7900(5,15,-4) == g7900(5,15,-4)
+7913: f7900(-7/4,33/4,-2) == g7900(-7/4,33/4,-2)
+7914: Ending test_bigcomb
+
+8000: Starting test_natnumset
+8101: A = set(17, 2, 0, 24, 2);
+8102: B = set(41, 17, 11, 2, 19, 17);
+8103: A | B == set(0,2,11,17,19,24,41)
+8104: A & B == set(2,17)
+8105: A \ B == set(0, 24)
+8106: B \ A == set(11,19,41)
+8107: A ~ B == set(0,11,19,24,41)
+8108: #A == 4
+8109: #~A == 97
+8110: A + 5 == set(5,7,22,29)
+8111: A - 5 == set(12,19)
+8112: 30 - A == set(6,13,28,30)
+8113: 2 * A == set(0,4,34,48)
+8114: 10 * A == set(0,20)
+8115: A + A == set(0,2,4,17,19,24,26,34,41,48)
+8116: A - A == set(0,2,7,15,17,22,24)
+8117: set(2,3,5,7)^2 == set(4,9,25,49)
+8118: interval(8,12) == set(8,9,10,11,12)
+8119: min(A) == 0
+8120: max(A) == 24
+8121: P = primes();
+8122: #P == 25
+8123: +P == 1060
+8124: isin(P,31)
+8125: !isin(P,51)
+8126: P1 = primes(20,40)
+8127: P1 == set(23,29,31,37)
+8128: P1 < P
+8129: P1 & (set(3) % 4) == set(23,31)
+8130: L1 = list(3,2,1);
+8131: C = set(2,3,5,7);
+8132: polyvals(L1, C) == set(11,18,38,66)
+8133: L2 = list(0,list(0,1),1);
+8134: D = set(4,6);
+8135: polyvals(L2,C,D) == set(12,16,21,27,45,55,77,91)
+8136: Ending test_natnumset
+
+8200: Starting test_somenew
+8201: char(-1) == char(255)
+8202: char(258) == char(2)
+8203: size(char(0)) == 1
+8204: strlen(char(0)) == 0
+8205: char(0) != ""
+8206: strcmp(char(0),"") == 0
+8207: str("abc") == "abc"
+8208: 2^-3^2 == 1/512
+8209: /2 == .5
+8210: /-2 == -.5
+8211: 1+/2 == 1.5
+8212: ecnt += 6
+8213: 0^-2 == 1/0
+8214: inverse(0) == 1/0
+8215: 1/(1/0) == 0
+8216: inverse(1/0) == 0
+8217: a = isqrt(2e1000); s = "xyz";
+8218: hash(a,s) == 2708885378
+8219: hash("curds n whey") == 2376141927
+8220: y = calclevel()
+8221: func8200(0,y) == 0
+8222: func8200(1,y) == 1
+8223: func8200(10,y) == 55
+8224: func8200(100,y) == 5050
+8225: inputlevel() == 1
+8226: Ending test_somenew
+
+8300: Starting define tests
+8301: define f8300(x) = x^2; define g8300(x) = 1 - x;
+8302: f8300(10) == 100
+8303: g8300(10) == -9
+8304: define h8300(x)=x^3;define i8300(x)=x-1;define j8300(x)=x+1;
+8305: h8300(10) == 1000
+8306: i8300(10) == 9
+8307: j8300(10) == 11
+8308: {static k8300 = 5} define l8300(x) = k8300 + x;
+8309: l8300(10) == 15
+8310: a8300 == 1
+8311: Ending define tests
+
+8400: Starting test_quit
+8401: in test8400.cal
+8402: parsed test8400()
+8403: test8400() == 64434
+8404: read -once test8400
+8405: test8400() == 64434
+8406: Ending test_quit
+
+8500: Starting test_divmod
+8501: ver_8500 = 0
+8502: old_seed_8500 = srand(31^61)
+8503: divmod_8500(250,,,8503)
+8504: divmod_8500(250,,,8504)
+8505: divmod_8500(250,,,8505)
+8506: divmod_8500(250,,,8506)
+8507: divmod_8500(250,,,8507)
+8508: divmod_8500(250,,,8508)
+8509: divmod_8500(1000,,,8509)
+8510: config("all", cfg_8500),
+8511: srand(old_seed_8500),
+8512: Ending test_divmod
+
+8600: Starting test_1024args
+8601: min() called with 1024 args
+8602: max() called with 1024 args
+8603: ssq() called with 1024 args
+8604: hash() called with 1024 args
+8605: int(hmean()) called with 1024 args
+8606: Ending test_1024args
+
+9800: Starting read of selected calc resource files
+9801: read -once bernoulli
+9802: read -once bigprime
+9803: read -once chrem
+9804: read -once deg
+9805: read -once ellip
+9806: read -once mersenne
+9807: read -once mfactor
+9808: read -once mod
+9809: read -once natnumset
+9810: read -once pell
+9811: read -once pi
+9812: read -once pix
+9813: read -once pollard
+9814: read -once poly
+9815: read -once prompt
+9816: read -once psqrt
+9817: read -once quat
+9818: read -once randbitrun
+9819: read -once randmprime
+9820: read -once randombitrun
+9821: read -once randomrun
+9822: read -once randrun
+9823: read -once seedrandom
+9824: read -once solve
+9825: read -once sumsq
+9826: read -once unitfrac
+9827: read -once varargs
+9828: read -once qtime
+9829: Ending read of selected calc resource files
+
+9995: freeredc()
+9996: freestatics()
+**** 6 error(s) found  \/++\/
+9998: freeglobals()
+9999: Ending regression tests

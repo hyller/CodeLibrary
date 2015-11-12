@@ -1,0 +1,17 @@
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|diff -ipuwr --binary --strip-trailing-cr -x '*.bak' -x '*.orig' -x '*.rej' -x '*.new' -x '*~' -x debian -x '*.po' -x '*.pot' hello-2.3-orig/src/Makefile.in hello-2.3-src/src/Makefile.in
+|--- hello-2.3-orig/src/Makefile.in	2007-06-29 22:48:13.000000000 +0200
+|+++ hello-2.3-src/src/Makefile.in	2008-02-10 10:10:10.281250000 +0100
+--------------------------
+Patching file src/Makefile.in using Plan A...
+Hunk #1 succeeded at 33 with fuzz 2 (offset -1 lines).
+Hunk #2 succeeded at 97 with fuzz 2 (offset 3 lines).
+Hunk #3 succeeded at 277 (offset 111 lines).
+Hunk #4 FAILED at 318.
+Hunk #5 succeeded at 404 (offset 133 lines).
+Hunk #6 succeeded at 469 (offset 133 lines).
+Not setting time of file src/Makefile.in (time mismatch)
+1 out of 6 hunks FAILED -- saving rejects to file src/Makefile.in.rej
+done

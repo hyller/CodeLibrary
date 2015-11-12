@@ -1,0 +1,75 @@
+quotearg.o quotearg.o: ../../../hello-2.4-src/gnulib/lib/quotearg.c \
+  ../../config.h ../../../hello-2.4-src/gnulib/lib/quotearg.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stddef.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/include/stddef.h \
+  ../../../hello-2.4-src/gnulib/lib/xalloc.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/ctype.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/_mingw.h \
+  ./errno.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/errno.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/limits.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/include/stdbool.h \
+  ./stdlib.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdlib.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdint.h \
+  ./string.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/string.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/wchar.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdarg.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/include/stdarg.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/wctype.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/sys/types.h \
+  ../../../hello-2.4-src/gnulib/lib/gettext.h \
+  D:/Progra~1/GnuWin32/include/libintl.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/locale.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdio.h
+
+../../config.h:
+
+../../../hello-2.4-src/gnulib/lib/quotearg.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stddef.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/include/stddef.h:
+
+../../../hello-2.4-src/gnulib/lib/xalloc.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/ctype.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/_mingw.h:
+
+./errno.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/errno.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/limits.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/include/stdbool.h:
+
+./stdlib.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdlib.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdint.h:
+
+./string.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/string.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/wchar.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdarg.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/include/stdarg.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/wctype.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/sys/types.h:
+
+../../../hello-2.4-src/gnulib/lib/gettext.h:
+
+D:/Progra~1/GnuWin32/include/libintl.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/locale.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdio.h:

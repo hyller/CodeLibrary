@@ -1,0 +1,47 @@
+Making check in contrib
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/contrib' wordt binnengegaan
+make[1]: Er is niets te doen voor 'check'.
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/contrib' wordt verlaten
+Making check in gnulib/lib
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/gnulib/lib' wordt binnengegaan
+make.exe  check-recursive
+make[2]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/gnulib/lib' wordt binnengegaan
+make[3]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/gnulib/lib' wordt binnengegaan
+make[3]: Er is niets te doen voor 'check-am'.
+make[3]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/gnulib/lib' wordt verlaten
+make[2]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/gnulib/lib' wordt verlaten
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/gnulib/lib' wordt verlaten
+Making check in po
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/po' wordt binnengegaan
+make[1]: Er is niets te doen voor 'check'.
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/po' wordt verlaten
+Making check in src
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/src' wordt binnengegaan
+make[1]: Er is niets te doen voor 'check'.
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/src' wordt verlaten
+Making check in doc
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/doc' wordt binnengegaan
+make[1]: Er is niets te doen voor 'check'.
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/doc' wordt verlaten
+Making check in man
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/man' wordt binnengegaan
+make[1]: Er is niets te doen voor 'check'.
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/man' wordt verlaten
+Making check in tests
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/tests' wordt binnengegaan
+make.exe  check-TESTS
+make[2]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/tests' wordt binnengegaan
+PASS: greeting-1
+../../hello-2.4-src/tests/greeting-2: Skipping test: not a full moon night
+SKIP: greeting-2
+PASS: hello-1
+PASS: last-1
+PASS: traditional-1
+======================
+All 4 tests passed
+(1 tests were not run)
+======================
+make[2]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/tests' wordt verlaten
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4/tests' wordt verlaten
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4' wordt binnengegaan
+make[1]: Map '/cygdrive/j/Misc/hello/2.4/hello-2.4' wordt verlaten

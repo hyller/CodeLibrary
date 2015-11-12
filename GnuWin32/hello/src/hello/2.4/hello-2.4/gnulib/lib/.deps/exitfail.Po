@@ -1,0 +1,23 @@
+exitfail.o exitfail.o: ../../../hello-2.4-src/gnulib/lib/exitfail.c \
+  ../../config.h ../../../hello-2.4-src/gnulib/lib/exitfail.h ./stdlib.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdlib.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/_mingw.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stddef.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/include/stddef.h \
+  g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdint.h
+
+../../config.h:
+
+../../../hello-2.4-src/gnulib/lib/exitfail.h:
+
+./stdlib.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdlib.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/_mingw.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stddef.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/include/stddef.h:
+
+g:/mingw/3.4.5/bin/../lib/gcc/mingw32/3.4.5/../../../../include/stdint.h:
