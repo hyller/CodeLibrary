@@ -1,0 +1,28 @@
+# Object files
+*.o
+*.ko
+*.stg
+*.tdt
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.abs
+*.s19
+
+# Projects nonsense files
+*.dep
+*.map
+
+# Folders
