@@ -21,14 +21,13 @@ void Keys_Handle(void)
     D4CD_NewKeyEvent(scan_codes[i] | D4CD_KEY_SCANCODE_RELEASEMASK);
   }
 }
-
 void main(void) {
 
   if(!D4CD_Init(&scr_test))
     for(;;);
 
   for(;;) {
-    D4CD_Poll();
+    D4CD_Poll();D4CD_Poll();D4CD_Poll();D4CD_Poll();D4CD_Poll();
     Keys_Handle( );
   } /* loop forever */
   /* please make sure that you never leave main */

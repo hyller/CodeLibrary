@@ -77,7 +77,7 @@ static char yy = 0;
   static unsigned char D4CDLCD_Send_Char_Simulator(unsigned char value) ;
   static unsigned char D4CDLCD_Read_Char_Simulator(void);
   static unsigned char D4CDLCD_WriteUserChar_Simulator(unsigned char ix, unsigned char *pData);
-  static void D4CDLCD_Flush_Simulator(void);
+  static unsigned char D4CDLCD_SetCursor(unsigned char enable, unsigned char blink);
   static void D4CDLCD_Delay_ms_Simulator(unsigned short period);
   static unsigned char D4CDLCD_DeInit_Simulator(void);
 
@@ -97,7 +97,7 @@ static char yy = 0;
     D4CDLCD_Send_Char_Simulator,
     D4CDLCD_Read_Char_Simulator,
     D4CDLCD_WriteUserChar_Simulator,
-    D4CDLCD_Flush_Simulator,
+    D4CDLCD_SetCursor,
     D4CDLCD_Delay_ms_Simulator,
     D4CDLCD_DeInit_Simulator,
   };
@@ -180,8 +180,14 @@ static char yy = 0;
       return 0;
     }
   }
-
   
+  void D4CDLCD_Flush_Simulator(void)
+  {
+     system("cls");
+     puts(&str[0][0]);
+     puts(&str[1][0]);
+  }
+
   //-----------------------------------------------------------------------------
   // FUNCTION:    D4CDLCD_Send_Char_Simulator
   // SCOPE:       Low Level Driver API function
@@ -195,10 +201,13 @@ static char yy = 0;
   static unsigned char D4CDLCD_Send_Char_Simulator(unsigned char ch)
   {       
      str[yy][xx] = ch;
+     xx++;
+
      D4CDLCD_Flush_Simulator();
      return 1;
   }
   
+
  
   //-----------------------------------------------------------------------------
   // FUNCTION:    D4CDLCD_Read_Char_Simulator
@@ -232,20 +241,29 @@ static char yy = 0;
   }
   
   //-----------------------------------------------------------------------------
-  // FUNCTION:    D4CDLCD_Flush_Simulator
+  // FUNCTION:    D4CDLCD_SetCursor
   // SCOPE:       Low Level Driver API function
-  // DESCRIPTION: For buffered low level interfaces is used to inform
-  //              driver the complete object is drawed and pending pixels should be flushed
-  //
-  // PARAMETERS:  none
-  //
-  // RETURNS:     none
-  //-----------------------------------------------------------------------------
-  static void D4CDLCD_Flush_Simulator(void)
+  // DESCRIPTION: The function control cursor of LCD
+  // 
+  // PARAMETERS:  unsigned char enable - enable / disable cursor  
+  //              unsigned char blink - set mode of cursor
+  //              
+  // RETURNS:     result: 1 - Success
+  //                      0 - Failed
+    //----------------------------------------------------------------------------- 
+  static unsigned char D4CDLCD_SetCursor(unsigned char enable, unsigned char blink)
   {
-    system("cls");
-    puts(&str[0][0]);
-    puts(&str[1][0]);
+    unsigned char data;
+    
+    data = 0x0c;
+    
+    if(enable)
+      data |= 0x02;
+    
+    if(blink)
+      data |= 0x01;
+  
+    return 1;
   }
 
   //-----------------------------------------------------------------------------
