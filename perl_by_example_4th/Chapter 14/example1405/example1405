@@ -1,0 +1,6 @@
+#!/usr/bin/perl
+# The user of the class
+use House;
+my $house = House->new;             # Call class method
+$house->set_owner ("Tom Savage");   # Call instance method
+$house->display_owner;              # Call instance method

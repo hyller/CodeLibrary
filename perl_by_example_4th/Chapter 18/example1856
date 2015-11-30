@@ -1,0 +1,11 @@
+use Win32::Process;
+use Win32;
+sub ErrorReport{
+	print Win32::FormatMessage( Win32::GetLastError() );
+}
+
+Win32::Process::Create($ProcessObj,
+	"C:\\windows\\notepad.exe", "notepad myfile.txt", 0,
+	NORMAL_PRIORITY_CLASS, ".") || die ErrorReport();
+print "Notepad has started\n";
+print "The exit code is: ",$ProcessObj->GetExitCode($ExitCode),"\n";

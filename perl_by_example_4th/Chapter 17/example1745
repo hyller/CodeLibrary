@@ -1,0 +1,34 @@
+#!c:/ActivePerl/bin/perl.exe
+use DBI;
+use CGI qw(:standard);
+
+my $dbh = 
+DBI->connect("DBI:mysql:host=localhost;database=sample_db;
+  user=root;password=quigley1")or die "Connection to sample_db failed:  $DBI::errstr";
+;
+
+my $sth=$dbh->prepare("SELECT * FROM coaches");
+$sth->execute();
+
+print header, start_html(-title=>"Sample Database",
+                      -BGCOLOR=>"#66ff33");
+print "<div align='center'>";
+print h2("Contents of the \"coaches\" Table");
+
+print qq/<table border="1" cellpadding="10" bgcolor="white">/;
+while(my @val = $sth->fetchrow_array()){
+     print <<EOF;
+      <tr>
+           <td>$val[0]</td>
+           <td>$val[1]</td>
+           <td>$val[2]</td>
+           <td>$val[3]</td>
+           <td>$val[4]</td>
+      </tr>
+EOF
+}
+ print "</table>";
+ print end_html();
+ $sth->finish();
+ $dbh->disconnect();
+

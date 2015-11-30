@@ -1,0 +1,5 @@
+# Reversing the elements of an array
+@names=("Bob", "Dan", "Tom", "Guy");
+print "@names \n";
+@reversed=reverse(@names),"\n";
+print "@reversed\n";

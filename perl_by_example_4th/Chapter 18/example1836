@@ -1,0 +1,3 @@
+$loginname=getlogin || (getpwuid($<))[0]|| die "Not a user here!!";
+print "Your loginname is $loginname.\n";
+

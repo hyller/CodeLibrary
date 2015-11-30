@@ -1,0 +1,11 @@
+#!/bin/perl
+sub handler{
+	local($sig) = @_;     # First argument is signal name
+	print "Caught SIG$sig--shutting down\n";
+	exit(1);
+}
+$SIG{'INT'} = 'handler';  # Catch <Ctrl>-c
+$SIG{'HUP'}='IGNORE';
+print "Here I am!\n";
+sleep(10);
+$SIG{'INT'}='DEFAULT';  

@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+use CGI;
+BEGIN{ use CGI::Carp qw(fatalsToBrowser carpout);
+	open(LOG,">>errors.log") ||die "Couldn't open log file\n";
+	carpout(LOG);
+}
+$query = new CGI;
+<Program continues here> 

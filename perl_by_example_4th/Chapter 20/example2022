@@ -1,0 +1,51 @@
+#!/usr/local/bin/perl -Tw
+require 5.6.0;
+use Socket;
+use FileHandle;
+use strict;
+my($remote, $port, @thataddr, $that,$them, $proto,@now,
+   $hertime);
+
+#  timeclient --  a client for the Time Server program,
+#  creates a socket and connects it to the server on
+#  port 29688.
+#  The client then expects the server to write server's
+#  host time onto the socket, so the client simply does
+#  a read on its socket, SOCK, to get the server's time
+#
+#
+#                  Usage:  timeclient [server_host_name]
+#
+print "Hi, I'm in perl program \'client\' \n";
+$remote = shift || 'localhost' ;
+$port =  29688 ;    # timeserver is at this port number
+@thataddr=gethostbyname($remote);
+
+$that = pack('Sna4x8', AF_INET, $port, $thataddr[4]);
+
+$proto = getprotobyname('tcp');
+
+# Make the socket filehandle
+
+if ( socket(SOCK, PF_INET, SOCK_STREAM, $proto ) ){
+	print "Socket ok.\n";
+}
+else { die $!; }
+
+# Call up the server
+if (connect(SOCK, $that)) {
+	print "Connect ok.\n";
+}
+else { die $!;}
+
+# Set socket to be command buffered
+SOCK->autoflush; 
+
+# Now we're connected to the server, let's read her host time
+$hertime = <SOCK>;
+close(SOCK);
+
+print "Server machine time is: $hertime\n";
+@now = localtime($hertime);
+print "\tTime-$now[2]:$now[1] ", 
+		"Date-",$now[4]+1,"/$now[3]/$now[5]\n";

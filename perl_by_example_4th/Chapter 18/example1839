@@ -1,0 +1,2 @@
+$niceval = getpriority( 0,0);
+print "The priority, nice value, for this process is $niceval\n";

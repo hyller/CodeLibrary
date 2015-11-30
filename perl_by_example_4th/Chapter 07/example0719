@@ -1,0 +1,15 @@
+ATTEMPT:{
+	print "What is the course number? ";
+	chomp($number = <STDIN>);
+	print "What is the course name? ";
+	chomp($course = <STDIN>);
+
+	$department{$number} = $course;
+
+	print "\nReady to quit? ";
+	chomp($answer = <STDIN>);
+	$answer=lc($answer);  # Convert to lowercase
+	if ($answer eq  "yes" or $answer eq "y") {last;}
+	redo ATTEMPT;
+}
+print "Program continues here.\n";

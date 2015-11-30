@@ -1,0 +1,18 @@
+#!/usr/bin/perl
+# User of the class
+use Employee;
+my $emp1 = Employee->new;  # Create the object
+
+{ my $emp2 = Employee->new;
+  $emp2->{"Name"}="Christian Dobbins";
+  print "\t\t$emp2->{'Name'}\n";
+} # Create the object
+
+my $emp3 = Employee->new;  # Create the object
+
+$emp1->{"Name"}="Dan Savage";
+$emp3->{"Name"}="Willie Rogers";
+
+print "Here are our remaining employees:\n";
+print "\t\t$emp1->{'Name'}\n";
+print "\t\t$emp3->{'Name'}\n"; 

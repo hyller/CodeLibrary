@@ -1,0 +1,23 @@
+# This script demonstrates the use of hard references 
+# when passing arrays. Instead of passing the entire
+# array, a hard reference (pointer) is passed.
+# The value of the last expression is returned.
+
+my @list1=(1 .. 100);
+my @list2=(5, 10, 15, 20);
+ 
+print "The total is :  ", &addemup( \@list1, \@list2) , ".\n";
+		# two pointers
+
+sub addemup{
+	my( $arr1, $arr2) = (shift, shift) ;    # The two pointers
+	                                        # are shifted from @_
+
+	my $total = 0;
+	print $arr1, "\n" ;   
+	print $arr2, "\n";
+	foreach $num ( @$arr1, @$arr2 ){  # dereference the pointers
+		$total+=$num;
+	}		
+    $total;    # The expression is evaluated and returned
+}

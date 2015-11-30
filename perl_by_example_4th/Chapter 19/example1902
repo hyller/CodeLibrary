@@ -1,0 +1,26 @@
+$name="Tommy";
+$age=25;
+$salary=50000.00;
+$now="05/21/07";
+
+open(REPORT, ">report" ) || die "report: $!\n";
+# REPORT filehandle is opened for writing
+format REPORT=   # REPORT is also used for the format filehandle
+-----------------------
+	| EMPLOYEE INFORMATION |
+-----------------------
+Name: @<<<<<<
+	$name
+-----------------------
+Age:@###
+	$age
+-----------------------
+Salary:@#####.##
+	$salary
+-----------------------
+Date:@>>>>>>>>>>
+	$now
+-----------------------
+.
+write REPORT;      # The write function sends output to the file
+	                   # associated with the REPORT filehandle

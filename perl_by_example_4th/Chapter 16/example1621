@@ -1,0 +1,34 @@
+# An HTML Form was first created and processed to get the name of the 
+# user who will receive the e-mail, the person it’s from, and the
+# subject line.
+$mailprogram="/usr/lib/sendmail";  # Your mail program goes here
+$sendto="$input{xemailx}";         # Mailing address goes here
+$from="$input{xmailx}";
+$subject="$input{xsubjext}";
+
+open(MAIL, "|$mailprogram -t  -oi") || die "Can't open mail
+	 program: $!\n";
+# -t option takes the headers from the lines following the mail 
+# command -oi options prevent a period at the beginning of  a 
+# line from meaning end of input
+print MAIL "To: $sendto\n";
+print MAIL "From: $from\n";
+print MAIL "Subject: $subject\n\n";
+
+print MAIL <<EOF;    # Start a "here document"
+
+Registration Information for $input{$first_name}
+	$input{$last_name}:
+
+Date of Registration: $today
+-----------------------------------------------
+First Name:           $input{$first_name}
+Last Name:            $input{$last_name}
+Street Address:       $input{$address}
+City:                 $input{$city}
+State/Province:       $input{$state}
+
+	<Rest of message goes here>
+
+EOF
+close MAIL;  # Close the filter

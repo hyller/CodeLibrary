@@ -1,0 +1,6 @@
+foreach $hour (1 .. 24){  # The range operator is used here 
+  if ($hour > 0 && $hour < 12) {print "Good-morning.\n";}
+  elsif ($hour == 12) {print "Happy Lunch.\n";}
+  elsif ($hour > 12 && $hour < 17) {print "Good afternoon.\n";}
+  else {print "Good-night.\n";}  
+}

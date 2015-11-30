@@ -1,0 +1,40 @@
+#!c:/ActivePerl/bin/perl.exe
+use CGI qw(:standard);
+print header;
+print start_html(-title=>'Using the Function-Oriented Syntax',
+                 -BGCOLOR=>'yellow');
+print img({-src=>'/greenballoon.jpg', -align=>LEFT}),
+ h1("Let's Hear From You!"),
+ h2("I'm interested."),
+start_form,   
+	"What's your name? ", textfield('name'),
+	p,
+	"What's your occupation? ", textfield('job'),
+	p, 
+	"Select a vacation spot. ", popup_menu(
+		-name=>'place',
+		-values=>['Hawaii','Europe','Mexico', 'Japan' ],
+		                                 ),
+	p,
+	"Do you want a green balloon? ", br,
+	 checkbox(-name=>'choice',-label=>'If yes, check this box'),
+	p,
+	submit("Press here"),
+	end_form;
+    print hr;
+    if ( param() ){  # If the form has been filled out, 
+                 # there are parameters
+	     print "Your name is ", em(param('name')),
+	     p,
+	      "Your occupation is ", em(param('job')),
+	     p,
+	      "Your vacation spot is ", em(param('place')),
+	     p;
+         if( param('choice') eq "on"){
+               print "You will receive a green balloon shortly!"
+           }
+           else{
+               print "Green may not be the best color for you.";
+          }
+	hr;
+  }

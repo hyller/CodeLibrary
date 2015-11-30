@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+@colors=(red, green, blue, brown);
+foreach (@colors) {
+	print "$_ ";
+	$_="YUCKY";
+}
+print "\n@colors\n";

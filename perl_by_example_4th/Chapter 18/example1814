@@ -1,0 +1,4 @@
+$ uid=9496;
+$ gid=40;
+$number=chown($uid, $gid, 'foo.p', 'boo.p');
+print "The number of files changed is $number.\n";

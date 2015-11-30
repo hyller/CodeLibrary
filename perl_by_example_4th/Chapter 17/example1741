@@ -1,0 +1,27 @@
+use DBI;
+	my $driver="DBI:mysql";
+	my $database="sample_db";
+	my $user="root";
+	my $host="localhost";
+
+ my 	$dbh = DBI->connect("$driver:database=$database;
+		host=$host;user=$user") or die "Can't connect: " . DBI->errstr;
+
+	print "Enter the team name you want to delete: ";
+	chomp($name=<STDIN>);
+	my $sth=$dbh->prepare('SELECT count(*) from teams WHERE name = ?');
+	$sth->execute($name);
+	print "Number of rows to be deleted: ", $sth->fetchrow_array(), "\n";
+	print "Continue? ";
+	chomp($ans = <STDIN>);
+	$ans=lc($ans);
+	if ( $ans =~ /y|yes/){
+  			$num=$dbh->do(qq/DELETE from teams WHERE name = ?/, undef, 
+			$name);
+   			print ($num > 1 ?"$num rows deleted.\n":"$num row deleted.\n");
+	}
+	else {
+  			die "You have not chosen to delete any entries. Good-bye.\n";
+	}   
+$sth->finish();
+$dbh->disconnect();

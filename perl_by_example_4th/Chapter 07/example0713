@@ -1,0 +1,4 @@
+#!/usr/bin/perl
+foreach $pal ('Tom', 'Dick', 'Harry', 'Pete') {
+	print "Hi $pal!\n";
+}

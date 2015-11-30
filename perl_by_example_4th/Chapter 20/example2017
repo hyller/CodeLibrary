@@ -1,0 +1,38 @@
+#!/bin/perl 
+
+# The server and the client are on the same machine.
+print "Server Started.\n";
+$AF_UNIX=1;     # The domain is AF_UNIX
+$SOCK_STREAM=1; # The type is SOCK_STREAM
+$PROTOCOL=0;    # Protocol 0 is accepted as the "correct 
+                # protocol" by most systems.
+
+socket(SERVERSOCKET, $AF_UNIX, $SOCK_STREAM, $PROTOCOL) ||
+	die " Socket $!\n";
+print "socket OK\n";
+$name="./greetings";  # The name of the socket is associated 
+                      # within the file system 
+unlink "./greetings" || warn "$name: $!\n";
+
+bind(SERVERSOCKET, $name) || die "Bind $!\n";
+print "bind OK\n";
+
+listen(SERVERSOCKET, 5) || die "Listen $!\n";
+print "listen OK\n";
+
+while(1){
+
+	accept(NEWSOCKET, SERVERSOCKET ) || die "Accept $!\n";
+	# Accept client connection 
+
+	$pid=fork || die "Fork: $!\n";
+	if ($pid == 0 ){
+		print (NEWSOCKET "Greetings from your server!!\n");
+
+		close(NEWSOCKET); 
+		exit(0);
+	}
+	else{
+		close (NEWSOCKET);
+	}
+}

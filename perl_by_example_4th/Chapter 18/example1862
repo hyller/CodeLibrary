@@ -1,0 +1,6 @@
+#!/bin/perl
+$|=1;      # Set special variable to flush the output buffer 
+print "Hello there\n";
+print "The name of this machine is "; 
+system ("uname -n");
+print "The time is ", 'date';

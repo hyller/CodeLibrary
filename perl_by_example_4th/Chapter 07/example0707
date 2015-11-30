@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+$count=1;      # Initialize variables
+$beers=10;
+$remain=$beers;
+$where="on the shelf ";
+while ($count <= $beers) {
+	if ($remain == 1){print "$remain bottle of beer $where ." ;}
+	else {print "$remain bottles of beer $where $where .";}
+	print " Take one down and pass it all around.\n";
+	print "Now ", $beers - $count , " bottles of beer $where!\n";
+
+	$count++;
+	$remain--;
+	if ($count > 10){print "Party's over. \n";}
+}
+print "\n";

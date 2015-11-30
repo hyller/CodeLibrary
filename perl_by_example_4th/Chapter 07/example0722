@@ -1,0 +1,26 @@
+# This script prints the average salary of employees 
+# earning over $50,000 annually
+# There are 5 employees. If the salary falls below $50,000 
+# it is not included in the tally
+
+EMPLOYEE: for ($emp=1,$number=0; $emp <= 5; $emp++){
+	do { print "What is the monthly rate for employee #$emp? ";
+		print "(Type q to quit) ";
+		chomp($monthly=<STDIN>);
+		last EMPLOYEE if $monthly eq 'q';
+		next EMPLOYEE if (($year=$monthly * 12.00) <= 50000);
+		$number++;
+		$total_sal += $year;
+		next EMPLOYEE;
+	} while($monthly ne 'q');
+}
+
+unless($number == 0){
+	$average = $total_sal/$number;
+	print "There were $number employees who earned over \$50,000 
+		  annually.\n";
+	printf "Their average annual salary is \$%.2f.\n", $average;
+	}
+else	{ 
+	print "None of the employees made over \$50,000\n";
+}

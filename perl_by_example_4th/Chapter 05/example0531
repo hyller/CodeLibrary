@@ -1,0 +1,8 @@
+# Chopping and chomping a list
+@line=("red", "green", "orange"); 
+chop(@line);   # Chops the last character off each 
+               # string in the list
+print "@line"; 
+@line=( "red", "green", "orange"); 
+chomp(@line);  # Chomps the newline off each string in the list
+print "@line"; 

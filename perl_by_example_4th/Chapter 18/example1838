@@ -1,0 +1,4 @@
+print "The pid of the Perl program running this script is ", $$;
+printf "The ppid, parent's pid (Shell) , is %d\n", getppid;
+printf "The process group's pid is %d\n", getpgrp(0);
+

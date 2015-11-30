@@ -1,0 +1,5 @@
+#!/usr/bin/perl
+for ($i=0; $i<10; $i++){   # Initialize, test, and increment $i
+	print "$i ";
+}
+print "\nOut of the loop.\n";

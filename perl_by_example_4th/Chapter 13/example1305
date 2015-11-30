@@ -1,0 +1,9 @@
+#!/bin/perl
+my $arrayref = [ 'Woody', 'Buzz', 'Bo', 'Mr. Potato Head' ];
+print "The value of the reference, \$arrayref is ", 
+                                    $arrayref, "\n";
+# All of these examples de-reference $arrayref
+print "$arrayref->[3]", "\n";
+print $$arrayref[3], "\n"; 
+print ${$arrayref}[3], "\n";
+print "@{$arrayref}", "\n";

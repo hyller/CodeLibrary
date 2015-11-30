@@ -1,0 +1,11 @@
+# The \s metasymbol and whitespace
+while(<DATA>){
+	print if s/\s/*/g;    # Substitute all spaces with stars
+}
+__DATA__
+Steve Blenheim 101 
+Betty Boop 201 
+Igor Chevsky 301 
+Norma Cord 401 
+Jonathan DeLoach 501
+Karen Evich 601

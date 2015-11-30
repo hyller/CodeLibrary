@@ -1,0 +1,14 @@
+#!/bin/perl
+print "What is the port number? ";
+chomp($PORT=<>);
+	
+print "What is the protocol? ";
+chomp($PROTOCOL=<>);
+
+($name,  $aliases, $port, $proto ) = getservbyport(
+                                     $PORT, $PROTOCOL);
+print "The getservbyport function returns:
+	name=$name
+	aliases=$aliases
+	port number=$port
+	prototype=$protocol \n";

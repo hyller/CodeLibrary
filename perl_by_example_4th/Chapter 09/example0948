@@ -1,0 +1,5 @@
+tr/a-z/A-Z/;print;
+tr/0-9/:/; print;
+tr/A–Z/a–c/;print;
+tr/  /#/; print;
+y/A–Z/a-z/;print;

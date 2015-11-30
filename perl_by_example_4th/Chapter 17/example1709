@@ -1,0 +1,7 @@
+CREATE TABLE coaches(
+    -> id INT NOT NULL AUTO_INCREMENT,
+    -> name VARCHAR(75),
+    -> team VARCHAR(100),
+    -> title VARCHAR(50),
+    -> start_date date,
+    -> PRIMARY KEY(id));

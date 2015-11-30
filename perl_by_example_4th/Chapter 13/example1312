@@ -1,0 +1,4 @@
+#!/bin/perl
+my $subref = sub { print @_ ; };
+&$subref('a','b','c');
+print "\n";

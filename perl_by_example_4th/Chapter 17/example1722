@@ -1,0 +1,1 @@
+DROP DATABASE sample_db;

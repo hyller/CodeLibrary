@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+# eof.p script
+
+while(<>){
+	print "$.\t$_";
+	if (eof){ 
+	  print "-" x 30, "\n";
+	  close(ARGV);
+	}
+} 

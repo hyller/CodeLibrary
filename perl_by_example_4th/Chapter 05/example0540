@@ -1,0 +1,4 @@
+# Adding elements to the end of a list
+@names=("Bob", "Dan", "Tom", "Guy");
+push(@names, "Jim", "Joseph", "Archie");
+print "@names \n";

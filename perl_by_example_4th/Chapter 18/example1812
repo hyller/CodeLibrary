@@ -1,0 +1,12 @@
+opendir(DIR, ".");  # Opens the current directory
+while( $myfile=readdir(DIR) ){
+	$spot=telldir(DIR);
+	if ( "$myfile" eq ".login" ) { 
+		print "$myfile\n";
+		last;
+	}
+}
+rewinddir(DIR);
+seekdir(DIR, $spot);
+$myfile=readdir(DIR);
+print "$myfile\n";

@@ -1,0 +1,17 @@
+# The Driver (user) Program
+use Salesman;
+use strict; 
+use warnings;
+# Create two salesman objects
+print "Entering data for the first salesman.\n";
+my $salesguy1=Salesman->new;
+$salesguy1->set_data;
+print "\nEntering data for the second salesman.\n";
+
+my $salesguy2=Salesman->new;
+$salesguy2->set_data;
+
+print "\nHere are the statistics for the first salesman.\n";
+$salesguy1->get_data;
+print "\nHere are the statistics for the second salesman.\n";
+$salesguy2->get_data;

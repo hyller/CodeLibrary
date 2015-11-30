@@ -1,0 +1,10 @@
+open(MYFILE, "perl1") || die "Can't open: $!\n";
+@statistics=stat(MYFILE);
+print "@statistics\n";
+close MYFILE;
+
+@stats=stat("perl1");
+printf("The inode number is %d and the uid is %d.\n", 
+          $stats[1], $stats[4]);
+print "The file has read and write permissions.\n", 
+          if -r _ && -w _;

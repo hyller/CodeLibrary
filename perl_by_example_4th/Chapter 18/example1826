@@ -1,0 +1,12 @@
+open(PASSWD, "/etc/passwd") || die "Can't open: $!\n";
+while ( chomp($line = <PASSWD>) ){
+	if ( $line =~ /sync/){ 
+		$current = tell;
+		print "---$line---\n";
+	}
+}
+printf "The position returned by tell is %d.\n", $current;
+seek(PASSWD, $current, 0);
+while(<PASSWD>){
+	print;
+}

@@ -1,0 +1,7 @@
+#!/bin/perl 
+eval<<"EOF";
+	chdir "joker" || die "Can't cd: $!\n";
+EOF
+print "The error message from die: $@";
+print "Program $0 still in progress.\n";
+

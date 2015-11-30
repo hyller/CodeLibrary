@@ -1,0 +1,15 @@
+INSERT INTO teams
+    -> set name='Fremont Tigers',
+    -> wins=24,
+    -> losses=26;
+    
+INSERT INTO teams
+    -> set name='Chico Hardhats',
+    -> wins=19,
+    -> losses=25;
+
+INSERT INTO teams values
+    -> ('Bath Warships',32,3);
+
+INSERT INTO teams values
+    -> ('Bangor Rams', 22, 24);

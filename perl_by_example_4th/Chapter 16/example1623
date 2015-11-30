@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+use CGI qw(:standard);   # Function-oriented style uses a set of
+                         # standard functions
+print header,
+  start_html("Function oriented syntax"),
+  h1("This is a test..."),
+  h2("This is a test..."),
+  h3("This is a test..."),
+end_html;

@@ -1,0 +1,4 @@
+open(PASSWD, "/etc/passwd") || die "Can't open: $!\n";
+$bytes=read (PASSWD, $buffer, 50);
+print "The number of bytes read is $bytes.\n";
+print "The buffer contains: \n$buffer";

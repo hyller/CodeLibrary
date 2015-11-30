@@ -1,0 +1,15 @@
+$return_val=fork;
+if ( $return_val == 0 ){         # In child
+	print "This is the child process; return value is $return_val.\n";
+	exec "/bin/date" || die "exec failed: $!\n";
+}
+
+elsif ( defined $return_val ){   # In parent
+	print "This is the parent process; return value is $pid.\n";
+	$pid = wait;
+	print "Back in parent process.\n";
+	print "The deceased child's pid is $pid.\n";
+}
+else{
+	die "fork error: $!\n";
+}

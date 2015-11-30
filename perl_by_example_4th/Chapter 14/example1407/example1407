@@ -1,0 +1,6 @@
+#!/bin/perl
+# User of the class--Another program
+use House;
+my $house = House->new("Tom Savage", 250000, "Cape Cod");
+$house->display ("Owner", "Style");  
+                # Passing arguments to instance method

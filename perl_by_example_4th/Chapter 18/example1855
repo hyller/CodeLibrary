@@ -1,0 +1,14 @@
+use warnings;
+use Win32;
+$|=1;
+$Application="C:/mksnt/date.exe";
+$CommandLine="date +%D";
+$status=Win32::Spawn($Application, $CommandLine, $ProcessID);
+if ($status != 0){
+	print "pid is $ProcessID.\n";
+}
+else{
+	print "Didn't spawn $Application.\n";
+	print Win32::FormatMessage(Win32::GetLastError);
+}
+

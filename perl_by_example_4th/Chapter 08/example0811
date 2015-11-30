@@ -1,0 +1,2 @@
+@alpha=(a .. z, "\n");
+print foreach @alpha;

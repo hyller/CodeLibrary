@@ -1,0 +1,8 @@
+s/Igor/Boris/;
+s/Igor/Boris/g;
+s/norma/Jane/i;
+s!Jon!Susan!;
+s{Jon} <Susan>;
+s/$sal/$sal * 1.1/e
+s/dec/"Dec" . "ember"      # Replace "dec" or "Dec" with "December"
+ /eigx;

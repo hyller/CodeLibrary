@@ -1,0 +1,11 @@
+# Program to call a subroutine without defining it
+sub AUTOLOAD {
+	my(@arguments) = @_;
+	my($package, $command)=split("::",$AUTOLOAD,  2);
+	return '$command @arguments';   # Command substitution
+}
+
+$day=date("+%D");     # date is an undefined subroutine
+print "Today is $day.\n";
+print cal(3,2007);    # cal is an undefined subroutine
+

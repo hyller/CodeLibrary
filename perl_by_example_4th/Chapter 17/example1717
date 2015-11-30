@@ -1,0 +1,9 @@
+SELECT * FROM teams;
+
+UPDATE teams SET wins=wins + 2 WHERE name="Chico Hardhats";
+   Query OK, 1 row affected (0.02 sec)
+
+UPDATE teams SET name="Bath Destroyers" 
+    ->  where name="Bath Warships";
+
+SELECT * FROM teams;

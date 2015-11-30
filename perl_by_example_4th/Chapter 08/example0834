@@ -1,0 +1,12 @@
+# Using the $_ scalar explicitly
+while($_=<DATA>){
+    print $_ if  $_ =~ /Igor/;  # $_ holds the current input line
+#   print if /Igor/;    
+}
+__DATA__
+Steve Blenheim
+Betty Boop
+Igor Chevsky
+Norma Cord
+Jon DeLoach
+Karen Evich

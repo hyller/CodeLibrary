@@ -1,0 +1,2 @@
+open(MYHANDLE, "/etc/password") || die "Can't open: $!\n";
+open(MYHANDLE, "/etc/password") or die "Can't open: $!\n";

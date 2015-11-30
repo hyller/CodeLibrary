@@ -1,0 +1,12 @@
+OUT: while(1){
+	< Program continues here >
+	MID: while(1){
+		if (<expression is true>) {last OUT;}
+	< Program continues here >
+		INNER: while(1){
+		    if (<expression is true>) {next OUT;}
+		    <Program continues here>
+		}
+	} 
+}
+print "Out of all loops.\n";

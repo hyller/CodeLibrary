@@ -1,0 +1,5 @@
+# Backquotes and command substitution
+print "The date is ", ‘date‘;     # Windows users: ‘date /T‘
+print "The date is ‘date‘", ".\n"; # Backquotes treated literally
+$directory=‘pwd‘;                  # Windows users: ‘cd‘
+print " \nThe current directory is $directory.";

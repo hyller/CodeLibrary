@@ -1,0 +1,16 @@
+#!c:/ActivePerl/bin/perl.exe
+
+BEGIN{ use CGI::Carp qw(fatalsToBrowser carpout set_message);
+	open(LOG,">>errors.log") ||die "Couldn't open log file\n";
+	carpout(LOG);
+	sub handle_errors {
+		my $msg = shift;
+		print "<h1>Software Error Alert!!</h1>";
+		print "<h2>Your program sent this error:<br><I>
+		   $msg</h2></I>";
+	}
+	
+   set_message(\&handle_errors);
+}
+open(FH, "myfile" ) or 
+die("Can't open \"myfile\": $!\n");

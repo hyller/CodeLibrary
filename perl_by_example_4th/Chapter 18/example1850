@@ -1,0 +1,10 @@
+$return_val=fork;
+if ( $return_val == 0 ){
+	print "This is the child process; return value is $return_val.\n";
+}
+elsif ( defined $return_val ){
+	print "This is the parent process; return value is $return_val.\n";
+}
+else{
+	die "fork error: $!\n";
+}

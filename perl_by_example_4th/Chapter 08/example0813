@@ -1,0 +1,11 @@
+while(<DATA>){
+	print if /Betty/;     # Print the line if it matches Betty
+}
+
+__DATA__
+Steve Blenheim
+Betty Boop
+Igor Chevsky
+Norma Cord
+Jon DeLoach
+Karen Evich

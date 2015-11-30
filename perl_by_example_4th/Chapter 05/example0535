@@ -1,0 +1,5 @@
+# Joining each elements of a list with colons
+$name="Joe Blow";
+$birth="11/12/86";
+$address="10 Main St.";
+print join(":", $name, $birth, $address ), "\n";

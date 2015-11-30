@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+# Convert a number to binary
+while (1) {
+	$mask = 0x80000000;      # 32-bit machine
+	printf("Enter an unsigned integer: ");
+	chomp($num=<STDIN>);
+	printf("Binary of %x hex is: ", $num);
+	for ($j = 0; $j < 32; $j++) {
+		$bit = ($mask & $num) ? 1 : 0;
+		printf("%d", $bit);
+		if ($j == 15){
+		    printf("--");
+		}
+	$mask /=2;              # $mask >>= 1;  not portable
+	}
+	printf("\n");
+}

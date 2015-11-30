@@ -1,0 +1,11 @@
+  while(<DATA>){
+        s(Blenheim){Dobbins};     # Substitute Blenheim with Dobbins
+         print;
+ }
+__DATA__
+Steve Blenheim
+Betty Boop
+Igor Chevsky
+Norma Cord
+Jon DeLoach
+Karen Evich

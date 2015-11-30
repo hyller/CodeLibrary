@@ -1,0 +1,17 @@
+$str1 = "A";
+$str2 = "C";
+$result = $str1 eq $str2;
+print "$result\n";
+
+$result = $str1 ne $str2;
+print "$result\n";
+
+$result = $str1 cmp $str2;
+print "$result\n";
+
+$result = $str2 cmp $str1;
+print "$result\n";
+
+$str1 = "C";       # Now both strings are equal
+$result = $str1 cmp $str2;
+print "$result\n";

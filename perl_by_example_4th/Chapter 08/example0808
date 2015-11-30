@@ -1,0 +1,11 @@
+while(<DATA>){
+	print unless /Norma/;  # Print line if it doesn't match Norma
+}
+
+__DATA__
+Steve Blenheim
+Betty Boop
+Igor Chevsky
+Norma Cord
+Jon DeLoach
+Karen Evich

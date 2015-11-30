@@ -1,0 +1,4 @@
+print "What file will you touch (create or change time stamp)? ";
+chop($myfile=<STDIN>);
+$now=time;  # This example makes the file if it doesn't exist
+utime( $now, $now, $myfile) || open(TMP,">>$myfile"); 

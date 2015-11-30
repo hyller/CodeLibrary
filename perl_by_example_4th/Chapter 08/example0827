@@ -1,0 +1,9 @@
+# With the g option
+while(<DATA>){
+	print if s/Tom/Christian/g; # All occurrences of Tom on each
+	                            # line are replaced with Christian
+}
+__DATA__
+Tom Dave Dan Tom
+Betty Tom Henry Tom
+Igor Norma Tom Tom

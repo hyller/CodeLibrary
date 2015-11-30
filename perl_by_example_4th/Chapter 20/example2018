@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+print "Hi I'm the client\n";
+
+$AF_UNIX=1;
+$SOCK_STREAM=1;
+$PROTOCOL=0;
+
+socket(CLIENTSOCKET, $AF_UNIX, $SOCK_STREAM, $PROTOCOL);
+$name="./greetings";
+
+do{
+	# Client connects  with server
+	$result = connect(CLIENTSOCKET, "$name" );
+	if ($result != 1 ){
+		sleep(1);
+   }
+}while($result !=  1 );  # Loop until a connection is made
+
+read(CLIENTSOCKET, $buf, 500);
+print STDOUT "$buf\n";
+close (CLIENTSOCKET);
+exit(0);
+

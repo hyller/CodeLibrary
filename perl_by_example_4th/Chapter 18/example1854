@@ -1,0 +1,6 @@
+use warnings;
+$return_value = system ("start /Program Files/Netscape/Communicator/Program/netscape.exe");
+
+print "Program continues; Netscape is running.\n";
+print "The return_value from system is $return_value.\n";
+

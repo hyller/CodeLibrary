@@ -1,0 +1,7 @@
+#!/bin/perl
+# Program using symbolic references
+$animal="dog";
+$dog="Lady";  
+print "Your dog is called ${$animal}\n";# Symbolic reference
+eval "\$$animal='Lassie';";
+print "Why don't you call her ${$animal}?\n";        

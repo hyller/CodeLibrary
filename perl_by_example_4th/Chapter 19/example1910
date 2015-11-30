@@ -1,0 +1,25 @@
+open(FH, "datebook") or die;  # Open a file for reading
+open(SORT, "|sort") or die;   # Open a pipe to sort output
+
+$field1="<" x 18;  # Create format strings
+$field2="<" x 12;
+$field3="|" x 10;
+$field4="#" x 6 . ".##";
+
+# Create the format template
+$format=qq(   
+format SORT=
+  \@$field1\@$field2\@$field3\@$field4  
+  \$name, \$phone, \$birth, \$sal
+.
+);
+
+eval $format;
+while(<FH>){
+ ($name,$phone,$address,$birth,$sal)=split(":");
+ ($first, $last)=split(" ", $name);
+ $name=$last.", ". $first;
+write SORT;
+}
+close(FH);
+close(SORT);

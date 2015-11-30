@@ -1,0 +1,2 @@
+$bytes=pack("c5", 80,101,114, 108, 012);  # 5 Ascii characters
+print "$bytes\n";

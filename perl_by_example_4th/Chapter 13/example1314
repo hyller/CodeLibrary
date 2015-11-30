@@ -1,0 +1,23 @@
+# This script demonstrates the use of references 
+# to pass arrays. Instead of passing the entire
+# array, a reference is passed.
+# The value of the last expression is returned.
+
+my @list1=(1 .. 100);
+my @list2=(5, 10, 15, 20);
+
+print "The total is :  ",  &addemup( \@list1, \@list2) , ".\n";    
+        # Two pointers are passed
+sub addemup{
+	my( $arr1, $arr2) = @_;    
+        # @_ contains two pointers (references)
+	my ($total);
+	print $arr1, "\n" ;   
+	print $arr2, "\n";
+
+	foreach $num ( @$arr1, @$arr2 ){
+		$total+=$num;
+	}
+	
+	return $total;  # The expression is evaluated and returned
+}

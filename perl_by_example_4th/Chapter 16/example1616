@@ -1,0 +1,36 @@
+#!c:/perl/bin/perl
+# The CGI script that processes the form shown in Example 8.12.
+print "Content-type: text/html\n\n";
+print <<HTML;
+<html><title>Decoding the Input Data</title>
+<body bgcolor="lavender">
+<font face="verdana" size="+1">
+HTML
+print "<H3><U>Decoding the query string</U></H3>";
+# Getting the input
+$inputstring=$ENV{QUERY_STRING};
+print "<B>Before decoding:</B>";
+print "<P>$inputstring";
+# Extracting the + and & and creating key/value pairs
+@key_value=split(/&/,$inputstring); 
+foreach $pair ( @key_value){
+   ($key, $value) = split(/=/, $pair);
+   $value=~s/%(..)/pack("C", hex($1))/ge;
+   $value =~ s/\n/ /g;
+$value =~ s/\r//g;
+$value =~ s/\cM//g;
+   $input{$key}=$value ; # Creating a hash
+}
+# After decoding
+print "<HR>";
+print "<P><B>After decoding:</B><P>";
+  while(($key, $value)=each(%input)){
+    print "$key: <I>$value</I><BR>";
+}
+print <<HTML;
+ <hr>
+ <p>Now what do we want to do with this information? </p>
+ </font>
+ </body>
+ </html>
+HTML

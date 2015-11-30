@@ -1,0 +1,4 @@
+$_="San Francisco to Hong Kong\n";
+/Francisco  # Searching for Francisco  
+/x;
+print "Comments and spaces were removed and \$& is $&\n";

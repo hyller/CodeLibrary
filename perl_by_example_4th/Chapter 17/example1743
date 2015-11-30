@@ -1,0 +1,6 @@
+my $dbh = DBI->connect( 'dbi:mysql:sample_db','root','quigley1'),
+                      {
+						PrintError => 0,
+						RaiseError => 1,
+						AutoCommit => 0
+                      }

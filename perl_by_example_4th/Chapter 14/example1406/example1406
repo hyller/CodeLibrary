@@ -1,0 +1,19 @@
+#!/usr/bin/perl
+# User of the class; another program
+use House;
+# Documentation explaining how to use the House 
+# package is called the public interface. 
+# It tells the programmer how to use the class.
+# To create an House object requires two arguments, 
+# a owner and price.
+# See Public User Interface—Documenting Classes
+# to create documentation.
+
+# my $house1 = new House("Tom Savage", 250000);
+# Invoking constructor--two ways. 
+my $house1  = House->new("Tom Savage", 250000);
+my $house2 = House->new("Devin Quigley", 55000);
+# Two objects have been created.
+$house1->display_object;        
+$house2->display_object;
+print "$house1, $house2\n";

@@ -1,0 +1,3 @@
+unlink('a','b','c') || die "remove: $!\n";
+$count=unlink <*.c>;
+print "The number of files removed was $count\n";

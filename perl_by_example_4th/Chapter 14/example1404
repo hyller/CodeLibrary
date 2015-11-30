@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+use House;
+my $houseref = House->new();   
+# call the new method and create the object
+# my $houseref = new House; another way to call the new method
+print "\$houseref in main belongs to class ",                   
+        ref($houseref),".\n";

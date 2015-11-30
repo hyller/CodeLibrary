@@ -1,0 +1,2 @@
+@alpha=('A' .. 'Z'); 
+print "@alpha";

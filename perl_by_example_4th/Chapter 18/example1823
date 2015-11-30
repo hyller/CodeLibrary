@@ -1,0 +1,17 @@
+# Since UNIX and Windows treat files differently, 
+# some of the fields here are 
+# blank or values returned are not meaningful
+@stats = stat("C:\\ellie\\testing");
+print "Device: $stats[0]\n";
+print "Inode #: $stats[1]\n";
+print "File mode: $stats[2]\n";
+print "# Hard links: $stats[3]\n";
+print "Owner ID: $stats[4]\n";
+print "Group ID: $stats[5]\n";
+print "Device ID: $stats[6]\n";
+print "Total size: $stats[7]\n";
+print "Last access time: $stats[8]\n";
+print "Last modify time: $stats[9]\n";
+print "Last change inode time: $stats[10]\n";
+print "Block size: $stats[11]\n";
+print "Number of blocks: $stats[11]\n";

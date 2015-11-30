@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+$x=5; $y=0;
+$y=++$x;     # Add one to $x first; then assign to $y
+print "Pre-increment:\n";
+print "y is $y\n";
+print "x is $x\n";
+print  "-----------------------\n";
+$x=5;
+$y=0;
+print "Post-increment:\n";
+$y=$x++;     # Assign value in $x to $y; then add one to $x
+print "y is $y\n";
+print "x is $x\n";

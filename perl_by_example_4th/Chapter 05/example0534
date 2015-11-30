@@ -1,0 +1,5 @@
+# Searching for patterns in a list
+@list = (tomatoes, tomorrow, potatoes, phantom, Tommy);
+$count = grep( /tom/i, @list);
+@items= grep( /tom/i, @list);
+print "Found items: @items\nNumber found: $count\n";

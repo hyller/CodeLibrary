@@ -1,0 +1,27 @@
+use DBI;
+	$driver="DBI:mysql";
+	$database="sample_db";
+	$user="root";
+	$host="localhost";
+
+	$dbh=DBI->connect('dbi:mysql:sample_db','root','quigley1',
+               {
+                    RaiseError => 1, # Die if there are errors
+                    PrintError => 0, # Warn if there are errors
+                }
+             ) or die $DBI::errstr; # Report why connect failed
+
+$sth=$dbh->prepare("SELECT name, wins, losses FROM teams") or die "Can't prepare sql statement" . DBI->errstr;
+$sth->execute();
+	print "Contents of sample_db, the mysql database.\n\n";
+
+	while(my @val = $sth->fetchrow_array()){
+      print "name=$val[0]\n";
+      print "wins=$val[1]\n";
+      print "losses=$val[2]\n\n";
+                 		}
+ print $sth->rows," rows were retrieved.\n";       
+
+ $sth->finish();
+	$dbh->disconnect();  
+

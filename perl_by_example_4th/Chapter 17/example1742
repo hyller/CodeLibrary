@@ -1,0 +1,54 @@
+use DBI;
+ my $driver="DBI:mysql";
+ my $database="sample_db";
+ my $user="root";
+ my $password="quigley1";
+ my $host="localhost";
+
+ my $dbi=
+DBI->connect("$driver:database=$database;host=$host;user=$user;
+password=$password")or die "Can't connect: " . DBI->errstr;
+
+ my $num_of_wins;
+ my $num_of_losses;
+ my $count;
+ print "What is the name of the team to update? ";
+ chomp($team_name=<STDIN>);
+
+ # Show user the table before he tries to update it
+ my $sth=$dbi->prepare(qq/SELECT * FROM teams 
+ 	 WHERE name="$team_name"/) or die "Select failed: ". $DBI::errstr;
+ $sth->execute() or die "Execute failed:".$DBI::errstr;
+ while(($name, $wins, $losses) = $sth->fetchrow_array()){
+ 	 $count++;
+ 	 print "\nData for $team_name before update:\n"if $count == 1;
+ 	 print "\t\twins=$wins\n";
+	 print "\t\tlosses=$losses\n\n";
+ }
+ if ($count==0){ die "The team you entered doesn't exist.\n";}
+ print "How many games has $team_name won since the last update?";
+ chomp($num_of_wins=<STDIN>);
+
+ print "How many games has $team_name lost since the last update? ";
+ chomp($num_of_losses=<STDIN>);
+
+ $dbi->do(qq/UPDATE teams SET wins=wins+$num_of_wins
+ 	 WHERE name = ? /, undef, "$team_name") or
+ 	 die "Can't update teams :". DBI->errstr;
+
+ $dbi->do(qq/UPDATE teams SET losses=losses+$num_of_losses
+ 	 WHERE name = ? /, undef, "$team_name") or
+ 	 die "Can't update teams :". DBI->errstr;
+
+ # Show the user the table after it is updated
+ print "\nData for $team_name after update:\n";    
+ $sth=$dbi->prepare(qq/SELECT * FROM teams WHERE 
+ name="$team_name"/);
+ $sth->execute();
+ while(($name, $wins, $losses) = $sth->fetchrow_array()){
+ 	 print "\t\twins=$wins\n";
+ 	 print "\t\tlosses=$losses\n\n";
+ }
+
+ $sth->finish();
+ $dbi->disconnect();

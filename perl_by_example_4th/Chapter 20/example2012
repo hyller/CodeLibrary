@@ -1,0 +1,2 @@
+bind(COMM_SOCKET, "/home/jody/ellie/perl/tserv");
+bind(COMM_SOCKET, $socket_address);

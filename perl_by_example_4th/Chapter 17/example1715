@@ -1,0 +1,10 @@
+SELECT teams.name, coaches.name, teams.wins 
+ FROM teams, coaches WHERE 
+ teams.name = coaches.team && coaches.id = 4;
+
+SELECT teams.name, coaches.name, teams.wins FROM teams, 
+    -> coaches  WHERE teams.name = coaches.team && 
+-> coaches.title = "Head Coach";
+
+SELECT t.name, c.name, t.wins FROM teams t, coaches c
+-> WHERE t.name = c.team && c.title LIKE "Head%";

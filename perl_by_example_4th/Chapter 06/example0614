@@ -1,0 +1,14 @@
+print 5 & 4,"\n";       # 101 & 100
+print 5 & 0,"\n";       # 101 & 000
+print 4 & 0,"\n";       # 100 & 000
+print 0 & 4,"\n";       # 000 & 100
+print "=" x 10,"\n";    # print 10 equal signs
+print 1 | 4,"\n";       # 001 & 100
+print 5 | 0,"\n";       # 101 | 000
+print 4 | 0,"\n";       # 100 | 000
+print 0 | 4,"\n";       # 000 | 100
+print "=" x 10,"\n";    # print 10 equal signs
+print 5 ^ 4,"\n";       # 101 ^ 100
+print 5 ^ 0,"\n";       # 101 ^ 000
+print 4 ^ 0,"\n";       # 100 ^ 000
+print 0 ^ 4,"\n";       # 000 ^ 100

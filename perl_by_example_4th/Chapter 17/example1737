@@ -1,0 +1,34 @@
+use DBI;
+my $dbh=DBI->connect("DBI:mysql:host=localhost;user=root;
+password=quigley1;database=sample_db");
+
+# Using a placeholder. Values will be assigned later
+
+my $sth=$dbh->prepare("INSERT INTO teams(name, wins, losses)
+                VALUES(?,?,?)");
+
+ ## Create a list of new entries
+my @rows = (['Tampa Terrors', 4, 5],
+            ['Arcata Angels', 3 , 4],
+            ['Georgetown Giants', 1 ,6],
+            ['Juno Juniors', 2, 7],
+           );
+ 
+foreach my $row (@rows ){
+  $name = $row->[0];
+  $wins = $row->[1];
+  $losses=$row->[2];
+  $sth->execute($name, $wins, $losses);
+}
+print "\nData for team table. \n\n";
+$sth=$dbh->prepare("SELECT * FROM teams");
+$sth->execute();
+     while(my @row = $sth->fetchrow_array()){
+       print "name=$row[0]\n";
+       print "wins=$row[1]\n";
+       print "losses=$row[2]\n\n";
+     }                                  
+
+	$sth->finish();
+	$dbh->disconnect();
+

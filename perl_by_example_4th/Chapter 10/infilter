@@ -1,0 +1,6 @@
+#!/bin/perl
+# Scriptname: infilter
+open(INPIPE,"date /T|");
+$today =<INPIPE>;
+print $today;
+close(INPIPE);

@@ -1,0 +1,5 @@
+# Don't use == when you should use eq!
+$x = "yes";
+$y = "no";
+print "\nIs yes equal to no? If so, say 1; if not say 'null'.\n";
+print "The result is: ",$x == $y,"\n";    # Should be $x eq $y

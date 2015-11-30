@@ -1,0 +1,10 @@
+#!/bin/perl
+print "The hour is ",'date';
+
+@d=`date`;
+print $d[0]'
+
+@d = split(/ /, `date`);
+print "$d[0]\n"
+$machine=`uname -n`;
+print "$machine\n"'

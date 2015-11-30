@@ -1,0 +1,42 @@
+#!/usr/local/bin/perl
+# timeclient--a client for the Time Server program, 
+# creates a socket and connects it to the server on port 9876.
+# The client then expects the server to write the server's 
+# host time onto the socket. The client simply does
+# a read on its socket, SOCK, to get the server's time.
+#
+#          Usage:  timeclient [server_host_name]
+#
+print "Hi, I'm in Perl program \'client\' \n";
+($them) = @ARGV;
+$them = 'localhost' unless $them;
+$port = 9876 ;      # timeserver is at this port number
+$AF_INET = 2;
+$SOCK_STREAM = 1;
+$sockaddr = 'S n a4 x8';
+($name, $aliases, $proto) = getprotobyname('tcp');
+($name,$aliases, $port, $proto)=getservbyname($port, 'tcp') 
+	unless $port =~ /^\d+$/;
+
+($name,$aliases, $type, $len, $thataddr)=gethostbyname($them);
+$that = pack($sockaddr, $AF_INET, $port, $thataddr);
+
+# Make the socket filehandle
+if ( socket(SOCK, $AF_INET, $SOCK_STREAM, $proto ) ){
+	print "Socket ok.\n";
+}
+else { die $!; }
+# Call up the server
+if(connect(SOCK, $that)){
+	print "Connect ok.\n";
+}
+else { die $!;}
+# Set socket to be command buffered
+select(SOCK); $| = 1; select (STDOUT);
+# Now we're connected to the server, let's read her host time
+$hertime = <SOCK>;
+close(SOCK);
+print "Server machine time is: $hertime\n";
+@now = localtime($hertime);
+print "\t$now[2]:$now[1] ", $now[4]+1,"/$now[3]/$now[5]\n";
+

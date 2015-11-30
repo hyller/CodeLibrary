@@ -1,0 +1,7 @@
+use utf8;
+$chr=11;
+print "$chr is a digit.\n"if $chr =~ /\p{IsDigit}/;
+$chr = "junk";
+print "$chr is not a digit.\n"if $chr =~ /\P{IsDigit}/;
+print "$chr is not a control character.\n"if $chr =
+	~ /\P{IsCntrl}/;

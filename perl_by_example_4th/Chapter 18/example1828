@@ -1,0 +1,2 @@
+$string=pack("A15A3", "hey","you");  # ASCII string, space padded
+print "$string";

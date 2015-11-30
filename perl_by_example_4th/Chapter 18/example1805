@@ -1,0 +1,9 @@
+use File::Find;
+use Win32::File;
+# Works on both FAT and NTFS file systems.
+&File::Find::find(\&wanted,"C:\\httpd", "C:\\ellie\\testing");
+sub wanted{
+	(Win32::File::GetAttributes($_,$attr)) &&
+	($attr & DIRECTORY) &&
+	print "$File::Find::name\n";
+}

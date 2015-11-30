@@ -1,0 +1,11 @@
+SELECT name, wins FROM teams WHERE wins > 25;
+
+SELECT name FROM teams WHERE losses < wins;
+
+SELECT name, title FROM coaches WHERE team = 'Chico Hardhats';
+
+SELECT name FROM coaches WHERE name LIKE 'J%';
+
+SELECT name FROM teams WHERE wins > 10 && losses < 10;
+
+SELECT name FROM coaches WHERE id BETWEEN 1 AND 3;

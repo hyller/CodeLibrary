@@ -1,0 +1,8 @@
+# Saving in the $& special scalar
+$_=5000;
+s/$_/$& * 2/e;
+print "The new value is $_.\n";
+
+$_="knock at heaven's door.\n";
+s/knock/"$&," x 2 . "$&ing"/ei;
+print "He's $_";

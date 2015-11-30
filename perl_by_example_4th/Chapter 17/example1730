@@ -1,0 +1,21 @@
+use DBI;
+	$dbh=DBI->connect(qq(DBI:mysql:database=sample_db;user=root;
+    password=quigley1)) or die "Can't connect";
+
+	$sth=$dbh->prepare("SELECT name, wins, losses FROM teams") ;
+     		    
+	$sth->execute();
+	$count=0;
+
+	print "Contents of sample_db, the mysql database.\n\n";
+
+while(  my $row = $sth->fetchrow_hashref()){
+   print "Name:   $row->{name}\n";
+   print "Wins:   $row->{wins}\n";
+   print "Losses: $row->{losses}\n\n";
+   $count++;
+}     
+
+print "There are $count rows in the sample database.\n";
+$sth->finish();
+$dbh->disconnect();                                  

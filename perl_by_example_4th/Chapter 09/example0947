@@ -1,0 +1,11 @@
+# A negative look behind
+while(<DATA>){
+	print if /(?<!Betty) B[a-z]*/;
+}
+__DATA__
+Steve Blenheim
+Betty Boop
+Igor Chevsky
+Norma Cord
+Jon DeLoach
+Karen Evich

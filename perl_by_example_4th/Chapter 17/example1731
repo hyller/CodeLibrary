@@ -1,0 +1,21 @@
+use DBI;
+	$dbh=DBI->connect(qq(DBI:mysql:database=sample_db;user=root;
+    password=quigley1)) or die "Can't connect";
+$namestring=qq(Jerry O'Connell);
+$namestring=$dbi->quote($string);
+ print $namestring;
+$sth=$dbi->prepare("SELECT * FROM coaches WHERE name=$namestring")
+ or die "Can't prepare sql statement" . DBI->errstr;
+$sth->execute();
+print qq(\nContents of "coaches" table\n);
+
+      while(my @val = $sth->fetchrow_array()){
+        print "\tid=$val[0]\n";
+        print "\tname=$val[1]\n";
+        print "\tteam_name=$val[2]\n";
+        print "\tteam_name=$val[3]\n";
+        print "\tstart_date=$val[4]\n\n";
+      }                                           
+
+$sth->finish();
+$dbh->disconnect();

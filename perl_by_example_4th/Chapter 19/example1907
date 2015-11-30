@@ -1,0 +1,11 @@
+#!/bin/perl
+#!/bin/perl
+$song="To market,\n
+to market, \nto buy a fat pig.\n";
+format STDOUT=
+@*
+$song
+@*
+"\nHome again,\nHome again,\nJiggity, Jig!\n"
+.
+write;

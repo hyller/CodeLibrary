@@ -1,0 +1,2 @@
+die "$0 <directory name>  " unless $#ARGV == 0	;
+mkdir ($ARGV[0], 0755 ) || die "mkdir:  $ARGV[0]:  $!\n";

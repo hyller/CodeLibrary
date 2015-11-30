@@ -1,0 +1,39 @@
+#!/bin/perl
+use CGI;
+$query = new CGI;
+print $query->header;
+print $query->start_html("The Object-Oriented CGI and Forms");
+print "<H2>Example using Forms with Radio Buttons</H2>\n";
+&print_formstuff($query);
+&do_work($query) if ($query->param);
+print $query->end_html;
+
+sub print_formstuff{
+my($query) = @_;
+print $query->startform;
+print "What is your name? ";
+print $query->textfield('name');  # A simple text field
+print "<BR>";
+print "Select your favorite color? <BR>";
+print $query->radio_group(-name=>'color',
+                          -values=>[ 'red', 'green',
+                                     'blue','yellow' ],
+                          -default=>'green', 
+                          -linebreak=>'true',
+                         );
+
+print $query->submit('action', 'submit');
+print $query->reset('Clear');
+print $query->endform;
+print "<HR>\n";
+}
+sub do_work{
+	my ($query) = @_;
+	my (@values, $key);
+	print "<H2>Here are the settings</H2>";
+	foreach $key ($query->param){
+		print "$key: \n";
+		@values=$query->param($key);
+		print join(", ",@values), "<BR>";
+	}
+}

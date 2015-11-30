@@ -1,0 +1,21 @@
+#!/bin/perl
+# User Program
+# This example demonstrates why to use the object-oriented 
+# syntax rather than the colon-colon syntax when passing 
+# arguments to methods.
+use Cat;  
+use Dog;
+$mydog = new Dog;    # Calling the Dog's constructor
+$mycat = new Cat;    # Calling the Cat's constructor
+
+$mydog->set_attributes;  # Calling the Dog's access methods
+$mycat->set_attributes;  # Calling the Cat's access methods
+
+$mydog->speak;  
+$mycat->speak;
+
+print "\nNow we make a mistake in passing arguments.\n\n";
+
+Cat::speak($mydog); # Perl goes to the Cat class to find the 
+                    # method, even though attributes have been 	                                 
+                    # set for the dog!

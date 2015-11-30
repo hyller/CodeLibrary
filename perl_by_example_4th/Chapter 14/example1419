@@ -1,0 +1,18 @@
+#!/bin/perl
+# Example of attempting inheritance by updating the @ISA array
+{ package Grandpa;
+      $name = "Gramps";
+      sub greetme {
+               print "Hi $Child::name I'm your $name from package Grandpa.\n";
+      }
+}
+{ package Parent;
+@ISA=qw(Grandpa);  # Grandpa is a package in the @ISA array.
+                   # This package is empty.
+}
+
+{ package Child;
+$name = "Baby";
+print "Hi I'm $name in the Child Package here.\n";
+Parent->greetme();    # Parent::greetme() will fail
+}

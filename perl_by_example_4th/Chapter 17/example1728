@@ -1,0 +1,13 @@
+use DBI;
+$db=
+DBI->connect('DBI:mysql:sample_db;user=root;password=quigley1');
+
+$sth=$db->prepare("SELECT * FROM coaches") 
+  or die "Can't prepare sql statement" . DBI->errstr;
+$sth->execute();
+print qq(\n\tContents of "coaches" table\n);
+
+$sth->dump_results();  # Display results of the execute
+ 
+$sth->finish();
+$dbh->disconnect();

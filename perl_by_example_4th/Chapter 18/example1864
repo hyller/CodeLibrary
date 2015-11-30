@@ -1,0 +1,6 @@
+#!/bin/perl
+@myfiles=<*.[1-5]>;
+print "@myfiles\n";
+foreach $file ( <p??l[1-5]*>){
+	print "$file\n" if -T $file;
+}

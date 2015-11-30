@@ -1,0 +1,11 @@
+while(<DATA>){
+	print if s/igor/Daniel/i;   # Substitute igor with Daniel
+}
+
+__DATA__
+Steve Blenheim
+Betty Boop
+Igor Chevsky
+Norma Cord
+Jon DeLoach
+Karen Evich

@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+foreach $key (keys(%ENV)){
+	print "$key\n";
+}
+print "\nYour login name $ENV{'LOGNAME'}\n";
+$pwd=$ENV{'PWD'};
+print "\n", $pwd, "\n";

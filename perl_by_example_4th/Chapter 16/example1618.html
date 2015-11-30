@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<TITLE>CGI Form</TITLE>
+<HR>
+<FORM ACTION="http://127.0.0.1/cgi-bin/postmethod.cgi" METHOD=POST>
+<!When user presses "submit", cgi script is called to process input >
+Please enter your name: <BR>
+<INPUT TYPE="text" SIZE=50 NAME=Name>
+<P>   
+Please enter your salary ($####.##): <BR>
+<INPUT TYPE="text" SIZE=30 NAME=Salary>
+<P>
+Please enter your birth date (mm/dd/yy): <BR>
+<INPUT TYPE="text" SIZE=30 NAME=Birthdate>
+<P>
+<INPUT TYPE=SUBMIT VALUE="Submit Query">
+<INPUT TYPE=RESET VALUE="Reset">
+</FORM>
+</HTML>

@@ -1,0 +1,7 @@
+#!/bin/perl
+$|=1;        # flush output buffer
+alarm(5);
+print "Taking a snooze...\n";
+sleep 100;
+print "\07 Wake up now.!\n";
+

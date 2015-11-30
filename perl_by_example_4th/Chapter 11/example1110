@@ -1,0 +1,7 @@
+use strict "vars";
+my $name = "Ellie";             # my (lexical) variables are okay
+@friends = qw(Tom Stefan Bin Marie);  
+                                # global variables not allowed
+local $newspaper = "The Globe"; # local variables are not allowed
+print "My name is $name and our friends are @friends.\n";
+

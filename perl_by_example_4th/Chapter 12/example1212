@@ -1,0 +1,12 @@
+#!/bin/perl
+use Carp qw(cluck);  # cluck not exported by default
+
+print "Give me a grade: ";
+$grade = <STDIN>;
+try($grade);     # Call subroutine
+
+sub try{
+   my($number)=@_;
+   cluck "Illegal value: " if $number < 0 || $number > 100;
+}
+print "That was just a warning. Program continues here.\n"; 

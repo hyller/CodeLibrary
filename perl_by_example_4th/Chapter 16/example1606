@@ -1,0 +1,15 @@
+#!c:/ActivePerl/bin/perl.exe
+$now=localtime;
+ $myname="Willie";
+ print <<EOF;
+ Content-type:text/html
+  <body bgcolor="silver">
+    <div align="center">
+    <font face="arial" size="+2" color="darkblue">
+    <b>Welcome,  Wee $myname!<p>
+    <img src="/Williewonker.jpg" width="200" 
+         height="230" border="1">
+    <p>
+   Today is $now<br>
+   </body>
+EOF

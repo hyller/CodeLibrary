@@ -1,0 +1,2 @@
+($name,  $aliases, $proto) = getprotobynumber(0);
+print "name=$name\taliases=$aliases\t$protocol number=$proto\n";

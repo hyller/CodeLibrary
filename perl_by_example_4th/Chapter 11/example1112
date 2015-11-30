@@ -1,0 +1,14 @@
+# Filename: prototypes
+# Testing prototyping
+my $a=5;
+my $b=6;
+my $c=7;
+@list=(100,200,300);
+sub myadd($$) {       # myadd requires two scalar arguments
+	my($x, $y)=@_;
+	print $x + $y,"\n";
+}
+myadd($a, $b);        # Okay
+myadd(5, 4);          # Okay
+myadd($a, $b, $c);    # Too many arguments
+

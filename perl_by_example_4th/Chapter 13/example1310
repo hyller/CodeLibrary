@@ -1,0 +1,29 @@
+#!/bin/perl
+# Program to demonstrate a hash containing anonymous hashes.
+my $hashref = { 
+                Math    => {                    # key
+                             "Anna"  => 100,         
+                             "Hao"   => 95,       # values
+                             "Rita"  => 85,
+                           },
+                Science => {                    # key
+                             "Sam"   => 78,
+                             "Lou"   => 100,      # values
+                             "Vijay" => 98,
+	                       },
+              };
+
+print "Anna got $hashref->{'Math'}->{'Anna'} on the Math test.\n";
+$hashref->{'Science'}->{'Lou'}=90;
+print "Lou's grade was changed 
+  to $hashref->{'Science'}->{'Lou'}.\n";
+print "The nested hash of Math students and grades is: ";
+print %{$hashref->{'Math'}}, "\n";   # Prints the nested hash, Math
+
+foreach $key (keys %{$hashref}){
+	print "Outer key: $key \n";
+	while(($nkey,$nvalue)=each(%{$hashref->{$key}})){
+		printf "\tInner key: %-5s -- Value: %-8s\n",
+		                             $nkey,$nvalue;
+	}
+}

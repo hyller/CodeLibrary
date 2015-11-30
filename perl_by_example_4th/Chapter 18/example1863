@@ -1,0 +1,23 @@
+#!/bin/perl
+$price=100;
+print <<EOF;   # No quotes around terminator EOF are same 
+               # as double quotes
+The price of $price is right.    # Variables are expanded
+EOF
+
+print <<'FINIS'; 
+The price of $price is right. 
+                # The variable is not expanded 
+                # if terminator is enclosed in single quotes
+FINIS
+
+print << x 4;   # Prints the line 4 times
+Christmas is coming!
+	# Blank line is necessary here as terminating string
+
+print <<'END';  # If terminator is in backquotes, 
+                # will execute UNIX commands
+echo hi there
+echo -n "The time is "
+date
+END

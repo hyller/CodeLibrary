@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+sub bye;  # Forward reference
+
+$name="Ellie";
+print "Hello $name.\n";
+
+bye;      # Call subroutine without the ampersand
+
+sub bye{
+	print "Bye $name\n";
+}

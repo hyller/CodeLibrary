@@ -1,0 +1,8 @@
+my $name="Tommy";
+
+{ 	my $name = "Grandfather";  # Lexical variables 
+	my $age = 86;
+  	$ref = sub{ return "$name is $age.\n"; }  # anonymous subroutine
+}
+	print "$name is back\n";
+	print &{$ref};  # Call to subroutine outside the block

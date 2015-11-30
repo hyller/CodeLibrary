@@ -1,0 +1,13 @@
+$dbh=
+DBI->connect("dbi:<RDMS>:<database>","<username>","<password>", 
+                 \%attributes) or die("Couldn't connect");
+
+$dbh=DBI->connect('DBI:mysql:sample_dbÕ,'root','quigley1') or 
+                                       die "Can't connect";
+
+$dbh=DBI->connect('DBI:mysql:database=sample_db;user=root;
+                                       password=quigley1');
+
+$dsn = dbi:mysql:northwind; $username="root"; $password="letmein";
+$dbh = DBI->connect($dsn, $user, $password,
+      { PrintError => 0, RaiseError => 1, AutoCommit => 0 });

@@ -1,0 +1,9 @@
+setservent(1 );
+($name, $aliases, $port, $proto) = getservent;
+print "Name=$name\nAliases=$aliases\nPort=$port\nProtocol=$protocol\n";
+		<  program continues here >
+
+($name, $aliases, $port, $proto) = getservent;  
+	           # Retrieves the next entry in /etc/services
+print "Name=$name\nAliases=$aliases\nPort=$port\nProtocol=$protocol\n";
+endservent;

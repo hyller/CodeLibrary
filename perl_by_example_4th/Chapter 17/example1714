@@ -1,0 +1,5 @@
+SELECT * FROM teams ORDER BY name;
+
+SELECT * FROM teams ORDER BY name DESC;
+
+SELECT name, wins FROM teams ORDER BY WINS LIMIT 2;

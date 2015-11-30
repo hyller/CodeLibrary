@@ -1,0 +1,8 @@
+#!/bin/perl
+($sec, $min, $hour, $monthday, $month, $year, $weekday, $yearday,
+	 $isdaylight) = gmtime;
+print "The weekday is $weekday and the month is $month.\n";
+print "The time in California since midnight is ", 
+	 'date "+%H:%M"';
+print "The Coordinated Univeral Time is $hour:$min since midnight\n";
+print "Daylight saving is in effect.\n" if $isdaylight;

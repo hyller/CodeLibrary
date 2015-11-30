@@ -1,0 +1,2 @@
+$dbh = DBI->connect('dbi:Oracle:payroll','scott','tiger');
+$dbh = DBI->connect("dbi:Oracle:host=torch.cs.dal.ca;sid=TRCH", $user, $passwd);

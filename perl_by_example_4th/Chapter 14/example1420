@@ -1,0 +1,22 @@
+#!/bin/perl
+{ package Grandpa;
+  $name = "Gramps";
+  sub greetme {
+	print "Hi $Child::name I'm your $name from package Grandpa.\n";
+   }
+}
+
+{ package Parent;
+  sub AUTOLOAD{   
+	print "$_[0]: $_[1] and $_[2]\n";
+	print "You know us after all!\n";
+	print "The unheard of subroutine is called $AUTOLOAD.\n"
+  }
+}
+{ package Child;
+  $name = "Baby";
+  $AUTOLOAD=Grandpa->greetme();
+  print "Hi I'm $name in the Child Package here.\n";
+  Parent->unknown("Mom", "Dad");   # Undefined subroutine
+}
+

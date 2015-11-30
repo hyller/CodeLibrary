@@ -1,0 +1,33 @@
+#!/usr/bin/perl
+
+print "What is your full name? ";
+chomp($fullname=<STDIN>);
+
+@arrayname = title($fullname); # Context is array
+print "Welcome $arrayname[0] $arrayname[2]!\n";
+
+
+print "What is the name of that book you are reading? ";
+chomp($bookname=<STDIN>);
+$scalarname = title($bookname);  # Context is string
+print "The book $arrayname[0] is reading is $scalarname.\n";
+ 
+sub title{
+ # Function to capitalize the first character of each word
+ # in a name and to return a string or an array of words
+ my $text=shift;
+my $newstring;
+ my$text=lc($text);
+ my @newtext=split(" ", $text); # Create a list of words
+ foreach my $word ( @newtext ){
+     $word = ucfirst($word); # Capitalize the first letter
+   $newstring .= "$word "; # Create a title string
+}          
+     @newarray = split(" ", $newstring);
+     # Split the string into an array
+    chop($newstring); # Remove trailing white space
+
+return wantarray ? @newarray : $newstring;  # Return either array
+# or scalar based on how the subroutine was called
+
+}

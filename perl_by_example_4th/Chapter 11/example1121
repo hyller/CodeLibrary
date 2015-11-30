@@ -1,0 +1,17 @@
+# References and typeglob
+@list=(1, 2, 3, 4, 5);
+$list="grocery";
+*arr = \@list;      # *arr is a reference only to the array @list
+print @arr, "\n";
+
+print "$arr\n";         # Not a scalar reference
+sub alias {
+    local (*a) = @_;    # Must use local, not my
+	$a[0] = 7;
+	pop @a;
+}
+&alias(*arr);       # Call the subroutine
+print "@list\n";
+$num=5;
+*scalar=\$num;      # *scalar is a reference to the scalar $num
+print "$scalar\n";

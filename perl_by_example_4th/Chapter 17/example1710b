@@ -1,0 +1,12 @@
+INSERT INTO coaches values
+   -> (" ",'John Doe','Chico Hardhats','Head Coach', 20021210);   
+
+INSERT INTO coaches values
+       -> (" ", 'Jack Mattsone','Chico Hardhats','Offensive Coach' ,     '20041005');
+
+INSERT INTO coaches(name,team, title,start_date)
+       -> values( 'Bud Wilkins', 'Fremont Tigers', 'Head Coach', '19990906');
+
+INSERT INTO coaches(name, team, title,start_date)
+       ->values( 'Joe Hayes', 'Fremont Tigers', 'Defensive Coach', 
+    '19980616');

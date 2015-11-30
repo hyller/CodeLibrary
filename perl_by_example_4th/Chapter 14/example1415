@@ -1,0 +1,17 @@
+# Closure
+	sub paint {
+		my $color = shift;    # @_ array is shifted
+		my $ref = sub {      # Pointer to an anonymous subroutine
+			my $object=shift;
+			print "Paint the $object $color.\n"; # $color still
+		                                        # in scope
+		};
+	return $ref;    # Returns a closure
+	}
+
+	my $p1=paint("red");   #  Creates a closure
+	my $p2=paint("blue");  #  Creates a closure
+
+	$p1->("flower");  # Call to anonymous subroutine
+	$p2->("sky");
+

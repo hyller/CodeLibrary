@@ -1,0 +1,4 @@
+ALTER TABLE teams MODIFY name VARCHAR(100) NOT NULL, 
+    -->  ADD PRIMARY KEY(name);
+
+DESCRIBE teams;

@@ -1,0 +1,8 @@
+# Greedy and not greedy
+$_="abcdefghijklmnopqrstuvwxyz";
+s/[a-z]+/XXX/;
+print $_, "\n";
+
+$_="abcdefghijklmnopqrstuvwxyz";
+s/[a-z]+?/XXX/;
+print $_, "\n";

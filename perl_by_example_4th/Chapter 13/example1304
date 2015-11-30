@@ -1,0 +1,20 @@
+#!/bin/perl
+@toys = qw( Barbie Elmo Thomas Barney );
+$num = @toys;
+%games=("Nintendo"  => "Wii",
+        "Sony"      => "PlayStation 3",
+        "Microsoft" => "XBox 360",
+      );
+$ref1 = \$num;  # Create pointers
+$ref2 = \@toys;
+$ref3 = \%games;
+
+print "There are $$ref1 toys.\n"; # de-reference pointers
+print "They are: ",join(",",@$ref2), ".\n";
+print "Jessica's favorite toy is $ref2->[0].\n";
+print "Willie's favorite toy is $ref2->[2].\n";
+
+while(($key,$value)=each(%$ref3)){
+   print "$key => $value\n";
+}
+print "They waited in line for a $ref3->{'Nintendo'}\n";   

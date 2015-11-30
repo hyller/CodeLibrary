@@ -1,0 +1,15 @@
+#!/bin/perl
+$name="Tommy";
+$age=25;
+$salary=50000.00;
+$now="03/14/97";
+# Format Template
+format STDOUT=
+---------------------REPORT-------------------------
+Name: @<<<<<< Age:@##Salary:@#####.## Date:@<<<<<<<<<<
+	$name,       $age,       $salary,       $now
+.
+# End Template
+
+write;
+print "Thanks for coming. Bye.\n";

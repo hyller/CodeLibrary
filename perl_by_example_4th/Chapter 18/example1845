@@ -1,0 +1,4 @@
+foreach $num ( 1 .. 10 ){
+	if (($login, $passwd, $uid)=getpwuid($num)){
+	print "$login--$uid\n";}
+}

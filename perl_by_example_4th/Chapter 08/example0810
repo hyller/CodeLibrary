@@ -1,0 +1,2 @@
+$x=1; 
+print $x++,"\n" until $x == 5;

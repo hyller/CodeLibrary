@@ -1,0 +1,6 @@
+for ($rows=5; $rows>=1; $rows--){
+  for ($columns=1; $columns<=$rows; $columns++){
+    printf "*";
+  }
+  print "\n";
+}

@@ -1,0 +1,5 @@
+print "What version of the operating system are you using? ";
+chomp($os=<STDIN>);
+if ($os > 2.2) {print "Most of the bugs have been worked 
+                       out!\n";}
+else {print "Expect some problems.\n";}

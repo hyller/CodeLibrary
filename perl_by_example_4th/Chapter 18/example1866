@@ -1,0 +1,1 @@
+die "Can't cd to junk: $!\n" unless chdir "/usr/bin/junk";

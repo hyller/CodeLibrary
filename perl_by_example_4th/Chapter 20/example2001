@@ -1,0 +1,4 @@
+while (($name,  $aliases, $proto ) = getprotent){
+printf "name=%-5s,aliases=%-6sproto=%-8s\n", 
+        $name, $aliases, $proto;
+}

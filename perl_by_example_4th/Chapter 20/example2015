@@ -1,0 +1,2 @@
+connect(CLIENTSOCKET, "/home/joe/sock" );
+connect(CLIENTSOCKET, $packed_address);

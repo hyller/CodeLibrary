@@ -1,0 +1,24 @@
+use DBI;
+my $dbh=DBI->connect("DBI:mysql:host=localhost;user=root;
+password=quigley1;database=sample_db");
+
+	my $sth=$dbh->prepare("INSERT INTO teams(name, wins, losses)
+                  VALUES(?,?,?)");
+
+	# Preset the values in variables
+	my $team_name="Denver Daredevils";  # set values here
+	my $wins=18;
+	my $losses=5; 
+	$sth->execute($team_name, $wins, $losses);
+	print "\nData for team table. \n\n";
+	$sth=$dbh->prepare("SELECT * FROM teams");
+	$sth->execute();
+  while(my @val = $sth->fetchrow_array()){
+        print "name=$val[0]\n";
+        print "wins=$val[1]\n";
+        print "losses=$val[2]\n\n";
+      }
+
+	$sth->finish();
+	$dbh->disconnect();
+

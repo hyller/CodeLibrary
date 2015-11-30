@@ -1,0 +1,8 @@
+open(PASSWD, "/etc/passwd") || die "Can't open: $!\n";
+while ( chomp($line = <PASSWD>) ){
+	print "---$line---\n" if $line =~ /root/;
+}
+seek(PASSWD, 0, 0) || die "$!\n"; # Start back at the beginning 
+                                  # of the file at first byte
+while(<PASSWD>){print if /ellie/;}
+close(PASSWD);

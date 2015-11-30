@@ -1,0 +1,16 @@
+# User/driver program
+use House;
+# The arguments following the package name are
+# are passed as a list to the tied hash
+# Usage: tie hash, package, argument list
+# The hash %home is tied to the package House.
+tie %home, "House", 155000, "Yellow", 9;   
+                # Calls the TIEHASH constructor
+ print qq/The original color of the house: $home{"Color"}\n/; 
+                # Calls FETCH method
+print qq/The number of rooms in the house: $home{"Rooms"}\n/;
+print qq/The price of the house is: $home{"Price"}\n/;
+$home{"Color"}="beige with white trim";   # Calls STORE method
+print "The house has been painted. It is now $home{Color}.\n";
+ untie(%home);    # Removes the object
+

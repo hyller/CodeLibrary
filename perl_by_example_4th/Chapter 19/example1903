@@ -1,0 +1,23 @@
+#!/bin/perl
+open(DB, "datafile" ) || die "datafile: $!\n";
+format STDOUT=
+----------------------- 
+| EMPLOYEE INFORMATION |
+-----------------------
+Name: @<<<<<<<<<<<< 
+	$name
+-----------------------
+Age: @##
+	$age
+-----------------------
+
+Salary: @#####.## 
+	$salary
+-----------------------
+Date: @>>>>>>>>>>
+	$start
+.
+while(<DB>){
+	($name, $age, $salary, $start)=split(":"); 
+	write ;
+}

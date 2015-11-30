@@ -1,0 +1,3 @@
+print "What was your grade? ";
+$grade = <STDIN>;
+print $grade > 60 ? "Passed.\n" : "Failed.\n";

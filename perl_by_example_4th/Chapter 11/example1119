@@ -1,0 +1,17 @@
+# Revisiting Example 10.6 -- Now using typeglob
+print "Give me 5 numbers: ";
+@n = split(' ', <STDIN>);
+&params(*n);
+
+sub params{
+	local(*arr)=@_;
+	print 'The values of the @arr array are ', @arr, "\n"; 
+	print "The first value is $arr[0]\n";
+	print "the last value is ", pop(@arr), "\n";
+	foreach $value(@arr){
+		$value+=5;
+		print "The value is $value.\n";
+	}
+}
+print "Back in main\n";
+print "The new values are @n.\n";

@@ -1,0 +1,13 @@
+# Passing by reference with pointers
+@list1= (1..100);
+@list2 = (5..200);
+
+display(@list1, @list2); # Pass two arrays
+
+print "-" x 35,"\n";
+
+display(\@list1, \@list2); # Pass two pointers  
+
+sub display{
+  print "@_\n";
+}

@@ -1,0 +1,1 @@
+($name,$aliases,$port,$protocol)=getservbyname('telnet', 'tcp');

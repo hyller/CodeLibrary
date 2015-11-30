@@ -1,0 +1,11 @@
+#!/bin/perl
+$name="Hamlet";
+print "What is your favorite line from Hamlet? ";
+$quote = <STDIN>;
+format STDOUT=
+Play: @<<<<<<<<<<  Quotation:  ^<<<<<<<<<<<<<<<<<<
+      $name,                   $quote
+~~                             ^<<<<<<<<<<<<<<<<<<
+                               $quote
+.
+write;

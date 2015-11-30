@@ -1,0 +1,10 @@
+#!/bin/perl 
+# Scriptname: excluder
+while(<>){
+	($name, $phone)=split(/:/);
+	unless($name eq "barbara"){
+		$record="$name\t$phone";
+		print "$record";
+	}
+}
+print "\n$name has moved from this district.\n";

@@ -1,0 +1,9 @@
+# Context
+@now = localtime;  # List context
+print "@now\n";   # Scalar context
+
+$now = localtime;
+print "$now\n";
+
+print localtime, "\n"; # prints in list context
+print scalar localtime,"\n"; # Forced to scalar context 

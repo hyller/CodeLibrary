@@ -1,0 +1,16 @@
+@toys = qw( Buzzlightyear Woody Thomas Pokemon );
+$num = @toys;
+%movies=("Toy Story"=>"US",
+	     "Thomas"=>"England",
+	     "Pokemon"=>"Japan",
+        );
+$ref1 = \$num;        # Scalar pointer
+$ref2 = \@toys;       # Array pointer
+$ref3= \%movies;      # Hash pointer
+print "There are $$ref1 toys.\n";    # De-reference pointers
+print "They are: @$ref2.\n";
+while( ($key, $value) = each ( %$ref3 )){
+	print "$key--$value\n";
+}
+print "His favorite toys are $ref2->[0] and $ref2->[3].\n";
+print "The Pokemon movie was made in $ref3->{'Pokemon'}.\n";

@@ -1,0 +1,13 @@
+#!/bin/perl
+# The eval function will evaluate each line you type 
+# and return the result. It's as though you are
+# running a little independent Perl script.
+# Script name: plsh
+
+print "> ";         # Print the prompt
+while(<STDIN>){
+	$result=eval ;  # eval evaluates the expression $_
+	warn $@ if $@;  # If an error occurs, it will be assigned to $@
+	print "$result\n if $result";
+	print "> ";     # Print the prompt
+}

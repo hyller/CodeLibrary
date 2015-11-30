@@ -1,0 +1,5 @@
+open(FINDIT, "find . -name 'perl*' -print |") || 
+		die "Couldn't execute find!\n";
+while( $filename = <FINDIT> ){
+	print $filename;
+}

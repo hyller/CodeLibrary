@@ -1,0 +1,12 @@
+#!/bin/perl 
+# Program name: midterms
+# This program will call a subroutine from another file
+unshift(@INC, "/home/jody/ellie/perl/mylib");
+require "average.pl";
+print "Enter your midterm scores.\n";
+@scores=split(' ', <STDIN>);
+printf "The average is %.1f.\n", average::ave(@scores); 
+# The ave subroutine is found in a file called average.pl 
+-----------------------------------------------------------
+$ cd mylib         # Directory where library is located
+-----------------------------------------------------------

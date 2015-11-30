@@ -1,0 +1,27 @@
+#!/bin/perl
+use Math::BigFloat;  # BigFloat.pm is in the Math directory 
+
+$number = "000.95671234e-21";
+$mathref = new Math::BigFloat("$number");  # Create the object
+
+print "\$mathref is in class ", ref($mathref), "\n"; 
+                    # Where is the object
+
+print $mathref->fnorm(), "\n";  # Use methods from the class
+
+print "The sum of $mathref + 500 is: ", $mathref->fadd("500"),
+                                        "\n";
+print "Division using overloaded operator: ", $mathref / 200.5,
+                                        "\n";
+print "Division using fdiv method:", $mathref->fdiv("200.5"), 
+                                        "\n";
+
+print "Enter a number ";
+chop($numstr = <STDIN>);
+
+if ( $mathref->fadd($numstr) eq "NaN" ){ 
+                   print "You didn't enter a number.\n"};
+
+# Return value of NaN means the string is not a number,
+# or you divided by zero, or you took the square root 
+# of a negative number. 

@@ -1,0 +1,35 @@
+use DBI qw(:sql_types);
+
+my $dbh = DBI->connect('dbi:mysql:sample_db','root','quigley1',
+                      { 
+                         PrintError => 0,
+                         RaiseError => 1,
+                         AutoCommit => 0
+                      }
+        ) or die "Connection to sample_db failed:  $DBI::errstr";
+my @rows = (  # New rows to be inserted
+              [ 'Tampa Terrors', 3, 5 ],
+              [ 'Los Alamos Lizzards', 12, 3 ],
+              [ 'Detroit Demons', 22, 0 ],
+              [ 'Cheyenne Chargers',6, 0 ],
+         );
+my $sql = qq{ INSERT INTO teams VALUES ( ?, ?, ? ) };
+my $sth = $dbh->prepare( $sql );
+foreach $param (@rows) {
+	eval { # The eval block is used to catch errors
+	$sth->bind_param( 1, $param->[0], SQL_VARCHAR );
+	$sth->bind_param( 2, $param->[1], SQL_INTEGER );
+	$sth->bind_param( 3, $param->[2], SQL_INTEGER);
+	$sth->execute() or die;
+	};                                      
+}
+if( $@ ) {  # If eval failed. $@ is set to the error that occurred
+	warn "Database error: $DBI::errstr\n";
+	$dbh->rollback();    # Reverse all commit statements  			
+}
+else{
+	$dbh->commit();
+	print "Success!\n";
+}
+$sth->finish();
+$dbh->disconnect();

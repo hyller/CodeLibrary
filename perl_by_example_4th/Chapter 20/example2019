@@ -1,0 +1,39 @@
+#!/usr/bin/perl  -T
+# timeserver -- a Time Server program, 
+# opens a Rendezvous Socket on port 9876
+# and waits for a client to connect.
+# When each client connects, this server determines the machine
+# time on its host and writes the value on the communication
+# socket to the client.
+#
+#                     Usage: timeserver [port number]
+#
+use strict;
+use warnings;
+($port)=@ARGV;
+$port=9876 unless $port;
+$AF_INET=2;
+$SOCK_STREAM = 1;
+
+$sockaddr = 'S n a4 x8';
+($name,$aliases,$proto)=getprotobyname('tcp');
+if($port !~ /^\d+$/){
+	($name, $aliases, $port)=getservbyport($port,'tcp'); 
+}
+print "Port = $port\n";
+$this = pack($sockaddr, $AF_INET, $port, "\0\0\0\0");
+select(COMM_SOCK); $| = 1; select (STDOUT);
+	# Create R_SOCKET, the rendezvous socket descriptor
+socket(R_SOCKET, $AF_INET, $SOCK_STREAM, $proto ) || 
+		die "socket: $!\n";
+	# Bind R_SOCKET to my address, $this
+bind(R_SOCKET, $this) || die "bind: $!\n"; 
+listen(R_SOCKET, 5) || die "connect: $!\n";
+	# Infinite loop Ð wait until client connects, 
+	# then serve the client
+while(1){
+	accept(COMM_SOCK, R_SOCKET) || die "$!\n"; 
+	$now = time;
+	print COMM_SOCK $now;
+}
+

@@ -1,0 +1,9 @@
+open(FH, "db") or die "Can't open datebook: $!\n";
+while(<FH>){
+	last if /Norma/;   # This is the last line that 
+	                   # will be processed
+}
+seek(FH,0,1) or die;   # Seeking from the current position
+$line=<FH>;            # This is where the read starts again
+print "$line";
+close FH;

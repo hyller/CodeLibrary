@@ -1,0 +1,5 @@
+#!/bin/perl
+$num=5;
+$p = \$num;      # $p gets the address of $num
+print 'The address assigned $p is ', $p, "\n";
+print "The value stored at that address is $$p\n"; # dereference  

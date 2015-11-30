@@ -1,0 +1,6 @@
+print "How old are you? ";
+chomp($age = <STDIN>);
+unless ($age <= 21 ){  # If false, enter the block
+      print "Let's party!\n";
+}
+print "You said you were $age.\n";                       

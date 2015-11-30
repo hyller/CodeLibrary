@@ -1,0 +1,9 @@
+sub mynumbs(@$;$);       # Declaration with prototype
+@list=(1,2,3);
+mynumbs(@list, 25);
+sub mynumbs(@$;$) {      # Match the prototypes
+	my ($scalar)=pop(@_);
+	my(@arr) = @_;
+	print "The array is: @arr","\n";
+	print "The scalar is $scalar\n";
+}

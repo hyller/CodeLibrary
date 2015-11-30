@@ -1,0 +1,18 @@
+#!/usr/bin/perl
+while(1){ # start an infinite loop
+	print "What was your grade? ";
+	$grade = <STDIN>;
+	if ($grade < 0 || $grade > 100) {
+		print "Illegal choice\n";
+		next; } # start control at the beginning of
+		# the innermost loop
+	if ($grade > 89 && $grade < 101) {print "A\n";}
+	elsif ($grade > 79 && $grade < 90) {print "B\n";}
+	elsif ($grade > 69 && $grade < 80) {print "C\n";}
+	elsif ($grade > 59 && $grade < 70) {print "D\n";}
+	else {print "You Failed."};
+	print "Do you want to enter another grade? (y/n) ";
+	chomp($choice=<STDIN>);
+	if ($choice ne "y"){last ;} # break out of the innermost
+		# loop if the condition is true
+}

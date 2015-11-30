@@ -1,0 +1,7 @@
+# Map using a block
+open(FH, "datebook.master") or die;
+@lines=<FH>;
+@fields = map { split(":") } @lines;
+foreach $field (@fields){
+	 print $field,"\n";
+}

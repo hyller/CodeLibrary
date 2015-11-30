@@ -1,0 +1,2 @@
+open(INFILE, "datebook");
+close(INFILE);

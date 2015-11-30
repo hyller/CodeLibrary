@@ -1,0 +1,10 @@
+while(<DATA>){
+	print unless /Evich/;   # Print line unless it matches Evich
+}
+__DATA__
+Steve Blenheim
+Betty Boop
+Igor Chevsky
+Norma Cord
+Jon DeLoach
+Karen Evich

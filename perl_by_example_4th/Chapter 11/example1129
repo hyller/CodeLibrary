@@ -1,0 +1,14 @@
+#!/bin/perl
+# The subs module
+use subs qw(fun1 fun2 );
+
+fun1;
+fun2;
+
+sub fun1{
+	print "In fun1\n";
+}
+
+sub fun2{
+	print "In fun2\n";
+}

@@ -1,0 +1,11 @@
+# Beginning of line anchor
+while(<DATA>){
+	print if /^[JK]/;
+}
+__DATA__
+Steve Blenheim 1.10 
+Betty Boop .5 
+Igor Chevsky 555.100
+Norma Cord 4.01
+Jonathan DeLoach .501
+Karen Evich 601

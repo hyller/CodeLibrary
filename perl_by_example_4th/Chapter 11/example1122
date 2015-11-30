@@ -1,0 +1,5 @@
+#!/bin/perl
+$num=5;
+$p = \$num;       # The backslash operator means "adddress of"
+print 'The address assigned $p is ', $p, "\n";
+print "The value stored at that address is $$p\n"; 

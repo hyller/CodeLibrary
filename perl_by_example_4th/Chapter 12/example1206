@@ -1,0 +1,9 @@
+#!/bin/perl
+require "ctime.pl";
+require "pwd.pl";
+&initpwd;         # Call the subroutine 
+printf "The present working directory is %s\n", $ENV{PWD};
+&chdir("../..");
+printf "The present working directory is %s\n", $ENV{PWD};
+$today=&ctime(time);
+print "$today";

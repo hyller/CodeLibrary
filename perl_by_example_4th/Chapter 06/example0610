@@ -1,0 +1,9 @@
+$num1=50;
+$num2=100;
+$num3=0;
+print "\nOutput using the word operators.\n\n";
+print "\n$num1 and $num2: ",($num1 and $num2), "\n";
+print "\n$num1 or $num3: ", ($num1 or $num3), "\n";
+print "\n$num1 xor $num3: ",($num1 xor $num3), "\n";
+print "\nnot $num3: ", not $num3;
+print "\n";

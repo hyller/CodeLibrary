@@ -1,0 +1,43 @@
+#!/bin/perl  -Tw
+require 5.6;
+use strict; 
+use Socket;
+use FileHandle;
+
+# timeserver --  a Time Server program, opens a rendezvous 
+# socket on port 29688 and waits for a client to connect.
+# When each client connects, this server determines the machine
+# time on its host and writes the value on the communication
+# socket to the client.
+#
+#                     Usage: timeserver
+#
+my($this, $now);
+my $port = shift || 29688;
+
+$this = pack('Sna4x8', AF_INET, $port, "\0\0\0\0");
+print "Port = $port\n";
+my $prototype = getprotobyname('tcp');
+socket(SOCKET, PF_INET, SOCK_STREAM, $prototype) || 
+							               die "socket: $!\n";
+print "Socket ok.\n";
+
+bind(SOCKET, $this) || die "bind: $!\n";
+print "Bind ok.\n";
+
+listen(SOCKET, SOMAXCONN) || die "connect: $!\n";
+print "Listen ok.\n";
+
+COMM_SOCKET->autoflush;
+SOCKET->autoflush;
+
+# Infinite loop -- wait until client connects, 
+# then serve the client
+while(1){
+	print "In loop.\n";
+	accept(COMM_SOCKET, SOCKET) || die "$!\n";
+	print "Accept ok.\n";
+	$now = time;
+	print COMM_SOCKET $now;
+}
+

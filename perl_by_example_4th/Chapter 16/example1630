@@ -1,0 +1,47 @@
+#!/usr/bin/perl
+use CGI;
+$query = new CGI;
+print $query->header;
+print $query->start_html("The Object Oriented CGI and Forms");
+print "<H2>Example using Forms with Checkboxes</H2>\n";
+
+&print_formstuff($query);
+&do_work($query) if ($query->param);
+
+print $query->end_html;
+sub print_formstuff{
+	my($query) = @_;
+	print $query->startform;
+
+	print "What is your name? ";
+	print $query->textfield('name');   # A simple text field
+	print "<BR>";
+
+	print "Are you married? <BR>";
+	print $query->checkbox(-name=>'Married',
+	                       -label=>'If not, click me' ); 
+	                       # Simple checkbox
+	print "<BR><BR>";
+	print "What age group(s) do you hang out with? <BR>";
+	  print $query->checkbox_group(-name=>'age_group',
+	                               -values=>[ '12-18', '19-38',
+	                                          '39-58','59-100' ],
+	                               -default=>[ '19-38' ], 
+	                               -linebreak=>'true',
+	                              );
+	print $query->submit('action', 'Select');
+	print $query->reset('Clear');
+	print $query->endform;
+	print "<HR>\n";
+}
+
+sub do_work{
+	my ($query) = @_;
+	my (@values, $key);
+	print "<H2>Here are the settings</H2>";
+	foreach $key ($query->param){
+		print "$key: \n";
+		@values=$query->param($key);
+		print join(", ",@values), "<BR>";
+	}
+}

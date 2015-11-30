@@ -1,0 +1,19 @@
+# Difference between my and local
+$friend="Louise";        # Global variables
+$pal="Danny";
+print "$friend and $pal are global.\n";
+
+sub guests {
+	my $friend="Pat"; # Lexically scoped variable
+	local $pal="Chris";  # Dynamically scoped variable
+	print "$friend and $pal are welcome guests.\n";
+	&who_is_it;          # Call subroutine
+}
+
+sub who_is_it {
+	print "You still have your global friend, $friend, here.\n";
+	print "But your pal is now $pal.\n";  # Dynamically scoped
+}
+  
+&guests;                 # Call subroutine
+print "Global friends are back: $friend and $pal.\n";

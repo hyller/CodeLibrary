@@ -1,0 +1,17 @@
+use Fcntl;
+use SDBM_File;
+tie(%address, 'SDBM_File', 'email.dbm', O_RDWR|O_CREAT, 0644)
+|| die $!;
+print "The package the hash is tied to: ",ref tied %address,"\n";
+
+print "Enter the email address.\n";
+chomp($email=<STDIN>);
+print "Enter the first name of the addressee.\n";
+chomp($firstname=<STDIN>);
+$firstname = lc $firstname;
+$firstname = ucfirst $firstname;
+$address{"$email"}=$firstname;
+while( ($email, $firstname)=each(%address)){
+	print "$email, $firstname\n";
+}
+untie %address;

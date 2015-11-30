@@ -1,0 +1,7 @@
+$fruit1 = "pear";
+$fruit2 = "peaR";
+$result = $fruit1 gt $fruit2;  
+print "$result\n";
+
+$result = $fruit1 lt $fruit2;
+print "$result\n";

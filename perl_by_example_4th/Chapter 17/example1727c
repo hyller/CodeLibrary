@@ -1,0 +1,1 @@
+$dbh = DBI->connect('dbi:odbc:MSS_pubs','sa', '12mw_1');

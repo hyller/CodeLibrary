@@ -1,0 +1,1 @@
+printf("The name is %s and the number is %d\n", "John", 50);

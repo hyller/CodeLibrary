@@ -1,0 +1,6 @@
+#!/bin/perl
+foreach $name ( "root", "bin", "ellie" ){
+	if (($login, $passwd, $uid)=getpwnam($name)){
+		print "$login--$uid\n"; 
+	}
+}

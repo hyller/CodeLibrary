@@ -1,0 +1,7 @@
+use File::Find;
+find(\&wanted, '/httpd', '/ellie/testing' );
+
+sub wanted{
+	-d $_ && print "$File::Find::name\n";
+}
+

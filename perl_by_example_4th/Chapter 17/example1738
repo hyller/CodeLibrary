@@ -1,0 +1,19 @@
+use DBI;
+	my $driver="DBI:mysql";
+	my $database="sample_db";
+	my $user="root";
+	my $password="quigley1";
+	my $host="localhost";
+
+	my $dbh = DBI->connect("$driver:$database:$host","$user",
+	"$password") or die "Can't connect: " . DBI->errstr;
+
+	$sth=$dbh->prepare("SELECT name, wins,losses FROM teams 
+	where name LIKE ?") or die "Can't prepare sql statement" . 
+DBI->errstr;
+
+	$sth->bind_param(1, "Ch%");
+	$sth->execute();
+	$sth->dump_results();
+	$sth->finish();
+	$dbh->disconnect();

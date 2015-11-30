@@ -1,0 +1,28 @@
+use DBI;
+my $driver="DBI:mysql";
+my $database="sample_db";
+my $user="root";
+my $host="localhost";
+
+my     $dbh = 
+DBI->connect("$driver:database=$database;host=$host;user=$user")
+    or die "Can't connect: " . DBI->errstr;
+
+my $sth=$dbh->prepare("SELECT name, wins, losses FROM teams")
+	or die "Can't prepare sql statement" . DBI->errstr;
+
+$sth->execute() or die "Can't prepare sql statement" . $sth->errstr;
+;
+
+my($name, $wins, $losses);# Scalars that will be bound to columns
+$sth->bind_columns(\$name,\$wins,\$losses); 
+            # scalar references
+      print "\nSelected data for teams.\n\n";
+      printf"\t%-20s%-8s%-8s\n","Name","Wins", "Losses";
+     while( $sth->fetch()){  
+       # Fetch a row and return column values as scalars
+	   printf "   %-25s%3d%8d\n",$name, $wins, $losses;
+     }
+
+$sth->finish();
+$dbh->disconnect();

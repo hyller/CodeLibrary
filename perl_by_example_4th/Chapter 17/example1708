@@ -1,0 +1,4 @@
+CREATE TABLE teams( 
+	-> name varchar(100) not null,
+    -> wins int unsigned,
+    -> losses int unsigned);

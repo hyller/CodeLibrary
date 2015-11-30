@@ -1,0 +1,18 @@
+#!/usr/bin/perl
+# File is mainfile
+use House;
+tie %home, "House";
+$home{"Price"} = 55000;  # Assign and Store the data 
+$home{"Rooms"} = 11;
+# Fetch the data
+
+print "The number of rooms in the house: $home{Rooms}\n";
+print "The price of the house is: $home{Price}\n";
+foreach $key (keys(%home)){
+	print "Key is $key\n";
+}
+while( ($key, $value) = each(%home)){ 
+		# Calls to FIRSTKEY and NEXTKEY
+	print "Key=$key, Value=$value\n";
+}
+untie(%home);

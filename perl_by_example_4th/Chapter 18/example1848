@@ -1,0 +1,2 @@
+$localtime=localtime;
+print $localtime;

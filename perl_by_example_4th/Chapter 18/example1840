@@ -1,0 +1,5 @@
+$niceval = getpriority(0,0);
+print "The nice value for this process is $niceval.\n";
+setpriority(0,0, ( $niceval + 5 ));
+print "The nice value for this process is now", getpriority(0,0);
+

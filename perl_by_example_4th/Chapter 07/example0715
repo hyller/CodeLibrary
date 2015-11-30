@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+$str="hello";
+@numbers = (1, 3, 5, 7, 9);
+print "The scalar \$str is initially $str.\n";
+print "The array \@numbers is initially @numbers.\n";
+
+foreach $str (@numbers ){
+	$str+=5;
+	print "$str\n";
+}
+print "Out of the loop--\$str is $str.\n";
+print "Out of the loop--The array \@numbers is now @numbers.\n";

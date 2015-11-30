@@ -1,0 +1,5 @@
+use Win32::NetAdmin qw(GetUsers UserGetAttributes) ;
+GetUsers("", FILTER_NORMAL_ACCOUNT,\%hash)or die;
+foreach $key(sort keys %hash){
+	print "$key\n";
+}

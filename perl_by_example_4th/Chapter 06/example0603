@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+$name="Dan";
+$line="*";
+$var=0;       # Assign 0 to var
+
+$var += 3;    # Add 3 to $var; same as $var=$var+3
+print  "\$var += 3 is $var \n";
+
+$var -= 1;    # Subtract 1 from $var
+print "\$var -= 1 is $var\n";
+
+$var **= 2;        # Square $var
+print "\$var squared is $var\n";
+
+$var %= 3;         # Modulus
+print "The remainder of \$var/3 is $var\n";
+
+$name .= "ielle";  # Concatenate string "Dan" and "ielle"
+print "$name is the girl's version of Dan.\n";
+
+
+$line x= 10;       # Repetition; print 10 stars
+print "$line\n";
+
+printf "\$var is %.2f\n", $var=4.2 + 4.69;

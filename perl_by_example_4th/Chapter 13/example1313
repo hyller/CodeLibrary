@@ -1,0 +1,11 @@
+@toys = qw(Buzzlightyear  Woody  Bo);
+$num = @toys;  # Number of elements in @toys is assigned to $num
+gifts( \$num, \@toys );    # Passing by reference
+
+sub gifts {
+	my($n, $t) = @_;   # Localizing the reference with 'my'
+	print "There are $$n gifts: ";
+	print "@$t\n";
+	push(@$t, 'Janey', 'Slinky');
+}
+print "The original array was changed to: @toys\n";

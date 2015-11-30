@@ -1,0 +1,3 @@
+open(MYHANDLE, "myfile");
+open (FH, "</etc/passwd");
+open (MYHANDLE);

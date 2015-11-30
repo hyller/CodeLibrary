@@ -1,0 +1,12 @@
+#!/bin/perl
+use Cat;   # Use the Cat.pm module
+use Dog;   # Use the Dog.pm module
+
+my $dogref = Dog->new;     # Polymorphism
+my $catref= Cat->new;
+
+$dogref->set_attributes("Rover", "Mr. Jones", "Mutt");
+$catref->set_attributes;   # Polymorphism
+
+$dogref->get_attributes;
+$catref->get_attributes;

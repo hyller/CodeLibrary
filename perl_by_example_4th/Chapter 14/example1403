@@ -1,0 +1,17 @@
+package House;          # Package declaration
+ 
+my $ref = { "Owner"=>"Tom", #Anonymous hash; data for the package
+            "Price"=>"25000", # Properties/attributes
+         };
+bless($ref, House);
+   
+# The bless function creates the object. The hash referenced by 
+# $ref  is the object. It is blessed into
+# the package; i.e., an internal pointer is created to keep track 
+# of the package where it belongs.
+
+print "The bless function tags the hash with its package 
+	name.\n";
+print "The value of \$ref is: $ref.\n";
+print "The ref function returns the class (package) name:", 
+	ref($ref), ".\n";  

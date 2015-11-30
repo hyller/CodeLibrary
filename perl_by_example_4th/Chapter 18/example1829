@@ -1,0 +1,24 @@
+#!/bin/perl
+# Program to uuencode a file and then uudecode it
+open(PW, "/etc/passwd") || die "Can't open: $!\n";
+open(CODEDPW, ">codedpw") || die "Can't open: $!\n";
+
+while(<PW>){
+	$uuline=pack("u*", $_);  # uuencoded string
+	print CODEDPW $uuline;
+}
+close PW;
+close CODEDPW;
+
+open(UUPW, "codedpw") || die "Can't open: $!\n";
+while(<UUPW>){
+	print;
+}
+close UUPW;
+print "\n\n";
+	
+open(DECODED, "codedpw") || die;
+while(<DECODED>){
+	@decodeline = unpack("u*", $_);
+	print "@decodeline";
+}

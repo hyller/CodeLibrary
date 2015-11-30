@@ -1,0 +1,21 @@
+#!/bin/perl
+($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst)=
+		localtime(time);
+	% weekday=( 
+	"0"=>"Sunday",
+	"1"=>"Monday",
+	"2"=>"Tuesday",
+	"3"=>"Wednesday",
+	"4"=>"Thursday",
+	"5"=>"Friday",
+	"6"=>"Saturday",
+);
+if ( $hour > 12 ){
+     print "The hour is ", $hour - 12 ," o'clock.\n";
+}
+else {
+    print "The hour is $hour o'clock.\n";
+}
+print qq/Today is $weekday{"$wday"}.\n/; # day starts at zero
+print "It is ",$mon + 1, "/$mday/" , 1900+$year,".\n";
+print "The isdst is $isdst.\n";

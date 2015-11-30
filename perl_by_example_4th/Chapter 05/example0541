@@ -1,0 +1,5 @@
+# Removing elements from front of a list
+@names=("Bob", "Dan", "Tom", "Guy");
+$ret  = shift @names;
+print "@names\n";
+print "The item shifted is $ret.\n";

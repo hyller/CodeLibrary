@@ -1,0 +1,2 @@
+print "The pid of this process is $$\n";
+print "The parent pid of this process is ", getppid,"\n";

@@ -1,0 +1,19 @@
+#! /usr/bin/perl
+$hour=0;
+while($hour < 24) {
+  SWITCH: {      # SWITCH is just a user-defined label
+	  $hour < 12                 && do {   print "Good-morning!\n";
+                                       last SWITCH;};
+
+	  $hour == 12                && do {   print "Lunch!\n";
+	                                       last SWITCH;};
+
+	  $hour > 12 && $hour <= 17  && do {   print "Siesta time!\n";
+	                                       last SWITCH;};
+
+	  $hour > 17                 && do {   print "Good night.\n";
+	                                       last SWITCH;};
+  }  # End of block labeled SWITCH
+
+  $hour++;
+} # End of loop block

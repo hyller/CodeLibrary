@@ -1,0 +1,16 @@
+use Square;
+$object=tie $squared, 'Square', 5;  # Call constructor TIESCALAR
+print "object is $object.\n";   
+print $squared,"\n";      # Call FETCH three times
+print $squared,"\n";
+print $squared,"\n";
+print "----------------------------\n";
+	
+$squared=3;            # Call STORE
+
+print $squared,"\n";   # Call FETCH
+print $squared,"\n";
+print $squared,"\n";
+
+untie $squared;     # Break the tie that binds the 
+	                    # scalar to the object

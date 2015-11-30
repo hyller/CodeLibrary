@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+# Write to a file with a filehandle. Scriptname: file.handle
+$file="/home/jody/ellie/perl/newfile";
+open(HANDOUT, ">$file") || die "Can't open newfile: $!\n";
+
+print HANDOUT "hello world.\n";
+print HANDOUT "hello world again.\n";

@@ -1,0 +1,17 @@
+#!/bin/perl
+# The user/driver program
+use Temp;
+tie @list, "Temp";
+print "Beginning Fahrenheit: ";
+chomp($bf = <STDIN>);
+print "Ending temp: ";
+chomp($ef = <STDIN>);
+print "Increment value: ";
+chomp($ic = <STDIN>);
+print "\n";
+print "\tConversion Table\n";
+print "\t----------------\n";
+
+for($i=$bf;$i<=$ef;$i+=$ic){
+	$list[$i]=$i;
+	printf"\t$i F. = %.2f C.\n", $list[$i]; }

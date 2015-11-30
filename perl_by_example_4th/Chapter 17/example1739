@@ -1,0 +1,36 @@
+use DBI;
+	my $driver="DBI:mysql";
+	my $database="sample_db";
+	my $host="localhost";
+	my $user="root";
+    my $password="quigley1";
+    my$dbh=DBI->connect("$driver:database=$database;
+host=$host;user=$user;password=$password")or 
+         die "Can't connect: " . DBI->errstr;
+
+	sub get_wins{ ## Subroutine to handle database query
+   			   my($dbh, $team) = @_;
+      			my $sth=$dbh->prepare_cached("SELECT wins FROM teams 
+			    WHERE name = ?") or 
+     die "Can't prepare sql statement" . DBI->errstr;
+
+    		$sth->execute($team);
+
+       	 $wins=$sth->fetchrow_array();
+       	return $wins;
+	 }
+		 
+STARTOVER: {                             
+	   	print "To see how many wins, please enter the team's name. ";
+		  chomp($team_name=<STDIN>);
+   # Call a function to process database query
+
+
+		  print "$team_name has won ", get_wins($db, $team_name), 
+"   games.\n";
+		  print "Do you want to check wins for another team? ";
+		  chomp($ans = <STDIN>);
+		  redo STARTOVER if $ans =~ /y|yes/i;
+	}
+$sth->finish();
+$dbh->disconnect();

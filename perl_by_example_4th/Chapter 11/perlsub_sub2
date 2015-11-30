@@ -1,0 +1,10 @@
+# Script: perlsub_sub2
+# Variables used in subroutines are global by default
+sub bye { print "Bye $name\n"; $name="Tom";}  
+                           # Subroutine definition
+$name="Ellie";
+print "Hello to you and yours!\n";
+&bye;
+print "Out of the subroutine. Hello $name.\n";  
+                          # $name is now Tom
+&bye;

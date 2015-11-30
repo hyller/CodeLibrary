@@ -1,0 +1,5 @@
+# Splitting a scalar on whitespace and creating a list
+$line="a b c d e";
+@letter=split('  ',$line);
+print "The first letter is $letter[0]\n";
+print "The second letter is $letter[1]\n";

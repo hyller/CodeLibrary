@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+$name="Tommy Tuttle";
+print "Hello Tommy\n"  if $name =~ /Tom/;  
+                                     # Prints Hello Tommy,if true
+print "$name\n" if  $name !~ /Tom/;  # Prints nothing if false
+
+$name =~ s/T/M/;                  # Substitute first T with an M
+print "$name.\n";
+
+$name="Tommy Tuttle";
+print "$name\n" if $name =~ s/T/M/g;  # Substitute every T with M
+print "What is Tommy's last name? ";
+print "You got it!\n" if <STDIN> =~ /Tuttle/;

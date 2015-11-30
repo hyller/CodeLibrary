@@ -1,0 +1,20 @@
+use DBI;
+my $dbh=
+     DBI->connect("DBI:mysql:host=localhost;user=root,
+                password=quigley1;
+                 database=sample_db");
+# Add two new entries
+$dbh->do("INSERT INTO teams(name,wins,losses)
+            VALUES('San Francisco Fogheads', 24,12)");
+
+	$dbh->do(qq/INSERT INTO teams(name, wins, losses)
+      VALUES(?,?,?)/, undef,"Middlefield Monsters", 2, 32);
+
+	$dbh->do(qq/INSERT INTO teams(name, wins, losses)
+      VALUES(?,?,?)/, undef,"Littleton's Tigers", 4, 18);
+
+$dbh->do("INSERT INTO coaches 
+            VALUES('','Roger Outback','San Francisco Fogheads',     
+                   'Defensive Coach','2006-03-16'");
+
+my $dbh->disconnect();

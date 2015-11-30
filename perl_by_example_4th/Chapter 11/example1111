@@ -1,0 +1,5 @@
+use strict "vars";
+my $name = "Ellie";       # All variables are lexical in scope
+our @friends = qw(Tom Stefan Bin Marie);
+our $newspaper = "The Globe";
+print "$name and $friends[0] read the $newspaper.\n";

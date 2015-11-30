@@ -1,0 +1,7 @@
+$x = 5;
+$y = 4;
+$result = $x > $y;
+print "$result\n";
+
+$result = $x < $y;
+print $result;

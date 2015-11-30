@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+$num=0;      # initialize 
+until ($num == 10){  
+    # Test expression; loop quits when expression is true or 1 
+	print "$num ";
+	$num++;   # Update the loop variable $num; increment $num
+}
+print " \nOut of the loop.\n";

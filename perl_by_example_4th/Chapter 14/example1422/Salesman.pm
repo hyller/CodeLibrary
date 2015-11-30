@@ -1,0 +1,36 @@
+# The Derived Class
+package Salesman;
+use strict;
+use warnings;
+BEGIN{unshift(@INC, "./Baseclass");};
+our @ISA=qw( Employee);
+use Employee;
+print "The salesman is an employee.\n" 
+		if Salesman->isa('Employee');
+print "The salesman can display its properties.\n" 
+		if Salesman->can('get_data');
+sub new  {        # Constructor for Salesman
+	my ($class)= shift;
+	my $emp = new Employee;
+	$emp->set_data;
+	print "Before blessing package is: ", ref($emp), "\n";
+	bless($emp, $class);
+	print "After blessing package is: ", ref($emp), "\n";
+	return $emp;
+}
+sub set_data{
+	my $self=shift;
+	my $calc_ptr = sub{ my($base, $comm, $bonus)=@_;
+                      return $base+$comm+$bonus; };
+	print "Enter $self->{_Name}'s commission for this month. ";
+	chomp($self->{_Commission}=<STDIN>);
+	print "Enter $self->{_Name}'s bonuses for this month. ";
+	chomp($self->{_Bonuses}=<STDIN>);
+	print "Enter $self->{_Name}'s sales region. ";
+	chomp($self->{_Region}=<STDIN>);
+	$self->{_PayCheck}=&$calc_ptr( $self->{_BasePay},
+                                      $self->{_Commission},
+                                      $self->{_Bonuses}
+                                    );
+}
+1;

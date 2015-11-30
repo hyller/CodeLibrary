@@ -1,0 +1,3 @@
+$_ = "I lost my gloves in the clover, Love.";
+@list=/love/gi;
+print "@list.\n";

@@ -1,0 +1,29 @@
+#!/bin/perl
+open(DB, "datafile" ) || die "datafile: $!\n";
+open(OUT, ">outfile" )|| die "outfile: $!\n";
+format OUT_TOP=    # New filehandle
+
+	-@||-
+	$%
+----------------------- 
+| EMPLOYEE INFORMATION |
+-----------------------
+.
+format OUT=
+Name: @<<<<<<<<<<<<< 
+	$name
+-----------------------
+Age: @##
+	$age
+-----------------------
+Salary: @#####.## 
+	$salary
+-----------------------
+Date: @>>>>>>>
+	 $start
+-----------------------
+.
+while(<DB>){
+	($name, $age, $salary, $start)=split(":"); 
+	write OUT;
+}

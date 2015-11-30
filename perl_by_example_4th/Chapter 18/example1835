@@ -1,0 +1,4 @@
+# UNIX ps command
+open(PROC, "ps -aux  |" ) || die "$!\n";  
+                # If running System V, use ps -ef
+print STDOUT <PROC>;

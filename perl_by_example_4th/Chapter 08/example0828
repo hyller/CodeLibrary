@@ -1,0 +1,11 @@
+# Matching with the i option
+while(<DATA>){
+	print if /norma cord/i;    # Turn off case sensitivity
+}
+__DATA__
+Steve Blenheim
+Betty Boop
+Igor Chevsky
+Norma Cord
+Jon DeLoach
+Karen Evich

@@ -1,0 +1,11 @@
+while(<DATA>){
+	s/Norma/Jane/;    # Substitute Norma with Jane
+	print;
+}
+__DATA__
+Steve Blenheim
+Betty Boop
+Igor Chevsky
+Norma Cord
+Jon DeLoach
+Karen Evich

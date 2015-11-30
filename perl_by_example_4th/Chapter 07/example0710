@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+$x = 1;
+do { 
+	print "$x ";
+	$x++; 
+} while ($x <= 10);
+print "\n";
+
+$y = 1;
+do { 
+	print "$y " ;
+	$y++;
+} until ($y > 10);

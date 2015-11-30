@@ -1,0 +1,2 @@
+$_ = "xabcy\n"; 
+print if /abc/;   # Could be written: print $_ if $_ =~ /abc/;

@@ -1,0 +1,11 @@
+while(<DATA>){
+	if /Norma/ print;    # Wrong!
+}
+
+__DATA__
+Steve Blenheim
+Betty Boop
+Igor Chevsky
+Norma Cord
+Jon DeLoach
+Karen Evich

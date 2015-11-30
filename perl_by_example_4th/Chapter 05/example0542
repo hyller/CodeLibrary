@@ -1,0 +1,7 @@
+# Splicing out elements of a list
+@colors=("red", "green", "purple", "blue", "brown");
+print "The original array is @colors\n";
+@discarded = splice(@colors, 2, 2);
+print "The elements removed after the splice are: @discarded.\n";
+print "The spliced array is now @colors.\n";
+

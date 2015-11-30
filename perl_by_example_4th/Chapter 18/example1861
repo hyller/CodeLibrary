@@ -1,0 +1,4 @@
+print "Hello there\n";
+print "The name of this machine is "; 
+system ("uname -n");       # Buffer is not flushed
+print "The time is ", `date`;

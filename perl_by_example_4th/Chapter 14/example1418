@@ -1,0 +1,18 @@
+#!/bin/perl
+# Example of attempting inheritance without updating 
+# the @ISA array
+{ package Grandpa;
+       $name = "Gramps";
+       sub greetme {
+                   print "Hi $Child::name I'm your $name from package Grandpa.\n";
+        }
+}
+{ package Parent;
+# This package is empty
+}
+ 
+{ package Child;
+$name = "Baby";
+print "Hi I'm $name in the Child Package here.\n";
+Parent->greetme();    # Use method invocation syntax
+}

@@ -1,0 +1,22 @@
+# Package declarations
+$name="Suzanne";     # These variables are in package main
+$num=100;
+package friend;      # Package declaration
+sub welcome { 
+	print "Who is your pal? ";
+	chomp($name=<STDIN>);
+	print "Welcome $name!\n";
+	print "\$num is $num.\n";    # Unknown to this package
+	print "Where is $main::name?\n\n";
+}
+package main;        # Package declaration; back in main
+&friend::welcome;    # Call subroutine
+print "Back in main package \$name is $name\n";
+print "Switch to friend package, Bye ",$friend::name,"\n";
+print "Bye $name\n\n";
+
+package birthday;     # Package declaration
+
+$name="Beatrice";
+print "Happy Birthday, $name.\n";
+print "No, $::name and $friend::name, it is not your birthday!\n";

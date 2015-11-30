@@ -1,0 +1,7 @@
+#!//usr/bin/perl
+# Program that uses a label without a loop and the redo statement
+ATTEMPT: {
+print "Are you a great person? ";
+	chomp($answer = <STDIN>);
+	unless ($answer eq "yes"){redo ATTEMPT ;}
+}

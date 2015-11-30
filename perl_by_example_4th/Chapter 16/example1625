@@ -1,0 +1,16 @@
+#!c:/ActivePerl/bin/perl.exe
+# Shortcut calling styles with HTML methods
+
+ use CGI qw(:standard);  # Function-oriented style print header
+ print header;
+# Note that the following functions are all embedded as a 
+# comma-separate list of arguments in one print statement.
+
+ print start_html(-title=>"Testing arguments", 
+                  -bgcolor=>"#99FF66"),
+    b(),font({-size=>"+2", -color=>"#006600"}),
+    p(),"\n",
+    p("This is a string"),"\n",
+    p({-align=>center}, "red", "green", "yellow"), "\n",
+     p({-align=>left}, ["red","green","yellow"]),
+     end_html;	# Shortcut calling styles with HTML methods

@@ -1,0 +1,7 @@
+#!/bin/perl
+use Shell qw(pwd ls date);   # Shell commands listed
+print "Today is ", date();
+print "The time is ", date("+%T");
+print "The present working directory is ", pwd;
+$list=ls( "-aF");
+print $list;

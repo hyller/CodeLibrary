@@ -1,0 +1,18 @@
+print $query->startform;
+print "What is your name? ";
+print $query->textfield('name');    # A simple text field
+print "<BR>";
+print "We're at a cross section. Pick your light.<BR>";
+print $query->radio_group(-name=>'color',
+                          -values=>[ 'red', 'green', 'yellow' ],
+                          -linebreak=>'true',
+                          -labels=>{red=>'stop', 
+                                    green=>'go', 
+                                    yellow=>'warn',
+                                   },
+                          -default=>'green', 
+                         );
+
+print $query->submit('action', 'submit');
+print $query->reset('Clear');
+print $query->endform;

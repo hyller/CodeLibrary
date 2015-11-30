@@ -1,0 +1,10 @@
+while(<DATA>){
+	print if m#Jon#     # Print the line if it matches Jon
+}
+__DATA__
+Steve Blenheim
+Betty Boop
+Igor Chevsky
+Norma Cord
+Jon DeLoach
+Karen Evich

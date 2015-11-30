@@ -1,0 +1,13 @@
+#!/bin/perl
+# Program to demonstrate a reference to a list with a 
+# nested list
+my $arrays = [ '1', '2', '3', [ 'red', 'blue', 'green' ]];
+for($i=0;$i<3;$i++){
+	print $arrays->[$i],"\n";
+}
+
+for($i=0;$i<3;$i++){
+	print $arrays->[3]->[$i],"\n";
+}
+print "@{$arrays}\n";
+print "--@{$arrays->[3]}--", "\n";

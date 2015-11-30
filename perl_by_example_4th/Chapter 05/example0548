@@ -1,0 +1,9 @@
+# Simple alphabetic sort
+@list=("dog","cat", "bird","snake" );
+print "Original list: @list\n";
+@sorted = sort(@list);
+print "Ascii sort: @sorted\n";
+
+# Reversed alphabetic sort
+@sorted = reverse(sort(@list));
+print "Reversed Ascii sort: @sorted\n";

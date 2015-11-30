@@ -1,0 +1,5 @@
+SELECT name FROM teams;
+
+SELECT name, wins FROM teams;
+
+SELECT id, name, title FROM coaches;

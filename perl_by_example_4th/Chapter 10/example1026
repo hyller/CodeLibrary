@@ -1,0 +1,7 @@
+# Opening an input filter on a Win32 platform
+open(LISTDIR, 'dir "C:\perl" |') || die;
+@filelist = <LISTDIR>;
+foreach  $file ( @filelist ){
+	print $file;
+}
+

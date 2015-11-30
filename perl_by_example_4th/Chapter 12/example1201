@@ -1,0 +1,16 @@
+#!/bin/perl
+# Package main
+use strict "vars";
+use warnings;
+our ( @friends, @dogs, $key, $value );    # Declaring variables
+my($name,$pal,$money);
+$name="Susanne";
+@friends=qw(Joe Jeff Jan );
+@dogs = qw(Guyson Lara Junior);
+local $main::dude="Ernie";    # Keep strict happy
+my $pal = "Linda";            # Not in the symbol table
+my $money = 1000;
+while(($key, $value) = each (%main::)){     
+                             # Look at main's symbol table
+	print "$key:\t$value\n";
+}

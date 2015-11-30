@@ -1,0 +1,7 @@
+#!/bin/perl
+# The name of the script is args.p
+push(@INC, "/usr/local/lib");
+require "syscall.ph";
+$bytes=syscall(&SYS_getpagesize);
+printf "The pagesize for this Sparc Sun Workstation is %d 
+		bytes \n",$bytes;

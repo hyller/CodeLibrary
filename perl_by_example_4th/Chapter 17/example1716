@@ -1,0 +1,5 @@
+SELECT name FROM teams;
+
+DELETE FROM teams WHERE name = "Bath Warships";
+
+SELECT name FROM teams;

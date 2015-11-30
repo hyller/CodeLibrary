@@ -1,0 +1,4 @@
+create table test(
+		-> field1 INTEGER,
+   		-> field2 VARCHAR(50)
+   		-> );

@@ -1,0 +1,18 @@
+use DBI;
+my $dbh=DBI->connect(qq(DBI:mysql:database=sample_db;user=root;
+       password=quigley1)) or die "Can't connect";
+
+my $sth=$dbh->prepare("SELECT name, wins, losses FROM teams"); 
+     		    
+$sth->execute();
+print "Contents of sample_db, the mysql database.\n\n";
+
+while(my @row=$sth->fetchrow_array()){ # Get one row at a time
+     print "name=$row[0]\n"; #Field one
+     print "wins=$row[1]\n";    # Field two
+     print "losses=$row[2]\n\n";  # Field three
+       }
+print $sth->rows, " rows were retrieved.\n";
+
+$sth->finish();
+$dbh->disconnect();

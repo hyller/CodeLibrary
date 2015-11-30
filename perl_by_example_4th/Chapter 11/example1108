@@ -1,0 +1,14 @@
+#  The scope of my variables     
+my $name = "Raimo";
+
+
+print "$name\n";
+	{  # Enter block
+		print "My name is $name\n";
+		my $name = "Elizabeth";
+		print "Now name is $name\n";
+		my $love = "Christian";
+		print "My love is $love.\n";
+	}  # Exit block
+print "$name is back.\n";
+print "I can't see my love,$love, out here.\n";

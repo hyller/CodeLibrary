@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+# Short-circuit operators
+$num1=50;
+$num2=100;
+$num3=0;
+
+print $num1 && $num3, "\n";    # result is 0
+print $num3 && $num1, "\n";    # result is 0
+print $num1 && $num2, "\n";    # result is 100
+print $num2 && $num1, "\n\n";  # result is 50
+
+print $num1 || $num3, "\n";    # result is 50
+print $num3 || $num1, "\n";    # result is 50
+print $num1 || $num2, "\n";    # result is 50
+print $num2 || $num1, "\n";    # result is 100
+

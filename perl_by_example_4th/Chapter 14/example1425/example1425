@@ -1,0 +1,11 @@
+#!/bin/perl
+use Salesman;
+use strict;
+use warnings;
+my $emp = new Salesman ( "Name", "Tom Savage", 
+                         "Salary", 50000,   # Call to constructor
+                         "Commission", 1500,
+                        );
+$emp->set_Salary;  # Call to the access method
+$emp->display( "Name" , "Salary", "Commission");  
+                   # Call Salesman’s display method

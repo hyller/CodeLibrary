@@ -1,0 +1,13 @@
+#!c:/ActivePerl/bin/perl.exe
+# The CGI script that will process the form information sent 
+# from the server
+	
+print "Content-type: text/html\n\n";
+ 
+print "Processing CGI form :\n\n";
+# Print out only the QUERY_STRING environment variable
+	
+while(($key, $value)=each(%ENV)){
+  print "<h3>$key = <em>$value</em></h3><br>" 
+  if $key eq "QUERY_STRING";
+}

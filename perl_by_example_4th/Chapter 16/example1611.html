@@ -1,0 +1,40 @@
+<html><head>
+  <title>First CGI Form</title></head>
+
+   <body bgcolor="#9999cc">
+<form action="/cgi-bin/bookstuff/form1.cgi" >
+<p/>
+   <b> Type your name here:
+    <input type="text" name="namestring" size=50>
+    <p><br>Talk about yourself here: <br>
+	    <textarea name="comments" rows=5 cols=50>I was born...        
+   </textarea>
+</b>
+ <hr>
+</p><b> Choose your food:
+<input type="radio" name="choice" value="burger"/>Hamburger
+<input type="radio" name="choice" value="fish"/>Fish
+<input type="radio" name="choice" value="steak"/>Steak
+<input type="radio" name="choice" value="yogurt"/>Yogurt
+<hr>
+</p> <b>Choose a work place:</b> <br>
+
+<input type="checkbox" name="place" value="la"/>Los Angeles
+<br>
+<input type="checkbox" name="place" value="sj"/>San Jose
+<br
+<input type="checkbox" name="place" value="sf" checked/>San Francisco
+</p>
+<b>Choose a vacation spot:</b>
+<select name="location"> <option selected value="hawaii"/> Hawaii
+<option value="bali"/>Bali
+<option value="maine"/>Maine
+<option value="paris"/>Paris
+</select> <p>
+
+<input type="submit" value="submit">
+<input type="reset" value="clear">
+</body>
+   </form>
+   </html>
+

@@ -1,0 +1,8 @@
+print popup_menu(-name=>'place',
+                 -values=>['Hawaii','Europe','Mexico', 'Japan' ],
+                 -default=>'Hawaii',
+                );
+print popup_menu(-name=>'place',
+                 -values=> \@countries,
+                 -default=>'Hawaii',
+                ); 

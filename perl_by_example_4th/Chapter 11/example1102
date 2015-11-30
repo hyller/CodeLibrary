@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+$name="Ellie";
+print "Hello $name.\n";
+
+bye();   # Without parens or an ampersand, bye would be a bare
+         # word causing a warning message when -w is used.
+sub bye{
+	print "Bye $name.\n";
+}

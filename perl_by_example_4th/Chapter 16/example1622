@@ -1,0 +1,8 @@
+use CGI; 
+$obj=new CGI;  # Create the CGI object
+print $obj->header,     # Use functions to create the HTML page
+$obj->start_html("Object oriented syntax"),
+$obj->h1("This is a test..."),
+$obj->h2("This is a test..."),
+$obj->h3("This is a test..."),
+$obj->end_html;

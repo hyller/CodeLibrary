@@ -1,0 +1,4 @@
+$salary=50000;
+$salary =~ s/$salary/$& * 1.1/e;
+print "\$& is $&\n";
+print "The salary is now \$$salary.\n";

@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+# Write an awklike report
+open(MYDB, "> mydb") || die "Can't open mydb: $!\n";
+$oldfilehandle= select(MYDB);   
+                 # MYDB is selected as the filehandle for write
+format MYDB_TOP =
+	                DATEBOOK INFO
+
+Name           Phone         Birthday        Salary
+____________________________________________________
+.
+
+format MYDB =
+@<<<@<<<<<<<<<<<<<<<<@<<<<<<<<<<<<@|||||||||@#######.##
+$.,      $name,         $phone,       $bd,      $sal
+.
+
+format SUMMARY =
+____________________________________________________
+The average salary for all employees is $@######.##.
+                                        $total/$count
+The number of lines left on the page is @###.
+                                        $-
+The default page length is @###.
+                             $=
+.
+open(DB,"datebook") || die "Can't open datebook: $!\n";
+while(<DB>){
+	( $name, $phone, $address, $bd, $sal )=split(/:/);
+	write ;
+	$count++;   
+	$total+=$sal;
+}
+close DB;
+
+$~=SUMMARY;    # New report format for MYDB filehandle 
+write;  
+
+select ($oldfilehandle); # STDOUT is now selected for further 
+                         # writes or prints
+print "Report Submitted On" , `date`;

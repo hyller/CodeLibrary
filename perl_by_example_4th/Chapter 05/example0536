@@ -1,0 +1,4 @@
+# Joining each element of a list with a newline
+@names=('Dan','Dee','Scotty','Liz','Tom');
+@names=join("\n", sort(@names));
+print @names,"\n";

@@ -1,0 +1,8 @@
+$x = "     12hello!!" + "4abc\n"; 
+# Perl will remove leading whitespace and trailing non-numeric 
+# characters
+print "$x";
+print "\n";
+
+$y = ZAP . 5.5;
+print "$y\n";

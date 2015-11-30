@@ -1,0 +1,9 @@
+# A hash with nested hash keys and anonymous arrays of values
+my $hashptr = { "Teacher"=>{"Subjects"=>[ qw(Science Math English)]},
+                "Musician"=>{"Instruments"=>[ qw(piano flute harp)]},
+              };
+              # Teacher and Musician are keys. 
+              # The values consist of nested hashes.
+print $hashptr->{"Teacher"}->{"Subjects"}->[0],"\n";
+print "@{$hashptr->{'Musician'}->{'Instruments'}}\n";
+
