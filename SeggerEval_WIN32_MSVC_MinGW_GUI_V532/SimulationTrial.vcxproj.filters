@@ -1,0 +1,1010 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Application">
+      <UniqueIdentifier>{03ae3b30-f260-4557-b390-afcc0d48f007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{4966d432-4b2b-457a-a42c-59795d88f209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{195b1715-e110-44d7-b57b-3e5fe8ce524c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Include">
+      <UniqueIdentifier>{03510991-5993-4259-ab22-9a84d93df532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Library">
+      <UniqueIdentifier>{3c73e187-e233-48f4-be77-d82358a860ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample">
+      <UniqueIdentifier>{e80bd577-5a72-471d-b906-800a3d4cf799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial">
+      <UniqueIdentifier>{651ed7e6-3ea2-44d4-b1ef-63ae986867a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\ALPHA_DawBitmapHWAlpha">
+      <UniqueIdentifier>{3c3f052a-f598-4671-9a0a-097e15a95642}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\ALPHA_TransparentDialog">
+      <UniqueIdentifier>{1b5c2c83-5e33-4bf6-8b70-5131f8cc0a70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\COLOR_DemoLUT">
+      <UniqueIdentifier>{287b95d7-0ba0-4cc5-9ccd-85bb5f53d7a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\FONT_ShowXBF">
+      <UniqueIdentifier>{17add914-61f7-40da-9208-5c359fbe8df7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\MEMDEV_ImageFlow">
+      <UniqueIdentifier>{a513113c-3e4e-433f-834d-d4b0d6bd5d54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\MEMDEV_ListWheelEffects">
+      <UniqueIdentifier>{89edbcc1-7293-4a8f-bd79-934c1d525169}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\MEMDEV_WindowEffects">
+      <UniqueIdentifier>{78cc5271-55db-44f3-b89f-69f16c7869ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\MULTILAYER_AlphaChromaMove">
+      <UniqueIdentifier>{c2fb24b1-def8-470d-8b0d-97e1855ba610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\SIM_HardKey">
+      <UniqueIdentifier>{56e08c95-9e9d-4d14-9a06-3ac0adbbe1dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\SKINNING_NestedModal">
+      <UniqueIdentifier>{795fc88f-a358-4028-96ad-e87b57b6bc91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\SKINNING_Notepad">
+      <UniqueIdentifier>{4534e567-dacf-4912-ab6c-2be697df4f7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\VSCREEN_MultiPage">
+      <UniqueIdentifier>{83d5fe26-92a7-4832-bb50-fe74466ddcb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\VSCREEN_RealTime">
+      <UniqueIdentifier>{582e540f-4f46-4441-b155-529801580e54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\WIDGET_Checkbox">
+      <UniqueIdentifier>{422550d4-2da1-4271-a9ac-a56eb20aa0ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\WIDGET_IconView">
+      <UniqueIdentifier>{6a58c358-311e-4d4b-8242-232f344332a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\WIDGET_ListWheel">
+      <UniqueIdentifier>{c8fcc123-8115-4e70-a1a5-467e9587ac31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\WIDGET_SchemeLarge">
+      <UniqueIdentifier>{b9328939-2f22-46b7-a2ac-66d3533b22f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\WIDGET_SchemeMedium">
+      <UniqueIdentifier>{26c7de1e-6cea-4de4-abfb-78fd1c6190cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\WIDGET_SchemeSmall">
+      <UniqueIdentifier>{74534e0f-f451-45f9-a3cb-f985a540aba3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\WIDGET_Treeview">
+      <UniqueIdentifier>{1fd45857-095f-40bb-8f4d-9e29e8cf66ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Simulation">
+      <UniqueIdentifier>{bbf090c5-dfd0-41d8-89f2-b58a9ae3ad34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\MOTION_IconSlide">
+      <UniqueIdentifier>{f397b3ce-70dc-42f1-8a95-35489d3e8b2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\MULTILAYER_PictureViewer">
+      <UniqueIdentifier>{11d99609-f07d-4941-98df-187f2255219d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\SIM_CustomBitmapView">
+      <UniqueIdentifier>{715d7a69-69ab-4fb9-b694-6aad78273a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\MOTION_SmartPhoneMenu">
+      <UniqueIdentifier>{6f174b9a-0d67-42ba-b55f-122a0450d43d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\MTOUCH_PictureViewer">
+      <UniqueIdentifier>{a727b008-e50c-4fea-a93d-3ed786d7f658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\MULTILAYER_IconSlide">
+      <UniqueIdentifier>{8cc305a3-4b7e-4b0c-90b8-e9d3f5758c1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\MULTILAYER_WinterAnimation">
+      <UniqueIdentifier>{9b02a90a-122d-42b9-b896-79104e42e00e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\Tutorial\WIDGET_Amplifier">
+      <UniqueIdentifier>{f6af6186-2d09-4651-94dd-3245a42c6328}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Config\GUIConf.c">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\LCDConf.c">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\SIMConf.c">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\ALPHA_DawBitmapHWAlpha\ALPHA_DrawBitmapHWAlpha.c">
+      <Filter>Sample\Tutorial\ALPHA_DawBitmapHWAlpha</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\ALPHA_DawBitmapHWAlpha\LCDConf.c">
+      <Filter>Sample\Tutorial\ALPHA_DawBitmapHWAlpha</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\ALPHA_DawBitmapHWAlpha\SIMConf.c">
+      <Filter>Sample\Tutorial\ALPHA_DawBitmapHWAlpha</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\ALPHA_TransparentDialog\ALPHA_TransparentDialog.c">
+      <Filter>Sample\Tutorial\ALPHA_TransparentDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\ALPHA_TransparentDialog\LCDConf.c">
+      <Filter>Sample\Tutorial\ALPHA_TransparentDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\COLOR_DemoLUT\COLOR_DemoLUT.c">
+      <Filter>Sample\Tutorial\COLOR_DemoLUT</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\COLOR_DemoLUT\LCDConf.c">
+      <Filter>Sample\Tutorial\COLOR_DemoLUT</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\FONT_ShowXBF\FONT_ShowXBF.c">
+      <Filter>Sample\Tutorial\FONT_ShowXBF</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_ImageFlow\LCDConf.c">
+      <Filter>Sample\Tutorial\MEMDEV_ImageFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_ImageFlow\MEMDEV_ImageFlow.c">
+      <Filter>Sample\Tutorial\MEMDEV_ImageFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_ListWheelEffects\LCDConf.c">
+      <Filter>Sample\Tutorial\MEMDEV_ListWheelEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_ListWheelEffects\MEMDEV_ListWheelEffects.c">
+      <Filter>Sample\Tutorial\MEMDEV_ListWheelEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_WindowEffects\Desktop_320x240.c">
+      <Filter>Sample\Tutorial\MEMDEV_WindowEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_WindowEffects\FontConverter0_320x224.c">
+      <Filter>Sample\Tutorial\MEMDEV_WindowEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_WindowEffects\FontConverter1_320x224.c">
+      <Filter>Sample\Tutorial\MEMDEV_WindowEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_WindowEffects\FontOptions0_117x96.c">
+      <Filter>Sample\Tutorial\MEMDEV_WindowEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_WindowEffects\FontOptions1_117x96.c">
+      <Filter>Sample\Tutorial\MEMDEV_WindowEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_WindowEffects\FontSelection_174x138.c">
+      <Filter>Sample\Tutorial\MEMDEV_WindowEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_WindowEffects\GUIConf.c">
+      <Filter>Sample\Tutorial\MEMDEV_WindowEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_WindowEffects\LCDConf.c">
+      <Filter>Sample\Tutorial\MEMDEV_WindowEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_WindowEffects\MEMDEV_WindowEffects.c">
+      <Filter>Sample\Tutorial\MEMDEV_WindowEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_AlphaChromaMove\LCDConf.c">
+      <Filter>Sample\Tutorial\MULTILAYER_AlphaChromaMove</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_AlphaChromaMove\MULTILAYER_AlphaChromaMove.c">
+      <Filter>Sample\Tutorial\MULTILAYER_AlphaChromaMove</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_AlphaChromaMove\SIMConf.c">
+      <Filter>Sample\Tutorial\MULTILAYER_AlphaChromaMove</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\SIM_HardKey\SIM_Hardkey.c">
+      <Filter>Sample\Tutorial\SIM_HardKey</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\SIM_HardKey\SIMConf.c">
+      <Filter>Sample\Tutorial\SIM_HardKey</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\SKINNING_NestedModal\LCDConf.c">
+      <Filter>Sample\Tutorial\SKINNING_NestedModal</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\SKINNING_NestedModal\SKINNING_NestedModal.c">
+      <Filter>Sample\Tutorial\SKINNING_NestedModal</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\SKINNING_Notepad\LCDConf.c">
+      <Filter>Sample\Tutorial\SKINNING_Notepad</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\SKINNING_Notepad\SKINNING_Notepad.c">
+      <Filter>Sample\Tutorial\SKINNING_Notepad</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\VSCREEN_MultiPage\About.c">
+      <Filter>Sample\Tutorial\VSCREEN_MultiPage</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\VSCREEN_MultiPage\Calibration.c">
+      <Filter>Sample\Tutorial\VSCREEN_MultiPage</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\VSCREEN_MultiPage\LCDConf.c">
+      <Filter>Sample\Tutorial\VSCREEN_MultiPage</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\VSCREEN_MultiPage\LogoBitmap.c">
+      <Filter>Sample\Tutorial\VSCREEN_MultiPage</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\VSCREEN_MultiPage\Setup.c">
+      <Filter>Sample\Tutorial\VSCREEN_MultiPage</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\VSCREEN_MultiPage\VSCREEN_MultiPage.c">
+      <Filter>Sample\Tutorial\VSCREEN_MultiPage</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\VSCREEN_RealTime\LCDConf.c">
+      <Filter>Sample\Tutorial\VSCREEN_RealTime</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\VSCREEN_RealTime\VSCREEN_RealTime.c">
+      <Filter>Sample\Tutorial\VSCREEN_RealTime</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Checkbox\BitmapBar.c">
+      <Filter>Sample\Tutorial\WIDGET_Checkbox</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Checkbox\BitmapCheckXL.c">
+      <Filter>Sample\Tutorial\WIDGET_Checkbox</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Checkbox\BitmapCheckXXL.c">
+      <Filter>Sample\Tutorial\WIDGET_Checkbox</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Checkbox\WIDGET_Checkbox.c">
+      <Filter>Sample\Tutorial\WIDGET_Checkbox</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_IconView\LCDConf.c">
+      <Filter>Sample\Tutorial\WIDGET_IconView</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_IconView\WIDGET_Iconview.c">
+      <Filter>Sample\Tutorial\WIDGET_IconView</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_ListWheel\LCDConf.c">
+      <Filter>Sample\Tutorial\WIDGET_ListWheel</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_ListWheel\WIDGET_ListWheel.c">
+      <Filter>Sample\Tutorial\WIDGET_ListWheel</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_SchemeLarge\LCDConf.c">
+      <Filter>Sample\Tutorial\WIDGET_SchemeLarge</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_SchemeLarge\WIDGET_SchemeLarge.c">
+      <Filter>Sample\Tutorial\WIDGET_SchemeLarge</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_SchemeMedium\LCDConf.c">
+      <Filter>Sample\Tutorial\WIDGET_SchemeMedium</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_SchemeMedium\WIDGET_SchemeMedium.c">
+      <Filter>Sample\Tutorial\WIDGET_SchemeMedium</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_SchemeSmall\LCDConf.c">
+      <Filter>Sample\Tutorial\WIDGET_SchemeSmall</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_SchemeSmall\WIDGET_SchemeSmall.c">
+      <Filter>Sample\Tutorial\WIDGET_SchemeSmall</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Treeview\GUIConf.c">
+      <Filter>Sample\Tutorial\WIDGET_Treeview</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Treeview\WIDGET_Treeview.c">
+      <Filter>Sample\Tutorial\WIDGET_Treeview</Filter>
+    </ClCompile>
+    <ClCompile Include="Simulation\WinMain.c">
+      <Filter>Simulation</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_AntialiasedText.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Automotive.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_BarGraph.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Bitmap.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_ColorBar.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Conf.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Cursor.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Fading.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Graph.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_IconView.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_ImageFlow.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Intro.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Listview.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_RadialMenu.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Resource.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Skinning.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Speed.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Speedometer.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Start.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_TransparentDialog.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_Treeview.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_VScreen.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_WashingMachine.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\GUIDEMO_ZoomAndRotate.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MOTION_IconSlide\LCDConf.c">
+      <Filter>Sample\Tutorial\MOTION_IconSlide</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MOTION_IconSlide\MOTION_IconSlide.c">
+      <Filter>Sample\Tutorial\MOTION_IconSlide</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_PictureViewer\MULTILAYER_PictureViewer.c">
+      <Filter>Sample\Tutorial\MULTILAYER_PictureViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_PictureViewer\SIMConf.c">
+      <Filter>Sample\Tutorial\MULTILAYER_PictureViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_PictureViewer\LCDConf.c">
+      <Filter>Sample\Tutorial\MULTILAYER_PictureViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\SIM_CustomBitmapView\LCDConf.c">
+      <Filter>Sample\Tutorial\SIM_CustomBitmapView</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\SIM_CustomBitmapView\MainTask.c">
+      <Filter>Sample\Tutorial\SIM_CustomBitmapView</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\SIM_CustomBitmapView\SIMConf.c">
+      <Filter>Sample\Tutorial\SIM_CustomBitmapView</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\2DGL_BMPExport.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\2DGL_DrawBMP.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\2DGL_DrawGIF.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\2DGL_DrawJPEG.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\2DGL_DrawJPEGScaled.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\2DGL_DrawPNG.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\2DGL_DrawPolygon.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\2DGL_DrawScale.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\AA_HiResAntialiasing.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\AA_HiResPixels.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\AA_Lines.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\AA_Text.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\ALPHA_Bargraph.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\ALPHA_TransWidgets.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\BASIC_DrawingRects.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\BASIC_DriverPerformance.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\BASIC_Hello1.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\BASIC_HelloWorld.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\BASIC_Performance.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\COLOR_ShowColorBar.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\CURSOR_Sample.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\DIALOG_All.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\DIALOG_Count.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\DIALOG_FS_ChooseFile.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\DIALOG_MenuStructure.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\DIALOG_MessageBox.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\DIALOG_MessageBoxUser.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\DIALOG_NestedModal.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\DIALOG_Radio.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\DIALOG_SliderColor.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\FONT_Arabic.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\FONT_ShiftJIS.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\FONT_ShowAllTTFs.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\FONT_ThaiText.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\LANG_UTF8_CSV_TXT.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\LANG_UTF8_Text.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_AttitudeIndicator.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_AutoDev.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_Banding.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_BitmapSpeedometer.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_BlurAndBlend.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_FadeIn.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_FadingPerformance.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_MemDev.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_Printing.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_Speedometer.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_UseDataPointer.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_WM_Ticker.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MEMDEV_ZoomAndRotate.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MOTION_MovingWindow.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MOTION_RadialMenu.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MOVIE_ShowFeatures.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MOVIE_ShowFromFS.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MT_MultiTasking.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MTOUCH_ScratchAndGestures.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\ProblemReport.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\SPRITE_MultiTaskingDolphins.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\SPRITE_SimpleDolphins.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\TOUCH_Calibrate.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\TOUCH_Sample.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\VNC.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_ButtonPhone.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_ButtonRound.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_ButtonSimple.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_CustomEffect.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_CustomTreeview.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_CustomWidgetType.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Dropdown.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Edit.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_EditWinmode.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Effect.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_FrameWin.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_GraphXY.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_GraphYT.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Header.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_ListBox.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_ListBoxOwnerDraw.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_ListView.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Menu.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Multiedit.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_MultieditTryIt.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Multipage.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_NumPad.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_PopupMenu.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Progbar.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_ScrollbarMove.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_SimpleListBox.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_SimpleProgbar.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_SortedListview.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Spinbox.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_TreeviewTryit.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Window.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WM_LateClipping.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WM_Redraw.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WM_Sample.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WM_Video.c">
+      <Filter>Sample\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MOTION_SmartPhoneMenu\LCDConf.c">
+      <Filter>Sample\Tutorial\MOTION_SmartPhoneMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MOTION_SmartPhoneMenu\MOTION_SmartPhoneMenu.c">
+      <Filter>Sample\Tutorial\MOTION_SmartPhoneMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MTOUCH_PictureViewer\GUIConf.c">
+      <Filter>Sample\Tutorial\MTOUCH_PictureViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MTOUCH_PictureViewer\LCDConf.c">
+      <Filter>Sample\Tutorial\MTOUCH_PictureViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MTOUCH_PictureViewer\MTOUCH_PictureViewer.c">
+      <Filter>Sample\Tutorial\MTOUCH_PictureViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_IconSlide\LCDConf.c">
+      <Filter>Sample\Tutorial\MULTILAYER_IconSlide</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_IconSlide\MULTILAYER_IconSlide.c">
+      <Filter>Sample\Tutorial\MULTILAYER_IconSlide</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_IconSlide\SIMConf.c">
+      <Filter>Sample\Tutorial\MULTILAYER_IconSlide</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_WinterAnimation\LCDConf.c">
+      <Filter>Sample\Tutorial\MULTILAYER_WinterAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_WinterAnimation\MULTILAYER_WinterAnimation.c">
+      <Filter>Sample\Tutorial\MULTILAYER_WinterAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\MULTILAYER_WinterAnimation\SIMConf.c">
+      <Filter>Sample\Tutorial\MULTILAYER_WinterAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Amplifier\LCDConf.c">
+      <Filter>Sample\Tutorial\WIDGET_Amplifier</Filter>
+    </ClCompile>
+    <ClCompile Include="Sample\Tutorial\WIDGET_Amplifier\WIDGET_Amplifier.c">
+      <Filter>Sample\Tutorial\WIDGET_Amplifier</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Config\GUIConf.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Config\LCDConf.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Program Files\Microsoft Visual Studio\VC98\Include\BASETSD.H">
+      <Filter>Simulation</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\GUIDEMO.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\BUTTON.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\BUTTON_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\CHECKBOX.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\CHECKBOX_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\CHOOSECOLOR.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\CHOOSEFILE.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\DIALOG.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\DIALOG_Intern.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\DROPDOWN.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\DROPDOWN_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\EDIT.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\EDIT_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\FRAMEWIN.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\FRAMEWIN_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\Global.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GRAPH.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GRAPH_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_ARRAY.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_ARRAY_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_BMP_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_ConfDefaults.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_Debug.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_FontIntern.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_GIF_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_HOOK.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_JPEG_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_SetOrientation.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_SetOrientationCX.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_SIM_Win32.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_Type.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_Version.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\GUI_VNC.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\HEADER.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\HEADER_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\ICONVIEW.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\ICONVIEW_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\IMAGE.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\IMAGE_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LCD.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LCD_ConfDefaults.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LCD_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LCD_Protected.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LCD_SIM.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LCDSIM_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LISTBOX.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LISTBOX_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LISTVIEW.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LISTVIEW_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LISTWHEEL.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\LISTWHEEL_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\MENU.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\MENU_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\MESSAGEBOX.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\MULTIEDIT.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\MULTIPAGE.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\MULTIPAGE_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\PROGBAR.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\PROGBAR_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\RADIO.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\RADIO_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\SCROLLBAR.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\SCROLLBAR_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\SIM.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\SIM_GetRegions.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\SLIDER.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\SLIDER_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\SPINBOX.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\SPINBOX_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\TEXT.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\TEXT_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\TREEVIEW.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\TREEVIEW_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\WIDGET.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\WINDOW_Private.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\WM.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\WM_GUI.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Include\WM_Intern.h">
+      <Filter>GUI\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Sample\Tutorial\SIM_CustomBitmapView\MainTask.h">
+      <Filter>Sample\Tutorial\SIM_CustomBitmapView</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="GUI\Library\GUI.lib">
+      <Filter>GUI\Library</Filter>
+    </Library>
+    <Library Include="Simulation\GUISim.lib">
+      <Filter>Simulation</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Simulation\Simulation.res">
+      <Filter>Simulation</Filter>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="Sample\Tutorial\MEMDEV_WindowEffects\Main.h">
+      <Filter>Sample\Tutorial\MEMDEV_WindowEffects</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="Sample\Tutorial\VSCREEN_MultiPage\Main.h">
+      <Filter>Sample\Tutorial\VSCREEN_MultiPage</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="Sample\Tutorial\WIDGET_Checkbox\Main.h">
+      <Filter>Sample\Tutorial\WIDGET_Checkbox</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="Sample\Tutorial\WIDGET_SchemeLarge\GUIConf.h">
+      <Filter>Sample\Tutorial\WIDGET_SchemeLarge</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="Sample\Tutorial\WIDGET_SchemeMedium\GUIConf.h">
+      <Filter>Sample\Tutorial\WIDGET_SchemeMedium</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="Sample\Tutorial\WIDGET_SchemeSmall\GUIConf.h">
+      <Filter>Sample\Tutorial\WIDGET_SchemeSmall</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sample\Tutorial\SIM_CustomBitmapView\Device.bmp">
+      <Filter>Sample\Tutorial\SIM_CustomBitmapView</Filter>
+    </None>
+    <None Include="Sample\Tutorial\SIM_CustomBitmapView\Device1.bmp">
+      <Filter>Sample\Tutorial\SIM_CustomBitmapView</Filter>
+    </None>
+  </ItemGroup>
+</Project>
