@@ -1,0 +1,20 @@
+eframe.o: EFrame.cpp
+eframe.o: EFrame.h
+eframe.o: EGUIMacro.h
+eframe.o: EComponent.h
+eframe.o: EGUIMacro.h
+eframe.o: ECursor.h
+eframe.o: EGUIMacro.h
+eframe.o: LCDDriver.h
+eframe.o: EGUIMacro.h
+eframe.o: IO.h
+eframe.o: EGUIMacro.h
+eframe.o: D:\Keil for ARM\ARM\INC\Philips\LPC22xx.H
+eframe.o: EControl.h
+eframe.o: GraphicFunc.h
+eframe.o: EGUIMacro.h
+eframe.o: EFont.h
+eframe.o: LCDDriver.h
+eframe.o: EGUIMacro.h
+eframe.o: IO.h
+eframe.o: EGUIMacro.h

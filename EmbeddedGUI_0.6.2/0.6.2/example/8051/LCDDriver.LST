@@ -1,0 +1,292 @@
+C51 COMPILER V7.50   LCDDRIVER                                                             12/13/2009 14:49:13 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE LCDDRIVER
+OBJECT MODULE PLACED IN LCDDriver.OBJ
+COMPILER INVOKED BY: E:\keil51\C51\BIN\C51.EXE LCDDriver.c LARGE BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*
+   2              EmbeddedGUI Library version 0.4.2
+   3              Copyright (C) 2009  eluneyun WangChao
+   4          
+   5              This program is free software: you can redistribute it and/or modify
+   6              it under the terms of the GNU Lesser General Public License as published by
+   7              the Free Software Foundation ,either version 3 of the License, or
+   8              (at your option) any later version.
+   9          
+  10              This program is distributed in the hope that it will be useful,
+  11              but WITHOUT ANY WARRANTY; without even the implied warranty of
+  12              MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  13              GNU Lesser General Public License for more details.
+  14          
+  15              You should have received a copy of the GNU Lesser General Public License
+  16              along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  17          */
+  18          /*
+  19                  LCDDriver.c
+  20          */
+  21          #include "LCDDriver.h"
+  22          
+  23          #ifdef DOT_MATRIX_LCD
+  24          //    Dot Matrix LCD Driver API
+  25          //
+  26          //                 _____________________________ 
+  27          //                |          pixel=column(128)
+  28          //   pixel=row*8  |             [0,127]
+  29          //      (64)      |       PixelColumn = [0,127]
+  30          //      [0,7]     |
+  31          //  PixelRow = [0,63]
+  32          //
+  33          unsigned char EG_LCD_Buffer[EG_SUB_ROW][EG_COLUMN];
+  34          
+  35          void EG_LCDInit(){
+  36   1              SET_DATA_DIRECTION(0xFF);
+  37   1              SET_DATA_VALUE(0x00);
+  38   1              SET_CON_DIRECTION( P2_0_RS | P2_1_RW | P2_2_EN | P2_3_CS1 | P2_4_CS2 | P2_5_RST );
+  39   1              SET_CON_VALUE( P2_3_CS1 | P2_4_CS2 | P2_5_RST );
+  40   1              SET_CON_NAND_VALUE(P2_5_RST);
+  41   1              _NOP_();
+  42   1              _NOP_();
+  43   1              SET_CON_OR_VALUE(P2_2_EN);
+  44   1              _NOP_();
+  45   1              _NOP_();
+  46   1              SET_CON_NAND_VALUE(P2_2_EN);
+  47   1              _NOP_();
+  48   1              _NOP_();
+  49   1              SET_CON_OR_VALUE(P2_5_RST);
+  50   1              _NOP_();
+  51   1              _NOP_();                        
+  52   1              EG_LCDWriteCommand(0xC0); //display the start line
+  53   1              EG_LCDWriteCommand(0x3F);  //display ON
+  54   1              EG_LCDClearScreen();
+  55   1      }
+C51 COMPILER V7.50   LCDDRIVER                                                             12/13/2009 14:49:13 PAGE 2   
+
+  56          
+  57          void EG_LCDWriteCommand(unsigned char cmd){
+  58   1              SET_DATA_DIRECTION(0xFF);
+  59   1              SET_CON_OR_VALUE(P2_3_CS1+P2_4_CS2);
+  60   1              SET_CON_NAND_VALUE(P2_0_RS+P2_1_RW);
+  61   1              SET_DATA_VALUE(cmd);
+  62   1              SET_CON_OR_VALUE(P2_2_EN);
+  63   1              SET_CON_NAND_VALUE(P2_2_EN);
+  64   1      }
+  65          
+  66          void EG_LCDWriteValue(unsigned char val,unsigned char CS1,unsigned char CS2){
+  67   1              SET_DATA_DIRECTION(0xFF);
+  68   1              if(CS1)
+  69   1                      SET_CON_OR_VALUE(P2_3_CS1);
+  70   1              else
+  71   1                      SET_CON_NAND_VALUE(P2_3_CS1);
+  72   1              if(CS2)
+  73   1                      SET_CON_OR_VALUE(P2_4_CS2);
+  74   1              else
+  75   1                      SET_CON_NAND_VALUE(P2_4_CS2);
+  76   1              SET_CON_OR_VALUE(P2_0_RS);
+  77   1              SET_CON_NAND_VALUE(P2_1_RW);
+  78   1              SET_DATA_VALUE(val);
+  79   1              SET_CON_OR_VALUE(P2_2_EN);
+  80   1              SET_CON_NAND_VALUE(P2_2_EN);
+  81   1      }
+  82          
+  83          void EG_LCDClearScreen(){
+  84   1              unsigned int i,j;
+  85   1              for(i=0;i<EG_SUB_ROW;i++){
+  86   2                      EG_LCDWriteCommand(i|0xB8);
+  87   2                      EG_LCDWriteCommand(0x40);
+  88   2                      for(j=0;j<EG_COLUMN;j++){
+  89   3                              if(j<=EG_SUB_COLUMN)
+  90   3                                      EG_LCDWriteValue(0,1,0);
+  91   3                              else
+  92   3                                      EG_LCDWriteValue(0,0,1);
+  93   3                                      _NOP_();
+  94   3                      }
+  95   2              }
+  96   1      }
+  97          
+  98          void EG_LCDShowByte(unsigned char val,unsigned int row,unsigned int column){
+  99   1              EG_LCDWriteCommand(0xB8|row);
+ 100   1              if(column<=EG_SUB_COLUMN){
+ 101   2                      EG_LCDWriteCommand(0x40|column);
+ 102   2                      EG_LCDWriteValue(val,1,0);
+ 103   2              }else{
+ 104   2                      EG_LCDWriteCommand(0x40|(column-EG_SUB_COLUMN-1));
+ 105   2                      EG_LCDWriteValue(val,0,1);
+ 106   2              }
+ 107   1      }
+ 108          
+ 109          void EG_LCDShowBuffer(unsigned char* pBuf,unsigned int size,unsigned int row,unsigned int column){
+ 110   1              unsigned int i;
+ 111   1              unsigned char tmpCol;
+ 112   1              EG_LCDWriteCommand(0xB8|row);
+ 113   1              tmpCol=column;
+ 114   1              for(i=0;i<size;i++){
+ 115   2                      if(tmpCol<=EG_SUB_COLUMN){
+ 116   3                              EG_LCDWriteCommand(0x40|tmpCol);
+ 117   3                              EG_LCDWriteValue(pBuf[i],1,0);
+C51 COMPILER V7.50   LCDDRIVER                                                             12/13/2009 14:49:13 PAGE 3   
+
+ 118   3                      }else{
+ 119   3                              EG_LCDWriteCommand(0x40|(tmpCol-EG_SUB_COLUMN-1));
+ 120   3                              EG_LCDWriteValue(pBuf[i],0,1);
+ 121   3                      }
+ 122   2                      tmpCol++;
+ 123   2              }
+ 124   1      }
+ 125          
+ 126          void EG_LCDClearBuffer(){
+ 127   1          unsigned int n,m;
+ 128   1          for(n=0;n<EG_SUB_ROW;n++){
+ 129   2            for(m=0;m<EG_COLUMN;m++){
+ 130   3                EG_LCD_Buffer[n][m]=0;
+ 131   3            }
+ 132   2          }
+ 133   1      }
+ 134          
+ 135          void EG_LCDSetPixel(unsigned int PixelRow,unsigned int PixelColumn){
+ 136   1          unsigned int row;
+ 137   1              unsigned char pixels,temp;
+ 138   1          if((PixelRow>EG_ROW)||(PixelColumn>EG_COLUMN)){
+ 139   2              return;
+ 140   2          }
+ 141   1          row=PixelRow>>3;
+ 142   1          pixels=PixelRow&0x07;
+ 143   1          temp=0x01;
+ 144   1          temp=temp<<pixels;
+ 145   1          EG_LCD_Buffer[row][PixelColumn]=EG_LCD_Buffer[row][PixelColumn]|temp;
+ 146   1      }
+ 147          
+ 148          void EG_LCDClearPixel(unsigned int PixelRow,unsigned int PixelColumn){
+ 149   1          unsigned int row;
+ 150   1              unsigned char pixels,temp;
+ 151   1          if((PixelRow>EG_ROW)||(PixelColumn>EG_COLUMN)){
+ 152   2              return;
+ 153   2          }
+ 154   1          row=PixelRow>>3;
+ 155   1          pixels=PixelRow&0x07;
+ 156   1          temp=0x01;
+ 157   1          temp=temp<<pixels;
+ 158   1          temp=~temp;
+ 159   1          EG_LCD_Buffer[row][PixelColumn]=EG_LCD_Buffer[row][PixelColumn]&temp;
+ 160   1      }
+ 161          
+ 162          unsigned char EG_LCDGetPixel(unsigned int PixelRow,unsigned int PixelColumn){
+ 163   1          unsigned int row,pixels;
+ 164   1              unsigned char temp;
+ 165   1          if((PixelRow>EG_ROW)||(PixelColumn>EG_COLUMN)){
+ 166   2              return 0;
+ 167   2          }
+ 168   1          row=PixelRow>>3;
+ 169   1          pixels=PixelRow&0x07;
+ 170   1          temp=0x01;
+ 171   1          temp=temp<<pixels;
+ 172   1          return EG_LCD_Buffer[row][PixelColumn]|temp;
+ 173   1      }
+ 174          
+ 175          //example: 
+ 176          //   _|_ Pixel Position
+ 177          //    |X                  1
+ 178          //     X                  1
+ 179          //     X  <-  val         1
+C51 COMPILER V7.50   LCDDRIVER                                                             12/13/2009 14:49:13 PAGE 4   
+
+ 180          //     X                  1
+ 181          //     X                  1
+ 182          //     X                  0
+ 183          //     X                  1
+ 184          //     X                  0    if val=0x5F 
+ 185          //Note that the value is upside down.
+ 186          void EG_LCDSetVerticalByte(unsigned int PixelRow,unsigned int PixelColumn,unsigned char val){
+ 187   1          unsigned int row;
+ 188   1              unsigned char pixels,temp;
+ 189   1          if((PixelRow>EG_ROW)||(PixelColumn>EG_COLUMN)){
+ 190   2              return;
+ 191   2          }
+ 192   1          row=PixelRow>>3;
+ 193   1          pixels=PixelRow&0x07;
+ 194   1          temp=val<<pixels;
+ 195   1          EG_LCD_Buffer[row][PixelColumn]=temp;
+ 196   1          temp=val>>(8-pixels);
+ 197   1          EG_LCD_Buffer[row+1][PixelColumn]=temp;
+ 198   1      }
+ 199          
+ 200          void EG_LCDSetORVerticalByte(unsigned int PixelRow,unsigned int PixelColumn,unsigned char val){
+ 201   1          unsigned int row;
+ 202   1              unsigned char pixels,temp;
+ 203   1          if((PixelRow>EG_ROW)||(PixelColumn>EG_COLUMN)){
+ 204   2              return;
+ 205   2          }
+ 206   1          row=PixelRow>>3;
+ 207   1          pixels=PixelRow&0x07;
+ 208   1          temp=val<<pixels;
+ 209   1          EG_LCD_Buffer[row][PixelColumn]|=temp;
+ 210   1          temp=val>>(8-pixels);
+ 211   1          EG_LCD_Buffer[row+1][PixelColumn]|=temp;
+ 212   1      }
+ 213          
+ 214          void EG_LCDSetANDVerticalByte(unsigned int PixelRow,unsigned int PixelColumn,unsigned char val){
+ 215   1          unsigned int row;
+ 216   1              unsigned char pixels,temp;
+ 217   1          if((PixelRow>EG_ROW)||(PixelColumn>EG_COLUMN)){
+ 218   2              return;
+ 219   2          }
+ 220   1          row=PixelRow>>3;
+ 221   1          pixels=PixelRow&0x07;
+ 222   1          temp=val<<pixels;
+ 223   1          EG_LCD_Buffer[row][PixelColumn]&=temp;
+ 224   1          temp=val>>(8-pixels);
+ 225   1          EG_LCD_Buffer[row+1][PixelColumn]&=temp;
+ 226   1      }
+ 227          
+ 228          //   example: 
+ 229          //    _|_Pixel Position
+ 230          //     |XXXXXXXX   <-  val
+ 231          void EG_LCDSetByte(unsigned int PixelRow,unsigned int PixelColumn,unsigned char val){
+ 232   1          unsigned char temp=0x80;
+ 233   1          unsigned char n=0;
+ 234   1          for(;n<8;n++){
+ 235   2              if(val&temp){
+ 236   3                  EG_LCDSetPixel(PixelRow,PixelColumn+n);
+ 237   3              }else{
+ 238   3                  EG_LCDClearPixel(PixelRow,PixelColumn+n);
+ 239   3              }
+ 240   2              temp=temp>>1;
+ 241   2          }
+C51 COMPILER V7.50   LCDDRIVER                                                             12/13/2009 14:49:13 PAGE 5   
+
+ 242   1      }
+ 243          
+ 244          void EG_LCDFlushBuffer(){
+ 245   1        unsigned int i,j;
+ 246   1        for(i=0;i<EG_SUB_ROW;i++){
+ 247   2          EG_LCDWriteCommand(i|0xB8);
+ 248   2          EG_LCDWriteCommand(0x40);
+ 249   2          for(j=0;j<EG_COLUMN;j++){
+ 250   3            if(j<=EG_SUB_COLUMN)
+ 251   3              EG_LCDWriteValue(EG_LCD_Buffer[i][j],1,0);
+ 252   3            else
+ 253   3              EG_LCDWriteValue(EG_LCD_Buffer[i][j],0,1);
+ 254   3            _NOP_();
+ 255   3          }
+ 256   2        }
+ 257   1      }
+ 258          
+ 259          #endif
+ 260          
+ 261          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1889    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   1024      61
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

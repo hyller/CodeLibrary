@@ -1,0 +1,42 @@
+*** Creating Trace Output File '.\bin\RTOSDemo.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\bin\startup.o"'
+### List of Objects: adding '".\bin\partest.o"'
+### List of Objects: adding '".\bin\main.o"'
+### List of Objects: adding '".\bin\serial.o"'
+### List of Objects: adding '".\bin\serialisr.o"'
+### List of Objects: adding '".\bin\croutine.o"'
+### List of Objects: adding '".\bin\heap_2.o"'
+### List of Objects: adding '".\bin\list.o"'
+### List of Objects: adding '".\bin\queue.o"'
+### List of Objects: adding '".\bin\tasks.o"'
+### List of Objects: adding '".\bin\portasm.o"'
+### List of Objects: adding '".\bin\port.o"'
+### List of Objects: adding '".\bin\guidemo.o"'
+### List of Objects: adding '".\bin\dynamic.o"'
+### List of Objects: adding '".\bin\flash.o"'
+### List of Objects: adding '".\bin\pollq.o"'
+### List of Objects: adding '".\bin\blockq.o"'
+### List of Objects: adding '".\bin\comtest.o"'
+### List of Objects: adding '".\bin\semtest.o"'
+### List of Objects: adding '".\bin\econtrol.o"'
+### List of Objects: adding '".\bin\ecursor.o"'
+### List of Objects: adding '".\bin\eframe.o"'
+### List of Objects: adding '".\bin\graphicfunc.o"'
+### List of Objects: adding '".\bin\lcddriver.o"'
+### ADS-LD Command completed:
+".\bin\startup.o" ".\bin\partest.o" ".\bin\main.o" ".\bin\serial.o" ".\bin\serialisr.o" ".\bin\croutine.o" ".\bin\heap_2.o" ".\bin\list.o" ".\bin\queue.o" ".\bin\tasks.o" ".\bin\portasm.o" ".\bin\port.o" ".\bin\guidemo.o" ".\bin\dynamic.o" ".\bin\flash.o" ".\bin\pollq.o" ".\bin\blockq.o" ".\bin\comtest.o" ".\bin\semtest.o" ".\bin\econtrol.o" ".\bin\ecursor.o" ".\bin\eframe.o" ".\bin\graphicfunc.o" ".\bin\lcddriver.o" --device DARMP --scatter ".\bin\RTOSDemo.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\RTOSDemo.map" -o ".\bin\RTOSDemo.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\bin\RTOSDemo.axf'
+### ADS-LD Command File: '.\bin\RTOSDemo.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\bin\RTOSDemo.lnp', Handle=0x0000032C
+### Writing '.lnp' file
+### ADS-LD Command file '.\bin\RTOSDemo.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

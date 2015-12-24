@@ -1,0 +1,13 @@
+You may also need the LCD Driver IC data sheets,which can be found at:
+
+	T6963 LCD Controller IC
+	https://sourceforge.net/projects/embeddedgui/files/version%200.5.4/Driver%20IC/t6963c.pdf/download
+
+	KS0066 LCD Controller IC
+	https://sourceforge.net/projects/embeddedgui/files/version%200.5.4/Driver%20IC/ks0066.pdf/download
+
+	RA8803/8822  Two Layers Character/Graphic LCD Controller            RAiO Technology Inc.
+	https://sourceforge.net/projects/embeddedgui/files/version%200.5.4/Driver%20IC/RA8803.pdf/download
+
+	S1D13305 Series LCD Controller ICs                  SEIKO Epson Corp.
+	https://sourceforge.net/projects/embeddedgui/files/version%200.5.4/Driver%20IC/S1D13305.pdf/download

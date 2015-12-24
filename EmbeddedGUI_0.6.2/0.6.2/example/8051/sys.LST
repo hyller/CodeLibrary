@@ -1,0 +1,195 @@
+A51 MACRO ASSEMBLER  SYS                                                                  12/13/2009 14:49:07 PAGE     1
+
+
+MACRO ASSEMBLER A51 V7.10
+OBJECT MODULE PLACED IN sys.OBJ
+ASSEMBLER INVOKED BY: E:\keil51\C51\BIN\A51.EXE sys.src SET(LARGE) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;THIS FILE CONTAINS FUNCTIONS ABOUT THE BOOT SYSTEM.
+                       2     
+                       3     PUBLIC DELAY_50US
+                       4     
+                       5     EXTRN CODE(EMAIN)
+                       6     
+                       7     ;SIZE OF THE INTERRUPT TABLE,CHANGE IT IF THE MCU USE LARGER SIZE ISR TABLE. 
+  0030                 8     INTERRUPT_TABLE_SIZE EQU 0030H
+                       9     
+                      10     ;THE BASIC TIMER WILL USE THE TIMER0 AS TIMER.
+                      11     ;AND THE COUNT TIME IS 200us ,WHICH MEANS THE TIMER0 WILL INTERRUPT THE MCS51 EVERY 200us.
+  00C8                12     STD_TIMER0 EQU 200
+                      13     
+                      14     ;THE CRISTAL OSCILLATOR FREQUENCE IS 11.0592MHz
+  00FD                15     OVERLOAD_FREQUENCE      EQU  0FDH          ;FOR 11.059MHz  BOUD RATE = 9600
+                      16                                                     ; IF DUPLEX THE FENQUENCE ,BOUD RATE = 1920
+                             0
+                      17     
+----                  18     CSEG AT 0000H
+                      19     ;-------------------------------------------------------------------
+                      20     ;THE MAIN FUNCTION OF THE RUNTIME OPERATING SYSTEM--RTOS51
+                      21     ;THE ISR TABLE
+0000                  22     ORG 0000H
+0000 020030           23             LJMP START_INIT
+0003                  24     ORG 0003H
+0003 020086           25             LJMP INT0_ISR
+000B                  26     ORG 000BH
+000B 020088           27             LJMP TIMER0_ISR
+0013                  28     ORG 0013H
+0013 020087           29             LJMP INT1_ISR
+001B                  30     ORG 001BH
+001B 02008D           31             LJMP TIMER1_ISR
+0023                  32     ORG 0023H
+0023 02008F           33             LJMP UART0_ISR
+002B                  34     ORG 002BH
+002B 02008E           35             LJMP TIMER2_ISR
+0030                  36     ORG INTERRUPT_TABLE_SIZE
+0030                  37     START_INIT:
+0030 0136             38             AJMP INIT_SYS
+0032                  39     AFTER_INIT:     
+0032 120000   F       40             CALL EMAIN
+                      41             
+0035 22               42             RET
+                      43     ;---------------------------------------------------------
+                      44     
+                      45     ;---------------------------------------------------------
+0036                  46     INIT_SYS:
+                      47             ;SET THE STACK POINTER
+0036 758160           48             MOV SP,#60H
+                      49             
+                      50             ;INIT THE RAM
+0039 900000           51             MOV DPTR,#0000H
+003C E4               52             CLR A
+003D 7820             53             MOV R0,#32
+003F                  54     CLEAR_ALL_RAM:
+003F 75F000           55             MOV B,#000H
+0042                  56     CLEAR_RAM:
+0042 F0               57             MOVX @DPTR,A
+A51 MACRO ASSEMBLER  SYS                                                                  12/13/2009 14:49:07 PAGE     2
+
+0043 A3               58             INC DPTR
+0044 D5F0FB           59             DJNZ B,CLEAR_RAM
+0047 D8F6             60             DJNZ R0,CLEAR_ALL_RAM 
+                      61             
+                      62             ;TIMER
+0049 E589             63             MOV A,TMOD
+004B 4402             64             ORL A,#02H
+004D F589             65             MOV TMOD,A  ; Timer0 MODEL 2 
+004F 758CC8           66             MOV TH0,#STD_TIMER0
+0052 758AC8           67             MOV TL0,#STD_TIMER0
+                      68             
+                      69             ;INTERRUPT
+0055 75A812           70             MOV IE,#00010010B
+0058 75B807           71             MOV IP,#00000111B               ;IF YOU WANT TO CHANGE THE PRIORITY.
+                      72             ;THE INT0/1 AND THE TIMER0 HAS HIGHER PRIORITY.
+                      73             
+                      74             ;PORT
+005B 7590E8           75             MOV P1,#11101000B
+005E 758000           76             MOV P0,#00H
+0061 75A000           77             MOV P2,#00H
+0064 75B00C           78             MOV P3,#00001100B
+                      79             
+                      80             ;INIT THE PCON
+0067 758700           81             MOV PCON,#00H
+                      82             
+                      83             ;INIT SERIAL PORT
+006A E587             84             MOV A,PCON
+006C 4480             85             ORL A,#10000000B                ;DUPLEX THE SMOD
+006E F587             86             MOV PCON,A              
+0070 7598C0           87             MOV SCON,#11000000B                     ;SET THE MODEL 3  9BITS UART
+0073 E589             88             MOV A,TMOD
+0075 4430             89             ORL A,#00110000B
+0077 543F             90             ANL A,#00111111B
+0079 F589             91             MOV TMOD,A                ;SET THE TMOD 0011XXXX
+007B 758DFD           92             MOV TH1,#OVERLOAD_FREQUENCE 
+                      93             
+                      94             
+                      95             ;START ALL...
+007E D28C             96             SETB TR0
+                      97             ;SETB TR1
+0080 D29C             98             SETB REN
+0082 D2AF             99             SETB IE.7
+0084 0132            100             AJMP AFTER_INIT
+                     101     ;---------------------------------------------------------
+0086                 102     INT0_ISR:
+0086 32              103             RETI
+                     104     ;---------------------------------------------------------
+0087                 105     INT1_ISR:
+0087 32              106             RETI
+                     107     ;---------------------------------------------------------
+0088                 108     TIMER0_ISR:
+0088 C28D            109             CLR TF0
+008A C28F            110             CLR TF1
+008C 32              111             RETI
+                     112     ;---------------------------------------------------------
+008D                 113     TIMER1_ISR:
+008D 32              114             RETI
+                     115     ;---------------------------------------------------------
+008E                 116     TIMER2_ISR:
+008E 32              117             RETI
+                     118     ;---------------------------------------------------------
+008F                 119     UART0_ISR:
+008F 32              120             RETI
+                     121     ;---------------------------------------------------------
+0090                 122     DELAY_50US:             ;2
+0090 C0E0            123             PUSH ACC ;2
+A51 MACRO ASSEMBLER  SYS                                                                  12/13/2009 14:49:07 PAGE     3
+
+0092 7428            124             MOV A,#40  ;1
+0094 00              125             NOP              ;1
+0095 D5E0FD          126             DJNZ ACC,$  ;ACC*2
+0098 D0E0            127             POP ACC   ;2
+009A 22              128             RET             ;2
+                     129     ;--------------------------------------------------------
+                     130     
+                     131             END
+                                     
+A51 MACRO ASSEMBLER  SYS                                                                  12/13/2009 14:49:07 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E               T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . . .  D ADDR   00E0H   A   
+AFTER_INIT . . . . .  C ADDR   0032H   A   
+B. . . . . . . . . .  D ADDR   00F0H   A   
+CLEAR_ALL_RAM. . . .  C ADDR   003FH   A   
+CLEAR_RAM. . . . . .  C ADDR   0042H   A   
+DELAY_50US . . . . .  C ADDR   0090H   A   
+EMAIN. . . . . . . .  C ADDR   -----       EXT
+IE . . . . . . . . .  D ADDR   00A8H   A   
+INIT_SYS . . . . . .  C ADDR   0036H   A   
+INT0_ISR . . . . . .  C ADDR   0086H   A   
+INT1_ISR . . . . . .  C ADDR   0087H   A   
+INTERRUPT_TABLE_SIZE  N NUMB   0030H   A   
+IP . . . . . . . . .  D ADDR   00B8H   A   
+OVERLOAD_FREQUENCE .  N NUMB   00FDH   A   
+P0 . . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . . .  D ADDR   00B0H   A   
+PCON . . . . . . . .  D ADDR   0087H   A   
+REN. . . . . . . . .  B ADDR   0098H.4 A   
+SCON . . . . . . . .  D ADDR   0098H   A   
+SP . . . . . . . . .  D ADDR   0081H   A   
+START_INIT . . . . .  C ADDR   0030H   A   
+STD_TIMER0 . . . . .  N NUMB   00C8H   A   
+TF0. . . . . . . . .  B ADDR   0088H.5 A   
+TF1. . . . . . . . .  B ADDR   0088H.7 A   
+TH0. . . . . . . . .  D ADDR   008CH   A   
+TH1. . . . . . . . .  D ADDR   008DH   A   
+TIMER0_ISR . . . . .  C ADDR   0088H   A   
+TIMER1_ISR . . . . .  C ADDR   008DH   A   
+TIMER2_ISR . . . . .  C ADDR   008EH   A   
+TL0. . . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . . .  B ADDR   0088H.4 A   
+UART0_ISR. . . . . .  C ADDR   008FH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

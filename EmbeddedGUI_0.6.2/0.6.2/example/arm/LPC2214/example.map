@@ -1,0 +1,1370 @@
+ARM Linker, RVCT3.1 [Build 939] for uVision [Standard]
+
+================================================================================
+
+Section Cross References
+
+    startup.o(STACK) refers (Special) to stkheap2.o(.text) for __use_two_region_memory
+    startup.o(HEAP) refers (Special) to stkheap2.o(.text) for __use_two_region_memory
+    startup.o(RESET) refers to isr.o(ISR) for Undefine_ISR
+    startup.o(RESET) refers to startup.o(STACK) for Stack_Top
+    startup.o(RESET) refers to __main.o(!!!main) for __main
+    startup.o(RESET) refers (Special) to stkheap2.o(.text) for __use_two_region_memory
+    startup.o(.text) refers to startup.o(HEAP) for Heap_Mem
+    startup.o(.text) refers to startup.o(STACK) for Stack_Mem
+    startup.o(.text) refers (Special) to stkheap2.o(.text) for __use_two_region_memory
+    isr.o(ISR) refers to isr.o(ISR_MEM) for ABORT_ADDR
+    peripherialinit.o(PERI_INIT) refers to isr.o(ISR) for Default_vIRQ_ISR
+    bsp.o(.ARM.exidx) refers to bsp.o(.text) for .text
+    main.o(.text) refers to eframe.o(.text) for ESimpleDesktop::ScheduleRedraw()
+    main.o(.text) refers to main.o(i._ZN9EPositionC1Ejj) for EPosition::EPosition(unsigned, unsigned)
+    main.o(.text) refers to peripherialinit.o(PERI_INIT) for PERIPHERIAL_INIT
+    main.o(.text) refers to main.o(i._Z11BSP_FeedDogv) for BSP_FeedDog()
+    main.o(.text) refers to lcddriver.o(.text) for EG_LCDInit()
+    main.o(.text) refers to main.o(i._ZN13ESimpleWindow10AddControlEP8EControl) for ESimpleWindow::AddControl(EControl*)
+    main.o(.text) refers to econtrol.o(.text) for EEdit::AddCharToString(char)
+    main.o(.text) refers to aeabi_atexit.o(i.__aeabi_atexit) for __aeabi_atexit
+    main.o(.text) refers to main.o(.bss) for desk
+    main.o(.text) refers to main.o(.data) for click
+    main.o(.text) refers to dso_handle.o(__dso_handle) for __dso_handle
+    main.o(.text) refers to main.o(i._ZN7EWindowD1Ev) for EWindow::~EWindow()
+    main.o(.text) refers to main.o(i._ZN6ELabelD1Ev) for ELabel::~ELabel()
+    main.o(.text) refers to main.o(i._ZN7EButtonD1Ev) for EButton::~EButton()
+    main.o(.text) refers to main.o(i._ZN12ECheckButtonD1Ev) for ECheckButton::~ECheckButton()
+    main.o(.text) refers to main.o(i._ZN5EEditD1Ev) for EEdit::~EEdit()
+    main.o(.init_array) refers to main.o(.text) for __sti___8_main_cpp
+    main.o(.init_array) refers to init_aeabi.o(.text) for __cpp_initialize__aeabi_
+    main.o(.ARM.exidx) refers to main.o(.text) for .text
+    econtrol.o(.text) refers to graphicfunc.o(.text) for EG_Graphic_DrawString(unsigned, unsigned, char*)
+    econtrol.o(.text) refers to econtrol.o(i._ZN8EControl13RedrawControlEv) for EControl::RedrawControl()
+    econtrol.o(.text) refers to main.o(i._ZN9EPositionC1Ejj) for EPosition::EPosition(unsigned, unsigned)
+    econtrol.o(.text) refers to econtrol.o(i._ZN9EComboBox14SetSelectIndexEj) for EComboBox::SetSelectIndex(unsigned)
+    econtrol.o(.text) refers to aeabi_sdiv.o(.text_udiv) for __aeabi_uidivmod
+    econtrol.o(.text) refers to econtrol.o(i._ZN9EComboBox13GetItemStringEj) for EComboBox::GetItemString(unsigned)
+    econtrol.o(.text) refers to econtrol.o(i._ZN5EMenu13SetSelectItemEj) for EMenu::SetSelectItem(unsigned)
+    econtrol.o(.text) refers to econtrol.o(i._ZN5ETree12ETreeSubItem11OpenSubItemEv) for ETree::ETreeSubItem::OpenSubItem()
+    econtrol.o(.text) refers to econtrol.o(i._ZN5ETree12ETreeSubItem12CloseSubItemEv) for ETree::ETreeSubItem::CloseSubItem()
+    econtrol.o(.text) refers to econtrol.o(i._ZN5ESizeC1Ejj) for ESize::ESize(unsigned, unsigned)
+    econtrol.o(.text) refers to econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E5ESize9EPosition) for EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+    econtrol.o(.text) refers to econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E) for EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*))
+    econtrol.o(.text) refers to econtrol.o(i._ZN8EControl17SetRedrawFunctionEPFvPS_E) for EControl::SetRedrawFunction(void(*)(EControl*))
+    econtrol.o(.text) refers to econtrol.o(.constdata) for .constdata
+    econtrol.o(.ARM.exidx) refers to econtrol.o(.text) for .text
+    ecursor.o(.text) refers to lcddriver.o(.bss) for EG_LCD_Buffer
+    ecursor.o(.ARM.exidx) refers to ecursor.o(.text) for .text
+    graphicfunc.o(.text) refers to lcddriver.o(.text) for EG_LCDSetPixel(unsigned, unsigned)
+    graphicfunc.o(.text) refers to aeabi_sdiv.o(.text_udiv) for __aeabi_uidivmod
+    graphicfunc.o(.text) refers to aeabi_sdiv.o(.text) for __aeabi_idivmod
+    graphicfunc.o(.text) refers to graphicfunc.o(.constdata) for .constdata
+    graphicfunc.o(.ARM.exidx) refers to graphicfunc.o(.text) for .text
+    lcddriver.o(.text) refers to lcddriver.o(.bss) for EG_LCD_Buffer
+    lcddriver.o(.ARM.exidx) refers to lcddriver.o(.text) for .text
+    eframe.o(.text) refers to econtrol.o(i._ZN8EControl13RedrawControlEv) for EControl::RedrawControl()
+    eframe.o(.text) refers to econtrol.o(.text) for EControl::InControlArea(EPosition)
+    eframe.o(.text) refers to econtrol.o(i._ZN5ESizeC1Ejj) for ESize::ESize(unsigned, unsigned)
+    eframe.o(.text) refers to main.o(i._ZN9EPositionC1Ejj) for EPosition::EPosition(unsigned, unsigned)
+    eframe.o(.text) refers to graphicfunc.o(.text) for EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+    eframe.o(.text) refers to eframe.o(.constdata__ZTV13ESimpleWindow) for vtable for ESimpleWindow
+    eframe.o(.text) refers to eframe.o(.constdata__ZTV7EWindow) for vtable for EWindow
+    eframe.o(.text) refers to ecursor.o(.text) for ECursor::SetCursorPosition(const EPosition&)
+    eframe.o(.text) refers to lcddriver.o(.text) for EG_LCDFlushBuffer()
+    eframe.o(.text) refers to eframe.o(i._ZN6EEventC1Ev) for EEvent::EEvent()
+    eframe.o(.text) refers to aeabi_sdiv.o(.text_udiv) for __aeabi_uidivmod
+    eframe.o(.text) refers to eframe.o(.data) for ESimpleDesktop::m_pdInstance
+    eframe.o(.text) refers to eframe.o(.constdata__ZTV14ESimpleDesktop) for vtable for ESimpleDesktop
+    eframe.o(.text) refers to eframe.o(.constdata__ZTV8EDesktop) for vtable for EDesktop
+    eframe.o(.ARM.exidx) refers to eframe.o(.text) for .text
+    atexit_cpp.o(.text) refers to cxa_atexit.o(i.__cxa_atexit) for __cxa_atexit
+    atexit_cpp.o(.ARM.exidx) refers to atexit_cpp.o(.text) for .text
+    aeabi_sdiv.o(.text_udiv) refers to aeabi_sdiv.o(.text) for __arm_div4
+    aeabi_sdiv_div0.o(.text_udiv) refers to aeabi_sdiv_div0.o(.text) for __arm_div4
+    stkheap2.o(.text) refers to sys_stackheap_outer.o(.text) for __user_setup_stackheap
+    stkheap2.o(.text) refers to rt_stackheap_storage_intlibspace.o(.text) for __rt_stackheap_storage
+    __main.o(!!!main) refers to kernel.o(.text) for __rt_entry
+    init_aeabi.o(.ARM.exidx) refers to init_aeabi.o(.emb_text) for __cpp_initialize_dummy_init_array
+    init_aeabi.o(.ARM.exidx) refers to init_aeabi.o(.dummy_text) for __dummy_proc
+    init_aeabi.o(.text) refers to callvia.o(.text) for __ARM_call_via_r0
+    init_aeabi.o(.ARM.exidx) refers to init_aeabi.o(.text) for .text
+    aeabi_atexit.o(i.__aeabi_atexit) refers to h1_alloc.o(.text) for malloc
+    aeabi_atexit.o(i.__aeabi_atexit) refers to rt_ddtor_pointer_addr_intlibspace.o(.text) for __rt_ddtor_pointer_addr
+    aeabi_atexit.o(i.__aeabi_atexit) refers (Special) to cxa_finalize.o(i.__cxa_finalize) for __cxa_finalize
+    aeabi_atexit.o(i.__aeabi_atexit.clean) refers (Special) to cxa_finalize.o(i.__cxa_finalize) for __cxa_finalize
+    aeabi_atexit.o(.ARM.exidx) refers to aeabi_atexit.o(i.__aeabi_atexit) for i.__aeabi_atexit
+    aeabi_atexit.o(.ARM.exidx) refers (Special) to cxa_finalize.o(i.__cxa_finalize) for __cxa_finalize
+    aeabi_atexit.o(.ARM.exidx) refers to aeabi_atexit.o(i.__aeabi_atexit.clean) for i.__aeabi_atexit.clean
+    aeabi_atexit.o(.ARM.exidx) refers (Special) to cxa_finalize.o(i.__cxa_finalize) for __cxa_finalize
+    lib_rtti_impl.o(i._ZN10__cxxabiv123__fundamental_type_infoD0Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv123__fundamental_type_infoD1Ev) for __cxxabiv1::__fundamental_type_info::~__fundamental_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv117__array_type_infoD0Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__array_type_infoD1Ev) for __cxxabiv1::__array_type_info::~__array_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv120__function_type_infoD0Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__function_type_infoD1Ev) for __cxxabiv1::__function_type_info::~__function_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv116__enum_type_infoD0Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv116__enum_type_infoD1Ev) for __cxxabiv1::__enum_type_info::~__enum_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD0Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD1Ev) for __cxxabiv1::__class_type_info::~__class_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv120__si_class_type_infoD1Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD1Ev) for __cxxabiv1::__class_type_info::~__class_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv120__si_class_type_infoD0Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD1Ev) for __cxxabiv1::__class_type_info::~__class_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv121__vmi_class_type_infoD1Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD1Ev) for __cxxabiv1::__class_type_info::~__class_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv121__vmi_class_type_infoD0Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD1Ev) for __cxxabiv1::__class_type_info::~__class_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD0Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD1Ev) for __cxxabiv1::__pbase_type_info::~__pbase_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv119__pointer_type_infoD1Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD1Ev) for __cxxabiv1::__pbase_type_info::~__pbase_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv119__pointer_type_infoD0Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD1Ev) for __cxxabiv1::__pbase_type_info::~__pbase_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD1Ev) for __cxxabiv1::__pbase_type_info::~__pbase_type_info()
+    lib_rtti_impl.o(i._ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD1Ev) for __cxxabiv1::__pbase_type_info::~__pbase_type_info()
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv123__fundamental_type_infoD1Ev) for i._ZN10__cxxabiv123__fundamental_type_infoD1Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv123__fundamental_type_infoD1Ev.clean) for i._ZN10__cxxabiv123__fundamental_type_infoD1Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv123__fundamental_type_infoD0Ev) for i._ZN10__cxxabiv123__fundamental_type_infoD0Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv123__fundamental_type_infoD0Ev.clean) for i._ZN10__cxxabiv123__fundamental_type_infoD0Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__array_type_infoD1Ev) for i._ZN10__cxxabiv117__array_type_infoD1Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__array_type_infoD1Ev.clean) for i._ZN10__cxxabiv117__array_type_infoD1Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__array_type_infoD0Ev) for i._ZN10__cxxabiv117__array_type_infoD0Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__array_type_infoD0Ev.clean) for i._ZN10__cxxabiv117__array_type_infoD0Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__function_type_infoD1Ev) for i._ZN10__cxxabiv120__function_type_infoD1Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__function_type_infoD1Ev.clean) for i._ZN10__cxxabiv120__function_type_infoD1Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__function_type_infoD0Ev) for i._ZN10__cxxabiv120__function_type_infoD0Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__function_type_infoD0Ev.clean) for i._ZN10__cxxabiv120__function_type_infoD0Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv116__enum_type_infoD1Ev) for i._ZN10__cxxabiv116__enum_type_infoD1Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv116__enum_type_infoD1Ev.clean) for i._ZN10__cxxabiv116__enum_type_infoD1Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv116__enum_type_infoD0Ev) for i._ZN10__cxxabiv116__enum_type_infoD0Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv116__enum_type_infoD0Ev.clean) for i._ZN10__cxxabiv116__enum_type_infoD0Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD1Ev) for i._ZN10__cxxabiv117__class_type_infoD1Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD1Ev.clean) for i._ZN10__cxxabiv117__class_type_infoD1Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD0Ev) for i._ZN10__cxxabiv117__class_type_infoD0Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD0Ev.clean) for i._ZN10__cxxabiv117__class_type_infoD0Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__si_class_type_infoD1Ev) for i._ZN10__cxxabiv120__si_class_type_infoD1Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__si_class_type_infoD1Ev.clean) for i._ZN10__cxxabiv120__si_class_type_infoD1Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__si_class_type_infoD0Ev) for i._ZN10__cxxabiv120__si_class_type_infoD0Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__si_class_type_infoD0Ev.clean) for i._ZN10__cxxabiv120__si_class_type_infoD0Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv121__vmi_class_type_infoD1Ev) for i._ZN10__cxxabiv121__vmi_class_type_infoD1Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv121__vmi_class_type_infoD1Ev.clean) for i._ZN10__cxxabiv121__vmi_class_type_infoD1Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv121__vmi_class_type_infoD0Ev) for i._ZN10__cxxabiv121__vmi_class_type_infoD0Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv121__vmi_class_type_infoD0Ev.clean) for i._ZN10__cxxabiv121__vmi_class_type_infoD0Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD1Ev) for i._ZN10__cxxabiv117__pbase_type_infoD1Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD1Ev.clean) for i._ZN10__cxxabiv117__pbase_type_infoD1Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD0Ev) for i._ZN10__cxxabiv117__pbase_type_infoD0Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD0Ev.clean) for i._ZN10__cxxabiv117__pbase_type_infoD0Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv119__pointer_type_infoD1Ev) for i._ZN10__cxxabiv119__pointer_type_infoD1Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv119__pointer_type_infoD1Ev.clean) for i._ZN10__cxxabiv119__pointer_type_infoD1Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv119__pointer_type_infoD0Ev) for i._ZN10__cxxabiv119__pointer_type_infoD0Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv119__pointer_type_infoD0Ev.clean) for i._ZN10__cxxabiv119__pointer_type_infoD0Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev) for i._ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev.clean) for i._ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev.clean
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev) for i._ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev
+    lib_rtti_impl.o(.ARM.exidx) refers to lib_rtti_impl.o(i._ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev.clean) for i._ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev.clean
+    kernel.o(.text) refers to stkheap2.o(.text) for __rt_stackheap_init
+    kernel.o(.text) refers to boardinit2.o(.text) for _platform_post_stackheap_init
+    kernel.o(.text) refers to lib_init.o(.text) for __rt_lib_init
+    kernel.o(.text) refers to boardinit3.o(.text) for _platform_post_lib_init
+    kernel.o(.text) refers to exit.o(.text) for exit
+    kernel.o(.text) refers to main.o(.text) for main
+    kernel.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    kernel.o(.ARM.exidx) refers to kernel.o(.text) for __rt_entry
+    sys_stackheap_outer.o(.text) refers to libspace.o(.text) for __user_perproc_libspace
+    sys_stackheap_outer.o(.text) refers to startup.o(.text) for __user_initial_stackheap
+    aeabi_idiv0_sigfpe.o(.text) refers to rt_div0.o(.text) for __rt_div0
+    rt_stackheap_storage.o(.text) refers to rt_stackheap_storage.o(.bss) for __rt_stackheap_storage_data
+    rt_stackheap_storage_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    rt_ddtor_pointer_addr.o(.text) refers to rt_ddtor_pointer_addr.o(.bss) for __rt_ddtor_pointer_addr_data
+    rt_ddtor_pointer_addr_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    malloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    malloc.o(.text) refers (Special) to hguard.o(.text) for __heap_guard
+    malloc.o(.text) refers (Special) to init_alloc.o(.text) for _init_alloc
+    h1_alloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    h1_alloc.o(.text) refers to init_alloc.o(.text) for __Heap_Full
+    h1_alloc.o(.text) refers (Special) to h1_init.o(.text) for __Heap_Initialize
+    h1_alloc_mt.o(.text) refers to init_alloc.o(.text) for __Heap_Full
+    h1_alloc_mt.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    h1_alloc_mt.o(.text) refers (Special) to h1_init.o(.text) for __Heap_Initialize
+    heap2.o(i.___Heap_ProvideMemory_realtime) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2.o(i.___Heap_ProvideMemory_realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i._malloc_realtime) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._malloc_realtime) refers to fdtree.o(i._FDTree_FindFirst) for _FDTree_FindFirst
+    heap2.o(i._malloc_realtime) refers to init_alloc.o(.text) for __Heap_Full
+    heap2.o(i._malloc_realtime) refers to fdtree.o(i._FDTree_RemoveNode) for _FDTree_RemoveNode
+    heap2.o(i._malloc_realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i._realloc_realtime) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._realloc_realtime) refers to h1_free.o(.text) for free
+    heap2.o(i._realloc_realtime) refers to h1_alloc.o(.text) for malloc
+    heap2.o(i._realloc_realtime) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2.o(i._realloc_realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i._realloc_realtime) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    heap2.o(i._free_realtime) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._free_realtime) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2.o(i._free_realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i.___Heap_Stats_realtime) refers to heap2.o(i._Heap2_StatsIterate) for _Heap2_StatsIterate
+    heap2.o(i.___Heap_Stats_realtime) refers to aeabi_sdiv.o(.text_udiv) for __aeabi_uidivmod
+    heap2.o(i.___Heap_Stats_realtime) refers to callvia.o(.text) for __ARM_call_via_r5
+    heap2.o(i._FDIterate) refers to callvia.o(.text) for __ARM_call_via_r7
+    heap2.o(i._FDIterate) refers to heap2.o(.constdata) for .constdata
+    heap2.o(i.___Heap_Valid_realtime) refers to callvia.o(.text) for __ARM_call_via_r6
+    heap2.o(i.___Heap_Valid_realtime) refers to heap2.o(i._FDIterate) for _FDIterate
+    heap2.o(i.___Heap_Valid_realtime) refers to heap2.o(.constdata) for .constdata
+    heap2mt.o(i.___Heap_Initialize_realtime_concurrent) refers to mutex_init.o(.text) for _mutex_initialize
+    heap2mt.o(i.___Heap_ProvideMemory_realtime_concurrent) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2mt.o(i.___Heap_ProvideMemory_realtime_concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i._malloc_realtime_concurrent) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2mt.o(i._malloc_realtime_concurrent) refers to fdtree.o(i._FDTree_FindFirst) for _FDTree_FindFirst
+    heap2mt.o(i._malloc_realtime_concurrent) refers to init_alloc.o(.text) for __Heap_Full
+    heap2mt.o(i._malloc_realtime_concurrent) refers to fdtree.o(i._FDTree_RemoveNode) for _FDTree_RemoveNode
+    heap2mt.o(i._malloc_realtime_concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i._realloc_realtime_concurrent) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2mt.o(i._realloc_realtime_concurrent) refers to h1_free.o(.text) for free
+    heap2mt.o(i._realloc_realtime_concurrent) refers to h1_alloc.o(.text) for malloc
+    heap2mt.o(i._realloc_realtime_concurrent) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2mt.o(i._realloc_realtime_concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i._realloc_realtime_concurrent) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    heap2mt.o(i._free_realtime_concurrent) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2mt.o(i._free_realtime_concurrent) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2mt.o(i._free_realtime_concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i.___Heap_Stats_realtime_concurrent) refers to heap2mt.o(i._Heap2_StatsIterate) for _Heap2_StatsIterate
+    heap2mt.o(i.___Heap_Stats_realtime_concurrent) refers to aeabi_sdiv.o(.text_udiv) for __aeabi_uidivmod
+    heap2mt.o(i.___Heap_Stats_realtime_concurrent) refers to callvia.o(.text) for __ARM_call_via_r5
+    heap2mt.o(i._FDIterate) refers to callvia.o(.text) for __ARM_call_via_r7
+    heap2mt.o(i._FDIterate) refers to heap2mt.o(.constdata) for .constdata
+    heap2mt.o(i.___Heap_Valid_realtime_concurrent) refers to callvia.o(.text) for __ARM_call_via_r6
+    heap2mt.o(i.___Heap_Valid_realtime_concurrent) refers to heap2mt.o(i._FDIterate) for _FDIterate
+    heap2mt.o(i.___Heap_Valid_realtime_concurrent) refers to heap2mt.o(.constdata) for .constdata
+    cxa_atexit.o(i.__cxa_atexit) refers to aeabi_atexit.o(i.__aeabi_atexit) for __aeabi_atexit
+    cxa_atexit.o(.ARM.exidx) refers to cxa_atexit.o(i.__cxa_atexit) for i.__cxa_atexit
+    cxa_atexit.o(.ARM.exidx) refers to cxa_atexit.o(i.__cxa_atexit.clean) for i.__cxa_atexit.clean
+    cxa_finalize.o(i.__cxa_finalize) refers to rt_ddtor_pointer_addr_intlibspace.o(.text) for __rt_ddtor_pointer_addr
+    cxa_finalize.o(i.__cxa_finalize) refers to callvia.o(.text) for __ARM_call_via_r1
+    cxa_finalize.o(i.__cxa_finalize) refers to h1_free.o(.text) for free
+    cxa_finalize.o(.ARM.exidx) refers to cxa_finalize.o(i.__cxa_finalize) for i.__cxa_finalize
+    cxa_finalize.o(.ARM.exidx) refers to cxa_finalize.o(i.__cxa_finalize.clean) for i.__cxa_finalize.clean
+    type_info_dtor.o(.ARM.exidx) refers to type_info_dtor.o(i._ZNSt9type_infoD1Ev) for i._ZNSt9type_infoD1Ev
+    type_info_dtor.o(.ARM.exidx) refers to type_info_dtor.o(i._ZNSt9type_infoD1Ev.clean) for i._ZNSt9type_infoD1Ev.clean
+    type_info_dtor.o(.ARM.exidx) refers to type_info_dtor.o(i._ZNSt9type_infoD0Ev) for i._ZNSt9type_infoD0Ev
+    type_info_dtor.o(.ARM.exidx) refers to type_info_dtor.o(i._ZNSt9type_infoD0Ev.clean) for i._ZNSt9type_infoD0Ev.clean
+    sys_exit.o(.text) refers to use_no_semi.o(.text) for __I_use_semihosting
+    libspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    rt_div0.o(.text) refers to defsig_fpe_outer.o(.text) for __rt_SIGFPE
+    rt_heap_descriptor.o(.text) refers to rt_heap_descriptor.o(.bss) for __rt_heap_descriptor_data
+    rt_heap_descriptor_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    init_alloc.o(.text) refers to heapext.o(.text) for __heap_extend
+    init_alloc.o(.text) refers to h1_extend.o(.text) for __Heap_ProvideMemory
+    init_alloc.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    init_alloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    init_alloc.o(.text) refers to h1_init.o(.text) for __Heap_Initialize
+    init_alloc.o(.text) refers (Special) to hguard.o(.text) for __heap_guard
+    free.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    free.o(.text) refers (Special) to hguard.o(.text) for __heap_guard
+    h1_free.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    h1_init_mt.o(.text) refers to mutex_init.o(.text) for _mutex_initialize
+    h1_free_mt.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    exit.o(.text) refers to kernel.o(.text) for __rt_exit
+    stkheap1.o(.text) refers to sys_stackheap_outer.o(.text) for __user_setup_stackheap
+    stkheap1.o(.text) refers to rt_stackheap_storage_intlibspace.o(.text) for __rt_stackheap_storage
+    lib_init.o(.emb_text) refers to no_argv.o(.text) for __ARM_get_argv
+    lib_init.o(.text) refers to fpinit.o(x$fpl$fpinit) for _fp_init
+    lib_init.o(.text) refers to lib_init.o(.emb_text) for __ARM_argv_veneer
+    lib_init.o(.text) refers (Weak) to init_alloc.o(.text) for _init_alloc
+    lib_init.o(.text) refers to rt_locale_intlibspace.o(.text) for __rt_locale
+    lib_init.o(.text) refers (Weak) to init_aeabi.o(.text) for __cpp_initialize__aeabi_
+    lib_init.o(.text) refers (Weak) to cxa_finalize.o(i.__cxa_finalize) for __cxa_finalize
+    rt_locale.o(.text) refers to rt_locale.o(.bss) for __rt_locale_data
+    rt_locale_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    h1_extend.o(.text) refers to h1_free.o(.text) for free
+    h1_extend_mt.o(.text) refers to h1_free_mt.o(.text) for _free_internal
+    defsig_fpe_outer.o(.text) refers to defsig_fpe_inner.o(.text) for __rt_SIGFPE_inner
+    defsig_fpe_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_fpe_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    defsig_rtmem_outer.o(.text) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_rtmem_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_rtmem_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    heapext.o(.text) refers to stkheap2.o(.text) for __rt_heap_extend
+    _get_argv.o(.text) refers to heapext.o(.text) for __heap_extend
+    _get_argv.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    _get_argv.o(.text) refers to sys_command.o(.text) for _sys_command_string
+    _get_argv.o(.text) refers (Special) to hrguard.o(.text) for __heap_region_guard
+    fpinit.o(x$fpl$fpinit) refers to rt_fp_status_addr_intlibspace.o(.text) for __rt_fp_status_addr
+    sys_command.o(.text) refers (Special) to use_no_semi.o(.text) for __I_use_semihosting
+    rt_raise.o(.text) refers to __raise.o(.text) for __raise
+    rt_raise.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    rt_fp_status_addr.o(.text) refers to rt_fp_status_addr.o(.bss) for __rt_fp_status_addr_data
+    rt_fp_status_addr_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    defsig.o(CL$$defsig) refers to defsig_fpe_inner.o(.text) for __rt_SIGFPE_inner
+    defsig.o(CL$$defsig) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_exit.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_fpe_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtmem_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    __raise.o(.text) refers to defsig.o(CL$$defsig) for __default_signal_handler
+    __raise.o(.text) refers to callvia.o(.text) for __ARM_call_via_r2
+    defsig_general.o(.text) refers to sys_wrch.o(.text) for _ttywrch
+    defsig_abrt_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtred_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_stak_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_pvfn_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_cppl_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_segv_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_other.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    sys_wrch.o(.text) refers (Special) to use_no_semi.o(.text) for __I_use_semihosting
+    main.o(.ARM.exidx) refers to main.o(i._Z11BSP_FeedDogv) for i._Z11BSP_FeedDogv
+    main.o(.ARM.exidx) refers to main.o(i._ZN13ESimpleWindow10AddControlEP8EControl) for i._ZN13ESimpleWindow10AddControlEP8EControl
+    main.o(.ARM.exidx) refers to main.o(i._ZN9EPositionC1Ejj) for i._ZN9EPositionC1Ejj
+    main.o(.ARM.exidx) refers to main.o(i._ZN6ELabelD1Ev) for i._ZN6ELabelD1Ev
+    main.o(.ARM.exidx) refers to main.o(i._ZN7EButtonD1Ev) for i._ZN7EButtonD1Ev
+    main.o(.ARM.exidx) refers to main.o(i._ZN12ECheckButtonD1Ev) for i._ZN12ECheckButtonD1Ev
+    main.o(.ARM.exidx) refers to main.o(i._ZN5EEditD1Ev) for i._ZN5EEditD1Ev
+    main.o(.ARM.exidx) refers to main.o(i._ZN7EWindowD1Ev) for i._ZN7EWindowD1Ev
+    econtrol.o(i._ZN5ETree12ETreeSubItem11OpenSubItemEv) refers to econtrol.o(.text) for ETree::ETreeItem::OpenAllSubItem()
+    econtrol.o(.ARM.exidx) refers to econtrol.o(i._ZN5ETree12ETreeSubItem11OpenSubItemEv) for i._ZN5ETree12ETreeSubItem11OpenSubItemEv
+    econtrol.o(i._ZN5ETree12ETreeSubItem12CloseSubItemEv) refers to econtrol.o(.text) for ETree::ETreeItem::CloseAllSubItem()
+    econtrol.o(.ARM.exidx) refers to econtrol.o(i._ZN5ETree12ETreeSubItem12CloseSubItemEv) for i._ZN5ETree12ETreeSubItem12CloseSubItemEv
+    econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E) refers to econtrol.o(i._ZN5ESizeC1Ejj) for ESize::ESize(unsigned, unsigned)
+    econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E) refers to main.o(i._ZN9EPositionC1Ejj) for EPosition::EPosition(unsigned, unsigned)
+    econtrol.o(.ARM.exidx) refers to econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E) for i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E
+    econtrol.o(.ARM.exidx) refers to econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E5ESize9EPosition) for i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E5ESize9EPosition
+    econtrol.o(.ARM.exidx) refers to econtrol.o(i._ZN8EControl13RedrawControlEv) for i._ZN8EControl13RedrawControlEv
+    econtrol.o(i._ZN9EComboBox14SetSelectIndexEj) refers to econtrol.o(i._ZN8EControl13RedrawControlEv) for EControl::RedrawControl()
+    econtrol.o(.ARM.exidx) refers to econtrol.o(i._ZN9EComboBox14SetSelectIndexEj) for i._ZN9EComboBox14SetSelectIndexEj
+    econtrol.o(.ARM.exidx) refers to econtrol.o(i._ZN9EComboBox13GetItemStringEj) for i._ZN9EComboBox13GetItemStringEj
+    econtrol.o(.ARM.exidx) refers to econtrol.o(i._ZN5EMenu13SetSelectItemEj) for i._ZN5EMenu13SetSelectItemEj
+    econtrol.o(.ARM.exidx) refers to econtrol.o(i._ZN5ESizeC1Ejj) for i._ZN5ESizeC1Ejj
+    econtrol.o(.ARM.exidx) refers to econtrol.o(i._ZN8EControl17SetRedrawFunctionEPFvPS_E) for i._ZN8EControl17SetRedrawFunctionEPFvPS_E
+    eframe.o(i._ZN6EEventC1Ev) refers to main.o(i._ZN9EPositionC1Ejj) for EPosition::EPosition(unsigned, unsigned)
+    eframe.o(.ARM.exidx) refers to eframe.o(i._ZN6EEventC1Ev) for i._ZN6EEventC1Ev
+    eframe.o(.ARM.exidx) refers to eframe.o(i._ZN13ESimpleWindow12InWindowAreaE9EPosition) for i._ZN13ESimpleWindow12InWindowAreaE9EPosition
+    eframe.o(.ARM.exidx) refers to eframe.o(i._ZN13ESimpleWindow13RecoverWindowEv) for i._ZN13ESimpleWindow13RecoverWindowEv
+    eframe.o(.ARM.exidx) refers to eframe.o(i._ZN13ESimpleWindow14GetWindowStateEv) for i._ZN13ESimpleWindow14GetWindowStateEv
+    eframe.o(.ARM.exidx) refers to eframe.o(i._ZN7EWindow14GetWindowStateEv) for i._ZN7EWindow14GetWindowStateEv
+    eframe.o(i._ZN14ESimpleDesktop13RedrawDesktopEv) refers to lcddriver.o(.text) for EG_LCDClearBuffer()
+    eframe.o(.ARM.exidx) refers to eframe.o(i._ZN14ESimpleDesktop13RedrawDesktopEv) for i._ZN14ESimpleDesktop13RedrawDesktopEv
+    eframe.o(.constdata__ZTV13ESimpleWindow) refers to eframe.o(.constdata__ZTI13ESimpleWindow) for typeinfo for ESimpleWindow
+    eframe.o(.constdata__ZTV13ESimpleWindow) refers to eframe.o(.text) for ESimpleWindow::ForceRedrawAllControls()
+    eframe.o(.constdata__ZTV13ESimpleWindow) refers to eframe.o(i._ZN13ESimpleWindow12InWindowAreaE9EPosition) for ESimpleWindow::InWindowArea(EPosition)
+    eframe.o(.constdata__ZTV13ESimpleWindow) refers to eframe.o(i._ZN13ESimpleWindow13RecoverWindowEv) for ESimpleWindow::RecoverWindow()
+    eframe.o(.constdata__ZTV13ESimpleWindow) refers to eframe.o(i._ZN13ESimpleWindow14GetWindowStateEv) for ESimpleWindow::GetWindowState()
+    eframe.o(.constdata__ZTV7EWindow) refers to eframe.o(.constdata__ZTI7EWindow) for typeinfo for EWindow
+    eframe.o(.constdata__ZTV7EWindow) refers to eframe.o(.text) for EWindow::ForceRedrawAllControls()
+    eframe.o(.constdata__ZTV7EWindow) refers to eframe.o(i._ZN7EWindow14GetWindowStateEv) for EWindow::GetWindowState()
+    eframe.o(.constdata__ZTV14ESimpleDesktop) refers to eframe.o(.constdata__ZTI14ESimpleDesktop) for typeinfo for ESimpleDesktop
+    eframe.o(.constdata__ZTV14ESimpleDesktop) refers to eframe.o(.text) for ESimpleDesktop::DispatchEvent(EEvent*)
+    eframe.o(.constdata__ZTV14ESimpleDesktop) refers to eframe.o(i._ZN14ESimpleDesktop13RedrawDesktopEv) for ESimpleDesktop::RedrawDesktop()
+    eframe.o(.constdata__ZTV8EDesktop) refers to eframe.o(.constdata__ZTI8EDesktop) for typeinfo for EDesktop
+    eframe.o(.constdata__ZTV8EDesktop) refers to eframe.o(.text) for EDesktop::DispatchEvent(EEvent*)
+    eframe.o(.constdata__ZTI7EWindow) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    eframe.o(.constdata__ZTI7EWindow) refers to eframe.o(.constdata__ZTS7EWindow) for typeinfo name for EWindow
+    eframe.o(.constdata__ZTI7EWindow) refers to eframe.o(.constdata__ZTI13ESimpleWindow) for typeinfo for ESimpleWindow
+    eframe.o(.constdata__ZTI14ESimpleDesktop) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__class_type_infoE) for vtable for __cxxabiv1::__class_type_info
+    eframe.o(.constdata__ZTI14ESimpleDesktop) refers to eframe.o(.constdata__ZTS14ESimpleDesktop) for typeinfo name for ESimpleDesktop
+    eframe.o(.constdata__ZTI13ESimpleWindow) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__class_type_infoE) for vtable for __cxxabiv1::__class_type_info
+    eframe.o(.constdata__ZTI13ESimpleWindow) refers to eframe.o(.constdata__ZTS13ESimpleWindow) for typeinfo name for ESimpleWindow
+    eframe.o(.constdata__ZTI8EDesktop) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    eframe.o(.constdata__ZTI8EDesktop) refers to eframe.o(.constdata__ZTS8EDesktop) for typeinfo name for EDesktop
+    eframe.o(.constdata__ZTI8EDesktop) refers to eframe.o(.constdata__ZTI14ESimpleDesktop) for typeinfo for ESimpleDesktop
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv123__fundamental_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv123__fundamental_type_infoE) for typeinfo for __cxxabiv1::__fundamental_type_info
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv123__fundamental_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv123__fundamental_type_infoD1Ev) for __cxxabiv1::__fundamental_type_info::~__fundamental_type_info()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv123__fundamental_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv123__fundamental_type_infoD0Ev) for __cxxabiv1::__fundamental_type_info::~__fundamental_type_info__deallocating()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__array_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__array_type_infoE) for typeinfo for __cxxabiv1::__array_type_info
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__array_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__array_type_infoD1Ev) for __cxxabiv1::__array_type_info::~__array_type_info()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__array_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__array_type_infoD0Ev) for __cxxabiv1::__array_type_info::~__array_type_info__deallocating()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__function_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv120__function_type_infoE) for typeinfo for __cxxabiv1::__function_type_info
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__function_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__function_type_infoD1Ev) for __cxxabiv1::__function_type_info::~__function_type_info()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__function_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__function_type_infoD0Ev) for __cxxabiv1::__function_type_info::~__function_type_info__deallocating()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv116__enum_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv116__enum_type_infoE) for typeinfo for __cxxabiv1::__enum_type_info
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv116__enum_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv116__enum_type_infoD1Ev) for __cxxabiv1::__enum_type_info::~__enum_type_info()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv116__enum_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv116__enum_type_infoD0Ev) for __cxxabiv1::__enum_type_info::~__enum_type_info__deallocating()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__class_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__class_type_infoE) for typeinfo for __cxxabiv1::__class_type_info
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__class_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD1Ev) for __cxxabiv1::__class_type_info::~__class_type_info()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__class_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__class_type_infoD0Ev) for __cxxabiv1::__class_type_info::~__class_type_info__deallocating()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv120__si_class_type_infoE) for typeinfo for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__si_class_type_infoD1Ev) for __cxxabiv1::__si_class_type_info::~__si_class_type_info()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv120__si_class_type_infoD0Ev) for __cxxabiv1::__si_class_type_info::~__si_class_type_info__deallocating()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv121__vmi_class_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv121__vmi_class_type_infoE) for typeinfo for __cxxabiv1::__vmi_class_type_info
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv121__vmi_class_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv121__vmi_class_type_infoD1Ev) for __cxxabiv1::__vmi_class_type_info::~__vmi_class_type_info()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv121__vmi_class_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv121__vmi_class_type_infoD0Ev) for __cxxabiv1::__vmi_class_type_info::~__vmi_class_type_info__deallocating()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__pbase_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__pbase_type_infoE) for typeinfo for __cxxabiv1::__pbase_type_info
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__pbase_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD1Ev) for __cxxabiv1::__pbase_type_info::~__pbase_type_info()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__pbase_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv117__pbase_type_infoD0Ev) for __cxxabiv1::__pbase_type_info::~__pbase_type_info__deallocating()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv119__pointer_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv119__pointer_type_infoE) for typeinfo for __cxxabiv1::__pointer_type_info
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv119__pointer_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv119__pointer_type_infoD1Ev) for __cxxabiv1::__pointer_type_info::~__pointer_type_info()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv119__pointer_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv119__pointer_type_infoD0Ev) for __cxxabiv1::__pointer_type_info::~__pointer_type_info__deallocating()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv129__pointer_to_member_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv129__pointer_to_member_type_infoE) for typeinfo for __cxxabiv1::__pointer_to_member_type_info
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv129__pointer_to_member_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev) for __cxxabiv1::__pointer_to_member_type_info::~__pointer_to_member_type_info()
+    lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv129__pointer_to_member_type_infoE) refers to lib_rtti_impl.o(i._ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev) for __cxxabiv1::__pointer_to_member_type_info::~__pointer_to_member_type_info__deallocating()
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv123__fundamental_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv123__fundamental_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTSN10__cxxabiv123__fundamental_type_infoE) for typeinfo name for __cxxabiv1::__fundamental_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv123__fundamental_type_infoE) refers to type_info_dtor.o(.constdata__ZTISt9type_info) for typeinfo for std::type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__array_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__array_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTSN10__cxxabiv117__array_type_infoE) for typeinfo name for __cxxabiv1::__array_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__array_type_infoE) refers to type_info_dtor.o(.constdata__ZTISt9type_info) for typeinfo for std::type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv120__function_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv120__function_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTSN10__cxxabiv120__function_type_infoE) for typeinfo name for __cxxabiv1::__function_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv120__function_type_infoE) refers to type_info_dtor.o(.constdata__ZTISt9type_info) for typeinfo for std::type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv116__enum_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv116__enum_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTSN10__cxxabiv116__enum_type_infoE) for typeinfo name for __cxxabiv1::__enum_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv116__enum_type_infoE) refers to type_info_dtor.o(.constdata__ZTISt9type_info) for typeinfo for std::type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__class_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__class_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTSN10__cxxabiv117__class_type_infoE) for typeinfo name for __cxxabiv1::__class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__class_type_infoE) refers to type_info_dtor.o(.constdata__ZTISt9type_info) for typeinfo for std::type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv120__si_class_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv120__si_class_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTSN10__cxxabiv120__si_class_type_infoE) for typeinfo name for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv120__si_class_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__class_type_infoE) for typeinfo for __cxxabiv1::__class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv121__vmi_class_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv121__vmi_class_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTSN10__cxxabiv121__vmi_class_type_infoE) for typeinfo name for __cxxabiv1::__vmi_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv121__vmi_class_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__class_type_infoE) for typeinfo for __cxxabiv1::__class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__pbase_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__pbase_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTSN10__cxxabiv117__pbase_type_infoE) for typeinfo name for __cxxabiv1::__pbase_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__pbase_type_infoE) refers to type_info_dtor.o(.constdata__ZTISt9type_info) for typeinfo for std::type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv119__pointer_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv119__pointer_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTSN10__cxxabiv119__pointer_type_infoE) for typeinfo name for __cxxabiv1::__pointer_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv119__pointer_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__pbase_type_infoE) for typeinfo for __cxxabiv1::__pbase_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv129__pointer_to_member_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv120__si_class_type_infoE) for vtable for __cxxabiv1::__si_class_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv129__pointer_to_member_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTSN10__cxxabiv129__pointer_to_member_type_infoE) for typeinfo name for __cxxabiv1::__pointer_to_member_type_info
+    lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv129__pointer_to_member_type_infoE) refers to lib_rtti_impl.o(.constdata__ZTIN10__cxxabiv117__pbase_type_infoE) for typeinfo for __cxxabiv1::__pbase_type_info
+    type_info_dtor.o(.constdata__ZTVSt9type_info) refers to type_info_dtor.o(.constdata__ZTISt9type_info) for typeinfo for std::type_info
+    type_info_dtor.o(.constdata__ZTVSt9type_info) refers to type_info_dtor.o(i._ZNSt9type_infoD1Ev) for std::type_info::~type_info()
+    type_info_dtor.o(.constdata__ZTVSt9type_info) refers to type_info_dtor.o(i._ZNSt9type_infoD0Ev) for std::type_info::~type_info__deallocating()
+    type_info_dtor.o(.constdata__ZTISt9type_info) refers to lib_rtti_impl.o(.constdata__ZTVN10__cxxabiv117__class_type_infoE) for vtable for __cxxabiv1::__class_type_info
+    type_info_dtor.o(.constdata__ZTISt9type_info) refers to type_info_dtor.o(.constdata__ZTSSt9type_info) for typeinfo name for std::type_info
+
+
+================================================================================
+
+Removing Unused input sections from the image.
+
+    Removing bsp.o(.text), (144 bytes).
+    Removing bsp.o(.ARM.exidx), (8 bytes).
+    Removing main.o(.ARM.exidx), (8 bytes).
+    Removing econtrol.o(.ARM.exidx), (8 bytes).
+    Removing ecursor.o(.ARM.exidx), (8 bytes).
+    Removing graphicfunc.o(.ARM.exidx), (8 bytes).
+    Removing lcddriver.o(.ARM.exidx), (8 bytes).
+    Removing eframe.o(.ARM.exidx), (8 bytes).
+    Removing main.o(.ARM.exidx), (8 bytes).
+    Removing main.o(.ARM.exidx), (8 bytes).
+    Removing main.o(.ARM.exidx), (8 bytes).
+    Removing main.o(.ARM.exidx), (8 bytes).
+    Removing main.o(.ARM.exidx), (8 bytes).
+    Removing main.o(.ARM.exidx), (8 bytes).
+    Removing main.o(.ARM.exidx), (8 bytes).
+    Removing main.o(.ARM.exidx), (8 bytes).
+    Removing econtrol.o(.ARM.exidx), (8 bytes).
+    Removing econtrol.o(.ARM.exidx), (8 bytes).
+    Removing econtrol.o(.ARM.exidx), (8 bytes).
+    Removing econtrol.o(.ARM.exidx), (8 bytes).
+    Removing econtrol.o(.ARM.exidx), (8 bytes).
+    Removing econtrol.o(.ARM.exidx), (8 bytes).
+    Removing econtrol.o(.ARM.exidx), (8 bytes).
+    Removing econtrol.o(.ARM.exidx), (8 bytes).
+    Removing econtrol.o(.ARM.exidx), (8 bytes).
+    Removing econtrol.o(.ARM.exidx), (8 bytes).
+    Removing eframe.o(.ARM.exidx), (8 bytes).
+    Removing eframe.o(.ARM.exidx), (8 bytes).
+    Removing eframe.o(.ARM.exidx), (8 bytes).
+    Removing eframe.o(.ARM.exidx), (8 bytes).
+    Removing eframe.o(.ARM.exidx), (8 bytes).
+    Removing eframe.o(.ARM.exidx), (8 bytes).
+    Removing eframe.o(.constdata__ZTI7EWindow), (12 bytes).
+    Removing eframe.o(.constdata__ZTI14ESimpleDesktop), (8 bytes).
+    Removing eframe.o(.constdata__ZTI13ESimpleWindow), (8 bytes).
+    Removing eframe.o(.constdata__ZTI8EDesktop), (12 bytes).
+    Removing eframe.o(.constdata__ZTS13ESimpleWindow), (16 bytes).
+    Removing eframe.o(.constdata__ZTS7EWindow), (9 bytes).
+    Removing eframe.o(.constdata__ZTS14ESimpleDesktop), (17 bytes).
+    Removing eframe.o(.constdata__ZTS8EDesktop), (10 bytes).
+
+40 unused section(s) (total 484 bytes) removed from the image.
+
+================================================================================
+
+Adding Veneers to the image
+
+    Adding TA veneer (8 bytes, Short) for call to '__rt_exit' from exit.o(.text).
+    Adding AT veneer (12 bytes, Long) for call to '__rt_lib_shutdown' from kernel.o(.text).
+    Adding TA veneer (4 bytes, Inline) for call to '_fp_init' from lib_init.o(.text).
+    Adding AT veneer (8 bytes, Inline) for call to '__aeabi_atexit' from main.o(.text).
+    Adding TA veneer (4 bytes, Inline) for call to '__heap_extend' from init_alloc.o(.text).
+    Adding TA veneer (4 bytes, Inline) for call to '__rt_locale' from lib_init.o(.text).
+    Adding AT veneer (8 bytes, Inline) for call to '__rt_lib_init' from kernel.o(.text).
+    Adding TA veneer (4 bytes, Inline) for call to '__rt_heap_descriptor' from h1_alloc.o(.text).
+    Adding TA veneer (4 bytes, Inline) for call to '_sys_exit' from defsig_exit.o(.text).
+    Adding TA veneer (4 bytes, Inline) for call to '__rt_ddtor_pointer_addr' from aeabi_atexit.o(i.__aeabi_atexit).
+    Adding TA veneer (4 bytes, Inline) for call to '__ARM_argv_veneer' from lib_init.o(.text).
+
+11 Veneer(s) (total 64 bytes) added to the image.
+
+================================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    RESET                                    0x00000000   Section      284  startup.o(RESET)
+    ../../../edgfe/lib_src/dtor_list.c       0x00000000   Number         0  cxa_finalize.o ABSOLUTE
+    ../../../edgfe/lib_src/dtor_list.c       0x00000000   Number         0  aeabi_atexit.o ABSOLUTE
+    ../../../edgfe/lib_src/dtor_list.c       0x00000000   Number         0  cxa_atexit.o ABSOLUTE
+    ../../../edgfe/lib_src/typeinfo.c        0x00000000   Number         0  lib_rtti_impl.o ABSOLUTE
+    ../../../edgfe/lib_src/typeinfo.c        0x00000000   Number         0  type_info_dtor.o ABSOLUTE
+    ../../angel/boardlib.s                   0x00000000   Number         0  boardinit1.o ABSOLUTE
+    ../../angel/boardlib.s                   0x00000000   Number         0  boardinit3.o ABSOLUTE
+    ../../angel/boardlib.s                   0x00000000   Number         0  boardshut.o ABSOLUTE
+    ../../angel/boardlib.s                   0x00000000   Number         0  cpuinit.o ABSOLUTE
+    ../../angel/boardlib.s                   0x00000000   Number         0  boardinit2.o ABSOLUTE
+    ../../angel/handlers.s                   0x00000000   Number         0  __scatter_copy.o ABSOLUTE
+    ../../angel/handlers.s                   0x00000000   Number         0  __scatter_zi.o ABSOLUTE
+    ../../angel/kernel.s                     0x00000000   Number         0  kernel.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_locale_intlibspace.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_locale.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_fp_status_addr.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  aeabi_idiv0.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  aeabi_idiv0_sigfpe.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_ddtor_pointer_addr.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_stackheap_storage.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_stackheap_storage_intlibspace.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_heap_descriptor_intlibspace.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_heap_descriptor.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_div0.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_ddtor_pointer_addr_intlibspace.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_fp_status_addr_intlibspace.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_raise.o ABSOLUTE
+    ../../angel/scatter.s                    0x00000000   Number         0  __scatter.o ABSOLUTE
+    ../../angel/startup.s                    0x00000000   Number         0  __main.o ABSOLUTE
+    ../../angel/sys.s                        0x00000000   Number         0  mutex_init.o ABSOLUTE
+    ../../angel/sys.s                        0x00000000   Number         0  libspace.o ABSOLUTE
+    ../../angel/sys.s                        0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
+    ../../angel/sys.s                        0x00000000   Number         0  use_no_semi.o ABSOLUTE
+    ../../angel/sys.s                        0x00000000   Number         0  sys_exit.o ABSOLUTE
+    ../../angel/sysapp.c                     0x00000000   Number         0  sys_wrch.o ABSOLUTE
+    ../../angel/sysapp.c                     0x00000000   Number         0  sys_command.o ABSOLUTE
+    ../../arm_runtime.c                      0x00000000   Number         0  init_aeabi.o ABSOLUTE
+    ../../arm_runtime.c                      0x00000000   Number         0  init_aeabi.o ABSOLUTE
+    ../../armsys.c                           0x00000000   Number         0  lib_init.o ABSOLUTE
+    ../../armsys.c                           0x00000000   Number         0  lib_init.o ABSOLUTE
+    ../../armsys.c                           0x00000000   Number         0  no_argv.o ABSOLUTE
+    ../../armsys.c                           0x00000000   Number         0  _get_argv.o ABSOLUTE
+    ../../division.s                         0x00000000   Number         0  aeabi_sdiv.o ABSOLUTE
+    ../../division.s                         0x00000000   Number         0  aeabi_sdiv_div0.o ABSOLUTE
+    ../../divrt.s                            0x00000000   Number         0  divrt_7tdmi.o ABSOLUTE
+    ../../divrt.s                            0x00000000   Number         0  divrt_7tdmi_div0.o ABSOLUTE
+    ../../dso_handle.s                       0x00000000   Number         0  dso_handle.o ABSOLUTE
+    ../../fpinit.s                           0x00000000   Number         0  fpinit.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_free_mt.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_init_mt.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_init.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_free.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_alloc_mt.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_extend.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_alloc.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_extend_mt.o ABSOLUTE
+    ../../heap2.c                            0x00000000   Number         0  fdtree.o ABSOLUTE
+    ../../heap2.c                            0x00000000   Number         0  heap2mt.o ABSOLUTE
+    ../../heap2.c                            0x00000000   Number         0  heap2.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  hrguard.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  init_alloc.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  free.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  hguard.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  heapstubs.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  malloc.o ABSOLUTE
+    ../../memcpset.s                         0x00000000   Number         0  rt_memcpy_w.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  __raise.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_fpe_formal.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_fpe_outer.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_general.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_other.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
+    ../../signal.s                           0x00000000   Number         0  defsig.o ABSOLUTE
+    ../../stdlib.c                           0x00000000   Number         0  atexit_cpp.o ABSOLUTE
+    ../../stdlib.c                           0x00000000   Number         0  exit.o ABSOLUTE
+    ../../stkheap.s                          0x00000000   Number         0  heapext.o ABSOLUTE
+    ../../stkheap1.s                         0x00000000   Number         0  stkheap1.o ABSOLUTE
+    ../../stkheap2.s                         0x00000000   Number         0  stkheap2.o ABSOLUTE
+    ../../unhosted.s                         0x00000000   Number         0  callvia.o ABSOLUTE
+    BSP.cpp                                  0x00000000   Number         0  bsp.o ABSOLUTE
+    EControl.cpp                             0x00000000   Number         0  econtrol.o ABSOLUTE
+    ECursor.cpp                              0x00000000   Number         0  ecursor.o ABSOLUTE
+    EFrame.cpp                               0x00000000   Number         0  eframe.o ABSOLUTE
+    GraphicFunc.cpp                          0x00000000   Number         0  graphicfunc.o ABSOLUTE
+    ISR.s                                    0x00000000   Number         0  isr.o ABSOLUTE
+    LCDDriver.cpp                            0x00000000   Number         0  lcddriver.o ABSOLUTE
+    PeripherialInit.s                        0x00000000   Number         0  peripherialinit.o ABSOLUTE
+    Startup.s                                0x00000000   Number         0  startup.o ABSOLUTE
+    dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    main.cpp                                 0x00000000   Number         0  main.o ABSOLUTE
+    !!!main                                  0x0000011c   Section        8  __main.o(!!!main)
+    !!!scatter                               0x00000124   Section       60  __scatter.o(!!!scatter)
+    !!handler_copy                           0x00000160   Section       40  __scatter_copy.o(!!handler_copy)
+    !!handler_zi                             0x00000188   Section       44  __scatter_zi.o(!!handler_zi)
+    .emb_text                                0x000001b8   Section       16  lib_init.o(.emb_text)
+    .text                                    0x000001c8   Section       36  startup.o(.text)
+    .text                                    0x000001ec   Section     1032  main.o(.text)
+    __sti___8_main_cpp                       0x000003b0   ARM Code     460  main.o(.text)
+    .text                                    0x000005f4   Section    18032  econtrol.o(.text)
+    .text                                    0x00004c64   Section      748  ecursor.o(.text)
+    .text                                    0x00004f50   Section    13516  graphicfunc.o(.text)
+    .text                                    0x0000841c   Section     2352  lcddriver.o(.text)
+    .text                                    0x00008d4c   Section     8016  eframe.o(.text)
+    .text                                    0x0000ac9c   Section      384  aeabi_sdiv.o(.text)
+    __arm_div8                               0x0000acc8   ARM Code       0  aeabi_sdiv.o(.text)
+    __arm_div4                               0x0000acf8   ARM Code       0  aeabi_sdiv.o(.text)
+    __arm_div_large                          0x0000ad4c   ARM Code       0  aeabi_sdiv.o(.text)
+    .text                                    0x0000ae1c   Section       64  stkheap2.o(.text)
+    .text                                    0x0000ae5c   Section       40  init_aeabi.o(.text)
+    .text                                    0x0000ae84   Section      104  kernel.o(.text)
+    .text                                    0x0000aeec   Section       96  sys_stackheap_outer.o(.text)
+    .text                                    0x0000af4c   Section       16  rt_stackheap_storage_intlibspace.o(.text)
+    .text                                    0x0000af60   Section       16  rt_ddtor_pointer_addr_intlibspace.o(.text)
+    .text                                    0x0000af70   Section      110  h1_alloc.o(.text)
+    .text                                    0x0000afe0   Section       16  callvia.o(.text)
+    .text                                    0x0000aff4   Section       24  sys_exit.o(.text)
+    .text                                    0x0000b00c   Section       12  libspace.o(.text)
+    .text                                    0x0000b01c   Section       16  rt_heap_descriptor_intlibspace.o(.text)
+    .text                                    0x0000b02c   Section      140  init_alloc.o(.text)
+    .text                                    0x0000b0b8   Section        4  hguard.o(.text)
+    .text                                    0x0000b0bc   Section       14  h1_init.o(.text)
+    .text                                    0x0000b0ca   Section       84  h1_free.o(.text)
+    .text                                    0x0000b11e   Section       12  exit.o(.text)
+    .text                                    0x0000b134   Section      206  lib_init.o(.text)
+    .text                                    0x0000b204   Section       12  boardinit2.o(.text)
+    .text                                    0x0000b210   Section       16  boardinit3.o(.text)
+    .text                                    0x0000b220   Section        4  use_no_semi.o(.text)
+    .text                                    0x0000b228   Section       16  rt_locale_intlibspace.o(.text)
+    .text                                    0x0000b238   Section       54  h1_extend.o(.text)
+    .text                                    0x0000b26e   Section       16  defsig_rtmem_outer.o(.text)
+    .text                                    0x0000b284   Section       16  heapext.o(.text)
+    .text                                    0x0000b294   Section        6  no_argv.o(.text)
+    .text                                    0x0000b29c   Section       16  rt_fp_status_addr_intlibspace.o(.text)
+    .text                                    0x0000b2ac   Section       16  defsig_exit.o(.text)
+    .text                                    0x0000b2bc   Section       80  defsig_rtmem_inner.o(.text)
+    .text                                    0x0000b30c   Section       56  defsig_general.o(.text)
+    .text                                    0x0000b344   Section       16  sys_wrch.o(.text)
+    .text_udiv                               0x0000b354   Section       28  aeabi_sdiv.o(.text_udiv)
+    ISR                                      0x0000b370   Section      168  isr.o(ISR)
+    PERI_INIT                                0x0000b418   Section      484  peripherialinit.o(PERI_INIT)
+    i._Z11BSP_FeedDogv                       0x0000b610   Section       24  main.o(i._Z11BSP_FeedDogv)
+    i._ZN12ECheckButtonD1Ev                  0x0000b628   Section        8  main.o(i._ZN12ECheckButtonD1Ev)
+    i._ZN13ESimpleWindow10AddControlEP8EControl 0x0000b630   Section       32  main.o(i._ZN13ESimpleWindow10AddControlEP8EControl)
+    i._ZN13ESimpleWindow12InWindowAreaE9EPosition 0x0000b650   Section       20  eframe.o(i._ZN13ESimpleWindow12InWindowAreaE9EPosition)
+    i._ZN13ESimpleWindow13RecoverWindowEv    0x0000b664   Section        4  eframe.o(i._ZN13ESimpleWindow13RecoverWindowEv)
+    i._ZN13ESimpleWindow14GetWindowStateEv   0x0000b668   Section       12  eframe.o(i._ZN13ESimpleWindow14GetWindowStateEv)
+    i._ZN14ESimpleDesktop13RedrawDesktopEv   0x0000b674   Section       20  eframe.o(i._ZN14ESimpleDesktop13RedrawDesktopEv)
+    i._ZN5EEditD1Ev                          0x0000b688   Section        8  main.o(i._ZN5EEditD1Ev)
+    i._ZN5EMenu13SetSelectItemEj             0x0000b690   Section       28  econtrol.o(i._ZN5EMenu13SetSelectItemEj)
+    i._ZN5ESizeC1Ejj                         0x0000b6ac   Section       12  econtrol.o(i._ZN5ESizeC1Ejj)
+    i._ZN5ETree12ETreeSubItem11OpenSubItemEv 0x0000b6b8   Section       36  econtrol.o(i._ZN5ETree12ETreeSubItem11OpenSubItemEv)
+    i._ZN5ETree12ETreeSubItem12CloseSubItemEv 0x0000b6dc   Section       36  econtrol.o(i._ZN5ETree12ETreeSubItem12CloseSubItemEv)
+    i._ZN6EEventC1Ev                         0x0000b700   Section       52  eframe.o(i._ZN6EEventC1Ev)
+    i._ZN6ELabelD1Ev                         0x0000b734   Section        8  main.o(i._ZN6ELabelD1Ev)
+    i._ZN7EButtonD1Ev                        0x0000b73c   Section        8  main.o(i._ZN7EButtonD1Ev)
+    i._ZN7EWindow14GetWindowStateEv          0x0000b744   Section       12  eframe.o(i._ZN7EWindow14GetWindowStateEv)
+    i._ZN7EWindowD1Ev                        0x0000b750   Section       16  main.o(i._ZN7EWindowD1Ev)
+    i._ZN8EControl13RedrawControlEv          0x0000b760   Section       44  econtrol.o(i._ZN8EControl13RedrawControlEv)
+    i._ZN8EControl17SetRedrawFunctionEPFvPS_E 0x0000b78c   Section        8  econtrol.o(i._ZN8EControl17SetRedrawFunctionEPFvPS_E)
+    i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E  0x0000b794   Section       84  econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E)
+    i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E5ESize9EPosition 0x0000b7e8   Section       60  econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E5ESize9EPosition)
+    i._ZN9EComboBox13GetItemStringEj         0x0000b824   Section       24  econtrol.o(i._ZN9EComboBox13GetItemStringEj)
+    i._ZN9EComboBox14SetSelectIndexEj        0x0000b83c   Section       32  econtrol.o(i._ZN9EComboBox14SetSelectIndexEj)
+    i._ZN9EPositionC1Ejj                     0x0000b85c   Section       12  main.o(i._ZN9EPositionC1Ejj)
+    i.__aeabi_atexit                         0x0000b870   Section       48  aeabi_atexit.o(i.__aeabi_atexit)
+    i.__cxa_finalize                         0x0000b8a0   Section       74  cxa_finalize.o(i.__cxa_finalize)
+    x$fpl$fpinit                             0x0000b8f0   Section       24  fpinit.o(x$fpl$fpinit)
+    .constdata                               0x0000b908   Section      320  econtrol.o(.constdata)
+    EG_DefaultIcon                           0x0000b908   Data         320  econtrol.o(.constdata)
+    .constdata                               0x0000ba48   Section      768  graphicfunc.o(.constdata)
+    EG_SmallFont                             0x0000ba48   Data         768  graphicfunc.o(.constdata)
+    .constdata__ZTV13ESimpleWindow           0x0000bd48   Section       32  eframe.o(.constdata__ZTV13ESimpleWindow)
+    .constdata__ZTV14ESimpleDesktop          0x0000bd68   Section       16  eframe.o(.constdata__ZTV14ESimpleDesktop)
+    .constdata__ZTV7EWindow                  0x0000bd78   Section       32  eframe.o(.constdata__ZTV7EWindow)
+    .constdata__ZTV8EDesktop                 0x0000bd98   Section       16  eframe.o(.constdata__ZTV8EDesktop)
+    .init_array                              0x0000bdc8   Section        4  main.o(.init_array)
+    .data                                    0x40000000   Section        1  main.o(.data)
+    .data                                    0x40000004   Section        4  eframe.o(.data)
+    ISR_MEM                                  0x40000008   Section        8  isr.o(ISR_MEM)
+    ABORT_ADDR                               0x4000000c   Data           4  isr.o(ISR_MEM)
+    .bss                                     0x40000010   Section      424  main.o(.bss)
+    .bss                                     0x400001b8   Section     4096  lcddriver.o(.bss)
+    .bss                                     0x400011b8   Section       96  libspace.o(.bss)
+    HEAP                                     0x40001218   Section       16  startup.o(HEAP)
+    Heap_Mem                                 0x40001218   Data          16  startup.o(HEAP)
+    STACK                                    0x40001228   Section     1160  startup.o(STACK)
+    Stack_Mem                                0x40001228   Data        1024  startup.o(STACK)
+    Stack_Top                                0x400016b0   Number         0  startup.o(STACK)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv1$ARM_ISAv4$M$S$PE$A:L22$X:L11$S22$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OSPACE$EBA8$STANDARDLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __ARM_use_no_argv                        0x00000000   Number         0  main.o ABSOLUTE
+    __ARM_exceptions_init                     - Undefined Weak Reference
+    __alloca_initialize                       - Undefined Weak Reference
+    __sigvec_lookup                           - Undefined Weak Reference
+    __user_heap_extend                        - Undefined Weak Reference
+    __user_heap_extent                        - Undefined Weak Reference
+    _atexit_init                              - Undefined Weak Reference
+    _call_atexit_fns                          - Undefined Weak Reference
+    _clock_init                               - Undefined Weak Reference
+    _fp_trap_init                             - Undefined Weak Reference
+    _get_lc_collate                           - Undefined Weak Reference
+    _get_lc_ctype                             - Undefined Weak Reference
+    _get_lc_monetary                          - Undefined Weak Reference
+    _get_lc_numeric                           - Undefined Weak Reference
+    _get_lc_time                              - Undefined Weak Reference
+    _getenv_init                              - Undefined Weak Reference
+    _handle_redirection                       - Undefined Weak Reference
+    _initio                                   - Undefined Weak Reference
+    _mutex_acquire                            - Undefined Weak Reference
+    _mutex_release                            - Undefined Weak Reference
+    _rand_init                                - Undefined Weak Reference
+    _signal_init                              - Undefined Weak Reference
+    _terminateio                              - Undefined Weak Reference
+    Reset_Handler                            0x00000040   ARM Code       0  startup.o(RESET)
+    __main                                   0x0000011c   ARM Code       8  __main.o(!!!main)
+    __scatterload                            0x00000124   ARM Code       0  __scatter.o(!!!scatter)
+    __scatterload_rt2                        0x00000124   ARM Code      52  __scatter.o(!!!scatter)
+    __scatterload_null                       0x00000138   ARM Code       0  __scatter.o(!!!scatter)
+    __scatterload_copy                       0x00000160   ARM Code      40  __scatter_copy.o(!!handler_copy)
+    __scatterload_zeroinit                   0x00000188   ARM Code      44  __scatter_zi.o(!!handler_zi)
+    Inline Thumb to ARM Veneer to __ARM_argv_veneer 0x000001b5   Thumb Code     0  lib_init.o(.emb_text)
+    __ARM_argv_veneer                        0x000001b8   ARM Code      16  lib_init.o(.emb_text)
+    __user_initial_stackheap                 0x000001c8   ARM Code       0  startup.o(.text)
+    timerISR()                               0x000001ec   ARM Code      44  main.o(.text)
+    main                                     0x00000218   ARM Code     160  main.o(.text)
+    nextButtonCBF(EControl*, EEvent*)        0x000002b8   ARM Code     248  main.o(.text)
+    EG_RedrawFunc_DefaultELabel(EControl*)   0x000005f4   ARM Code      52  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEButton(EControl*)  0x00000628   ARM Code      84  econtrol.o(.text)
+    EG_CallbackFunc_DefaultECheckButton(EControl*, EEvent*) 0x0000067c   ARM Code      96  econtrol.o(.text)
+    EG_RedrawFunc_DefaultECheckButton(EControl*) 0x000006dc   ARM Code     180  econtrol.o(.text)
+    EEdit::AddCharToString(char)             0x00000790   ARM Code      68  econtrol.o(.text)
+    EG_CallbackFunc_DefaultEEdit(EControl*, EEvent*) 0x000007d4   ARM Code      68  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEEdit(EControl*)    0x00000818   ARM Code     192  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEProgress(EControl*) 0x000008d8   ARM Code     164  econtrol.o(.text)
+    EExtLabel::ChangeState()                 0x0000097c   ARM Code      56  econtrol.o(.text)
+    EG_CallbackFunc_DefaultEExtLabel(EControl*, EEvent*) 0x000009b4   ARM Code      72  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEExtLabel(EControl*) 0x000009fc   ARM Code      80  econtrol.o(.text)
+    EComboBox::SwitchOpenState()             0x00000a4c   ARM Code      84  econtrol.o(.text)
+    EG_CallbackFunc_DefaultEComboBox(EControl*, EEvent*) 0x00000aa0   ARM Code     208  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEComboBox(EControl*) 0x00000b70   ARM Code     468  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEIcon(EControl*)    0x00000d44   ARM Code      68  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEIconButton(EControl*) 0x00000d88   ARM Code     180  econtrol.o(.text)
+    EMessageBox::InCloseArea(const EPosition&) 0x00000e3c   ARM Code     104  econtrol.o(.text)
+    EG_CallbackFunc_DefaultEMessageBox(EControl*, EEvent*) 0x00000ea4   ARM Code     104  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEMessageBox(EControl*) 0x00000f0c   ARM Code     224  econtrol.o(.text)
+    EDialogBox::UpdataState(const EPosition&) 0x00000fec   ARM Code     184  econtrol.o(.text)
+    EG_CallbackFunc_DefaultEDialogBox(EControl*, EEvent*) 0x000010a4   ARM Code     104  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEDialogBox(EControl*) 0x0000110c   ARM Code     368  econtrol.o(.text)
+    EG_CallbackFunc_DefaultEScroll(EControl*, EEvent*) 0x0000127c   ARM Code     208  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEScroll(EControl*)  0x0000134c   ARM Code     444  econtrol.o(.text)
+    EG_CallbackFunc_DefaultEList(EControl*, EEvent*) 0x00001508   ARM Code     200  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEList(EControl*)    0x000015d0   ARM Code     248  econtrol.o(.text)
+    EMenu::UpdateHeightAndPosition()         0x000016c8   ARM Code      80  econtrol.o(.text)
+    EMenu::SwitchShowState()                 0x00001718   ARM Code     168  econtrol.o(.text)
+    EG_CallbackFunc_DefaultEMenu(EControl*, EEvent*) 0x000017c0   ARM Code     596  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEMenu(EControl*)    0x00001a14   ARM Code     556  econtrol.o(.text)
+    EG_CallbackFunc_DefaultEPopupMenu(EControl*, EEvent*) 0x00001c40   ARM Code     304  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEPopupMenu(EControl*) 0x00001d70   ARM Code     236  econtrol.o(.text)
+    ETree::ETreeItem::OpenAllSubItem()       0x00001e5c   ARM Code      68  econtrol.o(.text)
+    ETree::ETreeItem::CloseAllSubItem()      0x00001ea0   ARM Code      68  econtrol.o(.text)
+    ETree::ETreeSubItem::GetOpenSubItem(unsigned&) 0x00001ee4   ARM Code     104  econtrol.o(.text)
+    ETree::ETreeItem::GetOpenSubItem(unsigned&) 0x00001f4c   ARM Code     108  econtrol.o(.text)
+    EG_CallbackFunc_DefaultETree(EControl*, EEvent*) 0x00001fb8   ARM Code     200  econtrol.o(.text)
+    ETree::DrawExtendIcon(const EPosition&, bool) 0x00002080   ARM Code      96  econtrol.o(.text)
+    ETree::ETreeSubItem::GetOpenSubItemCount() 0x000020e0   ARM Code      44  econtrol.o(.text)
+    ETree::ETreeItem::GetOpenSubItemCount()  0x0000210c   ARM Code      88  econtrol.o(.text)
+    EG_RedrawFunc_DefaultETree(EControl*)    0x00002164   ARM Code     612  econtrol.o(.text)
+    EControl::NoticeControl(EEvent*)         0x000023c8   ARM Code      72  econtrol.o(.text)
+    EControl::InControlArea(EPosition)       0x00002410   ARM Code      92  econtrol.o(.text)
+    EG_CallbackFunc_DefaultEToolBar(EControl*, EEvent*) 0x0000246c   ARM Code     132  econtrol.o(.text)
+    EToolBar::AdjustControlPosition()        0x000024f0   ARM Code      96  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEToolBar(EControl*) 0x00002550   ARM Code     104  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEStatusBar(EControl*) 0x000025b8   ARM Code     164  econtrol.o(.text)
+    EBarChart::CheckSelectItem(unsigned, unsigned) 0x0000265c   ARM Code     256  econtrol.o(.text)
+    EG_CallbackFunc_DefaultEBarChart(EControl*, EEvent*) 0x0000275c   ARM Code     120  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEBarChart(EControl*) 0x000027d4   ARM Code     976  econtrol.o(.text)
+    EG_RedrawFunc_DefaultEClock(EControl*)   0x00002ba4   ARM Code     252  econtrol.o(.text)
+    ELabel::ELabel(EPosition, char*, unsigned) 0x00002ca0   ARM Code     116  econtrol.o(.text)
+    ELabel::ELabel__sub_object(EPosition, char*, unsigned) 0x00002ca0   ARM Code       0  econtrol.o(.text)
+    ELabel::ELabel(void(*)(EControl*, EEvent*), void(*)(EControl*), EPosition, char*, unsigned) 0x00002d14   ARM Code     132  econtrol.o(.text)
+    ELabel::ELabel__sub_object(void(*)(EControl*, EEvent*), void(*)(EControl*), EPosition, char*, unsigned) 0x00002d14   ARM Code       0  econtrol.o(.text)
+    EButton::EButton(void(*)(EControl*, EEvent*), EPosition, char*, unsigned) 0x00002d98   ARM Code     124  econtrol.o(.text)
+    EButton::EButton__sub_object(void(*)(EControl*, EEvent*), EPosition, char*, unsigned) 0x00002d98   ARM Code       0  econtrol.o(.text)
+    ECheckButton::ECheckButton(bool, EPosition, char*, unsigned) 0x00002e14   ARM Code     128  econtrol.o(.text)
+    ECheckButton::ECheckButton__sub_object(bool, EPosition, char*, unsigned) 0x00002e14   ARM Code       0  econtrol.o(.text)
+    ECheckButton::ECheckButton(void(*)(EControl*, EEvent*), bool, EPosition, char*, unsigned) 0x00002e94   ARM Code     140  econtrol.o(.text)
+    ECheckButton::ECheckButton__sub_object(void(*)(EControl*, EEvent*), bool, EPosition, char*, unsigned) 0x00002e94   ARM Code       0  econtrol.o(.text)
+    EEdit::EEdit(bool, EPosition, unsigned)  0x00002f20   ARM Code     152  econtrol.o(.text)
+    EEdit::EEdit__sub_object(bool, EPosition, unsigned) 0x00002f20   ARM Code       0  econtrol.o(.text)
+    EEdit::SetString(char*)                  0x00002fb8   ARM Code     100  econtrol.o(.text)
+    EEdit::EEdit(char*, bool, EPosition, unsigned) 0x0000301c   ARM Code     176  econtrol.o(.text)
+    EEdit::EEdit__sub_object(char*, bool, EPosition, unsigned) 0x0000301c   ARM Code       0  econtrol.o(.text)
+    EEdit::EEdit(void(*)(EControl*, EEvent*), char*, bool, EPosition, unsigned) 0x000030cc   ARM Code     172  econtrol.o(.text)
+    EEdit::EEdit__sub_object(void(*)(EControl*, EEvent*), char*, bool, EPosition, unsigned) 0x000030cc   ARM Code       0  econtrol.o(.text)
+    EEdit::SetString(char*, int)             0x00003178   ARM Code     100  econtrol.o(.text)
+    EExtLabel::EExtLabel()                   0x000031dc   ARM Code     100  econtrol.o(.text)
+    EExtLabel::EExtLabel__sub_object()       0x000031dc   ARM Code       0  econtrol.o(.text)
+    EExtLabel::EExtLabel(EPosition, char*, unsigned) 0x00003240   ARM Code      80  econtrol.o(.text)
+    EExtLabel::EExtLabel__sub_object(EPosition, char*, unsigned) 0x00003240   ARM Code       0  econtrol.o(.text)
+    EExtLabel::EExtLabel(void(*)(EControl*, EEvent*), EPosition, char*, unsigned) 0x00003290   ARM Code      84  econtrol.o(.text)
+    EExtLabel::EExtLabel__sub_object(void(*)(EControl*, EEvent*), EPosition, char*, unsigned) 0x00003290   ARM Code       0  econtrol.o(.text)
+    EComboBox::EComboBox()                   0x000032e4   ARM Code     132  econtrol.o(.text)
+    EComboBox::EComboBox__sub_object()       0x000032e4   ARM Code       0  econtrol.o(.text)
+    EComboBox::EComboBox(EPosition, unsigned) 0x00003368   ARM Code     188  econtrol.o(.text)
+    EComboBox::EComboBox__sub_object(EPosition, unsigned) 0x00003368   ARM Code       0  econtrol.o(.text)
+    EComboBox::SetIemString(unsigned, char*) 0x00003424   ARM Code      76  econtrol.o(.text)
+    EComboBox::AddItem(char*)                0x00003470   ARM Code      88  econtrol.o(.text)
+    EComboBox::RemoveItem(unsigned)          0x000034c8   ARM Code     128  econtrol.o(.text)
+    EIcon::SetIconBuffer(unsigned)           0x00003548   ARM Code      32  econtrol.o(.text)
+    EIcon::EIcon(void(*)(EControl*, EEvent*), EPosition, unsigned) 0x00003568   ARM Code     156  econtrol.o(.text)
+    EIcon::EIcon__sub_object(void(*)(EControl*, EEvent*), EPosition, unsigned) 0x00003568   ARM Code       0  econtrol.o(.text)
+    EIconButton::EIconButton(void(*)(EControl*, EEvent*), EPosition, ESize, ESize, unsigned char*, char*, bool) 0x00003604   ARM Code     200  econtrol.o(.text)
+    EIconButton::EIconButton__sub_object(void(*)(EControl*, EEvent*), EPosition, ESize, ESize, unsigned char*, char*, bool) 0x00003604   ARM Code       0  econtrol.o(.text)
+    EIconButton::EIconButton(void(*)(EControl*, EEvent*), EPosition, ESize, unsigned, char*, bool) 0x000036cc   ARM Code     124  econtrol.o(.text)
+    EIconButton::EIconButton__sub_object(void(*)(EControl*, EEvent*), EPosition, ESize, unsigned, char*, bool) 0x000036cc   ARM Code       0  econtrol.o(.text)
+    EMessageBox::EMessageBox(unsigned char, EPosition, char*, unsigned) 0x00003748   ARM Code     128  econtrol.o(.text)
+    EMessageBox::EMessageBox__sub_object(unsigned char, EPosition, char*, unsigned) 0x00003748   ARM Code       0  econtrol.o(.text)
+    EMessageBox::SwitchState()               0x000037c8   ARM Code      56  econtrol.o(.text)
+    EDialogBox::EDialogBox(unsigned char, EPosition, char*, unsigned) 0x00003800   ARM Code     148  econtrol.o(.text)
+    EDialogBox::EDialogBox__sub_object(unsigned char, EPosition, char*, unsigned) 0x00003800   ARM Code       0  econtrol.o(.text)
+    EScroll::EScroll()                       0x00003894   ARM Code      56  econtrol.o(.text)
+    EScroll::EScroll__sub_object()           0x00003894   ARM Code       0  econtrol.o(.text)
+    EScroll::EScroll(EPosition, unsigned, unsigned) 0x000038cc   ARM Code     112  econtrol.o(.text)
+    EScroll::EScroll__sub_object(EPosition, unsigned, unsigned) 0x000038cc   ARM Code       0  econtrol.o(.text)
+    EScroll::SetCurrentPosition(unsigned)    0x0000393c   ARM Code      60  econtrol.o(.text)
+    EList::AddItem(EList::EListItem*)        0x00003978   ARM Code      84  econtrol.o(.text)
+    EList::RemoveItem(int)                   0x000039cc   ARM Code     112  econtrol.o(.text)
+    EList::RemoveAllItems()                  0x00003a3c   ARM Code      56  econtrol.o(.text)
+    EList::AddColumn(unsigned)               0x00003a74   ARM Code     172  econtrol.o(.text)
+    EList::SetColumnWidth(unsigned, unsigned) 0x00003b20   ARM Code      88  econtrol.o(.text)
+    EList::SetItem(unsigned, unsigned, char*) 0x00003b78   ARM Code     112  econtrol.o(.text)
+    EList::SetItem(unsigned, unsigned, char*, void(*)(EControl*, EEvent*)) 0x00003be8   ARM Code     128  econtrol.o(.text)
+    EMenu::EMenu()                           0x00003c68   ARM Code     180  econtrol.o(.text)
+    EMenu::EMenu__sub_object()               0x00003c68   ARM Code       0  econtrol.o(.text)
+    EMenu::EMenu(char*, unsigned, EPosition, bool) 0x00003d1c   ARM Code     204  econtrol.o(.text)
+    EMenu::EMenu__sub_object(char*, unsigned, EPosition, bool) 0x00003d1c   ARM Code       0  econtrol.o(.text)
+    EMenu::AddItem(EMenu::EMenuItem*)        0x00003de8   ARM Code     148  econtrol.o(.text)
+    EMenu::RemovedAllItems()                 0x00003e7c   ARM Code      60  econtrol.o(.text)
+    EMenu::SetMenuItemState(unsigned, unsigned char) 0x00003eb8   ARM Code      36  econtrol.o(.text)
+    EMenu::SetMenuItem(unsigned, char*, unsigned char) 0x00003edc   ARM Code     168  econtrol.o(.text)
+    EMenu::SetMenuItem(unsigned, char*, unsigned char, void(*)(EControl*, EEvent*)) 0x00003f84   ARM Code     172  econtrol.o(.text)
+    EMenu::CollapseMenu()                    0x00004030   ARM Code      48  econtrol.o(.text)
+    EPopupMenu::EPopupMenu()                 0x00004060   ARM Code     116  econtrol.o(.text)
+    EPopupMenu::EPopupMenu__sub_object()     0x00004060   ARM Code       0  econtrol.o(.text)
+    EPopupMenu::AddItem(EPopupMenu::EPopupMenuItem*) 0x000040d4   ARM Code     132  econtrol.o(.text)
+    EPopupMenu::RemovedAllItems()            0x00004158   ARM Code      52  econtrol.o(.text)
+    EPopupMenu::SetPopupMenuItemState(unsigned, unsigned char) 0x0000418c   ARM Code      36  econtrol.o(.text)
+    EPopupMenu::SetPopupMenuItem(unsigned, char*, unsigned char) 0x000041b0   ARM Code     148  econtrol.o(.text)
+    EPopupMenu::SetPopupMenuItem(unsigned, char*, unsigned char, void(*)(EControl*, EEvent*)) 0x00004244   ARM Code     164  econtrol.o(.text)
+    EPopupMenu::ShowPopupMenu(const EPosition&) 0x000042e8   ARM Code      80  econtrol.o(.text)
+    EPopupMenu::ClosePopupMenu()             0x00004338   ARM Code      20  econtrol.o(.text)
+    ETree::ETreeItem::AddSubItem(ETree::ETreeSubItem*) 0x0000434c   ARM Code      64  econtrol.o(.text)
+    ETree::AddRoot(ETree::ETreeSubItem*, char*) 0x0000438c   ARM Code     140  econtrol.o(.text)
+    ETree::AddBranch(ETree::ETreeItem*, unsigned) 0x00004418   ARM Code      36  econtrol.o(.text)
+    ETree::AddBranch(ETree::ETreeItem*, unsigned, unsigned) 0x0000443c   ARM Code      72  econtrol.o(.text)
+    ETree::AddLeaf(unsigned, ETree::ETreeSubItem*, char*) 0x00004484   ARM Code     208  econtrol.o(.text)
+    ETree::ETreeSubItem::SetSubItemString(char*) 0x00004554   ARM Code      68  econtrol.o(.text)
+    ETree::AddLeaf(unsigned, unsigned, ETree::ETreeSubItem*, char*) 0x00004598   ARM Code     188  econtrol.o(.text)
+    ETree::RemoveAllRoots()                  0x00004654   ARM Code      44  econtrol.o(.text)
+    ETree::RemoveRoot(unsigned)              0x00004680   ARM Code      68  econtrol.o(.text)
+    ETree::ToggleRootState(unsigned)         0x000046c4   ARM Code      96  econtrol.o(.text)
+    ETree::ToggleLeafState(unsigned, unsigned) 0x00004724   ARM Code     156  econtrol.o(.text)
+    ETree::ETreeSubItem::ETreeSubItem()      0x000047c0   ARM Code      48  econtrol.o(.text)
+    ETree::ETreeSubItem::ETreeSubItem__sub_object() 0x000047c0   ARM Code       0  econtrol.o(.text)
+    ETree::ETreeItem::ETreeItem()            0x000047f0   ARM Code      48  econtrol.o(.text)
+    ETree::ETreeItem::ETreeItem__sub_object() 0x000047f0   ARM Code       0  econtrol.o(.text)
+    EToolBar::RemoveAllItems()               0x00004820   ARM Code      56  econtrol.o(.text)
+    EToolBar::EToolBar()                     0x00004858   ARM Code      60  econtrol.o(.text)
+    EToolBar::EToolBar__sub_object()         0x00004858   ARM Code       0  econtrol.o(.text)
+    EToolBar::EToolBar(EPosition)            0x00004894   ARM Code     112  econtrol.o(.text)
+    EToolBar::EToolBar__sub_object(EPosition) 0x00004894   ARM Code       0  econtrol.o(.text)
+    EToolBar::AddItem(EControl*)             0x00004904   ARM Code     116  econtrol.o(.text)
+    EToolBar::UpdateToolBarHeight()          0x00004978   ARM Code      84  econtrol.o(.text)
+    EToolBar::RemoveItem(unsigned)           0x000049cc   ARM Code     152  econtrol.o(.text)
+    EToolBar::SetDockState(unsigned char)    0x00004a64   ARM Code      88  econtrol.o(.text)
+    EStatusBar::SetLabelString(char*)        0x00004abc   ARM Code      84  econtrol.o(.text)
+    EStatusBar::SetStatusString(char*, unsigned char) 0x00004b10   ARM Code     148  econtrol.o(.text)
+    EStatusBar::GetStatusString(unsigned char) 0x00004ba4   ARM Code      44  econtrol.o(.text)
+    EStatusBar::ClearLabelString()           0x00004bd0   ARM Code      36  econtrol.o(.text)
+    EStatusBar::ClearStatusString(unsigned char) 0x00004bf4   ARM Code      84  econtrol.o(.text)
+    EStatusBar::SetStatusPosition(unsigned char, unsigned) 0x00004c48   ARM Code      28  econtrol.o(.text)
+    ECursor::SetCursorPosition(const EPosition&) 0x00004c64   ARM Code     744  ecursor.o(.text)
+    EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned) 0x00004f50   ARM Code      56  graphicfunc.o(.text)
+    EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned) 0x00004f88   ARM Code      56  graphicfunc.o(.text)
+    EG_Graphic_DrawWhiteHorizonLine(unsigned, unsigned, unsigned) 0x00004fc0   ARM Code      56  graphicfunc.o(.text)
+    EG_Graphic_DrawWhiteVerticalLine(unsigned, unsigned, unsigned) 0x00004ff8   ARM Code      56  graphicfunc.o(.text)
+    EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char) 0x00005030   ARM Code     596  graphicfunc.o(.text)
+    EG_Graphic_DrawWidthLine(unsigned, unsigned, unsigned, unsigned, unsigned char) 0x00005284   ARM Code     788  graphicfunc.o(.text)
+    EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned) 0x00005598   ARM Code     112  graphicfunc.o(.text)
+    EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned) 0x00005608   ARM Code      64  graphicfunc.o(.text)
+    EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned) 0x00005648   ARM Code      64  graphicfunc.o(.text)
+    EG_Graphic_DrawEmptyCircle(unsigned, unsigned, unsigned) 0x00005688   ARM Code     768  graphicfunc.o(.text)
+    EG_Graphic_DrawFilledCircle(unsigned, unsigned, unsigned) 0x00005988   ARM Code    1292  graphicfunc.o(.text)
+    EG_Graphic_DrawWhiteFilledCircle(unsigned, unsigned, unsigned) 0x00005e94   ARM Code    1292  graphicfunc.o(.text)
+    EG_Graphic_DrawQuarterArc(unsigned, unsigned, unsigned, unsigned char) 0x000063a0   ARM Code     960  graphicfunc.o(.text)
+    EG_Graphic_DrawArc(unsigned, unsigned, unsigned, unsigned, unsigned) 0x00006760   ARM Code    2108  graphicfunc.o(.text)
+    EG_Graphic_DrawPieSlice(unsigned, unsigned, unsigned, unsigned, unsigned) 0x00006f9c   ARM Code    2340  graphicfunc.o(.text)
+    EG_Graphic_DrawEmptyEllipse(unsigned, unsigned, unsigned, unsigned) 0x000078c0   ARM Code     868  graphicfunc.o(.text)
+    EG_Graphic_DrawFilledEllipse(unsigned, unsigned, unsigned, unsigned) 0x00007c24   ARM Code    1056  graphicfunc.o(.text)
+    EG_Graphic_DrawChar(unsigned, unsigned, char) 0x00008044   ARM Code      96  graphicfunc.o(.text)
+    EG_Graphic_DrawNotChar(unsigned, unsigned, char) 0x000080a4   ARM Code     104  graphicfunc.o(.text)
+    EG_Graphic_DrawString(unsigned, unsigned, char*) 0x0000810c   ARM Code      68  graphicfunc.o(.text)
+    EG_Graphic_DrawNotString(unsigned, unsigned, char*) 0x00008150   ARM Code      68  graphicfunc.o(.text)
+    EG_Graphic_DrawConstString(unsigned, unsigned, char*, unsigned char) 0x00008194   ARM Code      88  graphicfunc.o(.text)
+    EG_Graphic_DrawNumber(unsigned, unsigned, int) 0x000081ec   ARM Code     380  graphicfunc.o(.text)
+    EG_Graphic_DrawBitmap(unsigned, unsigned, EBitmap*) 0x00008368   ARM Code     172  graphicfunc.o(.text)
+    EG_LCDDelay(unsigned)                    0x0000841c   ARM Code      52  lcddriver.o(.text)
+    EG_LCDReset()                            0x00008450   ARM Code     104  lcddriver.o(.text)
+    EG_LCDCheckBusy()                        0x000084b8   ARM Code      28  lcddriver.o(.text)
+    EG_LCDWriteCommand(unsigned char, unsigned char) 0x000084d4   ARM Code     236  lcddriver.o(.text)
+    EG_LCDReadData(unsigned char)            0x000085c0   ARM Code     280  lcddriver.o(.text)
+    EG_LCDWriteData(unsigned char)           0x000086d8   ARM Code     144  lcddriver.o(.text)
+    EG_LCDShowByte(unsigned char, unsigned, unsigned) 0x00008768   ARM Code      56  lcddriver.o(.text)
+    EG_LCDInit()                             0x000087a0   ARM Code     236  lcddriver.o(.text)
+    EG_LCDClearScreen()                      0x0000888c   ARM Code      92  lcddriver.o(.text)
+    EG_LCDFlushBuffer()                      0x000088e8   ARM Code     100  lcddriver.o(.text)
+    EG_LCDClearBuffer()                      0x0000894c   ARM Code      60  lcddriver.o(.text)
+    EG_LCDSetPixel(unsigned, unsigned)       0x00008988   ARM Code      80  lcddriver.o(.text)
+    EG_LCDClearPixel(unsigned, unsigned)     0x000089d8   ARM Code      84  lcddriver.o(.text)
+    EG_LCDGetPixel(unsigned, unsigned)       0x00008a2c   ARM Code      76  lcddriver.o(.text)
+    EG_LCDGetHorizonalByte(unsigned, unsigned) 0x00008a78   ARM Code     284  lcddriver.o(.text)
+    EG_LCDSetVerticalByte(unsigned, unsigned, unsigned char) 0x00008b94   ARM Code      88  lcddriver.o(.text)
+    EG_LCDSetORVerticalByte(unsigned, unsigned, unsigned char) 0x00008bec   ARM Code     124  lcddriver.o(.text)
+    EG_LCDSetANDVerticalByte(unsigned, unsigned, unsigned char) 0x00008c68   ARM Code     124  lcddriver.o(.text)
+    EG_LCDSetByte(unsigned, unsigned, unsigned char) 0x00008ce4   ARM Code      92  lcddriver.o(.text)
+    EG_HookFunc_RedrawESimpleWindow(ESimpleWindow*) 0x00008d4c   ARM Code       4  eframe.o(.text)
+    EG_HookFunc_RedrawEWindow(ESimpleWindow*) 0x00008d50   ARM Code       4  eframe.o(.text)
+    EG_HookFunc_RedrawEDesktop(ESimpleDesktop*) 0x00008d54   ARM Code       4  eframe.o(.text)
+    ESimpleWindow::ESimpleWindow()           0x00008d58   ARM Code      56  eframe.o(.text)
+    ESimpleWindow::ESimpleWindow__sub_object() 0x00008d58   ARM Code       0  eframe.o(.text)
+    ESimpleWindow::ESimpleWindow(char*)      0x00008d90   ARM Code      56  eframe.o(.text)
+    ESimpleWindow::ESimpleWindow__sub_object(char*) 0x00008d90   ARM Code       0  eframe.o(.text)
+    ESimpleWindow::RemoveAllControl()        0x00008dc8   ARM Code      48  eframe.o(.text)
+    ESimpleWindow::RemoveLastControl()       0x00008df8   ARM Code      48  eframe.o(.text)
+    ESimpleWindow::RemoveControl(int)        0x00008e28   ARM Code      80  eframe.o(.text)
+    ESimpleWindow::ForceRedrawAllControls()  0x00008e78   ARM Code      60  eframe.o(.text)
+    ESimpleWindow::RedrawSelectedControls()  0x00008eb4   ARM Code      80  eframe.o(.text)
+    ESimpleWindow::RedrawControl(const EPosition&) 0x00008f04   ARM Code      88  eframe.o(.text)
+    ESimpleWindow::SelectControl(EPosition)  0x00008f5c   ARM Code      80  eframe.o(.text)
+    ESimpleWindow::DispatchEvent(EEvent*)    0x00008fac   ARM Code      60  eframe.o(.text)
+    EWindow::RemoveAllMenuItems()            0x00008fe8   ARM Code      48  eframe.o(.text)
+    EWindow::EWindow()                       0x00009018   ARM Code     176  eframe.o(.text)
+    EWindow::EWindow__sub_object()           0x00009018   ARM Code       0  eframe.o(.text)
+    EWindow::EWindow(char*, EPosition, ESize, bool) 0x000090c8   ARM Code     188  eframe.o(.text)
+    EWindow::EWindow__sub_object(char*, EPosition, ESize, bool) 0x000090c8   ARM Code       0  eframe.o(.text)
+    EWindow::RedrawBaseWindow()              0x00009184   ARM Code     496  eframe.o(.text)
+    EWindow::ForceRedrawAllControls()        0x00009374   ARM Code     176  eframe.o(.text)
+    EWindow::RedrawSelectedControls()        0x00009424   ARM Code     164  eframe.o(.text)
+    EWindow::InTitleArea(EPosition)          0x000094c8   ARM Code     104  eframe.o(.text)
+    EWindow::MinimizeWindow()                0x00009530   ARM Code      56  eframe.o(.text)
+    EWindow::InMinArea(EPosition)            0x00009568   ARM Code     124  eframe.o(.text)
+    EWindow::AdjustBarPosition()             0x000095e4   ARM Code     840  eframe.o(.text)
+    EWindow::AdjustMenuPosition()            0x0000992c   ARM Code     104  eframe.o(.text)
+    EWindow::AdjustControlPosition(int, int) 0x00009994   ARM Code      92  eframe.o(.text)
+    EWindow::MaximizeWindow(ESize)           0x000099f0   ARM Code     132  eframe.o(.text)
+    EWindow::InMaxArea(EPosition)            0x00009a74   ARM Code     124  eframe.o(.text)
+    ESimpleDesktop::GetWindowIndex(ESimpleWindow*) 0x00009af0   ARM Code      64  eframe.o(.text)
+    ESimpleDesktop::RemoveWindow(unsigned char) 0x00009b30   ARM Code      96  eframe.o(.text)
+    EWindow::InExitArea(EPosition)           0x00009b90   ARM Code     124  eframe.o(.text)
+    EWindow::DispatchEvent(EEvent*)          0x00009c0c   ARM Code     724  eframe.o(.text)
+    EWindow::MoveWindow(EPosition)           0x00009ee0   ARM Code     116  eframe.o(.text)
+    EWindow::MaximizeWindow()                0x00009f54   ARM Code     136  eframe.o(.text)
+    EWindow::RecoverWindow()                 0x00009fdc   ARM Code     132  eframe.o(.text)
+    EWindow::AddMenuItem(EMenu*)             0x0000a060   ARM Code      68  eframe.o(.text)
+    EWindow::RemoveMenuItem(unsigned)        0x0000a0a4   ARM Code      84  eframe.o(.text)
+    EWindow::InWindowArea(EPosition)         0x0000a0f8   ARM Code      92  eframe.o(.text)
+    ESimpleDesktop::ESimpleDesktop()         0x0000a154   ARM Code     176  eframe.o(.text)
+    ESimpleDesktop::ESimpleDesktop__sub_object() 0x0000a154   ARM Code       0  eframe.o(.text)
+    ESimpleDesktop::AddWindow(ESimpleWindow*) 0x0000a204   ARM Code      52  eframe.o(.text)
+    ESimpleDesktop::AddWindow(ESimpleWindow*, unsigned char) 0x0000a238   ARM Code     104  eframe.o(.text)
+    ESimpleDesktop::RemoveAllWindow()        0x0000a2a0   ARM Code      48  eframe.o(.text)
+    ESimpleDesktop::RemoveTopmostWindow()    0x0000a2d0   ARM Code      48  eframe.o(.text)
+    ESimpleDesktop::SetWindowTopmost(unsigned char) 0x0000a300   ARM Code      52  eframe.o(.text)
+    ESimpleDesktop::SetWindowLayer(unsigned char, unsigned char) 0x0000a334   ARM Code      60  eframe.o(.text)
+    ESimpleDesktop::GlobalRedraw()           0x0000a370   ARM Code     128  eframe.o(.text)
+    ESimpleDesktop::SelectedRedraw()         0x0000a3f0   ARM Code     128  eframe.o(.text)
+    ESimpleDesktop::ScheduleRedraw()         0x0000a470   ARM Code      68  eframe.o(.text)
+    ESimpleDesktop::DispatchEvent(EEvent*)   0x0000a4b4   ARM Code     140  eframe.o(.text)
+    ESimpleDesktop::SetKeyboardEvent(const EPosition&, unsigned) 0x0000a540   ARM Code      80  eframe.o(.text)
+    ESimpleDesktop::SetCursorEvent(EEvent*)  0x0000a590   ARM Code      60  eframe.o(.text)
+    ESimpleDesktop::SetCursorEvent(const EPosition&, unsigned) 0x0000a5cc   ARM Code     132  eframe.o(.text)
+    EDesktop::RecalculateWindowTitleCount()  0x0000a650   ARM Code      88  eframe.o(.text)
+    EDesktop::RemoveAllIconButton()          0x0000a6a8   ARM Code      48  eframe.o(.text)
+    EDesktop::EDesktop()                     0x0000a6d8   ARM Code     192  eframe.o(.text)
+    EDesktop::EDesktop__sub_object()         0x0000a6d8   ARM Code       0  eframe.o(.text)
+    EDesktop::AddIconButton(EIconButton*)    0x0000a798   ARM Code      56  eframe.o(.text)
+    EDesktop::RemoveIconButton(unsigned)     0x0000a7d0   ARM Code      68  eframe.o(.text)
+    EDesktop::AppendStartMenu(EMenu*)        0x0000a814   ARM Code     104  eframe.o(.text)
+    EDesktop::AppendClock(EClock*)           0x0000a87c   ARM Code      64  eframe.o(.text)
+    EDesktop::DispatchEvent(EEvent*)         0x0000a8bc   ARM Code     524  eframe.o(.text)
+    EDesktop::RedrawDesktop()                0x0000aac8   ARM Code     468  eframe.o(.text)
+    __aeabi_idiv                             0x0000ac9c   ARM Code       0  aeabi_sdiv.o(.text)
+    __aeabi_idivmod                          0x0000ac9c   ARM Code     384  aeabi_sdiv.o(.text)
+    __use_two_region_memory                  0x0000ae1c   ARM Code       4  stkheap2.o(.text)
+    __rt_stackheap_init                      0x0000ae20   ARM Code      36  stkheap2.o(.text)
+    __rt_heap_extend                         0x0000ae44   ARM Code      24  stkheap2.o(.text)
+    __cpp_initialize__aeabi_                 0x0000ae5d   Thumb Code    32  init_aeabi.o(.text)
+    __rt_entry                               0x0000ae84   ARM Code      76  kernel.o(.text)
+    __rt_exit                                0x0000aed0   ARM Code      20  kernel.o(.text)
+    __rt_abort                               0x0000aee4   ARM Code       8  kernel.o(.text)
+    __user_setup_stackheap                   0x0000aeec   ARM Code      96  sys_stackheap_outer.o(.text)
+    __rt_stackheap_storage                   0x0000af4c   ARM Code      12  rt_stackheap_storage_intlibspace.o(.text)
+    Inline Thumb to ARM Veneer to __rt_ddtor_pointer_addr 0x0000af5d   Thumb Code     0  rt_ddtor_pointer_addr_intlibspace.o(.text)
+    __rt_ddtor_pointer_addr                  0x0000af60   ARM Code      12  rt_ddtor_pointer_addr_intlibspace.o(.text)
+    malloc                                   0x0000af71   Thumb Code   110  h1_alloc.o(.text)
+    __ARM_call_via_r0                        0x0000afe1   Thumb Code     2  callvia.o(.text)
+    __call_via_r0                            0x0000afe1   Thumb Code     0  callvia.o(.text)
+    __ARM_call_via_r1                        0x0000afe3   Thumb Code     2  callvia.o(.text)
+    __call_via_r1                            0x0000afe3   Thumb Code     0  callvia.o(.text)
+    __ARM_call_via_r2                        0x0000afe5   Thumb Code     2  callvia.o(.text)
+    __call_via_r2                            0x0000afe5   Thumb Code     0  callvia.o(.text)
+    __ARM_call_via_r3                        0x0000afe7   Thumb Code     2  callvia.o(.text)
+    __call_via_r3                            0x0000afe7   Thumb Code     0  callvia.o(.text)
+    __ARM_call_via_r4                        0x0000afe9   Thumb Code     2  callvia.o(.text)
+    __call_via_r4                            0x0000afe9   Thumb Code     0  callvia.o(.text)
+    __ARM_call_via_r5                        0x0000afeb   Thumb Code     2  callvia.o(.text)
+    __call_via_r5                            0x0000afeb   Thumb Code     0  callvia.o(.text)
+    __ARM_call_via_r6                        0x0000afed   Thumb Code     2  callvia.o(.text)
+    __call_via_r6                            0x0000afed   Thumb Code     0  callvia.o(.text)
+    __ARM_call_via_r7                        0x0000afef   Thumb Code     2  callvia.o(.text)
+    __call_via_r7                            0x0000afef   Thumb Code     0  callvia.o(.text)
+    Inline Thumb to ARM Veneer to _sys_exit  0x0000aff1   Thumb Code     0  sys_exit.o(.text)
+    _sys_exit                                0x0000aff4   ARM Code      20  sys_exit.o(.text)
+    __user_libspace                          0x0000b00c   ARM Code       8  libspace.o(.text)
+    __user_perproc_libspace                  0x0000b00c   ARM Code       0  libspace.o(.text)
+    __user_perthread_libspace                0x0000b00c   ARM Code       0  libspace.o(.text)
+    Inline Thumb to ARM Veneer to __rt_heap_descriptor 0x0000b019   Thumb Code     0  rt_heap_descriptor_intlibspace.o(.text)
+    __rt_heap_descriptor                     0x0000b01c   ARM Code      12  rt_heap_descriptor_intlibspace.o(.text)
+    _terminate_user_alloc                    0x0000b02d   Thumb Code     2  init_alloc.o(.text)
+    _init_user_alloc                         0x0000b02f   Thumb Code     2  init_alloc.o(.text)
+    __Heap_Full                              0x0000b031   Thumb Code    34  init_alloc.o(.text)
+    __Heap_Broken                            0x0000b053   Thumb Code    14  init_alloc.o(.text)
+    _init_alloc                              0x0000b061   Thumb Code    88  init_alloc.o(.text)
+    __use_no_heap                            0x0000b0b9   Thumb Code     2  hguard.o(.text)
+    __heap_guard                             0x0000b0bb   Thumb Code     2  hguard.o(.text)
+    __Heap_Initialize                        0x0000b0bd   Thumb Code    10  h1_init.o(.text)
+    __Heap_DescSize                          0x0000b0c7   Thumb Code     4  h1_init.o(.text)
+    free                                     0x0000b0cb   Thumb Code    84  h1_free.o(.text)
+    exit                                     0x0000b11f   Thumb Code    12  exit.o(.text)
+    Inline ARM to Thumb Veneer to __rt_lib_init 0x0000b12c   ARM Code       0  lib_init.o(.text)
+    __rt_lib_init                            0x0000b135   Thumb Code   184  lib_init.o(.text)
+    __rt_lib_shutdown                        0x0000b1ed   Thumb Code    22  lib_init.o(.text)
+    _platform_post_stackheap_init            0x0000b204   ARM Code      12  boardinit2.o(.text)
+    _platform_post_lib_init                  0x0000b210   ARM Code      16  boardinit3.o(.text)
+    __I_use_semihosting                      0x0000b220   ARM Code       0  use_no_semi.o(.text)
+    __use_no_semihosting_swi                 0x0000b220   ARM Code       4  use_no_semi.o(.text)
+    Inline Thumb to ARM Veneer to __rt_locale 0x0000b225   Thumb Code     0  rt_locale_intlibspace.o(.text)
+    __rt_locale                              0x0000b228   ARM Code      12  rt_locale_intlibspace.o(.text)
+    __Heap_ProvideMemory                     0x0000b239   Thumb Code    54  h1_extend.o(.text)
+    __rt_SIGRTMEM                            0x0000b26f   Thumb Code    16  defsig_rtmem_outer.o(.text)
+    Inline Thumb to ARM Veneer to __heap_extend 0x0000b281   Thumb Code     0  heapext.o(.text)
+    __heap_extend                            0x0000b284   ARM Code      16  heapext.o(.text)
+    __ARM_get_argv                           0x0000b295   Thumb Code     6  no_argv.o(.text)
+    __rt_fp_status_addr                      0x0000b29c   ARM Code      12  rt_fp_status_addr_intlibspace.o(.text)
+    __sig_exit                               0x0000b2ad   Thumb Code    16  defsig_exit.o(.text)
+    __rt_SIGRTMEM_inner                      0x0000b2bd   Thumb Code    24  defsig_rtmem_inner.o(.text)
+    __default_signal_display                 0x0000b30d   Thumb Code    56  defsig_general.o(.text)
+    _ttywrch                                 0x0000b345   Thumb Code    16  sys_wrch.o(.text)
+    __aeabi_uidiv                            0x0000b354   ARM Code       0  aeabi_sdiv.o(.text_udiv)
+    __aeabi_uidivmod                         0x0000b354   ARM Code      28  aeabi_sdiv.o(.text_udiv)
+    Undefine_ISR                             0x0000b370   ARM Code       0  isr.o(ISR)
+    SWI_ISR                                  0x0000b394   ARM Code       0  isr.o(ISR)
+    PAbt_ISR                                 0x0000b3a8   ARM Code       0  isr.o(ISR)
+    DAbt_ISR                                 0x0000b3cc   ARM Code       0  isr.o(ISR)
+    Default_vIRQ_ISR                         0x0000b3f0   ARM Code       0  isr.o(ISR)
+    FIQ_ISR                                  0x0000b408   ARM Code       0  isr.o(ISR)
+    PERIPHERIAL_INIT                         0x0000b418   ARM Code       0  peripherialinit.o(PERI_INIT)
+    Long ARM to Thumb Veneer to __rt_lib_shutdown 0x0000b5fc   ARM Code       0  anon$$obj.o(Veneer$$Code)
+    Short Thumb to ARM Veneer to __rt_exit   0x0000b609   Thumb Code     0  anon$$obj.o(Veneer$$Code)
+    BSP_FeedDog()                            0x0000b610   ARM Code      20  main.o(i._Z11BSP_FeedDogv)
+    ECheckButton::~ECheckButton()            0x0000b628   ARM Code       8  main.o(i._ZN12ECheckButtonD1Ev)
+    ECheckButton::~ECheckButton__sub_object() 0x0000b628   ARM Code       0  main.o(i._ZN12ECheckButtonD1Ev)
+    ESimpleWindow::AddControl(EControl*)     0x0000b630   ARM Code      32  main.o(i._ZN13ESimpleWindow10AddControlEP8EControl)
+    ESimpleWindow::InWindowArea(EPosition)   0x0000b650   ARM Code      20  eframe.o(i._ZN13ESimpleWindow12InWindowAreaE9EPosition)
+    ESimpleWindow::RecoverWindow()           0x0000b664   ARM Code       4  eframe.o(i._ZN13ESimpleWindow13RecoverWindowEv)
+    ESimpleWindow::GetWindowState()          0x0000b668   ARM Code      12  eframe.o(i._ZN13ESimpleWindow14GetWindowStateEv)
+    ESimpleDesktop::RedrawDesktop()          0x0000b674   ARM Code      20  eframe.o(i._ZN14ESimpleDesktop13RedrawDesktopEv)
+    EEdit::~EEdit()                          0x0000b688   ARM Code       8  main.o(i._ZN5EEditD1Ev)
+    EEdit::~EEdit__sub_object()              0x0000b688   ARM Code       0  main.o(i._ZN5EEditD1Ev)
+    EMenu::SetSelectItem(unsigned)           0x0000b690   ARM Code      28  econtrol.o(i._ZN5EMenu13SetSelectItemEj)
+    ESize::ESize(unsigned, unsigned)         0x0000b6ac   ARM Code      12  econtrol.o(i._ZN5ESizeC1Ejj)
+    ESize::ESize__sub_object(unsigned, unsigned) 0x0000b6ac   ARM Code       0  econtrol.o(i._ZN5ESizeC1Ejj)
+    ETree::ETreeSubItem::OpenSubItem()       0x0000b6b8   ARM Code      36  econtrol.o(i._ZN5ETree12ETreeSubItem11OpenSubItemEv)
+    ETree::ETreeSubItem::CloseSubItem()      0x0000b6dc   ARM Code      36  econtrol.o(i._ZN5ETree12ETreeSubItem12CloseSubItemEv)
+    EEvent::EEvent()                         0x0000b700   ARM Code      52  eframe.o(i._ZN6EEventC1Ev)
+    EEvent::EEvent__sub_object()             0x0000b700   ARM Code       0  eframe.o(i._ZN6EEventC1Ev)
+    ELabel::~ELabel()                        0x0000b734   ARM Code       8  main.o(i._ZN6ELabelD1Ev)
+    ELabel::~ELabel__sub_object()            0x0000b734   ARM Code       0  main.o(i._ZN6ELabelD1Ev)
+    EButton::~EButton()                      0x0000b73c   ARM Code       8  main.o(i._ZN7EButtonD1Ev)
+    EButton::~EButton__sub_object()          0x0000b73c   ARM Code       0  main.o(i._ZN7EButtonD1Ev)
+    EWindow::GetWindowState()                0x0000b744   ARM Code      12  eframe.o(i._ZN7EWindow14GetWindowStateEv)
+    EWindow::~EWindow()                      0x0000b750   ARM Code      16  main.o(i._ZN7EWindowD1Ev)
+    EWindow::~EWindow__sub_object()          0x0000b750   ARM Code       0  main.o(i._ZN7EWindowD1Ev)
+    EControl::RedrawControl()                0x0000b760   ARM Code      44  econtrol.o(i._ZN8EControl13RedrawControlEv)
+    EControl::SetRedrawFunction(void(*)(EControl*)) 0x0000b78c   ARM Code       8  econtrol.o(i._ZN8EControl17SetRedrawFunctionEPFvPS_E)
+    EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*)) 0x0000b794   ARM Code      84  econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E)
+    EControl::EControl__sub_object(void(*)(EControl*, EEvent*), void(*)(EControl*)) 0x0000b794   ARM Code       0  econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E)
+    EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition) 0x0000b7e8   ARM Code      60  econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E5ESize9EPosition)
+    EControl::EControl__sub_object(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition) 0x0000b7e8   ARM Code       0  econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E5ESize9EPosition)
+    EComboBox::GetItemString(unsigned)       0x0000b824   ARM Code      24  econtrol.o(i._ZN9EComboBox13GetItemStringEj)
+    EComboBox::SetSelectIndex(unsigned)      0x0000b83c   ARM Code      32  econtrol.o(i._ZN9EComboBox14SetSelectIndexEj)
+    EPosition::EPosition(unsigned, unsigned) 0x0000b85c   ARM Code      12  main.o(i._ZN9EPositionC1Ejj)
+    EPosition::EPosition__sub_object(unsigned, unsigned) 0x0000b85c   ARM Code       0  main.o(i._ZN9EPositionC1Ejj)
+    Inline ARM to Thumb Veneer to __aeabi_atexit 0x0000b868   ARM Code       0  aeabi_atexit.o(i.__aeabi_atexit)
+    __aeabi_atexit                           0x0000b871   Thumb Code    48  aeabi_atexit.o(i.__aeabi_atexit)
+    __cxa_finalize                           0x0000b8a1   Thumb Code    74  cxa_finalize.o(i.__cxa_finalize)
+    Inline Thumb to ARM Veneer to _fp_init   0x0000b8ed   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    _fp_init                                 0x0000b8f0   ARM Code      24  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x0000b900   ARM Code       0  fpinit.o(x$fpl$fpinit)
+    vtable for ESimpleWindow                 0x0000bd48   Data          32  eframe.o(.constdata__ZTV13ESimpleWindow)
+    vtable for ESimpleDesktop                0x0000bd68   Data          16  eframe.o(.constdata__ZTV14ESimpleDesktop)
+    vtable for EWindow                       0x0000bd78   Data          32  eframe.o(.constdata__ZTV7EWindow)
+    vtable for EDesktop                      0x0000bd98   Data          16  eframe.o(.constdata__ZTV8EDesktop)
+    Region$$Table$$Base                      0x0000bda8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0000bdc8   Number         0  anon$$obj.o(Region$$Table)
+    SHT$$INIT_ARRAY$$Base                    0x0000bdc8   Number         0  main.o(.init_array)
+    __dso_handle                             0x0000bdc8   Number         0  dso_handle.o(__dso_handle)
+    SHT$$INIT_ARRAY$$Limit                   0x0000bdcc   Number         0  main.o(.init_array)
+    click                                    0x40000000   Data           1  main.o(.data)
+    ESimpleDesktop::m_pdInstance             0x40000004   Data           4  eframe.o(.data)
+    ABORT_CODE                               0x40000008   Data           4  isr.o(ISR_MEM)
+    desk                                     0x40000010   Data          84  main.o(.bss)
+    introWin                                 0x40000064   Data         152  main.o(.bss)
+    labelCtrl                                0x400000fc   Data          32  main.o(.bss)
+    nextButn                                 0x4000011c   Data          32  main.o(.bss)
+    chkButn1                                 0x4000013c   Data          36  main.o(.bss)
+    chkButn2                                 0x40000160   Data          36  main.o(.bss)
+    editCtrl                                 0x40000184   Data          52  main.o(.bss)
+    EG_LCD_Buffer                            0x400001b8   Data        4096  lcddriver.o(.bss)
+    __libspace_start                         0x400011b8   Data          96  libspace.o(.bss)
+    __temporary_stack_top_libspace           0x40001218   Data           0  libspace.o(.bss)
+
+
+================================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x0000011c
+
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x0000bddc, Max: 0x00040000, ABSOLUTE)
+
+    Execution Region ER_IROM1 (Base: 0x00000000, Size: 0x0000bdcc, Max: 0x00040000, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00000000   0x0000011c   Code   RO            3    RESET               startup.o
+    0x0000011c   0x00000008   Code   RO          379  * !!!main             __main.o(c_t.l)
+    0x00000124   0x0000003c   Code   RO          756    !!!scatter          __scatter.o(c_t.l)
+    0x00000160   0x00000028   Code   RO          758    !!handler_copy      __scatter_copy.o(c_t.l)
+    0x00000188   0x0000002c   Code   RO          760    !!handler_zi        __scatter_zi.o(c_t.l)
+    0x000001b4   0x00000004   Ven    RO          675    .emb_text           lib_init.o(c_t.l)
+    0x000001b8   0x00000010   Code   RO          675    .emb_text           lib_init.o(c_t.l)
+    0x000001c8   0x00000024   Code   RO            4    .text               startup.o
+    0x000001ec   0x00000408   Code   RO           40    .text               main.o
+    0x000005f4   0x00004670   Code   RO          125    .text               econtrol.o
+    0x00004c64   0x000002ec   Code   RO          208    .text               ecursor.o
+    0x00004f50   0x000034cc   Code   RO          236    .text               graphicfunc.o
+    0x0000841c   0x00000930   Code   RO          253    .text               lcddriver.o
+    0x00008d4c   0x00001f50   Code   RO          270    .text               eframe.o
+    0x0000ac9c   0x00000180   Code   RO          361    .text               aeabi_sdiv.o(c_t.l)
+    0x0000ae1c   0x00000040   Code   RO          377    .text               stkheap2.o(c_t.l)
+    0x0000ae5c   0x00000028   Code   RO          386    .text               init_aeabi.o(c_t.l)
+    0x0000ae84   0x00000068   Code   RO          537    .text               kernel.o(c_t.l)
+    0x0000aeec   0x00000060   Code   RO          540    .text               sys_stackheap_outer.o(c_t.l)
+    0x0000af4c   0x00000010   Code   RO          549    .text               rt_stackheap_storage_intlibspace.o(c_t.l)
+    0x0000af5c   0x00000004   Ven    RO          554    .text               rt_ddtor_pointer_addr_intlibspace.o(c_t.l)
+    0x0000af60   0x00000010   Code   RO          554    .text               rt_ddtor_pointer_addr_intlibspace.o(c_t.l)
+    0x0000af70   0x0000006e   Code   RO          558    .text               h1_alloc.o(c_t.l)
+    0x0000afde   0x00000002   PAD
+    0x0000afe0   0x00000010   Code   RO          628    .text               callvia.o(h_t.l)
+    0x0000aff0   0x00000004   Ven    RO          629    .text               sys_exit.o(c_t.l)
+    0x0000aff4   0x00000018   Code   RO          629    .text               sys_exit.o(c_t.l)
+    0x0000b00c   0x0000000c   Code   RO          631    .text               libspace.o(c_t.l)
+    0x0000b018   0x00000004   Ven    RO          641    .text               rt_heap_descriptor_intlibspace.o(c_t.l)
+    0x0000b01c   0x00000010   Code   RO          641    .text               rt_heap_descriptor_intlibspace.o(c_t.l)
+    0x0000b02c   0x0000008c   Code   RO          643    .text               init_alloc.o(c_t.l)
+    0x0000b0b8   0x00000004   Code   RO          647    .text               hguard.o(c_t.l)
+    0x0000b0bc   0x0000000e   Code   RO          651    .text               h1_init.o(c_t.l)
+    0x0000b0ca   0x00000054   Code   RO          653    .text               h1_free.o(c_t.l)
+    0x0000b11e   0x0000000c   Code   RO          669    .text               exit.o(c_t.l)
+    0x0000b12a   0x00000002   PAD
+    0x0000b12c   0x00000008   Ven    RO          676    .text               lib_init.o(c_t.l)
+    0x0000b134   0x000000ce   Code   RO          676    .text               lib_init.o(c_t.l)
+    0x0000b202   0x00000002   PAD
+    0x0000b204   0x0000000c   Code   RO          681    .text               boardinit2.o(c_t.l)
+    0x0000b210   0x00000010   Code   RO          683    .text               boardinit3.o(c_t.l)
+    0x0000b220   0x00000004   Code   RO          687    .text               use_no_semi.o(c_t.l)
+    0x0000b224   0x00000004   Ven    RO          692    .text               rt_locale_intlibspace.o(c_t.l)
+    0x0000b228   0x00000010   Code   RO          692    .text               rt_locale_intlibspace.o(c_t.l)
+    0x0000b238   0x00000036   Code   RO          694    .text               h1_extend.o(c_t.l)
+    0x0000b26e   0x00000010   Code   RO          702    .text               defsig_rtmem_outer.o(c_t.l)
+    0x0000b27e   0x00000002   PAD
+    0x0000b280   0x00000004   Ven    RO          706    .text               heapext.o(c_t.l)
+    0x0000b284   0x00000010   Code   RO          706    .text               heapext.o(c_t.l)
+    0x0000b294   0x00000006   Code   RO          712    .text               no_argv.o(c_t.l)
+    0x0000b29a   0x00000002   PAD
+    0x0000b29c   0x00000010   Code   RO          723    .text               rt_fp_status_addr_intlibspace.o(c_t.l)
+    0x0000b2ac   0x00000010   Code   RO          729    .text               defsig_exit.o(c_t.l)
+    0x0000b2bc   0x00000050   Code   RO          733    .text               defsig_rtmem_inner.o(c_t.l)
+    0x0000b30c   0x00000038   Code   RO          737    .text               defsig_general.o(c_t.l)
+    0x0000b344   0x00000010   Code   RO          753    .text               sys_wrch.o(c_t.l)
+    0x0000b354   0x0000001c   Code   RO          362    .text_udiv          aeabi_sdiv.o(c_t.l)
+    0x0000b370   0x000000a8   Code   RO           13    ISR                 isr.o
+    0x0000b418   0x000001e4   Code   RO           16    PERI_INIT           peripherialinit.o
+    0x0000b5fc   0x0000000c   Ven    RO          771    Veneer$$Code        anon$$obj.o
+    0x0000b608   0x00000008   Ven    RO          772    Veneer$$Code        anon$$obj.o
+    0x0000b610   0x00000018   Code   RO           53    i._Z11BSP_FeedDogv  main.o
+    0x0000b628   0x00000008   Code   RO           77    i._ZN12ECheckButtonD1Ev  main.o
+    0x0000b630   0x00000020   Code   RO           59    i._ZN13ESimpleWindow10AddControlEP8EControl  main.o
+    0x0000b650   0x00000014   Code   RO          288    i._ZN13ESimpleWindow12InWindowAreaE9EPosition  eframe.o
+    0x0000b664   0x00000004   Code   RO          294    i._ZN13ESimpleWindow13RecoverWindowEv  eframe.o
+    0x0000b668   0x0000000c   Code   RO          300    i._ZN13ESimpleWindow14GetWindowStateEv  eframe.o
+    0x0000b674   0x00000014   Code   RO          312    i._ZN14ESimpleDesktop13RedrawDesktopEv  eframe.o
+    0x0000b688   0x00000008   Code   RO           80    i._ZN5EEditD1Ev     main.o
+    0x0000b690   0x0000001c   Code   RO          178    i._ZN5EMenu13SetSelectItemEj  econtrol.o
+    0x0000b6ac   0x0000000c   Code   RO          184    i._ZN5ESizeC1Ejj    econtrol.o
+    0x0000b6b8   0x00000024   Code   RO          136    i._ZN5ETree12ETreeSubItem11OpenSubItemEv  econtrol.o
+    0x0000b6dc   0x00000024   Code   RO          142    i._ZN5ETree12ETreeSubItem12CloseSubItemEv  econtrol.o
+    0x0000b700   0x00000034   Code   RO          282    i._ZN6EEventC1Ev    eframe.o
+    0x0000b734   0x00000008   Code   RO           71    i._ZN6ELabelD1Ev    main.o
+    0x0000b73c   0x00000008   Code   RO           74    i._ZN7EButtonD1Ev   main.o
+    0x0000b744   0x0000000c   Code   RO          306    i._ZN7EWindow14GetWindowStateEv  eframe.o
+    0x0000b750   0x00000010   Code   RO           83    i._ZN7EWindowD1Ev   main.o
+    0x0000b760   0x0000002c   Code   RO          160    i._ZN8EControl13RedrawControlEv  econtrol.o
+    0x0000b78c   0x00000008   Code   RO          190    i._ZN8EControl17SetRedrawFunctionEPFvPS_E  econtrol.o
+    0x0000b794   0x00000054   Code   RO          148    i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E  econtrol.o
+    0x0000b7e8   0x0000003c   Code   RO          154    i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E5ESize9EPosition  econtrol.o
+    0x0000b824   0x00000018   Code   RO          172    i._ZN9EComboBox13GetItemStringEj  econtrol.o
+    0x0000b83c   0x00000020   Code   RO          166    i._ZN9EComboBox14SetSelectIndexEj  econtrol.o
+    0x0000b85c   0x0000000c   Code   RO           65    i._ZN9EPositionC1Ejj  main.o
+    0x0000b868   0x00000008   Ven    RO          391    i.__aeabi_atexit    aeabi_atexit.o(cpprt_t.l)
+    0x0000b870   0x00000030   Code   RO          391    i.__aeabi_atexit    aeabi_atexit.o(cpprt_t.l)
+    0x0000b8a0   0x0000004a   Code   RO          609    i.__cxa_finalize    cxa_finalize.o(cpprt_t.l)
+    0x0000b8ea   0x00000002   PAD
+    0x0000b8ec   0x00000004   Ven    RO          714    x$fpl$fpinit        fpinit.o(fz_ts.l)
+    0x0000b8f0   0x00000018   Code   RO          714    x$fpl$fpinit        fpinit.o(fz_ts.l)
+    0x0000b908   0x00000140   Data   RO          126    .constdata          econtrol.o
+    0x0000ba48   0x00000300   Data   RO          237    .constdata          graphicfunc.o
+    0x0000bd48   0x00000020   Data   RO          319    .constdata__ZTV13ESimpleWindow  eframe.o
+    0x0000bd68   0x00000010   Data   RO          323    .constdata__ZTV14ESimpleDesktop  eframe.o
+    0x0000bd78   0x00000020   Data   RO          321    .constdata__ZTV7EWindow  eframe.o
+    0x0000bd98   0x00000010   Data   RO          325    .constdata__ZTV8EDesktop  eframe.o
+    0x0000bda8   0x00000020   Data   RO          755    Region$$Table       anon$$obj.o
+    0x0000bdc8   0x00000000   Data   RO          536    __dso_handle        dso_handle.o(h_t.l)
+    0x0000bdc8   0x00000004   Data   RO           43    .init_array         main.o
+
+
+    Execution Region RW_IRAM1 (Base: 0x40000000, Size: 0x000016b0, Max: 0x00004000, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x40000000   0x00000001   Data   RW           41    .data               main.o
+    0x40000001   0x00000003   PAD
+    0x40000004   0x00000004   Data   RW          271    .data               eframe.o
+    0x40000008   0x00000008   Data   RW           12    ISR_MEM             isr.o
+    0x40000010   0x000001a8   Zero   RW           42    .bss                main.o
+    0x400001b8   0x00001000   Zero   RW          254    .bss                lcddriver.o
+    0x400011b8   0x00000060   Zero   RW          632    .bss                libspace.o(c_t.l)
+    0x40001218   0x00000010   Zero   RW            2    HEAP                startup.o
+    0x40001228   0x00000488   Zero   RW            1    STACK               startup.o
+
+
+================================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+         0          0          0          0          0       2348   bsp.o
+     18396        136        320          0          0      58266   econtrol.o
+       748          4          0          0          0       3972   ecursor.o
+      8136         20         96          4          0      40547   eframe.o
+     13516          8        768          0          0      19523   graphicfunc.o
+       168         12          0          8          0        224   isr.o
+      2352         12          0          0       4096       5441   lcddriver.o
+      1148        124          4          1        424      37363   main.o
+       484        100          0          0          0        312   peripherialinit.o
+       320         76          0          0       1176        484   startup.o
+
+    ------------------------------------------------------------------------
+     45288        496       1220         16       5696     168480   Object Totals
+        20          4         32          0          0          0   (incl. Generated)
+         0          0          0          3          0          0   (incl. Padding)
+
+    ------------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         8          0          0          0          0          0   __main.o
+        60          8          0          0          0          0   __scatter.o
+        40          0          0          0          0          0   __scatter_copy.o
+        44          0          0          0          0          0   __scatter_zi.o
+        56          0          0          0          0          0   aeabi_atexit.o
+       412          0          0          0          0          0   aeabi_sdiv.o
+        12          0          0          0          0          0   boardinit2.o
+        16          0          0          0          0          0   boardinit3.o
+        16          0          0          0          0          0   callvia.o
+        74          0          0          0          0          0   cxa_finalize.o
+        16          0          0          0          0          0   defsig_exit.o
+        56          0          0          0          0          0   defsig_general.o
+        80         56          0          0          0          0   defsig_rtmem_inner.o
+        16          0          0          0          0          0   defsig_rtmem_outer.o
+         0          0          0          0          0          0   dso_handle.o
+        12          0          0          0          0          0   exit.o
+        28          0          0          0          0          0   fpinit.o
+       110          0          0          0          0          0   h1_alloc.o
+        54          0          0          0          0          0   h1_extend.o
+        84          0          0          0          0          0   h1_free.o
+        14          0          0          0          0          0   h1_init.o
+        20          0          0          0          0          0   heapext.o
+         4          0          0          0          0          0   hguard.o
+        40          8          0          0          0          0   init_aeabi.o
+       140          0          0          0          0          0   init_alloc.o
+       104          4          0          0          0          0   kernel.o
+       234          4          0          0          0          0   lib_init.o
+        12          4          0          0         96          0   libspace.o
+         6          0          0          0          0          0   no_argv.o
+        20          4          0          0          0          0   rt_ddtor_pointer_addr_intlibspace.o
+        16          4          0          0          0          0   rt_fp_status_addr_intlibspace.o
+        20          4          0          0          0          0   rt_heap_descriptor_intlibspace.o
+        20          4          0          0          0          0   rt_locale_intlibspace.o
+        16          4          0          0          0          0   rt_stackheap_storage_intlibspace.o
+        64          0          0          0          0          0   stkheap2.o
+        28          8          0          0          0          0   sys_exit.o
+        96          0          0          0          0          0   sys_stackheap_outer.o
+        16          0          0          0          0          0   sys_wrch.o
+         4          0          0          0          0          0   use_no_semi.o
+
+    ------------------------------------------------------------------------
+      2080        112          0          0         96          0   Library Totals
+        12          0          0          0          0          0   (incl. Padding)
+
+    ------------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+      1894        112          0          0         96          0   c_t.l
+       130          0          0          0          0          0   cpprt_t.l
+        28          0          0          0          0          0   fz_ts.l
+        16          0          0          0          0          0   h_t.l
+
+    ------------------------------------------------------------------------
+      2080        112          0          0         96          0   Library Totals
+
+    ------------------------------------------------------------------------
+
+================================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+     47368        608       1220         16       5792     168480   Grand Totals
+     47368        608       1220         16       5792     168480   ELF Image Totals
+     47368        608       1220         16          0          0   ROM Totals
+
+================================================================================
+
+    Total RO  Size (Code + RO Data)                48588 (  47.45kB)
+    Total RW  Size (RW Data + ZI Data)              5808 (   5.67kB)
+    Total ROM Size (Code + RO Data + RW Data)      48604 (  47.46kB)
+
+================================================================================
+

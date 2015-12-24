@@ -1,0 +1,8 @@
+"E2ROM.obj",
+"sys.obj",
+"main.obj",
+"GraphicFunc.obj",
+"LCDDriver.obj" 
+TO "example" 
+RAMSIZE(256) 
+DISABLEWARNING (16) 

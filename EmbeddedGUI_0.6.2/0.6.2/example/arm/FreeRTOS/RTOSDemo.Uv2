@@ -1,0 +1,217 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+Target (RTOSDemo_ARM), 0x0004 // Tools: 'ARM-ADS'
+Target (EmbeddedGUIDemo), 0x0004 // Tools: 'ARM-ADS'
+
+Group (Firmware)
+Group (FreeRTOS)
+Group (Demo)
+Group (EmbeddedGUI)
+
+File 1,2,<.\Startup.s><Startup.s>
+File 1,1,<.\ParTest\ParTest.c><ParTest.c>
+File 1,1,<.\main.c><main.c>
+File 1,1,<.\serial\serial.c><serial.c>
+File 1,2,<.\serial\serialISR.s><serialISR.s>
+File 2,1,<.\croutine.c><croutine.c>
+File 2,1,<.\heap_2.c><heap_2.c>
+File 2,1,<.\Source\portable\RVDS\ARM7_LPC21xx\port.c><port.c>
+File 2,1,<.\list.c><list.c>
+File 2,1,<.\queue.c><queue.c>
+File 2,1,<.\tasks.c><tasks.c>
+File 2,2,<.\Source\portable\RVDS\ARM7_LPC21xx\portASM.s><portASM.s>
+File 3,8,<.\GUIdemo.cpp><GUIdemo.cpp>
+File 3,1,<.\Common\Minimal\dynamic.c><dynamic.c>
+File 3,1,<.\Common\Minimal\flash.c><flash.c>
+File 3,1,<.\Common\Minimal\PollQ.c><PollQ.c>
+File 3,1,<.\Common\Minimal\BlockQ.c><BlockQ.c>
+File 3,1,<.\Common\Minimal\comtest.c><comtest.c>
+File 3,1,<.\Common\Minimal\semtest.c><semtest.c>
+File 4,8,<.\EmbeddedGUI\EControl.cpp><EControl.cpp>
+File 4,8,<.\EmbeddedGUI\ECursor.cpp><ECursor.cpp>
+File 4,8,<.\EmbeddedGUI\EFrame.cpp><EFrame.cpp>
+File 4,8,<.\EmbeddedGUI\GraphicFunc.cpp><GraphicFunc.cpp>
+File 4,8,<.\EmbeddedGUI\LCDDriver.cpp><LCDDriver.cpp>
+
+
+Options 1,0,0  // Target 'RTOSDemo_ARM'
+ Device (LPC2148)
+ Vendor (NXP (founded by Philips))
+ Cpu (IRAM(0x40000000-0x40007FFF) IROM(0-0x7FFFF) CLOCK(12000000) CPUTYPE(ARM7TDMI))
+ FlashUt (LPC210x_ISP.EXE ("#H" ^X $D COM1: 38400 1))
+ StupF ("STARTUP\Philips\Startup.s" ("Philips LPC2100 Startup Code"))
+ FlashDR (UL2ARM(-U268761108 -O7 -C0 -FO15 -FD40000000 -FC800 -FN1 -FF0LPC_IAP2_512 -FS00 -FL07D000))
+ DevID ()
+ Rgf (LPC214X.H)
+ Mem ()
+ C ()
+ A ()
+ RL ()
+ OH ()
+ DBC_IFX ()
+ DBC_CMS ()
+ DBC_AMS ()
+ DBC_LMS ()
+ UseEnv=0
+ EnvBin ()
+ EnvInc ()
+ EnvLib ()
+ EnvReg (ÿPhilips\)
+ OrgReg (ÿPhilips\)
+ TgStat=16
+ OutDir (.\)
+ OutName (RTOSDemo)
+ GenApp=1
+ GenLib=0
+ GenHex=0
+ Debug=1
+ Browse=1
+ LstDir (.\)
+ HexSel=1
+ MG32K=0
+ TGMORE=0
+ RunUsr 0 0 <>
+ RunUsr 1 0 <>
+ BrunUsr 0 0 <>
+ BrunUsr 1 0 <>
+ CrunUsr 0 0 <>
+ CrunUsr 1 0 <>
+ SVCSID <>
+ GLFLAGS=1790
+ ADSFLGA { 243,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ACPUTYP (ARM7TDMI)
+ RVDEV ()
+ ADSTFLGA { 0,12,0,0,160,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ OCMADSOCM { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ OCMADSIRAM { 0,0,0,0,64,0,128,0,0 }
+ OCMADSIROM { 1,0,0,0,0,0,0,8,0 }
+ OCMADSXRAM { 0,0,0,0,0,0,0,0,0 }
+ OCR_RVCT { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,0,128,0,0,0,0,0,0,0,0,0,0,0 }
+ RV_STAVEC ()
+ ADSCCFLG { 5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSCMISC ()
+ ADSCDEFN (ARM7_LPC21xx_KEIL_RVDS)
+ ADSCUDEF ()
+ ADSCINCD (.;..\..\Source\portable\RVDS\ARM7_LPC21xx;..\Common\include;..\..\Source\include)
+ ADSASFLG { 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSAMISC ()
+ ADSADEFN ()
+ ADSAUDEF ()
+ ADSAINCD (..\..\Source\portable\RVDS\ARM7_LPC21xx)
+ PropFld { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=1
+ AlwaysBuild=0
+ GenAsm=0
+ AsmAsm=0
+ PublicsOnly=0
+ StopCode=3
+ CustArgs ()
+ LibMods ()
+ ADSLDFG { 17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSLDTA (0x00000000)
+ ADSLDDA (0x40000000)
+ ADSLDSC ()
+ ADSLDIB ()
+ ADSLDIC ()
+ ADSLDMC ()
+ ADSLDIF ()
+ ADSLDDW ()
+  OPTDL (SARM.DLL)(-cLPC2100)(DARMP.DLL)(-pLPC2148)(SARM.DLL)()(TARMP.DLL)(-pLPC2148)
+  OPTDBG 49150,0,()()()()()()()()()() (BIN\UL2ARM.DLL)()()()
+ FLASH1 { 1,0,0,0,1,0,0,0,0,16,0,0,0,0,0,0,0,0,0,0 }
+ FLASH2 (BIN\UL2ARM.DLL)
+ FLASH3 (LPC210x_ISP.EXE ("#H" ^X $D COM1: 38400 1))
+ FLASH4 ()
+EndOpt
+
+Options 2,0,0  // Target 'EmbeddedGUIDemo'
+ Device (LPC2148)
+ Vendor (NXP (founded by Philips))
+ Cpu (IRAM(0x40000000-0x40007FFF) IROM(0-0x7FFFF) CLOCK(12000000) CPUTYPE(ARM7TDMI))
+ FlashUt (LPC210x_ISP.EXE ("#H" ^X $D COM1: 38400 1))
+ StupF ("STARTUP\Philips\Startup.s" ("Philips LPC2100 Startup Code"))
+ FlashDR (UL2ARM(-U268761108 -O7 -C0 -FO15 -FD40000000 -FC800 -FN1 -FF0LPC_IAP2_512 -FS00 -FL07D000))
+ DevID ()
+ Rgf (LPC214X.H)
+ Mem ()
+ C ()
+ A ()
+ RL ()
+ OH ()
+ DBC_IFX ()
+ DBC_CMS ()
+ DBC_AMS ()
+ DBC_LMS ()
+ UseEnv=0
+ EnvBin ()
+ EnvInc ()
+ EnvLib ()
+ EnvReg (ÿPhilips\)
+ OrgReg (ÿPhilips\)
+ TgStat=16
+ OutDir (.\bin\)
+ OutName (RTOSDemo)
+ GenApp=1
+ GenLib=0
+ GenHex=1
+ Debug=1
+ Browse=1
+ LstDir (.\)
+ HexSel=1
+ MG32K=0
+ TGMORE=0
+ RunUsr 0 0 <>
+ RunUsr 1 0 <>
+ BrunUsr 0 0 <>
+ BrunUsr 1 0 <>
+ CrunUsr 0 0 <>
+ CrunUsr 1 0 <>
+ SVCSID <>
+ GLFLAGS=1790
+ ADSFLGA { 243,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ACPUTYP (ARM7TDMI)
+ RVDEV ()
+ ADSTFLGA { 0,12,0,0,163,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0 }
+ OCMADSOCM { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ OCMADSIRAM { 0,0,0,0,64,0,128,0,0 }
+ OCMADSIROM { 1,0,0,0,0,0,0,8,0 }
+ OCMADSXRAM { 0,0,0,0,0,0,0,0,0 }
+ OCR_RVCT { 1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,8,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,0,128,0,0,0,0,0,0,0,0,0,0,0 }
+ RV_STAVEC ()
+ ADSCCFLG { 5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSCMISC ()
+ ADSCDEFN (ARM7_LPC21xx_KEIL_RVDS KEIL_THUMB_INTERWORK)
+ ADSCUDEF ()
+ ADSCINCD (.;..\..\Source\portable\RVDS\ARM7_LPC21xx;..\Common\include;..\..\Source\include)
+ ADSASFLG { 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSAMISC ()
+ ADSADEFN ()
+ ADSAUDEF ()
+ ADSAINCD (..\..\Source\portable\RVDS\ARM7_LPC21xx)
+ PropFld { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=1
+ AlwaysBuild=0
+ GenAsm=0
+ AsmAsm=0
+ PublicsOnly=0
+ StopCode=3
+ CustArgs ()
+ LibMods ()
+ ADSLDFG { 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSLDTA (0x00000000)
+ ADSLDDA (0x40000000)
+ ADSLDSC ()
+ ADSLDIB ()
+ ADSLDIC ()
+ ADSLDMC ()
+ ADSLDIF ()
+ ADSLDDW ()
+  OPTDL (SARM.DLL)(-cLPC2100)(DARMP.DLL)(-pLPC2148)(SARM.DLL)()(TARMP.DLL)(-pLPC2148)
+  OPTDBG 49150,0,()()()()()()()()()() (BIN\UL2ARM.DLL)()()()
+ FLASH1 { 1,0,0,0,1,0,0,0,0,16,0,0,0,0,0,0,0,0,0,0 }
+ FLASH2 (BIN\UL2ARM.DLL)
+ FLASH3 ("LPC210x_ISP.EXE" ("#H" ^X $D COM1: 38400 1))
+ FLASH4 ()
+EndOpt
+

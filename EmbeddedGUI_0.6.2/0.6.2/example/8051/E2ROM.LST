@@ -1,0 +1,227 @@
+A51 MACRO ASSEMBLER  E2ROM                                                                12/13/2009 14:49:06 PAGE     1
+
+
+MACRO ASSEMBLER A51 V7.10
+OBJECT MODULE PLACED IN E2ROM.OBJ
+ASSEMBLER INVOKED BY: E:\keil51\C51\BIN\A51.EXE E2ROM.src SET(LARGE) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;FILE E2ROM.SRC
+                       2     ;THIS FILE CONTAINS SOME FUNCTIONS ABOUT THE IO WITH THE 
+                       3     ;EEROM CHIP 93LC46.
+                       4     
+                       5     PUBLIC EW_ENABLE,EW_DISABLE,ERASE_E2,ERASE_ALL_E2,READ_E2,WRITE_E2,WRITE_OP
+                       6     
+                       7     EXTRN CODE(DELAY_50US)
+                       8     
+  0080                 9             E2CS     BIT P0.0
+  0081                10             E2CLK    BIT P0.1
+  0082                11             E2DI     BIT P0.2
+  0083                12             E2DO     BIT P0.3
+                      13     
+                      14     E2ROM_CODE SEGMENT CODE
+                      15     
+----                  16     RSEG E2ROM_CODE
+                      17     ;------------------------------------------------------------
+                      18     ;EW_ENABLE WILL ENABLE THE ERASE AND WRITE OPERATION.
+0000                  19     EW_ENABLE:
+0000 C0E0             20             PUSH ACC
+                      21     
+0002 7460             22             MOV A,#01100000B    ;EWEN CODE 10011XXXXX
+0004 C3               23             CLR C
+0005 1100     F       24             ACALL WRITE_OP
+0007 C280             25             CLR E2CS
+                      26     
+0009 D0E0             27             POP ACC
+000B 22               28             RET
+                      29     ;------------------------------------------------------------
+                      30     
+                      31     ;------------------------------------------------------------
+                      32     ;EW_DISABLE WILL DISABLE THE ERASE AND WRITE OPERATION.
+000C                  33     EW_DISABLE:
+000C C0E0             34             PUSH ACC
+                      35     
+000E 7400             36             MOV A,#00000000B    ;EWDS CODE 10000XXXXX
+0010 C3               37             CLR C
+0011 1100     F       38             ACALL WRITE_OP
+0013 C280             39             CLR E2CS
+                      40     
+0015 D0E0             41             POP ACC
+0017 22               42             RET
+                      43     ;------------------------------------------------------------
+                      44     
+                      45     ;------------------------------------------------------------
+                      46     ;ERASE_E2 WILL ONLY ERASE ONE BYTE OF E2ROM.
+                      47     ;THE ACC WILL BE THE ADDRESS TO BE ERASED.
+                      48     ;NOTICE THAT AFTER ERASE OPERATION, ALL DATA WILL BE 0FFH IF IS READ.
+0018                  49     ERASE_E2:
+0018 4480             50             ORL A,#10000000B
+001A D3               51             SETB C
+001B 1100     F       52             ACALL WRITE_OP
+001D 1100     F       53             ACALL WAIT_READY        
+001F 22               54             RET
+                      55     ;-----------------------------------------------------------
+                      56     
+                      57     ;-----------------------------------------------------------
+                      58     ;ERASE_ALL_E2 WILL ERASE ALL DATA IN E2ROM.
+A51 MACRO ASSEMBLER  E2ROM                                                                12/13/2009 14:49:06 PAGE     2
+
+                      59     ;NOTICE THAT AFTER ERASE OPERATION, ALL DATA WILL BE 0FFH IF IS READ.
+0020                  60     ERASE_ALL_E2:
+0020 C0E0             61             PUSH ACC
+                      62     
+0022 C3               63             CLR C
+0023 7440             64             MOV A,#40H
+0025 1100     F       65             ACALL WRITE_OP
+0027 1100     F       66             ACALL WAIT_READY
+                      67     
+0029 D0E0             68             POP ACC
+002B 22               69             RET
+                      70     ;------------------------------------------------------------
+                      71     
+                      72     ;------------------------------------------------------------
+                      73     ;READ_E2 CAN READ A BYTE FROM E2ROM.
+                      74     ;THE ADDRESS AND RETURN VALUE IS IN ACC
+002C                  75     READ_E2:
+002C C0F0             76             PUSH B
+                      77     
+002E 547F             78             ANL A,#01111111B   ;READ CODE IS 110 A6 - A0
+0030 D3               79             SETB C
+0031 1100     F       80             ACALL WRITE_OP
+                      81     
+0033 75F008           82             MOV B,#8
+0036                  83     SHIFT_READ:
+0036 D281             84             SETB E2CLK
+0038 00               85             NOP
+0039 A283             86             MOV C,E2DO
+003B 13               87             RRC A
+003C C281             88             CLR E2CLK
+003E 00               89             NOP
+003F D5F0F4           90             DJNZ B,SHIFT_READ
+                      91     
+0042 D0F0             92             POP B
+0044 22               93             RET
+                      94     ;------------------------------------------------------------
+                      95     
+                      96     ;-------------------------------------------------------------
+                      97     ;WRITE_E2 CAN WIRTE A BYTE TO E2ROM.
+                      98     ;THE VALUE IS IN R0 AND THE ADDRESS IS IN ACC
+0045                  99     WRITE_E2:
+0045 C0F0            100             PUSH B
+                     101     
+0047 C3              102             CLR C
+0048 4480            103             ORL A,#10000000B  ;WRITE CODE IS 101 A6 - A0 D7 - D0
+004A 1100     F      104             ACALL WRITE_OP
+                     105     
+                     106             ;SEND THE DATA AFTER THE ADDRESS ,AT THIS MOMENT NOT CS LOW LEVEL OCCUR.
+004C E8              107             MOV A,R0
+004D 75F008          108             MOV B,#8
+0050 33              109             RLC A
+0051                 110     SHIFT_SEND_W2:  
+0051 C281            111             CLR E2CLK
+0053 9282            112             MOV E2DI,C
+0055 00              113             NOP     
+0056 33              114             RLC     A
+0057 D281            115             SETB E2CLK
+0059 00              116             NOP
+005A D5F0F4          117             DJNZ B,SHIFT_SEND_W2
+005D C281            118             CLR E2CLK
+                     119     
+005F C280            120             CLR E2CS
+0061 1100     F      121             ACALL WAIT_READY
+                     122     
+0063 D0F0            123             POP B
+0065 22              124             RET
+A51 MACRO ASSEMBLER  E2ROM                                                                12/13/2009 14:49:06 PAGE     3
+
+                     125     ;-------------------------------------------------------------
+                     126     
+                     127     ;------------------------------------------------------------
+                     128     ;WRITE_OP IS THE SUBFUNCTION USED TO WRITE THE OPERATION CODE TO E2ROM
+                     129     ;THE VALUE IS IN ACC AND C,9 BITS.
+                     130     ;NOTICE THAT ON THE LEFT IS HIGH BITS,WHICH ARE FIRST SENT.
+                     131     ;AND THIS FUNCTION WILL NOT PULL DOWN THE CS.
+0066                 132     WRITE_OP:
+0066 C0F0            133             PUSH B
+                     134             
+0068 75F009          135             MOV B,#9
+006B D280            136             SETB E2CS
+006D C281            137             CLR E2CLK
+006F D282            138             SETB E2DI                  ;THERE IS TEN BIT SENT AFTER ALL.
+0071 D281            139             SETB E2CLK                 ; 1  C  ACC 
+0073 00              140             NOP
+0074 00              141             NOP
+0075 00              142             NOP
+0076                 143     SHIFT_SEND:     
+0076 C281            144             CLR E2CLK
+0078 9282            145             MOV E2DI,C
+007A 00              146             NOP     
+007B 33              147             RLC     A
+007C D281            148             SETB E2CLK
+007E 00              149             NOP
+007F D5F0F4          150             DJNZ B,SHIFT_SEND
+0082 C281            151             CLR E2CLK
+                     152     
+0084 D0F0            153             POP B
+0086 22              154             RET
+                     155     ;------------------------------------------------------------
+                     156     
+                     157     ;------------------------------------------------------------
+                     158     ;WAIT_READY IS A DELAY FUNCTION , IT WILL WAIT FOR E2ROM FINISHING ITS JOB.
+                     159     ;NOTICE THAT THIS IS A INNER FUNCTION,SO IT WILL CHANGE THE ACC.
+0087                 160     WAIT_READY:
+0087 00              161             NOP
+0088 D280            162             SETB E2CS
+008A                 163     LOOP_WAIT:      
+008A E4              164             CLR A
+                     165             ;DO OUTPUT IS LOW WHILE BUSY,IT WILL PULL DOWN 
+008B D283            166             SETB E2DO
+008D A283            167             MOV C,E2DO
+008F 33              168             RLC A
+0090 B40005          169             CJNE A,#00H,ALREADY
+0093 120000   F      170             CALL DELAY_50US
+0096 80F2            171             SJMP LOOP_WAIT
+0098                 172     ALREADY:
+0098 C280            173             CLR E2CS
+                     174     
+009A 22              175             RET
+                     176     ;------------------------------------------------------------
+                     177     
+                     178             END
+A51 MACRO ASSEMBLER  E2ROM                                                                12/13/2009 14:49:06 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+ALREADY. . . . . .  C ADDR   0098H   R   SEG=E2ROM_CODE
+B. . . . . . . . .  D ADDR   00F0H   A   
+DELAY_50US . . . .  C ADDR   -----       EXT
+E2CLK. . . . . . .  B ADDR   0080H.1 A   
+E2CS . . . . . . .  B ADDR   0080H.0 A   
+E2DI . . . . . . .  B ADDR   0080H.2 A   
+E2DO . . . . . . .  B ADDR   0080H.3 A   
+E2ROM_CODE . . . .  C SEG    009BH       REL=UNIT
+ERASE_ALL_E2 . . .  C ADDR   0020H   R   SEG=E2ROM_CODE
+ERASE_E2 . . . . .  C ADDR   0018H   R   SEG=E2ROM_CODE
+EW_DISABLE . . . .  C ADDR   000CH   R   SEG=E2ROM_CODE
+EW_ENABLE. . . . .  C ADDR   0000H   R   SEG=E2ROM_CODE
+LOOP_WAIT. . . . .  C ADDR   008AH   R   SEG=E2ROM_CODE
+P0 . . . . . . . .  D ADDR   0080H   A   
+READ_E2. . . . . .  C ADDR   002CH   R   SEG=E2ROM_CODE
+SHIFT_READ . . . .  C ADDR   0036H   R   SEG=E2ROM_CODE
+SHIFT_SEND . . . .  C ADDR   0076H   R   SEG=E2ROM_CODE
+SHIFT_SEND_W2. . .  C ADDR   0051H   R   SEG=E2ROM_CODE
+WAIT_READY . . . .  C ADDR   0087H   R   SEG=E2ROM_CODE
+WRITE_E2 . . . . .  C ADDR   0045H   R   SEG=E2ROM_CODE
+WRITE_OP . . . . .  C ADDR   0066H   R   SEG=E2ROM_CODE
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

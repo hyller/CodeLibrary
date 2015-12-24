@@ -1,0 +1,57 @@
+C51 COMPILER V7.50   MAIN                                                                  12/13/2009 14:49:09 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: E:\keil51\C51\BIN\C51.EXE main.c LARGE BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          //main.c
+   2          #include <REG54.H>
+   3          #include "INTRINS.H"
+   4          #include "LCDDriver.h"
+   5          #include "GraphicFunc.h"
+   6          
+   7          void UART_SendStringCongestion(char* string){
+   8   1              while(*string!='\0'){
+   9   2                      CY=P;
+  10   2                      TB8=CY;
+  11   2                      SBUF=ACC;
+  12   2                      while(TI==0){
+  13   3                              _nop_();
+  14   3                      }       
+  15   2                      TI=0;
+  16   2              }
+  17   1      }
+  18          
+  19          void emain(){
+  20   1              //init the LCD 
+  21   1              EG_LCDInit();
+  22   1          // Clear the buffer, set the buffer to 0
+  23   1          EG_LCDClearBuffer();
+  24   1          // Redraw sth..
+  25   1              EG_Graphic_DrawHorizonLine(10,10,20);
+  26   1          // Flush buffer to RAM in LCD
+  27   1              EG_LCDFlushBuffer();
+  28   1              UART_SendStringCongestion("Init EmbeddedGUI Finished.\0");
+  29   1              while(1){
+  30   2                      EG_LCDFlushBuffer();                    
+  31   2              }
+  32   1      }
+  33          
+  34          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     60    ----
+   CONSTANT SIZE    =     28    ----
+   XDATA SIZE       =    768    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

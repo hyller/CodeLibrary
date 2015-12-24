@@ -1,0 +1,14 @@
+serial.o: serial\serial.c
+serial.o: d:\Keil\ARM\RV31\INC\stdlib.h
+serial.o: .\FreeRTOS.h
+serial.o: d:\Keil\ARM\RV31\INC\stddef.h
+serial.o: .\projdefs.h
+serial.o: .\FreeRTOSConfig.h
+serial.o: d:\Keil\ARM\INC\Philips\lpc21xx.h
+serial.o: .\portable.h
+serial.o: .\Source\portable\RVDS\ARM7_LPC21xx\portmacro.h
+serial.o: .\mpu_wrappers.h
+serial.o: .\queue.h
+serial.o: .\task.h
+serial.o: .\list.h
+serial.o: .\serial.h

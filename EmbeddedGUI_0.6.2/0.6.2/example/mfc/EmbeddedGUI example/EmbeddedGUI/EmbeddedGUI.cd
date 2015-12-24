@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EButton" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAgAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECheckButton" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAQAAAAAAAAEAAAAiAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EComboBox" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAUgAAAAAAACAAAAAAAAAAhBUQgAAEIQAAEAAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EControl" Collapsed="true">
+    <Position X="7" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAiEQAAIEAgAAAAAAMAAAABCgAAAEAAAAAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECursor" Collapsed="true">
+    <Position X="1.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAgIAAAAAAAAAAAAAAACAAMAIAAAAABAA=</HashCode>
+      <FileName>ECursor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDesktop" Collapsed="true">
+    <Position X="3.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AGAAAEUEAEAgAQAAAEACBAgUAECAAE0AAhAAAQCQAAA=</HashCode>
+      <FileName>EFrame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDialogBox" Collapsed="true">
+    <Position X="1.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAABAAQAAAAAAAggAAAAAAAAAAACABAAgAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EEdit" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAMEAAAQAAAAAAAAEAABAAAAEAAAAAAAAAAFAAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EExtLabel" Collapsed="true">
+    <Position X="3" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABEAAAAAIBAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EIcon" Collapsed="true">
+    <Position X="1.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAACACQAAAAAAAAAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ELabel" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAIAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EList" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAFABAABACFBgAAAAAAAAAgAMAAAIEAAQAQAABAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EMenu" Collapsed="true">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAgBIBAAAAUAAABCAhQUAgAEBAAAAACAAYBAABBA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EMessageBox" Collapsed="true">
+    <Position X="8.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAABAAEABAAAAAIAAACIAAAAEAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EPopupMenu" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAgBIBAAAAQAAAACAhQEAgAEBABABIAAAAAAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EProgress" Collapsed="true">
+    <Position X="10.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAACAAAAAAAAAAAAgAAAACAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EScroll" Collapsed="true">
+    <Position X="12" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAEAgAAAACAAAAAAAAAAAgAAABAAAAAAAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ETree" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAEACQAAAAAASBBoGAAQAAAACIgIAAIAAAABIAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EWindow" Collapsed="true">
+    <Position X="5.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAVENiIxkASAACAAkABAKMACCACkkgIGAwAgAAAAQ=</HashCode>
+      <FileName>EFrame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EBarChart" Collapsed="true">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAIGFAAggKGIAAACAAQAAABAAAAABEAAQABAABAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EClock" Collapsed="true">
+    <Position X="6.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAYAAAAQAAAAAAAAAgAAAAAAABBKAAAAgAIAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EIconButton" Collapsed="true">
+    <Position X="1.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAgAAAAAAAAAAAAAAAAAAAAAABAAACAAAAAAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ESimpleDesktop" Collapsed="true">
+    <Position X="3.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABIAEAIAhAgAAAAQgECDCAEDAAIBAEACEBAAUACQIg=</HashCode>
+      <FileName>EFrame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ESimpleWindow" Collapsed="true">
+    <Position X="5.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAUAACAEgAAEAICAAACICAIABACAEBAAAQAAAACAQ=</HashCode>
+      <FileName>EFrame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EStatusBar" Collapsed="true">
+    <Position X="8.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAABgBABEAAQAAAAAEAAQAQAAAAAmAAAkAAQA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EToolBar" Collapsed="true">
+    <Position X="10.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAABAHAABAgAAAAAgBAAAAAEACAAAgEBAAA=</HashCode>
+      <FileName>EControl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="EColor" Collapsed="true">
+    <Position X="0.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAgAIAAE=</HashCode>
+      <FileName>EComponent.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ECursorBuffer" Collapsed="true">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ECursor.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="EEvent" Collapsed="true">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAgAAAACAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EComponent.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="EFont" Collapsed="true">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAACAAAACAAAAAAA=</HashCode>
+      <FileName>EFont.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="EPosition" Collapsed="true">
+    <Position X="4.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAA=</HashCode>
+      <FileName>EComponent.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ESize" Collapsed="true">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>EComponent.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="EStyle" Collapsed="true">
+    <Position X="2.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAggAAAAAAAAAAgAAAAAAAAAAAACACA=</HashCode>
+      <FileName>EComponent.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="EBitmap" Collapsed="true">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAEEAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>EComponent.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Microsoft YaHei" Size="9" />
+</ClassDiagram>

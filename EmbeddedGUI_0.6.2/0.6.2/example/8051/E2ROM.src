@@ -1,0 +1,178 @@
+;FILE E2ROM.SRC
+;THIS FILE CONTAINS SOME FUNCTIONS ABOUT THE IO WITH THE 
+;EEROM CHIP 93LC46.
+
+PUBLIC EW_ENABLE,EW_DISABLE,ERASE_E2,ERASE_ALL_E2,READ_E2,WRITE_E2,WRITE_OP
+
+EXTRN CODE(DELAY_50US)
+
+	E2CS     BIT P0.0
+	E2CLK    BIT P0.1
+	E2DI     BIT P0.2
+	E2DO     BIT P0.3
+
+E2ROM_CODE SEGMENT CODE
+
+RSEG E2ROM_CODE
+;------------------------------------------------------------
+;EW_ENABLE WILL ENABLE THE ERASE AND WRITE OPERATION.
+EW_ENABLE:
+	PUSH ACC
+
+	MOV A,#01100000B    ;EWEN CODE 10011XXXXX
+	CLR C
+	ACALL WRITE_OP
+	CLR E2CS
+
+	POP ACC
+	RET
+;------------------------------------------------------------
+
+;------------------------------------------------------------
+;EW_DISABLE WILL DISABLE THE ERASE AND WRITE OPERATION.
+EW_DISABLE:
+	PUSH ACC
+
+	MOV A,#00000000B    ;EWDS CODE 10000XXXXX
+	CLR C
+	ACALL WRITE_OP
+	CLR E2CS
+
+	POP ACC
+	RET
+;------------------------------------------------------------
+
+;------------------------------------------------------------
+;ERASE_E2 WILL ONLY ERASE ONE BYTE OF E2ROM.
+;THE ACC WILL BE THE ADDRESS TO BE ERASED.
+;NOTICE THAT AFTER ERASE OPERATION, ALL DATA WILL BE 0FFH IF IS READ.
+ERASE_E2:
+	ORL A,#10000000B
+	SETB C
+	ACALL WRITE_OP
+	ACALL WAIT_READY	
+	RET
+;-----------------------------------------------------------
+
+;-----------------------------------------------------------
+;ERASE_ALL_E2 WILL ERASE ALL DATA IN E2ROM.
+;NOTICE THAT AFTER ERASE OPERATION, ALL DATA WILL BE 0FFH IF IS READ.
+ERASE_ALL_E2:
+	PUSH ACC
+
+	CLR C
+	MOV A,#40H
+	ACALL WRITE_OP
+	ACALL WAIT_READY
+
+	POP ACC
+	RET
+;------------------------------------------------------------
+
+;------------------------------------------------------------
+;READ_E2 CAN READ A BYTE FROM E2ROM.
+;THE ADDRESS AND RETURN VALUE IS IN ACC
+READ_E2:
+	PUSH B
+
+	ANL A,#01111111B   ;READ CODE IS 110 A6 - A0
+	SETB C
+	ACALL WRITE_OP
+
+	MOV B,#8
+SHIFT_READ:
+	SETB E2CLK
+	NOP
+	MOV C,E2DO
+	RRC A
+	CLR E2CLK
+	NOP
+	DJNZ B,SHIFT_READ
+
+	POP B
+	RET
+;------------------------------------------------------------
+
+;-------------------------------------------------------------
+;WRITE_E2 CAN WIRTE A BYTE TO E2ROM.
+;THE VALUE IS IN R0 AND THE ADDRESS IS IN ACC
+WRITE_E2:
+	PUSH B
+
+	CLR C
+	ORL A,#10000000B  ;WRITE CODE IS 101 A6 - A0 D7 - D0
+	ACALL WRITE_OP
+
+	;SEND THE DATA AFTER THE ADDRESS ,AT THIS MOMENT NOT CS LOW LEVEL OCCUR.
+	MOV A,R0
+	MOV B,#8
+	RLC A
+SHIFT_SEND_W2:	
+	CLR E2CLK
+	MOV E2DI,C
+	NOP	
+	RLC	A
+	SETB E2CLK
+	NOP
+	DJNZ B,SHIFT_SEND_W2
+	CLR E2CLK
+
+	CLR E2CS
+	ACALL WAIT_READY
+
+	POP B
+	RET
+;-------------------------------------------------------------
+
+;------------------------------------------------------------
+;WRITE_OP IS THE SUBFUNCTION USED TO WRITE THE OPERATION CODE TO E2ROM
+;THE VALUE IS IN ACC AND C,9 BITS.
+;NOTICE THAT ON THE LEFT IS HIGH BITS,WHICH ARE FIRST SENT.
+;AND THIS FUNCTION WILL NOT PULL DOWN THE CS.
+WRITE_OP:
+	PUSH B
+	
+	MOV B,#9
+	SETB E2CS
+	CLR E2CLK
+	SETB E2DI		   ;THERE IS TEN BIT SENT AFTER ALL.
+	SETB E2CLK		   ; 1  C  ACC 
+	NOP
+	NOP
+	NOP
+SHIFT_SEND:	
+	CLR E2CLK
+	MOV E2DI,C
+	NOP	
+	RLC	A
+	SETB E2CLK
+	NOP
+	DJNZ B,SHIFT_SEND
+	CLR E2CLK
+
+	POP B
+	RET
+;------------------------------------------------------------
+
+;------------------------------------------------------------
+;WAIT_READY IS A DELAY FUNCTION , IT WILL WAIT FOR E2ROM FINISHING ITS JOB.
+;NOTICE THAT THIS IS A INNER FUNCTION,SO IT WILL CHANGE THE ACC.
+WAIT_READY:
+	NOP
+	SETB E2CS
+LOOP_WAIT:	
+	CLR A
+	;DO OUTPUT IS LOW WHILE BUSY,IT WILL PULL DOWN 
+	SETB E2DO
+	MOV C,E2DO
+	RLC A
+	CJNE A,#00H,ALREADY
+	CALL DELAY_50US
+	SJMP LOOP_WAIT
+ALREADY:
+	CLR E2CS
+
+	RET
+;------------------------------------------------------------
+
+	END

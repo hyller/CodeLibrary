@@ -1,0 +1,25 @@
+main.o: main.cpp
+main.o: BSP.h
+main.o: D:\Keil for ARM\ARM\INC\Philips\LPC22xx.H
+main.o: LCDDriver.h
+main.o: EGUIMacro.h
+main.o: IO.h
+main.o: EGUIMacro.h
+main.o: EControl.h
+main.o: GraphicFunc.h
+main.o: EGUIMacro.h
+main.o: EFont.h
+main.o: EComponent.h
+main.o: EGUIMacro.h
+main.o: EFrame.h
+main.o: EGUIMacro.h
+main.o: ECursor.h
+main.o: EGUIMacro.h
+main.o: LCDDriver.h
+main.o: EGUIMacro.h
+main.o: IO.h
+main.o: EGUIMacro.h
+main.o: LCDDriver.h
+main.o: EGUIMacro.h
+main.o: IO.h
+main.o: EGUIMacro.h

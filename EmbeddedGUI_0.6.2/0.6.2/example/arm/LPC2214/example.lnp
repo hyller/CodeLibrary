@@ -1,0 +1,4 @@
+"startup.o" "isr.o" "peripherialinit.o" "bsp.o" "main.o" "econtrol.o" "ecursor.o" "graphicfunc.o" "lcddriver.o" "eframe.o" --device DARMP --strict --scatter "example.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\example.map" -o "example.axf"

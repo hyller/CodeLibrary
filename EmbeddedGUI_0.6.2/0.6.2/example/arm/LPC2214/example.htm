@@ -1,0 +1,2424 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+<title>Static Call Graph - [E:\My Programes\EmbeddedGUI\0.5.4\example\arm\LPC2214\example.axf]</title></head>
+<body><HR>
+<H1>Static Call Graph for image E:\My Programes\EmbeddedGUI\0.5.4\example\arm\LPC2214\example.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, RVCT3.1 [Build 939]: Last Updated: Wed Apr 14 19:47:53 2010
+<BR><P>
+<H3>Maximum Stack Usage =        176 bytes + Unknown(Functions without stacksize, Untraceable Function Pointers)</H3><H3>
+Call chain for Maximum Stack Depth:</H3>
+__sti___8_main_cpp &rArr; __aeabi_atexit &rArr; malloc &rArr; __Heap_Full &rArr; __Heap_ProvideMemory &rArr; free
+<P>
+<H3>
+Functions with no stack information
+</H3><UL>
+ <LI><a href="#[bc3290]">Reset_Handler</a>
+ <LI><a href="#[bc32d8]">__user_initial_stackheap</a>
+ <LI><a href="#[bc30e0]">Undefine_ISR</a>
+ <LI><a href="#[bc3128]">SWI_ISR</a>
+ <LI><a href="#[bc3170]">PAbt_ISR</a>
+ <LI><a href="#[bc3248]">DAbt_ISR</a>
+ <LI><a href="#[bc3200]">Default_vIRQ_ISR</a>
+ <LI><a href="#[bc31b8]">FIQ_ISR</a>
+ <LI><a href="#[bc2a80]">PERIPHERIAL_INIT</a>
+</UL>
+</UL>
+<P>
+<H3>
+Function Pointers
+</H3><UL>
+ <LI><a href="#[bc3290]">Reset_Handler</a>
+ <LI><a href="#[bc30e0]">Undefine_ISR</a>
+ <LI><a href="#[bc3128]">SWI_ISR</a>
+ <LI><a href="#[bc3170]">PAbt_ISR</a>
+ <LI><a href="#[bc3248]">DAbt_ISR</a>
+ <LI><a href="#[bc3200]">Default_vIRQ_ISR</a>
+ <LI><a href="#[bc31b8]">FIQ_ISR</a>
+ <LI><a href="#[104f960]">__main</a>
+ <LI><a href="#[11af468]">__ARM_get_argv</a>
+ <LI><a href="#[bbfd28]">EWindow::~EWindow()</a>
+ <LI><a href="#[bbfe48]">ELabel::~ELabel()</a>
+ <LI><a href="#[bbfdb8]">EButton::~EButton()</a>
+ <LI><a href="#[bbffb0]">ECheckButton::~ECheckButton()</a>
+ <LI><a href="#[bbfed8]">EEdit::~EEdit()</a>
+ <LI><a href="#[bbd1a8]">EG_RedrawFunc_DefaultELabel(EControl*)</a>
+ <LI><a href="#[bbd160]">EG_RedrawFunc_DefaultEButton(EControl*)</a>
+ <LI><a href="#[bbd118]">EG_CallbackFunc_DefaultECheckButton(EControl*, EEvent*)</a>
+ <LI><a href="#[bbd0d0]">EG_RedrawFunc_DefaultECheckButton(EControl*)</a>
+ <LI><a href="#[bbd040]">EG_RedrawFunc_DefaultEEdit(EControl*)</a>
+ <LI><a href="#[bbd088]">EG_CallbackFunc_DefaultEEdit(EControl*, EEvent*)</a>
+ <LI><a href="#[bbcf20]">EG_RedrawFunc_DefaultEExtLabel(EControl*)</a>
+ <LI><a href="#[bbcf68]">EG_CallbackFunc_DefaultEExtLabel(EControl*, EEvent*)</a>
+ <LI><a href="#[bbce48]">EG_RedrawFunc_DefaultEComboBox(EControl*)</a>
+ <LI><a href="#[bbce90]">EG_CallbackFunc_DefaultEComboBox(EControl*, EEvent*)</a>
+ <LI><a href="#[bbce00]">EG_RedrawFunc_DefaultEIcon(EControl*)</a>
+ <LI><a href="#[bbcdb8]">EG_RedrawFunc_DefaultEIconButton(EControl*)</a>
+ <LI><a href="#[bbcce0]">EG_RedrawFunc_DefaultEMessageBox(EControl*)</a>
+ <LI><a href="#[bbcd28]">EG_CallbackFunc_DefaultEMessageBox(EControl*, EEvent*)</a>
+ <LI><a href="#[bbcc08]">EG_RedrawFunc_DefaultEDialogBox(EControl*)</a>
+ <LI><a href="#[bbcc50]">EG_CallbackFunc_DefaultEDialogBox(EControl*, EEvent*)</a>
+ <LI><a href="#[bbcb78]">EG_RedrawFunc_DefaultEScroll(EControl*)</a>
+ <LI><a href="#[bbcbc0]">EG_CallbackFunc_DefaultEScroll(EControl*, EEvent*)</a>
+ <LI><a href="#[bbc9c8]">EG_RedrawFunc_DefaultEMenu(EControl*)</a>
+ <LI><a href="#[bbca10]">EG_CallbackFunc_DefaultEMenu(EControl*, EEvent*)</a>
+ <LI><a href="#[bbc980]">EG_CallbackFunc_DefaultEPopupMenu(EControl*, EEvent*)</a>
+ <LI><a href="#[bbc548]">EG_RedrawFunc_DefaultEToolBar(EControl*)</a>
+ <LI><a href="#[bbc5d8]">EG_CallbackFunc_DefaultEToolBar(EControl*, EEvent*)</a>
+ <LI><a href="#[bc0088]">main</a>
+ <LI><a href="#[11b08c8]">__I_use_semihosting</a>
+ <LI><a href="#[bc3200]">Default_vIRQ_ISR</a>
+ <LI><a href="#[bb3ce8]">ESimpleWindow::ForceRedrawAllControls()</a>
+ <LI><a href="#[bb3ca0]">ESimpleWindow::RedrawSelectedControls()</a>
+ <LI><a href="#[bb3bc8]">ESimpleWindow::DispatchEvent(EEvent*)</a>
+ <LI><a href="#[1052b08]">ESimpleWindow::InWindowArea(EPosition)</a>
+ <LI><a href="#[1052ac0]">ESimpleWindow::RecoverWindow()</a>
+ <LI><a href="#[1052a78]">ESimpleWindow::GetWindowState()</a>
+ <LI><a href="#[bbfaa0]">ESimpleDesktop::DispatchEvent(EEvent*)</a>
+ <LI><a href="#[1052a30]">ESimpleDesktop::RedrawDesktop()</a>
+ <LI><a href="#[bb3a18]">EWindow::ForceRedrawAllControls()</a>
+ <LI><a href="#[bb39d0]">EWindow::RedrawSelectedControls()</a>
+ <LI><a href="#[10532a0]">EWindow::DispatchEvent(EEvent*)</a>
+ <LI><a href="#[10530f0]">EWindow::InWindowArea(EPosition)</a>
+ <LI><a href="#[10531c8]">EWindow::RecoverWindow()</a>
+ <LI><a href="#[10528c8]">EWindow::GetWindowState()</a>
+ <LI><a href="#[1052b98]">EDesktop::DispatchEvent(EEvent*)</a>
+ <LI><a href="#[1052b50]">EDesktop::RedrawDesktop()</a>
+ <LI><a href="#[bc0c10]">__sti___8_main_cpp</a>
+</UL>
+<P>
+<H3>
+Global Symbols
+</H3>
+<P><STRONG><a name="[bc3290]"></a>Reset_Handler</STRONG> (ARM, 0 bytes, Stack size unknown bytes, startup.o(RESET))
+<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
+</UL>
+<P><STRONG><a name="[104f960]"></a>__main</STRONG> (ARM, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120 + Unknown Stack Size
+<LI>Call Chain = __main &rArr; __rt_entry &rArr; __rt_lib_init &rArr; _init_alloc &rArr; __rt_SIGRTMEM &rArr; __rt_SIGRTMEM_inner &rArr; __default_signal_display &rArr; _ttywrch
+</UL>
+<BR>[Calls]<UL><LI><a href="#[104b3d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<LI><a href="#[11ac730]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
+</UL>
+
+<P><STRONG><a name="[11ac730]"></a>__scatterload</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter))
+<BR><BR>[Called By]<UL><LI><a href="#[104f960]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
+
+<P><STRONG><a name="[11ac6e8]"></a>__scatterload_rt2</STRONG> (ARM, 52 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[104b3d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+</UL>
+
+<P><STRONG><a name="[11ac6a0]"></a>__scatterload_null</STRONG> (ARM, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+
+<P><STRONG><a name="[11ac460]"></a>__scatterload_copy</STRONG> (ARM, 40 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[11ac460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11ac460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
+</UL>
+
+<P><STRONG><a name="[11ac2f8]"></a>__scatterload_zeroinit</STRONG> (ARM, 44 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
+
+<P><STRONG><a name="[1044008]"></a>__ARM_argv_veneer</STRONG> (ARM, 16 bytes, Stack size 0 bytes, lib_init.o(.emb_text))
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (via Veneer)
+</UL>
+
+<P><STRONG><a name="[bc32d8]"></a>__user_initial_stackheap</STRONG> (ARM, 0 bytes, Stack size unknown bytes, startup.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[104ada8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+</UL>
+
+<P><STRONG><a name="[bc00d0]"></a>timerISR()</STRONG> (ARM, 44 bytes, Stack size 32 bytes, main.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbfa58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::ScheduleRedraw()
+</UL>
+
+<P><STRONG><a name="[bc0088]"></a>main</STRONG> (ARM, 160 bytes, Stack size 32 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104 + Unknown Stack Size
+<LI>Call Chain = main &rArr; ESimpleDesktop::GlobalRedraw() &rArr; ECursor::SetCursorPosition(const EPosition&)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bbfa10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::AddWindow(ESimpleWindow*)
+<LI><a href="#[bbfaa0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::DispatchEvent(EEvent*)
+<LI><a href="#[bbfae8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::GlobalRedraw()
+<LI><a href="#[bbfbc0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDClearBuffer()
+<LI><a href="#[bbfc08]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDInit()
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+<LI><a href="#[bbff20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::AddControl(EControl*)
+<LI><a href="#[bbfff8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_FeedDog()
+<LI><a href="#[bc2a80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PERIPHERIAL_INIT
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> kernel.o(.text)
+</UL>
+<P><STRONG><a name="[bc0040]"></a>nextButtonCBF(EControl*, EEvent*)</STRONG> (ARM, 248 bytes, Stack size 16 bytes, main.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbf980]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::AddCharToString(char)
+<LI><a href="#[bbfb30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::RemoveControl(int)
+<LI><a href="#[bbff20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::AddControl(EControl*)
+</UL>
+
+<P><STRONG><a name="[bbd1a8]"></a>EG_RedrawFunc_DefaultELabel(EControl*)</STRONG> (ARM, 52 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = EG_RedrawFunc_DefaultELabel(EControl*) &rArr; EG_Graphic_DrawString(unsigned, unsigned, char*) &rArr; EG_Graphic_DrawChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbd160]"></a>EG_RedrawFunc_DefaultEButton(EControl*)</STRONG> (ARM, 84 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = EG_RedrawFunc_DefaultEButton(EControl*) &rArr; EG_Graphic_DrawString(unsigned, unsigned, char*) &rArr; EG_Graphic_DrawChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbd118]"></a>EG_CallbackFunc_DefaultECheckButton(EControl*, EEvent*)</STRONG> (ARM, 96 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = EG_CallbackFunc_DefaultECheckButton(EControl*, EEvent*) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbd0d0]"></a>EG_RedrawFunc_DefaultECheckButton(EControl*)</STRONG> (ARM, 180 bytes, Stack size 24 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = EG_RedrawFunc_DefaultECheckButton(EControl*) &rArr; EG_Graphic_DrawString(unsigned, unsigned, char*) &rArr; EG_Graphic_DrawChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb9f98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bb9fe0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbf980]"></a>EEdit::AddCharToString(char)</STRONG> (ARM, 68 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = EEdit::AddCharToString(char) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbd088]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEEdit(EControl*, EEvent*)
+<LI><a href="#[bc0040]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextButtonCBF(EControl*, EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbd088]"></a>EG_CallbackFunc_DefaultEEdit(EControl*, EEvent*)</STRONG> (ARM, 68 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = EG_CallbackFunc_DefaultEEdit(EControl*, EEvent*) &rArr; EEdit::AddCharToString(char) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bbf980]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::AddCharToString(char)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbd040]"></a>EG_RedrawFunc_DefaultEEdit(EControl*)</STRONG> (ARM, 192 bytes, Stack size 32 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = EG_RedrawFunc_DefaultEEdit(EControl*) &rArr; EG_Graphic_DrawConstString(unsigned, unsigned, char*, unsigned char) &rArr; EG_Graphic_DrawChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawConstString(unsigned, unsigned, char*, unsigned char)
+<LI><a href="#[bba2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawChar(unsigned, unsigned, char)
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbcff8]"></a>EG_RedrawFunc_DefaultEProgress(EControl*)</STRONG> (ARM, 164 bytes, Stack size 24 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb9fe0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbcfb0]"></a>EExtLabel::ChangeState()</STRONG> (ARM, 56 bytes, Stack size 8 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EExtLabel::ChangeState() &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbcf68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEExtLabel(EControl*, EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbcf68]"></a>EG_CallbackFunc_DefaultEExtLabel(EControl*, EEvent*)</STRONG> (ARM, 72 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = EG_CallbackFunc_DefaultEExtLabel(EControl*, EEvent*) &rArr; EExtLabel::ChangeState() &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bbcfb0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EExtLabel::ChangeState()
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbcf20]"></a>EG_RedrawFunc_DefaultEExtLabel(EControl*)</STRONG> (ARM, 80 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = EG_RedrawFunc_DefaultEExtLabel(EControl*) &rArr; EG_Graphic_DrawNotString(unsigned, unsigned, char*) &rArr; EG_Graphic_DrawNotChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNotString(unsigned, unsigned, char*)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbced8]"></a>EComboBox::SwitchOpenState()</STRONG> (ARM, 84 bytes, Stack size 8 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EComboBox::SwitchOpenState() &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbce90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEComboBox(EControl*, EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbce90]"></a>EG_CallbackFunc_DefaultEComboBox(EControl*, EEvent*)</STRONG> (ARM, 208 bytes, Stack size 40 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64 + Unknown Stack Size
+<LI>Call Chain = EG_CallbackFunc_DefaultEComboBox(EControl*, EEvent*) &rArr; EComboBox::SetSelectIndex(unsigned) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba388]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EComboBox::SetSelectIndex(unsigned)
+<LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bbced8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EComboBox::SwitchOpenState()
+<LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbce48]"></a>EG_RedrawFunc_DefaultEComboBox(EControl*)</STRONG> (ARM, 468 bytes, Stack size 24 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = EG_RedrawFunc_DefaultEComboBox(EControl*) &rArr; EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char) &rArr; EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned) &rArr; EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb9f98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba070]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+<LI><a href="#[bba268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char)
+<LI><a href="#[bba3d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EComboBox::GetItemString(unsigned)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbce00]"></a>EG_RedrawFunc_DefaultEIcon(EControl*)</STRONG> (ARM, 68 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = EG_RedrawFunc_DefaultEIcon(EControl*) &rArr; EG_Graphic_DrawBitmap(unsigned, unsigned, EBitmap*) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawBitmap(unsigned, unsigned, EBitmap*)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbcdb8]"></a>EG_RedrawFunc_DefaultEIconButton(EControl*)</STRONG> (ARM, 180 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = EG_RedrawFunc_DefaultEIconButton(EControl*) &rArr; EG_Graphic_DrawString(unsigned, unsigned, char*) &rArr; EG_Graphic_DrawChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+<LI><a href="#[bba220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawBitmap(unsigned, unsigned, EBitmap*)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbcd70]"></a>EMessageBox::InCloseArea(const EPosition&)</STRONG> (ARM, 104 bytes, Stack size 0 bytes, econtrol.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bbcd28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEMessageBox(EControl*, EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbcd28]"></a>EG_CallbackFunc_DefaultEMessageBox(EControl*, EEvent*)</STRONG> (ARM, 104 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = EG_CallbackFunc_DefaultEMessageBox(EControl*, EEvent*) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bbcd70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMessageBox::InCloseArea(const EPosition&)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbcce0]"></a>EG_RedrawFunc_DefaultEMessageBox(EControl*)</STRONG> (ARM, 224 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = EG_RedrawFunc_DefaultEMessageBox(EControl*) &rArr; EG_Graphic_DrawNotString(unsigned, unsigned, char*) &rArr; EG_Graphic_DrawNotChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb9fe0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNotString(unsigned, unsigned, char*)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbcc98]"></a>EDialogBox::UpdataState(const EPosition&)</STRONG> (ARM, 184 bytes, Stack size 0 bytes, econtrol.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bbcc50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEDialogBox(EControl*, EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbcc50]"></a>EG_CallbackFunc_DefaultEDialogBox(EControl*, EEvent*)</STRONG> (ARM, 104 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = EG_CallbackFunc_DefaultEDialogBox(EControl*, EEvent*) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bbcc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDialogBox::UpdataState(const EPosition&)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbcc08]"></a>EG_RedrawFunc_DefaultEDialogBox(EControl*)</STRONG> (ARM, 368 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = EG_RedrawFunc_DefaultEDialogBox(EControl*) &rArr; EG_Graphic_DrawNotString(unsigned, unsigned, char*) &rArr; EG_Graphic_DrawNotChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb9fe0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNotString(unsigned, unsigned, char*)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbcbc0]"></a>EG_CallbackFunc_DefaultEScroll(EControl*, EEvent*)</STRONG> (ARM, 208 bytes, Stack size 24 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = EG_CallbackFunc_DefaultEScroll(EControl*, EEvent*) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbcb78]"></a>EG_RedrawFunc_DefaultEScroll(EControl*)</STRONG> (ARM, 444 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = EG_RedrawFunc_DefaultEScroll(EControl*) &rArr; EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char) &rArr; EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned) &rArr; EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb9f98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bb9fe0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbcb30]"></a>EG_CallbackFunc_DefaultEList(EControl*, EEvent*)</STRONG> (ARM, 200 bytes, Stack size 24 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+
+<P><STRONG><a name="[bbcae8]"></a>EG_RedrawFunc_DefaultEList(EControl*)</STRONG> (ARM, 248 bytes, Stack size 32 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb9f98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+</UL>
+
+<P><STRONG><a name="[bbcaa0]"></a>EMenu::UpdateHeightAndPosition()</STRONG> (ARM, 80 bytes, Stack size 0 bytes, econtrol.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bbca58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMenu::SwitchShowState()
+</UL>
+
+<P><STRONG><a name="[bbca58]"></a>EMenu::SwitchShowState()</STRONG> (ARM, 168 bytes, Stack size 8 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EMenu::SwitchShowState() &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bbcaa0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMenu::UpdateHeightAndPosition()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbca10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEMenu(EControl*, EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbca10]"></a>EG_CallbackFunc_DefaultEMenu(EControl*, EEvent*)</STRONG> (ARM, 596 bytes, Stack size 32 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48 + Unknown Stack Size
+<LI>Call Chain = EG_CallbackFunc_DefaultEMenu(EControl*, EEvent*) &rArr; EMenu::SwitchShowState() &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bba6e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMenu::SetSelectItem(unsigned)
+<LI><a href="#[bbca58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMenu::SwitchShowState()
+<LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbc9c8]"></a>EG_RedrawFunc_DefaultEMenu(EControl*)</STRONG> (ARM, 556 bytes, Stack size 24 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = EG_RedrawFunc_DefaultEMenu(EControl*) &rArr; EG_Graphic_DrawNotString(unsigned, unsigned, char*) &rArr; EG_Graphic_DrawNotChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb9f98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bb9fe0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNotString(unsigned, unsigned, char*)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbc980]"></a>EG_CallbackFunc_DefaultEPopupMenu(EControl*, EEvent*)</STRONG> (ARM, 304 bytes, Stack size 32 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40 + Unknown Stack Size
+<LI>Call Chain = EG_CallbackFunc_DefaultEPopupMenu(EControl*, EEvent*) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbc938]"></a>EG_RedrawFunc_DefaultEPopupMenu(EControl*)</STRONG> (ARM, 236 bytes, Stack size 32 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb9f98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bb9fe0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNotString(unsigned, unsigned, char*)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+</UL>
+
+<P><STRONG><a name="[bbc8f0]"></a>ETree::ETreeItem::OpenAllSubItem()</STRONG> (ARM, 68 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba610]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeSubItem::OpenSubItem()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bba610]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeSubItem::OpenSubItem()
+</UL>
+
+<P><STRONG><a name="[bbc8a8]"></a>ETree::ETreeItem::CloseAllSubItem()</STRONG> (ARM, 68 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba5c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeSubItem::CloseSubItem()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bba5c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeSubItem::CloseSubItem()
+</UL>
+
+<P><STRONG><a name="[bbc860]"></a>ETree::ETreeSubItem::GetOpenSubItem(unsigned&)</STRONG> (ARM, 104 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbc818]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::GetOpenSubItem(unsigned&)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbc818]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::GetOpenSubItem(unsigned&)
+</UL>
+
+<P><STRONG><a name="[bbc818]"></a>ETree::ETreeItem::GetOpenSubItem(unsigned&)</STRONG> (ARM, 108 bytes, Stack size 24 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbc860]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeSubItem::GetOpenSubItem(unsigned&)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbc6b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultETree(EControl*)
+<LI><a href="#[bbc7d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultETree(EControl*, EEvent*)
+<LI><a href="#[bbc860]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeSubItem::GetOpenSubItem(unsigned&)
+</UL>
+
+<P><STRONG><a name="[bbc7d0]"></a>EG_CallbackFunc_DefaultETree(EControl*, EEvent*)</STRONG> (ARM, 200 bytes, Stack size 24 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bba5c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeSubItem::CloseSubItem()
+<LI><a href="#[bba610]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeSubItem::OpenSubItem()
+<LI><a href="#[bbc818]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::GetOpenSubItem(unsigned&)
+<LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+
+<P><STRONG><a name="[bbc788]"></a>ETree::DrawExtendIcon(const EPosition&, bool)</STRONG> (ARM, 96 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba070]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbc6b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultETree(EControl*)
+</UL>
+
+<P><STRONG><a name="[bbc740]"></a>ETree::ETreeSubItem::GetOpenSubItemCount()</STRONG> (ARM, 44 bytes, Stack size 8 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbc6f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::GetOpenSubItemCount()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbc6f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::GetOpenSubItemCount()
+</UL>
+
+<P><STRONG><a name="[bbc6f8]"></a>ETree::ETreeItem::GetOpenSubItemCount()</STRONG> (ARM, 88 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbc740]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeSubItem::GetOpenSubItemCount()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbc6b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultETree(EControl*)
+<LI><a href="#[bbc740]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeSubItem::GetOpenSubItemCount()
+</UL>
+
+<P><STRONG><a name="[bbc6b0]"></a>EG_RedrawFunc_DefaultETree(EControl*)</STRONG> (ARM, 612 bytes, Stack size 40 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb9f98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba070]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+<LI><a href="#[bbc6f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::GetOpenSubItemCount()
+<LI><a href="#[bbc788]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::DrawExtendIcon(const EPosition&, bool)
+<LI><a href="#[bbc818]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::GetOpenSubItem(unsigned&)
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbc668]"></a>EControl::NoticeControl(EEvent*)</STRONG> (ARM, 72 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = EControl::NoticeControl(EEvent*) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb3bc8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::DispatchEvent(EEvent*)
+<LI><a href="#[bbc5d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEToolBar(EControl*, EEvent*)
+<LI><a href="#[1052b98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::DispatchEvent(EEvent*)
+<LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbc620]"></a>EControl::InControlArea(EPosition)</STRONG> (ARM, 92 bytes, Stack size 12 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EControl::InControlArea(EPosition)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb3c10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::SelectControl(EPosition)
+<LI><a href="#[bb3c58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::RedrawControl(const EPosition&)
+<LI><a href="#[bbc5d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEToolBar(EControl*, EEvent*)
+<LI><a href="#[1052b98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::DispatchEvent(EEvent*)
+<LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbc5d8]"></a>EG_CallbackFunc_DefaultEToolBar(EControl*, EEvent*)</STRONG> (ARM, 132 bytes, Stack size 24 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = EG_CallbackFunc_DefaultEToolBar(EControl*, EEvent*) &rArr; EControl::NoticeControl(EEvent*) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bbc620]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::InControlArea(EPosition)
+<LI><a href="#[bbc668]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::NoticeControl(EEvent*)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbc590]"></a>EToolBar::AdjustControlPosition()</STRONG> (ARM, 96 bytes, Stack size 0 bytes, econtrol.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bbc548]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEToolBar(EControl*)
+<LI><a href="#[10534e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustBarPosition()
+</UL>
+
+<P><STRONG><a name="[bbc548]"></a>EG_RedrawFunc_DefaultEToolBar(EControl*)</STRONG> (ARM, 104 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = EG_RedrawFunc_DefaultEToolBar(EControl*) &rArr; EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned) &rArr; EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned) &rArr; EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bbc590]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EToolBar::AdjustControlPosition()
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> econtrol.o(.text)
+</UL>
+<P><STRONG><a name="[bbc500]"></a>EG_RedrawFunc_DefaultEStatusBar(EControl*)</STRONG> (ARM, 164 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+</UL>
+
+<P><STRONG><a name="[bbc4b8]"></a>EBarChart::CheckSelectItem(unsigned, unsigned)</STRONG> (ARM, 256 bytes, Stack size 20 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[bbc470]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEBarChart(EControl*, EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbc470]"></a>EG_CallbackFunc_DefaultEBarChart(EControl*, EEvent*)</STRONG> (ARM, 120 bytes, Stack size 32 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bbc4b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EBarChart::CheckSelectItem(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbc428]"></a>EG_RedrawFunc_DefaultEBarChart(EControl*)</STRONG> (ARM, 976 bytes, Stack size 40 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb9fe0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba070]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+<LI><a href="#[bba1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNumber(unsigned, unsigned, int)
+<LI><a href="#[bba268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char)
+<LI><a href="#[bba2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawChar(unsigned, unsigned, char)
+</UL>
+
+<P><STRONG><a name="[bbc3e0]"></a>EG_RedrawFunc_DefaultEClock(EControl*)</STRONG> (ARM, 252 bytes, Stack size 24 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNumber(unsigned, unsigned, int)
+<LI><a href="#[bba2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawChar(unsigned, unsigned, char)
+</UL>
+
+<P><STRONG><a name="[bbf8f0]"></a>ELabel::ELabel(EPosition, char*, unsigned)</STRONG> (ARM, 116 bytes, Stack size 56 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = ELabel::ELabel(EPosition, char*, unsigned) &rArr; EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bc0c10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp
+</UL>
+
+<P><STRONG><a name="[bbc398]"></a>ELabel::ELabel__sub_object(EPosition, char*, unsigned)</STRONG> (ARM, 0 bytes, Stack size 56 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbc350]"></a>ELabel::ELabel(void(*)(EControl*, EEvent*), void(*)(EControl*), EPosition, char*, unsigned)</STRONG> (ARM, 132 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbbe88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EExtLabel::EExtLabel(void(*)(EControl*, EEvent*), EPosition, char*, unsigned)
+<LI><a href="#[bbbf18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EExtLabel::EExtLabel(EPosition, char*, unsigned)
+<LI><a href="#[bbbfa8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EExtLabel::EExtLabel()
+</UL>
+
+<P><STRONG><a name="[bbc308]"></a>ELabel::ELabel__sub_object(void(*)(EControl*, EEvent*), void(*)(EControl*), EPosition, char*, unsigned)</STRONG> (ARM, 0 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbf8a8]"></a>EButton::EButton(void(*)(EControl*, EEvent*), EPosition, char*, unsigned)</STRONG> (ARM, 124 bytes, Stack size 64 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = EButton::EButton(void(*)(EControl*, EEvent*), EPosition, char*, unsigned) &rArr; EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bc0c10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp
+</UL>
+
+<P><STRONG><a name="[bbc2c0]"></a>EButton::EButton__sub_object(void(*)(EControl*, EEvent*), EPosition, char*, unsigned)</STRONG> (ARM, 0 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbfb78]"></a>ECheckButton::ECheckButton(bool, EPosition, char*, unsigned)</STRONG> (ARM, 128 bytes, Stack size 64 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = ECheckButton::ECheckButton(bool, EPosition, char*, unsigned) &rArr; EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bc0c10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp
+</UL>
+
+<P><STRONG><a name="[bbc278]"></a>ECheckButton::ECheckButton__sub_object(bool, EPosition, char*, unsigned)</STRONG> (ARM, 0 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbc230]"></a>ECheckButton::ECheckButton(void(*)(EControl*, EEvent*), bool, EPosition, char*, unsigned)</STRONG> (ARM, 140 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbc1e8]"></a>ECheckButton::ECheckButton__sub_object(void(*)(EControl*, EEvent*), bool, EPosition, char*, unsigned)</STRONG> (ARM, 0 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbf938]"></a>EEdit::EEdit(bool, EPosition, unsigned)</STRONG> (ARM, 152 bytes, Stack size 56 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = EEdit::EEdit(bool, EPosition, unsigned) &rArr; EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bc0c10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp
+</UL>
+
+<P><STRONG><a name="[bbc1a0]"></a>EEdit::EEdit__sub_object(bool, EPosition, unsigned)</STRONG> (ARM, 0 bytes, Stack size 56 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbc158]"></a>EEdit::SetString(char*)</STRONG> (ARM, 100 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbc080]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::EEdit(void(*)(EControl*, EEvent*), char*, bool, EPosition, unsigned)
+<LI><a href="#[bbc110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::EEdit(char*, bool, EPosition, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbc110]"></a>EEdit::EEdit(char*, bool, EPosition, unsigned)</STRONG> (ARM, 176 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+<LI><a href="#[bbc158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::SetString(char*)
+</UL>
+
+<P><STRONG><a name="[bbc0c8]"></a>EEdit::EEdit__sub_object(char*, bool, EPosition, unsigned)</STRONG> (ARM, 0 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbc080]"></a>EEdit::EEdit(void(*)(EControl*, EEvent*), char*, bool, EPosition, unsigned)</STRONG> (ARM, 172 bytes, Stack size 48 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+<LI><a href="#[bbc158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::SetString(char*)
+</UL>
+
+<P><STRONG><a name="[bbc038]"></a>EEdit::EEdit__sub_object(void(*)(EControl*, EEvent*), char*, bool, EPosition, unsigned)</STRONG> (ARM, 0 bytes, Stack size 48 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbbff0]"></a>EEdit::SetString(char*, int)</STRONG> (ARM, 100 bytes, Stack size 24 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+
+<P><STRONG><a name="[bbbfa8]"></a>EExtLabel::EExtLabel()</STRONG> (ARM, 100 bytes, Stack size 32 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbc350]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ELabel::ELabel(void(*)(EControl*, EEvent*), void(*)(EControl*), EPosition, char*, unsigned)
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbbf60]"></a>EExtLabel::EExtLabel__sub_object()</STRONG> (ARM, 0 bytes, Stack size 32 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbbf18]"></a>EExtLabel::EExtLabel(EPosition, char*, unsigned)</STRONG> (ARM, 80 bytes, Stack size 48 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbc350]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ELabel::ELabel(void(*)(EControl*, EEvent*), void(*)(EControl*), EPosition, char*, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbbed0]"></a>EExtLabel::EExtLabel__sub_object(EPosition, char*, unsigned)</STRONG> (ARM, 0 bytes, Stack size 48 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbbe88]"></a>EExtLabel::EExtLabel(void(*)(EControl*, EEvent*), EPosition, char*, unsigned)</STRONG> (ARM, 84 bytes, Stack size 48 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbc350]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ELabel::ELabel(void(*)(EControl*, EEvent*), void(*)(EControl*), EPosition, char*, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbbe40]"></a>EExtLabel::EExtLabel__sub_object(void(*)(EControl*, EEvent*), EPosition, char*, unsigned)</STRONG> (ARM, 0 bytes, Stack size 48 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbbdf8]"></a>EComboBox::EComboBox()</STRONG> (ARM, 132 bytes, Stack size 8 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba4f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*))
+</UL>
+
+<P><STRONG><a name="[bbbdb0]"></a>EComboBox::EComboBox__sub_object()</STRONG> (ARM, 0 bytes, Stack size 8 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbbd68]"></a>EComboBox::EComboBox(EPosition, unsigned)</STRONG> (ARM, 188 bytes, Stack size 56 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbbd20]"></a>EComboBox::EComboBox__sub_object(EPosition, unsigned)</STRONG> (ARM, 0 bytes, Stack size 56 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbbcd8]"></a>EComboBox::SetIemString(unsigned, char*)</STRONG> (ARM, 76 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+
+<P><STRONG><a name="[bbbc90]"></a>EComboBox::AddItem(char*)</STRONG> (ARM, 88 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+
+<P><STRONG><a name="[bbbc48]"></a>EComboBox::RemoveItem(unsigned)</STRONG> (ARM, 128 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+
+<P><STRONG><a name="[bbbc00]"></a>EIcon::SetIconBuffer(unsigned)</STRONG> (ARM, 32 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[bbbbb8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EIcon::EIcon(void(*)(EControl*, EEvent*), EPosition, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbbbb8]"></a>EIcon::EIcon(void(*)(EControl*, EEvent*), EPosition, unsigned)</STRONG> (ARM, 156 bytes, Stack size 56 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+<LI><a href="#[bbbc00]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EIcon::SetIconBuffer(unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbba08]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EIconButton::EIconButton(void(*)(EControl*, EEvent*), EPosition, ESize, unsigned, char*, bool)
+</UL>
+
+<P><STRONG><a name="[bbbb70]"></a>EIcon::EIcon__sub_object(void(*)(EControl*, EEvent*), EPosition, unsigned)</STRONG> (ARM, 0 bytes, Stack size 56 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbbae0]"></a>EIconButton::EIconButton(void(*)(EControl*, EEvent*), EPosition, ESize, ESize, unsigned char*, char*, bool)</STRONG> (ARM, 200 bytes, Stack size 72 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba538]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::SetRedrawFunction(void(*)(EControl*))
+</UL>
+
+<P><STRONG><a name="[bbba50]"></a>EIconButton::EIconButton__sub_object(void(*)(EControl*, EEvent*), EPosition, ESize, ESize, unsigned char*, char*, bool)</STRONG> (ARM, 0 bytes, Stack size 72 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbba08]"></a>EIconButton::EIconButton(void(*)(EControl*, EEvent*), EPosition, ESize, unsigned, char*, bool)</STRONG> (ARM, 124 bytes, Stack size 48 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba538]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::SetRedrawFunction(void(*)(EControl*))
+<LI><a href="#[bbbbb8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EIcon::EIcon(void(*)(EControl*, EEvent*), EPosition, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbb9c0]"></a>EIconButton::EIconButton__sub_object(void(*)(EControl*, EEvent*), EPosition, ESize, unsigned, char*, bool)</STRONG> (ARM, 0 bytes, Stack size 48 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb978]"></a>EMessageBox::EMessageBox(unsigned char, EPosition, char*, unsigned)</STRONG> (ARM, 128 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbb930]"></a>EMessageBox::EMessageBox__sub_object(unsigned char, EPosition, char*, unsigned)</STRONG> (ARM, 0 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb8e8]"></a>EMessageBox::SwitchState()</STRONG> (ARM, 56 bytes, Stack size 8 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+
+<P><STRONG><a name="[bbb8a0]"></a>EDialogBox::EDialogBox(unsigned char, EPosition, char*, unsigned)</STRONG> (ARM, 148 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbb858]"></a>EDialogBox::EDialogBox__sub_object(unsigned char, EPosition, char*, unsigned)</STRONG> (ARM, 0 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb810]"></a>EScroll::EScroll()</STRONG> (ARM, 56 bytes, Stack size 8 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba4f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*))
+</UL>
+
+<P><STRONG><a name="[bbb7c8]"></a>EScroll::EScroll__sub_object()</STRONG> (ARM, 0 bytes, Stack size 8 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb780]"></a>EScroll::EScroll(EPosition, unsigned, unsigned)</STRONG> (ARM, 112 bytes, Stack size 56 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbb738]"></a>EScroll::EScroll__sub_object(EPosition, unsigned, unsigned)</STRONG> (ARM, 0 bytes, Stack size 56 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb6f0]"></a>EScroll::SetCurrentPosition(unsigned)</STRONG> (ARM, 60 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb6a8]"></a>EList::AddItem(EList::EListItem*)</STRONG> (ARM, 84 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb660]"></a>EList::RemoveItem(int)</STRONG> (ARM, 112 bytes, Stack size 4 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb618]"></a>EList::RemoveAllItems()</STRONG> (ARM, 56 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb5d0]"></a>EList::AddColumn(unsigned)</STRONG> (ARM, 172 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb588]"></a>EList::SetColumnWidth(unsigned, unsigned)</STRONG> (ARM, 88 bytes, Stack size 4 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb540]"></a>EList::SetItem(unsigned, unsigned, char*)</STRONG> (ARM, 112 bytes, Stack size 12 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb4f8]"></a>EList::SetItem(unsigned, unsigned, char*, void(*)(EControl*, EEvent*))</STRONG> (ARM, 128 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb4b0]"></a>EMenu::EMenu()</STRONG> (ARM, 180 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbb468]"></a>EMenu::EMenu__sub_object()</STRONG> (ARM, 0 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb420]"></a>EMenu::EMenu(char*, unsigned, EPosition, bool)</STRONG> (ARM, 204 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbb3d8]"></a>EMenu::EMenu__sub_object(char*, unsigned, EPosition, bool)</STRONG> (ARM, 0 bytes, Stack size 64 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb390]"></a>EMenu::AddItem(EMenu::EMenuItem*)</STRONG> (ARM, 148 bytes, Stack size 4 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb348]"></a>EMenu::RemovedAllItems()</STRONG> (ARM, 60 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb300]"></a>EMenu::SetMenuItemState(unsigned, unsigned char)</STRONG> (ARM, 36 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb2b8]"></a>EMenu::SetMenuItem(unsigned, char*, unsigned char)</STRONG> (ARM, 168 bytes, Stack size 12 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb270]"></a>EMenu::SetMenuItem(unsigned, char*, unsigned char, void(*)(EControl*, EEvent*))</STRONG> (ARM, 172 bytes, Stack size 12 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb228]"></a>EMenu::CollapseMenu()</STRONG> (ARM, 48 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[1052c28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::AppendStartMenu(EMenu*)
+</UL>
+
+<P><STRONG><a name="[bbb1e0]"></a>EPopupMenu::EPopupMenu()</STRONG> (ARM, 116 bytes, Stack size 8 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba4f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*))
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbb198]"></a>EPopupMenu::EPopupMenu__sub_object()</STRONG> (ARM, 0 bytes, Stack size 8 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb150]"></a>EPopupMenu::AddItem(EPopupMenu::EPopupMenuItem*)</STRONG> (ARM, 132 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb108]"></a>EPopupMenu::RemovedAllItems()</STRONG> (ARM, 52 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb0c0]"></a>EPopupMenu::SetPopupMenuItemState(unsigned, unsigned char)</STRONG> (ARM, 36 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb078]"></a>EPopupMenu::SetPopupMenuItem(unsigned, char*, unsigned char)</STRONG> (ARM, 148 bytes, Stack size 8 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbb030]"></a>EPopupMenu::SetPopupMenuItem(unsigned, char*, unsigned char, void(*)(EControl*, EEvent*))</STRONG> (ARM, 164 bytes, Stack size 12 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbafe8]"></a>EPopupMenu::ShowPopupMenu(const EPosition&)</STRONG> (ARM, 80 bytes, Stack size 16 bytes, econtrol.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = EPopupMenu::ShowPopupMenu(const EPosition&) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1052b98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::DispatchEvent(EEvent*)
+<LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbafa0]"></a>EPopupMenu::ClosePopupMenu()</STRONG> (ARM, 20 bytes, Stack size 0 bytes, econtrol.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1052b98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::DispatchEvent(EEvent*)
+<LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbaf58]"></a>ETree::ETreeItem::AddSubItem(ETree::ETreeSubItem*)</STRONG> (ARM, 64 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[bbada8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::AddLeaf(unsigned, unsigned, ETree::ETreeSubItem*, char*)
+<LI><a href="#[bbae38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::AddLeaf(unsigned, ETree::ETreeSubItem*, char*)
+<LI><a href="#[bbaf10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::AddRoot(ETree::ETreeSubItem*, char*)
+</UL>
+
+<P><STRONG><a name="[bbaf10]"></a>ETree::AddRoot(ETree::ETreeSubItem*, char*)</STRONG> (ARM, 140 bytes, Stack size 20 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbaf58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::AddSubItem(ETree::ETreeSubItem*)
+</UL>
+
+<P><STRONG><a name="[bbaec8]"></a>ETree::AddBranch(ETree::ETreeItem*, unsigned)</STRONG> (ARM, 36 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbae80]"></a>ETree::AddBranch(ETree::ETreeItem*, unsigned, unsigned)</STRONG> (ARM, 72 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbae38]"></a>ETree::AddLeaf(unsigned, ETree::ETreeSubItem*, char*)</STRONG> (ARM, 208 bytes, Stack size 24 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbaf58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::AddSubItem(ETree::ETreeSubItem*)
+</UL>
+
+<P><STRONG><a name="[bbadf0]"></a>ETree::ETreeSubItem::SetSubItemString(char*)</STRONG> (ARM, 68 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[bbada8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::AddLeaf(unsigned, unsigned, ETree::ETreeSubItem*, char*)
+</UL>
+
+<P><STRONG><a name="[bbada8]"></a>ETree::AddLeaf(unsigned, unsigned, ETree::ETreeSubItem*, char*)</STRONG> (ARM, 188 bytes, Stack size 28 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbadf0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeSubItem::SetSubItemString(char*)
+<LI><a href="#[bbaf58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::AddSubItem(ETree::ETreeSubItem*)
+</UL>
+
+<P><STRONG><a name="[bbad60]"></a>ETree::RemoveAllRoots()</STRONG> (ARM, 44 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbad18]"></a>ETree::RemoveRoot(unsigned)</STRONG> (ARM, 68 bytes, Stack size 4 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbacd0]"></a>ETree::ToggleRootState(unsigned)</STRONG> (ARM, 96 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+
+<P><STRONG><a name="[bbac88]"></a>ETree::ToggleLeafState(unsigned, unsigned)</STRONG> (ARM, 156 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+
+<P><STRONG><a name="[bbac40]"></a>ETree::ETreeSubItem::ETreeSubItem()</STRONG> (ARM, 48 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbabf8]"></a>ETree::ETreeSubItem::ETreeSubItem__sub_object()</STRONG> (ARM, 0 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbabb0]"></a>ETree::ETreeItem::ETreeItem()</STRONG> (ARM, 48 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbab68]"></a>ETree::ETreeItem::ETreeItem__sub_object()</STRONG> (ARM, 0 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbab20]"></a>EToolBar::RemoveAllItems()</STRONG> (ARM, 56 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[bbaa48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EToolBar::EToolBar(EPosition)
+<LI><a href="#[bbaad8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EToolBar::EToolBar()
+</UL>
+
+<P><STRONG><a name="[bbaad8]"></a>EToolBar::EToolBar()</STRONG> (ARM, 60 bytes, Stack size 8 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba4f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*))
+<LI><a href="#[bbab20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EToolBar::RemoveAllItems()
+</UL>
+
+<P><STRONG><a name="[bbaa90]"></a>EToolBar::EToolBar__sub_object()</STRONG> (ARM, 0 bytes, Stack size 8 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbaa48]"></a>EToolBar::EToolBar(EPosition)</STRONG> (ARM, 112 bytes, Stack size 48 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba460]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+<LI><a href="#[bbab20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EToolBar::RemoveAllItems()
+</UL>
+
+<P><STRONG><a name="[bbaa00]"></a>EToolBar::EToolBar__sub_object(EPosition)</STRONG> (ARM, 0 bytes, Stack size 48 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bba9b8]"></a>EToolBar::AddItem(EControl*)</STRONG> (ARM, 116 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bba970]"></a>EToolBar::UpdateToolBarHeight()</STRONG> (ARM, 84 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[bba928]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EToolBar::RemoveItem(unsigned)
+</UL>
+
+<P><STRONG><a name="[bba928]"></a>EToolBar::RemoveItem(unsigned)</STRONG> (ARM, 152 bytes, Stack size 16 bytes, econtrol.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba970]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EToolBar::UpdateToolBarHeight()
+</UL>
+
+<P><STRONG><a name="[bba8e0]"></a>EToolBar::SetDockState(unsigned char)</STRONG> (ARM, 88 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bba898]"></a>EStatusBar::SetLabelString(char*)</STRONG> (ARM, 84 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bba850]"></a>EStatusBar::SetStatusString(char*, unsigned char)</STRONG> (ARM, 148 bytes, Stack size 4 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bba808]"></a>EStatusBar::GetStatusString(unsigned char)</STRONG> (ARM, 44 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bba7c0]"></a>EStatusBar::ClearLabelString()</STRONG> (ARM, 36 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bba778]"></a>EStatusBar::ClearStatusString(unsigned char)</STRONG> (ARM, 84 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bba730]"></a>EStatusBar::SetStatusPosition(unsigned char, unsigned)</STRONG> (ARM, 28 bytes, Stack size 0 bytes, econtrol.o(.text), UNUSED)
+
+<P><STRONG><a name="[bb87c8]"></a>ECursor::SetCursorPosition(const EPosition&)</STRONG> (ARM, 744 bytes, Stack size 48 bytes, ecursor.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = ECursor::SetCursorPosition(const EPosition&)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbfae8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::GlobalRedraw()
+<LI><a href="#[1052e20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SetCursorEvent(const EPosition&, unsigned)
+<LI><a href="#[1052e68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SetCursorEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[bba0b8]"></a>EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)</STRONG> (ARM, 56 bytes, Stack size 24 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned) &rArr; EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb3a60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RedrawBaseWindow()
+<LI><a href="#[bb7498]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledEllipse(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bb7648]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledCircle(unsigned, unsigned, unsigned)
+<LI><a href="#[bb76d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWidthLine(unsigned, unsigned, unsigned, unsigned, unsigned char)
+<LI><a href="#[bb9fe0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char)
+<LI><a href="#[bbc428]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEBarChart(EControl*)
+<LI><a href="#[bbc6b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultETree(EControl*)
+<LI><a href="#[bbc788]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::DrawExtendIcon(const EPosition&, bool)
+<LI><a href="#[bbcb78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEScroll(EControl*)
+<LI><a href="#[bbce48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEComboBox(EControl*)
+</UL>
+
+<P><STRONG><a name="[bba070]"></a>EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned)</STRONG> (ARM, 56 bytes, Stack size 24 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned) &rArr; EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb3a60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RedrawBaseWindow()
+<LI><a href="#[bb76d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWidthLine(unsigned, unsigned, unsigned, unsigned, unsigned char)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char)
+<LI><a href="#[bbc428]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEBarChart(EControl*)
+<LI><a href="#[bbc6b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultETree(EControl*)
+<LI><a href="#[bbc788]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::DrawExtendIcon(const EPosition&, bool)
+<LI><a href="#[bbce48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEComboBox(EControl*)
+</UL>
+
+<P><STRONG><a name="[bb7768]"></a>EG_Graphic_DrawWhiteHorizonLine(unsigned, unsigned, unsigned)</STRONG> (ARM, 56 bytes, Stack size 24 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = EG_Graphic_DrawWhiteHorizonLine(unsigned, unsigned, unsigned) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb7378]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb7600]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteFilledCircle(unsigned, unsigned, unsigned)
+<LI><a href="#[bb9f98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bb7720]"></a>EG_Graphic_DrawWhiteVerticalLine(unsigned, unsigned, unsigned)</STRONG> (ARM, 56 bytes, Stack size 24 bytes, graphicfunc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb7378]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bba268]"></a>EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char)</STRONG> (ARM, 596 bytes, Stack size 72 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char) &rArr; EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned) &rArr; EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+<LI><a href="#[bba070]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb3a60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RedrawBaseWindow()
+<LI><a href="#[bb7528]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawPieSlice(unsigned, unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bbc428]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEBarChart(EControl*)
+<LI><a href="#[bbcb78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEScroll(EControl*)
+<LI><a href="#[bbce48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEComboBox(EControl*)
+<LI><a href="#[1052b50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::RedrawDesktop()
+</UL>
+
+<P><STRONG><a name="[bb76d8]"></a>EG_Graphic_DrawWidthLine(unsigned, unsigned, unsigned, unsigned, unsigned char)</STRONG> (ARM, 788 bytes, Stack size 80 bytes, graphicfunc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba070]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bba028]"></a>EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)</STRONG> (ARM, 112 bytes, Stack size 24 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned) &rArr; EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned) &rArr; EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba070]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb3a60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RedrawBaseWindow()
+<LI><a href="#[bbc428]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEBarChart(EControl*)
+<LI><a href="#[bbc500]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEStatusBar(EControl*)
+<LI><a href="#[bbc548]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEToolBar(EControl*)
+<LI><a href="#[bbc6b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultETree(EControl*)
+<LI><a href="#[bbc788]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::DrawExtendIcon(const EPosition&, bool)
+<LI><a href="#[bbc938]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEPopupMenu(EControl*)
+<LI><a href="#[bbc9c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEMenu(EControl*)
+<LI><a href="#[bbcae8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEList(EControl*)
+<LI><a href="#[bbcb78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEScroll(EControl*)
+<LI><a href="#[bbcc08]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEDialogBox(EControl*)
+<LI><a href="#[bbcce0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEMessageBox(EControl*)
+<LI><a href="#[bbcdb8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEIconButton(EControl*)
+<LI><a href="#[bbce48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEComboBox(EControl*)
+<LI><a href="#[bbcff8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEProgress(EControl*)
+<LI><a href="#[bbd040]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEEdit(EControl*)
+<LI><a href="#[bbd0d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultECheckButton(EControl*)
+<LI><a href="#[bbd160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEButton(EControl*)
+<LI><a href="#[1052b50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::RedrawDesktop()
+</UL>
+
+<P><STRONG><a name="[bb9fe0]"></a>EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned)</STRONG> (ARM, 64 bytes, Stack size 24 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = EG_Graphic_DrawFilledRectangle(unsigned, unsigned, unsigned, unsigned) &rArr; EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned) &rArr; EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbc428]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEBarChart(EControl*)
+<LI><a href="#[bbc938]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEPopupMenu(EControl*)
+<LI><a href="#[bbc9c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEMenu(EControl*)
+<LI><a href="#[bbcb78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEScroll(EControl*)
+<LI><a href="#[bbcc08]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEDialogBox(EControl*)
+<LI><a href="#[bbcce0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEMessageBox(EControl*)
+<LI><a href="#[bbcff8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEProgress(EControl*)
+<LI><a href="#[bbd0d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultECheckButton(EControl*)
+</UL>
+
+<P><STRONG><a name="[bb9f98]"></a>EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned)</STRONG> (ARM, 64 bytes, Stack size 24 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned) &rArr; EG_Graphic_DrawWhiteHorizonLine(unsigned, unsigned, unsigned) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb7768]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteHorizonLine(unsigned, unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb3a60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RedrawBaseWindow()
+<LI><a href="#[bbc6b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultETree(EControl*)
+<LI><a href="#[bbc938]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEPopupMenu(EControl*)
+<LI><a href="#[bbc9c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEMenu(EControl*)
+<LI><a href="#[bbcae8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEList(EControl*)
+<LI><a href="#[bbcb78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEScroll(EControl*)
+<LI><a href="#[bbce48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEComboBox(EControl*)
+<LI><a href="#[bbd0d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultECheckButton(EControl*)
+</UL>
+
+<P><STRONG><a name="[bb7690]"></a>EG_Graphic_DrawEmptyCircle(unsigned, unsigned, unsigned)</STRONG> (ARM, 768 bytes, Stack size 96 bytes, graphicfunc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bb7648]"></a>EG_Graphic_DrawFilledCircle(unsigned, unsigned, unsigned)</STRONG> (ARM, 1292 bytes, Stack size 104 bytes, graphicfunc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bb7600]"></a>EG_Graphic_DrawWhiteFilledCircle(unsigned, unsigned, unsigned)</STRONG> (ARM, 1292 bytes, Stack size 104 bytes, graphicfunc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb7378]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDClearPixel(unsigned, unsigned)
+<LI><a href="#[bb7768]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteHorizonLine(unsigned, unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bb75b8]"></a>EG_Graphic_DrawQuarterArc(unsigned, unsigned, unsigned, unsigned char)</STRONG> (ARM, 960 bytes, Stack size 56 bytes, graphicfunc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bb7570]"></a>EG_Graphic_DrawArc(unsigned, unsigned, unsigned, unsigned, unsigned)</STRONG> (ARM, 2108 bytes, Stack size 56 bytes, graphicfunc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+<LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+
+<P><STRONG><a name="[bb7528]"></a>EG_Graphic_DrawPieSlice(unsigned, unsigned, unsigned, unsigned, unsigned)</STRONG> (ARM, 2340 bytes, Stack size 56 bytes, graphicfunc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+<LI><a href="#[bba268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char)
+<LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+
+<P><STRONG><a name="[bb74e0]"></a>EG_Graphic_DrawEmptyEllipse(unsigned, unsigned, unsigned, unsigned)</STRONG> (ARM, 868 bytes, Stack size 112 bytes, graphicfunc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bb7498]"></a>EG_Graphic_DrawFilledEllipse(unsigned, unsigned, unsigned, unsigned)</STRONG> (ARM, 1056 bytes, Stack size 96 bytes, graphicfunc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bba2b0]"></a>EG_Graphic_DrawChar(unsigned, unsigned, char)</STRONG> (ARM, 96 bytes, Stack size 24 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = EG_Graphic_DrawChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb7408]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetByte(unsigned, unsigned, unsigned char)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bba100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawConstString(unsigned, unsigned, char*, unsigned char)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+<LI><a href="#[bba1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNumber(unsigned, unsigned, int)
+<LI><a href="#[bbc3e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEClock(EControl*)
+<LI><a href="#[bbc428]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEBarChart(EControl*)
+<LI><a href="#[bbd040]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEEdit(EControl*)
+</UL>
+
+<P><STRONG><a name="[bb7450]"></a>EG_Graphic_DrawNotChar(unsigned, unsigned, char)</STRONG> (ARM, 104 bytes, Stack size 24 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = EG_Graphic_DrawNotChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb7408]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetByte(unsigned, unsigned, unsigned char)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bba148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNotString(unsigned, unsigned, char*)
+</UL>
+
+<P><STRONG><a name="[bba190]"></a>EG_Graphic_DrawString(unsigned, unsigned, char*)</STRONG> (ARM, 68 bytes, Stack size 24 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = EG_Graphic_DrawString(unsigned, unsigned, char*) &rArr; EG_Graphic_DrawChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawChar(unsigned, unsigned, char)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb3a60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RedrawBaseWindow()
+<LI><a href="#[bbc428]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEBarChart(EControl*)
+<LI><a href="#[bbc500]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEStatusBar(EControl*)
+<LI><a href="#[bbc6b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultETree(EControl*)
+<LI><a href="#[bbc938]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEPopupMenu(EControl*)
+<LI><a href="#[bbc9c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEMenu(EControl*)
+<LI><a href="#[bbcae8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEList(EControl*)
+<LI><a href="#[bbcc08]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEDialogBox(EControl*)
+<LI><a href="#[bbcce0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEMessageBox(EControl*)
+<LI><a href="#[bbcdb8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEIconButton(EControl*)
+<LI><a href="#[bbce48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEComboBox(EControl*)
+<LI><a href="#[bbcf20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEExtLabel(EControl*)
+<LI><a href="#[bbd0d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultECheckButton(EControl*)
+<LI><a href="#[bbd160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEButton(EControl*)
+<LI><a href="#[bbd1a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultELabel(EControl*)
+</UL>
+
+<P><STRONG><a name="[bba148]"></a>EG_Graphic_DrawNotString(unsigned, unsigned, char*)</STRONG> (ARM, 68 bytes, Stack size 24 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = EG_Graphic_DrawNotString(unsigned, unsigned, char*) &rArr; EG_Graphic_DrawNotChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb7450]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNotChar(unsigned, unsigned, char)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbc938]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEPopupMenu(EControl*)
+<LI><a href="#[bbc9c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEMenu(EControl*)
+<LI><a href="#[bbcc08]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEDialogBox(EControl*)
+<LI><a href="#[bbcce0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEMessageBox(EControl*)
+<LI><a href="#[bbcf20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEExtLabel(EControl*)
+</UL>
+
+<P><STRONG><a name="[bba100]"></a>EG_Graphic_DrawConstString(unsigned, unsigned, char*, unsigned char)</STRONG> (ARM, 88 bytes, Stack size 24 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = EG_Graphic_DrawConstString(unsigned, unsigned, char*, unsigned char) &rArr; EG_Graphic_DrawChar(unsigned, unsigned, char) &rArr; EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawChar(unsigned, unsigned, char)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbd040]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEEdit(EControl*)
+<LI><a href="#[1052b50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::RedrawDesktop()
+</UL>
+
+<P><STRONG><a name="[bba1d8]"></a>EG_Graphic_DrawNumber(unsigned, unsigned, int)</STRONG> (ARM, 380 bytes, Stack size 32 bytes, graphicfunc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawChar(unsigned, unsigned, char)
+<LI><a href="#[1050928]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbc3e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEClock(EControl*)
+<LI><a href="#[bbc428]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEBarChart(EControl*)
+</UL>
+
+<P><STRONG><a name="[bba220]"></a>EG_Graphic_DrawBitmap(unsigned, unsigned, EBitmap*)</STRONG> (ARM, 172 bytes, Stack size 40 bytes, graphicfunc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = EG_Graphic_DrawBitmap(unsigned, unsigned, EBitmap*) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb7378]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDClearPixel(unsigned, unsigned)
+<LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbcdb8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEIconButton(EControl*)
+<LI><a href="#[bbce00]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEIcon(EControl*)
+<LI><a href="#[1052b50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::RedrawDesktop()
+</UL>
+
+<P><STRONG><a name="[bb6910]"></a>EG_LCDDelay(unsigned)</STRONG> (ARM, 52 bytes, Stack size 0 bytes, lcddriver.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bb68c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDReset()
+</UL>
+
+<P><STRONG><a name="[bb68c8]"></a>EG_LCDReset()</STRONG> (ARM, 104 bytes, Stack size 4 bytes, lcddriver.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EG_LCDReset()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb6910]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDDelay(unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbfc08]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDInit()
+</UL>
+
+<P><STRONG><a name="[bb6880]"></a>EG_LCDCheckBusy()</STRONG> (ARM, 28 bytes, Stack size 0 bytes, lcddriver.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bb67a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDWriteData(unsigned char)
+<LI><a href="#[bb67f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDReadData(unsigned char)
+</UL>
+
+<P><STRONG><a name="[bb6838]"></a>EG_LCDWriteCommand(unsigned char, unsigned char)</STRONG> (ARM, 236 bytes, Stack size 0 bytes, lcddriver.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bb66d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDFlushBuffer()
+<LI><a href="#[bb6718]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDClearScreen()
+<LI><a href="#[bb6760]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDShowByte(unsigned char, unsigned, unsigned)
+<LI><a href="#[bbfc08]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDInit()
+</UL>
+
+<P><STRONG><a name="[bb67f0]"></a>EG_LCDReadData(unsigned char)</STRONG> (ARM, 280 bytes, Stack size 4 bytes, lcddriver.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb6880]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDCheckBusy()
+</UL>
+
+<P><STRONG><a name="[bb67a8]"></a>EG_LCDWriteData(unsigned char)</STRONG> (ARM, 144 bytes, Stack size 4 bytes, lcddriver.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EG_LCDWriteData(unsigned char)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb6880]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDCheckBusy()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb66d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDFlushBuffer()
+<LI><a href="#[bb6718]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDClearScreen()
+<LI><a href="#[bb6760]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDShowByte(unsigned char, unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bb6760]"></a>EG_LCDShowByte(unsigned char, unsigned, unsigned)</STRONG> (ARM, 56 bytes, Stack size 16 bytes, lcddriver.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb67a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDWriteData(unsigned char)
+<LI><a href="#[bb6838]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDWriteCommand(unsigned char, unsigned char)
+</UL>
+
+<P><STRONG><a name="[bbfc08]"></a>EG_LCDInit()</STRONG> (ARM, 236 bytes, Stack size 4 bytes, lcddriver.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EG_LCDInit() &rArr; EG_LCDReset()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb6838]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDWriteCommand(unsigned char, unsigned char)
+<LI><a href="#[bb68c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDReset()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bc0088]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[bb6718]"></a>EG_LCDClearScreen()</STRONG> (ARM, 92 bytes, Stack size 12 bytes, lcddriver.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb67a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDWriteData(unsigned char)
+<LI><a href="#[bb6838]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDWriteCommand(unsigned char, unsigned char)
+</UL>
+
+<P><STRONG><a name="[bb66d0]"></a>EG_LCDFlushBuffer()</STRONG> (ARM, 100 bytes, Stack size 12 bytes, lcddriver.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EG_LCDFlushBuffer() &rArr; EG_LCDWriteData(unsigned char)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb67a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDWriteData(unsigned char)
+<LI><a href="#[bb6838]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDWriteCommand(unsigned char, unsigned char)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbfae8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::GlobalRedraw()
+<LI><a href="#[1052ef8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SelectedRedraw()
+</UL>
+
+<P><STRONG><a name="[bbfbc0]"></a>EG_LCDClearBuffer()</STRONG> (ARM, 60 bytes, Stack size 0 bytes, lcddriver.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bc0088]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[1052a30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::RedrawDesktop()
+<LI><a href="#[1052b50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::RedrawDesktop()
+</UL>
+
+<P><STRONG><a name="[bb73c0]"></a>EG_LCDSetPixel(unsigned, unsigned)</STRONG> (ARM, 80 bytes, Stack size 8 bytes, lcddriver.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb7408]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetByte(unsigned, unsigned, unsigned char)
+<LI><a href="#[bb7498]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledEllipse(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bb74e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyEllipse(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bb7528]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawPieSlice(unsigned, unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bb7570]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawArc(unsigned, unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bb75b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawQuarterArc(unsigned, unsigned, unsigned, unsigned char)
+<LI><a href="#[bb7648]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawFilledCircle(unsigned, unsigned, unsigned)
+<LI><a href="#[bb7690]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyCircle(unsigned, unsigned, unsigned)
+<LI><a href="#[bba070]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawBitmap(unsigned, unsigned, EBitmap*)
+<LI><a href="#[bba268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char)
+</UL>
+
+<P><STRONG><a name="[bb7378]"></a>EG_LCDClearPixel(unsigned, unsigned)</STRONG> (ARM, 84 bytes, Stack size 8 bytes, lcddriver.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb7408]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetByte(unsigned, unsigned, unsigned char)
+<LI><a href="#[bb7600]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteFilledCircle(unsigned, unsigned, unsigned)
+<LI><a href="#[bb7720]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteVerticalLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bb7768]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteHorizonLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawBitmap(unsigned, unsigned, EBitmap*)
+</UL>
+
+<P><STRONG><a name="[bb6688]"></a>EG_LCDGetPixel(unsigned, unsigned)</STRONG> (ARM, 76 bytes, Stack size 4 bytes, lcddriver.o(.text), UNUSED)
+
+<P><STRONG><a name="[bb6640]"></a>EG_LCDGetHorizonalByte(unsigned, unsigned)</STRONG> (ARM, 284 bytes, Stack size 12 bytes, lcddriver.o(.text), UNUSED)
+
+<P><STRONG><a name="[bb65f8]"></a>EG_LCDSetVerticalByte(unsigned, unsigned, unsigned char)</STRONG> (ARM, 88 bytes, Stack size 12 bytes, lcddriver.o(.text), UNUSED)
+
+<P><STRONG><a name="[bb65b0]"></a>EG_LCDSetORVerticalByte(unsigned, unsigned, unsigned char)</STRONG> (ARM, 124 bytes, Stack size 16 bytes, lcddriver.o(.text), UNUSED)
+
+<P><STRONG><a name="[bb6568]"></a>EG_LCDSetANDVerticalByte(unsigned, unsigned, unsigned char)</STRONG> (ARM, 124 bytes, Stack size 16 bytes, lcddriver.o(.text), UNUSED)
+
+<P><STRONG><a name="[bb7408]"></a>EG_LCDSetByte(unsigned, unsigned, unsigned char)</STRONG> (ARM, 92 bytes, Stack size 24 bytes, lcddriver.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = EG_LCDSetByte(unsigned, unsigned, unsigned char) &rArr; EG_LCDClearPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb7378]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDClearPixel(unsigned, unsigned)
+<LI><a href="#[bb73c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb7450]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNotChar(unsigned, unsigned, char)
+<LI><a href="#[bba2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawChar(unsigned, unsigned, char)
+</UL>
+
+<P><STRONG><a name="[bb3f70]"></a>EG_HookFunc_RedrawESimpleWindow(ESimpleWindow*)</STRONG> (ARM, 4 bytes, Stack size 0 bytes, eframe.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bb39d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RedrawSelectedControls()
+<LI><a href="#[bb3a18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::ForceRedrawAllControls()
+<LI><a href="#[bb3c58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::RedrawControl(const EPosition&)
+<LI><a href="#[bb3ca0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::RedrawSelectedControls()
+<LI><a href="#[bb3ce8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::ForceRedrawAllControls()
+</UL>
+
+<P><STRONG><a name="[bb3f28]"></a>EG_HookFunc_RedrawEWindow(ESimpleWindow*)</STRONG> (ARM, 4 bytes, Stack size 0 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[bb3ee0]"></a>EG_HookFunc_RedrawEDesktop(ESimpleDesktop*)</STRONG> (ARM, 4 bytes, Stack size 0 bytes, eframe.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bbfae8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::GlobalRedraw()
+<LI><a href="#[1052ef8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SelectedRedraw()
+</UL>
+
+<P><STRONG><a name="[bb3e98]"></a>ESimpleWindow::ESimpleWindow()</STRONG> (ARM, 56 bytes, Stack size 0 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[bb3b38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::EWindow()
+</UL>
+
+<P><STRONG><a name="[bb3e50]"></a>ESimpleWindow::ESimpleWindow__sub_object()</STRONG> (ARM, 0 bytes, Stack size 0 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[bb3e08]"></a>ESimpleWindow::ESimpleWindow(char*)</STRONG> (ARM, 56 bytes, Stack size 0 bytes, eframe.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bbf860]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::EWindow(char*, EPosition, ESize, bool)
+</UL>
+
+<P><STRONG><a name="[bb3dc0]"></a>ESimpleWindow::ESimpleWindow__sub_object(char*)</STRONG> (ARM, 0 bytes, Stack size 0 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[bb3d78]"></a>ESimpleWindow::RemoveAllControl()</STRONG> (ARM, 48 bytes, Stack size 0 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[bb3d30]"></a>ESimpleWindow::RemoveLastControl()</STRONG> (ARM, 48 bytes, Stack size 0 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbfb30]"></a>ESimpleWindow::RemoveControl(int)</STRONG> (ARM, 80 bytes, Stack size 4 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[bc0040]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextButtonCBF(EControl*, EEvent*)
+</UL>
+
+<P><STRONG><a name="[bb3ce8]"></a>ESimpleWindow::ForceRedrawAllControls()</STRONG> (ARM, 60 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = ESimpleWindow::ForceRedrawAllControls() &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb3f70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_HookFunc_RedrawESimpleWindow(ESimpleWindow*)
+<LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV13ESimpleWindow)
+</UL>
+<P><STRONG><a name="[bb3ca0]"></a>ESimpleWindow::RedrawSelectedControls()</STRONG> (ARM, 80 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = ESimpleWindow::RedrawSelectedControls() &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb3f70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_HookFunc_RedrawESimpleWindow(ESimpleWindow*)
+<LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV13ESimpleWindow)
+</UL>
+<P><STRONG><a name="[bb3c58]"></a>ESimpleWindow::RedrawControl(const EPosition&)</STRONG> (ARM, 88 bytes, Stack size 16 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb3f70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_HookFunc_RedrawESimpleWindow(ESimpleWindow*)
+<LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bbc620]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::InControlArea(EPosition)
+</UL>
+
+<P><STRONG><a name="[bb3c10]"></a>ESimpleWindow::SelectControl(EPosition)</STRONG> (ARM, 80 bytes, Stack size 32 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = ESimpleWindow::SelectControl(EPosition) &rArr; EControl::InControlArea(EPosition)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bbc620]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::InControlArea(EPosition)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb3bc8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::DispatchEvent(EEvent*)
+<LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[bb3bc8]"></a>ESimpleWindow::DispatchEvent(EEvent*)</STRONG> (ARM, 60 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = ESimpleWindow::DispatchEvent(EEvent*) &rArr; ESimpleWindow::SelectControl(EPosition) &rArr; EControl::InControlArea(EPosition)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb3c10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::SelectControl(EPosition)
+<LI><a href="#[bbc668]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::NoticeControl(EEvent*)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV13ESimpleWindow)
+</UL>
+<P><STRONG><a name="[bb3b80]"></a>EWindow::RemoveAllMenuItems()</STRONG> (ARM, 48 bytes, Stack size 0 bytes, eframe.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bb3b38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::EWindow()
+<LI><a href="#[bbf860]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::EWindow(char*, EPosition, ESize, bool)
+</UL>
+
+<P><STRONG><a name="[bb3b38]"></a>EWindow::EWindow()</STRONG> (ARM, 176 bytes, Stack size 8 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb3b80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RemoveAllMenuItems()
+<LI><a href="#[bb3e98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::ESimpleWindow()
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+</UL>
+
+<P><STRONG><a name="[bb3af0]"></a>EWindow::EWindow__sub_object()</STRONG> (ARM, 0 bytes, Stack size 8 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbf860]"></a>EWindow::EWindow(char*, EPosition, ESize, bool)</STRONG> (ARM, 188 bytes, Stack size 32 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = EWindow::EWindow(char*, EPosition, ESize, bool)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb3b80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RemoveAllMenuItems()
+<LI><a href="#[bb3e08]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::ESimpleWindow(char*)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bc0c10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp
+</UL>
+
+<P><STRONG><a name="[bb3aa8]"></a>EWindow::EWindow__sub_object(char*, EPosition, ESize, bool)</STRONG> (ARM, 0 bytes, Stack size 32 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[bb3a60]"></a>EWindow::RedrawBaseWindow()</STRONG> (ARM, 496 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = EWindow::RedrawBaseWindow() &rArr; EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char) &rArr; EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned) &rArr; EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb9f98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawWhiteFilledRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba070]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba0b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawHorizonLine(unsigned, unsigned, unsigned)
+<LI><a href="#[bba190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawString(unsigned, unsigned, char*)
+<LI><a href="#[bba268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb3a18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::ForceRedrawAllControls()
+</UL>
+
+<P><STRONG><a name="[bb3a18]"></a>EWindow::ForceRedrawAllControls()</STRONG> (ARM, 176 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = EWindow::ForceRedrawAllControls() &rArr; EWindow::RedrawBaseWindow() &rArr; EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char) &rArr; EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned) &rArr; EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb3a60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RedrawBaseWindow()
+<LI><a href="#[bb3f70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_HookFunc_RedrawESimpleWindow(ESimpleWindow*)
+<LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV7EWindow)
+</UL>
+<P><STRONG><a name="[bb39d0]"></a>EWindow::RedrawSelectedControls()</STRONG> (ARM, 164 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = EWindow::RedrawSelectedControls() &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb3f70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_HookFunc_RedrawESimpleWindow(ESimpleWindow*)
+<LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV7EWindow)
+</UL>
+<P><STRONG><a name="[10535b8]"></a>EWindow::InTitleArea(EPosition)</STRONG> (ARM, 104 bytes, Stack size 12 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EWindow::InTitleArea(EPosition)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[1053570]"></a>EWindow::MinimizeWindow()</STRONG> (ARM, 56 bytes, Stack size 8 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EWindow::MinimizeWindow()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[1053528]"></a>EWindow::InMinArea(EPosition)</STRONG> (ARM, 124 bytes, Stack size 12 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EWindow::InMinArea(EPosition)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[10534e0]"></a>EWindow::AdjustBarPosition()</STRONG> (ARM, 840 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EWindow::AdjustBarPosition()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bbc590]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EToolBar::AdjustControlPosition()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10531c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RecoverWindow()
+<LI><a href="#[1053210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::MaximizeWindow()
+<LI><a href="#[1053258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::MoveWindow(EPosition)
+<LI><a href="#[1053408]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::MaximizeWindow(ESize)
+<LI><a href="#[1053498]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustMenuPosition()
+</UL>
+
+<P><STRONG><a name="[1053498]"></a>EWindow::AdjustMenuPosition()</STRONG> (ARM, 104 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = EWindow::AdjustMenuPosition() &rArr; EWindow::AdjustBarPosition()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[10534e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustBarPosition()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1053138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RemoveMenuItem(unsigned)
+<LI><a href="#[1053180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AddMenuItem(EMenu*)
+<LI><a href="#[10531c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RecoverWindow()
+<LI><a href="#[1053210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::MaximizeWindow()
+<LI><a href="#[1053258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::MoveWindow(EPosition)
+<LI><a href="#[1053408]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::MaximizeWindow(ESize)
+</UL>
+
+<P><STRONG><a name="[1053450]"></a>EWindow::AdjustControlPosition(int, int)</STRONG> (ARM, 92 bytes, Stack size 4 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EWindow::AdjustControlPosition(int, int)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10531c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RecoverWindow()
+<LI><a href="#[1053210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::MaximizeWindow()
+<LI><a href="#[1053258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::MoveWindow(EPosition)
+<LI><a href="#[1053408]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::MaximizeWindow(ESize)
+</UL>
+
+<P><STRONG><a name="[1053408]"></a>EWindow::MaximizeWindow(ESize)</STRONG> (ARM, 132 bytes, Stack size 32 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = EWindow::MaximizeWindow(ESize) &rArr; EWindow::AdjustMenuPosition() &rArr; EWindow::AdjustBarPosition()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1053450]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustControlPosition(int, int)
+<LI><a href="#[1053498]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustMenuPosition()
+<LI><a href="#[10534e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustBarPosition()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[10533c0]"></a>EWindow::InMaxArea(EPosition)</STRONG> (ARM, 124 bytes, Stack size 12 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EWindow::InMaxArea(EPosition)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[1053378]"></a>ESimpleDesktop::GetWindowIndex(ESimpleWindow*)</STRONG> (ARM, 64 bytes, Stack size 0 bytes, eframe.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[1053330]"></a>ESimpleDesktop::RemoveWindow(unsigned char)</STRONG> (ARM, 96 bytes, Stack size 4 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = ESimpleDesktop::RemoveWindow(unsigned char)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1052f40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SetWindowLayer(unsigned char, unsigned char)
+<LI><a href="#[1052f88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SetWindowTopmost(unsigned char)
+<LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[10532e8]"></a>EWindow::InExitArea(EPosition)</STRONG> (ARM, 124 bytes, Stack size 12 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EWindow::InExitArea(EPosition)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[10532a0]"></a>EWindow::DispatchEvent(EEvent*)</STRONG> (ARM, 724 bytes, Stack size 40 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = EWindow::DispatchEvent(EEvent*) &rArr; EWindow::MaximizeWindow(ESize) &rArr; EWindow::AdjustMenuPosition() &rArr; EWindow::AdjustBarPosition()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb3c10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::SelectControl(EPosition)
+<LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+<LI><a href="#[bbafa0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPopupMenu::ClosePopupMenu()
+<LI><a href="#[bbafe8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPopupMenu::ShowPopupMenu(const EPosition&)
+<LI><a href="#[bbc620]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::InControlArea(EPosition)
+<LI><a href="#[bbc668]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::NoticeControl(EEvent*)
+<LI><a href="#[10532e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::InExitArea(EPosition)
+<LI><a href="#[1053330]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::RemoveWindow(unsigned char)
+<LI><a href="#[1053378]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::GetWindowIndex(ESimpleWindow*)
+<LI><a href="#[10533c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::InMaxArea(EPosition)
+<LI><a href="#[1053408]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::MaximizeWindow(ESize)
+<LI><a href="#[1053528]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::InMinArea(EPosition)
+<LI><a href="#[1053570]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::MinimizeWindow()
+<LI><a href="#[10535b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::InTitleArea(EPosition)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV7EWindow)
+</UL>
+<P><STRONG><a name="[1053258]"></a>EWindow::MoveWindow(EPosition)</STRONG> (ARM, 116 bytes, Stack size 32 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[1053450]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustControlPosition(int, int)
+<LI><a href="#[1053498]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustMenuPosition()
+<LI><a href="#[10534e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustBarPosition()
+</UL>
+
+<P><STRONG><a name="[1053210]"></a>EWindow::MaximizeWindow()</STRONG> (ARM, 136 bytes, Stack size 16 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[1053450]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustControlPosition(int, int)
+<LI><a href="#[1053498]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustMenuPosition()
+<LI><a href="#[10534e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustBarPosition()
+</UL>
+
+<P><STRONG><a name="[10531c8]"></a>EWindow::RecoverWindow()</STRONG> (ARM, 132 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = EWindow::RecoverWindow() &rArr; EWindow::AdjustMenuPosition() &rArr; EWindow::AdjustBarPosition()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1053450]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustControlPosition(int, int)
+<LI><a href="#[1053498]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustMenuPosition()
+<LI><a href="#[10534e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustBarPosition()
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV7EWindow)
+</UL>
+<P><STRONG><a name="[1053180]"></a>EWindow::AddMenuItem(EMenu*)</STRONG> (ARM, 68 bytes, Stack size 16 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[1053498]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustMenuPosition()
+</UL>
+
+<P><STRONG><a name="[1053138]"></a>EWindow::RemoveMenuItem(unsigned)</STRONG> (ARM, 84 bytes, Stack size 16 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[1053498]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::AdjustMenuPosition()
+</UL>
+
+<P><STRONG><a name="[10530f0]"></a>EWindow::InWindowArea(EPosition)</STRONG> (ARM, 92 bytes, Stack size 12 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EWindow::InWindowArea(EPosition)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV7EWindow)
+</UL>
+<P><STRONG><a name="[bbf9c8]"></a>ESimpleDesktop::ESimpleDesktop()</STRONG> (ARM, 176 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = ESimpleDesktop::ESimpleDesktop()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bc0c10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp
+<LI><a href="#[1052d48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::EDesktop()
+</UL>
+
+<P><STRONG><a name="[10530a8]"></a>ESimpleDesktop::ESimpleDesktop__sub_object()</STRONG> (ARM, 0 bytes, Stack size 16 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[bbfa10]"></a>ESimpleDesktop::AddWindow(ESimpleWindow*)</STRONG> (ARM, 52 bytes, Stack size 0 bytes, eframe.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[bc0088]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[1052f88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SetWindowTopmost(unsigned char)
+</UL>
+
+<P><STRONG><a name="[1053060]"></a>ESimpleDesktop::AddWindow(ESimpleWindow*, unsigned char)</STRONG> (ARM, 104 bytes, Stack size 8 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[1052f40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SetWindowLayer(unsigned char, unsigned char)
+</UL>
+
+<P><STRONG><a name="[1053018]"></a>ESimpleDesktop::RemoveAllWindow()</STRONG> (ARM, 48 bytes, Stack size 0 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[1052fd0]"></a>ESimpleDesktop::RemoveTopmostWindow()</STRONG> (ARM, 48 bytes, Stack size 0 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[1052f88]"></a>ESimpleDesktop::SetWindowTopmost(unsigned char)</STRONG> (ARM, 52 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = ESimpleDesktop::SetWindowTopmost(unsigned char) &rArr; ESimpleDesktop::RemoveWindow(unsigned char)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bbfa10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::AddWindow(ESimpleWindow*)
+<LI><a href="#[1053330]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::RemoveWindow(unsigned char)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1052b98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[1052f40]"></a>ESimpleDesktop::SetWindowLayer(unsigned char, unsigned char)</STRONG> (ARM, 60 bytes, Stack size 20 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[1053060]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::AddWindow(ESimpleWindow*, unsigned char)
+<LI><a href="#[1053330]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::RemoveWindow(unsigned char)
+</UL>
+
+<P><STRONG><a name="[bbfae8]"></a>ESimpleDesktop::GlobalRedraw()</STRONG> (ARM, 128 bytes, Stack size 24 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = ESimpleDesktop::GlobalRedraw() &rArr; ECursor::SetCursorPosition(const EPosition&)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bb3ee0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_HookFunc_RedrawEDesktop(ESimpleDesktop*)
+<LI><a href="#[bb66d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDFlushBuffer()
+<LI><a href="#[bb87c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECursor::SetCursorPosition(const EPosition&)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbfa58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::ScheduleRedraw()
+<LI><a href="#[bc0088]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[1052ef8]"></a>ESimpleDesktop::SelectedRedraw()</STRONG> (ARM, 128 bytes, Stack size 16 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb3ee0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_HookFunc_RedrawEDesktop(ESimpleDesktop*)
+<LI><a href="#[bb66d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDFlushBuffer()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbfa58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::ScheduleRedraw()
+</UL>
+
+<P><STRONG><a name="[bbfa58]"></a>ESimpleDesktop::ScheduleRedraw()</STRONG> (ARM, 68 bytes, Stack size 8 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbfae8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::GlobalRedraw()
+<LI><a href="#[1052ef8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SelectedRedraw()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bc00d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timerISR()
+</UL>
+
+<P><STRONG><a name="[bbfaa0]"></a>ESimpleDesktop::DispatchEvent(EEvent*)</STRONG> (ARM, 140 bytes, Stack size 16 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = ESimpleDesktop::DispatchEvent(EEvent*)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bc0088]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[1052b98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::DispatchEvent(EEvent*)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV14ESimpleDesktop)
+</UL>
+<P><STRONG><a name="[1052eb0]"></a>ESimpleDesktop::SetKeyboardEvent(const EPosition&, unsigned)</STRONG> (ARM, 80 bytes, Stack size 32 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[1052958]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEvent::EEvent()
+</UL>
+
+<P><STRONG><a name="[1052e68]"></a>ESimpleDesktop::SetCursorEvent(EEvent*)</STRONG> (ARM, 60 bytes, Stack size 24 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb87c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECursor::SetCursorPosition(const EPosition&)
+</UL>
+
+<P><STRONG><a name="[1052e20]"></a>ESimpleDesktop::SetCursorEvent(const EPosition&, unsigned)</STRONG> (ARM, 132 bytes, Stack size 40 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb87c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECursor::SetCursorPosition(const EPosition&)
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+<LI><a href="#[1052958]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEvent::EEvent()
+</UL>
+
+<P><STRONG><a name="[1052dd8]"></a>EDesktop::RecalculateWindowTitleCount()</STRONG> (ARM, 88 bytes, Stack size 16 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1052be0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::AppendClock(EClock*)
+<LI><a href="#[1052c28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::AppendStartMenu(EMenu*)
+<LI><a href="#[1052d48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::EDesktop()
+</UL>
+
+<P><STRONG><a name="[1052d90]"></a>EDesktop::RemoveAllIconButton()</STRONG> (ARM, 48 bytes, Stack size 0 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[1052d48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::EDesktop()
+</UL>
+
+<P><STRONG><a name="[1052d48]"></a>EDesktop::EDesktop()</STRONG> (ARM, 192 bytes, Stack size 8 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+<LI><a href="#[bbf9c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::ESimpleDesktop()
+<LI><a href="#[1052d90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::RemoveAllIconButton()
+<LI><a href="#[1052dd8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::RecalculateWindowTitleCount()
+</UL>
+
+<P><STRONG><a name="[1052d00]"></a>EDesktop::EDesktop__sub_object()</STRONG> (ARM, 0 bytes, Stack size 8 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[1052cb8]"></a>EDesktop::AddIconButton(EIconButton*)</STRONG> (ARM, 56 bytes, Stack size 0 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[1052c70]"></a>EDesktop::RemoveIconButton(unsigned)</STRONG> (ARM, 68 bytes, Stack size 4 bytes, eframe.o(.text), UNUSED)
+
+<P><STRONG><a name="[1052c28]"></a>EDesktop::AppendStartMenu(EMenu*)</STRONG> (ARM, 104 bytes, Stack size 40 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbb228]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMenu::CollapseMenu()
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+<LI><a href="#[1052dd8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::RecalculateWindowTitleCount()
+</UL>
+
+<P><STRONG><a name="[1052be0]"></a>EDesktop::AppendClock(EClock*)</STRONG> (ARM, 64 bytes, Stack size 16 bytes, eframe.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[1052dd8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::RecalculateWindowTitleCount()
+</UL>
+
+<P><STRONG><a name="[1052b98]"></a>EDesktop::DispatchEvent(EEvent*)</STRONG> (ARM, 524 bytes, Stack size 24 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48 + Unknown Stack Size
+<LI>Call Chain = EDesktop::DispatchEvent(EEvent*) &rArr; EPopupMenu::ShowPopupMenu(const EPosition&) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bbafa0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPopupMenu::ClosePopupMenu()
+<LI><a href="#[bbafe8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPopupMenu::ShowPopupMenu(const EPosition&)
+<LI><a href="#[bbc620]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::InControlArea(EPosition)
+<LI><a href="#[bbc668]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::NoticeControl(EEvent*)
+<LI><a href="#[bbfaa0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::DispatchEvent(EEvent*)
+<LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<LI><a href="#[1052f88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SetWindowTopmost(unsigned char)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV8EDesktop)
+</UL>
+<P><STRONG><a name="[1052b50]"></a>EDesktop::RedrawDesktop()</STRONG> (ARM, 468 bytes, Stack size 40 bytes, eframe.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = EDesktop::RedrawDesktop() &rArr; EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char) &rArr; EG_Graphic_DrawVerticalLine(unsigned, unsigned, unsigned) &rArr; EG_LCDSetPixel(unsigned, unsigned)
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba028]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawEmptyRectangle(unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bba100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawConstString(unsigned, unsigned, char*, unsigned char)
+<LI><a href="#[bba220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawBitmap(unsigned, unsigned, EBitmap*)
+<LI><a href="#[bba268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawLine(unsigned, unsigned, unsigned, unsigned, unsigned char)
+<LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+<LI><a href="#[bbfbc0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDClearBuffer()
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV8EDesktop)
+</UL>
+<P><STRONG><a name="[1050970]"></a>__aeabi_idiv</STRONG> (ARM, 0 bytes, Stack size 8 bytes, aeabi_sdiv.o(.text), UNUSED)
+
+<P><STRONG><a name="[1050928]"></a>__aeabi_idivmod</STRONG> (ARM, 384 bytes, Stack size 8 bytes, aeabi_sdiv.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[bba1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawNumber(unsigned, unsigned, int)
+</UL>
+
+<P><STRONG><a name="[104fc30]"></a>__use_two_region_memory</STRONG> (ARM, 4 bytes, Stack size 0 bytes, stkheap2.o(.text), UNUSED)
+
+<P><STRONG><a name="[104fbe8]"></a>__rt_stackheap_init</STRONG> (ARM, 36 bytes, Stack size 16 bytes, stkheap2.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24 + Unknown Stack Size
+<LI>Call Chain = __rt_stackheap_init &rArr; __user_setup_stackheap
+</UL>
+<BR>[Calls]<UL><LI><a href="#[104a618]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_stackheap_storage
+<LI><a href="#[104ada8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+</UL>
+<BR>[Called By]<UL><LI><a href="#[104b3d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+</UL>
+
+<P><STRONG><a name="[104fba0]"></a>__rt_heap_extend</STRONG> (ARM, 24 bytes, Stack size 8 bytes, stkheap2.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __rt_heap_extend
+</UL>
+<BR>[Calls]<UL><LI><a href="#[104fac8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_heap_extend (Weak Reference)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11afa28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__heap_extend
+</UL>
+
+<P><STRONG><a name="[104f418]"></a>__cpp_initialize__aeabi_</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, init_aeabi.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
+<LI>Call Chain = __cpp_initialize__aeabi_
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1047008]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_call_via_r0
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
+</UL>
+
+<P><STRONG><a name="[104b3d0]"></a>__rt_entry</STRONG> (ARM, 76 bytes, Stack size 16 bytes, kernel.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120 + Unknown Stack Size
+<LI>Call Chain = __rt_entry &rArr; __rt_lib_init &rArr; _init_alloc &rArr; __rt_SIGRTMEM &rArr; __rt_SIGRTMEM_inner &rArr; __default_signal_display &rArr; _ttywrch
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (via Veneer)
+<LI><a href="#[10446b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit (via BX)
+<LI><a href="#[104fbe8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_stackheap_init
+<LI><a href="#[11b0c00]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_platform_post_lib_init
+<LI><a href="#[11b0d70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_platform_post_stackheap_init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[104f960]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<LI><a href="#[11ac6e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
+</UL>
+
+<P><STRONG><a name="[104b388]"></a>__rt_exit</STRONG> (ARM, 20 bytes, Stack size 8 bytes, kernel.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56 + Unknown Stack Size
+<LI>Call Chain = __rt_exit &rArr; __rt_lib_shutdown &rArr; __cxa_finalize &rArr; free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1043f30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown (via Veneer)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10446b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit (via Veneer)
+</UL>
+
+<P><STRONG><a name="[104b340]"></a>__rt_abort</STRONG> (ARM, 8 bytes, Stack size 0 bytes, kernel.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[1046ab0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
+</UL>
+
+<P><STRONG><a name="[104ada8]"></a>__user_setup_stackheap</STRONG> (ARM, 96 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
+<LI>Call Chain = __user_setup_stackheap
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bc32d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
+<LI><a href="#[10467d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
+</UL>
+<BR>[Called By]<UL><LI><a href="#[104fbe8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_stackheap_init
+</UL>
+
+<P><STRONG><a name="[104a618]"></a>__rt_stackheap_storage</STRONG> (ARM, 12 bytes, Stack size 0 bytes, rt_stackheap_storage_intlibspace.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[104fbe8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_stackheap_init
+</UL>
+
+<P><STRONG><a name="[104a260]"></a>__rt_ddtor_pointer_addr</STRONG> (ARM, 12 bytes, Stack size 0 bytes, rt_ddtor_pointer_addr_intlibspace.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1047698]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxa_finalize (via Veneer)
+<LI><a href="#[104f078]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit (via Veneer)
+</UL>
+
+<P><STRONG><a name="[1049de0]"></a>malloc</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, h1_alloc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = malloc &rArr; __Heap_Full &rArr; __Heap_ProvideMemory &rArr; free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1045ee8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Full
+<LI><a href="#[10460e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_heap_descriptor (via Veneer)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[104f078]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+</UL>
+
+<P><STRONG><a name="[1047008]"></a>__ARM_call_via_r0</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, callvia.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[104f418]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cpp_initialize__aeabi_
+</UL>
+
+<P><STRONG><a name="[1046fc0]"></a>__call_via_r0</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046f78]"></a>__ARM_call_via_r1</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, callvia.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1047698]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxa_finalize
+</UL>
+
+<P><STRONG><a name="[1046f30]"></a>__call_via_r1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046ee8]"></a>__ARM_call_via_r2</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046ea0]"></a>__call_via_r2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046e58]"></a>__ARM_call_via_r3</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046e10]"></a>__call_via_r3</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046dc8]"></a>__ARM_call_via_r4</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046d80]"></a>__call_via_r4</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046d38]"></a>__ARM_call_via_r5</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046cf0]"></a>__call_via_r5</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046ca8]"></a>__ARM_call_via_r6</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046c60]"></a>__call_via_r6</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046c18]"></a>__ARM_call_via_r7</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046bd0]"></a>__call_via_r7</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, callvia.o(.text), UNUSED)
+
+<P><STRONG><a name="[1046ab0]"></a>_sys_exit</STRONG> (ARM, 20 bytes, Stack size 0 bytes, sys_exit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[104b340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_abort
+<LI><a href="#[11adef8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sig_exit (via Veneer)
+</UL>
+
+<P><STRONG><a name="[1046820]"></a>__user_libspace</STRONG> (ARM, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+
+<P><STRONG><a name="[10467d8]"></a>__user_perproc_libspace</STRONG> (ARM, 0 bytes, Stack size 0 bytes, libspace.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[104ada8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+</UL>
+
+<P><STRONG><a name="[1046790]"></a>__user_perthread_libspace</STRONG> (ARM, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+
+<P><STRONG><a name="[10460e8]"></a>__rt_heap_descriptor</STRONG> (ARM, 12 bytes, Stack size 0 bytes, rt_heap_descriptor_intlibspace.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1045330]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free (via Veneer)
+<LI><a href="#[1045e58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc (via Veneer)
+<LI><a href="#[1049de0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc (via Veneer)
+</UL>
+
+<P><STRONG><a name="[1045f78]"></a>_terminate_user_alloc</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init_alloc.o(.text), UNUSED)
+
+<P><STRONG><a name="[1045f30]"></a>_init_user_alloc</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init_alloc.o(.text), UNUSED)
+
+<P><STRONG><a name="[1045ee8]"></a>__Heap_Full</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, init_alloc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = __Heap_Full &rArr; __Heap_ProvideMemory &rArr; free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[11afa28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__heap_extend (via Veneer)
+<LI><a href="#[11b0438]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_ProvideMemory
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1049de0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+</UL>
+
+<P><STRONG><a name="[1045ea0]"></a>__Heap_Broken</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, init_alloc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[11afd50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM
+</UL>
+
+<P><STRONG><a name="[1045e58]"></a>_init_alloc</STRONG> (Thumb, 88 bytes, Stack size 24 bytes, init_alloc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = _init_alloc &rArr; __rt_SIGRTMEM &rArr; __rt_SIGRTMEM_inner &rArr; __default_signal_display &rArr; _ttywrch
+</UL>
+<BR>[Calls]<UL><LI><a href="#[10454e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Initialize
+<LI><a href="#[10460e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_heap_descriptor (via Veneer)
+<LI><a href="#[11afa28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__heap_extend (via Veneer)
+<LI><a href="#[11afd50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM
+<LI><a href="#[11b0438]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_ProvideMemory
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
+</UL>
+
+<P><STRONG><a name="[10458f8]"></a>__use_no_heap</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
+
+<P><STRONG><a name="[10458b0]"></a>__heap_guard</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
+
+<P><STRONG><a name="[10454e8]"></a>__Heap_Initialize</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, h1_init.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1045e58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
+</UL>
+
+<P><STRONG><a name="[10454a0]"></a>__Heap_DescSize</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, h1_init.o(.text), UNUSED)
+
+<P><STRONG><a name="[1045330]"></a>free</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, h1_free.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[10460e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_heap_descriptor (via Veneer)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1047698]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxa_finalize
+<LI><a href="#[11b0438]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_ProvideMemory
+</UL>
+
+<P><STRONG><a name="[10446b8]"></a>exit</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, exit.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56 + Unknown Stack Size
+<LI>Call Chain = exit &rArr; __rt_exit &rArr; __rt_lib_shutdown &rArr; __cxa_finalize &rArr; free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1044628]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_call_atexit_fns (Weak Reference)
+<LI><a href="#[104b388]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit (via Veneer)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[104b3d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+</UL>
+
+<P><STRONG><a name="[1043f78]"></a>__rt_lib_init</STRONG> (Thumb, 184 bytes, Stack size 40 bytes, lib_init.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104 + Unknown Stack Size
+<LI>Call Chain = __rt_lib_init &rArr; _init_alloc &rArr; __rt_SIGRTMEM &rArr; __rt_SIGRTMEM_inner &rArr; __default_signal_display &rArr; _ttywrch
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1043a68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_signal_init (Weak Reference)
+<LI><a href="#[1043ab0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_rand_init (Weak Reference)
+<LI><a href="#[1043af8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio (Weak Reference)
+<LI><a href="#[1043b88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_getenv_init (Weak Reference)
+<LI><a href="#[1043bd0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_time (Weak Reference)
+<LI><a href="#[1043c18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_numeric (Weak Reference)
+<LI><a href="#[1043c60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_monetary (Weak Reference)
+<LI><a href="#[1043ca8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_ctype (Weak Reference)
+<LI><a href="#[1043cf0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_collate (Weak Reference)
+<LI><a href="#[1043d38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_trap_init (Weak Reference)
+<LI><a href="#[1043d80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_clock_init (Weak Reference)
+<LI><a href="#[1043dc8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_atexit_init (Weak Reference)
+<LI><a href="#[1043e10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__alloca_initialize (Weak Reference)
+<LI><a href="#[1043e58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_exceptions_init (Weak Reference)
+<LI><a href="#[1044008]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_argv_veneer (via Veneer)
+<LI><a href="#[1045e58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
+<LI><a href="#[104f418]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cpp_initialize__aeabi_
+<LI><a href="#[11af290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_init (via Veneer)
+<LI><a href="#[11b05a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_locale (via Veneer)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[104b3d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry (via Veneer)
+</UL>
+
+<P><STRONG><a name="[1043f30]"></a>__rt_lib_shutdown</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, lib_init.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48 + Unknown Stack Size
+<LI>Call Chain = __rt_lib_shutdown &rArr; __cxa_finalize &rArr; free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[10439d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_terminateio (Weak Reference)
+<LI><a href="#[1047698]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxa_finalize
+</UL>
+<BR>[Called By]<UL><LI><a href="#[104b388]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit (via Veneer)
+</UL>
+
+<P><STRONG><a name="[11b0d70]"></a>_platform_post_stackheap_init</STRONG> (ARM, 12 bytes, Stack size 0 bytes, boardinit2.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[104b3d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+</UL>
+
+<P><STRONG><a name="[11b0c00]"></a>_platform_post_lib_init</STRONG> (ARM, 16 bytes, Stack size 8 bytes, boardinit3.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _platform_post_lib_init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[104b3d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+</UL>
+
+<P><STRONG><a name="[11b08c8]"></a>__I_use_semihosting</STRONG> (ARM, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> sys_exit.o(.text)
+</UL>
+<P><STRONG><a name="[11b0880]"></a>__use_no_semihosting_swi</STRONG> (ARM, 4 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+
+<P><STRONG><a name="[11b05a8]"></a>__rt_locale</STRONG> (ARM, 12 bytes, Stack size 0 bytes, rt_locale_intlibspace.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (via Veneer)
+</UL>
+
+<P><STRONG><a name="[11b0438]"></a>__Heap_ProvideMemory</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, h1_extend.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __Heap_ProvideMemory &rArr; free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1045330]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1045e58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
+<LI><a href="#[1045ee8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Full
+</UL>
+
+<P><STRONG><a name="[11afd50]"></a>__rt_SIGRTMEM</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, defsig_rtmem_outer.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = __rt_SIGRTMEM &rArr; __rt_SIGRTMEM_inner &rArr; __default_signal_display &rArr; _ttywrch
+</UL>
+<BR>[Calls]<UL><LI><a href="#[11adbd0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM_inner
+<LI><a href="#[11adef8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sig_exit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1045e58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
+<LI><a href="#[1045ea0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Broken
+</UL>
+
+<P><STRONG><a name="[11afa28]"></a>__heap_extend</STRONG> (ARM, 16 bytes, Stack size 8 bytes, heapext.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __heap_extend &rArr; __rt_heap_extend
+</UL>
+<BR>[Calls]<UL><LI><a href="#[104fba0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_heap_extend
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1045e58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc (via Veneer)
+<LI><a href="#[1045ee8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Full (via Veneer)
+</UL>
+
+<P><STRONG><a name="[11af468]"></a>__ARM_get_argv</STRONG> (Thumb, 6 bytes, Stack size 4 bytes, no_argv.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = __ARM_get_argv
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> lib_init.o(.emb_text)
+</UL>
+<P><STRONG><a name="[11aeb40]"></a>__rt_fp_status_addr</STRONG> (ARM, 12 bytes, Stack size 0 bytes, rt_fp_status_addr_intlibspace.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[11af290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_init
+</UL>
+
+<P><STRONG><a name="[11adef8]"></a>__sig_exit</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, defsig_exit.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __sig_exit
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1046ab0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit (via Veneer)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11afd50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM
+</UL>
+
+<P><STRONG><a name="[11adbd0]"></a>__rt_SIGRTMEM_inner</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, defsig_rtmem_inner.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __rt_SIGRTMEM_inner &rArr; __default_signal_display &rArr; _ttywrch
+</UL>
+<BR>[Calls]<UL><LI><a href="#[11ad7c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__default_signal_display
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11afd50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM
+</UL>
+
+<P><STRONG><a name="[11ad7c0]"></a>__default_signal_display</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, defsig_general.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __default_signal_display &rArr; _ttywrch
+</UL>
+<BR>[Calls]<UL><LI><a href="#[11aca90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ttywrch
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11adbd0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM_inner
+</UL>
+
+<P><STRONG><a name="[11aca90]"></a>_ttywrch</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, sys_wrch.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _ttywrch
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11ad7c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__default_signal_display
+</UL>
+
+<P><STRONG><a name="[10508e0]"></a>__aeabi_uidiv</STRONG> (ARM, 0 bytes, Stack size 0 bytes, aeabi_sdiv.o(.text_udiv), UNUSED)
+
+<P><STRONG><a name="[1050898]"></a>__aeabi_uidivmod</STRONG> (ARM, 28 bytes, Stack size 0 bytes, aeabi_sdiv.o(.text_udiv))
+<BR><BR>[Calls]<UL><LI><a href="#[10509b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__arm_div_large
+<LI><a href="#[1050a00]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__arm_div4
+<LI><a href="#[1050a48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__arm_div8
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb7528]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawPieSlice(unsigned, unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bb7570]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_Graphic_DrawArc(unsigned, unsigned, unsigned, unsigned, unsigned)
+<LI><a href="#[bbc7d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultETree(EControl*, EEvent*)
+<LI><a href="#[bbc980]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEPopupMenu(EControl*, EEvent*)
+<LI><a href="#[bbca10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEMenu(EControl*, EEvent*)
+<LI><a href="#[bbcb30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEList(EControl*, EEvent*)
+<LI><a href="#[bbce90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEComboBox(EControl*, EEvent*)
+<LI><a href="#[1052b98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::DispatchEvent(EEvent*)
+<LI><a href="#[1052dd8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::RecalculateWindowTitleCount()
+</UL>
+
+<P><STRONG><a name="[bc30e0]"></a>Undefine_ISR</STRONG> (ARM, 0 bytes, Stack size unknown bytes, isr.o(ISR))
+<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
+</UL>
+<P><STRONG><a name="[bc3128]"></a>SWI_ISR</STRONG> (ARM, 0 bytes, Stack size unknown bytes, isr.o(ISR))
+<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
+</UL>
+<P><STRONG><a name="[bc3170]"></a>PAbt_ISR</STRONG> (ARM, 0 bytes, Stack size unknown bytes, isr.o(ISR))
+<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
+</UL>
+<P><STRONG><a name="[bc3248]"></a>DAbt_ISR</STRONG> (ARM, 0 bytes, Stack size unknown bytes, isr.o(ISR))
+<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
+</UL>
+<P><STRONG><a name="[bc3200]"></a>Default_vIRQ_ISR</STRONG> (ARM, 0 bytes, Stack size unknown bytes, isr.o(ISR))
+<BR>[Address Reference Count : 2]<UL><LI> peripherialinit.o(PERI_INIT)
+<LI> startup.o(RESET)
+</UL>
+<P><STRONG><a name="[bc31b8]"></a>FIQ_ISR</STRONG> (ARM, 0 bytes, Stack size unknown bytes, isr.o(ISR))
+<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
+</UL>
+<P><STRONG><a name="[bc2a80]"></a>PERIPHERIAL_INIT</STRONG> (ARM, 0 bytes, Stack size unknown bytes, peripherialinit.o(PERI_INIT))
+<BR><BR>[Called By]<UL><LI><a href="#[bc0088]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[bbfff8]"></a>BSP_FeedDog()</STRONG> (ARM, 20 bytes, Stack size 0 bytes, main.o(i._Z11BSP_FeedDogv))
+<BR><BR>[Called By]<UL><LI><a href="#[bc0088]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[bbffb0]"></a>ECheckButton::~ECheckButton()</STRONG> (ARM, 8 bytes, Stack size 0 bytes, main.o(i._ZN12ECheckButtonD1Ev))
+<BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
+</UL>
+<P><STRONG><a name="[bbff68]"></a>ECheckButton::~ECheckButton__sub_object()</STRONG> (ARM, 0 bytes, Stack size 0 bytes, main.o(i._ZN12ECheckButtonD1Ev), UNUSED)
+
+<P><STRONG><a name="[bbff20]"></a>ESimpleWindow::AddControl(EControl*)</STRONG> (ARM, 32 bytes, Stack size 0 bytes, main.o(i._ZN13ESimpleWindow10AddControlEP8EControl))
+<BR><BR>[Called By]<UL><LI><a href="#[bc0040]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextButtonCBF(EControl*, EEvent*)
+<LI><a href="#[bc0088]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[1052b08]"></a>ESimpleWindow::InWindowArea(EPosition)</STRONG> (ARM, 20 bytes, Stack size 12 bytes, eframe.o(i._ZN13ESimpleWindow12InWindowAreaE9EPosition))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = ESimpleWindow::InWindowArea(EPosition)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV13ESimpleWindow)
+</UL>
+<P><STRONG><a name="[1052ac0]"></a>ESimpleWindow::RecoverWindow()</STRONG> (ARM, 4 bytes, Stack size 0 bytes, eframe.o(i._ZN13ESimpleWindow13RecoverWindowEv))
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV13ESimpleWindow)
+</UL>
+<P><STRONG><a name="[1052a78]"></a>ESimpleWindow::GetWindowState()</STRONG> (ARM, 12 bytes, Stack size 0 bytes, eframe.o(i._ZN13ESimpleWindow14GetWindowStateEv))
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV13ESimpleWindow)
+</UL>
+<P><STRONG><a name="[1052a30]"></a>ESimpleDesktop::RedrawDesktop()</STRONG> (ARM, 20 bytes, Stack size 8 bytes, eframe.o(i._ZN14ESimpleDesktop13RedrawDesktopEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ESimpleDesktop::RedrawDesktop()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bbfbc0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_LCDClearBuffer()
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV14ESimpleDesktop)
+</UL>
+<P><STRONG><a name="[bbfed8]"></a>EEdit::~EEdit()</STRONG> (ARM, 8 bytes, Stack size 0 bytes, main.o(i._ZN5EEditD1Ev))
+<BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
+</UL>
+<P><STRONG><a name="[bbfe90]"></a>EEdit::~EEdit__sub_object()</STRONG> (ARM, 0 bytes, Stack size 0 bytes, main.o(i._ZN5EEditD1Ev), UNUSED)
+
+<P><STRONG><a name="[bba6e8]"></a>EMenu::SetSelectItem(unsigned)</STRONG> (ARM, 28 bytes, Stack size 0 bytes, econtrol.o(i._ZN5EMenu13SetSelectItemEj))
+<BR><BR>[Called By]<UL><LI><a href="#[bbca10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEMenu(EControl*, EEvent*)
+</UL>
+
+<P><STRONG><a name="[bba6a0]"></a>ESize::ESize(unsigned, unsigned)</STRONG> (ARM, 12 bytes, Stack size 0 bytes, econtrol.o(i._ZN5ESizeC1Ejj))
+<BR><BR>[Called By]<UL><LI><a href="#[bb3b38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::EWindow()
+<LI><a href="#[bba4f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*))
+<LI><a href="#[bbaa48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EToolBar::EToolBar(EPosition)
+<LI><a href="#[bbb1e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPopupMenu::EPopupMenu()
+<LI><a href="#[bbb420]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMenu::EMenu(char*, unsigned, EPosition, bool)
+<LI><a href="#[bbb4b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMenu::EMenu()
+<LI><a href="#[bbb780]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EScroll::EScroll(EPosition, unsigned, unsigned)
+<LI><a href="#[bbb8a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDialogBox::EDialogBox(unsigned char, EPosition, char*, unsigned)
+<LI><a href="#[bbb978]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMessageBox::EMessageBox(unsigned char, EPosition, char*, unsigned)
+<LI><a href="#[bbbbb8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EIcon::EIcon(void(*)(EControl*, EEvent*), EPosition, unsigned)
+<LI><a href="#[bbbd68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EComboBox::EComboBox(EPosition, unsigned)
+<LI><a href="#[bbc080]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::EEdit(void(*)(EControl*, EEvent*), char*, bool, EPosition, unsigned)
+<LI><a href="#[bbc110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::EEdit(char*, bool, EPosition, unsigned)
+<LI><a href="#[bbc230]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECheckButton::ECheckButton(void(*)(EControl*, EEvent*), bool, EPosition, char*, unsigned)
+<LI><a href="#[bbc350]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ELabel::ELabel(void(*)(EControl*, EEvent*), void(*)(EControl*), EPosition, char*, unsigned)
+<LI><a href="#[bbf860]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::EWindow(char*, EPosition, ESize, bool)
+<LI><a href="#[bbf8a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EButton::EButton(void(*)(EControl*, EEvent*), EPosition, char*, unsigned)
+<LI><a href="#[bbf8f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ELabel::ELabel(EPosition, char*, unsigned)
+<LI><a href="#[bbf938]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::EEdit(bool, EPosition, unsigned)
+<LI><a href="#[bbfb78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECheckButton::ECheckButton(bool, EPosition, char*, unsigned)
+<LI><a href="#[1052d48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::EDesktop()
+<LI><a href="#[10532a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::DispatchEvent(EEvent*)
+</UL>
+
+<P><STRONG><a name="[bba658]"></a>ESize::ESize__sub_object(unsigned, unsigned)</STRONG> (ARM, 0 bytes, Stack size 0 bytes, econtrol.o(i._ZN5ESizeC1Ejj), UNUSED)
+
+<P><STRONG><a name="[bba610]"></a>ETree::ETreeSubItem::OpenSubItem()</STRONG> (ARM, 36 bytes, Stack size 8 bytes, econtrol.o(i._ZN5ETree12ETreeSubItem11OpenSubItemEv), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbc8f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::OpenAllSubItem()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbc7d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultETree(EControl*, EEvent*)
+<LI><a href="#[bbc8f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::OpenAllSubItem()
+</UL>
+
+<P><STRONG><a name="[bba5c8]"></a>ETree::ETreeSubItem::CloseSubItem()</STRONG> (ARM, 36 bytes, Stack size 8 bytes, econtrol.o(i._ZN5ETree12ETreeSubItem12CloseSubItemEv), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbc8a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::CloseAllSubItem()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbc7d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultETree(EControl*, EEvent*)
+<LI><a href="#[bbc8a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ETreeItem::CloseAllSubItem()
+</UL>
+
+<P><STRONG><a name="[1052958]"></a>EEvent::EEvent()</STRONG> (ARM, 52 bytes, Stack size 8 bytes, eframe.o(i._ZN6EEventC1Ev), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1052e20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SetCursorEvent(const EPosition&, unsigned)
+<LI><a href="#[1052eb0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SetKeyboardEvent(const EPosition&, unsigned)
+</UL>
+
+<P><STRONG><a name="[1052910]"></a>EEvent::EEvent__sub_object()</STRONG> (ARM, 0 bytes, Stack size 8 bytes, eframe.o(i._ZN6EEventC1Ev), UNUSED)
+
+<P><STRONG><a name="[bbfe48]"></a>ELabel::~ELabel()</STRONG> (ARM, 8 bytes, Stack size 0 bytes, main.o(i._ZN6ELabelD1Ev))
+<BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
+</UL>
+<P><STRONG><a name="[bbfe00]"></a>ELabel::~ELabel__sub_object()</STRONG> (ARM, 0 bytes, Stack size 0 bytes, main.o(i._ZN6ELabelD1Ev), UNUSED)
+
+<P><STRONG><a name="[bbfdb8]"></a>EButton::~EButton()</STRONG> (ARM, 8 bytes, Stack size 0 bytes, main.o(i._ZN7EButtonD1Ev))
+<BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
+</UL>
+<P><STRONG><a name="[bbfd70]"></a>EButton::~EButton__sub_object()</STRONG> (ARM, 0 bytes, Stack size 0 bytes, main.o(i._ZN7EButtonD1Ev), UNUSED)
+
+<P><STRONG><a name="[10528c8]"></a>EWindow::GetWindowState()</STRONG> (ARM, 12 bytes, Stack size 0 bytes, eframe.o(i._ZN7EWindow14GetWindowStateEv))
+<BR>[Address Reference Count : 1]<UL><LI> eframe.o(.constdata__ZTV7EWindow)
+</UL>
+<P><STRONG><a name="[bbfd28]"></a>EWindow::~EWindow()</STRONG> (ARM, 16 bytes, Stack size 0 bytes, main.o(i._ZN7EWindowD1Ev))
+<BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
+</UL>
+<P><STRONG><a name="[bbfce0]"></a>EWindow::~EWindow__sub_object()</STRONG> (ARM, 0 bytes, Stack size 0 bytes, main.o(i._ZN7EWindowD1Ev), UNUSED)
+
+<P><STRONG><a name="[bba580]"></a>EControl::RedrawControl()</STRONG> (ARM, 44 bytes, Stack size 8 bytes, econtrol.o(i._ZN8EControl13RedrawControlEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EControl::RedrawControl()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb39d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::RedrawSelectedControls()
+<LI><a href="#[bb3a18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::ForceRedrawAllControls()
+<LI><a href="#[bb3c58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::RedrawControl(const EPosition&)
+<LI><a href="#[bb3ca0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::RedrawSelectedControls()
+<LI><a href="#[bb3ce8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleWindow::ForceRedrawAllControls()
+<LI><a href="#[bba388]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EComboBox::SetSelectIndex(unsigned)
+<LI><a href="#[bbac88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ToggleLeafState(unsigned, unsigned)
+<LI><a href="#[bbacd0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ETree::ToggleRootState(unsigned)
+<LI><a href="#[bbafe8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPopupMenu::ShowPopupMenu(const EPosition&)
+<LI><a href="#[bbb8e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMessageBox::SwitchState()
+<LI><a href="#[bbbc48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EComboBox::RemoveItem(unsigned)
+<LI><a href="#[bbbc90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EComboBox::AddItem(char*)
+<LI><a href="#[bbbcd8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EComboBox::SetIemString(unsigned, char*)
+<LI><a href="#[bbbff0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::SetString(char*, int)
+<LI><a href="#[bbc158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::SetString(char*)
+<LI><a href="#[bbc470]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEBarChart(EControl*, EEvent*)
+<LI><a href="#[bbc548]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEToolBar(EControl*)
+<LI><a href="#[bbc5d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEToolBar(EControl*, EEvent*)
+<LI><a href="#[bbc668]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::NoticeControl(EEvent*)
+<LI><a href="#[bbc7d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultETree(EControl*, EEvent*)
+<LI><a href="#[bbc980]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEPopupMenu(EControl*, EEvent*)
+<LI><a href="#[bbca10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEMenu(EControl*, EEvent*)
+<LI><a href="#[bbca58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMenu::SwitchShowState()
+<LI><a href="#[bbcb30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEList(EControl*, EEvent*)
+<LI><a href="#[bbcbc0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEScroll(EControl*, EEvent*)
+<LI><a href="#[bbcc50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEDialogBox(EControl*, EEvent*)
+<LI><a href="#[bbcd28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEMessageBox(EControl*, EEvent*)
+<LI><a href="#[bbce90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEComboBox(EControl*, EEvent*)
+<LI><a href="#[bbced8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EComboBox::SwitchOpenState()
+<LI><a href="#[bbcf68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEExtLabel(EControl*, EEvent*)
+<LI><a href="#[bbcfb0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EExtLabel::ChangeState()
+<LI><a href="#[bbd088]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEEdit(EControl*, EEvent*)
+<LI><a href="#[bbd118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultECheckButton(EControl*, EEvent*)
+<LI><a href="#[bbf980]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::AddCharToString(char)
+<LI><a href="#[1052b50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::RedrawDesktop()
+</UL>
+
+<P><STRONG><a name="[bba538]"></a>EControl::SetRedrawFunction(void(*)(EControl*))</STRONG> (ARM, 8 bytes, Stack size 0 bytes, econtrol.o(i._ZN8EControl17SetRedrawFunctionEPFvPS_E), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[bbba08]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EIconButton::EIconButton(void(*)(EControl*, EEvent*), EPosition, ESize, unsigned, char*, bool)
+<LI><a href="#[bbbae0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EIconButton::EIconButton(void(*)(EControl*, EEvent*), EPosition, ESize, ESize, unsigned char*, char*, bool)
+</UL>
+
+<P><STRONG><a name="[bba4f0]"></a>EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*))</STRONG> (ARM, 84 bytes, Stack size 16 bytes, econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bba6a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESize::ESize(unsigned, unsigned)
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbaad8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EToolBar::EToolBar()
+<LI><a href="#[bbb1e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPopupMenu::EPopupMenu()
+<LI><a href="#[bbb810]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EScroll::EScroll()
+<LI><a href="#[bbbdf8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EComboBox::EComboBox()
+</UL>
+
+<P><STRONG><a name="[bba4a8]"></a>EControl::EControl__sub_object(void(*)(EControl*, EEvent*), void(*)(EControl*))</STRONG> (ARM, 0 bytes, Stack size 16 bytes, econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E), UNUSED)
+
+<P><STRONG><a name="[bba460]"></a>EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)</STRONG> (ARM, 60 bytes, Stack size 16 bytes, econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E5ESize9EPosition))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbaa48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EToolBar::EToolBar(EPosition)
+<LI><a href="#[bbb420]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMenu::EMenu(char*, unsigned, EPosition, bool)
+<LI><a href="#[bbb780]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EScroll::EScroll(EPosition, unsigned, unsigned)
+<LI><a href="#[bbb8a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDialogBox::EDialogBox(unsigned char, EPosition, char*, unsigned)
+<LI><a href="#[bbb978]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMessageBox::EMessageBox(unsigned char, EPosition, char*, unsigned)
+<LI><a href="#[bbbae0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EIconButton::EIconButton(void(*)(EControl*, EEvent*), EPosition, ESize, ESize, unsigned char*, char*, bool)
+<LI><a href="#[bbbbb8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EIcon::EIcon(void(*)(EControl*, EEvent*), EPosition, unsigned)
+<LI><a href="#[bbbd68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EComboBox::EComboBox(EPosition, unsigned)
+<LI><a href="#[bbc080]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::EEdit(void(*)(EControl*, EEvent*), char*, bool, EPosition, unsigned)
+<LI><a href="#[bbc110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::EEdit(char*, bool, EPosition, unsigned)
+<LI><a href="#[bbc230]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECheckButton::ECheckButton(void(*)(EControl*, EEvent*), bool, EPosition, char*, unsigned)
+<LI><a href="#[bbc350]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ELabel::ELabel(void(*)(EControl*, EEvent*), void(*)(EControl*), EPosition, char*, unsigned)
+<LI><a href="#[bbf8a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EButton::EButton(void(*)(EControl*, EEvent*), EPosition, char*, unsigned)
+<LI><a href="#[bbf8f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ELabel::ELabel(EPosition, char*, unsigned)
+<LI><a href="#[bbf938]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::EEdit(bool, EPosition, unsigned)
+<LI><a href="#[bbfb78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECheckButton::ECheckButton(bool, EPosition, char*, unsigned)
+</UL>
+
+<P><STRONG><a name="[bba418]"></a>EControl::EControl__sub_object(void(*)(EControl*, EEvent*), void(*)(EControl*), ESize, EPosition)</STRONG> (ARM, 0 bytes, Stack size 16 bytes, econtrol.o(i._ZN8EControlC1EPFvPS_P6EEventEPFvS0_E5ESize9EPosition), UNUSED)
+
+<P><STRONG><a name="[bba3d0]"></a>EComboBox::GetItemString(unsigned)</STRONG> (ARM, 24 bytes, Stack size 0 bytes, econtrol.o(i._ZN9EComboBox13GetItemStringEj))
+<BR><BR>[Called By]<UL><LI><a href="#[bbce48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEComboBox(EControl*)
+</UL>
+
+<P><STRONG><a name="[bba388]"></a>EComboBox::SetSelectIndex(unsigned)</STRONG> (ARM, 32 bytes, Stack size 16 bytes, econtrol.o(i._ZN9EComboBox14SetSelectIndexEj))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = EComboBox::SetSelectIndex(unsigned) &rArr; EControl::RedrawControl()
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bba580]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::RedrawControl()
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bbce90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_CallbackFunc_DefaultEComboBox(EControl*, EEvent*)
+</UL>
+
+<P><STRONG><a name="[bbfc98]"></a>EPosition::EPosition(unsigned, unsigned)</STRONG> (ARM, 12 bytes, Stack size 0 bytes, main.o(i._ZN9EPositionC1Ejj))
+<BR><BR>[Called By]<UL><LI><a href="#[bb3b38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::EWindow()
+<LI><a href="#[bba4f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EControl::EControl(void(*)(EControl*, EEvent*), void(*)(EControl*))
+<LI><a href="#[bbb4b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EMenu::EMenu()
+<LI><a href="#[bbbfa8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EExtLabel::EExtLabel()
+<LI><a href="#[bbc6b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultETree(EControl*)
+<LI><a href="#[bbcff8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEProgress(EControl*)
+<LI><a href="#[bbd040]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultEEdit(EControl*)
+<LI><a href="#[bbd0d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EG_RedrawFunc_DefaultECheckButton(EControl*)
+<LI><a href="#[bbf860]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::EWindow(char*, EPosition, ESize, bool)
+<LI><a href="#[bbf9c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::ESimpleDesktop()
+<LI><a href="#[bc0088]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[bc0c10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp
+<LI><a href="#[1052958]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEvent::EEvent()
+<LI><a href="#[1052c28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EDesktop::AppendStartMenu(EMenu*)
+<LI><a href="#[1052e20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::SetCursorEvent(const EPosition&, unsigned)
+</UL>
+
+<P><STRONG><a name="[bbfc50]"></a>EPosition::EPosition__sub_object(unsigned, unsigned)</STRONG> (ARM, 0 bytes, Stack size 0 bytes, main.o(i._ZN9EPositionC1Ejj), UNUSED)
+
+<P><STRONG><a name="[104f078]"></a>__aeabi_atexit</STRONG> (Thumb, 48 bytes, Stack size 32 bytes, aeabi_atexit.o(i.__aeabi_atexit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = __aeabi_atexit &rArr; malloc &rArr; __Heap_Full &rArr; __Heap_ProvideMemory &rArr; free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1049de0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<LI><a href="#[104a260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_ddtor_pointer_addr (via Veneer)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bc0c10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp (via Veneer)
+</UL>
+
+<P><STRONG><a name="[1047698]"></a>__cxa_finalize</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, cxa_finalize.o(i.__cxa_finalize))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40 + Unknown Stack Size
+<LI>Call Chain = __cxa_finalize &rArr; free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1045330]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
+<LI><a href="#[1046f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_call_via_r1
+<LI><a href="#[104a260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_ddtor_pointer_addr (via Veneer)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1043f30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
+</UL>
+
+<P><STRONG><a name="[11af290]"></a>_fp_init</STRONG> (ARM, 24 bytes, Stack size 8 bytes, fpinit.o(x$fpl$fpinit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _fp_init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[11aeb40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_fp_status_addr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (via Veneer)
+</UL>
+
+<P><STRONG><a name="[11af248]"></a>__fplib_config_pureend_doubles</STRONG> (ARM, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
+<P>
+<H3>
+Local Symbols
+</H3>
+<P><STRONG><a name="[bc0c10]"></a>__sti___8_main_cpp</STRONG> (ARM, 460 bytes, Stack size 88 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = __sti___8_main_cpp &rArr; __aeabi_atexit &rArr; malloc &rArr; __Heap_Full &rArr; __Heap_ProvideMemory &rArr; free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bbf860]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EWindow::EWindow(char*, EPosition, ESize, bool)
+<LI><a href="#[bbf8a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EButton::EButton(void(*)(EControl*, EEvent*), EPosition, char*, unsigned)
+<LI><a href="#[bbf8f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ELabel::ELabel(EPosition, char*, unsigned)
+<LI><a href="#[bbf938]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EEdit::EEdit(bool, EPosition, unsigned)
+<LI><a href="#[bbf9c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESimpleDesktop::ESimpleDesktop()
+<LI><a href="#[bbfb78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECheckButton::ECheckButton(bool, EPosition, char*, unsigned)
+<LI><a href="#[bbfc98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPosition::EPosition(unsigned, unsigned)
+<LI><a href="#[104f078]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit (via Veneer)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> main.o(.init_array)
+</UL>
+<P><STRONG><a name="[1050a48]"></a>__arm_div8</STRONG> (ARM, 0 bytes, Stack size unknown bytes, aeabi_sdiv.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+
+<P><STRONG><a name="[1050a00]"></a>__arm_div4</STRONG> (ARM, 0 bytes, Stack size unknown bytes, aeabi_sdiv.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+
+<P><STRONG><a name="[10509b8]"></a>__arm_div_large</STRONG> (ARM, 0 bytes, Stack size unknown bytes, aeabi_sdiv.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1050898]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+<P>
+<H3>
+Undefined Global Symbols
+</H3>
+<P><STRONG><a name="[1043e58]"></a>__ARM_exceptions_init</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043e10]"></a>__alloca_initialize</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[104fac8]"></a>__user_heap_extend</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[104fba0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_heap_extend (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043dc8]"></a>_atexit_init</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1044628]"></a>_call_atexit_fns</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[10446b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043d80]"></a>_clock_init</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043d38]"></a>_fp_trap_init</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043cf0]"></a>_get_lc_collate</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043ca8]"></a>_get_lc_ctype</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043c60]"></a>_get_lc_monetary</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043c18]"></a>_get_lc_numeric</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043bd0]"></a>_get_lc_time</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043b88]"></a>_getenv_init</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043af8]"></a>_initio</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043ab0]"></a>_rand_init</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[1043a68]"></a>_signal_init</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init (Weak Reference)
+</UL>
+
+<P><STRONG><a name="[10439d8]"></a>_terminateio</STRONG> (Unknown, 0 bytes, Stack size 0 bytes, UNDEFINED)
+<BR><BR>[Called By]<UL><LI><a href="#[1043f30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown (Weak Reference)
+</UL>
+<HR></body></html>

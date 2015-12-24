@@ -1,0 +1,1 @@
+-c --device DARMP -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include -I "d:\Keil\ARM\INC\Philips" -DARM7_LPC21xx_KEIL_RVDS -o "guidemo.o" --omf_browse "guidemo.crf" --depend "guidemo.d" "GUIdemo.cpp"

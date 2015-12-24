@@ -1,0 +1,1 @@
+-c --device DARMP -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include -I "D:\Keil for ARM\ARM\INC\Philips" -DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o ".\bin\semtest.o" --omf_browse ".\bin\semtest.crf" --depend ".\bin\semtest.d" "Common\Minimal\semtest.c"
