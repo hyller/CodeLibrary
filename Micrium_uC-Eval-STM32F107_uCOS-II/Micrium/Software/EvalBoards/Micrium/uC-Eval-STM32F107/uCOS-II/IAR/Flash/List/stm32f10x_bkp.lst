@@ -1,0 +1,534 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.50.2.4510/W32 for ARM      08/Feb/2013  10:57:22 #
+# Copyright 1999-2012 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_bkp.c                    #
+#    Command line =  "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_bkp.c" -D                #
+#                    USE_STDPERIPH_DRIVER -lCN "C:\Users\daniel01\Desktop\Fas #
+#                    tFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC #
+#                    -Eval-STM32F107\uCOS-II\IAR\Flash\List\" -o              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\" --no_cse --no_unroll        #
+#                    --no_inline --no_code_motion --no_tbaa --no_clustering   #
+#                    --no_scheduling --debug --endian=little --cpu=Cortex-M3  #
+#                    -e --fpu=None --dlib_config "C:\Program Files (x86)\IAR  #
+#                    Systems\Embedded Workbench 6.5\arm\INC\c\DLib_Config_Nor #
+#                    mal.h" -I "C:\Users\daniel01\Desktop\FastFile Test       #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\IAR\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\" -I                          #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\OS\uCOS-II\" -I               #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\ST\STM32\inc\" -I             #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\uCOS-II\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\IAR\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex- #
+#                    M3\IAR\" -I "C:\Users\daniel01\Desktop\FastFile Test     #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR #
+#                    \" -I "C:\Users\daniel01\Desktop\FastFile Test           #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex #
+#                    -M3\Generic\IAR\" -I "C:\Users\daniel01\Desktop\FastFile #
+#                     Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval #
+#                    -STM32F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Source\"   #
+#                    -On --use_c++_inline                                     #
+#    List file    =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\List\stm32f10x_bkp.lst            #
+#    Object file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\stm32f10x_bkp.o               #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\daniel01\Desktop\FastFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32F107\BSP\ST\STM32\src\stm32f10x_bkp.c
+      1          /******************** (C) COPYRIGHT 2009 STMicroelectronics ********************
+      2          * File Name          : stm32f10x_bkp.c
+      3          * Author             : MCD Application Team
+      4          * Version            : V2.1.0RC2
+      5          * Date               : 03/13/2009
+      6          * Description        : This file provides all the BKP firmware functions.
+      7          ********************************************************************************
+      8          * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+      9          * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME.
+     10          * AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY DIRECT,
+     11          * INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE
+     12          * CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING
+     13          * INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+     14          *******************************************************************************/
+     15          
+     16          /* Includes ------------------------------------------------------------------*/
+     17          #include "stm32f10x_bkp.h"
+     18          #include "stm32f10x_rcc.h"
+     19          
+     20          /* Private typedef -----------------------------------------------------------*/
+     21          /* Private define ------------------------------------------------------------*/
+     22          /* ------------ BKP registers bit address in the alias region ----------- */
+     23          #define BKP_OFFSET        (BKP_BASE - PERIPH_BASE)
+     24          
+     25          /* --- CR Register ---*/
+     26          /* Alias word address of TPAL bit */
+     27          #define CR_OFFSET         (BKP_OFFSET + 0x30)
+     28          #define TPAL_BitNumber    0x01
+     29          #define CR_TPAL_BB        (PERIPH_BB_BASE + (CR_OFFSET * 32) + (TPAL_BitNumber * 4))
+     30          
+     31          /* Alias word address of TPE bit */
+     32          #define TPE_BitNumber     0x00
+     33          #define CR_TPE_BB         (PERIPH_BB_BASE + (CR_OFFSET * 32) + (TPE_BitNumber * 4))
+     34          
+     35          /* --- CSR Register ---*/
+     36          /* Alias word address of TPIE bit */
+     37          #define CSR_OFFSET        (BKP_OFFSET + 0x34)
+     38          #define TPIE_BitNumber    0x02
+     39          #define CSR_TPIE_BB       (PERIPH_BB_BASE + (CSR_OFFSET * 32) + (TPIE_BitNumber * 4))
+     40          
+     41          /* Alias word address of TIF bit */
+     42          #define TIF_BitNumber     0x09
+     43          #define CSR_TIF_BB        (PERIPH_BB_BASE + (CSR_OFFSET * 32) + (TIF_BitNumber * 4))
+     44          
+     45          /* Alias word address of TEF bit */
+     46          #define TEF_BitNumber     0x08
+     47          #define CSR_TEF_BB        (PERIPH_BB_BASE + (CSR_OFFSET * 32) + (TEF_BitNumber * 4))
+     48          
+     49          
+     50          /* ---------------------- BKP registers bit mask ------------------------ */
+     51          /* RTCCR register bit mask */
+     52          #define RTCCR_CAL_Mask    ((u16)0xFF80)
+     53          #define RTCCR_Mask        ((u16)0xFC7F)
+     54          
+     55          /* CSR register bit mask */
+     56          #define CSR_CTE_Set       ((u16)0x0001)
+     57          #define CSR_CTI_Set       ((u16)0x0002)
+     58          
+     59          /* Private macro -------------------------------------------------------------*/
+     60          /* Private variables ---------------------------------------------------------*/
+     61          /* Private function prototypes -----------------------------------------------*/
+     62          /* Private functions ---------------------------------------------------------*/
+     63          
+     64          /*******************************************************************************
+     65          * Function Name  : BKP_DeInit
+     66          * Description    : Deinitializes the BKP peripheral registers to their default
+     67          *                  reset values.
+     68          * Input          : None
+     69          * Output         : None
+     70          * Return         : None
+     71          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     72          void BKP_DeInit(void)
+     73          {
+   \                     BKP_DeInit:
+   \   00000000   0xB580             PUSH     {R7,LR}
+     74            RCC_BackupResetCmd(ENABLE);
+   \   00000002   0x2001             MOVS     R0,#+1
+   \   00000004   0x.... 0x....      BL       RCC_BackupResetCmd
+     75            RCC_BackupResetCmd(DISABLE);
+   \   00000008   0x2000             MOVS     R0,#+0
+   \   0000000A   0x.... 0x....      BL       RCC_BackupResetCmd
+     76          }
+   \   0000000E   0xBD01             POP      {R0,PC}          ;; return
+     77          
+     78          /*******************************************************************************
+     79          * Function Name  : BKP_TamperPinLevelConfig
+     80          * Description    : Configures the Tamper Pin active level.
+     81          * Input          : - BKP_TamperPinLevel: specifies the Tamper Pin active level.
+     82          *                    This parameter can be one of the following values:
+     83          *                       - BKP_TamperPinLevel_High: Tamper pin active on high level
+     84          *                       - BKP_TamperPinLevel_Low: Tamper pin active on low level
+     85          * Output         : None
+     86          * Return         : None
+     87          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     88          void BKP_TamperPinLevelConfig(u16 BKP_TamperPinLevel)
+     89          {
+     90            /* Check the parameters */
+     91            assert_param(IS_BKP_TAMPER_PIN_LEVEL(BKP_TamperPinLevel));
+     92          
+     93            *(vu32 *) CR_TPAL_BB = BKP_TamperPinLevel;
+   \                     BKP_TamperPinLevelConfig:
+   \   00000000   0x....             LDR.N    R1,??DataTable10  ;; 0x420d8604
+   \   00000002   0xB280             UXTH     R0,R0            ;; ZeroExt  R0,R0,#+16,#+16
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+     94          }
+   \   00000006   0x4770             BX       LR               ;; return
+     95          
+     96          /*******************************************************************************
+     97          * Function Name  : BKP_TamperPinCmd
+     98          * Description    : Enables or disables the Tamper Pin activation.
+     99          * Input          : - NewState: new state of the Tamper Pin activation.
+    100          *                    This parameter can be: ENABLE or DISABLE.
+    101          * Output         : None
+    102          * Return         : None
+    103          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    104          void BKP_TamperPinCmd(FunctionalState NewState)
+    105          {
+    106            /* Check the parameters */
+    107            assert_param(IS_FUNCTIONAL_STATE(NewState));
+    108          
+    109            *(vu32 *) CR_TPE_BB = (u32)NewState;
+   \                     BKP_TamperPinCmd:
+   \   00000000   0x....             LDR.N    R1,??DataTable10_1  ;; 0x420d8600
+   \   00000002   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+    110          }
+   \   00000006   0x4770             BX       LR               ;; return
+    111          
+    112          /*******************************************************************************
+    113          * Function Name  : BKP_ITConfig
+    114          * Description    : Enables or disables the Tamper Pin Interrupt.
+    115          * Input          : - NewState: new state of the Tamper Pin Interrupt.
+    116          *                    This parameter can be: ENABLE or DISABLE.
+    117          * Output         : None
+    118          * Return         : None
+    119          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    120          void BKP_ITConfig(FunctionalState NewState)
+    121          {
+    122            /* Check the parameters */
+    123            assert_param(IS_FUNCTIONAL_STATE(NewState));
+    124          
+    125            *(vu32 *) CSR_TPIE_BB = (u32)NewState;
+   \                     BKP_ITConfig:
+   \   00000000   0x....             LDR.N    R1,??DataTable10_2  ;; 0x420d8688
+   \   00000002   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+    126          }
+   \   00000006   0x4770             BX       LR               ;; return
+    127          
+    128          /*******************************************************************************
+    129          * Function Name  : BKP_RTCOutputConfig
+    130          * Description    : Select the RTC output source to output on the Tamper pin.
+    131          * Input          : - BKP_RTCOutputSource: specifies the RTC output source.
+    132          *                    This parameter can be one of the following values:
+    133          *                       - BKP_RTCOutputSource_None: no RTC output on the Tamper pin.
+    134          *                       - BKP_RTCOutputSource_CalibClock: output the RTC clock
+    135          *                         with frequency divided by 64 on the Tamper pin.
+    136          *                       - BKP_RTCOutputSource_Alarm: output the RTC Alarm pulse 
+    137          *                         signal on the Tamper pin.
+    138          *                       - BKP_RTCOutputSource_Second: output the RTC Second pulse 
+    139          *                         signal on the Tamper pin.  
+    140          * Output         : None
+    141          * Return         : None
+    142          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    143          void BKP_RTCOutputConfig(u16 BKP_RTCOutputSource)
+    144          {
+    145            u16 tmpreg = 0;
+   \                     BKP_RTCOutputConfig:
+   \   00000000   0x2100             MOVS     R1,#+0
+    146          
+    147            /* Check the parameters */
+    148            assert_param(IS_BKP_RTC_OUTPUT_SOURCE(BKP_RTCOutputSource));
+    149          
+    150            tmpreg = BKP->RTCCR;
+   \   00000002   0x....             LDR.N    R2,??DataTable10_3  ;; 0x40006c2c
+   \   00000004   0x8812             LDRH     R2,[R2, #+0]
+   \   00000006   0x0011             MOVS     R1,R2
+    151          
+    152            /* Clear CCO, ASOE and ASOS bits */
+    153            tmpreg &= RTCCR_Mask;
+   \   00000008   0xF64F 0x427F      MOVW     R2,#+64639
+   \   0000000C   0x4011             ANDS     R1,R2,R1
+    154            
+    155            /* Set CCO, ASOE and ASOS bits according to BKP_RTCOutputSource value */
+    156            tmpreg |= BKP_RTCOutputSource;
+   \   0000000E   0x4301             ORRS     R1,R0,R1
+    157          
+    158            /* Store the new value */
+    159            BKP->RTCCR = tmpreg;
+   \   00000010   0x....             LDR.N    R2,??DataTable10_3  ;; 0x40006c2c
+   \   00000012   0x8011             STRH     R1,[R2, #+0]
+    160          }
+   \   00000014   0x4770             BX       LR               ;; return
+    161          
+    162          /*******************************************************************************
+    163          * Function Name  : BKP_SetRTCCalibrationValue
+    164          * Description    : Sets RTC Clock Calibration value.
+    165          * Input          : - CalibrationValue: specifies the RTC Clock Calibration value.
+    166          *                    This parameter must be a number between 0 and 0x7F.
+    167          * Output         : None
+    168          * Return         : None
+    169          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    170          void BKP_SetRTCCalibrationValue(u8 CalibrationValue)
+    171          {
+    172            u16 tmpreg = 0;
+   \                     BKP_SetRTCCalibrationValue:
+   \   00000000   0x2100             MOVS     R1,#+0
+    173          
+    174            /* Check the parameters */
+    175            assert_param(IS_BKP_CALIBRATION_VALUE(CalibrationValue));
+    176          
+    177            tmpreg = BKP->RTCCR;
+   \   00000002   0x....             LDR.N    R2,??DataTable10_3  ;; 0x40006c2c
+   \   00000004   0x8812             LDRH     R2,[R2, #+0]
+   \   00000006   0x0011             MOVS     R1,R2
+    178          
+    179            /* Clear CAL[6:0] bits */
+    180            tmpreg &= RTCCR_CAL_Mask;
+   \   00000008   0xF64F 0x7280      MOVW     R2,#+65408
+   \   0000000C   0x4011             ANDS     R1,R2,R1
+    181          
+    182            /* Set CAL[6:0] bits according to CalibrationValue value */
+    183            tmpreg |= CalibrationValue;
+   \   0000000E   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000010   0x4301             ORRS     R1,R0,R1
+    184          
+    185            /* Store the new value */
+    186            BKP->RTCCR = tmpreg;
+   \   00000012   0x....             LDR.N    R2,??DataTable10_3  ;; 0x40006c2c
+   \   00000014   0x8011             STRH     R1,[R2, #+0]
+    187          }
+   \   00000016   0x4770             BX       LR               ;; return
+    188          
+    189          /*******************************************************************************
+    190          * Function Name  : BKP_WriteBackupRegister
+    191          * Description    : Writes user data to the specified Data Backup Register.
+    192          * Input          : - BKP_DR: specifies the Data Backup Register.
+    193          *                    This parameter can be BKP_DRx where x:[1, 42]
+    194          *                  - Data: data to write
+    195          * Output         : None
+    196          * Return         : None
+    197          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    198          void BKP_WriteBackupRegister(u16 BKP_DR, u16 Data)
+    199          {
+    200            /* Check the parameters */
+    201            assert_param(IS_BKP_DR(BKP_DR));
+    202          
+    203            *(vu16 *) (BKP_BASE + BKP_DR) = Data;
+   \                     BKP_WriteBackupRegister:
+   \   00000000   0xB280             UXTH     R0,R0            ;; ZeroExt  R0,R0,#+16,#+16
+   \   00000002   0x....             LDR.N    R2,??DataTable10_4  ;; 0x40006c00
+   \   00000004   0x5211             STRH     R1,[R2, R0]
+    204          }
+   \   00000006   0x4770             BX       LR               ;; return
+    205          
+    206          /*******************************************************************************
+    207          * Function Name  : BKP_ReadBackupRegister
+    208          * Description    : Reads data from the specified Data Backup Register.
+    209          * Input          : - BKP_DR: specifies the Data Backup Register.
+    210          *                    This parameter can be BKP_DRx where x:[1, 42]
+    211          * Output         : None
+    212          * Return         : The content of the specified Data Backup Register
+    213          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    214          u16 BKP_ReadBackupRegister(u16 BKP_DR)
+    215          {
+    216            /* Check the parameters */
+    217            assert_param(IS_BKP_DR(BKP_DR));
+    218          
+    219            return (*(vu16 *) (BKP_BASE + BKP_DR));
+   \                     BKP_ReadBackupRegister:
+   \   00000000   0xB280             UXTH     R0,R0            ;; ZeroExt  R0,R0,#+16,#+16
+   \   00000002   0x....             LDR.N    R1,??DataTable10_4  ;; 0x40006c00
+   \   00000004   0x5A08             LDRH     R0,[R1, R0]
+   \   00000006   0xB280             UXTH     R0,R0            ;; ZeroExt  R0,R0,#+16,#+16
+   \   00000008   0x4770             BX       LR               ;; return
+    220          }
+    221          
+    222          /*******************************************************************************
+    223          * Function Name  : BKP_GetFlagStatus
+    224          * Description    : Checks whether the Tamper Pin Event flag is set or not.
+    225          * Input          : None
+    226          * Output         : None
+    227          * Return         : The new state of the Tamper Pin Event flag (SET or RESET).
+    228          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    229          FlagStatus BKP_GetFlagStatus(void)
+    230          {
+    231            return (FlagStatus)(*(vu32 *) CSR_TEF_BB);
+   \                     BKP_GetFlagStatus:
+   \   00000000   0x....             LDR.N    R0,??DataTable10_5  ;; 0x420d86a0
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000006   0x4770             BX       LR               ;; return
+    232          }
+    233          
+    234          /*******************************************************************************
+    235          * Function Name  : BKP_ClearFlag
+    236          * Description    : Clears Tamper Pin Event pending flag.
+    237          * Input          : None
+    238          * Output         : None
+    239          * Return         : None
+    240          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    241          void BKP_ClearFlag(void)
+    242          {
+    243            /* Set CTE bit to clear Tamper Pin Event flag */
+    244            BKP->CSR |= CSR_CTE_Set;
+   \                     BKP_ClearFlag:
+   \   00000000   0x....             LDR.N    R0,??DataTable10_6  ;; 0x40006c34
+   \   00000002   0x8800             LDRH     R0,[R0, #+0]
+   \   00000004   0xF050 0x0001      ORRS     R0,R0,#0x1
+   \   00000008   0x....             LDR.N    R1,??DataTable10_6  ;; 0x40006c34
+   \   0000000A   0x8008             STRH     R0,[R1, #+0]
+    245          }
+   \   0000000C   0x4770             BX       LR               ;; return
+    246          
+    247          /*******************************************************************************
+    248          * Function Name  : BKP_GetITStatus
+    249          * Description    : Checks whether the Tamper Pin Interrupt has occurred or not.
+    250          * Input          : None
+    251          * Output         : None
+    252          * Return         : The new state of the Tamper Pin Interrupt (SET or RESET).
+    253          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    254          ITStatus BKP_GetITStatus(void)
+    255          {
+    256            return (ITStatus)(*(vu32 *) CSR_TIF_BB);
+   \                     BKP_GetITStatus:
+   \   00000000   0x....             LDR.N    R0,??DataTable10_7  ;; 0x420d86a4
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000006   0x4770             BX       LR               ;; return
+    257          }
+    258          
+    259          /*******************************************************************************
+    260          * Function Name  : BKP_ClearITPendingBit
+    261          * Description    : Clears Tamper Pin Interrupt pending bit.
+    262          * Input          : None
+    263          * Output         : None
+    264          * Return         : None
+    265          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    266          void BKP_ClearITPendingBit(void)
+    267          {
+    268            /* Set CTI bit to clear Tamper Pin Interrupt pending bit */
+    269            BKP->CSR |= CSR_CTI_Set;
+   \                     BKP_ClearITPendingBit:
+   \   00000000   0x....             LDR.N    R0,??DataTable10_6  ;; 0x40006c34
+   \   00000002   0x8800             LDRH     R0,[R0, #+0]
+   \   00000004   0xF050 0x0002      ORRS     R0,R0,#0x2
+   \   00000008   0x....             LDR.N    R1,??DataTable10_6  ;; 0x40006c34
+   \   0000000A   0x8008             STRH     R0,[R1, #+0]
+    270          }
+   \   0000000C   0x4770             BX       LR               ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable10:
+   \   00000000   0x420D8604         DC32     0x420d8604
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable10_1:
+   \   00000000   0x420D8600         DC32     0x420d8600
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable10_2:
+   \   00000000   0x420D8688         DC32     0x420d8688
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable10_3:
+   \   00000000   0x40006C2C         DC32     0x40006c2c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable10_4:
+   \   00000000   0x40006C00         DC32     0x40006c00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable10_5:
+   \   00000000   0x420D86A0         DC32     0x420d86a0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable10_6:
+   \   00000000   0x40006C34         DC32     0x40006c34
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable10_7:
+   \   00000000   0x420D86A4         DC32     0x420d86a4
+    271          
+    272          /******************* (C) COPYRIGHT 2009 STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   BKP_ClearFlag
+       0   BKP_ClearITPendingBit
+       8   BKP_DeInit
+         8   -> RCC_BackupResetCmd
+       0   BKP_GetFlagStatus
+       0   BKP_GetITStatus
+       0   BKP_ITConfig
+       0   BKP_RTCOutputConfig
+       0   BKP_ReadBackupRegister
+       0   BKP_SetRTCCalibrationValue
+       0   BKP_TamperPinCmd
+       0   BKP_TamperPinLevelConfig
+       0   BKP_WriteBackupRegister
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable10
+       4  ??DataTable10_1
+       4  ??DataTable10_2
+       4  ??DataTable10_3
+       4  ??DataTable10_4
+       4  ??DataTable10_5
+       4  ??DataTable10_6
+       4  ??DataTable10_7
+      14  BKP_ClearFlag
+      14  BKP_ClearITPendingBit
+      16  BKP_DeInit
+       8  BKP_GetFlagStatus
+       8  BKP_GetITStatus
+       8  BKP_ITConfig
+      22  BKP_RTCOutputConfig
+      10  BKP_ReadBackupRegister
+      24  BKP_SetRTCCalibrationValue
+       8  BKP_TamperPinCmd
+       8  BKP_TamperPinLevelConfig
+       8  BKP_WriteBackupRegister
+
+ 
+ 180 bytes in section .text
+ 
+ 180 bytes of CODE memory
+
+Errors: none
+Warnings: none

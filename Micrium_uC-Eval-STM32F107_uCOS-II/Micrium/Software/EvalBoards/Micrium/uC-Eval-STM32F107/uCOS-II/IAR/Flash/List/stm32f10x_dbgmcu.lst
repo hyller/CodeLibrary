@@ -1,0 +1,242 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.50.2.4510/W32 for ARM      08/Feb/2013  10:57:23 #
+# Copyright 1999-2012 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_dbgmcu.c                 #
+#    Command line =  "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_dbgmcu.c" -D             #
+#                    USE_STDPERIPH_DRIVER -lCN "C:\Users\daniel01\Desktop\Fas #
+#                    tFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC #
+#                    -Eval-STM32F107\uCOS-II\IAR\Flash\List\" -o              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\" --no_cse --no_unroll        #
+#                    --no_inline --no_code_motion --no_tbaa --no_clustering   #
+#                    --no_scheduling --debug --endian=little --cpu=Cortex-M3  #
+#                    -e --fpu=None --dlib_config "C:\Program Files (x86)\IAR  #
+#                    Systems\Embedded Workbench 6.5\arm\INC\c\DLib_Config_Nor #
+#                    mal.h" -I "C:\Users\daniel01\Desktop\FastFile Test       #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\IAR\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\" -I                          #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\OS\uCOS-II\" -I               #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\ST\STM32\inc\" -I             #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\uCOS-II\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\IAR\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex- #
+#                    M3\IAR\" -I "C:\Users\daniel01\Desktop\FastFile Test     #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR #
+#                    \" -I "C:\Users\daniel01\Desktop\FastFile Test           #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex #
+#                    -M3\Generic\IAR\" -I "C:\Users\daniel01\Desktop\FastFile #
+#                     Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval #
+#                    -STM32F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Source\"   #
+#                    -On --use_c++_inline                                     #
+#    List file    =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\List\stm32f10x_dbgmcu.lst         #
+#    Object file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\stm32f10x_dbgmcu.o            #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\daniel01\Desktop\FastFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32F107\BSP\ST\STM32\src\stm32f10x_dbgmcu.c
+      1          /******************** (C) COPYRIGHT 2009 STMicroelectronics ********************
+      2          * File Name          : stm32f10x_dbgmcu.c
+      3          * Author             : MCD Application Team
+      4          * Version            : V2.1.0RC2
+      5          * Date               : 03/13/2009
+      6          * Description        : This file provides all the DBGMCU firmware functions.
+      7          ********************************************************************************
+      8          * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+      9          * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME.
+     10          * AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY DIRECT,
+     11          * INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE
+     12          * CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING
+     13          * INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+     14          *******************************************************************************/
+     15          
+     16          /* Includes ------------------------------------------------------------------*/
+     17          #include "stm32f10x_dbgmcu.h"
+     18          
+     19          /* Private typedef -----------------------------------------------------------*/
+     20          /* Private define ------------------------------------------------------------*/
+     21          #define IDCODE_DEVID_Mask    ((u32)0x00000FFF)
+     22          
+     23          /* Private macro -------------------------------------------------------------*/
+     24          /* Private variables ---------------------------------------------------------*/
+     25          /* Private function prototypes -----------------------------------------------*/
+     26          /* Private functions ---------------------------------------------------------*/
+     27          
+     28          /*******************************************************************************
+     29          * Function Name  : DBGMCU_GetREVID
+     30          * Description    : Returns the device revision identifier.
+     31          * Input          : None
+     32          * Output         : None
+     33          * Return         : Device revision identifier
+     34          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     35          u32 DBGMCU_GetREVID(void)
+     36          {
+     37             return(DBGMCU->IDCODE >> 16);
+   \                     DBGMCU_GetREVID:
+   \   00000000   0x....             LDR.N    R0,??DataTable2  ;; 0xe0042000
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0x0C00             LSRS     R0,R0,#+16
+   \   00000006   0x4770             BX       LR               ;; return
+     38          }
+     39          
+     40          /*******************************************************************************
+     41          * Function Name  : DBGMCU_GetDEVID
+     42          * Description    : Returns the device identifier.
+     43          * Input          : None
+     44          * Output         : None
+     45          * Return         : Device identifier
+     46          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     47          u32 DBGMCU_GetDEVID(void)
+     48          {
+     49             return(DBGMCU->IDCODE & IDCODE_DEVID_Mask);
+   \                     DBGMCU_GetDEVID:
+   \   00000000   0x....             LDR.N    R0,??DataTable2  ;; 0xe0042000
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0x0500             LSLS     R0,R0,#+20       ;; ZeroExtS R0,R0,#+20,#+20
+   \   00000006   0x0D00             LSRS     R0,R0,#+20
+   \   00000008   0x4770             BX       LR               ;; return
+     50          }
+     51          
+     52          /*******************************************************************************
+     53          * Function Name  : DBGMCU_Config
+     54          * Description    : Configures the specified peripheral and low power mode behavior
+     55          *                  when the MCU under Debug mode.
+     56          * Input          : - DBGMCU_Periph: specifies the peripheral and low power mode.
+     57          *                    This parameter can be any combination of the following values:
+     58          *                       - DBGMCU_SLEEP: Keep debugger connection during SLEEP mode              
+     59          *                       - DBGMCU_STOP: Keep debugger connection during STOP mode               
+     60          *                       - DBGMCU_STANDBY: Keep debugger connection during STANDBY mode            
+     61          *                       - DBGMCU_IWDG_STOP: Debug IWDG stopped when Core is halted          
+     62          *                       - DBGMCU_WWDG_STOP: Debug WWDG stopped when Core is halted          
+     63          *                       - DBGMCU_TIM1_STOP: TIM1 counter stopped when Core is halted          
+     64          *                       - DBGMCU_TIM2_STOP: TIM2 counter stopped when Core is halted          
+     65          *                       - DBGMCU_TIM3_STOP: TIM3 counter stopped when Core is halted          
+     66          *                       - DBGMCU_TIM4_STOP: TIM4 counter stopped when Core is halted          
+     67          *                       - DBGMCU_CAN1_STOP: Debug CAN1 stopped when Core is halted           
+     68          *                       - DBGMCU_I2C1_SMBUS_TIMEOUT: I2C1 SMBUS timeout mode stopped
+     69          *                                                    when Core is halted
+     70          *                       - DBGMCU_I2C2_SMBUS_TIMEOUT: I2C2 SMBUS timeout mode stopped
+     71          *                                                    when Core is halted
+     72          *                       - DBGMCU_TIM8_STOP: TIM8 counter stopped when Core is halted  
+     73          *                       - DBGMCU_TIM5_STOP: TIM5 counter stopped when Core is halted          
+     74          *                       - DBGMCU_TIM6_STOP: TIM6 counter stopped when Core is halted          
+     75          *                       - DBGMCU_TIM7_STOP: TIM7 counter stopped when Core is halted
+     76          *                       - DBGMCU_CAN2_STOP: Debug CAN2 stopped when Core is halted                 
+     77          *                  - NewState: new state of the specified peripheral in Debug mode.
+     78          *                    This parameter can be: ENABLE or DISABLE.
+     79          * Output         : None
+     80          * Return         : None
+     81          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     82          void DBGMCU_Config(u32 DBGMCU_Periph, FunctionalState NewState)
+     83          {
+     84            /* Check the parameters */
+     85            assert_param(IS_DBGMCU_PERIPH(DBGMCU_Periph));
+     86            assert_param(IS_FUNCTIONAL_STATE(NewState));
+     87          
+     88            if (NewState != DISABLE)
+   \                     DBGMCU_Config:
+   \   00000000   0xB2C9             UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   00000002   0x2900             CMP      R1,#+0
+   \   00000004   0xD005             BEQ.N    ??DBGMCU_Config_0
+     89            {
+     90              DBGMCU->CR |= DBGMCU_Periph;
+   \   00000006   0x....             LDR.N    R2,??DataTable2_1  ;; 0xe0042004
+   \   00000008   0x6812             LDR      R2,[R2, #+0]
+   \   0000000A   0x4302             ORRS     R2,R0,R2
+   \   0000000C   0x....             LDR.N    R3,??DataTable2_1  ;; 0xe0042004
+   \   0000000E   0x601A             STR      R2,[R3, #+0]
+   \   00000010   0xE004             B.N      ??DBGMCU_Config_1
+     91            }
+     92            else
+     93            {
+     94              DBGMCU->CR &= ~DBGMCU_Periph;
+   \                     ??DBGMCU_Config_0:
+   \   00000012   0x....             LDR.N    R2,??DataTable2_1  ;; 0xe0042004
+   \   00000014   0x6812             LDR      R2,[R2, #+0]
+   \   00000016   0x4382             BICS     R2,R2,R0
+   \   00000018   0x....             LDR.N    R3,??DataTable2_1  ;; 0xe0042004
+   \   0000001A   0x601A             STR      R2,[R3, #+0]
+     95            }
+     96          }
+   \                     ??DBGMCU_Config_1:
+   \   0000001C   0x4770             BX       LR               ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2:
+   \   00000000   0xE0042000         DC32     0xe0042000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_1:
+   \   00000000   0xE0042004         DC32     0xe0042004
+     97          
+     98          /******************* (C) COPYRIGHT 2009 STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   DBGMCU_Config
+       0   DBGMCU_GetDEVID
+       0   DBGMCU_GetREVID
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable2
+       4  ??DataTable2_1
+      30  DBGMCU_Config
+      10  DBGMCU_GetDEVID
+       8  DBGMCU_GetREVID
+
+ 
+ 56 bytes in section .text
+ 
+ 56 bytes of CODE memory
+
+Errors: none
+Warnings: none

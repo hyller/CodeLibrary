@@ -1,0 +1,3008 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.50.2.4510/W32 for ARM      08/Feb/2013  10:57:20 #
+# Copyright 1999-2012 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\uC-CPU\cpu_core.c                #
+#    Command line =  "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\uC-CPU\cpu_core.c" -D            #
+#                    USE_STDPERIPH_DRIVER -lCN "C:\Users\daniel01\Desktop\Fas #
+#                    tFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC #
+#                    -Eval-STM32F107\uCOS-II\IAR\Flash\List\" -o              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\" --no_cse --no_unroll        #
+#                    --no_inline --no_code_motion --no_tbaa --no_clustering   #
+#                    --no_scheduling --debug --endian=little --cpu=Cortex-M3  #
+#                    -e --fpu=None --dlib_config "C:\Program Files (x86)\IAR  #
+#                    Systems\Embedded Workbench 6.5\arm\INC\c\DLib_Config_Nor #
+#                    mal.h" -I "C:\Users\daniel01\Desktop\FastFile Test       #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\IAR\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\" -I                          #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\OS\uCOS-II\" -I               #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\ST\STM32\inc\" -I             #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\uCOS-II\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\IAR\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex- #
+#                    M3\IAR\" -I "C:\Users\daniel01\Desktop\FastFile Test     #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR #
+#                    \" -I "C:\Users\daniel01\Desktop\FastFile Test           #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex #
+#                    -M3\Generic\IAR\" -I "C:\Users\daniel01\Desktop\FastFile #
+#                     Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval #
+#                    -STM32F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Source\"   #
+#                    -On --use_c++_inline                                     #
+#    List file    =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\List\cpu_core.lst                 #
+#    Object file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\cpu_core.o                    #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\daniel01\Desktop\FastFile Test Folder\Micrium\Software\uC-CPU\cpu_core.c
+      1          /*
+      2          *********************************************************************************************************
+      3          *                                                uC/CPU
+      4          *                                    CPU CONFIGURATION & PORT LAYER
+      5          *
+      6          *                          (c) Copyright 2004-2011; Micrium, Inc.; Weston, FL
+      7          *
+      8          *               All rights reserved.  Protected by international copyright laws.
+      9          *
+     10          *               uC/CPU is provided in source form to registered licensees ONLY.  It is
+     11          *               illegal to distribute this source code to any third party unless you receive
+     12          *               written permission by an authorized Micrium representative.  Knowledge of
+     13          *               the source code may NOT be used to develop a similar product.
+     14          *
+     15          *               Please help us continue to provide the Embedded community with the finest
+     16          *               software available.  Your honesty is greatly appreciated.
+     17          *
+     18          *               You can contact us at www.micrium.com.
+     19          *********************************************************************************************************
+     20          */
+     21          
+     22          /*
+     23          *********************************************************************************************************
+     24          *
+     25          *                                           CORE CPU MODULE
+     26          *
+     27          * Filename      : cpu_core.c
+     28          * Version       : V1.29.01
+     29          * Programmer(s) : SR
+     30          *                 ITJ
+     31          *********************************************************************************************************
+     32          */
+     33          
+     34          
+     35          /*
+     36          *********************************************************************************************************
+     37          *                                            INCLUDE FILES
+     38          *********************************************************************************************************
+     39          */
+     40          
+     41          #define    MICRIUM_SOURCE
+     42          #define    CPU_CORE_MODULE
+     43          #include  <cpu_core.h>
+
+   \                                 In section .bss, align 4
+   \   __absolute char CPU_Name[16U]
+   \                     CPU_Name:
+   \   00000000                      DS8 16
+     44          
+     45          
+     46          /*$PAGE*/
+     47          /*
+     48          *********************************************************************************************************
+     49          *                                            LOCAL DEFINES
+     50          *********************************************************************************************************
+     51          */
+     52          
+     53          
+     54          /*
+     55          *********************************************************************************************************
+     56          *                                           LOCAL CONSTANTS
+     57          *********************************************************************************************************
+     58          */
+     59          
+     60          
+     61          /*
+     62          *********************************************************************************************************
+     63          *                                          LOCAL DATA TYPES
+     64          *********************************************************************************************************
+     65          */
+     66          
+     67          
+     68          /*
+     69          *********************************************************************************************************
+     70          *                                            LOCAL TABLES
+     71          *********************************************************************************************************
+     72          */
+     73          
+     74          /*
+     75          *********************************************************************************************************
+     76          *                                  CPU COUNT LEAD ZEROs LOOKUP TABLE
+     77          *
+     78          * Note(s) : (1) Index into bit pattern table determines the number of leading zeros in an 8-bit value :
+     79          *
+     80          *                         b07  b06  b05  b04  b03  b02  b01  b00    # Leading Zeros
+     81          *                         ---  ---  ---  ---  ---  ---  ---  ---    ---------------
+     82          *                          1    x    x    x    x    x    x    x            0
+     83          *                          0    1    x    x    x    x    x    x            1
+     84          *                          0    0    1    x    x    x    x    x            2
+     85          *                          0    0    0    1    x    x    x    x            3
+     86          *                          0    0    0    0    1    x    x    x            4
+     87          *                          0    0    0    0    0    1    x    x            5
+     88          *                          0    0    0    0    0    0    1    x            6
+     89          *                          0    0    0    0    0    0    0    1            7
+     90          *                          0    0    0    0    0    0    0    0            8
+     91          *********************************************************************************************************
+     92          */
+     93          
+     94          #if (!(defined(CPU_CFG_LEAD_ZEROS_ASM_PRESENT)) || \
+     95                (CPU_CFG_DATA_SIZE_MAX > CPU_CFG_DATA_SIZE))
+
+   \                                 In section .rodata, align 4
+     96          static  const  CPU_INT08U  CPU_CntLeadZerosTbl[256] = {                             /* Data vals :                      */
+   \                     CPU_CntLeadZerosTbl:
+   \   00000000   0x08 0x07          DC8 8, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3
+   \              0x06 0x06    
+   \              0x05 0x05    
+   \              0x05 0x05    
+   \              0x04 0x04    
+   \              0x04 0x04    
+   \              0x04 0x04    
+   \              0x04 0x04    
+   \              0x03 0x03    
+   \              0x03 0x03    
+   \              0x03 0x03    
+   \              0x03         
+   \   00000017   0x03 0x03          DC8 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
+   \              0x03 0x03    
+   \              0x03 0x03    
+   \              0x03 0x03    
+   \              0x03 0x02    
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x02         
+   \   0000002E   0x02 0x02          DC8 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x02 0x02    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01         
+   \   00000045   0x01 0x01          DC8 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01         
+   \   0000005C   0x01 0x01          DC8 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01         
+   \   00000073   0x01 0x01          DC8 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x01    
+   \              0x01 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00         
+   \   0000008A   0x00 0x00          DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00         
+   \   000000A1   0x00 0x00          DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00         
+   \   000000B8   0x00 0x00          DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00         
+   \   000000CF   0x00 0x00          DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00         
+   \   000000E6   0x00 0x00          DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00 0x00    
+   \              0x00         
+   \   000000FD   0x00 0x00          DC8 0, 0, 0
+   \              0x00         
+     97          /*   0    1    2    3    4    5    6    7    8    9    A    B    C    D    E    F   */
+     98              8u,  7u,  6u,  6u,  5u,  5u,  5u,  5u,  4u,  4u,  4u,  4u,  4u,  4u,  4u,  4u,  /*   0x00 to 0x0F                   */
+     99              3u,  3u,  3u,  3u,  3u,  3u,  3u,  3u,  3u,  3u,  3u,  3u,  3u,  3u,  3u,  3u,  /*   0x10 to 0x1F                   */
+    100              2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  /*   0x20 to 0x2F                   */
+    101              2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  2u,  /*   0x30 to 0x3F                   */
+    102              1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  /*   0x40 to 0x4F                   */
+    103              1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  /*   0x50 to 0x5F                   */
+    104              1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  /*   0x60 to 0x6F                   */
+    105              1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  1u,  /*   0x70 to 0x7F                   */
+    106              0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  /*   0x80 to 0x8F                   */
+    107              0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  /*   0x90 to 0x9F                   */
+    108              0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  /*   0xA0 to 0xAF                   */
+    109              0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  /*   0xB0 to 0xBF                   */
+    110              0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  /*   0xC0 to 0xCF                   */
+    111              0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  /*   0xD0 to 0xDF                   */
+    112              0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  /*   0xE0 to 0xEF                   */
+    113              0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u,  0u   /*   0xF0 to 0xFF                   */
+    114          };
+    115          #endif
+    116          
+    117          
+    118          /*$PAGE*/
+    119          /*
+    120          *********************************************************************************************************
+    121          *                                       LOCAL GLOBAL VARIABLES
+    122          *********************************************************************************************************
+    123          */
+    124          
+    125          
+    126          /*
+    127          *********************************************************************************************************
+    128          *                                      LOCAL FUNCTION PROTOTYPES
+    129          *********************************************************************************************************
+    130          */
+    131          
+    132          #if    (CPU_CFG_NAME_EN   == DEF_ENABLED)                           /* ---------------- CPU NAME FNCTS ---------------- */
+    133          static  void        CPU_NameInit         (void);
+    134          #endif
+    135          
+    136          
+    137                                                                              /* ----------------- CPU TS FNCTS ----------------- */
+    138          #if   ((CPU_CFG_TS_EN     == DEF_ENABLED) || \
+    139                 (CPU_CFG_TS_TMR_EN == DEF_ENABLED))
+    140          static  void        CPU_TS_Init          (void);
+    141          #endif
+    142          
+    143          
+    144          #ifdef  CPU_CFG_INT_DIS_MEAS_EN                                     /* ---------- CPU INT DIS TIME MEAS FNCTS --------- */
+    145          static  void        CPU_IntDisMeasInit   (void);
+    146          
+    147          static  CPU_TS_TMR  CPU_IntDisMeasMaxCalc(CPU_TS_TMR  time_tot_cnts);
+    148          #endif
+    149          
+    150          
+    151          /*
+    152          *********************************************************************************************************
+    153          *                                     LOCAL CONFIGURATION ERRORS
+    154          *********************************************************************************************************
+    155          */
+    156          
+    157          
+    158          /*$PAGE*/
+    159          /*
+    160          *********************************************************************************************************
+    161          *                                             CPU_Init()
+    162          *
+    163          * Description : (1) Initialize CPU module :
+    164          *
+    165          *                   (a) Initialize CPU timestamps
+    166          *                   (b) Initialize CPU interrupts disabled time measurements
+    167          *                   (c) Initialize CPU host name
+    168          *
+    169          *
+    170          * Argument(s) : none.
+    171          *
+    172          * Return(s)   : none.
+    173          *
+    174          * Caller(s)   : Your Product's Application.
+    175          *
+    176          *               This function is a CPU initialization function & MAY be called by application/
+    177          *               initialization function(s).
+    178          *
+    179          * Note(s)     : (2) CPU_Init() MUST be called ... :
+    180          *
+    181          *                   (a) ONLY ONCE from a product's application; ...
+    182          *                   (b) BEFORE product's application calls any core CPU module function(s)
+    183          *
+    184          *               (3) The following initialization functions MUST be sequenced as follows :
+    185          *
+    186          *                   (a) CPU_TS_Init()           SHOULD precede ALL calls to other CPU timestamp functions
+    187          *
+    188          *                   (b) CPU_IntDisMeasInit()    SHOULD precede ALL calls to CPU_CRITICAL_ENTER()/CPU_CRITICAL_EXIT()
+    189          *                                                   & other CPU interrupts disabled time measurement functions
+    190          *********************************************************************************************************
+    191          */
+    192          
+
+   \                                 In section .text, align 2, keep-with-next
+    193          void  CPU_Init (void)
+    194          {
+   \                     CPU_Init:
+   \   00000000   0xB580             PUSH     {R7,LR}
+    195                                                                          /* --------------------- INIT TS ---------------------- */
+    196          #if ((CPU_CFG_TS_EN     == DEF_ENABLED) || \
+    197               (CPU_CFG_TS_TMR_EN == DEF_ENABLED))
+    198              CPU_TS_Init();                                              /* See Note #3a.                                        */
+    199          #endif
+    200                                                                          /* -------------- INIT INT DIS TIME MEAS -------------- */
+    201          #ifdef  CPU_CFG_INT_DIS_MEAS_EN
+    202              CPU_IntDisMeasInit();                                       /* See Note #3b.                                        */
+    203          #endif
+    204          
+    205                                                                          /* ------------------ INIT CPU NAME ------------------- */
+    206          #if (CPU_CFG_NAME_EN == DEF_ENABLED)
+    207               CPU_NameInit();
+   \   00000002   0x.... 0x....      BL       CPU_NameInit
+    208          #endif
+    209          }
+   \   00000006   0xBD01             POP      {R0,PC}          ;; return
+    210          
+    211          
+    212          /*$PAGE*/
+    213          /*
+    214          *********************************************************************************************************
+    215          *                                         CPU_SW_Exception()
+    216          *
+    217          * Description : Trap unrecoverable software exception.
+    218          *
+    219          * Argument(s) : none.
+    220          *
+    221          * Return(s)   : none.
+    222          *
+    223          * Caller(s)   : various.
+    224          *
+    225          * Note(s)     : (1) CPU_SW_Exception() deadlocks the current code execution -- whether multi-tasked/
+    226          *                   -processed/-threaded or single-threaded -- when the current code execution cannot 
+    227          *                   gracefully recover or report a fault or exception condition.
+    228          *
+    229          *                   See also 'cpu_core.h  CPU_SW_EXCEPTION()  Note #1'.
+    230          *********************************************************************************************************
+    231          */
+    232          
+
+   \                                 In section .text, align 2, keep-with-next
+    233          void  CPU_SW_Exception (void)
+    234          {
+    235              while (DEF_ON) {
+   \                     CPU_SW_Exception:
+   \                     ??CPU_SW_Exception_0:
+   \   00000000   0xE7FE             B.N      ??CPU_SW_Exception_0
+    236                  ;
+    237              }
+    238          }
+    239          
+    240          
+    241          /*$PAGE*/
+    242          /*
+    243          *********************************************************************************************************
+    244          *                                            CPU_NameClr()
+    245          *
+    246          * Description : Clear CPU Name.
+    247          *
+    248          * Argument(s) : none.
+    249          *
+    250          * Return(s)   : none.
+    251          *
+    252          * Caller(s)   : CPU_NameInit(),
+    253          *               Application.
+    254          *
+    255          *               This function is a CPU module application programming interface (API) function & MAY be 
+    256          *               called by application function(s).
+    257          *
+    258          * Note(s)     : none.
+    259          *********************************************************************************************************
+    260          */
+    261          
+    262          #if (CPU_CFG_NAME_EN == DEF_ENABLED)
+
+   \                                 In section .text, align 2, keep-with-next
+    263          void  CPU_NameClr (void)
+    264          {
+   \                     CPU_NameClr:
+   \   00000000   0xB510             PUSH     {R4,LR}
+    265              CPU_SR_ALLOC();
+   \   00000002   0x2400             MOVS     R4,#+0
+    266          
+    267          
+    268              CPU_CRITICAL_ENTER();
+   \   00000004   0x.... 0x....      BL       CPU_SR_Save
+   \   00000008   0x0004             MOVS     R4,R0
+    269              Mem_Clr((void     *)&CPU_Name[0],
+    270                      (CPU_SIZE_T) CPU_CFG_NAME_SIZE);
+   \   0000000A   0x2110             MOVS     R1,#+16
+   \   0000000C   0x....             LDR.N    R0,??DataTable3
+   \   0000000E   0x.... 0x....      BL       Mem_Clr
+    271              CPU_CRITICAL_EXIT();
+   \   00000012   0x0020             MOVS     R0,R4
+   \   00000014   0x.... 0x....      BL       CPU_SR_Restore
+    272          }
+   \   00000018   0xBD10             POP      {R4,PC}          ;; return
+    273          #endif
+    274          
+    275          
+    276          /*$PAGE*/
+    277          /*
+    278          *********************************************************************************************************
+    279          *                                            CPU_NameGet()
+    280          *
+    281          * Description : Get CPU host name.
+    282          *
+    283          * Argument(s) : p_name      Pointer to an ASCII character array that will receive the return CPU host
+    284          *                               name ASCII string from this function (see Note #1).
+    285          *
+    286          *               p_err       Pointer to variable that will receive the return error code from this function :
+    287          *
+    288          *                               CPU_ERR_NONE                    CPU host name successfully returned.
+    289          *                               CPU_ERR_NULL_PTR                Argument 'p_name' passed a NULL pointer.
+    290          *
+    291          * Return(s)   : none.
+    292          *
+    293          * Caller(s)   : Application.
+    294          *
+    295          *               This function is a CPU module application programming interface (API) function & MAY 
+    296          *               be called by application function(s).
+    297          *
+    298          * Note(s)     : (1) The size of the ASCII character array that will receive the return CPU host name
+    299          *                   ASCII string :
+    300          *
+    301          *                   (a) MUST   be greater than or equal to the current CPU host name's ASCII string
+    302          *                           size including the terminating NULL character;
+    303          *                   (b) SHOULD be greater than or equal to CPU_CFG_NAME_SIZE
+    304          *********************************************************************************************************
+    305          */
+    306          
+    307          #if (CPU_CFG_NAME_EN == DEF_ENABLED)
+
+   \                                 In section .text, align 2, keep-with-next
+    308          void  CPU_NameGet (CPU_CHAR  *p_name,
+    309                             CPU_ERR   *p_err)
+    310          {
+   \                     CPU_NameGet:
+   \   00000000   0xB5F8             PUSH     {R3-R7,LR}
+   \   00000002   0x0004             MOVS     R4,R0
+   \   00000004   0x000D             MOVS     R5,R1
+    311              CPU_SR_ALLOC();
+   \   00000006   0x2600             MOVS     R6,#+0
+    312          
+    313          
+    314              if (p_err == (CPU_ERR *)0) {
+   \   00000008   0x2D00             CMP      R5,#+0
+   \   0000000A   0xD101             BNE.N    ??CPU_NameGet_0
+    315                  CPU_SW_EXCEPTION(;);
+   \   0000000C   0x.... 0x....      BL       CPU_SW_Exception
+    316              }
+    317          
+    318              if (p_name == (CPU_CHAR *)0) {
+   \                     ??CPU_NameGet_0:
+   \   00000010   0x2C00             CMP      R4,#+0
+   \   00000012   0xD102             BNE.N    ??CPU_NameGet_1
+    319                 *p_err = CPU_ERR_NULL_PTR;
+   \   00000014   0x200A             MOVS     R0,#+10
+   \   00000016   0x8028             STRH     R0,[R5, #+0]
+    320                  return;
+   \   00000018   0xE00D             B.N      ??CPU_NameGet_2
+    321              }
+    322          
+    323              CPU_CRITICAL_ENTER();
+   \                     ??CPU_NameGet_1:
+   \   0000001A   0x.... 0x....      BL       CPU_SR_Save
+   \   0000001E   0x0006             MOVS     R6,R0
+    324             (void)Str_Copy_N(p_name,
+    325                             &CPU_Name[0],
+    326                              CPU_CFG_NAME_SIZE);
+   \   00000020   0x2210             MOVS     R2,#+16
+   \   00000022   0x....             LDR.N    R1,??DataTable3
+   \   00000024   0x0020             MOVS     R0,R4
+   \   00000026   0x.... 0x....      BL       Str_Copy_N
+   \   0000002A   0x0007             MOVS     R7,R0
+    327              CPU_CRITICAL_EXIT();
+   \   0000002C   0x0030             MOVS     R0,R6
+   \   0000002E   0x.... 0x....      BL       CPU_SR_Restore
+    328          
+    329             *p_err = CPU_ERR_NONE;
+   \   00000032   0x2000             MOVS     R0,#+0
+   \   00000034   0x8028             STRH     R0,[R5, #+0]
+    330          }
+   \                     ??CPU_NameGet_2:
+   \   00000036   0xBDF1             POP      {R0,R4-R7,PC}    ;; return
+    331          #endif
+    332          
+    333          
+    334          /*$PAGE*/
+    335          /*
+    336          *********************************************************************************************************
+    337          *                                            CPU_NameSet()
+    338          *
+    339          * Description : Set CPU host name.
+    340          *
+    341          * Argument(s) : p_name      Pointer to CPU host name to set.
+    342          *
+    343          *               p_err       Pointer to variable that will receive the return error code from this function :
+    344          *
+    345          *                               CPU_ERR_NONE                    CPU host name successfully set.
+    346          *                               CPU_ERR_NULL_PTR                Argument 'p_name' passed a NULL pointer.
+    347          *                               CPU_ERR_NAME_SIZE               Invalid CPU host name size (see Note #1).
+    348          *
+    349          * Return(s)   : none.
+    350          *
+    351          * Caller(s)   : Application.
+    352          *
+    353          *               This function is a CPU module application programming interface (API) function & MAY be 
+    354          *               called by application function(s).
+    355          *
+    356          * Note(s)     : (1) 'p_name' ASCII string size, including the terminating NULL character, MUST be less
+    357          *                    than or equal to CPU_CFG_NAME_SIZE.
+    358          *********************************************************************************************************
+    359          */
+    360          
+    361          #if (CPU_CFG_NAME_EN == DEF_ENABLED)
+
+   \                                 In section .text, align 2, keep-with-next
+    362          void  CPU_NameSet (const  CPU_CHAR  *p_name,
+    363                                    CPU_ERR   *p_err)
+    364          {
+   \                     CPU_NameSet:
+   \   00000000   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \   00000004   0x0004             MOVS     R4,R0
+   \   00000006   0x000D             MOVS     R5,R1
+    365              CPU_SIZE_T  len;
+    366              CPU_SR_ALLOC();
+   \   00000008   0x2700             MOVS     R7,#+0
+    367          
+    368          
+    369              if (p_err == (CPU_ERR *)0) {
+   \   0000000A   0x2D00             CMP      R5,#+0
+   \   0000000C   0xD101             BNE.N    ??CPU_NameSet_0
+    370                  CPU_SW_EXCEPTION(;);
+   \   0000000E   0x.... 0x....      BL       CPU_SW_Exception
+    371              }
+    372          
+    373              if (p_name == (const CPU_CHAR *)0) {
+   \                     ??CPU_NameSet_0:
+   \   00000012   0x2C00             CMP      R4,#+0
+   \   00000014   0xD102             BNE.N    ??CPU_NameSet_1
+    374                 *p_err = CPU_ERR_NULL_PTR;
+   \   00000016   0x200A             MOVS     R0,#+10
+   \   00000018   0x8028             STRH     R0,[R5, #+0]
+    375                  return;
+   \   0000001A   0xE018             B.N      ??CPU_NameSet_2
+    376              }
+    377          
+    378              len = Str_Len_N(p_name,
+    379                              CPU_CFG_NAME_SIZE);
+   \                     ??CPU_NameSet_1:
+   \   0000001C   0x2110             MOVS     R1,#+16
+   \   0000001E   0x0020             MOVS     R0,R4
+   \   00000020   0x.... 0x....      BL       Str_Len_N
+   \   00000024   0x0006             MOVS     R6,R0
+    380              if (len < CPU_CFG_NAME_SIZE) {                              /* If       cfg name len < max name size, ...           */
+   \   00000026   0x2E10             CMP      R6,#+16
+   \   00000028   0xD20E             BCS.N    ??CPU_NameSet_3
+    381                  CPU_CRITICAL_ENTER();
+   \   0000002A   0x.... 0x....      BL       CPU_SR_Save
+   \   0000002E   0x0007             MOVS     R7,R0
+    382                 (void)Str_Copy_N(&CPU_Name[0],                           /* ... copy cfg name to CPU host name.                  */
+    383                                   p_name,
+    384                                   CPU_CFG_NAME_SIZE);
+   \   00000030   0x2210             MOVS     R2,#+16
+   \   00000032   0x0021             MOVS     R1,R4
+   \   00000034   0x....             LDR.N    R0,??DataTable3
+   \   00000036   0x.... 0x....      BL       Str_Copy_N
+   \   0000003A   0x4680             MOV      R8,R0
+    385                  CPU_CRITICAL_EXIT();
+   \   0000003C   0x0038             MOVS     R0,R7
+   \   0000003E   0x.... 0x....      BL       CPU_SR_Restore
+    386                 *p_err = CPU_ERR_NONE;
+   \   00000042   0x2000             MOVS     R0,#+0
+   \   00000044   0x8028             STRH     R0,[R5, #+0]
+   \   00000046   0xE002             B.N      ??CPU_NameSet_4
+    387          
+    388              } else {
+    389                 *p_err = CPU_ERR_NAME_SIZE;
+   \                     ??CPU_NameSet_3:
+   \   00000048   0xF44F 0x707A      MOV      R0,#+1000
+   \   0000004C   0x8028             STRH     R0,[R5, #+0]
+    390              }
+    391          }
+   \                     ??CPU_NameSet_4:
+   \                     ??CPU_NameSet_2:
+   \   0000004E   0xE8BD 0x81F0      POP      {R4-R8,PC}       ;; return
+    392          #endif
+    393          
+    394          
+    395          /*$PAGE*/
+    396          /*
+    397          *********************************************************************************************************
+    398          *                                           CPU_TS_Get32()
+    399          *
+    400          * Description : Get current 32-bit CPU timestamp.
+    401          *
+    402          * Argument(s) : none.
+    403          *
+    404          * Return(s)   : Current 32-bit CPU timestamp (in timestamp timer counts).
+    405          *
+    406          * Caller(s)   : Application.
+    407          *
+    408          *               This function is a CPU module application programming interface (API) function & MAY 
+    409          *               be called by application function(s).
+    410          *
+    411          * Note(s)     : (1) When applicable, the amount of time measured by CPU timestamps is calculated by
+    412          *                   either of the following equations :
+    413          *
+    414          *                       (a) Time measured  =  Number timer counts  *  Timer period
+    415          *
+    416          *                               where
+    417          *
+    418          *                                   Number timer counts     Number of timer counts measured
+    419          *                                   Timer period            Timer's period in some units of
+    420          *                                                               (fractional) seconds
+    421          *                                   Time measured           Amount of time measured, in same
+    422          *                                                               units of (fractional) seconds
+    423          *                                                               as the Timer period
+    424          *
+    425          *                                              Number timer counts
+    426          *                       (b) Time measured  =  ---------------------
+    427          *                                                Timer frequency
+    428          *
+    429          *                               where
+    430          *
+    431          *                                   Number timer counts     Number of timer counts measured
+    432          *                                   Timer frequency         Timer's frequency in some units
+    433          *                                                               of counts per second
+    434          *                                   Time measured           Amount of time measured, in seconds
+    435          *
+    436          *                   See also 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TS_TmrRd()  Note #2c1'.
+    437          *
+    438          *               (2) In case the CPU timestamp timer has lower precision than the 32-bit CPU timestamp;
+    439          *                   its precision is extended via periodic updates by accumulating the deltas of the
+    440          *                   timestamp timer count values into the higher-precision 32-bit CPU timestamp.
+    441          *
+    442          *               (3) After initialization, 'CPU_TS_32_Accum' & 'CPU_TS_32_TmrPrev' MUST ALWAYS
+    443          *                   be accessed AND updated exclusively with interrupts disabled -- but NOT
+    444          *                   with critical sections.
+    445          *********************************************************************************************************
+    446          */
+    447          
+    448          #if (CPU_CFG_TS_32_EN == DEF_ENABLED)
+    449          CPU_TS32  CPU_TS_Get32 (void)
+    450          {
+    451              CPU_TS32    ts;
+    452          #if (CPU_CFG_TS_TMR_SIZE <  CPU_WORD_SIZE_32)
+    453              CPU_TS_TMR  tmr_cur;
+    454              CPU_TS_TMR  tmr_delta;
+    455              CPU_SR_ALLOC();
+    456          #endif
+    457          
+    458          
+    459          #if (CPU_CFG_TS_TMR_SIZE >= CPU_WORD_SIZE_32)
+    460              ts = (CPU_TS32)CPU_TS_TmrRd();                                  /* Get cur ts tmr val (in 32-bit ts cnts).          */
+    461          
+    462          #else
+    463              CPU_INT_DIS();
+    464              tmr_cur            = (CPU_TS_TMR) CPU_TS_TmrRd();               /* Get cur ts tmr val (in ts tmr cnts).             */
+    465              tmr_delta          = (CPU_TS_TMR)(tmr_cur - CPU_TS_32_TmrPrev); /* Calc      delta ts tmr cnts.                     */
+    466              CPU_TS_32_Accum   += (CPU_TS32  ) tmr_delta;                    /* Inc ts by delta ts tmr cnts (see Note #2).       */
+    467              CPU_TS_32_TmrPrev  = (CPU_TS_TMR) tmr_cur;                      /* Save cur ts tmr cnts for next update.            */
+    468              ts                 = (CPU_TS32  ) CPU_TS_32_Accum;
+    469              CPU_INT_EN();
+    470          #endif
+    471          
+    472              return (ts);
+    473          }
+    474          #endif
+    475          
+    476          
+    477          /*$PAGE*/
+    478          /*
+    479          *********************************************************************************************************
+    480          *                                           CPU_TS_Get64()
+    481          *
+    482          * Description : Get current 64-bit CPU timestamp.
+    483          *
+    484          * Argument(s) : none.
+    485          *
+    486          * Return(s)   : Current 64-bit CPU timestamp (in timestamp timer counts).
+    487          *
+    488          * Caller(s)   : Application.
+    489          *
+    490          *               This function is a CPU module application programming interface (API) function & MAY 
+    491          *               be called by application function(s).
+    492          *
+    493          * Note(s)     : (1) When applicable, the amount of time measured by CPU timestamps is calculated by
+    494          *                   either of the following equations :
+    495          *
+    496          *                       (a) Time measured  =  Number timer counts  *  Timer period
+    497          *
+    498          *                               where
+    499          *
+    500          *                                   Number timer counts     Number of timer counts measured
+    501          *                                   Timer period            Timer's period in some units of
+    502          *                                                               (fractional) seconds
+    503          *                                   Time measured           Amount of time measured, in same
+    504          *                                                               units of (fractional) seconds
+    505          *                                                               as the Timer period
+    506          *
+    507          *                                              Number timer counts
+    508          *                       (b) Time measured  =  ---------------------
+    509          *                                                Timer frequency
+    510          *
+    511          *                               where
+    512          *
+    513          *                                   Number timer counts     Number of timer counts measured
+    514          *                                   Timer frequency         Timer's frequency in some units
+    515          *                                                               of counts per second
+    516          *                                   Time measured           Amount of time measured, in seconds
+    517          *
+    518          *                   See also 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TS_TmrRd()  Note #2c1'.
+    519          *
+    520          *               (2) In case the CPU timestamp timer has lower precision than the 64-bit CPU timestamp;
+    521          *                   its precision is extended via periodic updates by accumulating the deltas of the
+    522          *                   timestamp timer count values into the higher-precision 64-bit CPU timestamp.
+    523          *
+    524          *               (3) After initialization, 'CPU_TS_64_Accum' & 'CPU_TS_64_TmrPrev' MUST ALWAYS
+    525          *                   be accessed AND updated exclusively with interrupts disabled -- but NOT
+    526          *                   with critical sections.
+    527          *********************************************************************************************************
+    528          */
+    529          
+    530          #if (CPU_CFG_TS_64_EN == DEF_ENABLED)
+    531          CPU_TS64  CPU_TS_Get64 (void)
+    532          {
+    533              CPU_TS64    ts;
+    534          #if (CPU_CFG_TS_TMR_SIZE <  CPU_WORD_SIZE_64)
+    535              CPU_TS_TMR  tmr_cur;
+    536              CPU_TS_TMR  tmr_delta;
+    537              CPU_SR_ALLOC();
+    538          #endif
+    539          
+    540          
+    541          #if (CPU_CFG_TS_TMR_SIZE >= CPU_WORD_SIZE_64)
+    542              ts = (CPU_TS64)CPU_TS_TmrRd();                                  /* Get cur ts tmr val (in 64-bit ts cnts).          */
+    543          
+    544          #else
+    545              CPU_INT_DIS();
+    546              tmr_cur            = (CPU_TS_TMR) CPU_TS_TmrRd();               /* Get cur ts tmr val (in ts tmr cnts).             */
+    547              tmr_delta          = (CPU_TS_TMR)(tmr_cur - CPU_TS_64_TmrPrev); /* Calc      delta ts tmr cnts.                     */
+    548              CPU_TS_64_Accum   += (CPU_TS64  ) tmr_delta;                    /* Inc ts by delta ts tmr cnts (see Note #2).       */
+    549              CPU_TS_64_TmrPrev  = (CPU_TS_TMR) tmr_cur;                      /* Save cur ts tmr cnts for next update.            */
+    550              ts                 = (CPU_TS64  ) CPU_TS_64_Accum;
+    551              CPU_INT_EN();
+    552          #endif
+    553          
+    554              return (ts);
+    555          }
+    556          #endif
+    557          
+    558          
+    559          /*$PAGE*/
+    560          /*
+    561          *********************************************************************************************************
+    562          *                                           CPU_TS_Update()
+    563          *
+    564          * Description : Update current CPU timestamp(s).
+    565          *
+    566          * Argument(s) : none.
+    567          *
+    568          * Return(s)   : none.
+    569          *
+    570          * Caller(s)   : Application/BSP periodic time handler (see Note #1).
+    571          *
+    572          *               This function is a CPU timestamp BSP function & SHOULD be called only by appropriate
+    573          *               application/BSP function(s).
+    574          *
+    575          * Note(s)     : (1) (a) CPU timestamp(s) MUST be updated periodically by some application (or BSP) time
+    576          *                       handler in order to (adequately) maintain CPU timestamp(s)' time.
+    577          *
+    578          *                   (b) CPU timestamp(s) MUST be updated more frequently than the CPU timestamp timer
+    579          *                       overflows; otherwise, CPU timestamp(s) will lose time.
+    580          *
+    581          *                       See also 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TS_TmrRd()  Note #2c2'.
+    582          *********************************************************************************************************
+    583          */
+    584          
+    585          #if (CPU_CFG_TS_EN == DEF_ENABLED)
+    586          void  CPU_TS_Update (void)
+    587          {
+    588          #if ((CPU_CFG_TS_32_EN    == DEF_ENABLED)  && \
+    589               (CPU_CFG_TS_TMR_SIZE <  CPU_WORD_SIZE_32))
+    590             (void)CPU_TS_Get32();
+    591          #endif
+    592          
+    593          #if ((CPU_CFG_TS_64_EN    == DEF_ENABLED)  && \
+    594               (CPU_CFG_TS_TMR_SIZE <  CPU_WORD_SIZE_64))
+    595             (void)CPU_TS_Get64();
+    596          #endif
+    597          }
+    598          #endif
+    599          
+    600          
+    601          /*$PAGE*/
+    602          /*
+    603          *********************************************************************************************************
+    604          *                                         CPU_TS_TmrFreqGet()
+    605          *
+    606          * Description : Get CPU timestamp's timer frequency.
+    607          *
+    608          * Argument(s) : p_err       Pointer to variable that will receive the return error code from this function :
+    609          *
+    610          *                               CPU_ERR_NONE                    CPU timestamp's timer frequency successfully
+    611          *                                                                   returned.
+    612          *                               CPU_ERR_TS_FREQ_INVALID         CPU timestamp's timer frequency invalid &/or
+    613          *                                                                   NOT yet configured.
+    614          *
+    615          * Return(s)   : CPU timestamp's timer frequency (in Hertz), if NO error(s).
+    616          *
+    617          *               0,                                          otherwise.
+    618          *
+    619          * Caller(s)   : Application.
+    620          *
+    621          *               This function is a CPU module application programming interface (API) function & MAY be 
+    622          *               called by application function(s).
+    623          *
+    624          * Note(s)     : none.
+    625          *********************************************************************************************************
+    626          */
+    627          
+    628          #if (CPU_CFG_TS_TMR_EN == DEF_ENABLED)
+    629          CPU_TS_TMR_FREQ  CPU_TS_TmrFreqGet (CPU_ERR  *p_err)
+    630          {
+    631              CPU_TS_TMR_FREQ  freq_hz;
+    632          
+    633          
+    634              if (p_err == (CPU_ERR *)0) {
+    635                  CPU_SW_EXCEPTION(;);
+    636              }
+    637          
+    638              freq_hz =  CPU_TS_TmrFreq_Hz;
+    639             *p_err   = (freq_hz != 0u) ? CPU_ERR_NONE : CPU_ERR_TS_FREQ_INVALID;
+    640          
+    641              return (freq_hz);
+    642          }
+    643          #endif
+    644          
+    645          
+    646          /*$PAGE*/
+    647          /*
+    648          *********************************************************************************************************
+    649          *                                         CPU_TS_TmrFreqSet()
+    650          *
+    651          * Description : Set CPU timestamp's timer frequency.
+    652          *
+    653          * Argument(s) : freq_hz     Frequency (in Hertz) to set for CPU timestamp's timer.
+    654          *
+    655          * Return(s)   : none.
+    656          *
+    657          * Caller(s)   : CPU_TS_TmrInit(),
+    658          *               Application/BSP initialization function(s).
+    659          *
+    660          *               This function is a CPU module BSP function & SHOULD be called only by appropriate
+    661          *               application/BSP function(s) [see Note #1].
+    662          *
+    663          * Note(s)     : (1) (a) (1) CPU timestamp timer frequency is NOT required for internal CPU timestamp
+    664          *                           operations but may OPTIONALLY be configured by CPU_TS_TmrInit() or other
+    665          *                           application/BSP initialization functions.
+    666          *
+    667          *                       (2) CPU timestamp timer frequency MAY be used with optional CPU_TSxx_to_uSec()
+    668          *                           to convert CPU timestamps from timer counts into microseconds.
+    669          *
+    670          *                           See also 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TSxx_to_uSec()  Note #2a'.
+    671          *
+    672          *                   (b) CPU timestamp timer period SHOULD be less than the typical measured time but MUST
+    673          *                       be less than the maximum measured time; otherwise, timer resolution inadequate to
+    674          *                       measure desired times.
+    675          *
+    676          *                       See also 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TSxx_to_uSec()  Note #2b'.
+    677          *********************************************************************************************************
+    678          */
+    679          
+    680          #if (CPU_CFG_TS_TMR_EN == DEF_ENABLED)
+    681          void  CPU_TS_TmrFreqSet (CPU_TS_TMR_FREQ  freq_hz)
+    682          {
+    683              CPU_TS_TmrFreq_Hz = freq_hz;
+    684          }
+    685          #endif
+    686          
+    687          
+    688          /*$PAGE*/
+    689          /*
+    690          *********************************************************************************************************
+    691          *                                     CPU_IntDisMeasMaxCurReset()
+    692          *
+    693          * Description : Reset current maximum interrupts disabled time.
+    694          *
+    695          * Argument(s) : none.
+    696          *
+    697          * Return(s)   : Maximum interrupts disabled time (in CPU timestamp timer counts) before resetting.
+    698          *
+    699          *               See also 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TS_TmrRd()      Note #2c'
+    700          *                      & 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TSxx_to_uSec()  Note #2'.
+    701          *
+    702          * Caller(s)   : Application.
+    703          *
+    704          *               This function is a CPU module application programming interface (API) function 
+    705          *               & MAY be called by application function(s).
+    706          *
+    707          * Note(s)     : (1) After initialization, 'CPU_IntDisMeasMaxCur_cnts' MUST ALWAYS be accessed
+    708          *                   exclusively with interrupts disabled -- but NOT with critical sections.
+    709          *********************************************************************************************************
+    710          */
+    711          
+    712          #ifdef  CPU_CFG_INT_DIS_MEAS_EN
+    713          CPU_TS_TMR  CPU_IntDisMeasMaxCurReset (void)
+    714          {
+    715              CPU_TS_TMR  time_max_cnts;
+    716              CPU_SR_ALLOC();
+    717          
+    718          
+    719              time_max_cnts             = CPU_IntDisMeasMaxCurGet();
+    720              CPU_INT_DIS();
+    721              CPU_IntDisMeasMaxCur_cnts = 0u;
+    722              CPU_INT_EN();
+    723          
+    724              return (time_max_cnts);
+    725          }
+    726          #endif
+    727          
+    728          
+    729          /*$PAGE*/
+    730          /*
+    731          *********************************************************************************************************
+    732          *                                      CPU_IntDisMeasMaxCurGet()
+    733          *
+    734          * Description : Get current maximum interrupts disabled time.
+    735          *
+    736          * Argument(s) : none.
+    737          *
+    738          * Return(s)   : Current maximum interrupts disabled time (in CPU timestamp timer counts).
+    739          *
+    740          *               See also 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TS_TmrRd()      Note #2c'
+    741          *                      & 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TSxx_to_uSec()  Note #2'.
+    742          *
+    743          * Caller(s)   : CPU_IntDisMeasMaxCurReset(),
+    744          *               Application.
+    745          *
+    746          *               This function is a CPU module application programming interface (API) function 
+    747          *               & MAY be called by application function(s).
+    748          *
+    749          * Note(s)     : (1) After initialization, 'CPU_IntDisMeasMaxCur_cnts' MUST ALWAYS be accessed
+    750          *                   exclusively with interrupts disabled -- but NOT with critical sections.
+    751          *********************************************************************************************************
+    752          */
+    753          
+    754          #ifdef  CPU_CFG_INT_DIS_MEAS_EN
+    755          CPU_TS_TMR  CPU_IntDisMeasMaxCurGet (void)
+    756          {
+    757              CPU_TS_TMR  time_tot_cnts;
+    758              CPU_TS_TMR  time_max_cnts;
+    759              CPU_SR_ALLOC();
+    760          
+    761          
+    762              CPU_INT_DIS();
+    763              time_tot_cnts = CPU_IntDisMeasMaxCur_cnts;
+    764              CPU_INT_EN();
+    765              time_max_cnts = CPU_IntDisMeasMaxCalc(time_tot_cnts);
+    766          
+    767              return (time_max_cnts);
+    768          }
+    769          #endif
+    770          
+    771          
+    772          /*$PAGE*/
+    773          /*
+    774          *********************************************************************************************************
+    775          *                                       CPU_IntDisMeasMaxGet()
+    776          *
+    777          * Description : Get (non-resetable) maximum interrupts disabled time.
+    778          *
+    779          * Argument(s) : none.
+    780          *
+    781          * Return(s)   : (Non-resetable) maximum interrupts disabled time (in CPU timestamp timer counts).
+    782          *
+    783          *               See also 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TS_TmrRd()      Note #2c'
+    784          *                      & 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TSxx_to_uSec()  Note #2'.
+    785          *
+    786          * Caller(s)   : CPU_IntDisMeasInit(),
+    787          *               Application.
+    788          *
+    789          *               This function is a CPU module application programming interface (API) function 
+    790          *               & MAY be called by application function(s).
+    791          *
+    792          * Note(s)     : (1) After initialization, 'CPU_IntDisMeasMax_cnts' MUST ALWAYS be accessed
+    793          *                   exclusively with interrupts disabled -- but NOT with critical sections.
+    794          *********************************************************************************************************
+    795          */
+    796          
+    797          #ifdef  CPU_CFG_INT_DIS_MEAS_EN
+    798          CPU_TS_TMR  CPU_IntDisMeasMaxGet (void)
+    799          {
+    800              CPU_TS_TMR  time_tot_cnts;
+    801              CPU_TS_TMR  time_max_cnts;
+    802              CPU_SR_ALLOC();
+    803          
+    804          
+    805              CPU_INT_DIS();
+    806              time_tot_cnts = CPU_IntDisMeasMax_cnts;
+    807              CPU_INT_EN();
+    808              time_max_cnts = CPU_IntDisMeasMaxCalc(time_tot_cnts);
+    809          
+    810              return (time_max_cnts);
+    811          }
+    812          #endif
+    813          
+    814          
+    815          /*$PAGE*/
+    816          /*
+    817          *********************************************************************************************************
+    818          *                                        CPU_IntDisMeasStart()
+    819          *
+    820          * Description : Start interrupts disabled time measurement.
+    821          *
+    822          * Argument(s) : none.
+    823          *
+    824          * Return(s)   : none.
+    825          *
+    826          * Caller(s)   : CPU_CRITICAL_ENTER().
+    827          *
+    828          *               This function is an INTERNAL CPU module function & MUST NOT be called by application
+    829          *               function(s).
+    830          *
+    831          * Note(s)     : none.
+    832          *********************************************************************************************************
+    833          */
+    834          
+    835          #ifdef  CPU_CFG_INT_DIS_MEAS_EN
+    836          void  CPU_IntDisMeasStart (void)
+    837          {
+    838              CPU_IntDisMeasCtr++;
+    839              if (CPU_IntDisNestCtr == 0u) {                                  /* If ints NOT yet dis'd, ...                       */
+    840                  CPU_IntDisMeasStart_cnts = CPU_TS_TmrRd();                  /* ... get ints dis'd start time.                   */
+    841              }
+    842              CPU_IntDisNestCtr++;
+    843          }
+    844          #endif
+    845          
+    846          
+    847          /*$PAGE*/
+    848          /*
+    849          *********************************************************************************************************
+    850          *                                        CPU_IntDisMeasStop()
+    851          *
+    852          * Description : Stop interrupts disabled time measurement.
+    853          *
+    854          * Argument(s) : none.
+    855          *
+    856          * Return(s)   : none.
+    857          *
+    858          * Caller(s)   : CPU_CRITICAL_EXIT().
+    859          *
+    860          *               This function is an INTERNAL CPU module function & MUST NOT be called by application
+    861          *               function(s).
+    862          *
+    863          * Note(s)     : (1) (a) The total amount of time interrupts are disabled by system &/or application code
+    864          *                       during critical sections is calculated by the following equations :
+    865          *
+    866          *                       (1) When interrupts disabled time measurements are disabled :
+    867          *
+    868          *
+    869          *                               |   CRITICAL  |                           |   CRITICAL  |
+    870          *                               |<- SECTION ->|                           |<- SECTION ->|
+    871          *                               |    ENTER    |                           |    EXIT     |
+    872          *
+    873          *                            Disable                                    Enable
+    874          *                           Interrupts                                Interrupts
+    875          *
+    876          *                               ||           ||                           ||           ||
+    877          *                               ||           ||                           ||           ||
+    878          *                               ||       |   ||<------------------------->||       |   ||
+    879          *                               ||       |<->||             |             ||<----->|   ||
+    880          *                               ||       | | ||             |             ||   |   |   ||
+    881          *                                        | |                |                  |   |
+    882          *                                   interrupts            time                 interrupts
+    883          *                                    disabled                 interrupts       |enabled
+    884          *                                          |                   disabled        |
+    885          *                                          |              (via application)    |
+    886          *                                       time                                 time
+    887          *                                           interrupts                           interrupts
+    888          *                                         disabled ovrhd                        enabled ovrhd
+    889          *
+    890          *
+    891          *                           (A) time            =  [ time            -  time           ]  -  time
+    892          *                                   interrupts     [     interrupts         interrupts ]         total
+    893          *                                    disabled      [      enabled            disabled  ]         ovrhd
+    894          *                               (via application)
+    895          *
+    896          *
+    897          *                           (B) time       =  time              +  time
+    898          *                                   total         interrupts           interrupts
+    899          *                                   ovrhd        enabled ovrhd       disabled ovrhd
+    900          *
+    901          *
+    902          *                                   where
+    903          *
+    904          *                                           time                    time interrupts are disabled between
+    905          *                                               interrupts              first critical section enter &
+    906          *                                                disabled               last  critical section exit (i.e.
+    907          *                                           (via application)           minus total overhead time)
+    908          *
+    909          *                                           time                    time when interrupts are disabled
+    910          *                                               interrupts
+    911          *                                                disabled
+    912          *
+    913          *                                           time                    time when interrupts are  enabled
+    914          *                                               interrupts
+    915          *                                                enabled
+    916          *
+    917          *
+    918          *                                           time                    total overhead time to disable/enable
+    919          *                                               total                   interrupts during critical section
+    920          *                                               ovrhd                   enter & exit
+    921          *
+    922          *                                           time                    total overhead time to disable interrupts
+    923          *                                               interrupts              during critical section enter
+    924          *                                             disabled ovrhd
+    925          *
+    926          *                                           time                    total overhead time to enable  interrupts
+    927          *                                               interrupts              during critical section exit
+    928          *                                              enabled ovrhd
+    929          *
+    930          *$PAGE*
+    931          *
+    932          *                       (2) When interrupts disabled time measurements are enabled :
+    933          *
+    934          *
+    935          *        |                                    |                           |                                       |
+    936          *        |<----- CRITICAL SECTION ENTER ----->|                           |<------- CRITICAL SECTION EXIT ------->|
+    937          *        |                                    |                           |                                       |
+    938          *
+    939          *                   Time                                                 Time
+    940          *     Disable    Measurement                                          Measurement                  Enable
+    941          *    Interrupts     Start                                                Stop                    Interrupts
+    942          *
+    943          *        ||           |                      ||                           ||                         |           ||
+    944          *        ||           |                      ||                           ||                         |           ||
+    945          *        ||           |        |             ||<------------------------->||               |         |           ||
+    946          *        ||       |   |        |<----------->||             |             ||<------------->|         |       |   ||
+    947          *        ||       |   |        |      |      ||             |             ||       |       |         |       |   ||
+    948          *                 |            |      |                     |                      |       |                 |
+    949          *            interrupts       get     |                   time                     |      get            interrupts
+    950          *             disabled    start time  |                       interrupts           |   stop time          enabled
+    951          *                            meas     |                        disabled            |     meas
+    952          *                                   time                  (via application)      time
+    953          *                                       start meas                                   stop meas
+    954          *                                         ovrhd                                        ovrhd
+    955          *
+    956          *
+    957          *                           (A) time            =  [ time       -  time      ]  -  time
+    958          *                                   interrupts     [      stop         start ]         total meas
+    959          *                                    disabled      [      meas         meas  ]           ovrhd
+    960          *                               (via application)
+    961          *
+    962          *
+    963          *                           (B) time            =  time            +  time
+    964          *                                   total meas         start meas         stop meas
+    965          *                                     ovrhd              ovrhd              ovrhd
+    966          *
+    967          *
+    968          *                                   where
+    969          *
+    970          *                                           time                    time interrupts are disabled between first
+    971          *                                               interrupts              critical section enter & last critical
+    972          *                                                disabled               section exit (i.e. minus measurement
+    973          *                                           (via application)           overhead time; however, this does NOT
+    974          *                                                                       include any overhead time to disable
+    975          *                                                                       or enable interrupts during critical
+    976          *                                                                       section enter & exit)
+    977          *
+    978          *                                           time                    time of disable interrupts start time
+    979          *                                               start                   measurement (in timer counts)
+    980          *                                               meas
+    981          *
+    982          *                                           time                    time of disable interrupts stop  time
+    983          *                                               stop                    measurement (in timer counts)
+    984          *                                               meas
+    985          *
+    986          *
+    987          *                                           time                    total overhead time to start/stop disabled
+    988          *                                               total meas              interrupts time measurements (in timer
+    989          *                                                 ovrhd                 counts)
+    990          *
+    991          *                                           time                    total overhead time after getting start
+    992          *                                               start meas              time until end of start measurement
+    993          *                                                 ovrhd                 function  (in timer counts)
+    994          *
+    995          *                                           time                    total overhead time from beginning of stop
+    996          *                                               stop meas               measurement function until after getting
+    997          *                                                 ovrhd                 stop time (in timer counts)
+    998          *
+    999          *
+   1000          *$PAGE*
+   1001          *                   (b) (1) (A) In order to correctly handle unsigned subtraction overflows of start times 
+   1002          *                               from stop times, CPU timestamp timer count values MUST be returned via 
+   1003          *                               word-size-configurable 'CPU_TS_TMR' data type.
+   1004          *
+   1005          *                               See also 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TS_TmrRd()  Note #2a'.
+   1006          *
+   1007          *                           (B) Since unsigned subtraction of start times from stop times assumes increasing
+   1008          *                               values, timestamp timer count values MUST increase with each time count.
+   1009          *
+   1010          *                               See also 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TS_TmrRd()  Note #2b'.
+   1011          *
+   1012          *                       (2) (A) To expedite & reduce interrupts disabled time measurement overhead; only the
+   1013          *                               subtraction of start times from stop times is performed.
+   1014          *
+   1015          *                           (B) The final calculations to subtract the interrupts disabled time measurement
+   1016          *                               overhead is performed asynchronously in appropriate API functions.
+   1017          *
+   1018          *                               See also 'CPU_IntDisMeasMaxCalc()  Note #1b'.
+   1019          *********************************************************************************************************
+   1020          */
+   1021          
+   1022          #ifdef  CPU_CFG_INT_DIS_MEAS_EN
+   1023          void  CPU_IntDisMeasStop (void)
+   1024          {
+   1025              CPU_TS_TMR  time_ints_disd_cnts;
+   1026          
+   1027          
+   1028              CPU_IntDisNestCtr--;
+   1029              if (CPU_IntDisNestCtr == 0u) {                                  /* If ints NO longer dis'd,        ...              */
+   1030                  CPU_IntDisMeasStop_cnts = CPU_TS_TmrRd();                   /* ... get  ints dis'd stop time & ...              */
+   1031                                                                              /* ... calc ints dis'd tot  time (see Note #1b2A).  */
+   1032                  time_ints_disd_cnts     = CPU_IntDisMeasStop_cnts -
+   1033                                            CPU_IntDisMeasStart_cnts;
+   1034                                                                              /* Calc max ints dis'd times.                       */
+   1035                  if (CPU_IntDisMeasMaxCur_cnts < time_ints_disd_cnts) {
+   1036                      CPU_IntDisMeasMaxCur_cnts = time_ints_disd_cnts;
+   1037                  }
+   1038                  if (CPU_IntDisMeasMax_cnts    < time_ints_disd_cnts) {
+   1039                      CPU_IntDisMeasMax_cnts    = time_ints_disd_cnts;
+   1040                  }
+   1041              }
+   1042          }
+   1043          #endif
+   1044          
+   1045          
+   1046          /*$PAGE*/
+   1047          /*
+   1048          *********************************************************************************************************
+   1049          *                                         CPU_CntLeadZeros()
+   1050          *
+   1051          * Description : Count the number of contiguous, most-significant, leading zero bits in a data value.
+   1052          *
+   1053          * Argument(s) : val         Data value to count leading zero bits.
+   1054          *
+   1055          * Return(s)   : Number of contiguous, most-significant, leading zero bits in 'val', if NO error(s).
+   1056          *
+   1057          *               DEF_INT_CPU_U_MAX_VAL,                                              otherwise.
+   1058          *
+   1059          * Caller(s)   : CPU_CntTrailZeros(),
+   1060          *               Application.
+   1061          *
+   1062          *               This function is a CPU module application programming interface (API) function & MAY 
+   1063          *               be called by application function(s).
+   1064          *
+   1065          * Note(s)     : (1) (a) Supports the following data value sizes :
+   1066          *
+   1067          *                       (1)  8-bits
+   1068          *                       (2) 16-bits
+   1069          *                       (3) 32-bits
+   1070          *                       (4) 64-bits
+   1071          *
+   1072          *                       See also 'cpu_def.h  CPU WORD CONFIGURATION  Note #1'.
+   1073          *
+   1074          *                   (b) (1) For  8-bit values :
+   1075          *
+   1076          *                                  b07  b06  b05  b04  b03  b02  b01  b00    # Leading Zeros
+   1077          *                                  ---  ---  ---  ---  ---  ---  ---  ---    ---------------
+   1078          *                                   1    x    x    x    x    x    x    x            0
+   1079          *                                   0    1    x    x    x    x    x    x            1
+   1080          *                                   0    0    1    x    x    x    x    x            2
+   1081          *                                   0    0    0    1    x    x    x    x            3
+   1082          *                                   0    0    0    0    1    x    x    x            4
+   1083          *                                   0    0    0    0    0    1    x    x            5
+   1084          *                                   0    0    0    0    0    0    1    x            6
+   1085          *                                   0    0    0    0    0    0    0    1            7
+   1086          *                                   0    0    0    0    0    0    0    0            8
+   1087          *
+   1088          *
+   1089          *                       (2) For 16-bit values :
+   1090          *
+   1091          *                             b15  b14  b13  ...  b04  b03  b02  b01  b00    # Leading Zeros
+   1092          *                             ---  ---  ---       ---  ---  ---  ---  ---    ---------------
+   1093          *                              1    x    x         x    x    x    x    x            0
+   1094          *                              0    1    x         x    x    x    x    x            1
+   1095          *                              0    0    1         x    x    x    x    x            2
+   1096          *                              :    :    :         :    :    :    :    :            :
+   1097          *                              :    :    :         :    :    :    :    :            :
+   1098          *                              0    0    0         1    x    x    x    x           11
+   1099          *                              0    0    0         0    1    x    x    x           12
+   1100          *                              0    0    0         0    0    1    x    x           13
+   1101          *                              0    0    0         0    0    0    1    x           14
+   1102          *                              0    0    0         0    0    0    0    1           15
+   1103          *                              0    0    0         0    0    0    0    0           16
+   1104          *
+   1105          *$PAGE*
+   1106          *                       (3) For 32-bit values :
+   1107          *
+   1108          *                             b31  b30  b29  ...  b04  b03  b02  b01  b00    # Leading Zeros
+   1109          *                             ---  ---  ---       ---  ---  ---  ---  ---    ---------------
+   1110          *                              1    x    x         x    x    x    x    x            0
+   1111          *                              0    1    x         x    x    x    x    x            1
+   1112          *                              0    0    1         x    x    x    x    x            2
+   1113          *                              :    :    :         :    :    :    :    :            :
+   1114          *                              :    :    :         :    :    :    :    :            :
+   1115          *                              0    0    0         1    x    x    x    x           27
+   1116          *                              0    0    0         0    1    x    x    x           28
+   1117          *                              0    0    0         0    0    1    x    x           29
+   1118          *                              0    0    0         0    0    0    1    x           30
+   1119          *                              0    0    0         0    0    0    0    1           31
+   1120          *                              0    0    0         0    0    0    0    0           32
+   1121          *
+   1122          *
+   1123          *                       (4) For 64-bit values :
+   1124          *
+   1125          *                             b63  b62  b61  ...  b04  b03  b02  b01  b00    # Leading Zeros
+   1126          *                             ---  ---  ---       ---  ---  ---  ---  ---    ---------------
+   1127          *                              1    x    x         x    x    x    x    x            0
+   1128          *                              0    1    x         x    x    x    x    x            1
+   1129          *                              0    0    1         x    x    x    x    x            2
+   1130          *                              :    :    :         :    :    :    :    :            :
+   1131          *                              :    :    :         :    :    :    :    :            :
+   1132          *                              0    0    0         1    x    x    x    x           59
+   1133          *                              0    0    0         0    1    x    x    x           60
+   1134          *                              0    0    0         0    0    1    x    x           61
+   1135          *                              0    0    0         0    0    0    1    x           62
+   1136          *                              0    0    0         0    0    0    0    1           63
+   1137          *                              0    0    0         0    0    0    0    0           64
+   1138          *
+   1139          *
+   1140          *                       See also 'CPU COUNT LEAD ZEROs LOOKUP TABLE  Note #1'.
+   1141          *********************************************************************************************************
+   1142          */
+   1143          
+   1144          #ifndef   CPU_CFG_LEAD_ZEROS_ASM_PRESENT
+   1145          CPU_DATA  CPU_CntLeadZeros (CPU_DATA  val)
+   1146          {
+   1147              CPU_DATA  nbr_lead_zeros;
+   1148          
+   1149          
+   1150          #if   (CPU_CFG_DATA_SIZE == CPU_WORD_SIZE_08)
+   1151              nbr_lead_zeros = CPU_CntLeadZeros08((CPU_INT08U)val);
+   1152          
+   1153          #elif (CPU_CFG_DATA_SIZE == CPU_WORD_SIZE_16)
+   1154              nbr_lead_zeros = CPU_CntLeadZeros16((CPU_INT16U)val);
+   1155          
+   1156          #elif (CPU_CFG_DATA_SIZE == CPU_WORD_SIZE_32)
+   1157              nbr_lead_zeros = CPU_CntLeadZeros32((CPU_INT32U)val);
+   1158          
+   1159          #elif (CPU_CFG_DATA_SIZE == CPU_WORD_SIZE_64)
+   1160              nbr_lead_zeros = CPU_CntLeadZeros64((CPU_INT64U)val);
+   1161          
+   1162          #else                                                           /* See Note #1a.                                        */
+   1163              nbr_lead_zeros = DEF_INT_CPU_U_MAX_VAL;
+   1164          #endif
+   1165          
+   1166          
+   1167              return (nbr_lead_zeros);
+   1168          }
+   1169          #endif
+   1170          
+   1171          
+   1172          /*$PAGE*/
+   1173          /*
+   1174          *********************************************************************************************************
+   1175          *                                        CPU_CntLeadZeros08()
+   1176          *
+   1177          * Description : Count the number of contiguous, most-significant, leading zero bits in an 8-bit data value.
+   1178          *
+   1179          * Argument(s) : val         Data value to count leading zero bits.
+   1180          *
+   1181          * Return(s)   : Number of contiguous, most-significant, leading zero bits in 'val'.
+   1182          *
+   1183          * Caller(s)   : CPU_CntLeadZeros(),
+   1184          *               CPU_CntTrailZeros08(),
+   1185          *               Application.
+   1186          *
+   1187          *               This function is a CPU module application programming interface (API) function & MAY be 
+   1188          *               called by application function(s).
+   1189          *
+   1190          * Note(s)     : (1) Supports  8-bit values :
+   1191          *
+   1192          *                               b07  b06  b05  b04  b03  b02  b01  b00    # Leading Zeros
+   1193          *                               ---  ---  ---  ---  ---  ---  ---  ---    ---------------
+   1194          *                                1    x    x    x    x    x    x    x            0
+   1195          *                                0    1    x    x    x    x    x    x            1
+   1196          *                                0    0    1    x    x    x    x    x            2
+   1197          *                                0    0    0    1    x    x    x    x            3
+   1198          *                                0    0    0    0    1    x    x    x            4
+   1199          *                                0    0    0    0    0    1    x    x            5
+   1200          *                                0    0    0    0    0    0    1    x            6
+   1201          *                                0    0    0    0    0    0    0    1            7
+   1202          *                                0    0    0    0    0    0    0    0            8
+   1203          *
+   1204          *
+   1205          *                   See also 'CPU COUNT LEAD ZEROs LOOKUP TABLE  Note #1'.
+   1206          *********************************************************************************************************
+   1207          */
+   1208          
+   1209          #if (CPU_CFG_DATA_SIZE_MAX >= CPU_WORD_SIZE_08)
+
+   \                                 In section .text, align 2, keep-with-next
+   1210          CPU_DATA  CPU_CntLeadZeros08 (CPU_INT08U  val)
+   1211          {
+   \                     CPU_CntLeadZeros08:
+   \   00000000   0xB538             PUSH     {R3-R5,LR}
+   \   00000002   0x0004             MOVS     R4,R0
+   1212          #if  (!((defined(CPU_CFG_LEAD_ZEROS_ASM_PRESENT)) && \
+   1213                  (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_08)))
+   1214              CPU_DATA  ix;
+   1215          #endif
+   1216              CPU_DATA  nbr_lead_zeros;
+   1217          
+   1218                                                                                          /* ---------- ASM-OPTIMIZED ----------- */
+   1219          #if ((defined(CPU_CFG_LEAD_ZEROS_ASM_PRESENT)) && \
+   1220               (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_08))
+   1221              nbr_lead_zeros  =  CPU_CntLeadZeros((CPU_DATA)val);
+   \   00000004   0xB2E4             UXTB     R4,R4            ;; ZeroExt  R4,R4,#+24,#+24
+   \   00000006   0x0020             MOVS     R0,R4
+   \   00000008   0x.... 0x....      BL       CPU_CntLeadZeros
+   \   0000000C   0x0005             MOVS     R5,R0
+   1222              nbr_lead_zeros -= (CPU_CFG_DATA_SIZE - CPU_WORD_SIZE_08) * DEF_OCTET_NBR_BITS;
+   \   0000000E   0x3D18             SUBS     R5,R5,#+24
+   1223          
+   1224          
+   1225          #else                                                                           /* ----------- C-OPTIMIZED ------------ */
+   1226                                                                                          /* Chk bits [07:00] :                   */
+   1227                                                                                          /* .. Nbr lead zeros =               .. */
+   1228              ix              = (CPU_DATA)(val >>  0u);                                   /* .. lookup tbl ix  = 'val' >>  0 bits */
+   1229              nbr_lead_zeros  = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] +  0u);                /* .. plus nbr msb lead zeros =  0 bits.*/
+   1230          #endif
+   1231          
+   1232          
+   1233              return (nbr_lead_zeros);
+   \   00000010   0x0028             MOVS     R0,R5
+   \   00000012   0xBD32             POP      {R1,R4,R5,PC}    ;; return
+   1234          }
+   1235          #endif
+   1236          
+   1237          
+   1238          /*$PAGE*/
+   1239          /*
+   1240          *********************************************************************************************************
+   1241          *                                        CPU_CntLeadZeros16()
+   1242          *
+   1243          * Description : Count the number of contiguous, most-significant, leading zero bits in a 16-bit data value.
+   1244          *
+   1245          * Argument(s) : val         Data value to count leading zero bits.
+   1246          *
+   1247          * Return(s)   : Number of contiguous, most-significant, leading zero bits in 'val'.
+   1248          *
+   1249          * Caller(s)   : CPU_CntLeadZeros(),
+   1250          *               CPU_CntTrailZeros16(),
+   1251          *               Application.
+   1252          *
+   1253          *               This function is a CPU module application programming interface (API) function & MAY be 
+   1254          *               called by application function(s).
+   1255          *
+   1256          * Note(s)     : (1) Supports 16-bit values :
+   1257          *
+   1258          *                          b15  b14  b13  ...  b04  b03  b02  b01  b00    # Leading Zeros
+   1259          *                          ---  ---  ---       ---  ---  ---  ---  ---    ---------------
+   1260          *                           1    x    x         x    x    x    x    x            0
+   1261          *                           0    1    x         x    x    x    x    x            1
+   1262          *                           0    0    1         x    x    x    x    x            2
+   1263          *                           :    :    :         :    :    :    :    :            :
+   1264          *                           :    :    :         :    :    :    :    :            :
+   1265          *                           0    0    0         1    x    x    x    x           11
+   1266          *                           0    0    0         0    1    x    x    x           12
+   1267          *                           0    0    0         0    0    1    x    x           13
+   1268          *                           0    0    0         0    0    0    1    x           14
+   1269          *                           0    0    0         0    0    0    0    1           15
+   1270          *                           0    0    0         0    0    0    0    0           16
+   1271          *
+   1272          *
+   1273          *                   See also 'CPU COUNT LEAD ZEROs LOOKUP TABLE  Note #1'.
+   1274          *********************************************************************************************************
+   1275          */
+   1276          
+   1277          #if (CPU_CFG_DATA_SIZE_MAX >= CPU_WORD_SIZE_16)
+
+   \                                 In section .text, align 2, keep-with-next
+   1278          CPU_DATA  CPU_CntLeadZeros16 (CPU_INT16U  val)
+   1279          {
+   \                     CPU_CntLeadZeros16:
+   \   00000000   0xB538             PUSH     {R3-R5,LR}
+   \   00000002   0x0004             MOVS     R4,R0
+   1280          #if  (!((defined(CPU_CFG_LEAD_ZEROS_ASM_PRESENT)) && \
+   1281                  (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_16)))
+   1282              CPU_DATA  ix;
+   1283          #endif
+   1284              CPU_DATA  nbr_lead_zeros;
+   1285          
+   1286                                                                                          /* ---------- ASM-OPTIMIZED ----------- */
+   1287          #if ((defined(CPU_CFG_LEAD_ZEROS_ASM_PRESENT)) && \
+   1288               (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_16))
+   1289              nbr_lead_zeros  =  CPU_CntLeadZeros((CPU_DATA)val);
+   \   00000004   0xB2A4             UXTH     R4,R4            ;; ZeroExt  R4,R4,#+16,#+16
+   \   00000006   0x0020             MOVS     R0,R4
+   \   00000008   0x.... 0x....      BL       CPU_CntLeadZeros
+   \   0000000C   0x0005             MOVS     R5,R0
+   1290              nbr_lead_zeros -= (CPU_CFG_DATA_SIZE - CPU_WORD_SIZE_16) * DEF_OCTET_NBR_BITS;
+   \   0000000E   0x3D10             SUBS     R5,R5,#+16
+   1291          
+   1292          
+   1293          #else                                                                           /* ----------- C-OPTIMIZED ------------ */
+   1294              if (val > 0x00FFu) {                                                        /* Chk bits [15:08] :                   */
+   1295                                                                                          /* .. Nbr lead zeros =               .. */
+   1296                  ix             = (CPU_DATA)(val >>  8u);                                /* .. lookup tbl ix  = 'val' >>  8 bits */
+   1297                  nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] +  0u);             /* .. plus nbr msb lead zeros =  0 bits.*/
+   1298          
+   1299              } else {                                                                    /* Chk bits [07:00] :                   */
+   1300                                                                                          /* .. Nbr lead zeros =               .. */
+   1301                  ix             = (CPU_DATA)(val >>  0u);                                /* .. lookup tbl ix  = 'val' >>  0 bits */
+   1302                  nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] +  8u);             /* .. plus nbr msb lead zeros =  8 bits.*/
+   1303              }
+   1304          #endif
+   1305          
+   1306          
+   1307              return (nbr_lead_zeros);
+   \   00000010   0x0028             MOVS     R0,R5
+   \   00000012   0xBD32             POP      {R1,R4,R5,PC}    ;; return
+   1308          }
+   1309          #endif
+   1310          
+   1311          
+   1312          /*$PAGE*/
+   1313          /*
+   1314          *********************************************************************************************************
+   1315          *                                        CPU_CntLeadZeros32()
+   1316          *
+   1317          * Description : Count the number of contiguous, most-significant, leading zero bits in a 32-bit data value.
+   1318          *
+   1319          * Argument(s) : val         Data value to count leading zero bits.
+   1320          *
+   1321          * Return(s)   : Number of contiguous, most-significant, leading zero bits in 'val'.
+   1322          *
+   1323          * Caller(s)   : CPU_CntLeadZeros(),
+   1324          *               CPU_CntTrailZeros32(),
+   1325          *               Application.
+   1326          *
+   1327          *               This function is a CPU module application programming interface (API) function & MAY be 
+   1328          *               called by application function(s).
+   1329          *
+   1330          * Note(s)     : (1) Supports 32-bit values :
+   1331          *
+   1332          *                          b31  b30  b29  ...  b04  b03  b02  b01  b00    # Leading Zeros
+   1333          *                          ---  ---  ---       ---  ---  ---  ---  ---    ---------------
+   1334          *                           1    x    x         x    x    x    x    x            0
+   1335          *                           0    1    x         x    x    x    x    x            1
+   1336          *                           0    0    1         x    x    x    x    x            2
+   1337          *                           :    :    :         :    :    :    :    :            :
+   1338          *                           :    :    :         :    :    :    :    :            :
+   1339          *                           0    0    0         1    x    x    x    x           27
+   1340          *                           0    0    0         0    1    x    x    x           28
+   1341          *                           0    0    0         0    0    1    x    x           29
+   1342          *                           0    0    0         0    0    0    1    x           30
+   1343          *                           0    0    0         0    0    0    0    1           31
+   1344          *                           0    0    0         0    0    0    0    0           32
+   1345          *
+   1346          *
+   1347          *                   See also 'CPU COUNT LEAD ZEROs LOOKUP TABLE  Note #1'.
+   1348          *********************************************************************************************************
+   1349          */
+   1350          
+   1351          #if (CPU_CFG_DATA_SIZE_MAX >= CPU_WORD_SIZE_32)
+
+   \                                 In section .text, align 2, keep-with-next
+   1352          CPU_DATA  CPU_CntLeadZeros32 (CPU_INT32U  val)
+   1353          {
+   \                     CPU_CntLeadZeros32:
+   \   00000000   0xB538             PUSH     {R3-R5,LR}
+   \   00000002   0x0004             MOVS     R4,R0
+   1354          #if  (!((defined(CPU_CFG_LEAD_ZEROS_ASM_PRESENT)) && \
+   1355                  (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_32)))
+   1356              CPU_DATA  ix;
+   1357          #endif
+   1358              CPU_DATA  nbr_lead_zeros;
+   1359          
+   1360                                                                                          /* ---------- ASM-OPTIMIZED ----------- */
+   1361          #if ((defined(CPU_CFG_LEAD_ZEROS_ASM_PRESENT)) && \
+   1362               (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_32))
+   1363              nbr_lead_zeros  =  CPU_CntLeadZeros((CPU_DATA)val);
+   \   00000004   0x0020             MOVS     R0,R4
+   \   00000006   0x.... 0x....      BL       CPU_CntLeadZeros
+   \   0000000A   0x0005             MOVS     R5,R0
+   1364              nbr_lead_zeros -= (CPU_CFG_DATA_SIZE - CPU_WORD_SIZE_32) * DEF_OCTET_NBR_BITS;
+   1365          
+   1366          
+   1367          #else                                                                           /* ----------- C-OPTIMIZED ------------ */
+   1368              if (val > 0x0000FFFFu) {
+   1369                  if (val > 0x00FFFFFFu) {                                                /* Chk bits [31:24] :                   */
+   1370                                                                                          /* .. Nbr lead zeros =               .. */
+   1371                      ix             = (CPU_DATA)(val >> 24u);                            /* .. lookup tbl ix  = 'val' >> 24 bits */
+   1372                      nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] +  0u);         /* .. plus nbr msb lead zeros =  0 bits.*/
+   1373          
+   1374                  } else {                                                                /* Chk bits [23:16] :                   */
+   1375                                                                                          /* .. Nbr lead zeros =               .. */
+   1376                      ix             = (CPU_DATA)(val >> 16u);                            /* .. lookup tbl ix  = 'val' >> 16 bits */
+   1377                      nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] +  8u);         /* .. plus nbr msb lead zeros =  8 bits.*/
+   1378                  }
+   1379          
+   1380              } else {
+   1381                  if (val > 0x000000FFu) {                                                /* Chk bits [15:08] :                   */
+   1382                                                                                          /* .. Nbr lead zeros =               .. */
+   1383                      ix             = (CPU_DATA)(val >>  8u);                            /* .. lookup tbl ix  = 'val' >>  8 bits */
+   1384                      nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] + 16u);         /* .. plus nbr msb lead zeros = 16 bits.*/
+   1385          
+   1386                  } else {                                                                /* Chk bits [07:00] :                   */
+   1387                                                                                          /* .. Nbr lead zeros =               .. */
+   1388                      ix             = (CPU_DATA)(val >>  0u);                            /* .. lookup tbl ix  = 'val' >>  0 bits */
+   1389                      nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] + 24u);         /* .. plus nbr msb lead zeros = 24 bits.*/
+   1390                  }
+   1391              }
+   1392          #endif
+   1393          
+   1394          
+   1395              return (nbr_lead_zeros);
+   \   0000000C   0x0028             MOVS     R0,R5
+   \   0000000E   0xBD32             POP      {R1,R4,R5,PC}    ;; return
+   1396          }
+   1397          #endif
+   1398          
+   1399          
+   1400          /*$PAGE*/
+   1401          /*
+   1402          *********************************************************************************************************
+   1403          *                                        CPU_CntLeadZeros64()
+   1404          *
+   1405          * Description : Count the number of contiguous, most-significant, leading zero bits in a 64-bit data value.
+   1406          *
+   1407          * Argument(s) : val         Data value to count leading zero bits.
+   1408          *
+   1409          * Return(s)   : Number of contiguous, most-significant, leading zero bits in 'val'.
+   1410          *
+   1411          * Caller(s)   : CPU_CntLeadZeros(),
+   1412          *               CPU_CntTrailZeros64(),
+   1413          *               Application.
+   1414          *
+   1415          *               This function is a CPU module application programming interface (API) function & MAY be 
+   1416          *               called by application function(s).
+   1417          *
+   1418          * Note(s)     : (1) Supports 64-bit values :
+   1419          *
+   1420          *                          b63  b62  b61  ...  b04  b03  b02  b01  b00    # Leading Zeros
+   1421          *                          ---  ---  ---       ---  ---  ---  ---  ---    ---------------
+   1422          *                           1    x    x         x    x    x    x    x            0
+   1423          *                           0    1    x         x    x    x    x    x            1
+   1424          *                           0    0    1         x    x    x    x    x            2
+   1425          *                           :    :    :         :    :    :    :    :            :
+   1426          *                           :    :    :         :    :    :    :    :            :
+   1427          *                           0    0    0         1    x    x    x    x           59
+   1428          *                           0    0    0         0    1    x    x    x           60
+   1429          *                           0    0    0         0    0    1    x    x           61
+   1430          *                           0    0    0         0    0    0    1    x           62
+   1431          *                           0    0    0         0    0    0    0    1           63
+   1432          *                           0    0    0         0    0    0    0    0           64
+   1433          *
+   1434          *
+   1435          *                   See also 'CPU COUNT LEAD ZEROs LOOKUP TABLE  Note #1'.
+   1436          *********************************************************************************************************
+   1437          */
+   1438          /*$PAGE*/
+   1439          #if (CPU_CFG_DATA_SIZE_MAX >= CPU_WORD_SIZE_64)
+
+   \                                 In section .text, align 2, keep-with-next
+   1440          CPU_DATA  CPU_CntLeadZeros64 (CPU_INT64U  val)
+   1441          {
+   \                     CPU_CntLeadZeros64:
+   \   00000000   0xB5F0             PUSH     {R4-R7,LR}
+   \   00000002   0x0006             MOVS     R6,R0
+   \   00000004   0x000F             MOVS     R7,R1
+   1442          #if  (!((defined(CPU_CFG_LEAD_ZEROS_ASM_PRESENT)) && \
+   1443                  (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_64)))
+   1444              CPU_DATA  ix;
+   1445          #endif
+   1446              CPU_DATA  nbr_lead_zeros;
+   1447          
+   1448                                                                                          /* ---------- ASM-OPTIMIZED ----------- */
+   1449          #if ((defined(CPU_CFG_LEAD_ZEROS_ASM_PRESENT)) && \
+   1450               (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_64))
+   1451              nbr_lead_zeros  =  CPU_CntLeadZeros((CPU_DATA)val);
+   1452              nbr_lead_zeros -= (CPU_CFG_DATA_SIZE - CPU_WORD_SIZE_64) * DEF_OCTET_NBR_BITS;
+   1453          
+   1454          
+   1455          #else                                                                           /* ----------- C-OPTIMIZED ------------ */
+   1456              if (val > 0x00000000FFFFFFFFu) {
+   \   00000006   0x2F01             CMP      R7,#+1
+   \   00000008   0xD33A             BCC.N    ??CPU_CntLeadZeros64_0
+   \   0000000A   0xD801             BHI.N    ??CPU_CntLeadZeros64_1
+   \   0000000C   0x2E00             CMP      R6,#+0
+   \   0000000E   0xD337             BCC.N    ??CPU_CntLeadZeros64_0
+   1457                  if (val > 0x0000FFFFFFFFFFFFu) {
+   \                     ??CPU_CntLeadZeros64_1:
+   \   00000010   0xF5B7 0x3F80      CMP      R7,#+65536
+   \   00000014   0xD31D             BCC.N    ??CPU_CntLeadZeros64_2
+   \   00000016   0xD801             BHI.N    ??CPU_CntLeadZeros64_3
+   \   00000018   0x2E00             CMP      R6,#+0
+   \   0000001A   0xD31A             BCC.N    ??CPU_CntLeadZeros64_2
+   1458                      if (val > 0x00FFFFFFFFFFFFFFu) {                                    /* Chk bits [63:56] :                   */
+   \                     ??CPU_CntLeadZeros64_3:
+   \   0000001C   0xF1B7 0x7F80      CMP      R7,#+16777216
+   \   00000020   0xD30C             BCC.N    ??CPU_CntLeadZeros64_4
+   \   00000022   0xD801             BHI.N    ??CPU_CntLeadZeros64_5
+   \   00000024   0x2E00             CMP      R6,#+0
+   \   00000026   0xD309             BCC.N    ??CPU_CntLeadZeros64_4
+   1459                                                                                          /* .. Nbr lead zeros =               .. */
+   1460                          ix             = (CPU_DATA)(val >> 56u);                        /* .. lookup tbl ix  = 'val' >> 56 bits */
+   \                     ??CPU_CntLeadZeros64_5:
+   \   00000028   0x0030             MOVS     R0,R6
+   \   0000002A   0x0039             MOVS     R1,R7
+   \   0000002C   0x2238             MOVS     R2,#+56
+   \   0000002E   0x.... 0x....      BL       __aeabi_llsr
+   \   00000032   0x0005             MOVS     R5,R0
+   1461                          nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] +  0u);     /* .. plus nbr msb lead zeros =  0 bits.*/
+   \   00000034   0x....             LDR.N    R0,??DataTable3_1
+   \   00000036   0x5C28             LDRB     R0,[R5, R0]
+   \   00000038   0x0004             MOVS     R4,R0
+   \   0000003A   0xE05C             B.N      ??CPU_CntLeadZeros64_6
+   1462          
+   1463                      } else {                                                            /* Chk bits [55:48] :                   */
+   1464                                                                                          /* .. Nbr lead zeros =               .. */
+   1465                          ix             = (CPU_DATA)(val >> 48u);                        /* .. lookup tbl ix  = 'val' >> 48 bits */
+   \                     ??CPU_CntLeadZeros64_4:
+   \   0000003C   0x0030             MOVS     R0,R6
+   \   0000003E   0x0039             MOVS     R1,R7
+   \   00000040   0x2230             MOVS     R2,#+48
+   \   00000042   0x.... 0x....      BL       __aeabi_llsr
+   \   00000046   0x0005             MOVS     R5,R0
+   1466                          nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] +  8u);     /* .. plus nbr msb lead zeros =  8 bits.*/
+   \   00000048   0x....             LDR.N    R0,??DataTable3_1
+   \   0000004A   0x5C28             LDRB     R0,[R5, R0]
+   \   0000004C   0x3008             ADDS     R0,R0,#+8
+   \   0000004E   0x0004             MOVS     R4,R0
+   \   00000050   0xE051             B.N      ??CPU_CntLeadZeros64_6
+   1467                      }
+   1468          
+   1469                  } else {
+   1470                      if (val > 0x000000FFFFFFFFFFu) {                                    /* Chk bits [47:40] :                   */
+   \                     ??CPU_CntLeadZeros64_2:
+   \   00000052   0xF5B7 0x7F80      CMP      R7,#+256
+   \   00000056   0xD30D             BCC.N    ??CPU_CntLeadZeros64_7
+   \   00000058   0xD801             BHI.N    ??CPU_CntLeadZeros64_8
+   \   0000005A   0x2E00             CMP      R6,#+0
+   \   0000005C   0xD30A             BCC.N    ??CPU_CntLeadZeros64_7
+   1471                                                                                          /* .. Nbr lead zeros =               .. */
+   1472                          ix             = (CPU_DATA)(val >> 40u);                        /* .. lookup tbl ix  = 'val' >> 40 bits */
+   \                     ??CPU_CntLeadZeros64_8:
+   \   0000005E   0x0030             MOVS     R0,R6
+   \   00000060   0x0039             MOVS     R1,R7
+   \   00000062   0x2228             MOVS     R2,#+40
+   \   00000064   0x.... 0x....      BL       __aeabi_llsr
+   \   00000068   0x0005             MOVS     R5,R0
+   1473                          nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] + 16u);     /* .. plus nbr msb lead zeros = 16 bits.*/
+   \   0000006A   0x....             LDR.N    R0,??DataTable3_1
+   \   0000006C   0x5C28             LDRB     R0,[R5, R0]
+   \   0000006E   0x3010             ADDS     R0,R0,#+16
+   \   00000070   0x0004             MOVS     R4,R0
+   \   00000072   0xE040             B.N      ??CPU_CntLeadZeros64_6
+   1474          
+   1475                      } else {                                                            /* Chk bits [39:32] :                   */
+   1476                                                                                          /* .. Nbr lead zeros =               .. */
+   1477                          ix             = (CPU_DATA)(val >> 32u);                        /* .. lookup tbl ix  = 'val' >> 32 bits */
+   \                     ??CPU_CntLeadZeros64_7:
+   \   00000074   0x003D             MOVS     R5,R7
+   1478                          nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] + 24u);     /* .. plus nbr msb lead zeros = 24 bits.*/
+   \   00000076   0x....             LDR.N    R0,??DataTable3_1
+   \   00000078   0x5C28             LDRB     R0,[R5, R0]
+   \   0000007A   0x3018             ADDS     R0,R0,#+24
+   \   0000007C   0x0004             MOVS     R4,R0
+   \   0000007E   0xE03A             B.N      ??CPU_CntLeadZeros64_6
+   1479                      }
+   1480                  }
+   1481          
+   1482              } else {
+   1483                  if (val > 0x000000000000FFFFu) {
+   \                     ??CPU_CntLeadZeros64_0:
+   \   00000080   0x2F00             CMP      R7,#+0
+   \   00000082   0xD321             BCC.N    ??CPU_CntLeadZeros64_9
+   \   00000084   0xD802             BHI.N    ??CPU_CntLeadZeros64_10
+   \   00000086   0xF5B6 0x3F80      CMP      R6,#+65536
+   \   0000008A   0xD31D             BCC.N    ??CPU_CntLeadZeros64_9
+   1484                      if (val > 0x0000000000FFFFFFu) {                                    /* Chk bits [31:24] :                   */
+   \                     ??CPU_CntLeadZeros64_10:
+   \   0000008C   0x2F00             CMP      R7,#+0
+   \   0000008E   0xD30F             BCC.N    ??CPU_CntLeadZeros64_11
+   \   00000090   0xD802             BHI.N    ??CPU_CntLeadZeros64_12
+   \   00000092   0xF1B6 0x7F80      CMP      R6,#+16777216
+   \   00000096   0xD30B             BCC.N    ??CPU_CntLeadZeros64_11
+   1485                                                                                          /* .. Nbr lead zeros =               .. */
+   1486                          ix             = (CPU_DATA)(val >> 24u);                        /* .. lookup tbl ix  = 'val' >> 24 bits */
+   \                     ??CPU_CntLeadZeros64_12:
+   \   00000098   0x0030             MOVS     R0,R6
+   \   0000009A   0x0039             MOVS     R1,R7
+   \   0000009C   0x0E00             LSRS     R0,R0,#+24
+   \   0000009E   0xEA40 0x2001      ORR      R0,R0,R1, LSL #+8
+   \   000000A2   0x0E09             LSRS     R1,R1,#+24
+   \   000000A4   0x0005             MOVS     R5,R0
+   1487                          nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] + 32u);     /* .. plus nbr msb lead zeros = 32 bits.*/
+   \   000000A6   0x....             LDR.N    R0,??DataTable3_1
+   \   000000A8   0x5C28             LDRB     R0,[R5, R0]
+   \   000000AA   0x3020             ADDS     R0,R0,#+32
+   \   000000AC   0x0004             MOVS     R4,R0
+   \   000000AE   0xE022             B.N      ??CPU_CntLeadZeros64_6
+   1488          
+   1489                      } else {                                                            /* Chk bits [23:16] :                   */
+   1490                                                                                          /* .. Nbr lead zeros =               .. */
+   1491                          ix             = (CPU_DATA)(val >> 16u);                        /* .. lookup tbl ix  = 'val' >> 16 bits */
+   \                     ??CPU_CntLeadZeros64_11:
+   \   000000B0   0x0030             MOVS     R0,R6
+   \   000000B2   0x0039             MOVS     R1,R7
+   \   000000B4   0x0C00             LSRS     R0,R0,#+16
+   \   000000B6   0xEA40 0x4001      ORR      R0,R0,R1, LSL #+16
+   \   000000BA   0x0C09             LSRS     R1,R1,#+16
+   \   000000BC   0x0005             MOVS     R5,R0
+   1492                          nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] + 40u);     /* .. plus nbr msb lead zeros = 40 bits.*/
+   \   000000BE   0x....             LDR.N    R0,??DataTable3_1
+   \   000000C0   0x5C28             LDRB     R0,[R5, R0]
+   \   000000C2   0x3028             ADDS     R0,R0,#+40
+   \   000000C4   0x0004             MOVS     R4,R0
+   \   000000C6   0xE016             B.N      ??CPU_CntLeadZeros64_6
+   1493                      }
+   1494          
+   1495                  } else {
+   1496                      if (val > 0x00000000000000FFu) {                                    /* Chk bits [15:08] :                   */
+   \                     ??CPU_CntLeadZeros64_9:
+   \   000000C8   0x2F00             CMP      R7,#+0
+   \   000000CA   0xD30F             BCC.N    ??CPU_CntLeadZeros64_13
+   \   000000CC   0xD802             BHI.N    ??CPU_CntLeadZeros64_14
+   \   000000CE   0xF5B6 0x7F80      CMP      R6,#+256
+   \   000000D2   0xD30B             BCC.N    ??CPU_CntLeadZeros64_13
+   1497                                                                                          /* .. Nbr lead zeros =               .. */
+   1498                          ix             = (CPU_DATA)(val >>  8u);                        /* .. lookup tbl ix  = 'val' >>  8 bits */
+   \                     ??CPU_CntLeadZeros64_14:
+   \   000000D4   0x0030             MOVS     R0,R6
+   \   000000D6   0x0039             MOVS     R1,R7
+   \   000000D8   0x0A00             LSRS     R0,R0,#+8
+   \   000000DA   0xEA40 0x6001      ORR      R0,R0,R1, LSL #+24
+   \   000000DE   0x0A09             LSRS     R1,R1,#+8
+   \   000000E0   0x0005             MOVS     R5,R0
+   1499                          nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] + 48u);     /* .. plus nbr msb lead zeros = 48 bits.*/
+   \   000000E2   0x....             LDR.N    R0,??DataTable3_1
+   \   000000E4   0x5C28             LDRB     R0,[R5, R0]
+   \   000000E6   0x3030             ADDS     R0,R0,#+48
+   \   000000E8   0x0004             MOVS     R4,R0
+   \   000000EA   0xE004             B.N      ??CPU_CntLeadZeros64_6
+   1500          
+   1501                      } else {                                                            /* Chk bits [07:00] :                   */
+   1502                                                                                          /* .. Nbr lead zeros =               .. */
+   1503                          ix             = (CPU_DATA)(val >>  0u);                        /* .. lookup tbl ix  = 'val' >>  0 bits */
+   \                     ??CPU_CntLeadZeros64_13:
+   \   000000EC   0x0035             MOVS     R5,R6
+   1504                          nbr_lead_zeros = (CPU_DATA)(CPU_CntLeadZerosTbl[ix] + 56u);     /* .. plus nbr msb lead zeros = 56 bits.*/
+   \   000000EE   0x....             LDR.N    R0,??DataTable3_1
+   \   000000F0   0x5C28             LDRB     R0,[R5, R0]
+   \   000000F2   0x3038             ADDS     R0,R0,#+56
+   \   000000F4   0x0004             MOVS     R4,R0
+   1505                      }
+   1506                  }
+   1507              }
+   1508          #endif
+   1509          
+   1510          
+   1511              return (nbr_lead_zeros);
+   \                     ??CPU_CntLeadZeros64_6:
+   \   000000F6   0x0020             MOVS     R0,R4
+   \   000000F8   0xBDF0             POP      {R4-R7,PC}       ;; return
+   1512          }
+   1513          #endif
+   1514          
+   1515          
+   1516          /*$PAGE*/
+   1517          /*
+   1518          *********************************************************************************************************
+   1519          *                                         CPU_CntTrailZeros()
+   1520          *
+   1521          * Description : Count the number of contiguous, least-significant, trailing zero bits in a data value.
+   1522          *
+   1523          * Argument(s) : val         Data value to count trailing zero bits.
+   1524          *
+   1525          * Return(s)   : Number of contiguous, least-significant, trailing zero bits in 'val'.
+   1526          *
+   1527          * Caller(s)   : Application.
+   1528          *
+   1529          *               This function is a CPU module application programming interface (API) function & MAY 
+   1530          *               be called by application function(s).
+   1531          *
+   1532          * Note(s)     : (1) (a) Supports the following data value sizes :
+   1533          *
+   1534          *                       (1)  8-bits
+   1535          *                       (2) 16-bits
+   1536          *                       (3) 32-bits
+   1537          *                       (4) 64-bits
+   1538          *
+   1539          *                       See also 'cpu_def.h  CPU WORD CONFIGURATION  Note #1'.
+   1540          *
+   1541          *                   (b) (1) For  8-bit values :
+   1542          *
+   1543          *                                  b07  b06  b05  b04  b03  b02  b01  b00    # Trailing Zeros
+   1544          *                                  ---  ---  ---  ---  ---  ---  ---  ---    ----------------
+   1545          *                                   x    x    x    x    x    x    x    1            0
+   1546          *                                   x    x    x    x    x    x    1    0            1
+   1547          *                                   x    x    x    x    x    1    0    0            2
+   1548          *                                   x    x    x    x    1    0    0    0            3
+   1549          *                                   x    x    x    1    0    0    0    0            4
+   1550          *                                   x    x    1    0    0    0    0    0            5
+   1551          *                                   x    1    0    0    0    0    0    0            6
+   1552          *                                   1    0    0    0    0    0    0    0            7
+   1553          *                                   0    0    0    0    0    0    0    0            8
+   1554          *
+   1555          *
+   1556          *                       (2) For 16-bit values :
+   1557          *
+   1558          *                             b15  b14  b13  b12  b11  ...  b02  b01  b00    # Trailing Zeros
+   1559          *                             ---  ---  ---  ---  ---       ---  ---  ---    ----------------
+   1560          *                              x    x    x    x    x         x    x    1            0
+   1561          *                              x    x    x    x    x         x    1    0            1
+   1562          *                              x    x    x    x    x         1    0    0            2
+   1563          *                              :    :    :    :    :         :    :    :            :
+   1564          *                              :    :    :    :    :         :    :    :            :
+   1565          *                              x    x    x    x    1         0    0    0           11
+   1566          *                              x    x    x    1    0         0    0    0           12
+   1567          *                              x    x    1    0    0         0    0    0           13
+   1568          *                              x    1    0    0    0         0    0    0           14
+   1569          *                              1    0    0    0    0         0    0    0           15
+   1570          *                              0    0    0    0    0         0    0    0           16
+   1571          *
+   1572          *
+   1573          *                       (3) For 32-bit values :
+   1574          *
+   1575          *                             b31  b30  b29  b28  b27  ...  b02  b01  b00    # Trailing Zeros
+   1576          *                             ---  ---  ---  ---  ---       ---  ---  ---    ----------------
+   1577          *                              x    x    x    x    x         x    x    1            0
+   1578          *                              x    x    x    x    x         x    1    0            1
+   1579          *                              x    x    x    x    x         1    0    0            2
+   1580          *                              :    :    :    :    :         :    :    :            :
+   1581          *                              :    :    :    :    :         :    :    :            :
+   1582          *                              x    x    x    x    1         0    0    0           27
+   1583          *                              x    x    x    1    0         0    0    0           28
+   1584          *                              x    x    1    0    0         0    0    0           29
+   1585          *                              x    1    0    0    0         0    0    0           30
+   1586          *                              1    0    0    0    0         0    0    0           31
+   1587          *                              0    0    0    0    0         0    0    0           32
+   1588          *
+   1589          *
+   1590          *                       (4) For 64-bit values :
+   1591          *
+   1592          *                             b63  b62  b61  b60  b59  ...  b02  b01  b00    # Trailing Zeros
+   1593          *                             ---  ---  ---  ---  ---       ---  ---  ---    ----------------
+   1594          *                              x    x    x    x    x         x    x    1            0
+   1595          *                              x    x    x    x    x         x    1    0            1
+   1596          *                              x    x    x    x    x         1    0    0            2
+   1597          *                              :    :    :    :    :         :    :    :            :
+   1598          *                              :    :    :    :    :         :    :    :            :
+   1599          *                              x    x    x    x    1         0    0    0           59
+   1600          *                              x    x    x    1    0         0    0    0           60
+   1601          *                              x    x    1    0    0         0    0    0           61
+   1602          *                              x    1    0    0    0         0    0    0           62
+   1603          *                              1    0    0    0    0         0    0    0           63
+   1604          *                              0    0    0    0    0         0    0    0           64
+   1605          *
+   1606          *$PAGE*
+   1607          *               (2) For non-zero values, the returned number of contiguous, least-significant, trailing 
+   1608          *                   zero bits is also equivalent to the bit position of the least-significant set bit.
+   1609          *
+   1610          *               (3) 'val' SHOULD be validated for non-'0' PRIOR to all other counting zero calculations :
+   1611          *
+   1612          *                   (a) CPU_CntTrailZeros()'s final conditional statement calculates 'val's number of 
+   1613          *                       trailing zeros based on its return data size, 'CPU_CFG_DATA_SIZE', & 'val's 
+   1614          *                       calculated number of lead zeros ONLY if the initial 'val' is non-'0' :
+   1615          *
+   1616          *                           if (val != 0u) {
+   1617          *                               nbr_trail_zeros = ((CPU_CFG_DATA_SIZE * DEF_OCTET_NBR_BITS) - 1u) - nbr_lead_zeros;
+   1618          *                           } else {
+   1619          *                               nbr_trail_zeros = nbr_lead_zeros;
+   1620          *                           }
+   1621          *
+   1622          *                       Therefore, initially validating all non-'0' values avoids having to conditionally 
+   1623          *                       execute the final 'if' statement.
+   1624          *********************************************************************************************************
+   1625          */
+   1626          
+   1627          #ifndef   CPU_CFG_TRAIL_ZEROS_ASM_PRESENT
+   1628          CPU_DATA  CPU_CntTrailZeros (CPU_DATA  val)
+   1629          {
+   1630              CPU_DATA  val_bit_mask;
+   1631              CPU_DATA  nbr_lead_zeros;
+   1632              CPU_DATA  nbr_trail_zeros;
+   1633          
+   1634          
+   1635              if (val == 0u) {                                            /* Rtn ALL val bits as zero'd (see Note #3).            */
+   1636                  return (CPU_CFG_DATA_SIZE * DEF_OCTET_NBR_BITS);
+   1637              }
+   1638          
+   1639          
+   1640              val_bit_mask    = val & ((CPU_DATA)~val + 1u);              /* Zero/clr all bits EXCEPT least-sig set bit.          */
+   1641              nbr_lead_zeros  = CPU_CntLeadZeros(val_bit_mask);           /* Cnt  nbr lead  0s.                                   */
+   1642                                                                          /* Calc nbr trail 0s = (nbr val bits - 1) - nbr lead 0s.*/
+   1643              nbr_trail_zeros = ((CPU_CFG_DATA_SIZE * DEF_OCTET_NBR_BITS) - 1u) - nbr_lead_zeros;
+   1644          
+   1645          
+   1646              return (nbr_trail_zeros);
+   1647          }
+   1648          #endif
+   1649          
+   1650          
+   1651          /*$PAGE*/
+   1652          /*
+   1653          *********************************************************************************************************
+   1654          *                                        CPU_CntTrailZeros08()
+   1655          *
+   1656          * Description : Count the number of contiguous, least-significant, trailing zero bits in an 8-bit data value.
+   1657          *
+   1658          * Argument(s) : val         Data value to count trailing zero bits.
+   1659          *
+   1660          * Return(s)   : Number of contiguous, least-significant, trailing zero bits in 'val'.
+   1661          *
+   1662          * Caller(s)   : Application.
+   1663          *
+   1664          *               This function is a CPU module application programming interface (API) function & MAY be 
+   1665          *               called by application function(s).
+   1666          *
+   1667          * Note(s)     : (1) Supports  8-bit values :
+   1668          *
+   1669          *                               b07  b06  b05  b04  b03  b02  b01  b00    # Trailing Zeros
+   1670          *                               ---  ---  ---  ---  ---  ---  ---  ---    ----------------
+   1671          *                                x    x    x    x    x    x    x    1            0
+   1672          *                                x    x    x    x    x    x    1    0            1
+   1673          *                                x    x    x    x    x    1    0    0            2
+   1674          *                                x    x    x    x    1    0    0    0            3
+   1675          *                                x    x    x    1    0    0    0    0            4
+   1676          *                                x    x    1    0    0    0    0    0            5
+   1677          *                                x    1    0    0    0    0    0    0            6
+   1678          *                                1    0    0    0    0    0    0    0            7
+   1679          *                                0    0    0    0    0    0    0    0            8
+   1680          *
+   1681          *
+   1682          *               (2) For non-zero values, the returned number of contiguous, least-significant, trailing 
+   1683          *                   zero bits is also equivalent to the bit position of the least-significant set bit.
+   1684          *
+   1685          *               (3) 'val' SHOULD be validated for non-'0' PRIOR to all other counting zero calculations :
+   1686          *
+   1687          *                   (a) For assembly-optimized implementations, CPU_CntTrailZeros() returns 'val's 
+   1688          *                       number of trailing zeros via CPU's native data size, 'CPU_CFG_DATA_SIZE'.  
+   1689          *                       If the returned number of zeros exceeds CPU_CntTrailZeros08()'s  8-bit return 
+   1690          *                       data size, then the returned number of zeros must be offset by the difference 
+   1691          *                       between CPU_CntTrailZeros()'s  & CPU_CntTrailZeros08()'s return data size :
+   1692          *
+   1693          *                           nbr_trail_zeros = CPU_CntTrailZeros((CPU_DATA)val);
+   1694          *                           if (nbr_trail_zeros >  (CPU_WORD_SIZE_08  * DEF_OCTET_NBR_BITS)) {
+   1695          *                               nbr_trail_zeros -= (CPU_CFG_DATA_SIZE - CPU_WORD_SIZE_08) * DEF_OCTET_NBR_BITS;
+   1696          *                           }
+   1697          *
+   1698          *                       However, this ONLY occurs for an initial 'val' of '0' since all non-'0'  8-bit 
+   1699          *                       values would return a number of trailing zeros less than or equal to  8 bits.
+   1700          *
+   1701          *                       Therefore, initially validating all non-'0' values prior to calling assembly-
+   1702          *                       optimized CPU_CntTrailZeros() avoids having to offset the number of returned 
+   1703          *                       trailing zeros by the difference in CPU data size and  8-bit data value bits.
+   1704          *
+   1705          *                   (b) For CPU_CntTrailZeros08()'s C implementation, the final conditional statement 
+   1706          *                       calculates 'val's number of trailing zeros based on CPU_CntTrailZeros08()'s 
+   1707          *                        8-bit return data size & 'val's calculated number of lead zeros ONLY if the 
+   1708          *                       initial 'val' is non-'0' :
+   1709          *
+   1710          *                           if (val != 0u) {
+   1711          *                               nbr_trail_zeros = ((CPU_WORD_SIZE_08 * DEF_OCTET_NBR_BITS) - 1u) - nbr_lead_zeros;
+   1712          *                           } else {
+   1713          *                               nbr_trail_zeros = nbr_lead_zeros;
+   1714          *                           }
+   1715          *
+   1716          *                       Therefore, initially validating all non-'0' values avoids having to conditionally 
+   1717          *                       execute the final 'if' statement.
+   1718          *********************************************************************************************************
+   1719          */
+   1720          /*$PAGE*/
+   1721          #if (CPU_CFG_DATA_SIZE_MAX >= CPU_WORD_SIZE_08)
+
+   \                                 In section .text, align 2, keep-with-next
+   1722          CPU_DATA  CPU_CntTrailZeros08 (CPU_INT08U  val)
+   1723          {
+   \                     CPU_CntTrailZeros08:
+   \   00000000   0xB538             PUSH     {R3-R5,LR}
+   \   00000002   0x0004             MOVS     R4,R0
+   1724          #if  (!((defined(CPU_CFG_TRAIL_ZEROS_ASM_PRESENT)) && \
+   1725                  (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_08)))
+   1726              CPU_INT08U  val_bit_mask;
+   1727              CPU_DATA    nbr_lead_zeros;
+   1728          #endif
+   1729              CPU_DATA    nbr_trail_zeros;
+   1730          
+   1731          
+   1732              if (val == 0u) {                                            /* Rtn ALL val bits as zero'd (see Note #3).            */
+   \   00000004   0xB2E4             UXTB     R4,R4            ;; ZeroExt  R4,R4,#+24,#+24
+   \   00000006   0x2C00             CMP      R4,#+0
+   \   00000008   0xD101             BNE.N    ??CPU_CntTrailZeros08_0
+   1733                  return (CPU_WORD_SIZE_08 * DEF_OCTET_NBR_BITS);
+   \   0000000A   0x2008             MOVS     R0,#+8
+   \   0000000C   0xE005             B.N      ??CPU_CntTrailZeros08_1
+   1734              }
+   1735          
+   1736                                                                          /* ------------------ ASM-OPTIMIZED ------------------- */
+   1737          #if ((defined(CPU_CFG_TRAIL_ZEROS_ASM_PRESENT)) && \
+   1738               (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_08))
+   1739              nbr_trail_zeros = CPU_CntTrailZeros((CPU_DATA)val);
+   \                     ??CPU_CntTrailZeros08_0:
+   \   0000000E   0xB2E4             UXTB     R4,R4            ;; ZeroExt  R4,R4,#+24,#+24
+   \   00000010   0x0020             MOVS     R0,R4
+   \   00000012   0x.... 0x....      BL       CPU_CntTrailZeros
+   \   00000016   0x0005             MOVS     R5,R0
+   1740          
+   1741          #else                                                           /* ------------------- C-OPTIMIZED -------------------- */
+   1742              val_bit_mask    = val & ((CPU_INT08U)~val + 1u);            /* Zero/clr all bits EXCEPT least-sig set bit.          */
+   1743              nbr_lead_zeros  = CPU_CntLeadZeros08(val_bit_mask);         /* Cnt  nbr lead  0s.                                   */
+   1744                                                                          /* Calc nbr trail 0s = (nbr val bits - 1) - nbr lead 0s.*/
+   1745              nbr_trail_zeros = ((CPU_WORD_SIZE_08 * DEF_OCTET_NBR_BITS) - 1u) - nbr_lead_zeros;
+   1746          #endif
+   1747          
+   1748          
+   1749              return (nbr_trail_zeros);
+   \   00000018   0x0028             MOVS     R0,R5
+   \                     ??CPU_CntTrailZeros08_1:
+   \   0000001A   0xBD32             POP      {R1,R4,R5,PC}    ;; return
+   1750          }
+   1751          #endif
+   1752          
+   1753          
+   1754          /*$PAGE*/
+   1755          /*
+   1756          *********************************************************************************************************
+   1757          *                                        CPU_CntTrailZeros16()
+   1758          *
+   1759          * Description : Count the number of contiguous, least-significant, trailing zero bits in a 16-bit data value.
+   1760          *
+   1761          * Argument(s) : val         Data value to count trailing zero bits.
+   1762          *
+   1763          * Return(s)   : Number of contiguous, least-significant, trailing zero bits in 'val'.
+   1764          *
+   1765          * Caller(s)   : Application.
+   1766          *
+   1767          *               This function is a CPU module application programming interface (API) function & MAY be 
+   1768          *               called by application function(s).
+   1769          *
+   1770          * Note(s)     : (1) Supports 16-bit values :
+   1771          *
+   1772          *                          b15  b14  b13  b12  b11  ...  b02  b01  b00    # Trailing Zeros
+   1773          *                          ---  ---  ---  ---  ---       ---  ---  ---    ----------------
+   1774          *                           x    x    x    x    x         x    x    1            0
+   1775          *                           x    x    x    x    x         x    1    0            1
+   1776          *                           x    x    x    x    x         1    0    0            2
+   1777          *                           :    :    :    :    :         :    :    :            :
+   1778          *                           :    :    :    :    :         :    :    :            :
+   1779          *                           x    x    x    x    1         0    0    0           11
+   1780          *                           x    x    x    1    0         0    0    0           12
+   1781          *                           x    x    1    0    0         0    0    0           13
+   1782          *                           x    1    0    0    0         0    0    0           14
+   1783          *                           1    0    0    0    0         0    0    0           15
+   1784          *                           0    0    0    0    0         0    0    0           16
+   1785          *
+   1786          *
+   1787          *               (2) For non-zero values, the returned number of contiguous, least-significant, trailing 
+   1788          *                   zero bits is also equivalent to the bit position of the least-significant set bit.
+   1789          *
+   1790          *               (3) 'val' SHOULD be validated for non-'0' PRIOR to all other counting zero calculations :
+   1791          *
+   1792          *                   (a) For assembly-optimized implementations, CPU_CntTrailZeros() returns 'val's 
+   1793          *                       number of trailing zeros via CPU's native data size, 'CPU_CFG_DATA_SIZE'.  
+   1794          *                       If the returned number of zeros exceeds CPU_CntTrailZeros16()'s 16-bit return 
+   1795          *                       data size, then the returned number of zeros must be offset by the difference 
+   1796          *                       between CPU_CntTrailZeros()'s  & CPU_CntTrailZeros16()'s return data size :
+   1797          *
+   1798          *                           nbr_trail_zeros = CPU_CntTrailZeros((CPU_DATA)val);
+   1799          *                           if (nbr_trail_zeros >  (CPU_WORD_SIZE_16  * DEF_OCTET_NBR_BITS)) {
+   1800          *                               nbr_trail_zeros -= (CPU_CFG_DATA_SIZE - CPU_WORD_SIZE_16) * DEF_OCTET_NBR_BITS;
+   1801          *                           }
+   1802          *
+   1803          *                       However, this ONLY occurs for an initial 'val' of '0' since all non-'0' 16-bit 
+   1804          *                       values would return a number of trailing zeros less than or equal to 16 bits.
+   1805          *
+   1806          *                       Therefore, initially validating all non-'0' values prior to calling assembly-
+   1807          *                       optimized CPU_CntTrailZeros() avoids having to offset the number of returned 
+   1808          *                       trailing zeros by the difference in CPU data size and 16-bit data value bits.
+   1809          *
+   1810          *                   (b) For CPU_CntTrailZeros16()'s C implementation, the final conditional statement 
+   1811          *                       calculates 'val's number of trailing zeros based on CPU_CntTrailZeros16()'s 
+   1812          *                       16-bit return data size & 'val's calculated number of lead zeros ONLY if the 
+   1813          *                       initial 'val' is non-'0' :
+   1814          *
+   1815          *                           if (val != 0u) {
+   1816          *                               nbr_trail_zeros = ((CPU_WORD_SIZE_16 * DEF_OCTET_NBR_BITS) - 1u) - nbr_lead_zeros;
+   1817          *                           } else {
+   1818          *                               nbr_trail_zeros = nbr_lead_zeros;
+   1819          *                           }
+   1820          *
+   1821          *                       Therefore, initially validating all non-'0' values avoids having to conditionally 
+   1822          *                       execute the final 'if' statement.
+   1823          *********************************************************************************************************
+   1824          */
+   1825          /*$PAGE*/
+   1826          #if (CPU_CFG_DATA_SIZE_MAX >= CPU_WORD_SIZE_16)
+
+   \                                 In section .text, align 2, keep-with-next
+   1827          CPU_DATA  CPU_CntTrailZeros16 (CPU_INT16U  val)
+   1828          {
+   \                     CPU_CntTrailZeros16:
+   \   00000000   0xB538             PUSH     {R3-R5,LR}
+   \   00000002   0x0004             MOVS     R4,R0
+   1829          #if  (!((defined(CPU_CFG_TRAIL_ZEROS_ASM_PRESENT)) && \
+   1830                  (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_16)))
+   1831              CPU_INT16U  val_bit_mask;
+   1832              CPU_DATA    nbr_lead_zeros;
+   1833          #endif
+   1834              CPU_DATA    nbr_trail_zeros;
+   1835          
+   1836          
+   1837              if (val == 0u) {                                            /* Rtn ALL val bits as zero'd (see Note #3).            */
+   \   00000004   0xB2A4             UXTH     R4,R4            ;; ZeroExt  R4,R4,#+16,#+16
+   \   00000006   0x2C00             CMP      R4,#+0
+   \   00000008   0xD101             BNE.N    ??CPU_CntTrailZeros16_0
+   1838                  return (CPU_WORD_SIZE_16 * DEF_OCTET_NBR_BITS);
+   \   0000000A   0x2010             MOVS     R0,#+16
+   \   0000000C   0xE005             B.N      ??CPU_CntTrailZeros16_1
+   1839              }
+   1840          
+   1841                                                                          /* ------------------ ASM-OPTIMIZED ------------------- */
+   1842          #if ((defined(CPU_CFG_TRAIL_ZEROS_ASM_PRESENT)) && \
+   1843               (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_16))
+   1844              nbr_trail_zeros = CPU_CntTrailZeros((CPU_DATA)val);
+   \                     ??CPU_CntTrailZeros16_0:
+   \   0000000E   0xB2A4             UXTH     R4,R4            ;; ZeroExt  R4,R4,#+16,#+16
+   \   00000010   0x0020             MOVS     R0,R4
+   \   00000012   0x.... 0x....      BL       CPU_CntTrailZeros
+   \   00000016   0x0005             MOVS     R5,R0
+   1845          
+   1846          #else                                                           /* ------------------- C-OPTIMIZED -------------------- */
+   1847              val_bit_mask    = val & ((CPU_INT16U)~val + 1u);            /* Zero/clr all bits EXCEPT least-sig set bit.          */
+   1848              nbr_lead_zeros  = CPU_CntLeadZeros16(val_bit_mask);         /* Cnt  nbr lead  0s.                                   */
+   1849                                                                          /* Calc nbr trail 0s = (nbr val bits - 1) - nbr lead 0s.*/
+   1850              nbr_trail_zeros = ((CPU_WORD_SIZE_16 * DEF_OCTET_NBR_BITS) - 1u) - nbr_lead_zeros;
+   1851          #endif
+   1852          
+   1853          
+   1854              return (nbr_trail_zeros);
+   \   00000018   0x0028             MOVS     R0,R5
+   \                     ??CPU_CntTrailZeros16_1:
+   \   0000001A   0xBD32             POP      {R1,R4,R5,PC}    ;; return
+   1855          }
+   1856          #endif
+   1857          
+   1858          
+   1859          /*$PAGE*/
+   1860          /*
+   1861          *********************************************************************************************************
+   1862          *                                        CPU_CntTrailZeros32()
+   1863          *
+   1864          * Description : Count the number of contiguous, least-significant, trailing zero bits in a 32-bit data value.
+   1865          *
+   1866          * Argument(s) : val         Data value to count trailing zero bits.
+   1867          *
+   1868          * Return(s)   : Number of contiguous, least-significant, trailing zero bits in 'val'.
+   1869          *
+   1870          * Caller(s)   : Application.
+   1871          *
+   1872          *               This function is a CPU module application programming interface (API) function & MAY be 
+   1873          *               called by application function(s).
+   1874          *
+   1875          * Note(s)     : (1) Supports 32-bit values :
+   1876          *
+   1877          *                          b31  b30  b29  b28  b27  ...  b02  b01  b00    # Trailing Zeros
+   1878          *                          ---  ---  ---  ---  ---       ---  ---  ---    ----------------
+   1879          *                           x    x    x    x    x         x    x    1            0
+   1880          *                           x    x    x    x    x         x    1    0            1
+   1881          *                           x    x    x    x    x         1    0    0            2
+   1882          *                           :    :    :    :    :         :    :    :            :
+   1883          *                           :    :    :    :    :         :    :    :            :
+   1884          *                           x    x    x    x    1         0    0    0           27
+   1885          *                           x    x    x    1    0         0    0    0           28
+   1886          *                           x    x    1    0    0         0    0    0           29
+   1887          *                           x    1    0    0    0         0    0    0           30
+   1888          *                           1    0    0    0    0         0    0    0           31
+   1889          *                           0    0    0    0    0         0    0    0           32
+   1890          *
+   1891          *
+   1892          *               (2) For non-zero values, the returned number of contiguous, least-significant, trailing 
+   1893          *                   zero bits is also equivalent to the bit position of the least-significant set bit.
+   1894          *
+   1895          *               (3) 'val' SHOULD be validated for non-'0' PRIOR to all other counting zero calculations :
+   1896          *
+   1897          *                   (a) For assembly-optimized implementations, CPU_CntTrailZeros() returns 'val's 
+   1898          *                       number of trailing zeros via CPU's native data size, 'CPU_CFG_DATA_SIZE'.  
+   1899          *                       If the returned number of zeros exceeds CPU_CntTrailZeros32()'s 32-bit return 
+   1900          *                       data size, then the returned number of zeros must be offset by the difference 
+   1901          *                       between CPU_CntTrailZeros()'s  & CPU_CntTrailZeros32()'s return data size :
+   1902          *
+   1903          *                           nbr_trail_zeros = CPU_CntTrailZeros((CPU_DATA)val);
+   1904          *                           if (nbr_trail_zeros >  (CPU_WORD_SIZE_32  * DEF_OCTET_NBR_BITS)) {
+   1905          *                               nbr_trail_zeros -= (CPU_CFG_DATA_SIZE - CPU_WORD_SIZE_32) * DEF_OCTET_NBR_BITS;
+   1906          *                           }
+   1907          *
+   1908          *                       However, this ONLY occurs for an initial 'val' of '0' since all non-'0' 32-bit 
+   1909          *                       values would return a number of trailing zeros less than or equal to 32 bits.
+   1910          *
+   1911          *                       Therefore, initially validating all non-'0' values prior to calling assembly-
+   1912          *                       optimized CPU_CntTrailZeros() avoids having to offset the number of returned 
+   1913          *                       trailing zeros by the difference in CPU data size and 32-bit data value bits.
+   1914          *
+   1915          *                   (b) For CPU_CntTrailZeros32()'s C implementation, the final conditional statement 
+   1916          *                       calculates 'val's number of trailing zeros based on CPU_CntTrailZeros32()'s 
+   1917          *                       32-bit return data size & 'val's calculated number of lead zeros ONLY if the 
+   1918          *                       initial 'val' is non-'0' :
+   1919          *
+   1920          *                           if (val != 0u) {
+   1921          *                               nbr_trail_zeros = ((CPU_WORD_SIZE_32 * DEF_OCTET_NBR_BITS) - 1u) - nbr_lead_zeros;
+   1922          *                           } else {
+   1923          *                               nbr_trail_zeros = nbr_lead_zeros;
+   1924          *                           }
+   1925          *
+   1926          *                       Therefore, initially validating all non-'0' values avoids having to conditionally 
+   1927          *                       execute the final 'if' statement.
+   1928          *********************************************************************************************************
+   1929          */
+   1930          /*$PAGE*/
+   1931          #if (CPU_CFG_DATA_SIZE_MAX >= CPU_WORD_SIZE_32)
+
+   \                                 In section .text, align 2, keep-with-next
+   1932          CPU_DATA  CPU_CntTrailZeros32 (CPU_INT32U  val)
+   1933          {
+   \                     CPU_CntTrailZeros32:
+   \   00000000   0xB538             PUSH     {R3-R5,LR}
+   \   00000002   0x0004             MOVS     R4,R0
+   1934          #if  (!((defined(CPU_CFG_TRAIL_ZEROS_ASM_PRESENT)) && \
+   1935                  (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_32)))
+   1936              CPU_INT32U  val_bit_mask;
+   1937              CPU_DATA    nbr_lead_zeros;
+   1938          #endif
+   1939              CPU_DATA    nbr_trail_zeros;
+   1940          
+   1941          
+   1942              if (val == 0u) {                                            /* Rtn ALL val bits as zero'd (see Note #3).            */
+   \   00000004   0x2C00             CMP      R4,#+0
+   \   00000006   0xD101             BNE.N    ??CPU_CntTrailZeros32_0
+   1943                  return (CPU_WORD_SIZE_32 * DEF_OCTET_NBR_BITS);
+   \   00000008   0x2020             MOVS     R0,#+32
+   \   0000000A   0xE004             B.N      ??CPU_CntTrailZeros32_1
+   1944              }
+   1945          
+   1946                                                                          /* ------------------ ASM-OPTIMIZED ------------------- */
+   1947          #if ((defined(CPU_CFG_TRAIL_ZEROS_ASM_PRESENT)) && \
+   1948               (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_32))
+   1949              nbr_trail_zeros = CPU_CntTrailZeros((CPU_DATA)val);
+   \                     ??CPU_CntTrailZeros32_0:
+   \   0000000C   0x0020             MOVS     R0,R4
+   \   0000000E   0x.... 0x....      BL       CPU_CntTrailZeros
+   \   00000012   0x0005             MOVS     R5,R0
+   1950          
+   1951          #else                                                           /* ------------------- C-OPTIMIZED -------------------- */
+   1952              val_bit_mask    = val & ((CPU_INT32U)~val + 1u);            /* Zero/clr all bits EXCEPT least-sig set bit.          */
+   1953              nbr_lead_zeros  = CPU_CntLeadZeros32(val_bit_mask);         /* Cnt  nbr lead  0s.                                   */
+   1954                                                                          /* Calc nbr trail 0s = (nbr val bits - 1) - nbr lead 0s.*/
+   1955              nbr_trail_zeros = ((CPU_WORD_SIZE_32 * DEF_OCTET_NBR_BITS) - 1u) - nbr_lead_zeros;
+   1956          #endif
+   1957          
+   1958          
+   1959              return (nbr_trail_zeros);
+   \   00000014   0x0028             MOVS     R0,R5
+   \                     ??CPU_CntTrailZeros32_1:
+   \   00000016   0xBD32             POP      {R1,R4,R5,PC}    ;; return
+   1960          }
+   1961          #endif
+   1962          
+   1963          
+   1964          /*$PAGE*/
+   1965          /*
+   1966          *********************************************************************************************************
+   1967          *                                        CPU_CntTrailZeros64()
+   1968          *
+   1969          * Description : Count the number of contiguous, least-significant, trailing zero bits in a 64-bit data value.
+   1970          *
+   1971          * Argument(s) : val         Data value to count trailing zero bits.
+   1972          *
+   1973          * Return(s)   : Number of contiguous, least-significant, trailing zero bits in 'val'.
+   1974          *
+   1975          * Caller(s)   : Application.
+   1976          *
+   1977          *               This function is a CPU module application programming interface (API) function & MAY be 
+   1978          *               called by application function(s).
+   1979          *
+   1980          * Note(s)     : (1) Supports 64-bit values :
+   1981          *
+   1982          *                          b63  b62  b61  b60  b59  ...  b02  b01  b00    # Trailing Zeros
+   1983          *                          ---  ---  ---  ---  ---       ---  ---  ---    ----------------
+   1984          *                           x    x    x    x    x         x    x    1            0
+   1985          *                           x    x    x    x    x         x    1    0            1
+   1986          *                           x    x    x    x    x         1    0    0            2
+   1987          *                           :    :    :    :    :         :    :    :            :
+   1988          *                           :    :    :    :    :         :    :    :            :
+   1989          *                           x    x    x    x    1         0    0    0           59
+   1990          *                           x    x    x    1    0         0    0    0           60
+   1991          *                           x    x    1    0    0         0    0    0           61
+   1992          *                           x    1    0    0    0         0    0    0           62
+   1993          *                           1    0    0    0    0         0    0    0           63
+   1994          *                           0    0    0    0    0         0    0    0           64
+   1995          *
+   1996          *
+   1997          *               (2) For non-zero values, the returned number of contiguous, least-significant, trailing 
+   1998          *                   zero bits is also equivalent to the bit position of the least-significant set bit.
+   1999          *
+   2000          *               (3) 'val' SHOULD be validated for non-'0' PRIOR to all other counting zero calculations :
+   2001          *
+   2002          *                   (a) For assembly-optimized implementations, CPU_CntTrailZeros() returns 'val's 
+   2003          *                       number of trailing zeros via CPU's native data size, 'CPU_CFG_DATA_SIZE'.  
+   2004          *                       If the returned number of zeros exceeds CPU_CntTrailZeros64()'s 64-bit return 
+   2005          *                       data size, then the returned number of zeros must be offset by the difference 
+   2006          *                       between CPU_CntTrailZeros()'s  & CPU_CntTrailZeros64()'s return data size :
+   2007          *
+   2008          *                           nbr_trail_zeros = CPU_CntTrailZeros((CPU_DATA)val);
+   2009          *                           if (nbr_trail_zeros >  (CPU_WORD_SIZE_64  * DEF_OCTET_NBR_BITS)) {
+   2010          *                               nbr_trail_zeros -= (CPU_CFG_DATA_SIZE - CPU_WORD_SIZE_64) * DEF_OCTET_NBR_BITS;
+   2011          *                           }
+   2012          *
+   2013          *                       However, this ONLY occurs for an initial 'val' of '0' since all non-'0' 64-bit 
+   2014          *                       values would return a number of trailing zeros less than or equal to 64 bits.
+   2015          *
+   2016          *                       Therefore, initially validating all non-'0' values prior to calling assembly-
+   2017          *                       optimized CPU_CntTrailZeros() avoids having to offset the number of returned 
+   2018          *                       trailing zeros by the difference in CPU data size and 64-bit data value bits.
+   2019          *
+   2020          *                   (b) For CPU_CntTrailZeros64()'s C implementation, the final conditional statement 
+   2021          *                       calculates 'val's number of trailing zeros based on CPU_CntTrailZeros64()'s 
+   2022          *                       64-bit return data size & 'val's calculated number of lead zeros ONLY if the 
+   2023          *                       initial 'val' is non-'0' :
+   2024          *
+   2025          *                           if (val != 0u) {
+   2026          *                               nbr_trail_zeros = ((CPU_WORD_SIZE_64 * DEF_OCTET_NBR_BITS) - 1u) - nbr_lead_zeros;
+   2027          *                           } else {
+   2028          *                               nbr_trail_zeros = nbr_lead_zeros;
+   2029          *                           }
+   2030          *
+   2031          *                       Therefore, initially validating all non-'0' values avoids having to conditionally 
+   2032          *                       execute the final 'if' statement.
+   2033          *********************************************************************************************************
+   2034          */
+   2035          /*$PAGE*/
+   2036          #if (CPU_CFG_DATA_SIZE_MAX >= CPU_WORD_SIZE_64)
+
+   \                                 In section .text, align 2, keep-with-next
+   2037          CPU_DATA  CPU_CntTrailZeros64 (CPU_INT64U  val)
+   2038          {
+   \                     CPU_CntTrailZeros64:
+   \   00000000   0xE92D 0x43F8      PUSH     {R3-R9,LR}
+   \   00000004   0x0004             MOVS     R4,R0
+   \   00000006   0x000D             MOVS     R5,R1
+   2039          #if  (!((defined(CPU_CFG_TRAIL_ZEROS_ASM_PRESENT)) && \
+   2040                  (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_64)))
+   2041              CPU_INT64U  val_bit_mask;
+   2042              CPU_DATA    nbr_lead_zeros;
+   2043          #endif
+   2044              CPU_DATA    nbr_trail_zeros;
+   2045          
+   2046          
+   2047              if (val == 0u) {                                            /* Rtn ALL val bits as zero'd (see Note #3).            */
+   \   00000008   0x2D00             CMP      R5,#+0
+   \   0000000A   0xD103             BNE.N    ??CPU_CntTrailZeros64_0
+   \   0000000C   0x2C00             CMP      R4,#+0
+   \   0000000E   0xD101             BNE.N    ??CPU_CntTrailZeros64_0
+   2048                  return (CPU_WORD_SIZE_64 * DEF_OCTET_NBR_BITS);
+   \   00000010   0x2040             MOVS     R0,#+64
+   \   00000012   0xE011             B.N      ??CPU_CntTrailZeros64_1
+   2049              }
+   2050          
+   2051                                                                          /* ------------------ ASM-OPTIMIZED ------------------- */
+   2052          #if ((defined(CPU_CFG_TRAIL_ZEROS_ASM_PRESENT)) && \
+   2053               (CPU_CFG_DATA_SIZE >= CPU_WORD_SIZE_64))
+   2054              nbr_trail_zeros = CPU_CntTrailZeros((CPU_DATA)val);
+   2055          
+   2056          #else                                                           /* ------------------- C-OPTIMIZED -------------------- */
+   2057              val_bit_mask    = val & ((CPU_INT64U)~val + 1u);            /* Zero/clr all bits EXCEPT least-sig set bit.          */
+   \                     ??CPU_CntTrailZeros64_0:
+   \   00000014   0x43E0             MVNS     R0,R4
+   \   00000016   0x43E9             MVNS     R1,R5
+   \   00000018   0x1C40             ADDS     R0,R0,#+1
+   \   0000001A   0xF151 0x0100      ADCS     R1,R1,#+0
+   \   0000001E   0x4020             ANDS     R0,R4,R0
+   \   00000020   0x4029             ANDS     R1,R5,R1
+   \   00000022   0x0006             MOVS     R6,R0
+   \   00000024   0x000F             MOVS     R7,R1
+   2058              nbr_lead_zeros  = CPU_CntLeadZeros64(val_bit_mask);         /* Cnt  nbr lead  0s.                                   */
+   \   00000026   0x0030             MOVS     R0,R6
+   \   00000028   0x0039             MOVS     R1,R7
+   \   0000002A   0x.... 0x....      BL       CPU_CntLeadZeros64
+   \   0000002E   0x4680             MOV      R8,R0
+   2059                                                                          /* Calc nbr trail 0s = (nbr val bits - 1) - nbr lead 0s.*/
+   2060              nbr_trail_zeros = ((CPU_WORD_SIZE_64 * DEF_OCTET_NBR_BITS) - 1u) - nbr_lead_zeros;
+   \   00000030   0xF1D8 0x003F      RSBS     R0,R8,#+63
+   \   00000034   0x4681             MOV      R9,R0
+   2061          #endif
+   2062          
+   2063          
+   2064              return (nbr_trail_zeros);
+   \   00000036   0x4648             MOV      R0,R9
+   \                     ??CPU_CntTrailZeros64_1:
+   \   00000038   0xE8BD 0x83F2      POP      {R1,R4-R9,PC}    ;; return
+   2065          }
+   2066          #endif
+   2067          
+   2068          
+   2069          /*$PAGE*/
+   2070          /*
+   2071          *********************************************************************************************************
+   2072          *********************************************************************************************************
+   2073          *                                           LOCAL FUNCTIONS
+   2074          *********************************************************************************************************
+   2075          *********************************************************************************************************
+   2076          */
+   2077          
+   2078          /*
+   2079          *********************************************************************************************************
+   2080          *                                           CPU_NameInit()
+   2081          *
+   2082          * Description : Initialize CPU Name.
+   2083          *
+   2084          * Argument(s) : none.
+   2085          *
+   2086          * Return(s)   : none.
+   2087          *
+   2088          * Caller(s)   : CPU_Init().
+   2089          *
+   2090          * Note(s)     : none.
+   2091          *********************************************************************************************************
+   2092          */
+   2093          
+   2094          #if (CPU_CFG_NAME_EN == DEF_ENABLED)
+
+   \                                 In section .text, align 2, keep-with-next
+   2095          static  void  CPU_NameInit (void)
+   2096          {
+   \                     CPU_NameInit:
+   \   00000000   0xB580             PUSH     {R7,LR}
+   2097              CPU_NameClr();
+   \   00000002   0x.... 0x....      BL       CPU_NameClr
+   2098          }
+   \   00000006   0xBD01             POP      {R0,PC}          ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   0x........         DC32     CPU_Name
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_1:
+   \   00000000   0x........         DC32     CPU_CntLeadZerosTbl
+   2099          #endif
+   2100          
+   2101          
+   2102          /*$PAGE*/
+   2103          /*
+   2104          *********************************************************************************************************
+   2105          *                                            CPU_TS_Init()
+   2106          *
+   2107          * Description : (1) Initialize CPU timestamp :
+   2108          *
+   2109          *                   (a) Initialize/start CPU timestamp timer                            See Note #1
+   2110          *                   (b) Initialize       CPU timestamp controls
+   2111          *
+   2112          *
+   2113          * Argument(s) : none.
+   2114          *
+   2115          * Return(s)   : none.
+   2116          *
+   2117          * Caller(s)   : CPU_Init().
+   2118          *
+   2119          * Note(s)     : (1) The following initialization MUST be sequenced as follows :
+   2120          *
+   2121          *                   (a) CPU_TS_TmrFreq_Hz     MUST be initialized prior to CPU_TS_TmrInit()
+   2122          *                   (b) CPU_TS_TmrInit()      SHOULD precede calls to all other CPU timestamp functions;
+   2123          *                                                 otherwise, invalid time measurements may be calculated/
+   2124          *                                                 returned.
+   2125          *
+   2126          *                   See also 'CPU_Init()  Note #3a'.
+   2127          *********************************************************************************************************
+   2128          */
+   2129          
+   2130          #if ((CPU_CFG_TS_EN     == DEF_ENABLED) || \
+   2131               (CPU_CFG_TS_TMR_EN == DEF_ENABLED))
+   2132          static  void  CPU_TS_Init (void)
+   2133          {
+   2134          #if (((CPU_CFG_TS_32_EN    == DEF_ENABLED     )  && \
+   2135                (CPU_CFG_TS_TMR_SIZE <  CPU_WORD_SIZE_32)) || \
+   2136               ((CPU_CFG_TS_64_EN    == DEF_ENABLED     )  && \
+   2137                (CPU_CFG_TS_TMR_SIZE <  CPU_WORD_SIZE_64)))
+   2138              CPU_TS_TMR  ts_tmr_cnts;
+   2139          #endif
+   2140          
+   2141          
+   2142                                                                          /* ----------------- INIT CPU TS TMR ------------------ */
+   2143          #if (CPU_CFG_TS_TMR_EN == DEF_ENABLED)
+   2144              CPU_TS_TmrFreq_Hz   = 0u;                                   /* Init/clr     ts tmr freq (see Note #1a).             */
+   2145              CPU_TS_TmrInit();                                           /* Init & start ts tmr      (see Note #1b).             */
+   2146          #endif
+   2147          
+   2148          
+   2149                                                                          /* ------------------- INIT CPU TS -------------------- */
+   2150          #if (((CPU_CFG_TS_32_EN    == DEF_ENABLED     )  && \
+   2151                (CPU_CFG_TS_TMR_SIZE <  CPU_WORD_SIZE_32)) || \
+   2152               ((CPU_CFG_TS_64_EN    == DEF_ENABLED     )  && \
+   2153                (CPU_CFG_TS_TMR_SIZE <  CPU_WORD_SIZE_64)))
+   2154              ts_tmr_cnts = CPU_TS_TmrRd();                               /* Get init ts tmr val (in ts tmr cnts).                */
+   2155          #endif
+   2156          
+   2157          #if  ((CPU_CFG_TS_32_EN    == DEF_ENABLED)  && \
+   2158                (CPU_CFG_TS_TMR_SIZE <  CPU_WORD_SIZE_32))
+   2159              CPU_TS_32_Accum   = 0u;                                     /* Init 32-bit accum'd ts.                              */
+   2160              CPU_TS_32_TmrPrev = ts_tmr_cnts;                            /* Init 32-bit ts prev tmr val.                         */
+   2161          #endif
+   2162          
+   2163          #if  ((CPU_CFG_TS_64_EN    == DEF_ENABLED)  && \
+   2164                (CPU_CFG_TS_TMR_SIZE <  CPU_WORD_SIZE_64))
+   2165              CPU_TS_64_Accum   = 0u;                                     /* Init 64-bit accum'd ts.                              */
+   2166              CPU_TS_64_TmrPrev = ts_tmr_cnts;                            /* Init 64-bit ts prev tmr val.                         */
+   2167          #endif
+   2168          }
+   2169          #endif
+   2170          
+   2171          
+   2172          /*$PAGE*/
+   2173          /*
+   2174          *********************************************************************************************************
+   2175          *                                        CPU_IntDisMeasInit()
+   2176          *
+   2177          * Description : (1) Initialize interrupts disabled time measurements feature :
+   2178          *
+   2179          *                   (a) Initialize interrupts disabled time measurement controls
+   2180          *                   (b) Calculate  interrupts disabled time measurement overhead
+   2181          *
+   2182          *
+   2183          * Argument(s) : none.
+   2184          *
+   2185          * Return(s)   : none.
+   2186          *
+   2187          * Caller(s)   : CPU_Init().
+   2188          *
+   2189          * Note(s)     : (2) CPU_IntDisMeasInit() SHOULD precede ALL calls to CPU_CRITICAL_ENTER()/CPU_CRITICAL_EXIT()
+   2190          *                   & other CPU interrupts disabled time measurement functions; otherwise, invalid interrupts
+   2191          *                   disabled time measurements may be calculated/returned.
+   2192          *
+   2193          *                   See also 'CPU_Init()  Note #3b'.
+   2194          *
+   2195          *               (3) (a) (1) Interrupts disabled time measurement overhead performed multiple times to calculate
+   2196          *                           a rounded average with better accuracy, hopefully of +/- one timer count.
+   2197          *
+   2198          *                       (2) However, a single overhead time measurement is recommended, even for instruction-
+   2199          *                           cache-enabled CPUs, since critical sections are NOT typically called within
+   2200          *                           instruction-cached loops.  Thus a single non-cached/non-averaged time measurement
+   2201          *                           is a more realistic overhead for the majority of non-cached interrupts disabled
+   2202          *                           time measurements.
+   2203          *
+   2204          *                   (b) Interrupts MUST be disabled while measuring the interrupts disabled time measurement
+   2205          *                       overhead; otherwise, overhead measurements could be interrupted which would incorrectly
+   2206          *                       calculate an inflated overhead time which would then incorrectly calculate deflated
+   2207          *                       interrupts disabled times.
+   2208          *********************************************************************************************************
+   2209          */
+   2210          
+   2211          #ifdef  CPU_CFG_INT_DIS_MEAS_EN
+   2212          static  void  CPU_IntDisMeasInit (void)
+   2213          {
+   2214              CPU_TS_TMR  time_meas_tot_cnts;
+   2215              CPU_INT16U  i;
+   2216              CPU_SR_ALLOC();
+   2217          
+   2218                                                                          /* ----------- INIT INT DIS TIME MEAS CTRLS ----------- */
+   2219              CPU_IntDisMeasCtr         = 0u;
+   2220              CPU_IntDisNestCtr         = 0u;
+   2221              CPU_IntDisMeasStart_cnts  = 0u;
+   2222              CPU_IntDisMeasStop_cnts   = 0u;
+   2223              CPU_IntDisMeasMaxCur_cnts = 0u;
+   2224              CPU_IntDisMeasMax_cnts    = 0u;
+   2225              CPU_IntDisMeasOvrhd_cnts  = 0u;
+   2226          
+   2227                                                                          /* ----------- CALC INT DIS TIME MEAS OVRHD ----------- */
+   2228              time_meas_tot_cnts = 0u;
+   2229              CPU_INT_DIS();                                              /* Ints MUST be dis'd for ovrhd calc (see Note #3b).    */
+   2230              for (i = 0u; i < CPU_CFG_INT_DIS_MEAS_OVRHD_NBR; i++) {
+   2231                  CPU_IntDisMeasMaxCur_cnts = 0u;
+   2232                  CPU_IntDisMeasStart();                                  /* Perform multiple consecutive start/stop time meas's  */
+   2233                  CPU_IntDisMeasStop();
+   2234                  time_meas_tot_cnts += CPU_IntDisMeasMaxCur_cnts;        /* ...       & sum time meas max's                  ... */
+   2235              }
+   2236                                                                          /* ... to calc avg time meas ovrhd (see Note #3a).      */
+   2237              CPU_IntDisMeasOvrhd_cnts  = (time_meas_tot_cnts + (CPU_CFG_INT_DIS_MEAS_OVRHD_NBR / 2u))
+   2238                                                              /  CPU_CFG_INT_DIS_MEAS_OVRHD_NBR;
+   2239              CPU_IntDisMeasMaxCur_cnts =  0u;                            /* Reset max ints dis'd times.                          */
+   2240              CPU_IntDisMeasMax_cnts    =  0u;
+   2241              CPU_INT_EN();
+   2242          }
+   2243          #endif
+   2244          
+   2245          
+   2246          /*$PAGE*/
+   2247          /*
+   2248          *********************************************************************************************************
+   2249          *                                       CPU_IntDisMeasMaxCalc()
+   2250          *
+   2251          * Description : Calculate maximum interrupts disabled time.
+   2252          *
+   2253          * Argument(s) : time_tot_cnts   Total interrupt disabled time, in timer counts.
+   2254          *
+   2255          * Return(s)   : Maximum interrupts disabled time (in CPU timestamp timer counts).
+   2256          *
+   2257          * Caller(s)   : CPU_IntDisMeasMaxCurGet(),
+   2258          *               CPU_IntDisMeasMaxGet().
+   2259          *
+   2260          * Note(s)     : (1) (a) The total amount of time interrupts are disabled by system &/or application code
+   2261          *                       during critical sections is calculated by the following equations :
+   2262          *
+   2263          *                       (1) time            =   [ time      -  time      ]  -  time
+   2264          *                               interrupts      [     stop         start ]         total meas
+   2265          *                                disabled       [     meas         meas  ]           ovrhd
+   2266          *                           (via application)
+   2267          *
+   2268          *
+   2269          *                       (2) time            =  time            +  time
+   2270          *                               total meas         start meas         stop meas
+   2271          *                                 ovrhd              ovrhd              ovrhd
+   2272          *
+   2273          *
+   2274          *                               where
+   2275          *
+   2276          *                                       time                    time interrupts are disabled between
+   2277          *                                           interrupts              first critical section enter &
+   2278          *                                            disabled               last  critical section exit minus
+   2279          *                                       (via application)           time measurement overhead
+   2280          *
+   2281          *                                       time                    time of disable interrupts start time
+   2282          *                                           start                   measurement (in timer counts)
+   2283          *                                           meas
+   2284          *
+   2285          *                                       time                    time of disable interrupts stop  time
+   2286          *                                           stop                    measurement (in timer counts)
+   2287          *                                           meas
+   2288          *
+   2289          *                                       time                    total overhead time to start/stop disabled
+   2290          *                                           total meas              interrupts time measurements (in timer
+   2291          *                                             ovrhd                 counts)
+   2292          *
+   2293          *                                       time                    total overhead time after getting start
+   2294          *                                           start meas              time until end of start measurement
+   2295          *                                             ovrhd                 function  (in timer counts)
+   2296          *
+   2297          *                                       time                    total overhead time from beginning of stop
+   2298          *                                           stop meas               measurement function until after getting
+   2299          *                                             ovrhd                 stop time (in timer counts)
+   2300          *
+   2301          *
+   2302          *                   (b) To expedite & reduce interrupts disabled time measurement overhead, the final 
+   2303          *                       calculations to subtract the interrupts disabled time measurement overhead is 
+   2304          *                       performed asynchronously in API functions.
+   2305          *
+   2306          *                       See also 'CPU_IntDisMeasStop()  Note #1b2'.
+   2307          *$PAGE*
+   2308          *                   (c) The amount of time interrupts are disabled is calculated by either of the
+   2309          *                       following equations :
+   2310          *
+   2311          *                       (1) Interrupts disabled time  =  Number timer counts  *  Timer period
+   2312          *
+   2313          *                               where
+   2314          *
+   2315          *                                   Number timer counts             Number of timer counts measured
+   2316          *                                   Timer period                    Timer's period in some units of
+   2317          *                                                                       (fractional) seconds
+   2318          *                                   Interrupts disabled time        Amount of time interrupts are
+   2319          *                                                                       disabled, in same units of
+   2320          *                                                                       (fractional) seconds as the
+   2321          *                                                                       Timer period
+   2322          *
+   2323          *                                                         Number timer counts
+   2324          *                       (2) Interrupts disabled time  =  ---------------------
+   2325          *                                                           Timer frequency
+   2326          *
+   2327          *                               where
+   2328          *
+   2329          *                                   Number timer counts             Number of timer counts measured
+   2330          *                                   Timer frequency                 Timer's frequency in some units
+   2331          *                                                                       of counts per second
+   2332          *                                   Interrupts disabled time        Amount of time interrupts are
+   2333          *                                                                       disabled, in seconds
+   2334          *
+   2335          *                       See also 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TS_TmrRd()      Note #2c'
+   2336          *                              & 'cpu_core.h  FUNCTION PROTOTYPES  CPU_TSxx_to_uSec()  Note #2'.
+   2337          *
+   2338          *               (2) Although it is not typical, it is possible for an interrupts disabled time
+   2339          *                   measurement to be less than the interrupts disabled time measurement overhead;
+   2340          *                   especially if the overhead was calculated with a single, non-cached measurement
+   2341          *                   & critical sections are called within instruction-cached loops.
+   2342          *********************************************************************************************************
+   2343          */
+   2344          
+   2345          #ifdef  CPU_CFG_INT_DIS_MEAS_EN
+   2346          static  CPU_TS_TMR  CPU_IntDisMeasMaxCalc (CPU_TS_TMR  time_tot_cnts)
+   2347          {
+   2348              CPU_TS_TMR  time_max_cnts;
+   2349          
+   2350          
+   2351              time_max_cnts = time_tot_cnts;
+   2352              if (time_max_cnts >  CPU_IntDisMeasOvrhd_cnts) {            /* If       max ints dis'd time >  ovrhd time, ...      */
+   2353                  time_max_cnts -= CPU_IntDisMeasOvrhd_cnts;              /* ... adj  max ints dis'd time by ovrhd time; ...      */
+   2354              } else {                                                    /* ... else max ints dis'd time <  ovrhd time, ...      */
+   2355                  time_max_cnts  = 0u;                                    /* ... clr  max ints dis'd time (see Note #2).          */
+   2356              }
+   2357          
+   2358              return (time_max_cnts);
+   2359          }
+   2360          #endif
+   2361          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      16   CPU_CntLeadZeros08
+        16   -> CPU_CntLeadZeros
+      16   CPU_CntLeadZeros16
+        16   -> CPU_CntLeadZeros
+      16   CPU_CntLeadZeros32
+        16   -> CPU_CntLeadZeros
+      20   CPU_CntLeadZeros64
+        20   -> __aeabi_llsr
+      16   CPU_CntTrailZeros08
+        16   -> CPU_CntTrailZeros
+      16   CPU_CntTrailZeros16
+        16   -> CPU_CntTrailZeros
+      16   CPU_CntTrailZeros32
+        16   -> CPU_CntTrailZeros
+      32   CPU_CntTrailZeros64
+        32   -> CPU_CntLeadZeros64
+       8   CPU_Init
+         8   -> CPU_NameInit
+       8   CPU_NameClr
+         8   -> CPU_SR_Restore
+         8   -> CPU_SR_Save
+         8   -> Mem_Clr
+      24   CPU_NameGet
+        24   -> CPU_SR_Restore
+        24   -> CPU_SR_Save
+        24   -> CPU_SW_Exception
+        24   -> Str_Copy_N
+       8   CPU_NameInit
+         8   -> CPU_NameClr
+      24   CPU_NameSet
+        24   -> CPU_SR_Restore
+        24   -> CPU_SR_Save
+        24   -> CPU_SW_Exception
+        24   -> Str_Copy_N
+        24   -> Str_Len_N
+       0   CPU_SW_Exception
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable3
+       4  ??DataTable3_1
+      20  CPU_CntLeadZeros08
+      20  CPU_CntLeadZeros16
+      16  CPU_CntLeadZeros32
+     250  CPU_CntLeadZeros64
+     256  CPU_CntLeadZerosTbl
+      28  CPU_CntTrailZeros08
+      28  CPU_CntTrailZeros16
+      24  CPU_CntTrailZeros32
+      60  CPU_CntTrailZeros64
+       8  CPU_Init
+      16  CPU_Name
+      26  CPU_NameClr
+      56  CPU_NameGet
+       8  CPU_NameInit
+      82  CPU_NameSet
+       2  CPU_SW_Exception
+
+ 
+  16 bytes in section .bss
+ 256 bytes in section .rodata
+ 636 bytes in section .text
+ 
+ 636 bytes of CODE  memory
+ 256 bytes of CONST memory
+  16 bytes of DATA  memory
+
+Errors: none
+Warnings: none

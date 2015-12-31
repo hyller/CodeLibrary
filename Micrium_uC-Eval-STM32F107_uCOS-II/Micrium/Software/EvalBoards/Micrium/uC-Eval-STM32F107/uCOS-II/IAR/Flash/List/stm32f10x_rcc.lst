@@ -1,0 +1,2616 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.50.2.4510/W32 for ARM      08/Feb/2013  10:57:24 #
+# Copyright 1999-2012 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_rcc.c                    #
+#    Command line =  "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_rcc.c" -D                #
+#                    USE_STDPERIPH_DRIVER -lCN "C:\Users\daniel01\Desktop\Fas #
+#                    tFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC #
+#                    -Eval-STM32F107\uCOS-II\IAR\Flash\List\" -o              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\" --no_cse --no_unroll        #
+#                    --no_inline --no_code_motion --no_tbaa --no_clustering   #
+#                    --no_scheduling --debug --endian=little --cpu=Cortex-M3  #
+#                    -e --fpu=None --dlib_config "C:\Program Files (x86)\IAR  #
+#                    Systems\Embedded Workbench 6.5\arm\INC\c\DLib_Config_Nor #
+#                    mal.h" -I "C:\Users\daniel01\Desktop\FastFile Test       #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\IAR\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\" -I                          #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\OS\uCOS-II\" -I               #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\ST\STM32\inc\" -I             #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\uCOS-II\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\IAR\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex- #
+#                    M3\IAR\" -I "C:\Users\daniel01\Desktop\FastFile Test     #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR #
+#                    \" -I "C:\Users\daniel01\Desktop\FastFile Test           #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex #
+#                    -M3\Generic\IAR\" -I "C:\Users\daniel01\Desktop\FastFile #
+#                     Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval #
+#                    -STM32F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Source\"   #
+#                    -On --use_c++_inline                                     #
+#    List file    =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\List\stm32f10x_rcc.lst            #
+#    Object file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\stm32f10x_rcc.o               #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\daniel01\Desktop\FastFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32F107\BSP\ST\STM32\src\stm32f10x_rcc.c
+      1          /******************** (C) COPYRIGHT 2009 STMicroelectronics ********************
+      2          * File Name          : stm32f10x_rcc.c
+      3          * Author             : MCD Application Team
+      4          * Version            : V2.1.0RC2
+      5          * Date               : 03/13/2009
+      6          * Description        : This file provides all the RCC firmware functions.
+      7          ********************************************************************************
+      8          * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+      9          * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME.
+     10          * AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY DIRECT,
+     11          * INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE
+     12          * CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING
+     13          * INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+     14          *******************************************************************************/
+     15          
+     16          /* Includes ------------------------------------------------------------------*/
+     17          #include "stm32f10x_rcc.h"
+     18          
+     19          /* Private typedef -----------------------------------------------------------*/
+     20          /* Private define ------------------------------------------------------------*/
+     21          /* ------------ RCC registers bit address in the alias region ----------- */
+     22          #define RCC_OFFSET                (RCC_BASE - PERIPH_BASE)
+     23          
+     24          /* --- CR Register ---*/
+     25          /* Alias word address of HSION bit */
+     26          #define CR_OFFSET                 (RCC_OFFSET + 0x00)
+     27          #define HSION_BitNumber           0x00
+     28          #define CR_HSION_BB               (PERIPH_BB_BASE + (CR_OFFSET * 32) + (HSION_BitNumber * 4))
+     29          
+     30          /* Alias word address of PLLON bit */
+     31          #define PLLON_BitNumber           0x18
+     32          #define CR_PLLON_BB               (PERIPH_BB_BASE + (CR_OFFSET * 32) + (PLLON_BitNumber * 4))
+     33          
+     34          /* Alias word address of CSSON bit */
+     35          #define CSSON_BitNumber           0x13
+     36          #define CR_CSSON_BB               (PERIPH_BB_BASE + (CR_OFFSET * 32) + (CSSON_BitNumber * 4))
+     37          
+     38          /* Alias word address of PLL2ON bit (only for STM32 connectivity line devices) */
+     39          #define PLL2ON_BitNumber          0x1A
+     40          #define CR_PLL2ON_BB              (PERIPH_BB_BASE + (CR_OFFSET * 32) + (PLL2ON_BitNumber * 4))
+     41          
+     42          /* Alias word address of PLL3ON bit (only for STM32 connectivity line devices) */
+     43          #define PLL3ON_BitNumber          0x1C
+     44          #define CR_PLL3ON_BB              (PERIPH_BB_BASE + (CR_OFFSET * 32) + (PLL3ON_BitNumber * 4))
+     45          
+     46          /* --- CFGR Register ---*/
+     47          /* Alias word address of USBPRE bit */
+     48          #define CFGR_OFFSET               (RCC_OFFSET + 0x04)
+     49          #define USBPRE_BitNumber          0x16
+     50          #define CFGR_USBPRE_BB            (PERIPH_BB_BASE + (CFGR_OFFSET * 32) + (USBPRE_BitNumber * 4))
+     51          #define OTGFSPRE_BitNumber        0x16 /* Only for STM32 connectivity line devices */
+     52          #define CFGR_OTGFSPRE_BB          (PERIPH_BB_BASE + (CFGR_OFFSET * 32) + (OTGFSPRE_BitNumber * 4))
+     53          
+     54          /* --- BDCR Register ---*/
+     55          /* Alias word address of RTCEN bit */
+     56          #define BDCR_OFFSET               (RCC_OFFSET + 0x20)
+     57          #define RTCEN_BitNumber           0x0F
+     58          #define BDCR_RTCEN_BB             (PERIPH_BB_BASE + (BDCR_OFFSET * 32) + (RTCEN_BitNumber * 4))
+     59          
+     60          /* Alias word address of BDRST bit */
+     61          #define BDRST_BitNumber           0x10
+     62          #define BDCR_BDRST_BB             (PERIPH_BB_BASE + (BDCR_OFFSET * 32) + (BDRST_BitNumber * 4))
+     63          
+     64          /* --- CSR Register ---*/
+     65          /* Alias word address of LSION bit */
+     66          #define CSR_OFFSET                (RCC_OFFSET + 0x24)
+     67          #define LSION_BitNumber           0x00
+     68          #define CSR_LSION_BB              (PERIPH_BB_BASE + (CSR_OFFSET * 32) + (LSION_BitNumber * 4))
+     69          
+     70          /* --- CFGR2 Register (only for STM32 connectivity line devices) ---*/
+     71          /* Alias word address of I2S2SRC bit */
+     72          #define CFGR2_OFFSET              (RCC_OFFSET + 0x2C)
+     73          #define I2S2SRC_BitNumber         0x11
+     74          #define CFGR2_I2S2SRC_BB          (PERIPH_BB_BASE + (CFGR2_OFFSET * 32) + (I2S2SRC_BitNumber * 4))
+     75          /* Alias word address of I2S3SRC bit */
+     76          #define I2S3SRC_BitNumber         0x12
+     77          #define CFGR2_I2S3SRC_BB          (PERIPH_BB_BASE + (CFGR2_OFFSET * 32) + (I2S3SRC_BitNumber * 4))
+     78          
+     79          /* ---------------------- RCC registers bit mask ------------------------ */
+     80          /* CR register bit mask */
+     81          #define CR_HSEBYP_Reset           ((u32)0xFFFBFFFF)
+     82          #define CR_HSEBYP_Set             ((u32)0x00040000)
+     83          #define CR_HSEON_Reset            ((u32)0xFFFEFFFF)
+     84          #define CR_HSEON_Set              ((u32)0x00010000)
+     85          #define CR_HSITRIM_Mask           ((u32)0xFFFFFF07)
+     86          
+     87          /* CFGR register bit mask */
+     88          #define CFGR_PLL_Mask             ((u32)0xFFC0FFFF)
+     89          #define CFGR_PLLMull_Mask         ((u32)0x003C0000)
+     90          #define CFGR_PLLSRC_Mask          ((u32)0x00010000)
+     91          #define CFGR_PLLXTPRE_Mask        ((u32)0x00020000)
+     92          #define CFGR_SWS_Mask             ((u32)0x0000000C)
+     93          #define CFGR_SW_Mask              ((u32)0xFFFFFFFC)
+     94          #define CFGR_HPRE_Reset_Mask      ((u32)0xFFFFFF0F)
+     95          #define CFGR_HPRE_Set_Mask        ((u32)0x000000F0)
+     96          #define CFGR_PPRE1_Reset_Mask     ((u32)0xFFFFF8FF)
+     97          #define CFGR_PPRE1_Set_Mask       ((u32)0x00000700)
+     98          #define CFGR_PPRE2_Reset_Mask     ((u32)0xFFFFC7FF)
+     99          #define CFGR_PPRE2_Set_Mask       ((u32)0x00003800)
+    100          #define CFGR_ADCPRE_Reset_Mask    ((u32)0xFFFF3FFF)
+    101          #define CFGR_ADCPRE_Set_Mask      ((u32)0x0000C000)
+    102          #define CFGR_PLL1_Mask            ((u32)0xFFC2FFFF) //only for STM32 connectivity line devices
+    103          #define CFGR_PLL1SRC_Mask         ((u32)0x00010000) //only for STM32 connectivity line devices
+    104          #define CFGR_PLL1Mull_Mask        ((u32)0x003C0000) //only for STM32 connectivity line devices
+    105          
+    106          /* CFGR2 register bit mask (only for STM32 connectivity line devices) */
+    107          #define CFGR2_PREDIV1SRC          ((u32)0x00010000)
+    108          #define CFGR2_PREDIV1             ((u32)0x0000000F)
+    109          #define CFGR2_PREDIV2             ((u32)0x000000F0)
+    110          #define CFGR2_PLL2MUL             ((u32)0x00000F00)
+    111          #define CFGR2_PLL3MUL             ((u32)0x0000F000)
+    112          
+    113          /* CSR register bit mask */
+    114          #define CSR_RMVF_Set              ((u32)0x01000000)
+    115          
+    116          /* RCC Flag Mask */
+    117          #define FLAG_Mask                 ((u8)0x1F)
+    118          
+    119          /* Typical Value of the HSI in Hz */
+    120          #define HSI_Value                 ((u32)8000000)
+    121          
+    122          /* CIR register byte 2 (Bits[15:8]) base address */
+    123          #define CIR_BYTE2_ADDRESS         ((u32)0x40021009)
+    124          /* CIR register byte 3 (Bits[23:16]) base address */
+    125          #define CIR_BYTE3_ADDRESS         ((u32)0x4002100A)
+    126          
+    127          /* CFGR register byte 4 (Bits[31:24]) base address */
+    128          #define CFGR_BYTE4_ADDRESS        ((u32)0x40021007)
+    129          
+    130          /* BDCR register base address */
+    131          #define BDCR_ADDRESS              (PERIPH_BASE + BDCR_OFFSET)
+    132          
+    133          #ifndef HSEStartUp_TimeOut
+    134          /* Time out for HSE start up */
+    135          #define HSEStartUp_TimeOut        ((u16)0x0500)
+    136          #endif
+    137          
+    138          /* Private macro -------------------------------------------------------------*/
+    139          /* Private variables ---------------------------------------------------------*/
+
+   \                                 In section .rodata, align 4
+    140          static uc8 APBAHBPrescTable[16] = {0, 0, 0, 0, 1, 2, 3, 4, 1, 2, 3, 4, 6, 7, 8, 9};
+   \                     APBAHBPrescTable:
+   \   00000000   0x00 0x00          DC8 0, 0, 0, 0, 1, 2, 3, 4, 1, 2, 3, 4, 6, 7, 8, 9
+   \              0x00 0x00    
+   \              0x01 0x02    
+   \              0x03 0x04    
+   \              0x01 0x02    
+   \              0x03 0x04    
+   \              0x06 0x07    
+   \              0x08 0x09    
+
+   \                                 In section .rodata, align 4
+    141          static uc8 ADCPrescTable[4] = {2, 4, 6, 8};
+   \                     ADCPrescTable:
+   \   00000000   0x02 0x04          DC8 2, 4, 6, 8
+   \              0x06 0x08    
+    142          
+    143          /* Private function prototypes -----------------------------------------------*/
+    144          /* Private functions ---------------------------------------------------------*/
+    145          
+    146          /*******************************************************************************
+    147          * Function Name  : RCC_DeInit
+    148          * Description    : Resets the RCC clock configuration to the default reset state.
+    149          * Input          : None
+    150          * Output         : None
+    151          * Return         : None
+    152          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    153          void RCC_DeInit(void)
+    154          {
+    155            /* Set HSION bit */
+    156            RCC->CR |= (u32)0x00000001;
+   \                     RCC_DeInit:
+   \   00000000   0x.... 0x....      LDR.W    R0,??DataTable42  ;; 0x40021000
+   \   00000004   0x6800             LDR      R0,[R0, #+0]
+   \   00000006   0xF050 0x0001      ORRS     R0,R0,#0x1
+   \   0000000A   0x.... 0x....      LDR.W    R1,??DataTable42  ;; 0x40021000
+   \   0000000E   0x6008             STR      R0,[R1, #+0]
+    157          
+    158            /* Reset SW[1:0], HPRE[3:0], PPRE1[2:0], PPRE2[2:0], ADCPRE[1:0] and MCO[2:0] bits */
+    159            RCC->CFGR &= (u32)0xF8FF0000;
+   \   00000010   0x.... 0x....      LDR.W    R0,??DataTable42_1  ;; 0x40021004
+   \   00000014   0x6800             LDR      R0,[R0, #+0]
+   \   00000016   0x.... 0x....      LDR.W    R1,??DataTable42_2  ;; 0xf8ff0000
+   \   0000001A   0x4008             ANDS     R0,R1,R0
+   \   0000001C   0x.... 0x....      LDR.W    R1,??DataTable42_1  ;; 0x40021004
+   \   00000020   0x6008             STR      R0,[R1, #+0]
+    160            
+    161            /* Reset HSEON, CSSON and PLLON bits */
+    162            RCC->CR &= (u32)0xFEF6FFFF;
+   \   00000022   0x.... 0x....      LDR.W    R0,??DataTable42  ;; 0x40021000
+   \   00000026   0x6800             LDR      R0,[R0, #+0]
+   \   00000028   0x.... 0x....      LDR.W    R1,??DataTable42_3  ;; 0xfef6ffff
+   \   0000002C   0x4008             ANDS     R0,R1,R0
+   \   0000002E   0x.... 0x....      LDR.W    R1,??DataTable42  ;; 0x40021000
+   \   00000032   0x6008             STR      R0,[R1, #+0]
+    163          
+    164            /* Reset HSEBYP bit */
+    165            RCC->CR &= (u32)0xFFFBFFFF;
+   \   00000034   0x.... 0x....      LDR.W    R0,??DataTable42  ;; 0x40021000
+   \   00000038   0x6800             LDR      R0,[R0, #+0]
+   \   0000003A   0xF430 0x2080      BICS     R0,R0,#0x40000
+   \   0000003E   0x.... 0x....      LDR.W    R1,??DataTable42  ;; 0x40021000
+   \   00000042   0x6008             STR      R0,[R1, #+0]
+    166          
+    167            /* Reset PLLSRC, PLLXTPRE, PLLMUL[3:0] and USBPRE bits */
+    168            RCC->CFGR &= (u32)0xFF80FFFF;
+   \   00000044   0x.... 0x....      LDR.W    R0,??DataTable42_1  ;; 0x40021004
+   \   00000048   0x6800             LDR      R0,[R0, #+0]
+   \   0000004A   0xF430 0x00FE      BICS     R0,R0,#0x7F0000
+   \   0000004E   0x.... 0x....      LDR.W    R1,??DataTable42_1  ;; 0x40021004
+   \   00000052   0x6008             STR      R0,[R1, #+0]
+    169          
+    170            /* Disable all interrupts */
+    171            RCC->CIR = 0x00000000;
+   \   00000054   0x.... 0x....      LDR.W    R0,??DataTable42_4  ;; 0x40021008
+   \   00000058   0x2100             MOVS     R1,#+0
+   \   0000005A   0x6001             STR      R1,[R0, #+0]
+    172          }
+   \   0000005C   0x4770             BX       LR               ;; return
+    173          
+    174          /*******************************************************************************
+    175          * Function Name  : RCC_HSEConfig
+    176          * Description    : Configures the External High Speed oscillator (HSE).
+    177          *                  HSE can not be stopped if it is used directly or through the 
+    178          *                  PLL as system clock.
+    179          * Input          : - RCC_HSE: specifies the new state of the HSE.
+    180          *                    This parameter can be one of the following values:
+    181          *                       - RCC_HSE_OFF: HSE oscillator OFF
+    182          *                       - RCC_HSE_ON: HSE oscillator ON
+    183          *                       - RCC_HSE_Bypass: HSE oscillator bypassed with external
+    184          *                         clock
+    185          * Output         : None
+    186          * Return         : None
+    187          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    188          void RCC_HSEConfig(u32 RCC_HSE)
+    189          {
+    190            /* Check the parameters */
+    191            assert_param(IS_RCC_HSE(RCC_HSE));
+    192          
+    193            /* Reset HSEON and HSEBYP bits before configuring the HSE ------------------*/
+    194            /* Reset HSEON bit */
+    195            RCC->CR &= CR_HSEON_Reset;
+   \                     RCC_HSEConfig:
+   \   00000000   0x.... 0x....      LDR.W    R1,??DataTable42  ;; 0x40021000
+   \   00000004   0x6809             LDR      R1,[R1, #+0]
+   \   00000006   0xF431 0x3180      BICS     R1,R1,#0x10000
+   \   0000000A   0x.... 0x....      LDR.W    R2,??DataTable42  ;; 0x40021000
+   \   0000000E   0x6011             STR      R1,[R2, #+0]
+    196          
+    197            /* Reset HSEBYP bit */
+    198            RCC->CR &= CR_HSEBYP_Reset;
+   \   00000010   0x.... 0x....      LDR.W    R1,??DataTable42  ;; 0x40021000
+   \   00000014   0x6809             LDR      R1,[R1, #+0]
+   \   00000016   0xF431 0x2180      BICS     R1,R1,#0x40000
+   \   0000001A   0x.... 0x....      LDR.W    R2,??DataTable42  ;; 0x40021000
+   \   0000001E   0x6011             STR      R1,[R2, #+0]
+    199          
+    200            /* Configure HSE (RCC_HSE_OFF is already covered by the code section above) */
+    201            switch(RCC_HSE)
+   \   00000020   0x0001             MOVS     R1,R0
+   \   00000022   0xF5B1 0x3F80      CMP      R1,#+65536
+   \   00000026   0xD003             BEQ.N    ??RCC_HSEConfig_0
+   \   00000028   0xF5B1 0x2F80      CMP      R1,#+262144
+   \   0000002C   0xD009             BEQ.N    ??RCC_HSEConfig_1
+   \   0000002E   0xE011             B.N      ??RCC_HSEConfig_2
+    202            {
+    203              case RCC_HSE_ON:
+    204                /* Set HSEON bit */
+    205                RCC->CR |= CR_HSEON_Set;
+   \                     ??RCC_HSEConfig_0:
+   \   00000030   0x.... 0x....      LDR.W    R1,??DataTable42  ;; 0x40021000
+   \   00000034   0x6809             LDR      R1,[R1, #+0]
+   \   00000036   0xF451 0x3180      ORRS     R1,R1,#0x10000
+   \   0000003A   0x.... 0x....      LDR.W    R2,??DataTable42  ;; 0x40021000
+   \   0000003E   0x6011             STR      R1,[R2, #+0]
+    206                break;
+   \   00000040   0xE008             B.N      ??RCC_HSEConfig_3
+    207                
+    208              case RCC_HSE_Bypass:
+    209                /* Set HSEBYP and HSEON bits */
+    210                RCC->CR |= CR_HSEBYP_Set | CR_HSEON_Set;
+   \                     ??RCC_HSEConfig_1:
+   \   00000042   0x.... 0x....      LDR.W    R1,??DataTable42  ;; 0x40021000
+   \   00000046   0x6809             LDR      R1,[R1, #+0]
+   \   00000048   0xF451 0x21A0      ORRS     R1,R1,#0x50000
+   \   0000004C   0x.... 0x....      LDR.W    R2,??DataTable42  ;; 0x40021000
+   \   00000050   0x6011             STR      R1,[R2, #+0]
+    211                break;
+   \   00000052   0xE7FF             B.N      ??RCC_HSEConfig_3
+    212                
+    213              default:
+    214                break;
+    215            }
+    216          }
+   \                     ??RCC_HSEConfig_2:
+   \                     ??RCC_HSEConfig_3:
+   \   00000054   0x4770             BX       LR               ;; return
+    217          
+    218          /*******************************************************************************
+    219          * Function Name  : RCC_WaitForHSEStartUp
+    220          * Description    : Waits for HSE start-up.
+    221          * Input          : None
+    222          * Output         : None
+    223          * Return         : An ErrorStatus enumuration value:
+    224          *                         - SUCCESS: HSE oscillator is stable and ready to use
+    225          *                         - ERROR: HSE oscillator not yet ready
+    226          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    227          ErrorStatus RCC_WaitForHSEStartUp(void)
+    228          {
+   \                     RCC_WaitForHSEStartUp:
+   \   00000000   0xB538             PUSH     {R3-R5,LR}
+    229            vu32 startupcounter = 0;
+   \   00000002   0x2000             MOVS     R0,#+0
+   \   00000004   0x9000             STR      R0,[SP, #+0]
+    230            ErrorStatus status = ERROR;
+   \   00000006   0x2400             MOVS     R4,#+0
+    231            FlagStatus hsestatus = RESET;
+   \   00000008   0x2500             MOVS     R5,#+0
+    232            
+    233            /* Wait till HSE is ready and if Time out is reached exit */
+    234            do
+    235            {
+    236              hsestatus = RCC_GetFlagStatus(RCC_FLAG_HSERDY);
+   \                     ??RCC_WaitForHSEStartUp_0:
+   \   0000000A   0x2031             MOVS     R0,#+49
+   \   0000000C   0x.... 0x....      BL       RCC_GetFlagStatus
+   \   00000010   0x0005             MOVS     R5,R0
+    237              startupcounter++;  
+   \   00000012   0x9800             LDR      R0,[SP, #+0]
+   \   00000014   0x1C40             ADDS     R0,R0,#+1
+   \   00000016   0x9000             STR      R0,[SP, #+0]
+    238            } while((hsestatus == RESET) && (startupcounter != HSEStartUp_TimeOut));
+   \   00000018   0xB2ED             UXTB     R5,R5            ;; ZeroExt  R5,R5,#+24,#+24
+   \   0000001A   0x2D00             CMP      R5,#+0
+   \   0000001C   0xD103             BNE.N    ??RCC_WaitForHSEStartUp_1
+   \   0000001E   0x9800             LDR      R0,[SP, #+0]
+   \   00000020   0xF5B0 0x6FA0      CMP      R0,#+1280
+   \   00000024   0xD1F1             BNE.N    ??RCC_WaitForHSEStartUp_0
+    239          
+    240          
+    241            if (RCC_GetFlagStatus(RCC_FLAG_HSERDY) != RESET)
+   \                     ??RCC_WaitForHSEStartUp_1:
+   \   00000026   0x2031             MOVS     R0,#+49
+   \   00000028   0x.... 0x....      BL       RCC_GetFlagStatus
+   \   0000002C   0x2800             CMP      R0,#+0
+   \   0000002E   0xD002             BEQ.N    ??RCC_WaitForHSEStartUp_2
+    242            {
+    243              status = SUCCESS;
+   \   00000030   0x2001             MOVS     R0,#+1
+   \   00000032   0x0004             MOVS     R4,R0
+   \   00000034   0xE001             B.N      ??RCC_WaitForHSEStartUp_3
+    244            }
+    245            else
+    246            {
+    247              status = ERROR;
+   \                     ??RCC_WaitForHSEStartUp_2:
+   \   00000036   0x2000             MOVS     R0,#+0
+   \   00000038   0x0004             MOVS     R4,R0
+    248            }  
+    249          
+    250            return (status);
+   \                     ??RCC_WaitForHSEStartUp_3:
+   \   0000003A   0x0020             MOVS     R0,R4
+   \   0000003C   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   0000003E   0xBD32             POP      {R1,R4,R5,PC}    ;; return
+    251          }
+    252          
+    253          /*******************************************************************************
+    254          * Function Name  : RCC_AdjustHSICalibrationValue
+    255          * Description    : Adjusts the Internal High Speed oscillator (HSI) calibration
+    256          *                  value.
+    257          * Input          : - HSICalibrationValue: specifies the calibration trimming value.
+    258          *                    This parameter must be a number between 0 and 0x1F.
+    259          * Output         : None
+    260          * Return         : None
+    261          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    262          void RCC_AdjustHSICalibrationValue(u8 HSICalibrationValue)
+    263          {
+    264            u32 tmpreg = 0;
+   \                     RCC_AdjustHSICalibrationValue:
+   \   00000000   0x2100             MOVS     R1,#+0
+    265          
+    266            /* Check the parameters */
+    267            assert_param(IS_RCC_CALIBRATION_VALUE(HSICalibrationValue));
+    268          
+    269            tmpreg = RCC->CR;
+   \   00000002   0x.... 0x....      LDR.W    R2,??DataTable42  ;; 0x40021000
+   \   00000006   0x6812             LDR      R2,[R2, #+0]
+   \   00000008   0x0011             MOVS     R1,R2
+    270          
+    271            /* Clear HSITRIM[4:0] bits */
+    272            tmpreg &= CR_HSITRIM_Mask;
+   \   0000000A   0xF031 0x01F8      BICS     R1,R1,#0xF8
+    273          
+    274            /* Set the HSITRIM[4:0] bits according to HSICalibrationValue value */
+    275            tmpreg |= (u32)HSICalibrationValue << 3;
+   \   0000000E   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000010   0xEA51 0x01C0      ORRS     R1,R1,R0, LSL #+3
+    276          
+    277            /* Store the new value */
+    278            RCC->CR = tmpreg;
+   \   00000014   0x.... 0x....      LDR.W    R2,??DataTable42  ;; 0x40021000
+   \   00000018   0x6011             STR      R1,[R2, #+0]
+    279          }
+   \   0000001A   0x4770             BX       LR               ;; return
+    280          
+    281          /*******************************************************************************
+    282          * Function Name  : RCC_HSICmd
+    283          * Description    : Enables or disables the Internal High Speed oscillator (HSI).
+    284          *                  HSI can not be stopped if it is used directly or through the 
+    285          *                  PLL as system clock.
+    286          * Input          : - NewState: new state of the HSI.
+    287          *                    This parameter can be: ENABLE or DISABLE.
+    288          * Output         : None
+    289          * Return         : None
+    290          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    291          void RCC_HSICmd(FunctionalState NewState)
+    292          {
+    293            /* Check the parameters */
+    294            assert_param(IS_FUNCTIONAL_STATE(NewState));
+    295          
+    296            *(vu32 *) CR_HSION_BB = (u32)NewState;
+   \                     RCC_HSICmd:
+   \   00000000   0x.... 0x....      LDR.W    R1,??DataTable42_5  ;; 0x42420000
+   \   00000004   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000006   0x6008             STR      R0,[R1, #+0]
+    297          }
+   \   00000008   0x4770             BX       LR               ;; return
+    298          
+    299          /*******************************************************************************
+    300          * Function Name  : RCC_PLLConfig
+    301          * Description    : Configures the PLL clock source and multiplication factor.
+    302          *                  This function must be used only when the PLL is disabled.
+    303          * Input          : - RCC_PLLSource: specifies the PLL entry clock source.
+    304          *                    This parameter can be one of the following values:
+    305          *                       - RCC_PLLSource_HSI_Div2: HSI oscillator clock divided
+    306          *                         by 2 selected as PLL clock entry
+    307          *                       - RCC_PLLSource_HSE_Div1: HSE oscillator clock selected
+    308          *                         as PLL clock entry
+    309          *                       - RCC_PLLSource_HSE_Div2: HSE oscillator clock divided
+    310          *                         by 2 selected as PLL clock entry
+    311          *                  - RCC_PLLMul: specifies the PLL multiplication factor.
+    312          *                    This parameter can be RCC_PLLMul_x where x:[2,16]
+    313          * Output         : None
+    314          * Return         : None
+    315          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    316          void RCC_PLLConfig(u32 RCC_PLLSource, u32 RCC_PLLMul)
+    317          {
+    318            u32 tmpreg = 0;
+   \                     RCC_PLLConfig:
+   \   00000000   0x2200             MOVS     R2,#+0
+    319          
+    320            /* Check the parameters */
+    321            assert_param(IS_RCC_PLL_SOURCE(RCC_PLLSource));
+    322            assert_param(IS_RCC_PLL_MUL(RCC_PLLMul));
+    323          
+    324            tmpreg = RCC->CFGR;
+   \   00000002   0x.... 0x....      LDR.W    R3,??DataTable42_1  ;; 0x40021004
+   \   00000006   0x681B             LDR      R3,[R3, #+0]
+   \   00000008   0x001A             MOVS     R2,R3
+    325          
+    326            /* Clear PLLSRC, PLLXTPRE and PLLMUL[3:0] bits */
+    327            tmpreg &= CFGR_PLL_Mask;
+   \   0000000A   0xF432 0x127C      BICS     R2,R2,#0x3F0000
+    328          
+    329            /* Set the PLL configuration bits */
+    330            tmpreg |= RCC_PLLSource | RCC_PLLMul;
+   \   0000000E   0xEA51 0x0300      ORRS     R3,R1,R0
+   \   00000012   0x431A             ORRS     R2,R3,R2
+    331          
+    332            /* Store the new value */
+    333            RCC->CFGR = tmpreg;
+   \   00000014   0x.... 0x....      LDR.W    R3,??DataTable42_1  ;; 0x40021004
+   \   00000018   0x601A             STR      R2,[R3, #+0]
+    334          }
+   \   0000001A   0x4770             BX       LR               ;; return
+    335          
+    336          /*******************************************************************************
+    337          * Function Name  : RCC_PLLCmd
+    338          * Description    : Enables or disables the PLL.
+    339          *                  The PLL can not be disabled if it is used as system clock.
+    340          * Input          : - NewState: new state of the PLL.
+    341          *                    This parameter can be: ENABLE or DISABLE.
+    342          * Output         : None
+    343          * Return         : None
+    344          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    345          void RCC_PLLCmd(FunctionalState NewState)
+    346          {
+    347            /* Check the parameters */
+    348            assert_param(IS_FUNCTIONAL_STATE(NewState));
+    349          
+    350            *(vu32 *) CR_PLLON_BB = (u32)NewState;
+   \                     RCC_PLLCmd:
+   \   00000000   0x.... 0x....      LDR.W    R1,??DataTable42_6  ;; 0x42420060
+   \   00000004   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000006   0x6008             STR      R0,[R1, #+0]
+    351          }
+   \   00000008   0x4770             BX       LR               ;; return
+    352          
+    353          /*******************************************************************************
+    354          * Function Name  : RCC_PREDIV1Config
+    355          * Description    : Configures the PREDIV1 division factor.
+    356          *                  This function must be used only when the PLL1 is disabled.
+    357          *                  This function applies only to STM32 connectivity line devices.
+    358          * Input          : - RCC_PREDIV1_Source: specifies the PREDIV1 clock source.
+    359          *                    This parameter can be one of the following values:
+    360          *                       - RCC_PREDIV1_Source_HSE: HSE selected as PREDIV1 clock
+    361          *                       - RCC_PREDIV1_Source_PLL2: PLL2 selected as PREDIV1 clock
+    362          *                  - RCC_PREDIV1_Div: specifies the PREDIV1 clock division factor.
+    363          *                    This parameter can be RCC_PREDIV1_Divx where x:[1,16]
+    364          * Output         : None
+    365          * Return         : None
+    366          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    367          void RCC_PREDIV1Config(u32 RCC_PREDIV1_Source, u32 RCC_PREDIV1_Div)
+    368          {
+    369            u32 tmpreg = 0;
+   \                     RCC_PREDIV1Config:
+   \   00000000   0x2200             MOVS     R2,#+0
+    370          
+    371            /* Check the parameters */
+    372            assert_param(IS_RCC_PREDIV1_SOURCE(RCC_PREDIV1_Source));
+    373            assert_param(IS_RCC_PREDIV1(RCC_PREDIV1_Div));
+    374          
+    375            tmpreg = RCC->CFGR2;
+   \   00000002   0x.... 0x....      LDR.W    R3,??DataTable42_7  ;; 0x4002102c
+   \   00000006   0x681B             LDR      R3,[R3, #+0]
+   \   00000008   0x001A             MOVS     R2,R3
+    376          
+    377            /* Clear PREDIV1[3:0] and PREDIV1SRC bits */
+    378            tmpreg &= ~(CFGR2_PREDIV1 | CFGR2_PREDIV1SRC);
+   \   0000000A   0x.... 0x....      LDR.W    R3,??DataTable42_8  ;; 0xfffefff0
+   \   0000000E   0x401A             ANDS     R2,R3,R2
+    379          
+    380            /* Set the PREDIV1 clock source and division factor */
+    381            tmpreg |= RCC_PREDIV1_Source | RCC_PREDIV1_Div ;
+   \   00000010   0xEA51 0x0300      ORRS     R3,R1,R0
+   \   00000014   0x431A             ORRS     R2,R3,R2
+    382          
+    383            /* Store the new value */
+    384            RCC->CFGR2 = tmpreg;
+   \   00000016   0x.... 0x....      LDR.W    R3,??DataTable42_7  ;; 0x4002102c
+   \   0000001A   0x601A             STR      R2,[R3, #+0]
+    385          }
+   \   0000001C   0x4770             BX       LR               ;; return
+    386          
+    387          /*******************************************************************************
+    388          * Function Name  : RCC_PREDIV2Config
+    389          * Description    : Configures the PREDIV2 division factor.
+    390          *                  This function must be used only when both PLL2 and PLL3 are disabled.
+    391          *                  This function applies only to STM32 connectivity line devices.
+    392          * Input          : - RCC_PREDIV2_Div: specifies the PREDIV2 clock division factor.
+    393          *                    This parameter can be RCC_PREDIV2_Divx where x:[1,16]
+    394          * Output         : None
+    395          * Return         : None
+    396          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    397          void RCC_PREDIV2Config(u32 RCC_PREDIV2_Div)
+    398          {
+    399            u32 tmpreg = 0;
+   \                     RCC_PREDIV2Config:
+   \   00000000   0x2100             MOVS     R1,#+0
+    400          
+    401            /* Check the parameters */
+    402            assert_param(IS_RCC_PREDIV2(RCC_PREDIV2_Div));
+    403          
+    404            tmpreg = RCC->CFGR2;
+   \   00000002   0x.... 0x....      LDR.W    R2,??DataTable42_7  ;; 0x4002102c
+   \   00000006   0x6812             LDR      R2,[R2, #+0]
+   \   00000008   0x0011             MOVS     R1,R2
+    405          
+    406            /* Clear PREDIV2[3:0] bits */
+    407            tmpreg &= ~CFGR2_PREDIV2;
+   \   0000000A   0xF031 0x01F0      BICS     R1,R1,#0xF0
+    408          
+    409            /* Set the PREDIV2 division factor */
+    410            tmpreg |= RCC_PREDIV2_Div;
+   \   0000000E   0x4301             ORRS     R1,R0,R1
+    411          
+    412            /* Store the new value */
+    413            RCC->CFGR2 = tmpreg;
+   \   00000010   0x.... 0x....      LDR.W    R2,??DataTable42_7  ;; 0x4002102c
+   \   00000014   0x6011             STR      R1,[R2, #+0]
+    414          }
+   \   00000016   0x4770             BX       LR               ;; return
+    415          
+    416          /*******************************************************************************
+    417          * Function Name  : RCC_PLL1Config
+    418          * Description    : Configures the PLL1 clock source and multiplication factor.
+    419          *                  This function must be used only when the PLL1 is disabled.
+    420          *                  This function applies only to STM32 connectivity line devices.
+    421          * Input          : - RCC_PLL1Source: specifies the PLL1 entry clock source.
+    422          *                    This parameter can be one of the following values:
+    423          *                       - RCC_PLL1Source_HSI_Div2: HSI oscillator clock divided
+    424          *                         by 2 selected as PLL1 clock entry
+    425          *                       - RCC_PLL1Source_PREDIV1: PREDIV1 clock selected as PLL1
+    426          *                         clock entry
+    427          *                  - RCC_PLL1Mul: specifies the PLL1 multiplication factor.
+    428          *                    This parameter can be RCC_PLL1Mul_x where x:{[4,9], 6_5}
+    429          * Output         : None
+    430          * Return         : None
+    431          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    432          void RCC_PLL1Config(u32 RCC_PLL1Source, u32 RCC_PLL1Mul)
+    433          {
+    434            u32 tmpreg = 0;
+   \                     RCC_PLL1Config:
+   \   00000000   0x2200             MOVS     R2,#+0
+    435          
+    436            /* Check the parameters */
+    437            assert_param(IS_RCC_PLL1_SOURCE(RCC_PLL1Source));
+    438            assert_param(IS_RCC_PLL1_MUL(RCC_PLL1Mul));
+    439          
+    440            tmpreg = RCC->CFGR;
+   \   00000002   0x.... 0x....      LDR.W    R3,??DataTable42_1  ;; 0x40021004
+   \   00000006   0x681B             LDR      R3,[R3, #+0]
+   \   00000008   0x001A             MOVS     R2,R3
+    441          
+    442            /* Clear PLL1MUL[3:0] bits */
+    443            tmpreg &= CFGR_PLL1_Mask;
+   \   0000000A   0xF432 0x1274      BICS     R2,R2,#0x3D0000
+    444          
+    445            /* Set the PLL1 configuration bits */
+    446            tmpreg |= RCC_PLL1Source | RCC_PLL1Mul;
+   \   0000000E   0xEA51 0x0300      ORRS     R3,R1,R0
+   \   00000012   0x431A             ORRS     R2,R3,R2
+    447          
+    448            /* Store the new value */
+    449            RCC->CFGR = tmpreg;
+   \   00000014   0x.... 0x....      LDR.W    R3,??DataTable42_1  ;; 0x40021004
+   \   00000018   0x601A             STR      R2,[R3, #+0]
+    450          }
+   \   0000001A   0x4770             BX       LR               ;; return
+    451          
+    452          /*******************************************************************************
+    453          * Function Name  : RCC_PLL1Cmd
+    454          * Description    : Enables or disables the PLL1.
+    455          *                  The PLL1 can not be disabled if it is used as system clock.
+    456          *                  This function applies only to STM32 connectivity line devices.
+    457          * Input          : - NewState: new state of the PLL1.
+    458          *                    This parameter can be: ENABLE or DISABLE.
+    459          * Output         : None
+    460          * Return         : None
+    461          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    462          void RCC_PLL1Cmd(FunctionalState NewState)
+    463          {
+    464            /* Check the parameters */
+    465            assert_param(IS_FUNCTIONAL_STATE(NewState));
+    466          
+    467            *(vu32 *) CR_PLLON_BB = (u32)NewState;
+   \                     RCC_PLL1Cmd:
+   \   00000000   0x.... 0x....      LDR.W    R1,??DataTable42_6  ;; 0x42420060
+   \   00000004   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000006   0x6008             STR      R0,[R1, #+0]
+    468          }
+   \   00000008   0x4770             BX       LR               ;; return
+    469          
+    470          /*******************************************************************************
+    471          * Function Name  : RCC_PLL2Config
+    472          * Description    : Configures the PLL2 multiplication factor.
+    473          *                  This function must be used only when the PLL2 is disabled.
+    474          *                  This function applies only to STM32 connectivity line devices.
+    475          * Input          : - RCC_PLL2Mul: specifies the PLL2 multiplication factor.
+    476          *                    This parameter can be RCC_PLL2Mul_x where x:{[8,14], 16, 20}
+    477          * Output         : None
+    478          * Return         : None
+    479          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    480          void RCC_PLL2Config(u32 RCC_PLL2Mul)
+    481          {
+    482            u32 tmpreg = 0;
+   \                     RCC_PLL2Config:
+   \   00000000   0x2100             MOVS     R1,#+0
+    483          
+    484            /* Check the parameters */
+    485            assert_param(IS_RCC_PLL2_MUL(RCC_PLL2Mul));
+    486          
+    487            tmpreg = RCC->CFGR2;
+   \   00000002   0x.... 0x....      LDR.W    R2,??DataTable42_7  ;; 0x4002102c
+   \   00000006   0x6812             LDR      R2,[R2, #+0]
+   \   00000008   0x0011             MOVS     R1,R2
+    488          
+    489            /* Clear PLL2Mul[3:0] bits */
+    490            tmpreg &= ~CFGR2_PLL2MUL;
+   \   0000000A   0xF431 0x6170      BICS     R1,R1,#0xF00
+    491          
+    492            /* Set the PLL2 configuration bits */
+    493            tmpreg |= RCC_PLL2Mul;
+   \   0000000E   0x4301             ORRS     R1,R0,R1
+    494          
+    495            /* Store the new value */
+    496            RCC->CFGR2 = tmpreg;
+   \   00000010   0x.... 0x....      LDR.W    R2,??DataTable42_7  ;; 0x4002102c
+   \   00000014   0x6011             STR      R1,[R2, #+0]
+    497          }
+   \   00000016   0x4770             BX       LR               ;; return
+    498          
+    499          /*******************************************************************************
+    500          * Function Name  : RCC_PLL2Cmd
+    501          * Description    : Enables or disables the PLL2.
+    502          *                  The PLL2 can not be disabled if it is used indirectly as
+    503          *                  system clock (i.e. it is used as PLL1 clock entry that is used
+    504          *                  as system clock).
+    505          *                  This function applies only to STM32 connectivity line devices.
+    506          * Input          : - NewState: new state of the PLL2.
+    507          *                    This parameter can be: ENABLE or DISABLE.
+    508          * Output         : None
+    509          * Return         : None
+    510          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    511          void RCC_PLL2Cmd(FunctionalState NewState)
+    512          {
+    513            /* Check the parameters */
+    514            assert_param(IS_FUNCTIONAL_STATE(NewState));
+    515          
+    516            *(vu32 *) CR_PLL2ON_BB = (u32)NewState;
+   \                     RCC_PLL2Cmd:
+   \   00000000   0x.... 0x....      LDR.W    R1,??DataTable42_9  ;; 0x42420068
+   \   00000004   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000006   0x6008             STR      R0,[R1, #+0]
+    517          }
+   \   00000008   0x4770             BX       LR               ;; return
+    518          
+    519          /*******************************************************************************
+    520          * Function Name  : RCC_PLL3Config
+    521          * Description    : Configures the PLL3 multiplication factor.
+    522          *                  This function must be used only when the PLL3 is disabled.
+    523          *                  This function applies only to STM32 connectivity line devices.
+    524          * Input          : - RCC_PLL3Mul: specifies the PLL3 multiplication factor.
+    525          *                    This parameter can be RCC_PLL3Mul_x where x:{[8,14], 16, 20}
+    526          * Output         : None
+    527          * Return         : None
+    528          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    529          void RCC_PLL3Config(u32 RCC_PLL3Mul)
+    530          {
+    531            u32 tmpreg = 0;
+   \                     RCC_PLL3Config:
+   \   00000000   0x2100             MOVS     R1,#+0
+    532          
+    533            /* Check the parameters */
+    534            assert_param(IS_RCC_PLL3_MUL(RCC_PLL3Mul));
+    535          
+    536            tmpreg = RCC->CFGR2;
+   \   00000002   0x.... 0x....      LDR.W    R2,??DataTable42_7  ;; 0x4002102c
+   \   00000006   0x6812             LDR      R2,[R2, #+0]
+   \   00000008   0x0011             MOVS     R1,R2
+    537          
+    538            /* Clear PLL3Mul[3:0] bits */
+    539            tmpreg &= ~CFGR2_PLL3MUL;
+   \   0000000A   0xF431 0x4170      BICS     R1,R1,#0xF000
+    540          
+    541            /* Set the PLL3 configuration bits */
+    542            tmpreg |= RCC_PLL3Mul;
+   \   0000000E   0x4301             ORRS     R1,R0,R1
+    543          
+    544            /* Store the new value */
+    545            RCC->CFGR2 = tmpreg;
+   \   00000010   0x.... 0x....      LDR.W    R2,??DataTable42_7  ;; 0x4002102c
+   \   00000014   0x6011             STR      R1,[R2, #+0]
+    546          }
+   \   00000016   0x4770             BX       LR               ;; return
+    547          
+    548          /*******************************************************************************
+    549          * Function Name  : RCC_PLL3Cmd
+    550          * Description    : Enables or disables the PLL3.
+    551          *                  The PLL3 can not be disabled if it is used as system clock.
+    552          *                  This function applies only to STM32 connectivity line devices.
+    553          * Input          : - NewState: new state of the PLL3.
+    554          *                    This parameter can be: ENABLE or DISABLE.
+    555          * Output         : None
+    556          * Return         : None
+    557          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    558          void RCC_PLL3Cmd(FunctionalState NewState)
+    559          {
+    560            /* Check the parameters */
+    561            assert_param(IS_FUNCTIONAL_STATE(NewState));
+    562          
+    563            *(vu32 *) CR_PLL3ON_BB = (u32)NewState;
+   \                     RCC_PLL3Cmd:
+   \   00000000   0x.... 0x....      LDR.W    R1,??DataTable42_10  ;; 0x42420070
+   \   00000004   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000006   0x6008             STR      R0,[R1, #+0]
+    564          }
+   \   00000008   0x4770             BX       LR               ;; return
+    565          
+    566          /*******************************************************************************
+    567          * Function Name  : RCC_SYSCLKConfig
+    568          * Description    : Configures the system clock (SYSCLK).
+    569          * Input          : - RCC_SYSCLKSource: specifies the clock source used as system
+    570          *                    clock. This parameter can be one of the following values:
+    571          *                       - RCC_SYSCLKSource_HSI: HSI selected as system clock
+    572          *                       - RCC_SYSCLKSource_HSE: HSE selected as system clock
+    573          *                       - RCC_SYSCLKSource_PLLCLK: PLL selected as system clock
+    574          *                       - RCC_SYSCLKSource_PLL1CLK: PLL1 selected as system clock // Only for STM32 connectivity line devices 
+    575          * Output         : None
+    576          * Return         : None
+    577          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    578          void RCC_SYSCLKConfig(u32 RCC_SYSCLKSource)
+    579          {
+    580            u32 tmpreg = 0;
+   \                     RCC_SYSCLKConfig:
+   \   00000000   0x2100             MOVS     R1,#+0
+    581          
+    582            /* Check the parameters */
+    583            assert_param(IS_RCC_SYSCLK_SOURCE(RCC_SYSCLKSource));
+    584          
+    585            tmpreg = RCC->CFGR;
+   \   00000002   0x.... 0x....      LDR.W    R2,??DataTable42_1  ;; 0x40021004
+   \   00000006   0x6812             LDR      R2,[R2, #+0]
+   \   00000008   0x0011             MOVS     R1,R2
+    586          
+    587            /* Clear SW[1:0] bits */
+    588            tmpreg &= CFGR_SW_Mask;
+   \   0000000A   0x0889             LSRS     R1,R1,#+2
+   \   0000000C   0x0089             LSLS     R1,R1,#+2
+    589          
+    590            /* Set SW[1:0] bits according to RCC_SYSCLKSource value */
+    591            tmpreg |= RCC_SYSCLKSource;
+   \   0000000E   0x4301             ORRS     R1,R0,R1
+    592          
+    593            /* Store the new value */
+    594            RCC->CFGR = tmpreg;
+   \   00000010   0x.... 0x....      LDR.W    R2,??DataTable42_1  ;; 0x40021004
+   \   00000014   0x6011             STR      R1,[R2, #+0]
+    595          }
+   \   00000016   0x4770             BX       LR               ;; return
+    596          
+    597          /*******************************************************************************
+    598          * Function Name  : RCC_GetSYSCLKSource
+    599          * Description    : Returns the clock source used as system clock.
+    600          * Input          : None
+    601          * Output         : None
+    602          * Return         : The clock source used as system clock. The returned value can
+    603          *                  be one of the following:
+    604          *                       - 0x00: HSI used as system clock
+    605          *                       - 0x04: HSE used as system clock
+    606          *                       - 0x08: PLL used as system clock
+    607          *                       - 0x08: PLL1 used as system clock // Only for STM32 connectivity line devices 
+    608          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    609          u8 RCC_GetSYSCLKSource(void)
+    610          {
+    611            return ((u8)(RCC->CFGR & CFGR_SWS_Mask));
+   \                     RCC_GetSYSCLKSource:
+   \   00000000   0x.... 0x....      LDR.W    R0,??DataTable42_1  ;; 0x40021004
+   \   00000004   0x6800             LDR      R0,[R0, #+0]
+   \   00000006   0xF010 0x000C      ANDS     R0,R0,#0xC
+   \   0000000A   0x4770             BX       LR               ;; return
+    612          }
+    613          
+    614          /*******************************************************************************
+    615          * Function Name  : RCC_HCLKConfig
+    616          * Description    : Configures the AHB clock (HCLK).
+    617          * Input          : - RCC_SYSCLK: defines the AHB clock divider. This clock is
+    618          *                    derived from the system clock (SYSCLK).
+    619          *                    This parameter can be one of the following values:
+    620          *                       - RCC_SYSCLK_Div1: AHB clock = SYSCLK
+    621          *                       - RCC_SYSCLK_Div2: AHB clock = SYSCLK/2
+    622          *                       - RCC_SYSCLK_Div4: AHB clock = SYSCLK/4
+    623          *                       - RCC_SYSCLK_Div8: AHB clock = SYSCLK/8
+    624          *                       - RCC_SYSCLK_Div16: AHB clock = SYSCLK/16
+    625          *                       - RCC_SYSCLK_Div64: AHB clock = SYSCLK/64
+    626          *                       - RCC_SYSCLK_Div128: AHB clock = SYSCLK/128
+    627          *                       - RCC_SYSCLK_Div256: AHB clock = SYSCLK/256
+    628          *                       - RCC_SYSCLK_Div512: AHB clock = SYSCLK/512
+    629          * Output         : None
+    630          * Return         : None
+    631          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    632          void RCC_HCLKConfig(u32 RCC_SYSCLK)
+    633          {
+    634            u32 tmpreg = 0;
+   \                     RCC_HCLKConfig:
+   \   00000000   0x2100             MOVS     R1,#+0
+    635          
+    636            /* Check the parameters */
+    637            assert_param(IS_RCC_HCLK(RCC_SYSCLK));
+    638          
+    639            tmpreg = RCC->CFGR;
+   \   00000002   0x.... 0x....      LDR.W    R2,??DataTable42_1  ;; 0x40021004
+   \   00000006   0x6812             LDR      R2,[R2, #+0]
+   \   00000008   0x0011             MOVS     R1,R2
+    640          
+    641            /* Clear HPRE[3:0] bits */
+    642            tmpreg &= CFGR_HPRE_Reset_Mask;
+   \   0000000A   0xF031 0x01F0      BICS     R1,R1,#0xF0
+    643          
+    644            /* Set HPRE[3:0] bits according to RCC_SYSCLK value */
+    645            tmpreg |= RCC_SYSCLK;
+   \   0000000E   0x4301             ORRS     R1,R0,R1
+    646          
+    647            /* Store the new value */
+    648            RCC->CFGR = tmpreg;
+   \   00000010   0x.... 0x....      LDR.W    R2,??DataTable42_1  ;; 0x40021004
+   \   00000014   0x6011             STR      R1,[R2, #+0]
+    649          }
+   \   00000016   0x4770             BX       LR               ;; return
+    650          
+    651          /*******************************************************************************
+    652          * Function Name  : RCC_PCLK1Config
+    653          * Description    : Configures the Low Speed APB clock (PCLK1).
+    654          * Input          : - RCC_HCLK: defines the APB1 clock divider. This clock is
+    655          *                    derived from the AHB clock (HCLK).
+    656          *                    This parameter can be one of the following values:
+    657          *                       - RCC_HCLK_Div1: APB1 clock = HCLK
+    658          *                       - RCC_HCLK_Div2: APB1 clock = HCLK/2
+    659          *                       - RCC_HCLK_Div4: APB1 clock = HCLK/4
+    660          *                       - RCC_HCLK_Div8: APB1 clock = HCLK/8
+    661          *                       - RCC_HCLK_Div16: APB1 clock = HCLK/16
+    662          * Output         : None
+    663          * Return         : None
+    664          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    665          void RCC_PCLK1Config(u32 RCC_HCLK)
+    666          {
+    667            u32 tmpreg = 0;
+   \                     RCC_PCLK1Config:
+   \   00000000   0x2100             MOVS     R1,#+0
+    668          
+    669            /* Check the parameters */
+    670            assert_param(IS_RCC_PCLK(RCC_HCLK));
+    671          
+    672            tmpreg = RCC->CFGR;
+   \   00000002   0x.... 0x....      LDR.W    R2,??DataTable42_1  ;; 0x40021004
+   \   00000006   0x6812             LDR      R2,[R2, #+0]
+   \   00000008   0x0011             MOVS     R1,R2
+    673          
+    674            /* Clear PPRE1[2:0] bits */
+    675            tmpreg &= CFGR_PPRE1_Reset_Mask;
+   \   0000000A   0xF431 0x61E0      BICS     R1,R1,#0x700
+    676          
+    677            /* Set PPRE1[2:0] bits according to RCC_HCLK value */
+    678            tmpreg |= RCC_HCLK;
+   \   0000000E   0x4301             ORRS     R1,R0,R1
+    679          
+    680            /* Store the new value */
+    681            RCC->CFGR = tmpreg;
+   \   00000010   0x.... 0x....      LDR.W    R2,??DataTable42_1  ;; 0x40021004
+   \   00000014   0x6011             STR      R1,[R2, #+0]
+    682          }
+   \   00000016   0x4770             BX       LR               ;; return
+    683          
+    684          /*******************************************************************************
+    685          * Function Name  : RCC_PCLK2Config
+    686          * Description    : Configures the High Speed APB clock (PCLK2).
+    687          * Input          : - RCC_HCLK: defines the APB2 clock divider. This clock is
+    688          *                    derived from the AHB clock (HCLK).
+    689          *                    This parameter can be one of the following values:
+    690          *                       - RCC_HCLK_Div1: APB2 clock = HCLK
+    691          *                       - RCC_HCLK_Div2: APB2 clock = HCLK/2
+    692          *                       - RCC_HCLK_Div4: APB2 clock = HCLK/4
+    693          *                       - RCC_HCLK_Div8: APB2 clock = HCLK/8
+    694          *                       - RCC_HCLK_Div16: APB2 clock = HCLK/16
+    695          * Output         : None
+    696          * Return         : None
+    697          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    698          void RCC_PCLK2Config(u32 RCC_HCLK)
+    699          {
+    700            u32 tmpreg = 0;
+   \                     RCC_PCLK2Config:
+   \   00000000   0x2100             MOVS     R1,#+0
+    701          
+    702            /* Check the parameters */
+    703            assert_param(IS_RCC_PCLK(RCC_HCLK));
+    704          
+    705            tmpreg = RCC->CFGR;
+   \   00000002   0x.... 0x....      LDR.W    R2,??DataTable42_1  ;; 0x40021004
+   \   00000006   0x6812             LDR      R2,[R2, #+0]
+   \   00000008   0x0011             MOVS     R1,R2
+    706          
+    707            /* Clear PPRE2[2:0] bits */
+    708            tmpreg &= CFGR_PPRE2_Reset_Mask;
+   \   0000000A   0xF431 0x5160      BICS     R1,R1,#0x3800
+    709          
+    710            /* Set PPRE2[2:0] bits according to RCC_HCLK value */
+    711            tmpreg |= RCC_HCLK << 3;
+   \   0000000E   0xEA51 0x01C0      ORRS     R1,R1,R0, LSL #+3
+    712          
+    713            /* Store the new value */
+    714            RCC->CFGR = tmpreg;
+   \   00000012   0x.... 0x....      LDR.W    R2,??DataTable42_1  ;; 0x40021004
+   \   00000016   0x6011             STR      R1,[R2, #+0]
+    715          }
+   \   00000018   0x4770             BX       LR               ;; return
+    716          
+    717          /*******************************************************************************
+    718          * Function Name  : RCC_ITConfig
+    719          * Description    : Enables or disables the specified RCC interrupts.
+    720          * Input          : - RCC_IT: specifies the RCC interrupt sources to be enabled
+    721          *                    or disabled.
+    722          *                    This parameter can be any combination of the following values:
+    723          *                       - RCC_IT_LSIRDY: LSI ready interrupt
+    724          *                       - RCC_IT_LSERDY: LSE ready interrupt
+    725          *                       - RCC_IT_HSIRDY: HSI ready interrupt
+    726          *                       - RCC_IT_HSERDY: HSE ready interrupt
+    727          *                       - RCC_IT_PLLRDY: PLL ready interrupt
+    728          *                       - RCC_IT_PLL1RDY: PLL1 ready interrupt // Only for STM32 connectivity line devices 
+    729          *                       - RCC_IT_PLL2RDY: PLL2 ready interrupt // Only for STM32 connectivity line devices 
+    730          *                       - RCC_IT_PLL3RDY: PLL3 ready interrupt // Only for STM32 connectivity line devices                         
+    731          *                  - NewState: new state of the specified RCC interrupts.
+    732          *                    This parameter can be: ENABLE or DISABLE.
+    733          * Output         : None
+    734          * Return         : None
+    735          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    736          void RCC_ITConfig(u8 RCC_IT, FunctionalState NewState)
+    737          {
+    738            /* Check the parameters */
+    739            assert_param(IS_RCC_IT(RCC_IT));
+    740            assert_param(IS_FUNCTIONAL_STATE(NewState));
+    741          
+    742            if (NewState != DISABLE)
+   \                     RCC_ITConfig:
+   \   00000000   0xB2C9             UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   00000002   0x2900             CMP      R1,#+0
+   \   00000004   0xD007             BEQ.N    ??RCC_ITConfig_0
+    743            {
+    744              /* Perform Byte access to RCC_CIR[14:8] bits to enable the selected interrupts */
+    745              *(vu8 *) CIR_BYTE2_ADDRESS |= RCC_IT;
+   \   00000006   0x.... 0x....      LDR.W    R2,??DataTable42_11  ;; 0x40021009
+   \   0000000A   0x7812             LDRB     R2,[R2, #+0]
+   \   0000000C   0x4302             ORRS     R2,R0,R2
+   \   0000000E   0x.... 0x....      LDR.W    R3,??DataTable42_11  ;; 0x40021009
+   \   00000012   0x701A             STRB     R2,[R3, #+0]
+   \   00000014   0xE006             B.N      ??RCC_ITConfig_1
+    746            }
+    747            else
+    748            {
+    749              /* Perform Byte access to RCC_CIR[14:8] bits to disable the selected interrupts */
+    750              *(vu8 *) CIR_BYTE2_ADDRESS &= (u8)~RCC_IT;
+   \                     ??RCC_ITConfig_0:
+   \   00000016   0x.... 0x....      LDR.W    R2,??DataTable42_11  ;; 0x40021009
+   \   0000001A   0x7812             LDRB     R2,[R2, #+0]
+   \   0000001C   0x4382             BICS     R2,R2,R0
+   \   0000001E   0x.... 0x....      LDR.W    R3,??DataTable42_11  ;; 0x40021009
+   \   00000022   0x701A             STRB     R2,[R3, #+0]
+    751            }
+    752          }
+   \                     ??RCC_ITConfig_1:
+   \   00000024   0x4770             BX       LR               ;; return
+    753          
+    754          /*******************************************************************************
+    755          * Function Name  : RCC_USBCLKConfig
+    756          * Description    : Configures the USB clock (USBCLK).
+    757          * Input          : - RCC_USBCLKSource: specifies the USB clock source. This clock
+    758          *                    is derived from the PLL output.
+    759          *                    This parameter can be one of the following values:
+    760          *                       - RCC_USBCLKSource_PLLCLK_1Div5: PLL clock divided by 1,5
+    761          *                         selected as USB clock source
+    762          *                       - RCC_USBCLKSource_PLLCLK_Div1: PLL clock selected as USB
+    763          *                         clock source
+    764          * Output         : None
+    765          * Return         : None
+    766          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    767          void RCC_USBCLKConfig(u32 RCC_USBCLKSource)
+    768          {
+    769            /* Check the parameters */
+    770            assert_param(IS_RCC_USBCLK_SOURCE(RCC_USBCLKSource));
+    771          
+    772            *(vu32 *) CFGR_USBPRE_BB = RCC_USBCLKSource;
+   \                     RCC_USBCLKConfig:
+   \   00000000   0x.... 0x....      LDR.W    R1,??DataTable42_12  ;; 0x424200d8
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+    773          }
+   \   00000006   0x4770             BX       LR               ;; return
+    774          
+    775          /*******************************************************************************
+    776          * Function Name  : RCC_ADCCLKConfig
+    777          * Description    : Configures the ADC clock (ADCCLK).
+    778          * Input          : - RCC_PCLK2: defines the ADC clock divider. This clock is
+    779          *                    derived from the APB2 clock (PCLK2).
+    780          *                    This parameter can be one of the following values:
+    781          *                       - RCC_PCLK2_Div2: ADC clock = PCLK2/2
+    782          *                       - RCC_PCLK2_Div4: ADC clock = PCLK2/4
+    783          *                       - RCC_PCLK2_Div6: ADC clock = PCLK2/6
+    784          *                       - RCC_PCLK2_Div8: ADC clock = PCLK2/8
+    785          * Output         : None
+    786          * Return         : None
+    787          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    788          void RCC_ADCCLKConfig(u32 RCC_PCLK2)
+    789          {
+    790            u32 tmpreg = 0;
+   \                     RCC_ADCCLKConfig:
+   \   00000000   0x2100             MOVS     R1,#+0
+    791          
+    792            /* Check the parameters */
+    793            assert_param(IS_RCC_ADCCLK(RCC_PCLK2));
+    794          
+    795            tmpreg = RCC->CFGR;
+   \   00000002   0x.... 0x....      LDR.W    R2,??DataTable42_1  ;; 0x40021004
+   \   00000006   0x6812             LDR      R2,[R2, #+0]
+   \   00000008   0x0011             MOVS     R1,R2
+    796          
+    797            /* Clear ADCPRE[1:0] bits */
+    798            tmpreg &= CFGR_ADCPRE_Reset_Mask;
+   \   0000000A   0xF431 0x4140      BICS     R1,R1,#0xC000
+    799          
+    800            /* Set ADCPRE[1:0] bits according to RCC_PCLK2 value */
+    801            tmpreg |= RCC_PCLK2;
+   \   0000000E   0x4301             ORRS     R1,R0,R1
+    802          
+    803            /* Store the new value */
+    804            RCC->CFGR = tmpreg;
+   \   00000010   0x.... 0x....      LDR.W    R2,??DataTable42_1  ;; 0x40021004
+   \   00000014   0x6011             STR      R1,[R2, #+0]
+    805          }
+   \   00000016   0x4770             BX       LR               ;; return
+    806          
+    807          /*******************************************************************************
+    808          * Function Name  : RCC_OTGFSCLKConfig
+    809          * Description    : Configures the USB OTG FS clock (OTGFSCLK).
+    810          *                  This function applies only to STM32 connectivity line devices.
+    811          * Input          : - RCC_USBCLKSource: specifies the USB OTG FS clock source.
+    812          *                    This clock is derived from the PLL1 output.
+    813          *                    This parameter can be one of the following values:
+    814          *                       - RCC_OTGFSCLKSource_PLL1VCO_Div3: PLL1 VCO clock divided
+    815          *                         by 2 selected as USB OTG FS clock source
+    816          *                       - RCC_OTGFSCLKSource_PLL1VCO_Div2: PLL1 VCO clock divided
+    817          *                         by 2 selected as USB OTG FS clock source
+    818          * Output         : None
+    819          * Return         : None
+    820          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    821          void RCC_OTGFSCLKConfig(u32 RCC_OTGFSCLKSource)
+    822          {
+    823            /* Check the parameters */
+    824            assert_param(IS_RCC_OTGFSCLK_SOURCE(RCC_OTGFSCLKSource));
+    825          
+    826            *(vu32 *) CFGR_OTGFSPRE_BB = RCC_OTGFSCLKSource;
+   \                     RCC_OTGFSCLKConfig:
+   \   00000000   0x.... 0x....      LDR.W    R1,??DataTable42_12  ;; 0x424200d8
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+    827          }
+   \   00000006   0x4770             BX       LR               ;; return
+    828          
+    829          /*******************************************************************************
+    830          * Function Name  : RCC_I2S2CLKConfig
+    831          * Description    : Configures the I2S2 clock source(I2S2CLK).
+    832          *                  This function must be called before enabling I2S2 APB clock.
+    833          *                  This function applies only to STM32 connectivity line devices.
+    834          * Input          : - RCC_I2S2CLKSource: specifies the I2S2 clock source.
+    835          *                    This parameter can be one of the following values:
+    836          *                       - RCC_I2S2CLKSource_SYSCLK: system clock selected as I2S2
+    837          *                         clock entry
+    838          *                       - RCC_I2S2CLKSource_PLL3_VCO: PLL3 VCO clock selected as
+    839          *                         I2S2 clock entry
+    840          * Output         : None
+    841          * Return         : None
+    842          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    843          void RCC_I2S2CLKConfig(u32 RCC_I2S2CLKSource)
+    844          {
+    845            /* Check the parameters */
+    846            assert_param(IS_RCC_I2S2CLK_SOURCE(RCC_I2S2CLKSource));
+    847          
+    848            *(vu32 *) CFGR2_I2S2SRC_BB = RCC_I2S2CLKSource;
+   \                     RCC_I2S2CLKConfig:
+   \   00000000   0x.... 0x....      LDR.W    R1,??DataTable42_13  ;; 0x424205c4
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+    849          }
+   \   00000006   0x4770             BX       LR               ;; return
+    850          
+    851          /*******************************************************************************
+    852          * Function Name  : RCC_I2S3CLKConfig
+    853          * Description    : Configures the I2S3 clock source(I2S2CLK).
+    854          *                  This function must be called before enabling I2S3 APB clock.
+    855          *                  This function applies only to STM32 connectivity line devices.
+    856          * Input          : - RCC_I2S3CLKSource: specifies the I2S3 clock source.
+    857          *                    This parameter can be one of the following values:
+    858          *                       - RCC_I2S3CLKSource_SYSCLK: system clock selected as I2S2
+    859          *                         clock entry
+    860          *                       - RCC_I2S3CLKSource_PLL3_VCO: PLL3 VCO clock selected as
+    861          *                         I2S3 clock entry
+    862          * Output         : None
+    863          * Return         : None
+    864          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    865          void RCC_I2S3CLKConfig(u32 RCC_I2S3CLKSource)
+    866          {
+    867            /* Check the parameters */
+    868            assert_param(IS_RCC_I2S3CLK_SOURCE(RCC_I2S3CLKSource));
+    869          
+    870            *(vu32 *) CFGR2_I2S3SRC_BB = RCC_I2S3CLKSource;
+   \                     RCC_I2S3CLKConfig:
+   \   00000000   0x.... 0x....      LDR.W    R1,??DataTable42_14  ;; 0x424205c8
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+    871          }
+   \   00000006   0x4770             BX       LR               ;; return
+    872          
+    873          /*******************************************************************************
+    874          * Function Name  : RCC_LSEConfig
+    875          * Description    : Configures the External Low Speed oscillator (LSE).
+    876          * Input          : - RCC_LSE: specifies the new state of the LSE.
+    877          *                    This parameter can be one of the following values:
+    878          *                       - RCC_LSE_OFF: LSE oscillator OFF
+    879          *                       - RCC_LSE_ON: LSE oscillator ON
+    880          *                       - RCC_LSE_Bypass: LSE oscillator bypassed with external
+    881          *                         clock
+    882          * Output         : None
+    883          * Return         : None
+    884          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    885          void RCC_LSEConfig(u8 RCC_LSE)
+    886          {
+    887            /* Check the parameters */
+    888            assert_param(IS_RCC_LSE(RCC_LSE));
+    889          
+    890            /* Reset LSEON and LSEBYP bits before configuring the LSE ------------------*/
+    891            /* Reset LSEON bit */
+    892            *(vu8 *) BDCR_ADDRESS = RCC_LSE_OFF;
+   \                     RCC_LSEConfig:
+   \   00000000   0x.... 0x....      LDR.W    R1,??DataTable42_15  ;; 0x40021020
+   \   00000004   0x2200             MOVS     R2,#+0
+   \   00000006   0x700A             STRB     R2,[R1, #+0]
+    893          
+    894            /* Reset LSEBYP bit */
+    895            *(vu8 *) BDCR_ADDRESS = RCC_LSE_OFF;
+   \   00000008   0x.... 0x....      LDR.W    R1,??DataTable42_15  ;; 0x40021020
+   \   0000000C   0x2200             MOVS     R2,#+0
+   \   0000000E   0x700A             STRB     R2,[R1, #+0]
+    896          
+    897            /* Configure LSE (RCC_LSE_OFF is already covered by the code section above) */
+    898            switch(RCC_LSE)
+   \   00000010   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000012   0x0001             MOVS     R1,R0
+   \   00000014   0x2901             CMP      R1,#+1
+   \   00000016   0xD002             BEQ.N    ??RCC_LSEConfig_0
+   \   00000018   0x2904             CMP      R1,#+4
+   \   0000001A   0xD005             BEQ.N    ??RCC_LSEConfig_1
+   \   0000001C   0xE008             B.N      ??RCC_LSEConfig_2
+    899            {
+    900              case RCC_LSE_ON:
+    901                /* Set LSEON bit */
+    902                *(vu8 *) BDCR_ADDRESS = RCC_LSE_ON;
+   \                     ??RCC_LSEConfig_0:
+   \   0000001E   0x.... 0x....      LDR.W    R1,??DataTable42_15  ;; 0x40021020
+   \   00000022   0x2201             MOVS     R2,#+1
+   \   00000024   0x700A             STRB     R2,[R1, #+0]
+    903                break;
+   \   00000026   0xE003             B.N      ??RCC_LSEConfig_3
+    904                
+    905              case RCC_LSE_Bypass:
+    906                /* Set LSEBYP and LSEON bits */
+    907                *(vu8 *) BDCR_ADDRESS = RCC_LSE_Bypass | RCC_LSE_ON;
+   \                     ??RCC_LSEConfig_1:
+   \   00000028   0x....             LDR.N    R1,??DataTable42_15  ;; 0x40021020
+   \   0000002A   0x2205             MOVS     R2,#+5
+   \   0000002C   0x700A             STRB     R2,[R1, #+0]
+    908                break;
+   \   0000002E   0xE7FF             B.N      ??RCC_LSEConfig_3
+    909                
+    910              default:
+    911                break;
+    912            }
+    913          }
+   \                     ??RCC_LSEConfig_2:
+   \                     ??RCC_LSEConfig_3:
+   \   00000030   0x4770             BX       LR               ;; return
+    914          
+    915          /*******************************************************************************
+    916          * Function Name  : RCC_LSICmd
+    917          * Description    : Enables or disables the Internal Low Speed oscillator (LSI).
+    918          *                  LSI can not be disabled if the IWDG is running.
+    919          * Input          : - NewState: new state of the LSI.
+    920          *                    This parameter can be: ENABLE or DISABLE.
+    921          * Output         : None
+    922          * Return         : None
+    923          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    924          void RCC_LSICmd(FunctionalState NewState)
+    925          {
+    926            /* Check the parameters */
+    927            assert_param(IS_FUNCTIONAL_STATE(NewState));
+    928          
+    929            *(vu32 *) CSR_LSION_BB = (u32)NewState;
+   \                     RCC_LSICmd:
+   \   00000000   0x....             LDR.N    R1,??DataTable42_16  ;; 0x42420480
+   \   00000002   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+    930          }
+   \   00000006   0x4770             BX       LR               ;; return
+    931          
+    932          /*******************************************************************************
+    933          * Function Name  : RCC_RTCCLKConfig
+    934          * Description    : Configures the RTC clock (RTCCLK).
+    935          *                  Once the RTC clock is selected it can’t be changed unless the
+    936          *                  Backup domain is reset.
+    937          * Input          : - RCC_RTCCLKSource: specifies the RTC clock source.
+    938          *                    This parameter can be one of the following values:
+    939          *                       - RCC_RTCCLKSource_LSE: LSE selected as RTC clock
+    940          *                       - RCC_RTCCLKSource_LSI: LSI selected as RTC clock
+    941          *                       - RCC_RTCCLKSource_HSE_Div128: HSE clock divided by 128
+    942          *                         selected as RTC clock
+    943          * Output         : None
+    944          * Return         : None
+    945          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    946          void RCC_RTCCLKConfig(u32 RCC_RTCCLKSource)
+    947          {
+    948            /* Check the parameters */
+    949            assert_param(IS_RCC_RTCCLK_SOURCE(RCC_RTCCLKSource));
+    950          
+    951            /* Select the RTC clock source */
+    952            RCC->BDCR |= RCC_RTCCLKSource;
+   \                     RCC_RTCCLKConfig:
+   \   00000000   0x....             LDR.N    R1,??DataTable42_15  ;; 0x40021020
+   \   00000002   0x6809             LDR      R1,[R1, #+0]
+   \   00000004   0x4301             ORRS     R1,R0,R1
+   \   00000006   0x....             LDR.N    R2,??DataTable42_15  ;; 0x40021020
+   \   00000008   0x6011             STR      R1,[R2, #+0]
+    953          }
+   \   0000000A   0x4770             BX       LR               ;; return
+    954          
+    955          /*******************************************************************************
+    956          * Function Name  : RCC_RTCCLKCmd
+    957          * Description    : Enables or disables the RTC clock.
+    958          *                  This function must be used only after the RTC clock was
+    959          *                  selected using the RCC_RTCCLKConfig function.
+    960          * Input          : - NewState: new state of the RTC clock.
+    961          *                    This parameter can be: ENABLE or DISABLE.
+    962          * Output         : None
+    963          * Return         : None
+    964          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    965          void RCC_RTCCLKCmd(FunctionalState NewState)
+    966          {
+    967            /* Check the parameters */
+    968            assert_param(IS_FUNCTIONAL_STATE(NewState));
+    969          
+    970            *(vu32 *) BDCR_RTCEN_BB = (u32)NewState;
+   \                     RCC_RTCCLKCmd:
+   \   00000000   0x....             LDR.N    R1,??DataTable42_17  ;; 0x4242043c
+   \   00000002   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+    971          }
+   \   00000006   0x4770             BX       LR               ;; return
+    972          
+    973          /*******************************************************************************
+    974          * Function Name  : RCC_GetClocksFreq
+    975          * Description    : Returns the frequencies of different on chip clocks.
+    976          * Input          : - RCC_Clocks: pointer to a RCC_ClocksTypeDef structure which
+    977          *                    will hold the clocks frequencies.
+    978          * Output         : None
+    979          * Return         : None
+    980          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    981          void RCC_GetClocksFreq(RCC_ClocksTypeDef* RCC_Clocks)
+    982          {
+   \                     RCC_GetClocksFreq:
+   \   00000000   0xB5F0             PUSH     {R4-R7,LR}
+    983            u32 tmp = 0,/* pllmull = 0, pllsource = 0,*/ presc = 0;
+   \   00000002   0x2100             MOVS     R1,#+0
+   \   00000004   0x2200             MOVS     R2,#+0
+    984            u32 pll1mull = 0, pll1source = 0, prediv1source = 0, prediv1factor = 0, prediv2factor = 0, pll2mull = 0;
+   \   00000006   0x2300             MOVS     R3,#+0
+   \   00000008   0x2400             MOVS     R4,#+0
+   \   0000000A   0x2500             MOVS     R5,#+0
+   \   0000000C   0x2600             MOVS     R6,#+0
+   \   0000000E   0x2700             MOVS     R7,#+0
+   \   00000010   0xF05F 0x0C00      MOVS     R12,#+0
+    985          
+    986            /* Get SYSCLK source -------------------------------------------------------*/
+    987            tmp = RCC->CFGR & CFGR_SWS_Mask;
+   \   00000014   0x.... 0x....      LDR.W    LR,??DataTable42_1  ;; 0x40021004
+   \   00000018   0xF8DE 0xE000      LDR      LR,[LR, #+0]
+   \   0000001C   0xF01E 0x0E0C      ANDS     LR,LR,#0xC
+   \   00000020   0x4671             MOV      R1,LR
+    988          
+    989            switch (tmp)
+   \   00000022   0x468E             MOV      LR,R1
+   \   00000024   0xF1BE 0x0F00      CMP      LR,#+0
+   \   00000028   0xD006             BEQ.N    ??RCC_GetClocksFreq_0
+   \   0000002A   0xF1BE 0x0F04      CMP      LR,#+4
+   \   0000002E   0xD008             BEQ.N    ??RCC_GetClocksFreq_1
+   \   00000030   0xF1BE 0x0F08      CMP      LR,#+8
+   \   00000034   0xD00A             BEQ.N    ??RCC_GetClocksFreq_2
+   \   00000036   0xE05C             B.N      ??RCC_GetClocksFreq_3
+    990            {
+    991              case 0x00:  /* HSI used as system clock */
+    992                RCC_Clocks->SYSCLK_Frequency = HSI_Value;
+   \                     ??RCC_GetClocksFreq_0:
+   \   00000038   0x.... 0x....      LDR.W    LR,??DataTable42_18  ;; 0x7a1200
+   \   0000003C   0xF8C0 0xE000      STR      LR,[R0, #+0]
+    993                break;
+   \   00000040   0xE05B             B.N      ??RCC_GetClocksFreq_4
+    994          
+    995              case 0x04:  /* HSE used as system clock */
+    996                RCC_Clocks->SYSCLK_Frequency = HSE_Value;
+   \                     ??RCC_GetClocksFreq_1:
+   \   00000042   0x.... 0x....      LDR.W    LR,??DataTable42_19  ;; 0x17d7840
+   \   00000046   0xF8C0 0xE000      STR      LR,[R0, #+0]
+    997                break;
+   \   0000004A   0xE056             B.N      ??RCC_GetClocksFreq_4
+    998          
+    999              case 0x08:  /* PLL used as system clock */
+   1000          //      /* Get PLL clock source and multiplication factor ----------------------*/
+   1001          //      pllmull = RCC->CFGR & CFGR_PLLMull_Mask;
+   1002          //      pllmull = ( pllmull >> 18) + 2;
+   1003          //
+   1004          //      pllsource = RCC->CFGR & CFGR_PLLSRC_Mask;
+   1005          //
+   1006          //      if (pllsource == 0x00)
+   1007          //      {/* HSI oscillator clock divided by 2 selected as PLL clock entry */
+   1008          //        RCC_Clocks->SYSCLK_Frequency = (HSI_Value >> 1) * pllmull;
+   1009          //      }
+   1010          //      else
+   1011          //      {/* HSE selected as PLL clock entry */
+   1012          //
+   1013          //        if ((RCC->CFGR & CFGR_PLLXTPRE_Mask) != (u32)RESET)
+   1014          //        {/* HSE oscillator clock divided by 2 */
+   1015          //
+   1016          //          RCC_Clocks->SYSCLK_Frequency = (HSE_Value >> 1) * pllmull;
+   1017          //        }
+   1018          //        else
+   1019          //        {
+   1020          //          RCC_Clocks->SYSCLK_Frequency = HSE_Value * pllmull;
+   1021          //        }
+   1022          //      }
+   1023          //      break;
+   1024           
+   1025          /* STM32 connectivity line devices */
+   1026                /* Get PLL1 clock source and multiplication factor */
+   1027                pll1mull = RCC->CFGR & CFGR_PLL1Mull_Mask;
+   \                     ??RCC_GetClocksFreq_2:
+   \   0000004C   0x.... 0x....      LDR.W    LR,??DataTable42_1  ;; 0x40021004
+   \   00000050   0xF8DE 0xE000      LDR      LR,[LR, #+0]
+   \   00000054   0xF41E 0x1E70      ANDS     LR,LR,#0x3C0000
+   \   00000058   0x4673             MOV      R3,LR
+   1028                pll1mull = ( pll1mull >> 18) + 2; /* !!!!!!!!!!! case where mul = 6.5 !!!!!!!!!!!!!!! */
+   \   0000005A   0x0C9B             LSRS     R3,R3,#+18
+   \   0000005C   0x1C9B             ADDS     R3,R3,#+2
+   1029          
+   1030                pll1source = RCC->CFGR & CFGR_PLL1SRC_Mask;
+   \   0000005E   0x.... 0x....      LDR.W    LR,??DataTable42_1  ;; 0x40021004
+   \   00000062   0xF8DE 0xE000      LDR      LR,[LR, #+0]
+   \   00000066   0xF41E 0x3E80      ANDS     LR,LR,#0x10000
+   \   0000006A   0x4674             MOV      R4,LR
+   1031          
+   1032                if (pll1source == 0x00)
+   \   0000006C   0x2C00             CMP      R4,#+0
+   \   0000006E   0xD106             BNE.N    ??RCC_GetClocksFreq_5
+   1033                {/* HSI oscillator clock divided by 2 selected as PLL1 clock entry */
+   1034                  RCC_Clocks->SYSCLK_Frequency = (HSI_Value >> 1) * pll1mull;
+   \   00000070   0x.... 0x....      LDR.W    LR,??DataTable42_20  ;; 0x3d0900
+   \   00000074   0xFB0E 0xFE03      MUL      LR,LR,R3
+   \   00000078   0xF8C0 0xE000      STR      LR,[R0, #+0]
+   \   0000007C   0xE038             B.N      ??RCC_GetClocksFreq_6
+   1035                }
+   1036                else
+   1037                {/* PREDIV1 selected as PLL1 clock entry */
+   1038                 /* Get PREDIV1 clock source and division factor */
+   1039                   prediv1source = RCC->CFGR2 & CFGR2_PREDIV1SRC;
+   \                     ??RCC_GetClocksFreq_5:
+   \   0000007E   0x.... 0x....      LDR.W    LR,??DataTable42_7  ;; 0x4002102c
+   \   00000082   0xF8DE 0xE000      LDR      LR,[LR, #+0]
+   \   00000086   0xF41E 0x3E80      ANDS     LR,LR,#0x10000
+   \   0000008A   0x4675             MOV      R5,LR
+   1040                   prediv1factor = (RCC->CFGR2 & CFGR2_PREDIV1) + 1;
+   \   0000008C   0x.... 0x....      LDR.W    LR,??DataTable42_7  ;; 0x4002102c
+   \   00000090   0xF8DE 0xE000      LDR      LR,[LR, #+0]
+   \   00000094   0xF01E 0x0E0F      ANDS     LR,LR,#0xF
+   \   00000098   0xF11E 0x0E01      ADDS     LR,LR,#+1
+   \   0000009C   0x4676             MOV      R6,LR
+   1041          
+   1042                  if (prediv1source == 0)
+   \   0000009E   0x2D00             CMP      R5,#+0
+   \   000000A0   0xD108             BNE.N    ??RCC_GetClocksFreq_7
+   1043                  {/* HSE oscillator clock selected as PREDIV1 clock entry */
+   1044                     RCC_Clocks->SYSCLK_Frequency = (HSE_Value / prediv1factor) * pll1mull;          
+   \   000000A2   0x.... 0x....      LDR.W    LR,??DataTable42_19  ;; 0x17d7840
+   \   000000A6   0xFBBE 0xFEF6      UDIV     LR,LR,R6
+   \   000000AA   0xFB03 0xFE0E      MUL      LR,R3,LR
+   \   000000AE   0xF8C0 0xE000      STR      LR,[R0, #+0]
+   \   000000B2   0xE01D             B.N      ??RCC_GetClocksFreq_6
+   1045                  }
+   1046                  else
+   1047                  {/* PLL2 clock selected as PREDIV1 clock entry */
+   1048                   /* Get PREDIV2 division factor and PLL2 multiplication factor */
+   1049                      prediv2factor = ((RCC->CFGR2 & CFGR2_PREDIV2) >> 4) + 1;
+   \                     ??RCC_GetClocksFreq_7:
+   \   000000B4   0x.... 0x....      LDR.W    LR,??DataTable42_7  ;; 0x4002102c
+   \   000000B8   0xF8DE 0xE000      LDR      LR,[LR, #+0]
+   \   000000BC   0xF3CE 0x1E03      UBFX     LR,LR,#+4,#+4
+   \   000000C0   0xF11E 0x0E01      ADDS     LR,LR,#+1
+   \   000000C4   0x4677             MOV      R7,LR
+   1050                      pll2mull = ((RCC->CFGR2 & CFGR2_PLL2MUL) >> 8 ) + 2; 
+   \   000000C6   0x.... 0x....      LDR.W    LR,??DataTable42_7  ;; 0x4002102c
+   \   000000CA   0xF8DE 0xE000      LDR      LR,[LR, #+0]
+   \   000000CE   0xF3CE 0x2E03      UBFX     LR,LR,#+8,#+4
+   \   000000D2   0xF11E 0x0E02      ADDS     LR,LR,#+2
+   \   000000D6   0x46F4             MOV      R12,LR
+   1051                      RCC_Clocks->SYSCLK_Frequency = (((HSE_Value / prediv2factor) * pll2mull) / prediv1factor) * pll1mull;                         
+   \   000000D8   0x.... 0x....      LDR.W    LR,??DataTable42_19  ;; 0x17d7840
+   \   000000DC   0xFBBE 0xFEF7      UDIV     LR,LR,R7
+   \   000000E0   0xFB0C 0xFE0E      MUL      LR,R12,LR
+   \   000000E4   0xFBBE 0xFEF6      UDIV     LR,LR,R6
+   \   000000E8   0xFB03 0xFE0E      MUL      LR,R3,LR
+   \   000000EC   0xF8C0 0xE000      STR      LR,[R0, #+0]
+   1052                  }
+   1053                }
+   1054                break;
+   \                     ??RCC_GetClocksFreq_6:
+   \   000000F0   0xE003             B.N      ??RCC_GetClocksFreq_4
+   1055                
+   1056                
+   1057              default:
+   1058                RCC_Clocks->SYSCLK_Frequency = HSI_Value;
+   \                     ??RCC_GetClocksFreq_3:
+   \   000000F2   0x.... 0x....      LDR.W    LR,??DataTable42_18  ;; 0x7a1200
+   \   000000F6   0xF8C0 0xE000      STR      LR,[R0, #+0]
+   1059                break;
+   1060            }
+   1061          
+   1062            /* Compute HCLK, PCLK1, PCLK2 and ADCCLK clocks frequencies ----------------*/
+   1063            /* Get HCLK prescaler */
+   1064            tmp = RCC->CFGR & CFGR_HPRE_Set_Mask;
+   \                     ??RCC_GetClocksFreq_4:
+   \   000000FA   0x.... 0x....      LDR.W    LR,??DataTable42_1  ;; 0x40021004
+   \   000000FE   0xF8DE 0xE000      LDR      LR,[LR, #+0]
+   \   00000102   0xF01E 0x0EF0      ANDS     LR,LR,#0xF0
+   \   00000106   0x4671             MOV      R1,LR
+   1065            tmp = tmp >> 4;
+   \   00000108   0x0909             LSRS     R1,R1,#+4
+   1066            presc = APBAHBPrescTable[tmp];
+   \   0000010A   0x.... 0x....      LDR.W    LR,??DataTable42_21
+   \   0000010E   0xF811 0xE00E      LDRB     LR,[R1, LR]
+   \   00000112   0x4672             MOV      R2,LR
+   1067          
+   1068            /* HCLK clock frequency */
+   1069            RCC_Clocks->HCLK_Frequency = RCC_Clocks->SYSCLK_Frequency >> presc;
+   \   00000114   0xF8D0 0xE000      LDR      LR,[R0, #+0]
+   \   00000118   0xFA3E 0xFE02      LSRS     LR,LR,R2
+   \   0000011C   0xF8C0 0xE004      STR      LR,[R0, #+4]
+   1070          
+   1071            /* Get PCLK1 prescaler */
+   1072            tmp = RCC->CFGR & CFGR_PPRE1_Set_Mask;
+   \   00000120   0x.... 0x....      LDR.W    LR,??DataTable42_1  ;; 0x40021004
+   \   00000124   0xF8DE 0xE000      LDR      LR,[LR, #+0]
+   \   00000128   0xF41E 0x6EE0      ANDS     LR,LR,#0x700
+   \   0000012C   0x4671             MOV      R1,LR
+   1073            tmp = tmp >> 8;
+   \   0000012E   0x0A09             LSRS     R1,R1,#+8
+   1074            presc = APBAHBPrescTable[tmp];
+   \   00000130   0x.... 0x....      LDR.W    LR,??DataTable42_21
+   \   00000134   0xF811 0xE00E      LDRB     LR,[R1, LR]
+   \   00000138   0x4672             MOV      R2,LR
+   1075          
+   1076            /* PCLK1 clock frequency */
+   1077            RCC_Clocks->PCLK1_Frequency = RCC_Clocks->HCLK_Frequency >> presc;
+   \   0000013A   0xF8D0 0xE004      LDR      LR,[R0, #+4]
+   \   0000013E   0xFA3E 0xFE02      LSRS     LR,LR,R2
+   \   00000142   0xF8C0 0xE008      STR      LR,[R0, #+8]
+   1078          
+   1079            /* Get PCLK2 prescaler */
+   1080            tmp = RCC->CFGR & CFGR_PPRE2_Set_Mask;
+   \   00000146   0x.... 0x....      LDR.W    LR,??DataTable42_1  ;; 0x40021004
+   \   0000014A   0xF8DE 0xE000      LDR      LR,[LR, #+0]
+   \   0000014E   0xF41E 0x5E60      ANDS     LR,LR,#0x3800
+   \   00000152   0x4671             MOV      R1,LR
+   1081            tmp = tmp >> 11;
+   \   00000154   0x0AC9             LSRS     R1,R1,#+11
+   1082            presc = APBAHBPrescTable[tmp];
+   \   00000156   0x.... 0x....      LDR.W    LR,??DataTable42_21
+   \   0000015A   0xF811 0xE00E      LDRB     LR,[R1, LR]
+   \   0000015E   0x4672             MOV      R2,LR
+   1083          
+   1084            /* PCLK2 clock frequency */
+   1085            RCC_Clocks->PCLK2_Frequency = RCC_Clocks->HCLK_Frequency >> presc;
+   \   00000160   0xF8D0 0xE004      LDR      LR,[R0, #+4]
+   \   00000164   0xFA3E 0xFE02      LSRS     LR,LR,R2
+   \   00000168   0xF8C0 0xE00C      STR      LR,[R0, #+12]
+   1086          
+   1087            /* Get ADCCLK prescaler */
+   1088            tmp = RCC->CFGR & CFGR_ADCPRE_Set_Mask;
+   \   0000016C   0x.... 0x....      LDR.W    LR,??DataTable42_1  ;; 0x40021004
+   \   00000170   0xF8DE 0xE000      LDR      LR,[LR, #+0]
+   \   00000174   0xF41E 0x4E40      ANDS     LR,LR,#0xC000
+   \   00000178   0x4671             MOV      R1,LR
+   1089            tmp = tmp >> 14;
+   \   0000017A   0x0B89             LSRS     R1,R1,#+14
+   1090            presc = ADCPrescTable[tmp];
+   \   0000017C   0x.... 0x....      LDR.W    LR,??DataTable42_22
+   \   00000180   0xF811 0xE00E      LDRB     LR,[R1, LR]
+   \   00000184   0x4672             MOV      R2,LR
+   1091          
+   1092            /* ADCCLK clock frequency */
+   1093            RCC_Clocks->ADCCLK_Frequency = RCC_Clocks->PCLK2_Frequency / presc;
+   \   00000186   0xF8D0 0xE00C      LDR      LR,[R0, #+12]
+   \   0000018A   0xFBBE 0xFEF2      UDIV     LR,LR,R2
+   \   0000018E   0xF8C0 0xE010      STR      LR,[R0, #+16]
+   1094          }
+   \   00000192   0xBDF0             POP      {R4-R7,PC}       ;; return
+   1095          
+   1096          /*******************************************************************************
+   1097          * Function Name  : RCC_AHBPeriphClockCmd
+   1098          * Description    : Enables or disables the AHB peripheral clock.
+   1099          * Input          : - RCC_AHBPeriph: specifies the AHB peripheral to gates its clock.
+   1100          *                    This parameter can be any combination of the following values:
+   1101          *                       - RCC_AHBPeriph_DMA1
+   1102          *                       - RCC_AHBPeriph_DMA2
+   1103          *                       - RCC_AHBPeriph_SRAM
+   1104          *                       - RCC_AHBPeriph_FLITF
+   1105          *                       - RCC_AHBPeriph_CRC
+   1106          *                       - RCC_AHBPeriph_FSMC
+   1107          *                       - RCC_AHBPeriph_SDIO
+   1108          *                       - RCC_AHBPeriph_OTG_FS     // Only for STM32 connectivity line devices
+   1109          *                       - RCC_AHBPeriph_ETH_MAC    // Only for STM32 connectivity line devices
+   1110          *                       - RCC_AHBPeriph_ETH_MAC_Tx // Only for STM32 connectivity line devices
+   1111          *                       - RCC_AHBPeriph_ETH_MAC_Rx // Only for STM32 connectivity line devices
+   1112          *                    SRAM and FLITF clock can be disabled only during sleep mode.
+   1113          *                  - NewState: new state of the specified peripheral clock.
+   1114          *                    This parameter can be: ENABLE or DISABLE.
+   1115          * Output         : None
+   1116          * Return         : None
+   1117          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1118          void RCC_AHBPeriphClockCmd(u32 RCC_AHBPeriph, FunctionalState NewState)
+   1119          {
+   1120            /* Check the parameters */
+   1121            assert_param(IS_RCC_AHB_PERIPH(RCC_AHBPeriph));
+   1122            assert_param(IS_FUNCTIONAL_STATE(NewState));
+   1123          
+   1124            if (NewState != DISABLE)
+   \                     RCC_AHBPeriphClockCmd:
+   \   00000000   0xB2C9             UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   00000002   0x2900             CMP      R1,#+0
+   \   00000004   0xD005             BEQ.N    ??RCC_AHBPeriphClockCmd_0
+   1125            {
+   1126              RCC->AHBENR |= RCC_AHBPeriph;
+   \   00000006   0x....             LDR.N    R2,??DataTable42_23  ;; 0x40021014
+   \   00000008   0x6812             LDR      R2,[R2, #+0]
+   \   0000000A   0x4302             ORRS     R2,R0,R2
+   \   0000000C   0x....             LDR.N    R3,??DataTable42_23  ;; 0x40021014
+   \   0000000E   0x601A             STR      R2,[R3, #+0]
+   \   00000010   0xE004             B.N      ??RCC_AHBPeriphClockCmd_1
+   1127            }
+   1128            else
+   1129            {
+   1130              RCC->AHBENR &= ~RCC_AHBPeriph;
+   \                     ??RCC_AHBPeriphClockCmd_0:
+   \   00000012   0x....             LDR.N    R2,??DataTable42_23  ;; 0x40021014
+   \   00000014   0x6812             LDR      R2,[R2, #+0]
+   \   00000016   0x4382             BICS     R2,R2,R0
+   \   00000018   0x....             LDR.N    R3,??DataTable42_23  ;; 0x40021014
+   \   0000001A   0x601A             STR      R2,[R3, #+0]
+   1131            }
+   1132          }
+   \                     ??RCC_AHBPeriphClockCmd_1:
+   \   0000001C   0x4770             BX       LR               ;; return
+   1133          
+   1134          /*******************************************************************************
+   1135          * Function Name  : RCC_APB2PeriphClockCmd
+   1136          * Description    : Enables or disables the High Speed APB (APB2) peripheral clock.
+   1137          * Input          : - RCC_APB2Periph: specifies the APB2 peripheral to gates its
+   1138          *                    clock.
+   1139          *                    This parameter can be any combination of the following values:
+   1140          *                       - RCC_APB2Periph_AFIO, RCC_APB2Periph_GPIOA, RCC_APB2Periph_GPIOB,
+   1141          *                         RCC_APB2Periph_GPIOC, RCC_APB2Periph_GPIOD, RCC_APB2Periph_GPIOE,
+   1142          *                         RCC_APB2Periph_GPIOF, RCC_APB2Periph_GPIOG, RCC_APB2Periph_ADC1,
+   1143          *                         RCC_APB2Periph_ADC2, RCC_APB2Periph_TIM1, RCC_APB2Periph_SPI1,
+   1144          *                         RCC_APB2Periph_TIM8, RCC_APB2Periph_USART1, RCC_APB2Periph_ADC3
+   1145          *                  - NewState: new state of the specified peripheral clock.
+   1146          *                    This parameter can be: ENABLE or DISABLE.
+   1147          * Output         : None
+   1148          * Return         : None
+   1149          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1150          void RCC_APB2PeriphClockCmd(u32 RCC_APB2Periph, FunctionalState NewState)
+   1151          {
+   1152            /* Check the parameters */
+   1153            assert_param(IS_RCC_APB2_PERIPH(RCC_APB2Periph));
+   1154            assert_param(IS_FUNCTIONAL_STATE(NewState));
+   1155          
+   1156            if (NewState != DISABLE)
+   \                     RCC_APB2PeriphClockCmd:
+   \   00000000   0xB2C9             UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   00000002   0x2900             CMP      R1,#+0
+   \   00000004   0xD005             BEQ.N    ??RCC_APB2PeriphClockCmd_0
+   1157            {
+   1158              RCC->APB2ENR |= RCC_APB2Periph;
+   \   00000006   0x....             LDR.N    R2,??DataTable42_24  ;; 0x40021018
+   \   00000008   0x6812             LDR      R2,[R2, #+0]
+   \   0000000A   0x4302             ORRS     R2,R0,R2
+   \   0000000C   0x....             LDR.N    R3,??DataTable42_24  ;; 0x40021018
+   \   0000000E   0x601A             STR      R2,[R3, #+0]
+   \   00000010   0xE004             B.N      ??RCC_APB2PeriphClockCmd_1
+   1159            }
+   1160            else
+   1161            {
+   1162              RCC->APB2ENR &= ~RCC_APB2Periph;
+   \                     ??RCC_APB2PeriphClockCmd_0:
+   \   00000012   0x....             LDR.N    R2,??DataTable42_24  ;; 0x40021018
+   \   00000014   0x6812             LDR      R2,[R2, #+0]
+   \   00000016   0x4382             BICS     R2,R2,R0
+   \   00000018   0x....             LDR.N    R3,??DataTable42_24  ;; 0x40021018
+   \   0000001A   0x601A             STR      R2,[R3, #+0]
+   1163            }
+   1164          }
+   \                     ??RCC_APB2PeriphClockCmd_1:
+   \   0000001C   0x4770             BX       LR               ;; return
+   1165          
+   1166          /*******************************************************************************
+   1167          * Function Name  : RCC_APB1PeriphClockCmd
+   1168          * Description    : Enables or disables the Low Speed APB (APB1) peripheral clock.
+   1169          * Input          : - RCC_APB1Periph: specifies the APB1 peripheral to gates its
+   1170          *                    clock.
+   1171          *                    This parameter can be any combination of the following values:
+   1172          *                       - RCC_APB1Periph_TIM2, RCC_APB1Periph_TIM3, RCC_APB1Periph_TIM4,
+   1173          *                         RCC_APB1Periph_TIM5, RCC_APB1Periph_TIM6, RCC_APB1Periph_TIM7,
+   1174          *                         RCC_APB1Periph_WWDG, RCC_APB1Periph_SPI2, RCC_APB1Periph_SPI3,
+   1175          *                         RCC_APB1Periph_USART2, RCC_APB1Periph_USART3, RCC_APB1Periph_USART4, 
+   1176          *                         RCC_APB1Periph_USART5, RCC_APB1Periph_I2C1, RCC_APB1Periph_I2C2,
+   1177          *                         RCC_APB1Periph_USB, RCC_APB1Periph_CAN1, RCC_APB1Periph_CAN2,
+   1178          *                         RCC_APB1Periph_BKP, RCC_APB1Periph_PWR, RCC_APB1Periph_DAC
+   1179          *                  - NewState: new state of the specified peripheral clock.
+   1180          *                    This parameter can be: ENABLE or DISABLE.
+   1181          * Output         : None
+   1182          * Return         : None
+   1183          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1184          void RCC_APB1PeriphClockCmd(u32 RCC_APB1Periph, FunctionalState NewState)
+   1185          {
+   1186            /* Check the parameters */
+   1187            assert_param(IS_RCC_APB1_PERIPH(RCC_APB1Periph));
+   1188            assert_param(IS_FUNCTIONAL_STATE(NewState));
+   1189          
+   1190            if (NewState != DISABLE)
+   \                     RCC_APB1PeriphClockCmd:
+   \   00000000   0xB2C9             UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   00000002   0x2900             CMP      R1,#+0
+   \   00000004   0xD005             BEQ.N    ??RCC_APB1PeriphClockCmd_0
+   1191            {
+   1192              RCC->APB1ENR |= RCC_APB1Periph;
+   \   00000006   0x....             LDR.N    R2,??DataTable42_25  ;; 0x4002101c
+   \   00000008   0x6812             LDR      R2,[R2, #+0]
+   \   0000000A   0x4302             ORRS     R2,R0,R2
+   \   0000000C   0x....             LDR.N    R3,??DataTable42_25  ;; 0x4002101c
+   \   0000000E   0x601A             STR      R2,[R3, #+0]
+   \   00000010   0xE004             B.N      ??RCC_APB1PeriphClockCmd_1
+   1193            }
+   1194            else
+   1195            {
+   1196              RCC->APB1ENR &= ~RCC_APB1Periph;
+   \                     ??RCC_APB1PeriphClockCmd_0:
+   \   00000012   0x....             LDR.N    R2,??DataTable42_25  ;; 0x4002101c
+   \   00000014   0x6812             LDR      R2,[R2, #+0]
+   \   00000016   0x4382             BICS     R2,R2,R0
+   \   00000018   0x....             LDR.N    R3,??DataTable42_25  ;; 0x4002101c
+   \   0000001A   0x601A             STR      R2,[R3, #+0]
+   1197            }
+   1198          }
+   \                     ??RCC_APB1PeriphClockCmd_1:
+   \   0000001C   0x4770             BX       LR               ;; return
+   1199          
+   1200          /*******************************************************************************
+   1201          * Function Name  : RCC_AHBPeriphResetCmd
+   1202          * Description    : Forces or releases AHB peripheral reset.
+   1203          *                  This function applies only to STM32 connectivity line devices.
+   1204          * Input          : - RCC_AHBPeriph: specifies the AHB peripheral to reset.
+   1205          *                    This parameter can be any combination of the following values:
+   1206          *                       - RCC_AHBPeriph_OTG_FS 
+   1207          *                       - RCC_AHBPeriph_ETH_MAC
+   1208          *                  - NewState: new state of the specified peripheral reset.
+   1209          *                    This parameter can be: ENABLE or DISABLE.
+   1210          * Output         : None
+   1211          * Return         : None
+   1212          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1213          void RCC_AHBPeriphResetCmd(u32 RCC_AHBPeriph, FunctionalState NewState)
+   1214          {
+   1215            /* Check the parameters */
+   1216            assert_param(IS_RCC_AHB_PERIPH_RESET(RCC_AHBPeriph));
+   1217            assert_param(IS_FUNCTIONAL_STATE(NewState));
+   1218          
+   1219            if (NewState != DISABLE)
+   \                     RCC_AHBPeriphResetCmd:
+   \   00000000   0xB2C9             UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   00000002   0x2900             CMP      R1,#+0
+   \   00000004   0xD005             BEQ.N    ??RCC_AHBPeriphResetCmd_0
+   1220            {
+   1221              RCC->AHBRSTR |= RCC_AHBPeriph;
+   \   00000006   0x....             LDR.N    R2,??DataTable42_26  ;; 0x40021028
+   \   00000008   0x6812             LDR      R2,[R2, #+0]
+   \   0000000A   0x4302             ORRS     R2,R0,R2
+   \   0000000C   0x....             LDR.N    R3,??DataTable42_26  ;; 0x40021028
+   \   0000000E   0x601A             STR      R2,[R3, #+0]
+   \   00000010   0xE004             B.N      ??RCC_AHBPeriphResetCmd_1
+   1222            }
+   1223            else
+   1224            {
+   1225              RCC->AHBRSTR &= ~RCC_AHBPeriph;
+   \                     ??RCC_AHBPeriphResetCmd_0:
+   \   00000012   0x....             LDR.N    R2,??DataTable42_26  ;; 0x40021028
+   \   00000014   0x6812             LDR      R2,[R2, #+0]
+   \   00000016   0x4382             BICS     R2,R2,R0
+   \   00000018   0x....             LDR.N    R3,??DataTable42_26  ;; 0x40021028
+   \   0000001A   0x601A             STR      R2,[R3, #+0]
+   1226            }
+   1227          }
+   \                     ??RCC_AHBPeriphResetCmd_1:
+   \   0000001C   0x4770             BX       LR               ;; return
+   1228          
+   1229          /*******************************************************************************
+   1230          * Function Name  : RCC_APB2PeriphResetCmd
+   1231          * Description    : Forces or releases High Speed APB (APB2) peripheral reset.
+   1232          * Input          : - RCC_APB2Periph: specifies the APB2 peripheral to reset.
+   1233          *                    This parameter can be any combination of the following values:
+   1234          *                       - RCC_APB2Periph_AFIO, RCC_APB2Periph_GPIOA, RCC_APB2Periph_GPIOB,
+   1235          *                         RCC_APB2Periph_GPIOC, RCC_APB2Periph_GPIOD, RCC_APB2Periph_GPIOE,
+   1236          *                         RCC_APB2Periph_GPIOF, RCC_APB2Periph_GPIOG, RCC_APB2Periph_ADC1,
+   1237          *                         RCC_APB2Periph_ADC2, RCC_APB2Periph_TIM1, RCC_APB2Periph_SPI1,
+   1238          *                         RCC_APB2Periph_TIM8, RCC_APB2Periph_USART1, RCC_APB2Periph_ADC3
+   1239          *                  - NewState: new state of the specified peripheral reset.
+   1240          *                    This parameter can be: ENABLE or DISABLE.
+   1241          * Output         : None
+   1242          * Return         : None
+   1243          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1244          void RCC_APB2PeriphResetCmd(u32 RCC_APB2Periph, FunctionalState NewState)
+   1245          {
+   1246            /* Check the parameters */
+   1247            assert_param(IS_RCC_APB2_PERIPH(RCC_APB2Periph));
+   1248            assert_param(IS_FUNCTIONAL_STATE(NewState));
+   1249          
+   1250            if (NewState != DISABLE)
+   \                     RCC_APB2PeriphResetCmd:
+   \   00000000   0xB2C9             UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   00000002   0x2900             CMP      R1,#+0
+   \   00000004   0xD005             BEQ.N    ??RCC_APB2PeriphResetCmd_0
+   1251            {
+   1252              RCC->APB2RSTR |= RCC_APB2Periph;
+   \   00000006   0x....             LDR.N    R2,??DataTable42_27  ;; 0x4002100c
+   \   00000008   0x6812             LDR      R2,[R2, #+0]
+   \   0000000A   0x4302             ORRS     R2,R0,R2
+   \   0000000C   0x....             LDR.N    R3,??DataTable42_27  ;; 0x4002100c
+   \   0000000E   0x601A             STR      R2,[R3, #+0]
+   \   00000010   0xE004             B.N      ??RCC_APB2PeriphResetCmd_1
+   1253            }
+   1254            else
+   1255            {
+   1256              RCC->APB2RSTR &= ~RCC_APB2Periph;
+   \                     ??RCC_APB2PeriphResetCmd_0:
+   \   00000012   0x....             LDR.N    R2,??DataTable42_27  ;; 0x4002100c
+   \   00000014   0x6812             LDR      R2,[R2, #+0]
+   \   00000016   0x4382             BICS     R2,R2,R0
+   \   00000018   0x....             LDR.N    R3,??DataTable42_27  ;; 0x4002100c
+   \   0000001A   0x601A             STR      R2,[R3, #+0]
+   1257            }
+   1258          }
+   \                     ??RCC_APB2PeriphResetCmd_1:
+   \   0000001C   0x4770             BX       LR               ;; return
+   1259          
+   1260          /*******************************************************************************
+   1261          * Function Name  : RCC_APB1PeriphResetCmd
+   1262          * Description    : Forces or releases Low Speed APB (APB1) peripheral reset.
+   1263          * Input          : - RCC_APB1Periph: specifies the APB1 peripheral to reset.
+   1264          *                    This parameter can be any combination of the following values:
+   1265          *                       - RCC_APB1Periph_TIM2, RCC_APB1Periph_TIM3, RCC_APB1Periph_TIM4,
+   1266          *                         RCC_APB1Periph_TIM5, RCC_APB1Periph_TIM6, RCC_APB1Periph_TIM7,
+   1267          *                         RCC_APB1Periph_WWDG, RCC_APB1Periph_SPI2, RCC_APB1Periph_SPI3,
+   1268          *                         RCC_APB1Periph_USART2, RCC_APB1Periph_USART3, RCC_APB1Periph_USART4, 
+   1269          *                         RCC_APB1Periph_USART5, RCC_APB1Periph_I2C1, RCC_APB1Periph_I2C2,
+   1270          *                         RCC_APB1Periph_USB, RCC_APB1Periph_CAN1, RCC_APB1Periph_CAN2,
+   1271          *                         RCC_APB1Periph_BKP, RCC_APB1Periph_PWR, RCC_APB1Periph_DAC
+   1272          *                  - NewState: new state of the specified peripheral clock.
+   1273          *                    This parameter can be: ENABLE or DISABLE.
+   1274          * Output         : None
+   1275          * Return         : None
+   1276          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1277          void RCC_APB1PeriphResetCmd(u32 RCC_APB1Periph, FunctionalState NewState)
+   1278          {
+   1279            /* Check the parameters */
+   1280            assert_param(IS_RCC_APB1_PERIPH(RCC_APB1Periph));
+   1281            assert_param(IS_FUNCTIONAL_STATE(NewState));
+   1282          
+   1283            if (NewState != DISABLE)
+   \                     RCC_APB1PeriphResetCmd:
+   \   00000000   0xB2C9             UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   00000002   0x2900             CMP      R1,#+0
+   \   00000004   0xD005             BEQ.N    ??RCC_APB1PeriphResetCmd_0
+   1284            {
+   1285              RCC->APB1RSTR |= RCC_APB1Periph;
+   \   00000006   0x....             LDR.N    R2,??DataTable42_28  ;; 0x40021010
+   \   00000008   0x6812             LDR      R2,[R2, #+0]
+   \   0000000A   0x4302             ORRS     R2,R0,R2
+   \   0000000C   0x....             LDR.N    R3,??DataTable42_28  ;; 0x40021010
+   \   0000000E   0x601A             STR      R2,[R3, #+0]
+   \   00000010   0xE004             B.N      ??RCC_APB1PeriphResetCmd_1
+   1286            }
+   1287            else
+   1288            {
+   1289              RCC->APB1RSTR &= ~RCC_APB1Periph;
+   \                     ??RCC_APB1PeriphResetCmd_0:
+   \   00000012   0x....             LDR.N    R2,??DataTable42_28  ;; 0x40021010
+   \   00000014   0x6812             LDR      R2,[R2, #+0]
+   \   00000016   0x4382             BICS     R2,R2,R0
+   \   00000018   0x....             LDR.N    R3,??DataTable42_28  ;; 0x40021010
+   \   0000001A   0x601A             STR      R2,[R3, #+0]
+   1290            }
+   1291          }
+   \                     ??RCC_APB1PeriphResetCmd_1:
+   \   0000001C   0x4770             BX       LR               ;; return
+   1292          
+   1293          /*******************************************************************************
+   1294          * Function Name  : RCC_BackupResetCmd
+   1295          * Description    : Forces or releases the Backup domain reset.
+   1296          * Input          : - NewState: new state of the Backup domain reset.
+   1297          *                    This parameter can be: ENABLE or DISABLE.
+   1298          * Output         : None
+   1299          * Return         : None
+   1300          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1301          void RCC_BackupResetCmd(FunctionalState NewState)
+   1302          {
+   1303            /* Check the parameters */
+   1304            assert_param(IS_FUNCTIONAL_STATE(NewState));
+   1305          
+   1306            *(vu32 *) BDCR_BDRST_BB = (u32)NewState;
+   \                     RCC_BackupResetCmd:
+   \   00000000   0x....             LDR.N    R1,??DataTable42_29  ;; 0x42420440
+   \   00000002   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+   1307          }
+   \   00000006   0x4770             BX       LR               ;; return
+   1308          
+   1309          /*******************************************************************************
+   1310          * Function Name  : RCC_ClockSecuritySystemCmd
+   1311          * Description    : Enables or disables the Clock Security System.
+   1312          * Input          : - NewState: new state of the Clock Security System..
+   1313          *                    This parameter can be: ENABLE or DISABLE.
+   1314          * Output         : None
+   1315          * Return         : None
+   1316          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1317          void RCC_ClockSecuritySystemCmd(FunctionalState NewState)
+   1318          {
+   1319            /* Check the parameters */
+   1320            assert_param(IS_FUNCTIONAL_STATE(NewState));
+   1321          
+   1322            *(vu32 *) CR_CSSON_BB = (u32)NewState;
+   \                     RCC_ClockSecuritySystemCmd:
+   \   00000000   0x....             LDR.N    R1,??DataTable42_30  ;; 0x4242004c
+   \   00000002   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+   1323          }
+   \   00000006   0x4770             BX       LR               ;; return
+   1324          
+   1325          /*******************************************************************************
+   1326          * Function Name  : RCC_MCOConfig
+   1327          * Description    : Selects the clock source to output on MCO pin.
+   1328          * Input          : - RCC_MCO: specifies the clock source to output.
+   1329          *                    This parameter can be one of the following values:
+   1330          *                       - RCC_MCO_NoClock: No clock selected
+   1331          *                       - RCC_MCO_SYSCLK: System clock selected
+   1332          *                       - RCC_MCO_HSI: HSI oscillator clock selected
+   1333          *                       - RCC_MCO_HSE: HSE oscillator clock selected
+   1334          *                       - RCC_MCO_PLLCLK_Div2: PLL clock divided by 2 selected
+   1335          *                       - RCC_MCO_PLL1CLK_Div2: PLL1 clock divided by 2 selected    // Only for STM32 connectivity line devices
+   1336          *                       - RCC_MCO_PLL2CLK: PLL2 clock selected                     // Only for STM32 connectivity line devices
+   1337          *                       - RCC_MCO_PLL3CLK_Div2: PLL3 clock divided by 2 selected   // Only for STM32 connectivity line devices
+   1338          *                       - RCC_MCO_XT1: External 3-25 MHz oscillator clock selected (for Ethernet)  // Only for STM32 connectivity line devices
+   1339          *                       - RCC_MCO_PLL3CLK: PLL3 clock selected (for Ethernet)      // Only for STM32 connectivity line devices
+   1340          * Output         : None
+   1341          * Return         : None
+   1342          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1343          void RCC_MCOConfig(u8 RCC_MCO)
+   1344          {
+   1345            /* Check the parameters */
+   1346            assert_param(IS_RCC_MCO(RCC_MCO));
+   1347          
+   1348            /* Perform Byte access to MCO[3:0] bits to select the MCO source */
+   1349            *(vu8 *) CFGR_BYTE4_ADDRESS = RCC_MCO;
+   \                     RCC_MCOConfig:
+   \   00000000   0x....             LDR.N    R1,??DataTable42_31  ;; 0x40021007
+   \   00000002   0x7008             STRB     R0,[R1, #+0]
+   1350          }
+   \   00000004   0x4770             BX       LR               ;; return
+   1351          
+   1352          /*******************************************************************************
+   1353          * Function Name  : RCC_GetFlagStatus
+   1354          * Description    : Checks whether the specified RCC flag is set or not.
+   1355          * Input          : - RCC_FLAG: specifies the flag to check.
+   1356          *                    This parameter can be one of the following values:
+   1357          *                       - RCC_FLAG_HSIRDY: HSI oscillator clock ready
+   1358          *                       - RCC_FLAG_HSERDY: HSE oscillator clock ready
+   1359          *                       - RCC_FLAG_PLLRDY: PLL clock ready
+   1360          *                       - RCC_FLAG_PLL1RDY: PLL1 clock ready          // Only for STM32 connectivity line devices
+   1361          *                       - RCC_FLAG_PLL2RDY: PLL2 clock ready          // Only for STM32 connectivity line devices
+   1362          *                       - RCC_FLAG_PLL3RDY: PLL3 clock ready          // Only for STM32 connectivity line devices                           
+   1363          *                       - RCC_FLAG_LSERDY: LSE oscillator clock ready
+   1364          *                       - RCC_FLAG_LSIRDY: LSI oscillator clock ready
+   1365          *                       - RCC_FLAG_PINRST: Pin reset
+   1366          *                       - RCC_FLAG_PORRST: POR/PDR reset
+   1367          *                       - RCC_FLAG_SFTRST: Software reset
+   1368          *                       - RCC_FLAG_IWDGRST: Independent Watchdog reset
+   1369          *                       - RCC_FLAG_WWDGRST: Window Watchdog reset
+   1370          *                       - RCC_FLAG_LPWRRST: Low Power reset
+   1371          * Output         : None
+   1372          * Return         : The new state of RCC_FLAG (SET or RESET).
+   1373          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1374          FlagStatus RCC_GetFlagStatus(u8 RCC_FLAG)
+   1375          {
+   \                     RCC_GetFlagStatus:
+   \   00000000   0xB410             PUSH     {R4}
+   \   00000002   0x0001             MOVS     R1,R0
+   1376            u32 tmp = 0;
+   \   00000004   0x2200             MOVS     R2,#+0
+   1377            u32 statusreg = 0;
+   \   00000006   0x2300             MOVS     R3,#+0
+   1378            FlagStatus bitstatus = RESET;
+   \   00000008   0x2000             MOVS     R0,#+0
+   1379          
+   1380            /* Check the parameters */
+   1381            assert_param(IS_RCC_FLAG(RCC_FLAG));
+   1382          
+   1383            /* Get the RCC register index */
+   1384            tmp = RCC_FLAG >> 5;
+   \   0000000A   0xB2C9             UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   0000000C   0x094C             LSRS     R4,R1,#+5
+   \   0000000E   0xB2E4             UXTB     R4,R4            ;; ZeroExt  R4,R4,#+24,#+24
+   \   00000010   0x0022             MOVS     R2,R4
+   1385          
+   1386            if (tmp == 1)               /* The flag to check is in CR register */
+   \   00000012   0x2A01             CMP      R2,#+1
+   \   00000014   0xD103             BNE.N    ??RCC_GetFlagStatus_0
+   1387            {
+   1388              statusreg = RCC->CR;
+   \   00000016   0x....             LDR.N    R4,??DataTable42  ;; 0x40021000
+   \   00000018   0x6824             LDR      R4,[R4, #+0]
+   \   0000001A   0x0023             MOVS     R3,R4
+   \   0000001C   0xE008             B.N      ??RCC_GetFlagStatus_1
+   1389            }
+   1390            else if (tmp == 2)          /* The flag to check is in BDCR register */
+   \                     ??RCC_GetFlagStatus_0:
+   \   0000001E   0x2A02             CMP      R2,#+2
+   \   00000020   0xD103             BNE.N    ??RCC_GetFlagStatus_2
+   1391            {
+   1392              statusreg = RCC->BDCR;
+   \   00000022   0x....             LDR.N    R4,??DataTable42_15  ;; 0x40021020
+   \   00000024   0x6824             LDR      R4,[R4, #+0]
+   \   00000026   0x0023             MOVS     R3,R4
+   \   00000028   0xE002             B.N      ??RCC_GetFlagStatus_1
+   1393            }
+   1394            else                       /* The flag to check is in CSR register */
+   1395            {
+   1396              statusreg = RCC->CSR;
+   \                     ??RCC_GetFlagStatus_2:
+   \   0000002A   0x....             LDR.N    R4,??DataTable42_32  ;; 0x40021024
+   \   0000002C   0x6824             LDR      R4,[R4, #+0]
+   \   0000002E   0x0023             MOVS     R3,R4
+   1397            }
+   1398          
+   1399            /* Get the flag position */
+   1400            tmp = RCC_FLAG & FLAG_Mask;
+   \                     ??RCC_GetFlagStatus_1:
+   \   00000030   0xB2C9             UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   00000032   0xF011 0x041F      ANDS     R4,R1,#0x1F
+   \   00000036   0x0022             MOVS     R2,R4
+   1401          
+   1402            if ((statusreg & ((u32)1 << tmp)) != (u32)RESET)
+   \   00000038   0xFA33 0xF402      LSRS     R4,R3,R2
+   \   0000003C   0x07E4             LSLS     R4,R4,#+31
+   \   0000003E   0xD502             BPL.N    ??RCC_GetFlagStatus_3
+   1403            {
+   1404              bitstatus = SET;
+   \   00000040   0x2401             MOVS     R4,#+1
+   \   00000042   0x0020             MOVS     R0,R4
+   \   00000044   0xE001             B.N      ??RCC_GetFlagStatus_4
+   1405            }
+   1406            else
+   1407            {
+   1408              bitstatus = RESET;
+   \                     ??RCC_GetFlagStatus_3:
+   \   00000046   0x2400             MOVS     R4,#+0
+   \   00000048   0x0020             MOVS     R0,R4
+   1409            }
+   1410          
+   1411            /* Return the flag status */
+   1412            return bitstatus;
+   \                     ??RCC_GetFlagStatus_4:
+   \   0000004A   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   0000004C   0xBC10             POP      {R4}
+   \   0000004E   0x4770             BX       LR               ;; return
+   1413          }
+   1414          
+   1415          /*******************************************************************************
+   1416          * Function Name  : RCC_ClearFlag
+   1417          * Description    : Clears the RCC reset flags.
+   1418          *                  The reset flags are: RCC_FLAG_PINRST, RCC_FLAG_PORRST,
+   1419          *                  RCC_FLAG_SFTRST, RCC_FLAG_IWDGRST, RCC_FLAG_WWDGRST,
+   1420          *                  RCC_FLAG_LPWRRST
+   1421          * Input          : None
+   1422          * Output         : None
+   1423          * Return         : None
+   1424          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1425          void RCC_ClearFlag(void)
+   1426          {
+   1427            /* Set RMVF bit to clear the reset flags */
+   1428            RCC->CSR |= CSR_RMVF_Set;
+   \                     RCC_ClearFlag:
+   \   00000000   0x....             LDR.N    R0,??DataTable42_32  ;; 0x40021024
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0xF050 0x7080      ORRS     R0,R0,#0x1000000
+   \   00000008   0x....             LDR.N    R1,??DataTable42_32  ;; 0x40021024
+   \   0000000A   0x6008             STR      R0,[R1, #+0]
+   1429          }
+   \   0000000C   0x4770             BX       LR               ;; return
+   1430          
+   1431          /*******************************************************************************
+   1432          * Function Name  : RCC_GetITStatus
+   1433          * Description    : Checks whether the specified RCC interrupt has occurred or not.
+   1434          * Input          : - RCC_IT: specifies the RCC interrupt source to check.
+   1435          *                    This parameter can be one of the following values:
+   1436          *                       - RCC_IT_LSIRDY: LSI ready interrupt
+   1437          *                       - RCC_IT_LSERDY: LSE ready interrupt
+   1438          *                       - RCC_IT_HSIRDY: HSI ready interrupt
+   1439          *                       - RCC_IT_HSERDY: HSE ready interrupt
+   1440          *                       - RCC_IT_PLLRDY: PLL ready interrupt
+   1441          *                       - RCC_IT_PLL1RDY: PLL1 ready interrupt // Only for STM32 connectivity line devices
+   1442          *                       - RCC_IT_PLL2RDY: PLL2 ready interrupt // Only for STM32 connectivity line devices
+   1443          *                       - RCC_IT_PLL3RDY: PLL3 ready interrupt // Only for STM32 connectivity line devices                      
+   1444          *                       - RCC_IT_CSS: Clock Security System interrupt
+   1445          * Output         : None
+   1446          * Return         : The new state of RCC_IT (SET or RESET).
+   1447          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1448          ITStatus RCC_GetITStatus(u8 RCC_IT)
+   1449          {
+   \                     RCC_GetITStatus:
+   \   00000000   0x0001             MOVS     R1,R0
+   1450            ITStatus bitstatus = RESET;
+   \   00000002   0x2000             MOVS     R0,#+0
+   1451          
+   1452            /* Check the parameters */
+   1453            assert_param(IS_RCC_GET_IT(RCC_IT));
+   1454          
+   1455            /* Check the status of the specified RCC interrupt */
+   1456            if ((RCC->CIR & RCC_IT) != (u32)RESET)
+   \   00000004   0x....             LDR.N    R2,??DataTable42_4  ;; 0x40021008
+   \   00000006   0x6812             LDR      R2,[R2, #+0]
+   \   00000008   0xB2C9             UXTB     R1,R1            ;; ZeroExt  R1,R1,#+24,#+24
+   \   0000000A   0x420A             TST      R2,R1
+   \   0000000C   0xD002             BEQ.N    ??RCC_GetITStatus_0
+   1457            {
+   1458              bitstatus = SET;
+   \   0000000E   0x2201             MOVS     R2,#+1
+   \   00000010   0x0010             MOVS     R0,R2
+   \   00000012   0xE001             B.N      ??RCC_GetITStatus_1
+   1459            }
+   1460            else
+   1461            {
+   1462              bitstatus = RESET;
+   \                     ??RCC_GetITStatus_0:
+   \   00000014   0x2200             MOVS     R2,#+0
+   \   00000016   0x0010             MOVS     R0,R2
+   1463            }
+   1464          
+   1465            /* Return the RCC_IT status */
+   1466            return  bitstatus;
+   \                     ??RCC_GetITStatus_1:
+   \   00000018   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   0000001A   0x4770             BX       LR               ;; return
+   1467          }
+   1468          
+   1469          /*******************************************************************************
+   1470          * Function Name  : RCC_ClearITPendingBit
+   1471          * Description    : Clears the RCC’s interrupt pending bits.
+   1472          * Input          : - RCC_IT: specifies the interrupt pending bit to clear.
+   1473          *                    This parameter can be any combination of the following values:
+   1474          *                       - RCC_IT_LSIRDY: LSI ready interrupt
+   1475          *                       - RCC_IT_LSERDY: LSE ready interrupt
+   1476          *                       - RCC_IT_HSIRDY: HSI ready interrupt
+   1477          *                       - RCC_IT_HSERDY: HSE ready interrupt
+   1478          *                       - RCC_IT_PLLRDY: PLL ready interrupt
+   1479          *                       - RCC_IT_PLL1RDY: PLL1 ready interrupt // Only for STM32 connectivity line devices 
+   1480          *                       - RCC_IT_PLL2RDY: PLL2 ready interrupt // Only for STM32 connectivity line devices
+   1481          *                       - RCC_IT_PLL3RDY: PLL3 ready interrupt // Only for STM32 connectivity line devices                        
+   1482          *                       - RCC_IT_CSS: Clock Security System interrupt
+   1483          * Output         : None
+   1484          * Return         : None
+   1485          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+   1486          void RCC_ClearITPendingBit(u8 RCC_IT)
+   1487          {
+   1488            /* Check the parameters */
+   1489            assert_param(IS_RCC_CLEAR_IT(RCC_IT));
+   1490          
+   1491            /* Perform Byte access to RCC_CIR[23:16] bits to clear the selected interrupt
+   1492               pending bits */
+   1493            *(vu8 *) CIR_BYTE3_ADDRESS = RCC_IT;
+   \                     RCC_ClearITPendingBit:
+   \   00000000   0x....             LDR.N    R1,??DataTable42_33  ;; 0x4002100a
+   \   00000002   0x7008             STRB     R0,[R1, #+0]
+   1494          }
+   \   00000004   0x4770             BX       LR               ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42:
+   \   00000000   0x40021000         DC32     0x40021000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_1:
+   \   00000000   0x40021004         DC32     0x40021004
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_2:
+   \   00000000   0xF8FF0000         DC32     0xf8ff0000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_3:
+   \   00000000   0xFEF6FFFF         DC32     0xfef6ffff
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_4:
+   \   00000000   0x40021008         DC32     0x40021008
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_5:
+   \   00000000   0x42420000         DC32     0x42420000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_6:
+   \   00000000   0x42420060         DC32     0x42420060
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_7:
+   \   00000000   0x4002102C         DC32     0x4002102c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_8:
+   \   00000000   0xFFFEFFF0         DC32     0xfffefff0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_9:
+   \   00000000   0x42420068         DC32     0x42420068
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_10:
+   \   00000000   0x42420070         DC32     0x42420070
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_11:
+   \   00000000   0x40021009         DC32     0x40021009
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_12:
+   \   00000000   0x424200D8         DC32     0x424200d8
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_13:
+   \   00000000   0x424205C4         DC32     0x424205c4
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_14:
+   \   00000000   0x424205C8         DC32     0x424205c8
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_15:
+   \   00000000   0x40021020         DC32     0x40021020
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_16:
+   \   00000000   0x42420480         DC32     0x42420480
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_17:
+   \   00000000   0x4242043C         DC32     0x4242043c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_18:
+   \   00000000   0x007A1200         DC32     0x7a1200
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_19:
+   \   00000000   0x017D7840         DC32     0x17d7840
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_20:
+   \   00000000   0x003D0900         DC32     0x3d0900
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_21:
+   \   00000000   0x........         DC32     APBAHBPrescTable
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_22:
+   \   00000000   0x........         DC32     ADCPrescTable
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_23:
+   \   00000000   0x40021014         DC32     0x40021014
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_24:
+   \   00000000   0x40021018         DC32     0x40021018
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_25:
+   \   00000000   0x4002101C         DC32     0x4002101c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_26:
+   \   00000000   0x40021028         DC32     0x40021028
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_27:
+   \   00000000   0x4002100C         DC32     0x4002100c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_28:
+   \   00000000   0x40021010         DC32     0x40021010
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_29:
+   \   00000000   0x42420440         DC32     0x42420440
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_30:
+   \   00000000   0x4242004C         DC32     0x4242004c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_31:
+   \   00000000   0x40021007         DC32     0x40021007
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_32:
+   \   00000000   0x40021024         DC32     0x40021024
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable42_33:
+   \   00000000   0x4002100A         DC32     0x4002100a
+   1495          
+   1496          /******************* (C) COPYRIGHT 2009 STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   RCC_ADCCLKConfig
+       0   RCC_AHBPeriphClockCmd
+       0   RCC_AHBPeriphResetCmd
+       0   RCC_APB1PeriphClockCmd
+       0   RCC_APB1PeriphResetCmd
+       0   RCC_APB2PeriphClockCmd
+       0   RCC_APB2PeriphResetCmd
+       0   RCC_AdjustHSICalibrationValue
+       0   RCC_BackupResetCmd
+       0   RCC_ClearFlag
+       0   RCC_ClearITPendingBit
+       0   RCC_ClockSecuritySystemCmd
+       0   RCC_DeInit
+      20   RCC_GetClocksFreq
+       4   RCC_GetFlagStatus
+       0   RCC_GetITStatus
+       0   RCC_GetSYSCLKSource
+       0   RCC_HCLKConfig
+       0   RCC_HSEConfig
+       0   RCC_HSICmd
+       0   RCC_I2S2CLKConfig
+       0   RCC_I2S3CLKConfig
+       0   RCC_ITConfig
+       0   RCC_LSEConfig
+       0   RCC_LSICmd
+       0   RCC_MCOConfig
+       0   RCC_OTGFSCLKConfig
+       0   RCC_PCLK1Config
+       0   RCC_PCLK2Config
+       0   RCC_PLL1Cmd
+       0   RCC_PLL1Config
+       0   RCC_PLL2Cmd
+       0   RCC_PLL2Config
+       0   RCC_PLL3Cmd
+       0   RCC_PLL3Config
+       0   RCC_PLLCmd
+       0   RCC_PLLConfig
+       0   RCC_PREDIV1Config
+       0   RCC_PREDIV2Config
+       0   RCC_RTCCLKCmd
+       0   RCC_RTCCLKConfig
+       0   RCC_SYSCLKConfig
+       0   RCC_USBCLKConfig
+      16   RCC_WaitForHSEStartUp
+        16   -> RCC_GetFlagStatus
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable42
+       4  ??DataTable42_1
+       4  ??DataTable42_10
+       4  ??DataTable42_11
+       4  ??DataTable42_12
+       4  ??DataTable42_13
+       4  ??DataTable42_14
+       4  ??DataTable42_15
+       4  ??DataTable42_16
+       4  ??DataTable42_17
+       4  ??DataTable42_18
+       4  ??DataTable42_19
+       4  ??DataTable42_2
+       4  ??DataTable42_20
+       4  ??DataTable42_21
+       4  ??DataTable42_22
+       4  ??DataTable42_23
+       4  ??DataTable42_24
+       4  ??DataTable42_25
+       4  ??DataTable42_26
+       4  ??DataTable42_27
+       4  ??DataTable42_28
+       4  ??DataTable42_29
+       4  ??DataTable42_3
+       4  ??DataTable42_30
+       4  ??DataTable42_31
+       4  ??DataTable42_32
+       4  ??DataTable42_33
+       4  ??DataTable42_4
+       4  ??DataTable42_5
+       4  ??DataTable42_6
+       4  ??DataTable42_7
+       4  ??DataTable42_8
+       4  ??DataTable42_9
+       4  ADCPrescTable
+      16  APBAHBPrescTable
+      24  RCC_ADCCLKConfig
+      30  RCC_AHBPeriphClockCmd
+      30  RCC_AHBPeriphResetCmd
+      30  RCC_APB1PeriphClockCmd
+      30  RCC_APB1PeriphResetCmd
+      30  RCC_APB2PeriphClockCmd
+      30  RCC_APB2PeriphResetCmd
+      28  RCC_AdjustHSICalibrationValue
+       8  RCC_BackupResetCmd
+      14  RCC_ClearFlag
+       6  RCC_ClearITPendingBit
+       8  RCC_ClockSecuritySystemCmd
+      94  RCC_DeInit
+     404  RCC_GetClocksFreq
+      80  RCC_GetFlagStatus
+      28  RCC_GetITStatus
+      12  RCC_GetSYSCLKSource
+      24  RCC_HCLKConfig
+      86  RCC_HSEConfig
+      10  RCC_HSICmd
+       8  RCC_I2S2CLKConfig
+       8  RCC_I2S3CLKConfig
+      38  RCC_ITConfig
+      50  RCC_LSEConfig
+       8  RCC_LSICmd
+       6  RCC_MCOConfig
+       8  RCC_OTGFSCLKConfig
+      24  RCC_PCLK1Config
+      26  RCC_PCLK2Config
+      10  RCC_PLL1Cmd
+      28  RCC_PLL1Config
+      10  RCC_PLL2Cmd
+      24  RCC_PLL2Config
+      10  RCC_PLL3Cmd
+      24  RCC_PLL3Config
+      10  RCC_PLLCmd
+      28  RCC_PLLConfig
+      30  RCC_PREDIV1Config
+      24  RCC_PREDIV2Config
+       8  RCC_RTCCLKCmd
+      12  RCC_RTCCLKConfig
+      24  RCC_SYSCLKConfig
+       8  RCC_USBCLKConfig
+      64  RCC_WaitForHSEStartUp
+
+ 
+    20 bytes in section .rodata
+ 1 632 bytes in section .text
+ 
+ 1 632 bytes of CODE  memory
+    20 bytes of CONST memory
+
+Errors: none
+Warnings: none

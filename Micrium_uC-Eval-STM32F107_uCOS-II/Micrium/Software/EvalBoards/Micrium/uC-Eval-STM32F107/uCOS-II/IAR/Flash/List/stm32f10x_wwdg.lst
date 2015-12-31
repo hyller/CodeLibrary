@@ -1,0 +1,390 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.50.2.4510/W32 for ARM      08/Feb/2013  10:57:25 #
+# Copyright 1999-2012 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_wwdg.c                   #
+#    Command line =  "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_wwdg.c" -D               #
+#                    USE_STDPERIPH_DRIVER -lCN "C:\Users\daniel01\Desktop\Fas #
+#                    tFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC #
+#                    -Eval-STM32F107\uCOS-II\IAR\Flash\List\" -o              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\" --no_cse --no_unroll        #
+#                    --no_inline --no_code_motion --no_tbaa --no_clustering   #
+#                    --no_scheduling --debug --endian=little --cpu=Cortex-M3  #
+#                    -e --fpu=None --dlib_config "C:\Program Files (x86)\IAR  #
+#                    Systems\Embedded Workbench 6.5\arm\INC\c\DLib_Config_Nor #
+#                    mal.h" -I "C:\Users\daniel01\Desktop\FastFile Test       #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\IAR\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\" -I                          #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\OS\uCOS-II\" -I               #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\ST\STM32\inc\" -I             #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\uCOS-II\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\IAR\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex- #
+#                    M3\IAR\" -I "C:\Users\daniel01\Desktop\FastFile Test     #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR #
+#                    \" -I "C:\Users\daniel01\Desktop\FastFile Test           #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex #
+#                    -M3\Generic\IAR\" -I "C:\Users\daniel01\Desktop\FastFile #
+#                     Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval #
+#                    -STM32F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Source\"   #
+#                    -On --use_c++_inline                                     #
+#    List file    =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\List\stm32f10x_wwdg.lst           #
+#    Object file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\stm32f10x_wwdg.o              #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\daniel01\Desktop\FastFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32F107\BSP\ST\STM32\src\stm32f10x_wwdg.c
+      1          /******************** (C) COPYRIGHT 2009 STMicroelectronics ********************
+      2          * File Name          : stm32f10x_wwdg.c
+      3          * Author             : MCD Application Team
+      4          * Version            : V2.1.0RC2
+      5          * Date               : 03/13/2009
+      6          * Description        : This file provides all the WWDG firmware functions.
+      7          ********************************************************************************
+      8          * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+      9          * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME.
+     10          * AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY DIRECT,
+     11          * INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE
+     12          * CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING
+     13          * INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+     14          *******************************************************************************/
+     15          
+     16          /* Includes ------------------------------------------------------------------*/
+     17          #include "stm32f10x_wwdg.h"
+     18          #include "stm32f10x_rcc.h"
+     19          
+     20          /* Private typedef -----------------------------------------------------------*/
+     21          /* Private define ------------------------------------------------------------*/
+     22          /* ----------- WWDG registers bit address in the alias region ----------- */
+     23          #define WWDG_OFFSET       (WWDG_BASE - PERIPH_BASE)
+     24          
+     25          /* Alias word address of EWI bit */
+     26          #define CFR_OFFSET        (WWDG_OFFSET + 0x04)
+     27          #define EWI_BitNumber     0x09
+     28          #define CFR_EWI_BB        (PERIPH_BB_BASE + (CFR_OFFSET * 32) + (EWI_BitNumber * 4))
+     29          
+     30          /* --------------------- WWDG registers bit mask ------------------------ */
+     31          /* CR register bit mask */
+     32          #define CR_WDGA_Set       ((u32)0x00000080)
+     33          
+     34          /* CFR register bit mask */
+     35          #define CFR_WDGTB_Mask    ((u32)0xFFFFFE7F)
+     36          #define CFR_W_Mask        ((u32)0xFFFFFF80)
+     37          
+     38          #define BIT_Mask          ((u8)0x7F)
+     39          
+     40          /* Private macro -------------------------------------------------------------*/
+     41          /* Private variables ---------------------------------------------------------*/
+     42          /* Private function prototypes -----------------------------------------------*/
+     43          /* Private functions ---------------------------------------------------------*/
+     44          
+     45          /*******************************************************************************
+     46          * Function Name  : WWDG_DeInit
+     47          * Description    : Deinitializes the WWDG  peripheral registers to their default
+     48          *                  reset values.
+     49          * Input          : None
+     50          * Output         : None
+     51          * Return         : None
+     52          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     53          void WWDG_DeInit(void)
+     54          {
+   \                     WWDG_DeInit:
+   \   00000000   0xB580             PUSH     {R7,LR}
+     55            RCC_APB1PeriphResetCmd(RCC_APB1Periph_WWDG, ENABLE);
+   \   00000002   0x2101             MOVS     R1,#+1
+   \   00000004   0xF44F 0x6000      MOV      R0,#+2048
+   \   00000008   0x.... 0x....      BL       RCC_APB1PeriphResetCmd
+     56            RCC_APB1PeriphResetCmd(RCC_APB1Periph_WWDG, DISABLE);
+   \   0000000C   0x2100             MOVS     R1,#+0
+   \   0000000E   0xF44F 0x6000      MOV      R0,#+2048
+   \   00000012   0x.... 0x....      BL       RCC_APB1PeriphResetCmd
+     57          }
+   \   00000016   0xBD01             POP      {R0,PC}          ;; return
+     58          
+     59          /*******************************************************************************
+     60          * Function Name  : WWDG_SetPrescaler
+     61          * Description    : Sets the WWDG Prescaler.
+     62          * Input          : - WWDG_Prescaler: specifies the WWDG Prescaler.
+     63          *                    This parameter can be one of the following values:
+     64          *                       - WWDG_Prescaler_1: WWDG counter clock = (PCLK1/4096)/1
+     65          *                       - WWDG_Prescaler_2: WWDG counter clock = (PCLK1/4096)/2
+     66          *                       - WWDG_Prescaler_4: WWDG counter clock = (PCLK1/4096)/4
+     67          *                       - WWDG_Prescaler_8: WWDG counter clock = (PCLK1/4096)/8
+     68          * Output         : None
+     69          * Return         : None
+     70          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     71          void WWDG_SetPrescaler(u32 WWDG_Prescaler)
+     72          {
+     73            u32 tmpreg = 0;
+   \                     WWDG_SetPrescaler:
+   \   00000000   0x2100             MOVS     R1,#+0
+     74          
+     75            /* Check the parameters */
+     76            assert_param(IS_WWDG_PRESCALER(WWDG_Prescaler));
+     77          
+     78            /* Clear WDGTB[1:0] bits */
+     79            tmpreg = WWDG->CFR & CFR_WDGTB_Mask;
+   \   00000002   0x....             LDR.N    R2,??DataTable6  ;; 0x40002c04
+   \   00000004   0x6812             LDR      R2,[R2, #+0]
+   \   00000006   0xF432 0x72C0      BICS     R2,R2,#0x180
+   \   0000000A   0x0011             MOVS     R1,R2
+     80          
+     81            /* Set WDGTB[1:0] bits according to WWDG_Prescaler value */
+     82            tmpreg |= WWDG_Prescaler;
+   \   0000000C   0x4301             ORRS     R1,R0,R1
+     83          
+     84            /* Store the new value */
+     85            WWDG->CFR = tmpreg;
+   \   0000000E   0x....             LDR.N    R2,??DataTable6  ;; 0x40002c04
+   \   00000010   0x6011             STR      R1,[R2, #+0]
+     86          }
+   \   00000012   0x4770             BX       LR               ;; return
+     87          
+     88          /*******************************************************************************
+     89          * Function Name  : WWDG_SetWindowValue
+     90          * Description    : Sets the WWDG window value.
+     91          * Input          : - WindowValue: specifies the window value to be compared to
+     92          *                    the downcounter.
+     93          *                    This parameter value must be lower than 0x80.
+     94          * Output         : None
+     95          * Return         : None
+     96          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     97          void WWDG_SetWindowValue(u8 WindowValue)
+     98          {
+     99            u32 tmpreg = 0;
+   \                     WWDG_SetWindowValue:
+   \   00000000   0x2100             MOVS     R1,#+0
+    100          
+    101            /* Check the parameters */
+    102            assert_param(IS_WWDG_WINDOW_VALUE(WindowValue));
+    103          
+    104            /* Clear W[6:0] bits */
+    105            tmpreg = WWDG->CFR & CFR_W_Mask;
+   \   00000002   0x....             LDR.N    R2,??DataTable6  ;; 0x40002c04
+   \   00000004   0x6812             LDR      R2,[R2, #+0]
+   \   00000006   0x09D2             LSRS     R2,R2,#+7
+   \   00000008   0x01D2             LSLS     R2,R2,#+7
+   \   0000000A   0x0011             MOVS     R1,R2
+    106          
+    107            /* Set W[6:0] bits according to WindowValue value */
+    108            tmpreg |= WindowValue & BIT_Mask;
+   \   0000000C   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   0000000E   0xF010 0x027F      ANDS     R2,R0,#0x7F
+   \   00000012   0x4311             ORRS     R1,R2,R1
+    109          
+    110            /* Store the new value */
+    111            WWDG->CFR = tmpreg;
+   \   00000014   0x....             LDR.N    R2,??DataTable6  ;; 0x40002c04
+   \   00000016   0x6011             STR      R1,[R2, #+0]
+    112          }
+   \   00000018   0x4770             BX       LR               ;; return
+    113          
+    114          /*******************************************************************************
+    115          * Function Name  : WWDG_EnableIT
+    116          * Description    : Enables the WWDG Early Wakeup interrupt(EWI).
+    117          * Input          : None
+    118          * Output         : None
+    119          * Return         : None
+    120          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    121          void WWDG_EnableIT(void)
+    122          {
+    123            *(vu32 *) CFR_EWI_BB = (u32)ENABLE;
+   \                     WWDG_EnableIT:
+   \   00000000   0x....             LDR.N    R0,??DataTable6_1  ;; 0x420580a4
+   \   00000002   0x2101             MOVS     R1,#+1
+   \   00000004   0x6001             STR      R1,[R0, #+0]
+    124          }
+   \   00000006   0x4770             BX       LR               ;; return
+    125          
+    126          /*******************************************************************************
+    127          * Function Name  : WWDG_SetCounter
+    128          * Description    : Sets the WWDG counter value.
+    129          * Input          : - Counter: specifies the watchdog counter value.
+    130          *                    This parameter must be a number between 0x40 and 0x7F.
+    131          * Output         : None
+    132          * Return         : None
+    133          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    134          void WWDG_SetCounter(u8 Counter)
+    135          {
+    136            /* Check the parameters */
+    137            assert_param(IS_WWDG_COUNTER(Counter));
+    138          
+    139            /* Write to T[6:0] bits to configure the counter value, no need to do
+    140               a read-modify-write; writing a 0 to WDGA bit does nothing */
+    141            WWDG->CR = Counter & BIT_Mask;
+   \                     WWDG_SetCounter:
+   \   00000000   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000002   0xF010 0x017F      ANDS     R1,R0,#0x7F
+   \   00000006   0x....             LDR.N    R2,??DataTable6_2  ;; 0x40002c00
+   \   00000008   0x6011             STR      R1,[R2, #+0]
+    142          }
+   \   0000000A   0x4770             BX       LR               ;; return
+    143          
+    144          /*******************************************************************************
+    145          * Function Name  : WWDG_Enable
+    146          * Description    : Enables WWDG and load the counter value.
+    147          *                  - Counter: specifies the watchdog counter value.
+    148          *                    This parameter must be a number between 0x40 and 0x7F.
+    149          * Input          : None
+    150          * Output         : None
+    151          * Return         : None
+    152          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    153          void WWDG_Enable(u8 Counter)
+    154          {
+    155            /* Check the parameters */
+    156            assert_param(IS_WWDG_COUNTER(Counter));
+    157          
+    158            WWDG->CR = CR_WDGA_Set | Counter;
+   \                     WWDG_Enable:
+   \   00000000   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000002   0xF050 0x0180      ORRS     R1,R0,#0x80
+   \   00000006   0x....             LDR.N    R2,??DataTable6_2  ;; 0x40002c00
+   \   00000008   0x6011             STR      R1,[R2, #+0]
+    159          }
+   \   0000000A   0x4770             BX       LR               ;; return
+    160          
+    161          /*******************************************************************************
+    162          * Function Name  : WWDG_GetFlagStatus
+    163          * Description    : Checks whether the Early Wakeup interrupt flag is set or not.
+    164          * Input          : None
+    165          * Output         : None
+    166          * Return         : The new state of the Early Wakeup interrupt flag (SET or RESET)
+    167          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    168          FlagStatus WWDG_GetFlagStatus(void)
+    169          {
+    170            return (FlagStatus)(WWDG->SR);
+   \                     WWDG_GetFlagStatus:
+   \   00000000   0x....             LDR.N    R0,??DataTable6_3  ;; 0x40002c08
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000006   0x4770             BX       LR               ;; return
+    171          }
+    172          
+    173          /*******************************************************************************
+    174          * Function Name  : WWDG_ClearFlag
+    175          * Description    : Clears Early Wakeup interrupt flag.
+    176          * Input          : None
+    177          * Output         : None
+    178          * Return         : None
+    179          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    180          void WWDG_ClearFlag(void)
+    181          {
+    182            WWDG->SR = (u32)RESET;
+   \                     WWDG_ClearFlag:
+   \   00000000   0x....             LDR.N    R0,??DataTable6_3  ;; 0x40002c08
+   \   00000002   0x2100             MOVS     R1,#+0
+   \   00000004   0x6001             STR      R1,[R0, #+0]
+    183          }
+   \   00000006   0x4770             BX       LR               ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6:
+   \   00000000   0x40002C04         DC32     0x40002c04
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_1:
+   \   00000000   0x420580A4         DC32     0x420580a4
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_2:
+   \   00000000   0x40002C00         DC32     0x40002c00
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_3:
+   \   00000000   0x40002C08         DC32     0x40002c08
+    184          
+    185          /******************* (C) COPYRIGHT 2009 STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   WWDG_ClearFlag
+       8   WWDG_DeInit
+         8   -> RCC_APB1PeriphResetCmd
+       0   WWDG_Enable
+       0   WWDG_EnableIT
+       0   WWDG_GetFlagStatus
+       0   WWDG_SetCounter
+       0   WWDG_SetPrescaler
+       0   WWDG_SetWindowValue
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable6
+       4  ??DataTable6_1
+       4  ??DataTable6_2
+       4  ??DataTable6_3
+       8  WWDG_ClearFlag
+      24  WWDG_DeInit
+      12  WWDG_Enable
+       8  WWDG_EnableIT
+       8  WWDG_GetFlagStatus
+      12  WWDG_SetCounter
+      20  WWDG_SetPrescaler
+      26  WWDG_SetWindowValue
+
+ 
+ 134 bytes in section .text
+ 
+ 134 bytes of CODE memory
+
+Errors: none
+Warnings: none

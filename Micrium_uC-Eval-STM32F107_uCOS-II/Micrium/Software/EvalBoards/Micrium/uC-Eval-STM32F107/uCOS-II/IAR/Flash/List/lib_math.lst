@@ -1,0 +1,458 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.50.2.4510/W32 for ARM      08/Feb/2013  10:57:20 #
+# Copyright 1999-2012 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\uC-LIB\lib_math.c                #
+#    Command line =  "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\uC-LIB\lib_math.c" -D            #
+#                    USE_STDPERIPH_DRIVER -lCN "C:\Users\daniel01\Desktop\Fas #
+#                    tFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC #
+#                    -Eval-STM32F107\uCOS-II\IAR\Flash\List\" -o              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\" --no_cse --no_unroll        #
+#                    --no_inline --no_code_motion --no_tbaa --no_clustering   #
+#                    --no_scheduling --debug --endian=little --cpu=Cortex-M3  #
+#                    -e --fpu=None --dlib_config "C:\Program Files (x86)\IAR  #
+#                    Systems\Embedded Workbench 6.5\arm\INC\c\DLib_Config_Nor #
+#                    mal.h" -I "C:\Users\daniel01\Desktop\FastFile Test       #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\IAR\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\" -I                          #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\OS\uCOS-II\" -I               #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\ST\STM32\inc\" -I             #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\uCOS-II\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\IAR\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex- #
+#                    M3\IAR\" -I "C:\Users\daniel01\Desktop\FastFile Test     #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR #
+#                    \" -I "C:\Users\daniel01\Desktop\FastFile Test           #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex #
+#                    -M3\Generic\IAR\" -I "C:\Users\daniel01\Desktop\FastFile #
+#                     Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval #
+#                    -STM32F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Source\"   #
+#                    -On --use_c++_inline                                     #
+#    List file    =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\List\lib_math.lst                 #
+#    Object file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\lib_math.o                    #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\daniel01\Desktop\FastFile Test Folder\Micrium\Software\uC-LIB\lib_math.c
+      1          /*
+      2          *********************************************************************************************************
+      3          *                                                uC/LIB
+      4          *                                        CUSTOM LIBRARY MODULES
+      5          *
+      6          *                          (c) Copyright 2004-2012; Micrium, Inc.; Weston, FL
+      7          *
+      8          *               All rights reserved.  Protected by international copyright laws.
+      9          *
+     10          *               uC/LIB is provided in source form to registered licensees ONLY.  It is 
+     11          *               illegal to distribute this source code to any third party unless you receive 
+     12          *               written permission by an authorized Micrium representative.  Knowledge of 
+     13          *               the source code may NOT be used to develop a similar product.
+     14          *
+     15          *               Please help us continue to provide the Embedded community with the finest 
+     16          *               software available.  Your honesty is greatly appreciated.
+     17          *
+     18          *               You can contact us at www.micrium.com.
+     19          *********************************************************************************************************
+     20          */
+     21          
+     22          /*
+     23          *********************************************************************************************************
+     24          *
+     25          *                                        MATHEMATIC OPERATIONS
+     26          *
+     27          * Filename      : lib_math.c
+     28          * Version       : V1.37.01
+     29          * Programmer(s) : SR
+     30          *                 ITJ
+     31          *********************************************************************************************************
+     32          * Note(s)       : (1) NO compiler-supplied standard library functions are used in library or product software.
+     33          *
+     34          *                     (a) ALL standard library functions are implemented in the custom library modules :
+     35          *
+     36          *                         (1) \<Custom Library Directory>\lib_*.*
+     37          *
+     38          *                         (2) \<Custom Library Directory>\Ports\<cpu>\<compiler>\lib*_a.*
+     39          *
+     40          *                               where
+     41          *                                       <Custom Library Directory>      directory path for custom library software
+     42          *                                       <cpu>                           directory name for specific processor (CPU)
+     43          *                                       <compiler>                      directory name for specific compiler
+     44          *
+     45          *                     (b) Product-specific library functions are implemented in individual products.
+     46          *
+     47          *********************************************************************************************************
+     48          * Notice(s)     : (1) The Institute of Electrical and Electronics Engineers and The Open Group, have given
+     49          *                     us permission to reprint portions of their documentation.  Portions of this text are
+     50          *                     reprinted and reproduced in electronic form from the IEEE Std 1003.1, 2004 Edition,
+     51          *                     Standard for Information Technology -- Portable Operating System Interface (POSIX),
+     52          *                     The Open Group Base Specifications Issue 6, Copyright (C) 2001-2004 by the Institute
+     53          *                     of Electrical and Electronics Engineers, Inc and The Open Group.  In the event of any
+     54          *                     discrepancy between these versions and the original IEEE and The Open Group Standard,
+     55          *                     the original IEEE and The Open Group Standard is the referee document.  The original
+     56          *                     Standard can be obtained online at http://www.opengroup.org/unix/online.html.
+     57          *********************************************************************************************************
+     58          */
+     59          
+     60          
+     61          /*
+     62          *********************************************************************************************************
+     63          *                                            INCLUDE FILES
+     64          *********************************************************************************************************
+     65          */
+     66          
+     67          #define    MICRIUM_SOURCE
+     68          #define    LIB_MATH_MODULE
+     69          #include  <lib_math.h>
+     70          
+     71          
+     72          /*$PAGE*/
+     73          /*
+     74          *********************************************************************************************************
+     75          *                                            LOCAL DEFINES
+     76          *********************************************************************************************************
+     77          */
+     78          
+     79          
+     80          /*
+     81          *********************************************************************************************************
+     82          *                                           LOCAL CONSTANTS
+     83          *********************************************************************************************************
+     84          */
+     85          
+     86          
+     87          /*
+     88          *********************************************************************************************************
+     89          *                                          LOCAL DATA TYPES
+     90          *********************************************************************************************************
+     91          */
+     92          
+     93          
+     94          /*
+     95          *********************************************************************************************************
+     96          *                                            LOCAL TABLES
+     97          *********************************************************************************************************
+     98          */
+     99          
+    100          
+    101          /*
+    102          *********************************************************************************************************
+    103          *                                       LOCAL GLOBAL VARIABLES
+    104          *********************************************************************************************************
+    105          */
+    106          
+
+   \                                 In section .bss, align 4
+    107          RAND_NBR  Math_RandSeedCur;                                     /* Cur rand nbr seed.                                   */
+   \                     Math_RandSeedCur:
+   \   00000000                      DS8 4
+    108          
+    109          
+    110          /*
+    111          *********************************************************************************************************
+    112          *                                      LOCAL FUNCTION PROTOTYPES
+    113          *********************************************************************************************************
+    114          */
+    115          
+    116          
+    117          /*
+    118          *********************************************************************************************************
+    119          *                                     LOCAL CONFIGURATION ERRORS
+    120          *********************************************************************************************************
+    121          */
+    122          
+    123          
+    124          /*$PAGE*/
+    125          /*
+    126          *********************************************************************************************************
+    127          *                                             Math_Init()
+    128          *
+    129          * Description : (1) Initialize Mathematic Module :
+    130          *
+    131          *                   (a) Initialize random number seed value
+    132          *
+    133          *
+    134          * Argument(s) : none.
+    135          *
+    136          * Return(s)   : none.
+    137          *
+    138          * Caller(s)   : Application.
+    139          *
+    140          * Note(s)     : (2) IEEE Std 1003.1, 2004 Edition, Section 'rand() : DESCRIPTION' states that "if rand()
+    141          *                   is called before any calls to srand() are made, the same sequence shall be generated
+    142          *                   as when srand() is first called with a seed value of 1".
+    143          *********************************************************************************************************
+    144          */
+    145          
+
+   \                                 In section .text, align 2, keep-with-next
+    146          void  Math_Init (void)
+    147          {
+   \                     Math_Init:
+   \   00000000   0xB580             PUSH     {R7,LR}
+    148              Math_RandSetSeed((RAND_NBR)RAND_SEED_INIT_VAL);             /* See Note #2.                                         */
+   \   00000002   0x2001             MOVS     R0,#+1
+   \   00000004   0x.... 0x....      BL       Math_RandSetSeed
+    149          }
+   \   00000008   0xBD01             POP      {R0,PC}          ;; return
+    150          
+    151          
+    152          /*$PAGE*/
+    153          /*
+    154          *********************************************************************************************************
+    155          *                                         Math_RandSetSeed()
+    156          *
+    157          * Description : Set the current pseudo-random number generator seed.
+    158          *
+    159          * Argument(s) : seed        Initial (or current) value to set for the pseudo-random number sequence.
+    160          *
+    161          * Return(s)   : none.
+    162          *
+    163          * Caller(s)   : Application.
+    164          *
+    165          * Note(s)     : (1) IEEE Std 1003.1, 2004 Edition, Section 'rand() : DESCRIPTION' states that "srand() 
+    166          *                   ... uses the argument as a seed for a new sequence of pseudo-random numbers to be 
+    167          *                   returned by subsequent calls to rand()".
+    168          *
+    169          *               (2) 'Math_RandSeedCur' MUST always be accessed exclusively in critical sections.
+    170          *
+    171          *                   See also 'Math_Rand()  Note #1b'.
+    172          *********************************************************************************************************
+    173          */
+    174          
+
+   \                                 In section .text, align 2, keep-with-next
+    175          void  Math_RandSetSeed (RAND_NBR  seed)
+    176          {
+   \                     Math_RandSetSeed:
+   \   00000000   0xB538             PUSH     {R3-R5,LR}
+   \   00000002   0x0004             MOVS     R4,R0
+    177              CPU_SR_ALLOC();
+   \   00000004   0x2500             MOVS     R5,#+0
+    178          
+    179          
+    180              CPU_CRITICAL_ENTER();
+   \   00000006   0x.... 0x....      BL       CPU_SR_Save
+   \   0000000A   0x0005             MOVS     R5,R0
+    181              Math_RandSeedCur = seed;
+   \   0000000C   0x....             LDR.N    R0,??DataTable2
+   \   0000000E   0x6004             STR      R4,[R0, #+0]
+    182              CPU_CRITICAL_EXIT();
+   \   00000010   0x0028             MOVS     R0,R5
+   \   00000012   0x.... 0x....      BL       CPU_SR_Restore
+    183          }
+   \   00000016   0xBD31             POP      {R0,R4,R5,PC}    ;; return
+    184          
+    185          
+    186          /*$PAGE*/
+    187          /*
+    188          *********************************************************************************************************
+    189          *                                             Math_Rand()
+    190          *
+    191          * Description : Calculate the next pseudo-random number.
+    192          *
+    193          * Argument(s) : none.
+    194          *
+    195          * Return(s)   : Next pseudo-random number in the sequence after 'Math_RandSeedCur'.
+    196          *
+    197          * Caller(s)   : Application.
+    198          *
+    199          * Note(s)     : (1) (a) The pseudo-random number generator is implemented as a Linear Congruential 
+    200          *                       Generator (LCG).
+    201          *
+    202          *                   (b) The pseudo-random number generated is in the range [0, RAND_LCG_PARAM_M].
+    203          *
+    204          *                   See also 'Math_RandSeed()  Note #1'.
+    205          *
+    206          *               (2) (a) IEEE Std 1003.1, 2004 Edition, Section 'rand() : DESCRIPTION' states that "rand() 
+    207          *                       ... need not be reentrant ... [and] is not required to be thread-safe".
+    208          *
+    209          *                   (b) However, in order to implement Math_Rand() as re-entrant; 'Math_RandSeedCur' MUST 
+    210          *                       always be accessed & updated exclusively in critical sections.
+    211          *
+    212          *                   See also 'Math_RandSeed()  Note #2'.
+    213          *********************************************************************************************************
+    214          */
+    215          
+
+   \                                 In section .text, align 2, keep-with-next
+    216          RAND_NBR  Math_Rand (void)
+    217          {
+   \                     Math_Rand:
+   \   00000000   0xB570             PUSH     {R4-R6,LR}
+    218              RAND_NBR  seed;
+    219              RAND_NBR  rand_nbr;
+    220              CPU_SR_ALLOC();
+   \   00000002   0x2600             MOVS     R6,#+0
+    221          
+    222          
+    223              CPU_CRITICAL_ENTER();
+   \   00000004   0x.... 0x....      BL       CPU_SR_Save
+   \   00000008   0x0006             MOVS     R6,R0
+    224              seed             = Math_RandSeedCur;
+   \   0000000A   0x....             LDR.N    R0,??DataTable2
+   \   0000000C   0x6800             LDR      R0,[R0, #+0]
+   \   0000000E   0x0004             MOVS     R4,R0
+    225              rand_nbr         = Math_RandSeed(seed);
+   \   00000010   0x0020             MOVS     R0,R4
+   \   00000012   0x.... 0x....      BL       Math_RandSeed
+   \   00000016   0x0005             MOVS     R5,R0
+    226              Math_RandSeedCur = rand_nbr;
+   \   00000018   0x....             LDR.N    R0,??DataTable2
+   \   0000001A   0x6005             STR      R5,[R0, #+0]
+    227              CPU_CRITICAL_EXIT();
+   \   0000001C   0x0030             MOVS     R0,R6
+   \   0000001E   0x.... 0x....      BL       CPU_SR_Restore
+    228          
+    229              return (rand_nbr);
+   \   00000022   0x0028             MOVS     R0,R5
+   \   00000024   0xBD70             POP      {R4-R6,PC}       ;; return
+    230          }
+    231          
+    232          
+    233          /*$PAGE*/
+    234          /*
+    235          *********************************************************************************************************
+    236          *                                           Math_RandSeed()
+    237          *
+    238          * Description : Calculate the next pseudo-random number.
+    239          *
+    240          * Argument(s) : seed        Initial (or current) value for the pseudo-random number sequence.
+    241          *
+    242          * Return(s)   : Next pseudo-random number in the sequence after 'seed'.
+    243          *
+    244          * Caller(s)   : Math_Rand(),
+    245          *               Application.
+    246          *
+    247          * Note(s)     : (1) (a) BSD/ANSI-C implements rand() as a Linear Congruential Generator (LCG) :
+    248          *
+    249          *                       (A) random_number       =  [(a * random_number ) + b]  modulo m
+    250          *                                        n + 1                        n
+    251          *
+    252          *                               where
+    253          *                                       (1) (a) random_number           Next     random number to generate
+    254          *                                                            n+1
+    255          *                                           (b) random_number           Previous random number    generated
+    256          *                                                            n
+    257          *
+    258          *                                       (2) a = RAND_LCG_PARAM_A        LCG multiplier
+    259          *                                       (3) b = RAND_LCG_PARAM_B        LCG incrementor
+    260          *                                       (4) m = RAND_LCG_PARAM_M + 1    LCG modulus
+    261          *
+    262          *                   (b) The pseudo-random number generated is in the range [0, RAND_LCG_PARAM_M].
+    263          *
+    264                              See also 'lib_math.h  RANDOM NUMBER DEFINES  Note #1b'.
+    265          *
+    266          *               (2) (a) IEEE Std 1003.1, 2004 Edition, Section 'rand() : DESCRIPTION' states that "rand() 
+    267          *                       ... need not be reentrant ... [and] is not required to be thread-safe".
+    268          *
+    269          *                   (b) However, Math_RandSeed() is re-entrant since it calculates the next random number 
+    270          *                       using ONLY local variables.
+    271          *********************************************************************************************************
+    272          */
+    273          
+
+   \                                 In section .text, align 2, keep-with-next
+    274          RAND_NBR  Math_RandSeed (RAND_NBR  seed)
+    275          {
+   \                     Math_RandSeed:
+   \   00000000   0xB410             PUSH     {R4}
+   \   00000002   0x0001             MOVS     R1,R0
+    276              RAND_NBR  rand_nbr;
+    277          
+    278          
+    279              rand_nbr = (((RAND_NBR)RAND_LCG_PARAM_A * seed) + (RAND_NBR)RAND_LCG_PARAM_B)  %  ((RAND_NBR)RAND_LCG_PARAM_M + 1u);
+   \   00000004   0x....             LDR.N    R2,??DataTable2_1  ;; 0x41c64e6d
+   \   00000006   0xF243 0x0339      MOVW     R3,#+12345
+   \   0000000A   0xFB02 0x3201      MLA      R2,R2,R1,R3
+   \   0000000E   0xF05F 0x4300      MOVS     R3,#-2147483648
+   \   00000012   0xFBB2 0xF4F3      UDIV     R4,R2,R3
+   \   00000016   0xFB04 0x2413      MLS      R4,R4,R3,R2
+   \   0000001A   0x0020             MOVS     R0,R4
+    280          
+    281              return (rand_nbr);
+   \   0000001C   0xBC10             POP      {R4}
+   \   0000001E   0x4770             BX       LR               ;; return
+    282          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2:
+   \   00000000   0x........         DC32     Math_RandSeedCur
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_1:
+   \   00000000   0x41C64E6D         DC32     0x41c64e6d
+    283          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   Math_Init
+         8   -> Math_RandSetSeed
+      16   Math_Rand
+        16   -> CPU_SR_Restore
+        16   -> CPU_SR_Save
+        16   -> Math_RandSeed
+       4   Math_RandSeed
+      16   Math_RandSetSeed
+        16   -> CPU_SR_Restore
+        16   -> CPU_SR_Save
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable2
+       4  ??DataTable2_1
+      10  Math_Init
+      38  Math_Rand
+      32  Math_RandSeed
+       4  Math_RandSeedCur
+      24  Math_RandSetSeed
+
+ 
+   4 bytes in section .bss
+ 112 bytes in section .text
+ 
+ 112 bytes of CODE memory
+   4 bytes of DATA memory
+
+Errors: none
+Warnings: none

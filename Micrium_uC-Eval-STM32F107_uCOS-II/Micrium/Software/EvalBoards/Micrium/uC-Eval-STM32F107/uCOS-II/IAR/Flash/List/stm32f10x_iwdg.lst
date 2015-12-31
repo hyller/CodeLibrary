@@ -1,0 +1,327 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.50.2.4510/W32 for ARM      08/Feb/2013  10:57:23 #
+# Copyright 1999-2012 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_iwdg.c                   #
+#    Command line =  "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_iwdg.c" -D               #
+#                    USE_STDPERIPH_DRIVER -lCN "C:\Users\daniel01\Desktop\Fas #
+#                    tFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC #
+#                    -Eval-STM32F107\uCOS-II\IAR\Flash\List\" -o              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\" --no_cse --no_unroll        #
+#                    --no_inline --no_code_motion --no_tbaa --no_clustering   #
+#                    --no_scheduling --debug --endian=little --cpu=Cortex-M3  #
+#                    -e --fpu=None --dlib_config "C:\Program Files (x86)\IAR  #
+#                    Systems\Embedded Workbench 6.5\arm\INC\c\DLib_Config_Nor #
+#                    mal.h" -I "C:\Users\daniel01\Desktop\FastFile Test       #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\IAR\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\" -I                          #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\OS\uCOS-II\" -I               #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\ST\STM32\inc\" -I             #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\uCOS-II\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\IAR\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex- #
+#                    M3\IAR\" -I "C:\Users\daniel01\Desktop\FastFile Test     #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR #
+#                    \" -I "C:\Users\daniel01\Desktop\FastFile Test           #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex #
+#                    -M3\Generic\IAR\" -I "C:\Users\daniel01\Desktop\FastFile #
+#                     Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval #
+#                    -STM32F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Source\"   #
+#                    -On --use_c++_inline                                     #
+#    List file    =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\List\stm32f10x_iwdg.lst           #
+#    Object file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\stm32f10x_iwdg.o              #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\daniel01\Desktop\FastFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32F107\BSP\ST\STM32\src\stm32f10x_iwdg.c
+      1          /******************** (C) COPYRIGHT 2009 STMicroelectronics ********************
+      2          * File Name          : stm32f10x_iwdg.c
+      3          * Author             : MCD Application Team
+      4          * Version            : V2.1.0RC2
+      5          * Date               : 03/13/2009
+      6          * Description        : This file provides all the IWDG firmware functions.
+      7          ********************************************************************************
+      8          * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+      9          * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME.
+     10          * AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY DIRECT,
+     11          * INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE
+     12          * CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING
+     13          * INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+     14          *******************************************************************************/
+     15          
+     16          /* Includes ------------------------------------------------------------------*/
+     17          #include "stm32f10x_iwdg.h"
+     18          
+     19          /* Private typedef -----------------------------------------------------------*/
+     20          /* Private define ------------------------------------------------------------*/
+     21          /* ---------------------- IWDG registers bit mask ------------------------ */
+     22          /* KR register bit mask */
+     23          #define KR_KEY_Reload    ((u16)0xAAAA)
+     24          #define KR_KEY_Enable    ((u16)0xCCCC)
+     25          
+     26          /* Private macro -------------------------------------------------------------*/
+     27          /* Private variables ---------------------------------------------------------*/
+     28          /* Private function prototypes -----------------------------------------------*/
+     29          /* Private functions ---------------------------------------------------------*/
+     30          
+     31          /*******************************************************************************
+     32          * Function Name  : IWDG_WriteAccessCmd
+     33          * Description    : Enables or disables write access to IWDG_PR and IWDG_RLR
+     34          *                  registers.
+     35          * Input          : - IWDG_WriteAccess: new state of write access to IWDG_PR and
+     36          *                    IWDG_RLR registers.
+     37          *                    This parameter can be one of the following values:
+     38          *                       - IWDG_WriteAccess_Enable: Enable write access to 
+     39          *                         IWDG_PR and IWDG_RLR registers
+     40          *                       - IWDG_WriteAccess_Disable: Disable write access to
+     41          *                         IWDG_PR and IWDG_RLR registers
+     42          * Output         : None
+     43          * Return         : None
+     44          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     45          void IWDG_WriteAccessCmd(u16 IWDG_WriteAccess)
+     46          {
+     47            /* Check the parameters */
+     48            assert_param(IS_IWDG_WRITE_ACCESS(IWDG_WriteAccess));
+     49          
+     50            IWDG->KR = IWDG_WriteAccess;
+   \                     IWDG_WriteAccessCmd:
+   \   00000000   0x....             LDR.N    R1,??DataTable5  ;; 0x40003000
+   \   00000002   0xB280             UXTH     R0,R0            ;; ZeroExt  R0,R0,#+16,#+16
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+     51          }
+   \   00000006   0x4770             BX       LR               ;; return
+     52          
+     53          /*******************************************************************************
+     54          * Function Name  : IWDG_SetPrescaler
+     55          * Description    : Sets IWDG Prescaler value.
+     56          * Input          : - IWDG_Prescaler: specifies the IWDG Prescaler value.
+     57          *                    This parameter can be one of the following values:
+     58          *                       - IWDG_Prescaler_4: IWDG prescaler set to 4
+     59          *                       - IWDG_Prescaler_8: IWDG prescaler set to 8
+     60          *                       - IWDG_Prescaler_16: IWDG prescaler set to 16
+     61          *                       - IWDG_Prescaler_32: IWDG prescaler set to 32
+     62          *                       - IWDG_Prescaler_64: IWDG prescaler set to 64
+     63          *                       - IWDG_Prescaler_128: IWDG prescaler set to 128
+     64          *                       - IWDG_Prescaler_256: IWDG prescaler set to 256
+     65          * Output         : None
+     66          * Return         : None
+     67          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     68          void IWDG_SetPrescaler(u8 IWDG_Prescaler)
+     69          {
+     70            /* Check the parameters */
+     71            assert_param(IS_IWDG_PRESCALER(IWDG_Prescaler));
+     72          
+     73            IWDG->PR = IWDG_Prescaler;
+   \                     IWDG_SetPrescaler:
+   \   00000000   0x....             LDR.N    R1,??DataTable5_1  ;; 0x40003004
+   \   00000002   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+     74          }
+   \   00000006   0x4770             BX       LR               ;; return
+     75          
+     76          /*******************************************************************************
+     77          * Function Name  : IWDG_SetReload
+     78          * Description    : Sets IWDG Reload value.
+     79          * Input          : - Reload: specifies the IWDG Reload value.
+     80          *                    This parameter must be a number between 0 and 0x0FFF.
+     81          * Output         : None
+     82          * Return         : None
+     83          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     84          void IWDG_SetReload(u16 Reload)
+     85          {
+     86            /* Check the parameters */
+     87            assert_param(IS_IWDG_RELOAD(Reload));
+     88          
+     89            IWDG->RLR = Reload;
+   \                     IWDG_SetReload:
+   \   00000000   0x....             LDR.N    R1,??DataTable5_2  ;; 0x40003008
+   \   00000002   0xB280             UXTH     R0,R0            ;; ZeroExt  R0,R0,#+16,#+16
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+     90          }
+   \   00000006   0x4770             BX       LR               ;; return
+     91          
+     92          /*******************************************************************************
+     93          * Function Name  : IWDG_ReloadCounter
+     94          * Description    : Reloads IWDG counter with value defined in the reload register
+     95          *                  (write access to IWDG_PR and IWDG_RLR registers disabled).
+     96          * Input          : None
+     97          * Output         : None
+     98          * Return         : None
+     99          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    100          void IWDG_ReloadCounter(void)
+    101          {
+    102            IWDG->KR = KR_KEY_Reload;
+   \                     IWDG_ReloadCounter:
+   \   00000000   0x....             LDR.N    R0,??DataTable5  ;; 0x40003000
+   \   00000002   0xF64A 0x21AA      MOVW     R1,#+43690
+   \   00000006   0x6001             STR      R1,[R0, #+0]
+    103          }
+   \   00000008   0x4770             BX       LR               ;; return
+    104          
+    105          /*******************************************************************************
+    106          * Function Name  : IWDG_Enable
+    107          * Description    : Enables IWDG (write access to IWDG_PR and IWDG_RLR registers
+    108          *                  disabled).
+    109          * Input          : None
+    110          * Output         : None
+    111          * Return         : None
+    112          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    113          void IWDG_Enable(void)
+    114          {
+    115            IWDG->KR = KR_KEY_Enable;
+   \                     IWDG_Enable:
+   \   00000000   0x....             LDR.N    R0,??DataTable5  ;; 0x40003000
+   \   00000002   0xF64C 0x41CC      MOVW     R1,#+52428
+   \   00000006   0x6001             STR      R1,[R0, #+0]
+    116          }
+   \   00000008   0x4770             BX       LR               ;; return
+    117          
+    118          /*******************************************************************************
+    119          * Function Name  : IWDG_GetFlagStatus
+    120          * Description    : Checks whether the specified IWDG flag is set or not.
+    121          * Input          : - IWDG_FLAG: specifies the flag to check.
+    122          *                    This parameter can be one of the following values:
+    123          *                       - IWDG_FLAG_PVU: Prescaler Value Update on going
+    124          *                       - IWDG_FLAG_RVU: Reload Value Update on going
+    125          * Output         : None
+    126          * Return         : The new state of IWDG_FLAG (SET or RESET).
+    127          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    128          FlagStatus IWDG_GetFlagStatus(u16 IWDG_FLAG)
+    129          {
+   \                     IWDG_GetFlagStatus:
+   \   00000000   0x0001             MOVS     R1,R0
+    130            FlagStatus bitstatus = RESET;
+   \   00000002   0x2000             MOVS     R0,#+0
+    131          
+    132            /* Check the parameters */
+    133            assert_param(IS_IWDG_FLAG(IWDG_FLAG));
+    134          
+    135            if ((IWDG->SR & IWDG_FLAG) != (u32)RESET)
+   \   00000004   0x....             LDR.N    R2,??DataTable5_3  ;; 0x4000300c
+   \   00000006   0x6812             LDR      R2,[R2, #+0]
+   \   00000008   0xB289             UXTH     R1,R1            ;; ZeroExt  R1,R1,#+16,#+16
+   \   0000000A   0x420A             TST      R2,R1
+   \   0000000C   0xD002             BEQ.N    ??IWDG_GetFlagStatus_0
+    136            {
+    137              bitstatus = SET;
+   \   0000000E   0x2201             MOVS     R2,#+1
+   \   00000010   0x0010             MOVS     R0,R2
+   \   00000012   0xE001             B.N      ??IWDG_GetFlagStatus_1
+    138            }
+    139            else
+    140            {
+    141              bitstatus = RESET;
+   \                     ??IWDG_GetFlagStatus_0:
+   \   00000014   0x2200             MOVS     R2,#+0
+   \   00000016   0x0010             MOVS     R0,R2
+    142            }
+    143          
+    144            /* Return the flag status */
+    145            return bitstatus;
+   \                     ??IWDG_GetFlagStatus_1:
+   \   00000018   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   0000001A   0x4770             BX       LR               ;; return
+    146          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5:
+   \   00000000   0x40003000         DC32     0x40003000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_1:
+   \   00000000   0x40003004         DC32     0x40003004
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_2:
+   \   00000000   0x40003008         DC32     0x40003008
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_3:
+   \   00000000   0x4000300C         DC32     0x4000300c
+    147          
+    148          /******************* (C) COPYRIGHT 2009 STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   IWDG_Enable
+       0   IWDG_GetFlagStatus
+       0   IWDG_ReloadCounter
+       0   IWDG_SetPrescaler
+       0   IWDG_SetReload
+       0   IWDG_WriteAccessCmd
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable5
+       4  ??DataTable5_1
+       4  ??DataTable5_2
+       4  ??DataTable5_3
+      10  IWDG_Enable
+      28  IWDG_GetFlagStatus
+      10  IWDG_ReloadCounter
+       8  IWDG_SetPrescaler
+       8  IWDG_SetReload
+       8  IWDG_WriteAccessCmd
+
+ 
+ 88 bytes in section .text
+ 
+ 88 bytes of CODE memory
+
+Errors: none
+Warnings: none

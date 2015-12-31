@@ -1,0 +1,290 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.50.2.4510/W32 for ARM      08/Feb/2013  10:57:22 #
+# Copyright 1999-2012 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_crc.c                    #
+#    Command line =  "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\BSP\ST\STM32\src\stm32f10x_crc.c" -D                #
+#                    USE_STDPERIPH_DRIVER -lCN "C:\Users\daniel01\Desktop\Fas #
+#                    tFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC #
+#                    -Eval-STM32F107\uCOS-II\IAR\Flash\List\" -o              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\" --no_cse --no_unroll        #
+#                    --no_inline --no_code_motion --no_tbaa --no_clustering   #
+#                    --no_scheduling --debug --endian=little --cpu=Cortex-M3  #
+#                    -e --fpu=None --dlib_config "C:\Program Files (x86)\IAR  #
+#                    Systems\Embedded Workbench 6.5\arm\INC\c\DLib_Config_Nor #
+#                    mal.h" -I "C:\Users\daniel01\Desktop\FastFile Test       #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\IAR\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\" -I                          #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\OS\uCOS-II\" -I               #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\ST\STM32\inc\" -I             #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\uCOS-II\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\IAR\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex- #
+#                    M3\IAR\" -I "C:\Users\daniel01\Desktop\FastFile Test     #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR #
+#                    \" -I "C:\Users\daniel01\Desktop\FastFile Test           #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex #
+#                    -M3\Generic\IAR\" -I "C:\Users\daniel01\Desktop\FastFile #
+#                     Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval #
+#                    -STM32F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Source\"   #
+#                    -On --use_c++_inline                                     #
+#    List file    =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\List\stm32f10x_crc.lst            #
+#    Object file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\stm32f10x_crc.o               #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\daniel01\Desktop\FastFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32F107\BSP\ST\STM32\src\stm32f10x_crc.c
+      1          /******************** (C) COPYRIGHT 2009 STMicroelectronics ********************
+      2          * File Name          : stm32f10x_crc.c
+      3          * Author             : MCD Application Team
+      4          * Version            : V2.1.0RC2
+      5          * Date               : 03/13/2009
+      6          * Description        : This file provides all the CRC firmware functions.
+      7          ********************************************************************************
+      8          * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+      9          * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME.
+     10          * AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY DIRECT,
+     11          * INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE
+     12          * CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING
+     13          * INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+     14          *******************************************************************************/
+     15          
+     16          /* Includes ------------------------------------------------------------------*/
+     17          #include "stm32f10x_crc.h"
+     18          
+     19          /* Private typedef -----------------------------------------------------------*/
+     20          /* Private define ------------------------------------------------------------*/
+     21          
+     22          /* CR register bit mask */
+     23          #define CR_RESET_Set    ((u32)0x00000001)
+     24          
+     25          /* Private macro -------------------------------------------------------------*/
+     26          /* Private variables ---------------------------------------------------------*/
+     27          /* Private function prototypes -----------------------------------------------*/
+     28          /* Private functions ---------------------------------------------------------*/
+     29          
+     30          /*******************************************************************************
+     31          * Function Name  : CRC_ResetDR
+     32          * Description    : Resets the CRC Data register (DR).
+     33          * Input          : None
+     34          * Output         : None
+     35          * Return         : None
+     36          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     37          void CRC_ResetDR(void)
+     38          {
+     39            /* Reset CRC generator */
+     40            CRC->CR = CR_RESET_Set;
+   \                     CRC_ResetDR:
+   \   00000000   0x....             LDR.N    R0,??DataTable5  ;; 0x40023008
+   \   00000002   0x2101             MOVS     R1,#+1
+   \   00000004   0x6001             STR      R1,[R0, #+0]
+     41          }
+   \   00000006   0x4770             BX       LR               ;; return
+     42          
+     43          /*******************************************************************************
+     44          * Function Name  : CRC_CalcCRC
+     45          * Description    : Computes the 32-bit CRC of a given data word(32-bit).
+     46          * Input          : - Data: data word(32-bit) to compute its CRC
+     47          * Output         : None
+     48          * Return         : 32-bit CRC
+     49          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     50          u32 CRC_CalcCRC(u32 Data)
+     51          {
+   \                     CRC_CalcCRC:
+   \   00000000   0x0001             MOVS     R1,R0
+     52            CRC->DR = Data;
+   \   00000002   0x....             LDR.N    R0,??DataTable5_1  ;; 0x40023000
+   \   00000004   0x6001             STR      R1,[R0, #+0]
+     53            
+     54            return (CRC->DR);
+   \   00000006   0x....             LDR.N    R0,??DataTable5_1  ;; 0x40023000
+   \   00000008   0x6800             LDR      R0,[R0, #+0]
+   \   0000000A   0x4770             BX       LR               ;; return
+     55          }
+     56          
+     57          /*******************************************************************************
+     58          * Function Name  : CRC_CalcBlockCRC
+     59          * Description    : Computes the 32-bit CRC of a given buffer of data word(32-bit).
+     60          * Input          : - pBuffer: pointer to the buffer containing the data to be 
+     61          *                    computed
+     62          *                  - BufferLength: length of the buffer to be computed					
+     63          * Output         : None
+     64          * Return         : 32-bit CRC
+     65          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     66          u32 CRC_CalcBlockCRC(u32 pBuffer[], u32 BufferLength)
+     67          {
+   \                     CRC_CalcBlockCRC:
+   \   00000000   0xB410             PUSH     {R4}
+   \   00000002   0x0002             MOVS     R2,R0
+     68            u32 index = 0;
+   \   00000004   0x2300             MOVS     R3,#+0
+     69            
+     70            for(index = 0; index < BufferLength; index++)
+   \   00000006   0x2000             MOVS     R0,#+0
+   \   00000008   0x0003             MOVS     R3,R0
+   \                     ??CRC_CalcBlockCRC_0:
+   \   0000000A   0x428B             CMP      R3,R1
+   \   0000000C   0xD205             BCS.N    ??CRC_CalcBlockCRC_1
+     71            {
+     72              CRC->DR = pBuffer[index];
+   \   0000000E   0xF852 0x0023      LDR      R0,[R2, R3, LSL #+2]
+   \   00000012   0x....             LDR.N    R4,??DataTable5_1  ;; 0x40023000
+   \   00000014   0x6020             STR      R0,[R4, #+0]
+     73            }
+   \   00000016   0x1C5B             ADDS     R3,R3,#+1
+   \   00000018   0xE7F7             B.N      ??CRC_CalcBlockCRC_0
+     74          
+     75            return (CRC->DR);
+   \                     ??CRC_CalcBlockCRC_1:
+   \   0000001A   0x....             LDR.N    R0,??DataTable5_1  ;; 0x40023000
+   \   0000001C   0x6800             LDR      R0,[R0, #+0]
+   \   0000001E   0xBC10             POP      {R4}
+   \   00000020   0x4770             BX       LR               ;; return
+     76          }
+     77          
+     78          /*******************************************************************************
+     79          * Function Name  : CRC_GetCRC
+     80          * Description    : Returns the current CRC value.
+     81          * Input          : None
+     82          * Output         : None
+     83          * Return         : 32-bit CRC
+     84          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     85          u32 CRC_GetCRC(void)
+     86          {
+     87            return (CRC->DR);
+   \                     CRC_GetCRC:
+   \   00000000   0x....             LDR.N    R0,??DataTable5_1  ;; 0x40023000
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0x4770             BX       LR               ;; return
+     88          }
+     89          
+     90          /*******************************************************************************
+     91          * Function Name  : CRC_SetIDRegister
+     92          * Description    : Stores a 8-bit data in the Independent Data(ID) register.
+     93          * Input          : - IDValue: 8-bit value to be stored in the ID register 					
+     94          * Output         : None
+     95          * Return         : None
+     96          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     97          void CRC_SetIDRegister(u8 IDValue)
+     98          {
+     99            CRC->IDR = IDValue;
+   \                     CRC_SetIDRegister:
+   \   00000000   0x....             LDR.N    R1,??DataTable5_2  ;; 0x40023004
+   \   00000002   0x7008             STRB     R0,[R1, #+0]
+    100          }
+   \   00000004   0x4770             BX       LR               ;; return
+    101          
+    102          /*******************************************************************************
+    103          * Function Name  : CRC_GetIDRegister
+    104          * Description    : Returns the 8-bit data stored in the Independent Data(ID) register
+    105          * Input          : None
+    106          * Output         : None
+    107          * Return         : 8-bit value of the ID register 
+    108          *******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    109          u8 CRC_GetIDRegister(void)
+    110          {
+    111            return (CRC->IDR);
+   \                     CRC_GetIDRegister:
+   \   00000000   0x....             LDR.N    R0,??DataTable5_2  ;; 0x40023004
+   \   00000002   0x7800             LDRB     R0,[R0, #+0]
+   \   00000004   0xB2C0             UXTB     R0,R0            ;; ZeroExt  R0,R0,#+24,#+24
+   \   00000006   0x4770             BX       LR               ;; return
+    112          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5:
+   \   00000000   0x40023008         DC32     0x40023008
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_1:
+   \   00000000   0x40023000         DC32     0x40023000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_2:
+   \   00000000   0x40023004         DC32     0x40023004
+    113          
+    114          /******************* (C) COPYRIGHT 2009 STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       4   CRC_CalcBlockCRC
+       0   CRC_CalcCRC
+       0   CRC_GetCRC
+       0   CRC_GetIDRegister
+       0   CRC_ResetDR
+       0   CRC_SetIDRegister
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable5
+       4  ??DataTable5_1
+       4  ??DataTable5_2
+      34  CRC_CalcBlockCRC
+      12  CRC_CalcCRC
+       6  CRC_GetCRC
+       8  CRC_GetIDRegister
+       8  CRC_ResetDR
+       6  CRC_SetIDRegister
+
+ 
+ 86 bytes in section .text
+ 
+ 86 bytes of CODE memory
+
+Errors: none
+Warnings: none

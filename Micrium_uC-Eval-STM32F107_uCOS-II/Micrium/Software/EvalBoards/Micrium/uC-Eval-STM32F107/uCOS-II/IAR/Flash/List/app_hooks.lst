@@ -1,0 +1,319 @@
+###############################################################################
+#                                                                             #
+# IAR ANSI C/C++ Compiler V6.50.2.4510/W32 for ARM      08/Feb/2013  10:57:18 #
+# Copyright 1999-2012 IAR Systems AB.                                         #
+#                                                                             #
+#    Cpu mode     =  thumb                                                    #
+#    Endian       =  little                                                   #
+#    Source file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\app_hooks.c                                 #
+#    Command line =  "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\app_hooks.c" -D USE_STDPERIPH_DRIVER -lCN   #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\List\" -o                         #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\" --no_cse --no_unroll        #
+#                    --no_inline --no_code_motion --no_tbaa --no_clustering   #
+#                    --no_scheduling --debug --endian=little --cpu=Cortex-M3  #
+#                    -e --fpu=None --dlib_config "C:\Program Files (x86)\IAR  #
+#                    Systems\Embedded Workbench 6.5\arm\INC\c\DLib_Config_Nor #
+#                    mal.h" -I "C:\Users\daniel01\Desktop\FastFile Test       #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\uCOS-II\IAR\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\" -I                          #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\OS\uCOS-II\" -I               #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\ST\STM32\inc\" -I             #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\uCOS-II\" -I                  #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\BSP\IAR\" -I                      #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-LIB\Ports\ARM-Cortex- #
+#                    M3\IAR\" -I "C:\Users\daniel01\Desktop\FastFile Test     #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\" -I              #
+#                    "C:\Users\daniel01\Desktop\FastFile Test                 #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uC-CPU\ARM-Cortex-M3\IAR #
+#                    \" -I "C:\Users\daniel01\Desktop\FastFile Test           #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Ports\ARM-Cortex #
+#                    -M3\Generic\IAR\" -I "C:\Users\daniel01\Desktop\FastFile #
+#                     Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval #
+#                    -STM32F107\uCOS-II\IAR\..\..\..\..\..\uCOS-II\Source\"   #
+#                    -On --use_c++_inline                                     #
+#    List file    =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\List\app_hooks.lst                #
+#    Object file  =  C:\Users\daniel01\Desktop\FastFile Test                  #
+#                    Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32 #
+#                    F107\uCOS-II\IAR\Flash\Obj\app_hooks.o                   #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\daniel01\Desktop\FastFile Test Folder\Micrium\Software\EvalBoards\Micrium\uC-Eval-STM32F107\uCOS-II\app_hooks.c
+      1          /*
+      2          *********************************************************************************************************
+      3          *                                                uC/OS-II
+      4          *                                          The Real-Time Kernel
+      5          *                                      Application-Defined Task Hooks
+      6          *
+      7          *                                 (c) Copyright 2013; Micrium; Weston, FL
+      8          *                                           All Rights Reserved
+      9          *
+     10          * File    : APP_HOOKS.C
+     11          * By      : Fabiano Kovalski
+     12          *         : Eric Shufro
+     13          *********************************************************************************************************
+     14          */
+     15          
+     16          #include  <includes.h>
+     17          
+     18          /*
+     19          *********************************************************************************************************
+     20          *                                          App_TaskCreateHook()
+     21          *
+     22          * Description: This function is called when a task is created.
+     23          *
+     24          * Arguments  : ptcb   is a pointer to the task control block of the task being created.
+     25          *
+     26          * Note(s)    : 1) Interrupts are disabled during this call.
+     27          *********************************************************************************************************
+     28          */
+     29          
+     30          #if (OS_APP_HOOKS_EN > 0)
+
+   \                                 In section .text, align 2, keep-with-next
+     31          void  App_TaskCreateHook (OS_TCB *ptcb)
+     32          {
+     33          #if (uC_PROBE_OS_PLUGIN > 0) && (OS_PROBE_HOOKS_EN > 0)
+     34              OSProbe_TaskCreateHook(ptcb);
+     35          #else
+     36              (void)ptcb;
+     37          #endif
+     38          }
+   \                     App_TaskCreateHook:
+   \   00000000   0x4770             BX       LR               ;; return
+     39          
+     40          /*
+     41          *********************************************************************************************************
+     42          *                                           App_TaskDelHook()
+     43          *
+     44          * Description: This function is called when a task is deleted.
+     45          *
+     46          * Arguments  : ptcb   is a pointer to the task control block of the task being deleted.
+     47          *
+     48          * Note(s)    : 1) Interrupts are disabled during this call.
+     49          *********************************************************************************************************
+     50          */
+     51          
+
+   \                                 In section .text, align 2, keep-with-next
+     52          void  App_TaskDelHook (OS_TCB *ptcb)
+     53          {
+     54              (void)ptcb;
+     55          }
+   \                     App_TaskDelHook:
+   \   00000000   0x4770             BX       LR               ;; return
+     56          
+     57          /*
+     58          *********************************************************************************************************
+     59          *                                             App_TaskIdleHook()
+     60          *
+     61          * Description: This function is called by the idle task.  This hook has been added to allow you to do  
+     62          *              such things as STOP the CPU to conserve power.
+     63          *
+     64          * Arguments  : none
+     65          *
+     66          * Note(s)    : 1) Interrupts are enabled during this call.
+     67          *********************************************************************************************************
+     68          */
+     69          
+     70          #if OS_VERSION >= 251
+
+   \                                 In section .text, align 2, keep-with-next
+     71          void  App_TaskIdleHook (void)
+     72          {
+     73          }
+   \                     App_TaskIdleHook:
+   \   00000000   0x4770             BX       LR               ;; return
+     74          #endif
+     75          
+     76          
+     77          /*
+     78          *********************************************************************************************************
+     79          *                                            TASK RETURN HOOK (APPLICATION)
+     80          *
+     81          * Description: This function is called if a task accidentally returns.  In other words, a task should
+     82          *              either be an infinite loop or delete itself when done.
+     83          *
+     84          * Arguments  : ptcb      is a pointer to the task control block of the task that is returning.
+     85          *
+     86          * Note(s)    : none
+     87          *********************************************************************************************************
+     88          */
+     89          
+     90          #if OS_VERSION >= 289
+
+   \                                 In section .text, align 2, keep-with-next
+     91          void  App_TaskReturnHook (OS_TCB  *ptcb)
+     92          {
+     93              (void)ptcb;
+     94          }
+   \                     App_TaskReturnHook:
+   \   00000000   0x4770             BX       LR               ;; return
+     95          #endif
+     96          
+     97          
+     98          /*
+     99          *********************************************************************************************************
+    100          *                                   App_TaskStatHook()
+    101          *
+    102          * Description: This function is called every second by uC/OS-II's statistics task.  This allows your 
+    103          *              application to add functionality to the statistics task.
+    104          *
+    105          * Returns    : none
+    106          *********************************************************************************************************
+    107          */
+    108          
+
+   \                                 In section .text, align 2, keep-with-next
+    109          void  App_TaskStatHook (void)
+    110          {
+    111          }
+   \                     App_TaskStatHook:
+   \   00000000   0x4770             BX       LR               ;; return
+    112          
+    113          /*
+    114          *********************************************************************************************************
+    115          *                                           App_TaskSwHook()
+    116          *
+    117          * Description: This function is called when a task switch is performed.  This allows you to perform other
+    118          *              operations during a context switch.
+    119          *
+    120          * Arguments  : none
+    121          *
+    122          * Note(s)    : 1) Interrupts are disabled during this call.
+    123          *              2) It is assumed that the global pointer 'OSTCBHighRdy' points to the TCB of the task that
+    124          *                 will be 'switched in' (i.e. the highest priority task) and, 'OSTCBCur' points to the 
+    125          *                 task being switched out (i.e. the preempted task).
+    126          *********************************************************************************************************
+    127          */
+    128          
+    129          #if OS_TASK_SW_HOOK_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
+    130          void  App_TaskSwHook (void)
+    131          {
+    132          #if (uC_PROBE_OS_PLUGIN > 0) && (OS_PROBE_HOOKS_EN > 0)
+    133              OSProbe_TaskSwHook();
+    134          #endif
+    135          }
+   \                     App_TaskSwHook:
+   \   00000000   0x4770             BX       LR               ;; return
+    136          #endif
+    137          
+    138          /*
+    139          *********************************************************************************************************
+    140          *                                           App_TCBInitHook()
+    141          *
+    142          * Description: This function is called by OS_TCBInit() after setting up most of the TCB.
+    143          *
+    144          * Arguments  : ptcb    is a pointer to the TCB of the task being created.
+    145          *
+    146          * Note(s)    : 1) Interrupts may or may not be ENABLED during this call.
+    147          *********************************************************************************************************
+    148          */
+    149          
+    150          #if OS_VERSION >= 204
+
+   \                                 In section .text, align 2, keep-with-next
+    151          void  App_TCBInitHook (OS_TCB *ptcb)
+    152          {
+    153              (void)ptcb;
+    154          }
+   \                     App_TCBInitHook:
+   \   00000000   0x4770             BX       LR               ;; return
+    155          #endif
+    156          
+    157          /*
+    158          *********************************************************************************************************
+    159          *                                               App_TimeTickHook()
+    160          *
+    161          * Description: This function is called every tick.
+    162          *
+    163          * Arguments  : none
+    164          *
+    165          * Note(s)    : 1) Interrupts may or may not be ENABLED during this call.
+    166          *********************************************************************************************************
+    167          */
+    168          
+    169          #if OS_TIME_TICK_HOOK_EN > 0
+
+   \                                 In section .text, align 2, keep-with-next
+    170          void  App_TimeTickHook (void)
+    171          {
+    172          #if (uC_PROBE_OS_PLUGIN > 0) && (OS_PROBE_HOOKS_EN > 0)
+    173              OSProbe_TickHook();
+    174          #endif
+    175          }
+   \                     App_TimeTickHook:
+   \   00000000   0x4770             BX       LR               ;; return
+    176          #endif
+    177          
+    178          #endif                                                                  /* End of OS_APP_HOOKS_EN                                   */
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   App_TCBInitHook
+       0   App_TaskCreateHook
+       0   App_TaskDelHook
+       0   App_TaskIdleHook
+       0   App_TaskReturnHook
+       0   App_TaskStatHook
+       0   App_TaskSwHook
+       0   App_TimeTickHook
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       2  App_TCBInitHook
+       2  App_TaskCreateHook
+       2  App_TaskDelHook
+       2  App_TaskIdleHook
+       2  App_TaskReturnHook
+       2  App_TaskStatHook
+       2  App_TaskSwHook
+       2  App_TimeTickHook
+
+ 
+ 16 bytes in section .text
+ 
+ 16 bytes of CODE memory
+
+Errors: none
+Warnings: none
