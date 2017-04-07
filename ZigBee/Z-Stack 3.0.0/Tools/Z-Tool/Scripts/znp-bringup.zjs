@@ -1,0 +1,713 @@
+/******************************************************************************
+// Filename:       znp-bringup.zjs
+// Revised:        $Date:$
+// Revision:       $Revision:$
+//
+//  Copyright 2015 Texas Instruments Incorporated. All rights reserved.
+//
+// IMPORTANT: Your use of this Software is limited to those specific rights
+// granted under the terms of a software license agreement between the user
+// who downloaded the software, his/her employer (which must be your employer)
+// and Texas Instruments Incorporated (the "License").  You may not use this
+// Software unless you agree to abide by the terms of the License. The License
+// limits your use, and you acknowledge, that the Software may not be modified,
+// copied or distributed unless used solely and exclusively in conjunction with
+// a Texas Instruments radio frequency device, which is integrated into
+// your product.  Other than for the foregoing purpose, you may not use,
+// reproduce, copy, prepare derivative works of, modify, distribute, perform,
+// display or sell this Software and/or its documentation for any purpose.
+//
+//  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+//  PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,l
+//  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+//  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+//  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+//  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+//  INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+//  OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+//  OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+//  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//
+//  Should you have any questions regarding your right to use this Software,
+//  contact Texas Instruments Incorporated at www.TI.com.
+//******************************************************************************/
+
+
+
+/*******************************************************************************
+  Instructions:
+  Run this script first by following the instructions below:
+
+  - Modify the variable "comPort" to the COM port assigned to your target device.
+  - Connect the znp device to a computer via USB UART.
+  - Open Z-Tool and wait for the ZNP device to be discovered.
+  - Open the script window by clicking on the menu Tools -> Script Window.
+  - On the script window click on File -> Load and select the desired script
+    in this case znp-bringup.zjs.
+  - After loading the script select the script znp-bringup.zjs on the
+    left panel and make sure the name is highlighted in blue.
+  - Click the Run Button.
+
+
+********************************************************************************/
+import System;
+import System.Text;
+import TI.ZPI2;
+
+class TheScript
+{
+
+  // Set this variable to the COM port assigned to the target device.
+
+  private var comPort : String = "COM7";
+
+
+
+  // Set to 'true' when running the ZNP in order to reset the devices and startup the network.
+  private var ZNP_RUN : boolean = true;
+  private var SUCCESS : int = 0;
+  private var HOMEAUT : int = 0x0104;
+  private var LIGHT   : int = 0x0100;
+  private var AF_DEFAULT_RADIUS : int = 0x1E;
+
+  
+
+  // Set this variable to 'true' to enable the display of log messages (i.e. verbose mode).
+  private var showLogMsgs : boolean = true;
+
+  // Variables set by the incoming message handler to enable "re-try until success" looping.
+  private var gotRstRsp           : boolean = false;
+  private var gotCfgRsp           : boolean = false;
+  private var gotRegRsp           : boolean = false;
+  private var gotStartRsp         : boolean = false;
+  private var gotStateRsp         : boolean = false;
+  private var gotAfReqExtRsp      : boolean = false;
+  private var gotAfIncExt         : boolean = false;
+  private var gotAfStoreRsp       : boolean = false;
+  private var gotAfRetrieveRsp    : boolean = false;
+  private var gotDevRsp           : boolean = false;
+  private var gotEpRsp            : boolean = false;
+  private var gotSdescRsp         : boolean = false;
+  private var gotTogRsp         : boolean = false;
+  private var gotDevAnn         : boolean = false;
+
+
+  private var isLight             : boolean = false;
+  private var lightStatus             : boolean = false;
+
+  private var profileId           : UInt16  = 0x0104;  // HA Profile ID
+  private var devId               : UInt16  = 0x0100;  // HA Profile ID
+  private var endPoint            : Byte    = 0x07;    // SampleSW has endpoint 12 so we use that
+  private var inClusterCnt        : Byte    = 5;
+  private var outClusterCnt       : Byte    = 1;
+  private var inClusterList = new Array(inClusterCnt);
+  private var outClusterList = new Array(outClusterCnt);
+
+  private var NV_STARTUP_OPTION     : Byte = 0x03;
+  private var NV_STARTUP_OPTION_VAL : Byte = 0x03;	// 0x03 = clear configuration
+  private var NV_STARTUP_LEN        : Byte = 1;
+
+  private var cfgArr = new Array(256);        // Make big enough for any configuration item.
+  private var retrieveBuf = new Array(1024);  // Make big enough for any huge message attempted.
+  private var retrieveTot           : UInt16 = 741;
+  private var retrieveLen           : Byte = 247;
+  private var retrieveIdx           : UInt16;
+  private var devaddr               : UInt16;
+  private var dstEndPoint           : Byte    = 0x00;
+
+  //DATA REQUEST VARIABLES
+  private var drData = new Array(99);
+  private var drCluster           : UInt16;
+  private var drTrans          : Byte;
+  private var drOption           : Byte;
+  private var drRadius           : Byte = 0x1E;//AF_DEFAULT_RADIUS
+  private var drLen           : Byte;
+
+  //INCOMING MESSAGES VARIABLES
+
+  private var imData = new Array(99);
+  private var imGroup           : UInt16;
+  private var imCluster           : UInt16;
+  private var imSrcAddr           : UInt16;
+  private var imSrcEndp           : Byte;
+  private var imDstEndp           : Byte;
+  private var imLen           : Byte;
+
+
+  private var lqiData = new Array(99);
+  private var lqiCount           : UInt16  = 0;
+
+
+
+  // Main class function that effects the work of this test script.
+  function run()
+  {
+    //set up clusters for light
+    inClusterList[0] = 0;
+    inClusterList[1] = 3;
+    inClusterList[2] = 4;
+    inClusterList[3] = 5;
+    inClusterList[4] = 6;
+
+    outClusterList[0] = 0;
+
+    // Subscribe to the incoming message handler.
+    ZEngine.add_OnMessageZPI2(this.msgHandler);
+
+    if (ZNP_RUN)
+    {
+      // Force a device out of the boot loader wait routine (no bad effect when SBL is not present).
+      sysReset(comPort);
+
+      // Set the Startup_Option to Clear Configuration and reset to effect the action.
+      cfgArr[0] = NV_STARTUP_OPTION_VAL;
+      writeCfg(comPort , NV_STARTUP_OPTION, NV_STARTUP_LEN, cfgArr);
+      sysReset(comPort);
+
+
+      // Setup the device type, panId & channel mask and reset to effect the settings.
+      cfgArr[0] = 0x00;                    // Set Logical Device Type to ZC.
+      writeCfg(comPort, 0x87, 0x01, cfgArr);
+      cfgArr[0] = 0xFF; cfgArr[1] = 0xFF;  // Set Pan Id to 0xFFFF Change this to any PAN ID you need to test
+      writeCfg(comPort, 0x83, 0x02, cfgArr);
+      cfgArr[0] = 0x00; cfgArr[1] = 0x00; cfgArr[2] = 0x08; cfgArr[3] = 0x00;
+                                // Set Channel Maks to 0x00080000  // 19 - 0x13 - Current channel mask
+      writeCfg(comPort, 0x84, 0x04, cfgArr);
+      // Start the devices on the network.
+      cfgArr[0] = 0x01;
+      writeCfg(comPort, 0x8F, 0x01, cfgArr);// Set ZCD_NV_ZDO_DIRECT_CB to true. ZCD_NV_ZDO_DIRECT_CB address = 0x8F
+
+      afReg(comPort);// set end point this is needed in order to send af_data_request
+
+      startReq(comPort);// start the application
+
+      //Add application specific code HERE if needed.
+    }
+
+    ZEngine.Complete(true);
+  }
+
+  // sends ZDO_MGMT_PERMIT_JOIN_REQUEST
+  function permJoinReq(comm : String, dst : UInt16, duration : Byte, sig : Byte)
+  {
+     var req : ZDO_MGMT_PERMIT_JOIN_REQUEST  = new ZDO_MGMT_PERMIT_JOIN_REQUEST ();
+     req.AddrMode = 0x02;
+     req.DstAddr = dst;
+     req.Duration = duration;
+     req.TCSignificance = sig;
+
+     ZEngine.Send(comm, req);
+     ZEngine.Pause(2000);
+  }
+  // sends ZDO_MGMT_LQI_REQ
+  function lqiReq(comm : String, dst : UInt16, start : Byte)
+  {
+     var req : ZDO_MGMT_LQI_REQ = new ZDO_MGMT_LQI_REQ ();
+     req.DstAddr = dst;
+     req.StartIndex = start;
+
+     ZEngine.Send(comm, req);
+     ZEngine.Pause(2000);
+  }
+
+
+  // Send a UTIL_GET_DEVICE_INFO message.
+  function devInfo(comm : String)
+  {
+     var req : UTIL_GET_DEVICE_INFO  = new UTIL_GET_DEVICE_INFO ();
+      gotDevRsp = false;
+      while(!gotDevRsp)
+      {
+          ZEngine.Send(comm, req);
+          ZEngine.Pause(2000);
+      }
+      logMsg("dev response");
+  }
+
+  // Send a ZDO_ACTIVE_EP_REQ message.
+  function epReq(comm : String, dst : UInt16, aoi : UInt16)
+  {
+    var req : ZDO_ACTIVE_EP_REQ  = new ZDO_ACTIVE_EP_REQ ();
+    req.DstAddr = dst;
+    req.NWKAddrOfInterest = aoi;
+    gotEpRsp = false;
+    while(!gotEpRsp)
+    {
+        logMsg("ZDO_ACTIVE_EP_REQ to " + comm);
+        ZEngine.Send(comm, req);
+        ZEngine.Pause(1000);
+    }
+
+  }
+
+  // Send a ZDO_SIMPLE_DESC_REQ message.
+  function simDescReq(comm : String, dst : UInt16, aoi : UInt16, dstEp : Byte)
+  {
+    var req : ZDO_SIMPLE_DESC_REQ  = new ZDO_SIMPLE_DESC_REQ ();
+    req.DstAddr = dst;
+    req.NWKAddrOfInterest = aoi;
+    req.Endpoint = dstEp;
+    gotSdescRsp = false;
+    isLight = false;
+    while(!gotSdescRsp)
+    {
+      logMsg("ZDO_SIMPLE_DESC_REQ to " + comm);
+      ZEngine.Send(comm, req);
+      ZEngine.Pause(1000);
+    }
+
+  }
+
+  // Send a AF_DATA_REQUEST message.
+  function afDataReq(comm : String, dst : UInt16, dstEp : Byte)
+  {
+    var req : AF_DATA_REQUEST  = new AF_DATA_REQUEST ();
+    req.DstAddr = dst;
+    req.DestEndpoint = dstEp;
+    req.SrcEndpoint = endPoint;
+    req.ClusterID = drCluster;
+    req.TransID = drTrans;
+    req.Options = drOption;
+    req.Radius = drRadius;
+    req.Len = drLen;
+    for (var idx = 0; idx < drLen; idx++)
+    {
+          req.Data[idx] = drData[idx];
+    }
+    logMsg("AF_DATA_REQUEST to " + comm);
+    ZEngine.Send(comm, req);
+    ZEngine.Pause(1000);
+
+  }
+
+
+  // Handler for incoming messages.
+  function msgHandler(comm : String, id : MESSAGE_ID, msg : Object)
+  {
+    switch (id)
+    {
+    case MESSAGE_ID.SYS_RESET_RESPONSE:
+    {
+      gotRstRsp = true;
+      break;
+    }
+    case MESSAGE_ID.UTIL_GET_DEVICE_INFO_RESPONSE:
+    {
+        var devRsp : UTIL_GET_DEVICE_INFO_RESPONSE = msg;
+        if (devRsp.Status == SUCCESS && devRsp.NumAssocDevices != 0)
+        {
+            gotDevRsp = true;
+            devaddr = devRsp.AssocDevicesList[0];
+        }
+
+      break;
+    }
+
+    case MESSAGE_ID.ZDO_ACTIVE_EP_RSP:
+    {
+        var epRsp : ZDO_ACTIVE_EP_RSP = msg;
+        if (epRsp.Status == SUCCESS && epRsp.ActiveEPCount != 0)
+        {
+            gotEpRsp=true;
+            dstEndPoint = epRsp.ActiveEPList[0];
+        }
+
+
+      break;
+    }
+
+    case MESSAGE_ID.ZB_WRITE_CONFIGURATION_RSP:
+    {
+      var cfgRsp : ZB_WRITE_CONFIGURATION_RSP = msg;
+
+      if (cfgRsp.Status == SUCCESS)
+      {
+        gotCfgRsp = true;
+      }
+      break;
+    }
+
+    case MESSAGE_ID.AF_REGISTER_SRSP:
+    {
+      var regRsp : AF_REGISTER_SRSP = msg;
+
+      if (regRsp.Status == SUCCESS)
+      {
+        gotRegRsp = true;
+      }
+      break;
+    }
+
+    case MESSAGE_ID.ZB_START_REQUEST_RSP:
+    {
+      gotStartRsp = true;
+      break;
+    }
+
+
+    case MESSAGE_ID.ZDO_END_DEVICE_ANNCE_IND:
+    {
+      var zdoDevInd : ZDO_END_DEVICE_ANNCE_IND = msg;
+      devaddr = zdoDevInd.NwkAddr;
+      gotDevAnn = true;
+
+      break;
+    }
+
+    case MESSAGE_ID.ZDO_STATE_CHANGE_IND:
+    {
+      var zdoStateInd : ZDO_STATE_CHANGE_IND = msg;
+
+      // { DEV_END_DEVICE, DEV_ROUTER, DEV_ZB_COORD } : { 6, 7, 9 }
+      if ((zdoStateInd.State == 6) || (zdoStateInd.State == 7) || (zdoStateInd.State == 9))
+      {
+        gotStateRsp = true;
+      }
+      break;
+    }
+
+    case MESSAGE_ID.AF_DATA_REQUEST_EXT_SRSP:
+    {
+      var afRegExtRsp : AF_DATA_REQUEST_EXT_SRSP = msg;
+
+      if (afRegExtRsp.Status == SUCCESS)
+      {
+        gotAfReqExtRsp = true;
+      }
+      break;
+    }
+
+    case MESSAGE_ID.AF_DATA_STORE_SRSP:
+    {
+      var afStoreRsp : AF_DATA_STORE_SRSP = msg;
+
+      if (afStoreRsp.Status == SUCCESS)
+      {
+        gotAfStoreRsp = true;
+      }
+      break;
+    }
+
+    case MESSAGE_ID.AF_INCOMING_MSG_EXT:
+    {
+      var afIncExt : AF_INCOMING_MSG_EXT = msg;
+      afDataRetrieve(comm, msg);
+      gotAfIncExt = true;
+      break;
+    }
+
+    case MESSAGE_ID.AF_INCOMING_MSG:
+    {
+      var inMsgDat : AF_INCOMING_MSG = msg;
+      imGroup = inMsgDat.GroupID;
+      imCluster = inMsgDat.ClusterID;
+      imSrcAddr = inMsgDat.SrcAddr;
+      imSrcEndp = inMsgDat.SrcEndpoint;
+      imDstEndp = inMsgDat.DstEndpoint;
+      imLen = inMsgDat.Len;
+      for (var idx = 0; idx < imLen; idx++)
+      {
+          imData[idx] = inMsgDat.Data[idx];
+      }
+
+      break;
+    }
+
+    case MESSAGE_ID.AF_DATA_RETRIEVE_SRSP:
+    {
+      var afRetrieveRsp : AF_DATA_RETRIEVE_SRSP = msg;
+
+      if (afRetrieveRsp.Status == SUCCESS)
+      {
+        var index = retrieveIdx;
+
+        for (var idx = 0; idx < afRetrieveRsp.Length; idx++, index++)
+        {
+          retrieveBuf[index] = afRetrieveRsp.Data[idx];
+        }
+
+        gotAfRetrieveRsp = true;
+      }
+      break;
+    }
+
+    default:
+      break;
+    }
+  }
+
+
+  // Send a ZB_SYSTEM_RESET message until success.
+  function sysReset(comm : String)
+  {
+    var req : ZB_SYSTEM_RESET = new ZB_SYSTEM_RESET();
+    gotRstRsp = false;
+
+    while (!gotRstRsp)
+    {
+      logMsg("ZB_SYSTEM_RESET  to " + comm);
+      ZEngine.Send(comm, req);
+      ZEngine.Pause(800);
+
+      // Sending SYS_STACK_TUNE as a way to get a 0x07 byte to the SBL before a 0xF8 byte.
+      // An 0x07 byte forces the immediate run of valid code.
+      //sysStackTune(comm, 7, 7);
+      //ZEngine.Pause(300);
+    }
+  }
+
+
+  // Send a SYS_STACK_TUNE message.
+  function sysStackTune(comm : String, Operation: Byte, Value: Byte)
+  {
+    var req : SYS_STACK_TUNE = new SYS_STACK_TUNE();
+    req.Operation = Operation;
+    req.Value = Value;
+
+    logMsg("SYS_STACK_TUNE to " + comm);
+    ZEngine.Send(comm, req);
+  }
+
+
+  // Send a ZB_WRITE_CONFIGURATION message.
+  function writeCfg(comm : String, cfgId : Byte, len : Byte,  value : Array )
+  {
+    var req : ZB_WRITE_CONFIGURATION = new ZB_WRITE_CONFIGURATION();
+    req.ConfigId = cfgId;
+    req.Len = len;
+		req.Value = new byte[len];
+
+    for (var idx = 0; idx < len; idx++)
+    {
+      req.Value[idx] = value[idx];
+    }
+
+    gotCfgRsp = false;
+    while (!gotCfgRsp)
+    {
+      logMsg("ZB_WRITE_CONFIGURATION  to " + comm);
+      ZEngine.Send(comm, req);
+      ZEngine.Pause(200);
+    }
+  }
+
+
+  // Send a ZB_AF_REGISTER_REQUEST message.
+  function afReg(comm : String)
+  {
+    var req : AF_REGISTER  = new AF_REGISTER ();
+    req.AppProfID = profileId;
+    req.AppDeviceId = devId;
+    req.EndPoint = endPoint;
+    req.AppInClusterList = inClusterList;
+    req.AppNumInClusters = inClusterCnt;
+    req.AppOutClusterList = outClusterList;
+    req.AppNumOutClusters = outClusterCnt;
+
+    gotRegRsp = false;
+    while (!gotRegRsp)
+    {
+      logMsg("ZB_AF_REGISTER_REQUEST to " + comm);
+      ZEngine.Send(comm, req);
+      ZEngine.Pause(200);
+    }
+  }
+
+
+  // Send a ZB_START_REQUEST message.
+  function startReq(comm : String)
+  {
+    var req : ZB_START_REQUEST  = new ZB_START_REQUEST();
+
+    gotStateRsp = false;
+    while (!gotStateRsp)
+    {
+      gotStartRsp = false;
+      while (!gotStartRsp)
+      {
+        logMsg("ZB_START_REQUEST  to " + comm);
+        ZEngine.Send(comm, req);
+        ZEngine.Pause(1000);
+      }
+      ZEngine.Pause(5000);
+    }
+  }
+
+
+  /* Make a huge data request via an AF_DATA_REQUEST_EXT message and store the huge data.
+   * Since the max MT payload is 250 & the store message header is 3, the max bytes per store
+   * is 247. So to simplify the script just use 3 X 247 = 741.
+   * Note that we are simultaneously proving the max capacity of 250 bytes per MT message here.
+   */
+  function afDataReqFrag(comm : String)
+  {
+    var req : AF_DATA_REQUEST_EXT = new AF_DATA_REQUEST_EXT();
+
+    req.DstAddrMode = 2;  // Addr16Bit = 2
+    req.DstAddr[0] = 0; req.DstAddr[1] = 0;  // Short address 0x0000 is for ZC.
+    req.DstEndPoint = endPoint;
+    req.DstPanId = 0;  // Zero signifies not Inter-PAN.
+    req.SrcEndpoint = endPoint;
+    req.ClusterID = 1;  // Startup initialization makes cluster Id's 1,2,3... up to count.
+    req.TransID = 0;  // Trans Id is a don't care.
+    req.Options = 0;  // AF_TX_OPTIONS_NONE = 0
+    req.Radius = 15;  // AF_DEFAULT_RADIUS = 15
+    req.Len = retrieveTot;
+
+    gotAfReqExtRsp = false;
+    while (!gotAfReqExtRsp)
+    {
+      logMsg("AF_DATA_REQUEST_EXT to " + comm);
+      ZEngine.Send(comm, req);
+      ZEngine.Pause(3000);
+    }
+
+    var index : UInt16 = 0;
+    var fragLen : Byte = retrieveLen;
+    var fragBuf : Byte[] = new Byte[fragLen];
+    for (var idx = 0; idx < fragLen; idx++)
+    {
+      fragBuf[idx] = idx;
+    }
+    afDataStore(comm, index, fragLen, fragBuf);
+    index += fragLen;
+
+    // Change the frag data to enhance verification reliability on Rx.
+    for (idx = 0; idx < fragLen; idx++)
+    {
+      fragBuf[idx]++;
+    }
+    afDataStore(comm, index, fragLen, fragBuf);
+    index += fragLen;
+
+    // Change the frag data again to enhance verification reliability on Rx.
+    for (idx = 0; idx < fragLen; idx++)
+    {
+      // Without a type-cast, the script promotes fragBuf[] to int at run-time.
+      fragBuf[idx] = (Byte)(idx * 2);
+    }
+    afDataStore(comm, index, fragLen, fragBuf);
+
+    // A store of zero length indicates to send it OTA.
+    afDataStore(comm, 0, 0, fragBuf);
+  }
+
+
+  // Send a AF_DATA_STORE message.
+  function afDataStore(comm : String, index : UInt16, len : Byte, buf : Byte[])
+  {
+    var req : AF_DATA_STORE = new AF_DATA_STORE();
+
+    req.Index = index;
+    req.Length = len;
+
+    for (var idx = 0; idx < len; idx++)
+    {
+      req.Data[idx] = buf[idx];
+    }
+
+    gotAfStoreRsp = false;
+    while (!gotAfStoreRsp)
+    {
+      logMsg("AF_DATA_STORE to " + comm);
+      ZEngine.Send(comm, req);
+      ZEngine.Pause(100);
+    }
+  }
+
+
+  // Send a series of AF_DATA_RETRIEVE message(s) to get the data of an incoming huge message.
+  function afDataRetrieve(comm : String, msgIn : AF_INCOMING_MSG_EXT)
+  {
+    var req : AF_DATA_RETRIEVE = new AF_DATA_RETRIEVE();
+
+    req.Timestamp = msgIn.Timestamp;
+    req.Length = retrieveLen;
+
+    for (retrieveIdx = 0; retrieveIdx < msgIn.Len; retrieveIdx += retrieveLen)
+    {
+      req.Index = retrieveIdx;
+
+      gotAfRetrieveRsp = false;
+      while (!gotAfRetrieveRsp)
+      {
+        logMsg("AF_DATA_RETRIEVE to " + comm);
+        ZEngine.Send(comm, req);
+        ZEngine.Pause(100);
+      }
+    }
+
+    /* Retrieve request with zero length indicates to flush the message and free the dynamic
+     * memory. If this request fails, the device times out the incoming huge message buffer and
+     * flushes it automatically, so no loop here.
+     */
+    req.Length = 0;
+    logMsg("AF_DATA_RETRIEVE to " + comm);
+    ZEngine.Send(comm, req);
+    ZEngine.Pause(100);
+  }
+
+
+  // Verify the data in the global retrieveBuf[] according to what was sent in afDataReqFrag().
+  function verifyMsgIn() : boolean
+  {
+    /* At first writing of this script, the afDataReqFrag() sent 741 bytes.
+     * The first 247 bytes were 0-247; the next 247 bytes were 1-248; and the last 247 bytes were
+     * calculated as twice the corresponding index.
+     */
+    var index = 0;
+
+    for (var idx = 0; idx < retrieveLen; idx++, index++)
+    {
+      if (retrieveBuf[index] != idx)
+      {
+        break;
+      }
+    }
+
+    for (var idx = 1; idx <= retrieveLen; idx++, index++)
+    {
+      if (retrieveBuf[index] != idx)
+      {
+        break;
+      }
+    }
+
+    for (var idx = 0; idx < retrieveLen; idx++, index++)
+    {
+      if (retrieveBuf[index] != (Byte)(idx * 2))
+      {
+        break;
+      }
+    }
+
+    if (index < retrieveTot)
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }
+
+
+  // Display a log message if log messages are enabled.
+  function logMsg(theMsg : String)
+  {
+    if (showLogMsgs)
+    {
+      ZEngine.WriteLog(theMsg);  // Display the message.
+    }
+  }
+} // End of TheScript class.
+
+
+// The script engine will execute the following code.
+var script:TheScript = new TheScript();
+script.run();
+
+
+/**************************************************************************************************
+*/

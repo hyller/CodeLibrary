@@ -1,0 +1,319 @@
+/******************************************************************************
+// Filename:       znp-networkTopology.zjs
+// Revised:        $Date:$
+// Revision:       $Revision:$
+//
+//  Copyright 2015 Texas Instruments Incorporated. All rights reserved.
+//
+// IMPORTANT: Your use of this Software is limited to those specific rights
+// granted under the terms of a software license agreement between the user
+// who downloaded the software, his/her employer (which must be your employer)
+// and Texas Instruments Incorporated (the "License").  You may not use this
+// Software unless you agree to abide by the terms of the License. The License
+// limits your use, and you acknowledge, that the Software may not be modified,
+// copied or distributed unless used solely and exclusively in conjunction with
+// a Texas Instruments radio frequency device, which is integrated into
+// your product.  Other than for the foregoing purpose, you may not use,
+// reproduce, copy, prepare derivative works of, modify, distribute, perform,
+// display or sell this Software and/or its documentation for any purpose.
+//
+//  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+//  PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,l
+//  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+//  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+//  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+//  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+//  INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+//  OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+//  OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+//  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//
+//  Should you have any questions regarding your right to use this Software,
+//  contact Texas Instruments Incorporated at www.TI.com.
+//******************************************************************************/
+
+
+
+/*******************************************************************************
+  Instructions:
+  In order for this script to work, the script "znp-bringup.zjs" needs to run
+  first to initialize the network. After the script "znp-bringup.zjs" is
+  completed follow the instructions below:
+
+  - Modify the variable "comPort" to the COM port assigned to your target device.
+  - On the script window click on File -> Load and select the desired script
+    in this case znp-networkTopology.zjs.
+  - After loading the script select the script znp-networkTopology.zjs on the
+    left panel and make sure the name is highlighted in blue.
+  - Click the Run Button.
+
+
+********************************************************************************/
+import System;
+import System.Text;
+import TI.ZPI2;
+
+class TheScript
+{
+    // Set this variable to the COM port assigned to the target device.
+    private var comPort : String = "COM7";
+
+
+
+    // Set to 'true' when running the ZNP in order to reset the devices and startup the network.
+    private var ZNP_RUN : boolean = true;
+    private var SUCCESS : int = 0;
+
+
+
+    // Set this variable to 'true' to enable the display of log messages (i.e. verbose mode).
+    private var showLogMsgs : boolean = true;
+
+    // Variables set by the incoming message handler to enable "re-try until success" looping.
+    private var gotRstRsp           : boolean = false;
+    private var gotCfgRsp           : boolean = false;
+    private var gotRegRsp           : boolean = false;
+    private var gotStartRsp         : boolean = false;
+    private var gotStateRsp         : boolean = false;
+    private var gotAfReqExtRsp      : boolean = false;
+    private var gotAfIncExt         : boolean = false;
+    private var gotAfStoreRsp       : boolean = false;
+    private var gotAfRetrieveRsp    : boolean = false;
+    private var gotDevRsp           : boolean = false;
+    private var gotEpRsp            : boolean = false;
+    private var gotSdescRsp         : boolean = false;
+    private var gotTogRsp         : boolean = false;
+    private var gotDevAnn         : boolean = false;
+
+
+    private var isLight             : boolean = false;
+    private var lightStatus             : boolean = false;
+
+    private var profileId           : UInt16  = 0x0104;  // HA Profile ID
+    private var devId               : UInt16  = 0x0100;  // HA Profile ID
+    private var endPoint            : Byte    = 0x07;    // SampleSW has endpoint 12 so we use that
+    private var inClusterCnt        : Byte    = 5;
+    private var outClusterCnt       : Byte    = 1;
+    private var inClusterList = new Array(inClusterCnt);
+    private var outClusterList = new Array(outClusterCnt);
+
+    private var NV_STARTUP_OPTION     : Byte = 0x03;
+    private var NV_STARTUP_OPTION_VAL : Byte = 0x03;	// 0x03 = clear configuration
+    private var NV_STARTUP_LEN        : Byte = 1;
+
+    private var cfgArr = new Array(256);        // Make big enough for any configuration item.
+    private var retrieveBuf = new Array(1024);  // Make big enough for any huge message attempted.
+    private var retrieveTot           : UInt16 = 741;
+    private var retrieveLen           : Byte = 247;
+    private var retrieveIdx           : UInt16;
+    private var devaddr               : UInt16;
+    private var dstEndPoint           : Byte    = 0x00;
+
+    //DATA REQUEST VARIABLES
+    private var drData = new Array(99);
+    private var drCluster           : UInt16;
+    private var drTrans          : Byte;
+    private var drOption           : Byte;
+    private var drRadius           : Byte = 0x1E;//AF_DEFAULT_RADIUS
+    private var drLen           : Byte;
+
+    //INCOMING MESSAGES VARIABLES
+
+    private var imData = new Array(99);
+    private var imGroup           : UInt16;
+    private var imCluster           : UInt16;
+    private var imSrcAddr           : UInt16;
+    private var imSrcEndp           : Byte;
+    private var imDstEndp           : Byte;
+    private var imLen           : Byte;
+
+    private var type          : Byte;
+    private var typeS          : String;
+    private var lqiad           : UInt16;
+
+
+    private var lqiData = new Array(99);
+    private var lqiCount           : UInt16  = 0;
+
+
+
+
+    // Main class function that effects the work of this test script.
+    function run()
+    {
+
+        // Subscribe to the incoming message handler.
+        ZEngine.add_OnMessageZPI2(this.msgHandler);
+
+        if (ZNP_RUN)
+        {
+            writeCfg(comPort, 0x8F, 0x01, cfgArr);// Set ZCD_NV_ZDO_DIRECT_CB to true. ZCD_NV_ZDO_DIRECT_CB address = 0x8F
+
+            lqiReq(comPort, 0, 0);
+
+            for (var idx = 0; idx < lqiCount; idx++)
+            {
+                type = lqiData[idx] & 0x7;
+                lqiad = (lqiData[idx] >> 3);
+                //logMsg("index " + idx + ", address: 0x" + lqiad.ToString("X") );
+                if (type == 1)
+                {
+                    typeS = "COORDINATOR";
+                }
+                else if(type == 5 || type == 6)
+                {
+                    typeS="ROUTER";
+                }
+                else if (type == 2)
+                {
+                    typeS="END DEVICE";
+                }
+                if ((lqiData[idx] & 0x1) == 1)
+                {
+                    logMsg("Node address: 0x" + lqiad.ToString("X")+ " Device Type: "+typeS);
+
+                    logMsg("Children: ");
+                }
+                else
+                {
+                    logMsg("address: 0x" + lqiad.ToString("X") + " Device Type: "+typeS);
+                }
+
+            }
+
+        }
+
+        ZEngine.Complete(true);
+    }
+
+
+
+
+
+     //Sends ZDO_MGMT_LQI_REQ
+    function lqiReq(comm : String, dst : UInt16, start : Byte)
+    {
+        var req : ZDO_MGMT_LQI_REQ = new ZDO_MGMT_LQI_REQ ();
+        req.DstAddr = dst;
+        req.StartIndex = start;
+
+        ZEngine.Send(comm, req);
+        ZEngine.Pause(2000);
+    }
+
+      // Handler for incoming messages.
+    function msgHandler(comm : String, id : MESSAGE_ID, msg : Object)
+    {
+        switch (id)
+        {
+            case MESSAGE_ID.SYS_RESET_RESPONSE:
+            {
+              gotRstRsp = true;
+              break;
+            }
+            case MESSAGE_ID.ZDO_MGMT_LQI_RSP:
+            {
+                var lqiRsp : ZDO_MGMT_LQI_RSP = msg;
+
+
+                if(lqiCount == 0)
+                {
+                    lqiData[lqiCount++] = (lqiRsp.SrcAddr << 3) | 0x01;
+                }
+                else
+                {
+                    lqiData[lqiCount++] = (lqiRsp.SrcAddr << 3) | 0x05;
+                }
+                var nn : ZDO_MGMT_LQI_RSP.NeighborLqiListItemClass ;
+                var Relation : Byte;
+                var DevType : Byte;
+                var lqiRouterList = new Array(99);
+                var lqiRouterCount  : UInt16  = 0;
+
+                for (var idx = 0; idx < lqiRsp.NeighborLqiListCount; idx++)
+                {
+                    nn = lqiRsp.NeighborLqiList[idx];
+                    Relation = ((nn.Reserved_7_Relationship_6_4_RxOnWhenIdle_3_2_DeviceType_1_0 >> 4) & 0x7);
+                    DevType = (nn.Reserved_7_Relationship_6_4_RxOnWhenIdle_3_2_DeviceType_1_0 & 0x03);
+                    logMsg("relat: "+Relation);
+                    logMsg("type: "+DevType);
+                    if (Relation == 1)
+                    {
+                        if (DevType == 1 )
+                        {
+                            //lqiReq(comm, lqiRsp.NeighborLqiList[idx].NetworkAddress, 0);
+                            lqiRouterList[lqiRouterCount] = nn.NetworkAddress;
+                            lqiRouterCount++;
+                        }
+                        lqiData[lqiCount++] = (nn.NetworkAddress << 3) | (0x2 | ((DevType & 0x1) << 2));
+                    }
+                    else if (Relation == 0)
+                    {
+                        //lqiData[lqiCount++] = (nn.NetworkAddress << 3) | ((DevType & 0x1) << 2);
+                    }
+                }
+                for (var idx = 0; idx < lqiRouterCount; idx++)
+                {
+                    lqiReq(comm, lqiRouterList[idx], 0);
+                }
+                break;
+            }
+            case MESSAGE_ID.ZB_WRITE_CONFIGURATION_RSP:
+            {
+                var cfgRsp : ZB_WRITE_CONFIGURATION_RSP = msg;
+
+                if (cfgRsp.Status == SUCCESS)
+                {
+                    gotCfgRsp = true;
+                }
+                break;
+            }
+            default:
+            break;
+        }
+    }
+
+
+
+      // Send a ZB_WRITE_CONFIGURATION message.
+    function writeCfg(comm : String, cfgId : Byte, len : Byte,  value : Array )
+    {
+        var req : ZB_WRITE_CONFIGURATION = new ZB_WRITE_CONFIGURATION();
+        req.ConfigId = cfgId;
+        req.Len = len;
+        req.Value = new byte[len];
+
+        for (var idx = 0; idx < len; idx++)
+        {
+          req.Value[idx] = value[idx];
+        }
+
+        gotCfgRsp = false;
+        while (!gotCfgRsp)
+        {
+          logMsg("ZB_WRITE_CONFIGURATION  to " + comm);
+          ZEngine.Send(comm, req);
+          ZEngine.Pause(200);
+        }
+    }
+
+
+    // Display a log message if log messages are enabled.
+    function logMsg(theMsg : String)
+    {
+        if (showLogMsgs)
+        {
+          ZEngine.WriteLog(theMsg);  // Display the message.
+        }
+    }
+} // End of TheScript class.
+
+
+// The script engine will execute the following code.
+var script:TheScript = new TheScript();
+script.run();
+
+
+/**************************************************************************************************
+*/

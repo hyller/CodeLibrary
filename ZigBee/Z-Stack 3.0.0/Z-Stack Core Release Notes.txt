@@ -1,0 +1,61 @@
+Texas Instruments, Inc.
+
+Z-Stack Core Release Notes
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Version 2.7.0
+May 13, 2016
+
+Notices:
+ - Z-Stack 2.7.0 has been certified as a ZigBee Compliant Platform (ZCP)
+
+Updates:
+
+Distributed networks:
+ - NLME_NetworkFormationRequest updated for distributed networks. Router devices can create its own network
+   with distributed security. Only one APS key is needed, which is used to deliver the nwk key and is known 
+   to all devices. This APS key cannot be updated neither the nwk key. No support for APS security between 
+   devices.
+  
+Child management:
+ - Timeout agreement between ZED and parent device to expire ZED if no keep-alive message is receive by parent.
+   Orphan notification mechanism as keep-alive message has been removed and only MAC poll is supported. Default 
+   timeout is configured in parents for legacy devices that do not perform the agreement upon joining.
+   Expired devices will get a nwk Leave request with rejoin=1.
+   
+Nwk Leave and ZDO Mgmt Leave:   
+ - Nwk_Leave and ZDO Mgmt_Leave processing changed to: ZC shall ignore, ZR accept 
+   from anyone, ZED accept only from parent. Leave with rejoin 0 causes reset and erase 
+   all persistent data except for nwkFrameCounter (reset to factory new).
+ 
+Nwk Frame Counter:
+ - Persistent across resets, Factory new resets, across different nwk. Restarted only if 
+   network key is updated and it was greater than 0x80000000
+ - Multiple network frame counter instances can be used across different network by setting
+   MAX_NWK_SEC_MATERIAL_TABLE_ENTRIES
+
+Permit Joining:
+ - Permit duration [0xFF] is process as [0xFE]. TC_significance always set and considerate as 1
+
+Stack compliance version:
+ - Node descriptor response now reflects the current stack compliance version
+  
+Centralized Network Updates:
+ - Security Services and policies added/updated:
+	- Added APS Verify Key: ZR/ZED command to verify its unique link key with the TrustCenter
+	- Added APS Confirm Key: TrustCenter command to confirm the unique key used by ZR/ZED with TrustCenter
+    - Added AllowRejoin policy
+ - Joining devices must check TrustCenter stack revision. If this revision is R21 or later, they must 
+   update its APS key with the TrustCenter. This APS key will be used for all APS commands between the 
+   TrustCenter and the Joining Device. APS commands secured with APS key has extended nonce
+ - Support for Install Codes and allowInstallCodes policy
+
+
+Bug Fixes:
+ - Fix maximum payload size before a fragmentation to be 127 bytes
+ - Only current network key can be used to encrypt/decrypt packets, alternate key will not longer be used.
+ 
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
