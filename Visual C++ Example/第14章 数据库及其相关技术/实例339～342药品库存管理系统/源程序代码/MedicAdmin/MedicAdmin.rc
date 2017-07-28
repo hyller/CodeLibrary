@@ -1,0 +1,794 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\MedicAdmin.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#include ""l.chs\\afxdb.rc""           // Database resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\MedicAdmin.ico"
+IDR_MEDICATYPE          ICON    DISCARDABLE     "res\\MedicAdminDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDB_TREE_BITMAP         BITMAP  DISCARDABLE     "bmp\\bitmap5.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  24, 24
+BEGIN
+    BUTTON      ID_REGISTER_USER
+    BUTTON      ID_DELETE_USER
+    BUTTON      ID_CHANGE_USER
+    SEPARATOR
+    BUTTON      ID_STORE
+    BUTTON      ID_SALE
+    BUTTON      ID_CLEAN_UP
+    SEPARATOR
+    BUTTON      ID_CHANGE_PASSWORD
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "查询"
+    BEGIN
+        MENUITEM "按药品代号查询",              ID_SEEK_BY_ID
+        MENUITEM "按药品名称查询",              ID_SEEK_BY_NAME
+        MENUITEM "按药品类别查询",              ID_SEEK_BY_TYPE
+        MENUITEM SEPARATOR
+        MENUITEM "查询所有库存药品",            ID_SEEK_ALL
+        MENUITEM "库存数量为0的药品",           ID_SEEK_ZERO_NUMBER
+        MENUITEM "过期药品查询",                ID_SEEK_OVERDUE
+    END
+    POPUP "药品管理"
+    BEGIN
+        MENUITEM "药品入库",                    ID_STORE
+        MENUITEM "药品销售",                    ID_SALE
+        MENUITEM "药库清理",                    ID_CLEAN_UP
+    END
+    POPUP "系统管理"
+    BEGIN
+        MENUITEM "更改密码",                    ID_CHANGE_PASSWORD
+        MENUITEM "更换用户",                    ID_CHANGE_USER
+        MENUITEM SEPARATOR
+        MENUITEM "注册用户",                    ID_REGISTER_USER
+        MENUITEM "删除用户",                    ID_DELETE_USER
+        MENUITEM "查询用户",                    ID_SELECT_USER
+        MENUITEM SEPARATOR
+        MENUITEM "退出系统",                    ID_EXIT
+    END
+    POPUP "帮助"
+    BEGIN
+        MENUITEM "关于本系统",                  ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 MedicAdmin"
+FONT 9, "宋体"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "MedicAdmin 1.0 版",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2008",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_MEDICADMIN_FORM DIALOG DISCARDABLE  0, 0, 389, 280
+STYLE WS_CHILD
+FONT 9, "宋体"
+BEGIN
+END
+
+IDD_LOGIN_DIALOG DIALOG DISCARDABLE  0, 0, 167, 103
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "用户登录"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,26,82,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "退出",IDCANCEL,89,82,50,14,NOT WS_TABSTOP
+    LTEXT           "用户账号：",IDC_STATIC,22,17,41,12
+    LTEXT           "用户密码：",IDC_STATIC,22,35,41,12
+    LTEXT           "用户类别：",IDC_STATIC,22,54,41,12
+    EDITTEXT        IDC_ACCOUNT_EDIT,70,14,61,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASSWORD_EDIT,70,33,62,13,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    COMBOBOX        IDC_TYPE_COMBO,70,52,62,51,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_REGISTER_USER_DIALOG DIALOG DISCARDABLE  0, 0, 223, 175
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "注册用户窗口"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "注册",IDOK,155,10,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "重填",IDCANCEL,155,34,50,14,NOT WS_TABSTOP
+    LTEXT           "用户账号：",IDC_STATIC,7,9,41,11
+    EDITTEXT        IDC_NEWUSER_ACCOUNT_EDIT,56,7,62,13,ES_AUTOHSCROLL
+    LTEXT           "用户密码：",IDC_STATIC,7,25,41,11
+    LTEXT           "确认密码：",IDC_STATIC,7,41,41,11
+    LTEXT           "用户姓名：",IDC_STATIC,7,56,41,11
+    LTEXT           "用户类别：",IDC_STATIC,7,72,41,11
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER,7,96,202,72
+    PUSHBUTTON      "退出",IDOK2,155,68,50,14,NOT WS_TABSTOP
+    EDITTEXT        IDC_NEWUSER_PASSWORD1_EDIT,56,23,62,13,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_NEWUSER_PASSWORD2_EDIT,56,39,62,13,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_NEWUSER_NAME_EDIT,56,56,62,13,ES_AUTOHSCROLL
+    COMBOBOX        IDC_NEWUSER_TYPE_COMBO,56,72,63,37,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DELETE_USER_DIALOG DIALOG DISCARDABLE  0, 0, 257, 172
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "删除用户窗口"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "删除用户",IDOK,175,16,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "退出",IDCANCEL,175,40,50,14,NOT WS_TABSTOP
+    LTEXT           "用户账号：",IDC_STATIC,25,44,41,11
+    EDITTEXT        IDC_DELETEUSER_ACCOUNT_EDIT,74,42,62,13,ES_AUTOHSCROLL
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,25,78,202,72
+    LTEXT           "用户类别：",IDC_STATIC,25,18,41,11
+    COMBOBOX        IDC_DELETEUSER_TYPE_COMBO,74,17,62,37,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_SEEK_USER_DIALOG DIALOG DISCARDABLE  0, 0, 255, 197
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "查询用户信息窗口"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "查询用户",IDOK,44,82,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "退出",IDCANCEL,133,82,50,14,NOT WS_TABSTOP
+    LTEXT           "用户账号：",IDC_STATIC,25,49,41,11
+    EDITTEXT        IDC_SEEKUSER_ACCOUNT_EDIT,74,47,62,13,ES_AUTOHSCROLL
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,23,110,202,72
+    LTEXT           "用户类别：",IDC_STATIC,25,23,41,11
+    COMBOBOX        IDC_SEEKUSER_TYPE_COMBO,74,22,62,37,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "请选择查询用户：",IDC_STATIC,150,14,76,55
+    CONTROL         "用户类型",IDC_TYPE_RADIO,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,162,28,50,13
+    CONTROL         "用户账号",IDC_ACCOUNT_RADIO,"Button",BS_AUTORADIOBUTTON,
+                    162,47,50,13
+END
+
+IDD_CHANGE_PASSWORD_DIALOG DIALOG DISCARDABLE  0, 0, 184, 150
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "更改用户密码窗口"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,31,116,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "退出",IDCANCEL,98,116,50,14,NOT WS_TABSTOP
+    LTEXT           "用户账号：",IDC_STATIC,38,16,42,12
+    EDITTEXT        IDC_ACCOUNT_EDIT,84,14,66,13,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    EDITTEXT        IDC_OLD_PASSWORD_EDIT,84,46,66,13,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_NEW_PASSWORD_EDIT,84,68,66,13,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_NEW_PASSWORD2_EDIT,84,88,66,13,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "请输入旧密码：",IDC_STATIC,23,47,59,12
+    LTEXT           "请输入新密码：",IDC_STATIC,23,68,56,12
+    LTEXT           "确认新密码：",IDC_STATIC,31,88,49,12
+END
+
+IDD_CHANGE_USER_DIALOG DIALOG DISCARDABLE  0, 0, 147, 103
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "更换用户窗口"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,7,82,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "退出",IDCANCEL,77,82,50,14,NOT WS_TABSTOP
+    LTEXT           "用户账号：",IDC_STATIC,12,8,40,12
+    EDITTEXT        IDC_ACCOUNT_EDIT,61,7,66,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASSWORD_EDIT,61,29,66,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    COMBOBOX        IDC_TYPE_COMBO,61,51,66,53,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "用户密码：",IDC_STATIC,12,30,40,12
+    LTEXT           "用户类别：",IDC_STATIC,12,52,40,12
+END
+
+IDD_STORE_DIALOG DIALOG DISCARDABLE  0, 0, 270, 191
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "药品入库窗口"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "入库",IDOK,32,147,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "重填",IDCANCEL,97,147,50,14,NOT WS_TABSTOP
+    LTEXT           "药品代号：",IDC_STATIC,18,15,42,13
+    LTEXT           "药品名称：",IDC_STATIC,18,33,42,13
+    LTEXT           "药品类别：",IDC_STATIC,18,51,42,13
+    LTEXT           "生产厂家：",IDC_STATIC,135,15,42,13
+    LTEXT           "生产产地：",IDC_STATIC,135,33,42,13
+    LTEXT           "生产日期：",IDC_STATIC,18,87,42,13
+    LTEXT           "入库数量：",IDC_STATIC,18,69,42,13
+    LTEXT           "药品简介：",IDC_STATIC,18,106,42,13
+    LTEXT           "保  质  期：",IDC_STATIC,135,69,42,13
+    LTEXT           "药品单价：",IDC_STATIC,135,51,42,13
+    EDITTEXT        IDC_ID_EDIT,66,15,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NAME_EDIT,66,33,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TYPE_EDIT,66,51,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NUMBER_EDIT,66,69,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_UNITPRICE_EDIT,183,51,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COMPANY_EDIT,183,15,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PLACE_EDIT,183,33,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_YEAR_EDIT,66,87,20,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PERIODQUELITY_EDIT,183,69,57,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "退出",IDC_EXIT_BUTTON,177,147,52,14,NOT WS_TABSTOP
+    LTEXT           "年",IDC_STATIC,88,89,9,9
+    EDITTEXT        IDC_MONTH_EDIT,98,87,15,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DAY_EDIT,126,87,14,13,ES_AUTOHSCROLL
+    LTEXT           "月",IDC_STATIC,115,89,9,9
+    LTEXT           "日",IDC_STATIC,144,89,9,9
+    EDITTEXT        IDC_DESCRIPTION_EDIT,67,107,173,33,ES_MULTILINE | 
+                    ES_AUTOHSCROLL
+END
+
+IDD_SALE_DIALOG DIALOG DISCARDABLE  0, 0, 246, 201
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "药品销售窗口"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "增加",ID_ADD,161,21,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "删除",ID_DELETE,161,41,50,14,NOT WS_TABSTOP
+    EDITTEXT        IDC_NAME_EDIT,78,23,61,12,ES_AUTOHSCROLL
+    LTEXT           "药品名称：",IDC_STATIC,29,25,40,10
+    LTEXT           "出售数量：",IDC_STATIC,29,45,40,10
+    EDITTEXT        IDC_NUMBER_EDIT,78,43,61,12,ES_AUTOHSCROLL
+    CONTROL         "List1",IDC_SALE_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,28,69,186,85
+    PUSHBUTTON      "结算",IDC_SETTLEMENT_BUTTON,100,166,50,15
+    PUSHBUTTON      "恢复",IDC_RECOVER_BUTTON,37,165,50,16
+    PUSHBUTTON      "退出",IDC_EXIT_BUTTON,163,166,46,14
+END
+
+IDD_CLEAN_UP_DIALOG DIALOG DISCARDABLE  0, 0, 203, 167
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "清理药库窗口"
+FONT 10, "宋体"
+BEGIN
+    GROUPBOX        "选择要进行的操作",IDC_STATIC,7,7,94,49
+    CONTROL         "列出数量为0的药品",IDC_ZERO_RADIO,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,15,21,80,11
+    CONTROL         "列出过期药品",IDC_OVERDUE_RADIO,"Button",
+                    BS_AUTORADIOBUTTON,15,36,58,14
+    PUSHBUTTON      "清理出库",IDC_CLEAN_UP_BUTTON,139,15,40,12
+    PUSHBUTTON      "退出",IDC_EXIT,139,39,41,12
+    CONTROL         "List1",IDC_LIST,"SysListView32",LVS_REPORT | WS_BORDER | 
+                    WS_TABSTOP,7,65,182,96
+END
+
+IDD_SERACH_ID_DIALOG DIALOG DISCARDABLE  0, 0, 159, 79
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "按药品代号查询"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "查询",ID_SEARCH_ID,23,48,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "退出",ID_SEARCH_ID_EXIT,87,48,50,14,NOT WS_TABSTOP
+    LTEXT           "请输入查询药品的代号：",IDC_STATIC,21,13,93,11
+    EDITTEXT        IDC_ID_EDIT,42,26,76,12,ES_AUTOHSCROLL
+END
+
+IDD_SEARCH_NAME_DIALOG DIALOG DISCARDABLE  0, 0, 160, 77
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "按药品名称查询"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "查询",ID_SEARCH_NAME,23,48,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "退出",ID_SEARCH_NAME_EXIT,87,48,50,14,NOT WS_TABSTOP
+    LTEXT           "请输入查询药品的名称：",IDC_STATIC,21,13,93,11
+    EDITTEXT        IDC_NAME_EDIT,42,26,76,12,ES_AUTOHSCROLL
+END
+
+IDD_SEARCH_TYPE_DIALOG DIALOG DISCARDABLE  0, 0, 151, 74
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "按药品类别查询"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "查询",ID_SEARCH_TYPE,23,48,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "退出",ID_SEARCH_TYPE_EXIT,87,48,50,14,NOT WS_TABSTOP
+    LTEXT           "请输入查询药品的类别：",IDC_STATIC,7,7,93,11
+    EDITTEXT        IDC_TYPE_EDIT,20,22,76,12,ES_AUTOHSCROLL
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "MedicAdmin Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "MedicAdmin\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2001\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "MedicAdmin.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "MedicAdmin 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_MEDICADMIN_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 382
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 273
+    END
+
+    IDD_LOGIN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 160
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 96
+    END
+
+    IDD_REGISTER_USER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 215
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_DELETE_USER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 250
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 165
+    END
+
+    IDD_SEEK_USER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 190
+    END
+
+    IDD_CHANGE_PASSWORD_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 177
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 143
+    END
+
+    IDD_CHANGE_USER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 140
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 96
+    END
+
+    IDD_STORE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 263
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+
+    IDD_SALE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 239
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 194
+    END
+
+    IDD_CLEAN_UP_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 196
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 160
+    END
+
+    IDD_SERACH_ID_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 152
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_SEARCH_NAME_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 153
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 70
+    END
+
+    IDD_SEARCH_TYPE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 144
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_LOGIN_DIALOG DLGINIT
+BEGIN
+    IDC_TYPE_COMBO, 0x403, 5, 0
+0xbdd2, 0xfac9, "\000" 
+    IDC_TYPE_COMBO, 0x403, 7, 0
+0xdbca, 0xa9d2, 0xb1d4, "\000" 
+    IDC_TYPE_COMBO, 0x403, 7, 0
+0xdcb9, 0xedc0, 0xb1d4, "\000" 
+    0
+END
+
+IDD_REGISTER_USER_DIALOG DLGINIT
+BEGIN
+    IDC_NEWUSER_TYPE_COMBO, 0x403, 5, 0
+0xbdd2, 0xfac9, "\000" 
+    IDC_NEWUSER_TYPE_COMBO, 0x403, 7, 0
+0xdbca, 0xa9d2, 0xb1d4, "\000" 
+    IDC_NEWUSER_TYPE_COMBO, 0x403, 7, 0
+0xdcb9, 0xedc0, 0xb1d4, "\000" 
+    0
+END
+
+IDD_DELETE_USER_DIALOG DLGINIT
+BEGIN
+    IDC_DELETEUSER_TYPE_COMBO, 0x403, 5, 0
+0xbdd2, 0xfac9, "\000" 
+    IDC_DELETEUSER_TYPE_COMBO, 0x403, 7, 0
+0xdbca, 0xa9d2, 0xb1d4, "\000" 
+    IDC_DELETEUSER_TYPE_COMBO, 0x403, 7, 0
+0xdcb9, 0xedc0, 0xb1d4, "\000" 
+    IDC_DELETEUSER_TYPE_COMBO, 0x403, 9, 0
+0xf9cb, 0xd0d3, 0xe0c0, 0xcdd0, "\000" 
+    0
+END
+
+IDD_SEEK_USER_DIALOG DLGINIT
+BEGIN
+    IDC_SEEKUSER_TYPE_COMBO, 0x403, 5, 0
+0xbdd2, 0xfac9, "\000" 
+    IDC_SEEKUSER_TYPE_COMBO, 0x403, 7, 0
+0xdbca, 0xa9d2, 0xb1d4, "\000" 
+    IDC_SEEKUSER_TYPE_COMBO, 0x403, 7, 0
+0xdcb9, 0xedc0, 0xb1d4, "\000" 
+    IDC_SEEKUSER_TYPE_COMBO, 0x403, 9, 0
+0xf9cb, 0xd0d3, 0xe0c0, 0xcdd0, "\000" 
+    0
+END
+
+IDD_CHANGE_USER_DIALOG DLGINIT
+BEGIN
+    IDC_TYPE_COMBO, 0x403, 5, 0
+0xbdd2, 0xfac9, "\000" 
+    IDC_TYPE_COMBO, 0x403, 7, 0
+0xdbca, 0xa9d2, 0xb1d4, "\000" 
+    IDC_TYPE_COMBO, 0x403, 7, 0
+0xdcb9, 0xedc0, 0xb1d4, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "MedicAdmin\n\nMedicA\n\n\nMedicAdmin.Document\nMedicA Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "MedicAdmin"
+    AFX_IDS_IDLEMESSAGE     "就绪"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "扩展名"
+    ID_INDICATOR_CAPS       "大写"
+    ID_INDICATOR_NUM        "数字"
+    ID_INDICATOR_SCRL       "滚动"
+    ID_INDICATOR_OVR        "改写"
+    ID_INDICATOR_REC        "记录"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "建立新文档\n新建"
+    ID_FILE_OPEN            "打开一个现有文档\n打开"
+    ID_FILE_CLOSE           "关闭活动文档\n关闭"
+    ID_FILE_SAVE            "保存活动文档\n保存"
+    ID_FILE_SAVE_AS         "将活动文档以一个新文件名保存\n另存为"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "显示程序信息，版本号和版权\n关于"
+    ID_APP_EXIT             "退出应用程序；提示保存文档\n退出"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "打开该文档"
+    ID_FILE_MRU_FILE2       "打开该文档"
+    ID_FILE_MRU_FILE3       "打开该文档"
+    ID_FILE_MRU_FILE4       "打开该文档"
+    ID_FILE_MRU_FILE5       "打开该文档"
+    ID_FILE_MRU_FILE6       "打开该文档"
+    ID_FILE_MRU_FILE7       "打开该文档"
+    ID_FILE_MRU_FILE8       "打开该文档"
+    ID_FILE_MRU_FILE9       "打开该文档"
+    ID_FILE_MRU_FILE10      "打开该文档"
+    ID_FILE_MRU_FILE11      "打开该文档"
+    ID_FILE_MRU_FILE12      "打开该文档"
+    ID_FILE_MRU_FILE13      "打开该文档"
+    ID_FILE_MRU_FILE14      "打开该文档"
+    ID_FILE_MRU_FILE15      "打开该文档"
+    ID_FILE_MRU_FILE16      "打开该文档"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "切换到下一个窗格\n下一窗格"
+    ID_PREV_PANE            "切换回前一个窗格\n前一窗格"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "将活动的窗口分隔成窗格\n分隔"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "删除被选对象\n删除"
+    ID_EDIT_CLEAR_ALL       "全部删除\n全部删除"
+    ID_EDIT_COPY            "复制被选对象并将其置于剪贴板上\n复制"
+    ID_EDIT_CUT             "剪切被选对象并将其置于剪贴板上\n剪切"
+    ID_EDIT_FIND            "查找指定的正文\n查找"
+    ID_EDIT_PASTE           "插入剪贴板内容\n粘贴"
+    ID_EDIT_REPEAT          "重复上一步操作\n重复"
+    ID_EDIT_REPLACE         "用不同的正文替换指定的正文\n替换"
+    ID_EDIT_SELECT_ALL      "选择整个文档\n选择全部"
+    ID_EDIT_UNDO            "撤消最后一步操作\n撤消"
+    ID_EDIT_REDO            "重新执行先前已撤消的操作\n重新执行"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n显隐工具栏"
+    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n显隐状态栏"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "改变窗口大小"
+    AFX_IDS_SCMOVE          "改变窗口位置"
+    AFX_IDS_SCMINIMIZE      "将窗口缩小成图标"
+    AFX_IDS_SCMAXIMIZE      "把窗口放大到最大尺寸"
+    AFX_IDS_SCNEXTWINDOW    "切换到下一个文档窗口"
+    AFX_IDS_SCPREVWINDOW    "切换到先前的文档窗口"
+    AFX_IDS_SCCLOSE         "关闭活动的窗口并提示保存所有文档"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "把窗口恢复到正常大小"
+    AFX_IDS_SCTASKLIST      "激活任务表"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_REGISTER_USER        "添加一个新用户\n添加用户"
+    ID_DELETE_USER          "删除用户\n删除用户"
+    ID_CHANGE_PASSWORD      "更改用户密码\n更改密码"
+    ID_CHANGE_USER          "用别的用户登录\n更换用户"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_STORE                "将药品加入到数据库中\n药品入库"
+    ID_SALE                 "出售药品\n药品出售"
+    ID_CLEAN_UP             "清除仓库中数目为0或过期了的药品\n药库清理"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\MedicAdmin.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#include "l.chs\afxdb.rc"           // Database resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

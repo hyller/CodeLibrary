@@ -1,0 +1,12 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+COMPRESS=60 Hall Zeck
+LCID=0x804 0x0 0x0 ; 中文(中国)
+REPORT=Yes
+CONTENTS=HID_CONTENTS
+TITLE=WINHELP HELP
+HLP=Menuhelp.hlp
+
+[FILES]
+Menuhelp.rtf

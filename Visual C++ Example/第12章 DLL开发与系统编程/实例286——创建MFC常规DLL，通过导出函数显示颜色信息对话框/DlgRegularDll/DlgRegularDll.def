@@ -1,0 +1,8 @@
+; DlgRegularDll.def : Declares the module parameters for the DLL.
+
+LIBRARY      "DlgRegularDll"
+DESCRIPTION  'DlgRegularDll Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+	ShowDlg 	@1
