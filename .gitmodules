@@ -1,3 +1,12 @@
 [submodule "wxWidgets"]
 	path = wxWidgets
 	url = https://github.com/wxWidgets/wxWidgets.git
+[submodule "libcoap"]
+	path = libcoap
+	url = https://github.com/authmillenon/libcoap.git
+[submodule "contiki"]
+	path = contiki
+	url = https://github.com/contiki-os/contiki.git
+[submodule "mosquitto"]
+	path = mosquitto
+	url = https://github.com/eclipse/mosquitto.git

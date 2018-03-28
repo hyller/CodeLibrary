@@ -1,0 +1,10 @@
+【编译】
+cygwin环境下，通过下列命令行编译成功：
+make WITH_TLS=no WITH_WEBSOCKETS=no WITH_UUID=no WITH_SRV=no binary
+
+【使用】
+mosquitto.exe
+
+mosquitto_sub.exe -t "topic"
+
+mosquitto_pub.exe -t "topic" -m "hello world"

@@ -1,0 +1,72 @@
+// OleEdit.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (OleEdit.tlb) that will become a resource in
+// OleEdit.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(E88D840C-CAD4-4468-A172-04F0153ED7BD), version(1.0),
+  helpfile("OleEdit.hlp"),
+  helpstring("OleEdit ActiveX Control module"),
+  control ]
+library OLEEDITLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for COleEditCtrl
+
+	[ uuid(288788D5-F3BF-4880-97B4-CD01744E4491),
+	  helpstring("Dispatch interface for OleEdit Control"), hidden ]
+	dispinterface _DOleEdit
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(COleEditCtrl)
+			[id(DISPID_FONT), bindable] IFontDisp* Font;
+			[id(1)] boolean bNumbers;
+			[id(2)] boolean bText;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(COleEditCtrl)
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for COleEditCtrl
+
+	[ uuid(87969E28-0660-49CB-A99A-3F34552332EA),
+	  helpstring("Event interface for OleEdit Control") ]
+	dispinterface _DOleEditEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(COleEditCtrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for COleEditCtrl
+
+	[ uuid(0A2E1C1D-5F28-4850-9129-8D55E9B6BB6D),
+	  helpstring("OleEdit Control"), control ]
+	coclass OleEdit
+	{
+		[default] dispinterface _DOleEdit;
+		[default, source] dispinterface _DOleEditEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

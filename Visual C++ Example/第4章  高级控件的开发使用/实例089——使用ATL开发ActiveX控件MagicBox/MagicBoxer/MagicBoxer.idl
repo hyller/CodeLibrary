@@ -1,0 +1,61 @@
+// MagicBoxer.idl : IDL source for MagicBoxer.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (MagicBoxer.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "olectl.h"
+	
+
+	[
+		object,
+		uuid(463C57B6-CA1D-4E3A-910C-0563A6992FFA),
+		dual,
+		helpstring("IMagicBox Interface"),
+		pointer_default(unique)
+	]
+	interface IMagicBox : IDispatch
+	{
+		[propput, id(DISPID_BACKCOLOR)]
+		HRESULT BackColor([in]OLE_COLOR clr);
+		[propget, id(DISPID_BACKCOLOR)]
+		HRESULT BackColor([out,retval]OLE_COLOR* pclr);
+		[propput, id(DISPID_FILLCOLOR)]
+		HRESULT FillColor([in]OLE_COLOR clr);
+		[propget, id(DISPID_FILLCOLOR)]
+		HRESULT FillColor([out, retval]OLE_COLOR* pclr);
+	};
+
+[
+	uuid(0A9BCD72-B597-455F-874A-FE0BE72E92B9),
+	version(1.0),
+	helpstring("MagicBoxer 1.0 Type Library")
+]
+library MAGICBOXERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(F56D5432-D8AD-40D2-9255-81A64142FF88),
+		helpstring("_IMagicBoxEvents Interface")
+	]
+	dispinterface _IMagicBoxEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method ClickBox")] HRESULT ClickBox([in]long x,[in]long y);
+	};
+
+	[
+		uuid(9C4A11F3-7AA3-4587-BB40-7A5369063137),
+		helpstring("MagicBox Class")
+	]
+	coclass MagicBox
+	{
+		[default] interface IMagicBox;
+		[default, source] dispinterface _IMagicBoxEvents;
+	};
+};

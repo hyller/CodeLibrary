@@ -1,0 +1,452 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "VideoVoiceTrans.ico"
+IDR_MAINFRAME2          ICON    DISCARDABLE     "14.ico"
+IDI_ICON1               ICON    DISCARDABLE     "Help File HLP.ico"
+IDI_ICON2               ICON    DISCARDABLE     "shoot03.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 207, 132
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于VideoVoiceTrans"
+FONT 9, "Zurich Ex BT"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,15,13,20,20
+    LTEXT           "基于音、视频传输的远程诊断系统2.0",IDC_STATIC,49,7,151,
+                    11,SS_NOPREFIX
+    LTEXT           "Copyfree (C) 2008.",IDC_STATIC,49,23,82,11
+    DEFPUSHBUTTON   "OK",IDOK,158,111,35,14,WS_GROUP
+    LTEXT           "开发单位:",IDC_STATIC,7,46,50,9
+    LTEXT           "通信技术保障组",IDC_STATIC,38,54,111,11
+    LTEXT           "开发者：",IDC_STATIC,9,68,81,13
+    LTEXT           "gaoshouchuan",IDC_STATIC,41,79,111,11
+    LTEXT           "tel: 6633XXXX",IDC_STATIC,41,91,118,8
+    LTEXT           "Email: gaoshouchuan@163.com",IDC_STATIC,39,103,106,8
+END
+
+IDD_VideoVoiceTrans_DIALOG DIALOGEX 0, 0, 405, 355
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CONTEXTHELP | WS_MINIMIZEBOX | 
+    WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CLIENTEDGE | WS_EX_APPWINDOW
+CAPTION "基于音、视频传输的远程诊断系统2.0"
+MENU IDR_MENU1
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "发送消息",IDC_BUTTON1,327,294,41,12
+    LISTBOX         IDC_LIST1,25,221,349,63,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    GROUPBOX        "本地视频",IDC_LOCALBORDER,13,41,168,157,BS_NOTIFY
+    CONTROL         "",IDC_LOCALVIDEO,"Static",SS_BLACKRECT | WS_BORDER,14,
+                    66,161,131,WS_EX_CLIENTEDGE
+    GROUPBOX        "对端视频",IDC_REMOTEBORDER,208,39,180,158
+    CONTROL         "",IDC_REMOTEVIDEO,"Static",SS_BLACKRECT | WS_BORDER,211,
+                    71,174,129,WS_EX_CLIENTEDGE
+    GROUPBOX        "信息交流面板",IDC_STATIC,7,211,390,107
+    EDITTEXT        IDC_EDIT1,25,294,287,13,ES_AUTOHSCROLL | NOT WS_TABSTOP
+    CONTROL         "",IDC_TOOLBAR_STATIC,"Static",SS_BLACKFRAME | NOT 
+                    WS_VISIBLE,7,1,389,25,WS_EX_DLGMODALFRAME
+    GROUPBOX        "视频窗口",IDC_STATIC,7,31,390,175
+    GROUPBOX        "工具窗口",IDC_STATIC,7,322,391,24
+    PUSHBUTTON      "视频捕捉",IDC_SNAP,9,331,43,14
+    PUSHBUTTON      "停止捕捉",IDC_STOPSNAP,71,331,44,14
+    PUSHBUTTON      "诊断报告",IDC_RESULT,201,331,44,14
+    PUSHBUTTON      "资料查询",IDC_FILEFIND,271,331,44,14
+    PUSHBUTTON      "意见建议",IDC_BOOK,339,331,44,14
+    PUSHBUTTON      "保存图像",IDC_PICSAVE,133,331,44,14
+END
+
+IDD_RESULT DIALOG DISCARDABLE  0, 0, 286, 192
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "技术支援结果报告"
+FONT 10, "宋体"
+BEGIN
+    PUSHBUTTON      "退出窗口",IDCANCEL,229,174,50,14
+    LTEXT           "支援单位：",IDC_STATIC,9,6,41,8
+    EDITTEXT        IDC_ADDRESS,50,4,195,13,ES_AUTOHSCROLL
+    LTEXT           "型号：",IDC_STATIC,11,33,26,8
+    EDITTEXT        IDC_CODE,37,31,90,13,ES_AUTOHSCROLL
+    LTEXT           "名称：",IDC_STATIC,131,34,25,8
+    EDITTEXT        IDC_NAME,156,31,103,13,ES_AUTOHSCROLL
+    GROUPBOX        "装备信息",IDC_STATIC,7,20,272,29
+    GROUPBOX        "支援过程描述",IDC_STATIC,7,49,272,94
+    EDITTEXT        IDC_SCRIBE,7,63,272,76,ES_MULTILINE | ES_AUTOVSCROLL
+    GROUPBOX        "报告信息",IDC_STATIC,7,143,272,28
+    LTEXT           "报告人：",IDC_STATIC,11,153,34,8
+    EDITTEXT        IDC_REPORTNAME,45,151,65,13
+    LTEXT           "支援时间：",IDC_STATIC,145,154,41,8
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER1,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_LONGDATEFORMAT | 
+                    WS_TABSTOP,188,152,69,12
+    PUSHBUTTON      "生成报告",IDC_SAVEREPORT,7,174,50,14
+    PUSHBUTTON      "存入数据库",IDC_DATABASE,82,174,50,14
+    PUSHBUTTON      "清除信息",IDC_CLEAR,156,174,50,14
+END
+
+IDD_REQUESTCON DIALOG DISCARDABLE  0, 0, 286, 158
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "请求技术支援"
+FONT 10, "宋体"
+BEGIN
+    PUSHBUTTON      "退出窗口",IDCANCEL,211,137,50,14
+    LTEXT           "单位名称：",IDC_STATIC,9,6,41,8
+    EDITTEXT        IDC_ARMNAME,50,4,195,13,ES_AUTOHSCROLL
+    LTEXT           "型号：",IDC_STATIC,11,33,26,8
+    EDITTEXT        IDC_CODE,37,31,90,13,ES_AUTOHSCROLL
+    LTEXT           "名称：",IDC_STATIC,131,34,25,8
+    EDITTEXT        IDC_NAME,156,31,103,13,ES_AUTOHSCROLL
+    GROUPBOX        "装备信息",IDC_STATIC,7,20,272,47
+    GROUPBOX        "请求人员信息",IDC_STATIC,7,78,272,53
+    LTEXT           "请求人：",IDC_STATIC,13,90,34,8
+    EDITTEXT        IDC_REQUESTNAME,47,88,65,13
+    LTEXT           "职务：",IDC_STATIC,119,91,25,8
+    PUSHBUTTON      "请求连接",IDC_CONNECT,11,136,50,14
+    PUSHBUTTON      "清除信息",IDC_CLEAR,115,136,50,14
+    CONTROL         "说明：装备型号可以为空，但装备名称必需填写，可以为简单名称。",
+                    IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,9,52,
+                    266,8
+    EDITTEXT        IDC_DEPT,145,89,128,13
+    EDITTEXT        IDC_TELEPHONE,54,110,155,13
+    LTEXT           "联系电话：",IDC_STATIC,13,112,48,8
+END
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 163, 65
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "连接设置"
+FONT 10, "宋体"
+BEGIN
+    PUSHBUTTON      "取消",IDCANCEL,89,43,43,11
+    PUSHBUTTON      "连接",IDC_BUTTON1,25,43,43,11
+    LTEXT           "连接IP :",IDC_STATIC,18,16,35,8
+    EDITTEXT        IDC_EDIT1,64,15,82,12,ES_AUTOHSCROLL
+END
+
+IDD_DIALOG2 DIALOG DISCARDABLE  0, 0, 161, 68
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "请求连接"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "允许连接",IDOK,23,44,50,12
+    PUSHBUTTON      "拒绝连接",IDREJECT,90,44,50,12
+    LTEXT           "请求用户连接",IDC_MESG,17,13,130,20
+END
+
+IDD_DIALOG3 DIALOG DISCARDABLE  0, 0, 171, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Volume Control"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,111,76,34,12
+    GROUPBOX        "录音",IDC_STATIC,15,13,128,25
+    CONTROL         "Slider1",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,22,24,116,10
+    GROUPBOX        "播放",IDC_STATIC,16,44,128,25
+    CONTROL         "Slider1",IDC_SLIDER2,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,23,55,116,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 200
+        VERTGUIDE, 49
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 125
+    END
+
+    IDD_VideoVoiceTrans_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 398
+        VERTGUIDE, 25
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 353
+        HORZGUIDE, 4
+        HORZGUIDE, 19
+        HORZGUIDE, 126
+        HORZGUIDE, 133
+    END
+
+    IDD_RESULT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 188
+    END
+
+    IDD_REQUESTCON, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 154
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 156
+        VERTGUIDE, 28
+        VERTGUIDE, 71
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+        HORZGUIDE, 43
+        HORZGUIDE, 54
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 154
+        VERTGUIDE, 23
+        VERTGUIDE, 73
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 61
+        HORZGUIDE, 45
+        HORZGUIDE, 56
+    END
+
+    IDD_DIALOG3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 164
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU DISCARDABLE 
+BEGIN
+    POPUP "系统连接"
+    BEGIN
+        MENUITEM "请求支援（&Connect）",        CONF_QUESTCONNECT
+        MENUITEM "快速连接（&Quick）",          CONF_CONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "断开（&Disconnect）",         CONF_DISCONNECT
+        MENUITEM "退出（E&xit ）",              CONF_EXIT
+    END
+    POPUP "窗口"
+    BEGIN
+        MENUITEM "本端视频窗口",                VIEW_LOCAL, CHECKED
+        MENUITEM "对端视频窗口",                VIEW_REMOTE, CHECKED
+    END
+    POPUP "音频"
+    BEGIN
+        MENUITEM "音量控制",                    AUDIO_CONTROL
+        MENUITEM SEPARATOR
+        MENUITEM "发送（&Send） ",              AUDIO_SEND, CHECKED
+        MENUITEM "接收（&Receive）",            AUDIO_RECEIVE, CHECKED
+    END
+    POPUP "视频"
+    BEGIN
+        MENUITEM "发送（&Send）",               VIDEO_SEND, CHECKED
+        MENUITEM "接收（&Receive）",            VIDEO_RECEIVE, CHECKED
+    END
+    POPUP "程序界面"
+    BEGIN
+        MENUITEM "加载界面",                    ID_MENU_SKIN_LOAD
+        MENUITEM SEPARATOR
+        MENUITEM "原始风格",                    ID_MENU_SKIN_NO
+    END
+    POPUP "帮助"
+    BEGIN
+        MENUITEM "&About VideoVoiceTrans",      HELP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBAR1 TOOLBAR DISCARDABLE  32, 32
+BEGIN
+    BUTTON      CONF_CONNECT
+    BUTTON      CONF_DISCONNECT
+    BUTTON      AUDIO_CONTROL
+    BUTTON      HELP_ABOUT
+    BUTTON      VIDEO_SEND
+    BUTTON      ID_BUTTON32791
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_TOOLBAR1            BITMAP  DISCARDABLE     "toolbar1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// FACEURF
+//
+
+IDR_FACEURF1            FACEURF DISCARDABLE     "Debug\\GtBase.urf"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    CONF_CONNECT            "远程连接"
+    CONF_DISCONNECT         "断开连接"
+    AUDIO_CONTROL           "音量控制"
+    VIDEO_SEND              "发送视频"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\VideoVoiceTrans.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About VideoVoiceTrans..."
+    IDP_SOCKETS_INIT_FAILED "Windows sockets initialization failed."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_CONFERENCE_CONNECT   "Connect to remote host"
+    CONF_CONNECT            "Connect to remote host"
+    CONF_DISCONNECT         "Disconnect the remote host"
+    CONF_EXIT               "Exit the application"
+    VIEW_LOCAL              "Show / Hide the local video screen"
+    VIEW_REMOTE             "Show / Hide the remote video screen"
+    AUDIO_CONTROL           "Control the recording and playing volume"
+    AUDIO_SEND              "Enable / Disable transmission of audio"
+    AUDIO_RECEIVE           "Enable / Disable  reception of audio"
+    VIDEO_SEND              "Enable / Disable transmission of video"
+    VIDEO_RECEIVE           "Enable/Disable reception of video"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\VideoVoiceTrans.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

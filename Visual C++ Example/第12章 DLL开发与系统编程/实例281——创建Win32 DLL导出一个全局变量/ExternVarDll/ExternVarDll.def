@@ -1,0 +1,5 @@
+;在DLL中导出变量
+LIBRARY   "ExternVarDll"
+DESCRIPTION  "实现一个导出变量的DLL"
+EXPORTS 
+		myVar DATA

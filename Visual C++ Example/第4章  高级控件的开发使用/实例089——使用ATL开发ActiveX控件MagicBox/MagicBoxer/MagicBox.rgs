@@ -1,0 +1,34 @@
+HKCR
+{
+	MagicBoxer.MagicBox.1 = s 'MagicBox Class'
+	{
+		CLSID = s '{9C4A11F3-7AA3-4587-BB40-7A5369063137}'
+	}
+	MagicBoxer.MagicBox = s 'MagicBox Class'
+	{
+		CLSID = s '{9C4A11F3-7AA3-4587-BB40-7A5369063137}'
+		CurVer = s 'MagicBoxer.MagicBox.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {9C4A11F3-7AA3-4587-BB40-7A5369063137} = s 'MagicBox Class'
+		{
+			ProgID = s 'MagicBoxer.MagicBox.1'
+			VersionIndependentProgID = s 'MagicBoxer.MagicBox'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 101'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{0A9BCD72-B597-455F-874A-FE0BE72E92B9}'
+			'Version' = s '1.0'
+		}
+	}
+}
