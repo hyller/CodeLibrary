@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "Plugins.py", line 16, in <module>
+  File "Plugins.py", line 11, in copyPlugins
+  File "C:\Python27_32\lib\shutil.py", line 83, in copyfile
+IOError: [Errno 2] No such file or directory: 'C:\\Program Files\\Wireshark\\plugins\\2.6.1\\nordic_ble.dll'
